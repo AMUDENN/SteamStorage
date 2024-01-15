@@ -1,0 +1,42 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SteamStorage.App"
+			 xmlns:utilities="using:SteamStorage.Utilities"
+             xmlns:local="using:SteamStorage"
+             RequestedThemeVariant="Default">
+
+    <Application.DataTemplates>
+		<utilities:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <FluentTheme />
+		<StyleInclude Source="/Resources/Styles/BorderStyles.axaml"/>
+		<StyleInclude Source="/Resources/Styles/ButtonStyles.axaml"/>
+		<StyleInclude Source="/Resources/Styles/GridStyles.axaml"/>
+		<StyleInclude Source="/Resources/Styles/RectangleStyles.axaml"/>
+		<StyleInclude Source="/Resources/Styles/TextBlockStyles.axaml"/>
+		<StyleInclude Source="/Resources/Styles/WindowStyles.axaml"/>
+
+		<StyleInclude Source="/Resources/Images/Vectors/AccountImage.axaml"/>
+		<StyleInclude Source="/Resources/Images/Vectors/ActivesImage.axaml"/>
+		<StyleInclude Source="/Resources/Images/Vectors/ArchiveImage.axaml"/>
+		<StyleInclude Source="/Resources/Images/Vectors/CloseImage.axaml"/>
+		<StyleInclude Source="/Resources/Images/Vectors/HomeImage.axaml"/>
+		<StyleInclude Source="/Resources/Images/Vectors/InventoryImage.axaml"/>
+		<StyleInclude Source="/Resources/Images/Vectors/LogoImage.axaml"/>
+		<StyleInclude Source="/Resources/Images/Vectors/MaximizeImage.axaml"/>
+		<StyleInclude Source="/Resources/Images/Vectors/MinimizeImage.axaml"/>
+		<StyleInclude Source="/Resources/Images/Vectors/ProfileImage.axaml"/>
+		<StyleInclude Source="/Resources/Images/Vectors/RestoreImage.axaml"/>
+    </Application.Styles>
+
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceInclude Source="avares://SteamStorage/Resources/Themes/DarkTheme.axaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+	
+</Application>

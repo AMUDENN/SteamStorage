@@ -1,0 +1,38 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Style Selector="TextBlock">
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="TextWrapping" Value="Wrap"/>
+		<Setter Property="FontFamily" Value="Inter"/>
+		<Setter Property="FontWeight" Value="600"/>
+		<Setter Property="FontStyle" Value="Normal"/>
+		<Setter Property="Transitions">
+			<Transitions>
+				<DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+			</Transitions>
+		</Setter>
+	</Style>
+
+	<Style Selector="TextBlock.Light">
+		<Setter Property="Opacity" Value="0.5"/>
+	</Style>
+
+	<Style Selector="TextBlock.Center">
+		<Setter Property="TextAlignment" Value="Center"/>
+	</Style>
+
+	<Style Selector="TextBlock.BigText">
+		<Setter Property="FontSize" Value="32"/>
+	</Style>
+
+	<Style Selector="TextBlock.MiddleText">
+		<Setter Property="FontSize" Value="24"/>
+	</Style>
+
+	<Style Selector="TextBlock.SmallText">
+		<Setter Property="FontSize" Value="16"/>
+	</Style>
+	
+</Styles>

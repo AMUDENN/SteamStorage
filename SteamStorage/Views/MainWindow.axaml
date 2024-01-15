@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:vm="using:SteamStorage.ViewModels"
+        mc:Ignorable="d" 
+		d:DesignWidth="1440" d:DesignHeight="1024"
+        x:Class="SteamStorage.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+		Width="1440" Height="1024"
+        Icon="\Resources\Images\Bitmaps\BlackIcon24.ico"
+        Title="SteamStorage">
+	
+	<ContentPresenter Content="{Binding MainVM}" Grid.Row="1"/>		
+
+</Window>

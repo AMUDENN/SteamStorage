@@ -1,0 +1,122 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vm="using:SteamStorage.ViewModels"
+		x:DataType="vm:MainWindowViewModel">
+
+	<Style Selector="Window">
+		<Setter Property="ExtendClientAreaChromeHints" Value="NoChrome"/>
+		<Setter Property="ExtendClientAreaTitleBarHeightHint" Value="36"/>
+		<Setter Property="ExtendClientAreaToDecorationsHint" Value="True"/>
+		<Setter Property="TransparencyBackgroundFallback" Value="Transparent"/>
+		<Setter Property="Template">
+			<ControlTemplate>
+				
+				<Grid Margin="{TemplateBinding OffScreenMargin}">
+					
+					<Border x:Name="WindowBorder"
+							Classes="SmallRounded"
+							Background="{DynamicResource BackgroundBrush}" IsHitTestVisible="False"/>
+					
+					<Grid RowDefinitions="36, *">
+						
+						<Grid ColumnDefinitions="36, *, 108"
+							  Margin="10, 5"
+							  Grid.Row="0">
+							
+							<Image Classes="LogoImage" 
+								   Grid.Column="0"/>
+							
+							<TextBlock Text="{TemplateBinding Title}" 
+									   Classes="Center"
+									   Grid.Column="1"/>
+							
+							<StackPanel Orientation="Horizontal" 
+										Spacing="5" 
+										VerticalAlignment="Center"
+										HorizontalAlignment="Right"
+										Grid.Column="2">
+								
+								<Button x:Name="MinimizeButton"
+										Command="{Binding MinimizeCommand}">
+									<Image Classes="MinimizeImage"/>
+								</Button>
+								
+								<Button x:Name="MaximizeButton"
+										Command="{Binding MaximizeCommand}">
+									<Image Classes="MaximizeImage"/>
+								</Button>
+								
+								<Button x:Name="RestoreButton"
+										Command="{Binding RestoreCommand}">
+									<Image Classes="RestoreImage"/>
+								</Button>
+								
+								<Button x:Name="CloseButton"
+										Command="{Binding CloseCommand}">
+									<Image Classes="CloseImage"/>
+								</Button>
+								
+							</StackPanel>
+							
+						</Grid>
+						
+						<ContentPresenter Content="{TemplateBinding Content}" Grid.Row="1"/>
+						
+					</Grid>
+					
+				</Grid>
+				
+			</ControlTemplate>
+		</Setter>
+
+		<Style Selector="^[WindowState=Maximized] /template/ Border#WindowBorder">
+			<Setter Property="CornerRadius" Value="0"/>
+		</Style>
+
+		<Style Selector="^[WindowState=Maximized] /template/ Button#MaximizeButton">
+			<Setter Property="IsVisible" Value="False"/>
+		</Style>
+
+		<Style Selector="^[WindowState=Normal] /template/ Button#RestoreButton">
+			<Setter Property="IsVisible" Value="False"/>
+		</Style>
+
+	</Style>
+
+	<Style Selector="Window Button">
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="Width" Value="26"/>
+		<Setter Property="Height" Value="26"/>
+		<Setter Property="Padding" Value="6"/>
+		<Setter Property="Template">
+			<ControlTemplate>
+				<Border Background="{TemplateBinding Background}"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}"
+						CornerRadius="{TemplateBinding CornerRadius}">
+					<ContentPresenter Content="{TemplateBinding Content}" 
+									  Margin="{TemplateBinding Padding}"
+									  HorizontalAlignment="Center" 
+									  VerticalAlignment="Center"/>
+				</Border>
+			</ControlTemplate>
+		</Setter>
+
+		<Style Selector="^:pointerover">
+			<Setter Property="Padding" Value="5"/>
+		</Style>
+		
+	</Style>
+
+	<Style Selector="Window TextBlock">
+		<Setter Property="FontSize" Value="16"/>
+	</Style>
+
+	<Style Selector="Image.LogoImage">
+		<Setter Property="Margin" Value="4"/>
+	</Style>
+	
+</Styles>
