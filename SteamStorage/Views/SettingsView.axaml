@@ -1,0 +1,171 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SteamStorage.Views.SettingsView">
+    
+    <Grid Margin="30, 0, 0, 0">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition MaxHeight="30" MinHeight="30"/>
+            <RowDefinition Height="*" MinHeight="90"/>
+            <RowDefinition MaxHeight="30" MinHeight="30"/>
+            <RowDefinition Height="2*" MinHeight="220"/>
+        </Grid.RowDefinitions>
+        
+        <Border Classes="BigRounded BackgroundAdditional" 
+                Grid.Row="0">
+            
+            <Grid RowDefinitions="30, 30, *" 
+                  Margin="30">
+                
+                <TextBlock Text="Внешний вид приложения"
+                           Classes="MiddleText"
+                           Grid.Row="0"/>
+                
+            </Grid>
+            
+        </Border>
+        
+        <Grid Grid.Row="2">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition MaxWidth="30" MinWidth="30"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Border Classes="BigRounded BackgroundAdditional" 
+                    Grid.Column="0">
+                <Button Content="Экспорт в Excel" Classes="UnderlineButton HorizontalCenter" Grid.Row="2"/>
+            </Border>
+            
+            <Border Classes="BigRounded BackgroundAdditional" 
+                    Grid.Column="2">
+                <Button Content="Справочная информация" Classes="UnderlineButton HorizontalCenter" Grid.Row="2"/>
+            </Border>
+            
+        </Grid>
+        
+        <Grid Grid.Row="4">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition MaxWidth="30" MinWidth="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition MaxWidth="30" MinWidth="30"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Border Classes="BigRounded BackgroundAdditional" 
+                    Grid.Column="0">
+                
+                <Grid Margin="30">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="72"/>
+                        <RowDefinition MaxHeight="10" MinHeight="10"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Row="0">
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="72" MinWidth="72"/>
+                            <ColumnDefinition MaxWidth="20" MinWidth="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Image Classes="GithubImage" Grid.Column="0"/>
+                        
+                        <TextBlock Text="GitHub" 
+                                   Classes="MiddleText" 
+                                   Grid.Column="2"/>
+                        
+                    </Grid>
+                    
+                    <Button Content="github.com#SteamStorage" 
+                            Classes="UnderlineButton HorizontalLeft" 
+                            Grid.Row="2"/>
+                    
+                </Grid>
+                
+            </Border>
+            
+            <Border Classes="BigRounded BackgroundAdditional" 
+                    Grid.Column="2">
+                
+                <Grid Margin="30">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="72"/>
+                        <RowDefinition MaxHeight="10" MinHeight="10"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Row="0">
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="72" MinWidth="72"/>
+                            <ColumnDefinition MaxWidth="20" MinWidth="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Image Classes="TelegramImage" Grid.Column="0"/>
+                        
+                        <TextBlock Text="Telegram" 
+                                   Classes="MiddleText" 
+                                   Grid.Column="2"/>
+                        
+                    </Grid>
+
+                    <Button Content="@amudenn" 
+                            Classes="UnderlineButton HorizontalLeft" 
+                            Grid.Row="2"/>
+                    
+                </Grid>
+                
+            </Border>
+            
+            <Border Classes="BigRounded BackgroundAdditional" 
+                    Grid.Column="4">
+                
+                <Grid Margin="30">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="72"/>
+                        <RowDefinition MaxHeight="10" MinHeight="10"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Row="0">
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="72" MinWidth="72"/>
+                            <ColumnDefinition MaxWidth="20" MinWidth="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Image Classes="EmailImage" Grid.Column="0"/>
+                        
+                        <TextBlock Text="Email" 
+                                   Classes="MiddleText" 
+                                   Grid.Column="2"/>
+                        
+                    </Grid>
+                    
+                    <Button Content="SteamStorage@gmail.com" 
+                            Classes="UnderlineButton HorizontalLeft" 
+                            Grid.Row="2"/>
+                    
+                </Grid>
+                
+            </Border>
+            
+        </Grid>
+        
+    </Grid>
+    
+</UserControl>
