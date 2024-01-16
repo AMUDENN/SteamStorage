@@ -1,4 +1,76 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style Selector="Button.ImageButton">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Background="Transparent">
+                        <Grid>
+                            <Grid x:Name="ContentGrid"
+                                  Height="60"
+                                  Margin="20, 0">
+                                <Border x:Name="PointerOverBorder"
+                                        Classes="Background BigRounded"
+                                        Opacity="0"/>
+                                    <Grid x:Name="GridTitle"
+                                          ColumnDefinitions="60, *">
+                                        <ContentPresenter Content="{TemplateBinding Content}"
+                                                          Grid.Column="0"
+                                                          Margin="14"/>
+                                        <TextBlock x:Name="TitleTextBlock"
+                                                   Text="{TemplateBinding Tag}"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   Classes="MiddleText"
+                                                   IsVisible="True"
+                                                   Grid.Column="1"/>
+                                    </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style Selector="^:pointerover /template/ Border#PointerOverBorder">
+            <Setter Property="Opacity" Value="0.3"/>
+        </Style>
+        <Style Selector="^:pressed /template/ Border#PointerOverBorder">
+            <Setter Property="Opacity" Value="0.5"/>
+        </Style>
+    </Style>
+    
+    <Style Selector="Button.ImageButton.Min /template/ Grid#ContentGrid">
+        <Setter Property="Margin" Value="20, 0"/>
+    </Style>
+
+    <Style Selector="Button.ImageButton.Min /template/ Border#ItemBorder">
+        <Setter Property="CornerRadius" Value="10"/>
+    </Style>
+
+    <Style Selector="Button.ImageButton.Min /template/ TextBlock#TitleTextBlock">
+        <Setter Property="IsVisible" Value="False"/>
+    </Style>
+    
+    <Style Selector="Button.HorizontalCenter">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+    
+    <Style Selector="Button.HorizontalLeft">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+    
+    <Style Selector="Button.UnderlineButton">
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <TextBlock Text="{TemplateBinding Content}"
+                               Classes="Underline MiddleText"
+                               Foreground="{TemplateBinding Foreground}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </Styles>

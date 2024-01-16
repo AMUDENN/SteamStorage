@@ -1,6 +1,6 @@
 ﻿namespace SteamStorage.ViewModels
 {
-    public partial class ActivesViewModel : ViewModelBase
+    public class ActivesViewModel : ViewModelBase
     {
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SteamStorage.ViewModels
 {
-    public partial class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         #region Fields
         private string? _imageUrl;
@@ -12,9 +12,11 @@ namespace SteamStorage.ViewModels
         private string _steamId;
 
         private ViewModelBase _currentVM;
+        private ViewModelBase _settingsVM;
 
         private readonly IEnumerable<NavigationModel> _navigationOptions;
-        private NavigationModel _selectedNavigationModel;
+        private NavigationModel? _selectedNavigationModel;
+        private bool _isSettingsChecked;
         #endregion Fields
 
         #region Properties
@@ -39,20 +41,41 @@ namespace SteamStorage.ViewModels
             set => SetProperty(ref _currentVM, value);
         }
         public IEnumerable<NavigationModel> NavigationOptions => _navigationOptions;
-        public NavigationModel SelectedNavigationModel
+        public NavigationModel? SelectedNavigationModel
         {
             get => _selectedNavigationModel;
             set
             {
                 SetProperty(ref _selectedNavigationModel, value);
-                CurrentVM = _selectedNavigationModel.Page;
-                UserName = _selectedNavigationModel.Title;
+                if (value is not null)
+                {
+                    CurrentVM = value.Page;
+                    IsSettingsChecked = false;
+                }
+            }
+        }
+        public bool IsSettingsChecked
+        {
+            get => _isSettingsChecked;
+            set
+            {
+                SetProperty(ref _isSettingsChecked, value);
+                if (value)
+                {
+                    SelectedNavigationModel = null;
+                    CurrentVM = _settingsVM;
+                }
             }
         }
         #endregion Properties
 
         #region Constructor
-        public MainViewModel(ActivesViewModel activesVM, ArchiveViewModel archiveVM, HomeViewModel homeVM, InventoryViewModel inventoryVM, ProfileViewModel profileVM)
+        public MainViewModel(ActivesViewModel activesVM, 
+                             ArchiveViewModel archiveVM, 
+                             HomeViewModel homeVM, 
+                             InventoryViewModel inventoryVM, 
+                             ProfileViewModel profileVM, 
+                             SettingsViewModel settingsVM)
         {
             _navigationOptions =
             [
@@ -63,13 +86,16 @@ namespace SteamStorage.ViewModels
                 new("ProfileImage", "Профиль", profileVM)
             ];
 
+            _settingsVM = settingsVM;
+
             _selectedNavigationModel = _navigationOptions.First();
             _currentVM = _navigationOptions.First().Page;
+            _isSettingsChecked = false;
 
             _userName = "Username";
             _steamId = "SteamID";
 
-            _imageUrl = @"https://avatars.steamstatic.com/5e53318650a6b75c4fa89e8f77711d3deca8aa51_full.jpg";
+            //_imageUrl = @"https://avatars.steamstatic.com/5e53318650a6b75c4fa89e8f77711d3deca8aa51_full.jpg";
         }
         #endregion Constructor
     }

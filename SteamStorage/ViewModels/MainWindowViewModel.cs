@@ -4,7 +4,7 @@ using SteamStorage.Views;
 
 namespace SteamStorage.ViewModels
 {
-    public partial class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
         #region Fields
         private readonly MainWindow _mainWindow;

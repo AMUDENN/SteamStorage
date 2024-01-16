@@ -37,21 +37,25 @@
 										Grid.Column="2">
 								
 								<Button x:Name="MinimizeButton"
+										Classes="WindowButton"
 										Command="{Binding MinimizeCommand}">
 									<Image Classes="MinimizeImage"/>
 								</Button>
 								
 								<Button x:Name="MaximizeButton"
+										Classes="WindowButton"
 										Command="{Binding MaximizeCommand}">
 									<Image Classes="MaximizeImage"/>
 								</Button>
 								
 								<Button x:Name="RestoreButton"
+										Classes="WindowButton"
 										Command="{Binding RestoreCommand}">
 									<Image Classes="RestoreImage"/>
 								</Button>
 								
 								<Button x:Name="CloseButton"
+										Classes="WindowButton"
 										Command="{Binding CloseCommand}">
 									<Image Classes="CloseImage"/>
 								</Button>
@@ -83,7 +87,7 @@
 
 	</Style>
 
-	<Style Selector="Window Button">
+	<Style Selector="Button.WindowButton">
 		<Setter Property="Background" Value="Transparent"/>
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
 		<Setter Property="BorderBrush" Value="Transparent"/>

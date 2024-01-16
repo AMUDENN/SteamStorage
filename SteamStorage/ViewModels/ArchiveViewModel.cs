@@ -1,6 +1,6 @@
 ﻿namespace SteamStorage.ViewModels
 {
-    public partial class ArchiveViewModel : ViewModelBase
+    public class ArchiveViewModel : ViewModelBase
     {
     }
 }

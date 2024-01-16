@@ -11,6 +11,6 @@
         Icon="\Resources\Images\Bitmaps\BlackIcon24.ico"
         Title="SteamStorage">
 	
-	<ContentPresenter Content="{Binding MainVM}" Grid.Row="1"/>		
+	<ContentControl Content="{Binding MainVM}"/>		
 
 </Window>

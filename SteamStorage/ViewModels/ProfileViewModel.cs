@@ -1,6 +1,6 @@
 ﻿namespace SteamStorage.ViewModels
 {
-    public partial class ProfileViewModel : ViewModelBase
+    public class ProfileViewModel : ViewModelBase
     {
     }
 }

@@ -25,6 +25,7 @@ namespace SteamStorage
             services.AddSingleton<HomeViewModel>();
             services.AddSingleton<InventoryViewModel>();
             services.AddSingleton<ProfileViewModel>();
+            services.AddSingleton<SettingsViewModel>();
 
             Container = services.BuildServiceProvider();
         }
