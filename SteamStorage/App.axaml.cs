@@ -6,15 +6,19 @@ using Microsoft.Extensions.DependencyInjection;
 using SteamStorage.ViewModels;
 using SteamStorage.Views;
 using System;
+using SteamStorage.Services.UserService;
 
 namespace SteamStorage
 {
     public partial class App : Application
     {
-        public static IServiceProvider Container { get; protected set; }
+        private static IServiceProvider Container { get; set; }
+
         static App()
         {
-            ServiceCollection services = new();
+            ServiceCollection services = [];
+
+            services.AddSingleton<IUserService, UserService>();
 
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MainWindowViewModel>();
@@ -29,6 +33,7 @@ namespace SteamStorage
 
             Container = services.BuildServiceProvider();
         }
+
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
@@ -43,7 +48,7 @@ namespace SteamStorage
                 desktop.MainWindow = Container.GetService<MainWindow>();
 
                 if (desktop.MainWindow is null)
-                    throw new Exception("something went wrong during initializing DI container. MainWindow is missing");
+                    throw new("something went wrong during initializing DI container. MainWindow is missing");
 
                 desktop.MainWindow.DataContext = Container.GetService<MainWindowViewModel>();
             }

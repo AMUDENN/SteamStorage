@@ -39,12 +39,12 @@
             
             <Border Classes="BigRounded BackgroundAdditional" 
                     Grid.Column="0">
-                <Button Content="Экспорт в Excel" Classes="UnderlineButton HorizontalCenter" Grid.Row="2"/>
+                <Button Content="Экспорт в Excel" Classes="UnderlineButton HorizontalCenter"/>
             </Border>
             
             <Border Classes="BigRounded BackgroundAdditional" 
                     Grid.Column="2">
-                <Button Content="Справочная информация" Classes="UnderlineButton HorizontalCenter" Grid.Row="2"/>
+                <Button Content="Справочная информация" Classes="UnderlineButton HorizontalCenter"/>
             </Border>
             
         </Grid>

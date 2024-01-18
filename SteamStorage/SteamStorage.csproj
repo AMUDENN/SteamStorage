@@ -70,4 +70,9 @@
   <ItemGroup>
     <Folder Include="Assets\" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\SteamStorageAPI\SteamStorageAPI.csproj" />
+  </ItemGroup>
 </Project>

@@ -17,6 +17,7 @@
         <entry key="SteamStorage/Resources/Styles/TextBlockStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/MainView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/MainWindow.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/ProfileView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/SettingsView.axaml" value="SteamStorage/SteamStorage.csproj" />
       </map>
     </option>

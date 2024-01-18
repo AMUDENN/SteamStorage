@@ -6,12 +6,15 @@ namespace SteamStorage.Models
     public class NavigationModel
     {
         #region Properties
+
         public Image Image { get; set; }
         public string Title { get; set; }
         public ViewModelBase Page { get; set; }
+
         #endregion Properties
 
         #region Constructor
+
         public NavigationModel(string image, string title, ViewModelBase page)
         {
             Image newImage = new();
@@ -20,6 +23,7 @@ namespace SteamStorage.Models
             Title = title;
             Page = page;
         }
+
         #endregion Constructor
     }
 }

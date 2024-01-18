@@ -142,7 +142,7 @@
 
 		</Border>
 		
-		<ContentControl Content="{Binding CurrentVM}" Grid.Column="1"/>
+		<ContentControl Content="{Binding CurrentViewModel}" Grid.Column="1"/>
 
 	</Grid>
 
