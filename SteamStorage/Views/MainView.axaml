@@ -70,17 +70,17 @@
 								Opacity="0.5"/>
 						<Image x:Name="AccountImage"
 							   Classes="AccountImage"/>
-						<Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl}"/>
+						<Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
 					</Grid>
 				</Border>
 				
 				<TextBlock x:Name="UserName" 
-						   Text="{Binding UserName}" 
+						   Text="{Binding UserName, Mode=OneWay}" 
 						   Classes="Center BigText" 
 						   Grid.Row="1"/>
 
 				<TextBlock x:Name="SteamId" 
-						   Text="{Binding SteamId}" 
+						   Text="{Binding SteamId, Mode=OneWay}" 
 						   Classes="Center SmallText" 
 						   Grid.Row="2"/>
 
@@ -88,7 +88,7 @@
 						   Margin="20, 0" 
 						   Grid.Row="3"/>
 				
-				<ListBox ItemsSource="{Binding NavigationOptions}" 
+				<ListBox ItemsSource="{Binding NavigationOptions, Mode=OneWay}" 
 						 SelectedItem="{Binding SelectedNavigationModel}"
 						 Classes="Navigation"
 						 Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}"
@@ -113,7 +113,9 @@
 					</RadioButton>
 
 					<Button Tag="Войти"
+					        Command="{Binding LogInCommand, Mode=OneWay}"
 					        Classes="ImageButton"
+					        IsVisible="{Binding !IsUserLogin, Mode=OneWay}"
 					        Foreground="{DynamicResource PositiveBrush}"
 							Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}"
 							Grid.Row="2">
@@ -121,7 +123,9 @@
 					</Button>
 					
 					<Button Tag="Выйти"
+					        Command="{Binding LogOutCommand, Mode=OneWay}"
 					        Classes="ImageButton"
+					        IsVisible="{Binding IsUserLogin, Mode=OneWay}"
 					        Foreground="{DynamicResource NegativeBrush}"
 							Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}"
 							Grid.Row="2">

@@ -1,6 +1,6 @@
 ﻿using SteamStorage.Models;
 using System.Collections.Generic;
-using System.Linq;
+using CommunityToolkit.Mvvm.Input;
 
 namespace SteamStorage.ViewModels
 {
@@ -8,16 +8,7 @@ namespace SteamStorage.ViewModels
     {
         #region Fields
 
-        private string? _imageUrl;
-        private string _userName;
-        private string _steamId;
-
-        private ViewModelBase _currentViewModel;
-        private readonly ViewModelBase _settingsViewModel;
-
-        private readonly IEnumerable<NavigationModel> _navigationOptions;
-        private NavigationModel? _selectedNavigationModel;
-        private bool _isSettingsChecked;
+        private readonly MainModel _model;
 
         #endregion Fields
 
@@ -25,91 +16,73 @@ namespace SteamStorage.ViewModels
 
         public string? ImageUrl
         {
-            get => _imageUrl;
-            set => SetProperty(ref _imageUrl, value);
+            get => _model.ImageUrl;
+            set => _model.ImageUrl = value;
         }
 
         public string UserName
         {
-            get => _userName;
-            set => SetProperty(ref _userName, value);
+            get => _model.UserName;
+            set => _model.UserName = value;
         }
 
         public string SteamId
         {
-            get => _steamId;
-            set => SetProperty(ref _steamId, value);
+            get => _model.SteamId;
+            set => _model.SteamId = value;
+        }
+
+        public bool IsUserLogin
+        {
+            get => _model.IsUserLogin;
+            set => _model.IsUserLogin = value;
         }
 
         public ViewModelBase CurrentViewModel
         {
-            get => _currentViewModel;
-            set => SetProperty(ref _currentViewModel, value);
+            get => _model.CurrentViewModel;
+            set => _model.CurrentViewModel = value;
         }
 
         public IEnumerable<NavigationModel> NavigationOptions
         {
-            get => _navigationOptions;
+            get => _model.NavigationOptions;
         }
 
         public NavigationModel? SelectedNavigationModel
         {
-            get => _selectedNavigationModel;
-            set
-            {
-                SetProperty(ref _selectedNavigationModel, value);
-                if (value is not null)
-                {
-                    CurrentViewModel = value.Page;
-                    IsSettingsChecked = false;
-                }
-            }
+            get => _model.SelectedNavigationModel;
+            set => _model.SelectedNavigationModel = value;
         }
 
         public bool IsSettingsChecked
         {
-            get => _isSettingsChecked;
-            set
-            {
-                SetProperty(ref _isSettingsChecked, value);
-                if (value)
-                {
-                    SelectedNavigationModel = null;
-                    CurrentViewModel = _settingsViewModel;
-                }
-            }
+            get => _model.IsSettingsChecked;
+            set => _model.IsSettingsChecked = value;
         }
 
         #endregion Properties
 
+        #region Commands
+
+        public RelayCommand LogInCommand
+        {
+            get => _model.LogInCommand;
+        }
+
+        public RelayCommand LogOutCommand
+        {
+            get => _model.LogOutCommand;
+        }
+
+        #endregion Commands
+
         #region Constructor
 
-        public MainViewModel(ActivesViewModel activesViewModel,
-            ArchiveViewModel archiveViewModel,
-            HomeViewModel homeViewModel,
-            InventoryViewModel inventoryViewModel,
-            ProfileViewModel profileViewModel,
-            SettingsViewModel settingsViewModel)
+        public MainViewModel(MainModel model)
         {
-            _navigationOptions =
-            [
-                new("HomeImage", "Главная", homeViewModel),
-                new("ActivesImage", "Активы", activesViewModel),
-                new("ArchiveImage", "Архив", archiveViewModel),
-                new("InventoryImage", "Инвентарь", inventoryViewModel),
-                new("ProfileImage", "Профиль", profileViewModel)
-            ];
-
-            _settingsViewModel = settingsViewModel;
-
-            _selectedNavigationModel = _navigationOptions.First();
-            _currentViewModel = _navigationOptions.First().Page;
-            _isSettingsChecked = false;
-
-            _userName = "Username";
-            _steamId = "SteamID";
-
-            //_imageUrl = @"https://avatars.steamstatic.com/5e53318650a6b75c4fa89e8f77711d3deca8aa51_full.jpg";
+            _model = model;
+            _model.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
         }
 
         #endregion Constructor

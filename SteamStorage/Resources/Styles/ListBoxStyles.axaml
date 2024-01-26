@@ -34,11 +34,11 @@
         								Opacity="0"/>
         						<Grid x:Name="GridTitle"
         							  ColumnDefinitions="60, *">
-        							<ContentControl Content="{Binding Image}"
+        							<ContentControl Content="{Binding Image, Mode=OneWay}"
         											Margin="14"
         											Grid.Column="0"/>
         							<TextBlock x:Name="TitleTextBlock"
-        									   Text="{Binding Title}"
+        									   Text="{Binding Title, Mode=OneWay}"
         									   Classes="MiddleText"
         									   IsVisible="True"
         									   Grid.Column="1"/>

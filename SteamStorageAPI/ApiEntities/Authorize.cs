@@ -2,7 +2,7 @@
 
 public class Authorize
 {
-    public record AuthUrlResponse(string Url);
+    public record AuthUrlResponse(string Url, string Group);
 
     public record AuthResponse(string Token);
 }

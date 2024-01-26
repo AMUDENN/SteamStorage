@@ -6,7 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using SteamStorage.ViewModels;
 using SteamStorage.Views;
 using System;
-using SteamStorage.Services.UserService;
+using SteamStorage.Models;
+using SteamStorageAPI;
+using SteamStorageAPI.Utilities;
 
 namespace SteamStorage
 {
@@ -18,11 +20,21 @@ namespace SteamStorage
         {
             ServiceCollection services = [];
 
-            services.AddSingleton<IUserService, UserService>();
+            //ApiClient
+            services.AddHttpClient(ApiClient.CLIENT_NAME, client =>
+            {
+                client.Timeout = TimeSpan.FromSeconds(2);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+            }).AddHttpMessageHandler<TokenHandler>();
+            services.AddSingleton<TokenHandler>();
+            services.AddSingleton<ApiClient>();
 
+            //MainWindow
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MainWindowViewModel>();
 
+            //ViewModels
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<ActivesViewModel>();
             services.AddSingleton<ArchiveViewModel>();
@@ -30,6 +42,10 @@ namespace SteamStorage
             services.AddSingleton<InventoryViewModel>();
             services.AddSingleton<ProfileViewModel>();
             services.AddSingleton<SettingsViewModel>();
+            
+            //Models
+            services.AddSingleton<UserModel>();
+            services.AddSingleton<MainModel>();
 
             Container = services.BuildServiceProvider();
         }

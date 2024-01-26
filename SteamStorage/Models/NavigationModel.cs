@@ -7,9 +7,9 @@ namespace SteamStorage.Models
     {
         #region Properties
 
-        public Image Image { get; set; }
-        public string Title { get; set; }
-        public ViewModelBase Page { get; set; }
+        public Image Image { get; }
+        public string Title { get; }
+        public ViewModelBase Page { get; }
 
         #endregion Properties
 
