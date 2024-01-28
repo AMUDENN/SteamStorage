@@ -7,21 +7,24 @@ using SteamStorage.ViewModels;
 using SteamStorage.Views;
 using System;
 using SteamStorage.Models;
+using SteamStorage.Utilities;
 using SteamStorageAPI;
+using SteamStorageAPI.Services.LoggerService;
+using SteamStorageAPI.Services.PingService;
 using SteamStorageAPI.Utilities;
 
 namespace SteamStorage
 {
     public partial class App : Application
     {
-        private static IServiceProvider Container { get; set; }
+        private static IServiceProvider Container { get; }
 
         static App()
         {
             ServiceCollection services = [];
 
             //ApiClient
-            services.AddHttpClient(ApiClient.CLIENT_NAME, client =>
+            services.AddHttpClient(ApiConstants.CLIENT_NAME, client =>
             {
                 client.Timeout = TimeSpan.FromSeconds(2);
                 client.DefaultRequestHeaders.Clear();
@@ -30,8 +33,14 @@ namespace SteamStorage
             services.AddSingleton<TokenHandler>();
             services.AddSingleton<ApiClient>();
 
+            //Custom API Services
+            services.AddSingleton<ILoggerService>(new LoggerService(ApiConstants.LOG_PROGRAM_NAME,
+                ApiConstants.LOG_DATE_FORMAT, ApiConstants.LOG_DATETIME_FORMAT));
+            services.AddSingleton<IPingService, PingService>();
+
             //MainWindow
             services.AddSingleton<MainWindow>();
+            services.AddSingleton<MainWindowModel>();
             services.AddSingleton<MainWindowViewModel>();
 
             //ViewModels
@@ -42,10 +51,13 @@ namespace SteamStorage
             services.AddSingleton<InventoryViewModel>();
             services.AddSingleton<ProfileViewModel>();
             services.AddSingleton<SettingsViewModel>();
-            
+
             //Models
-            services.AddSingleton<UserModel>();
             services.AddSingleton<MainModel>();
+            services.AddSingleton<ListItemsModel>();
+            services.AddSingleton<StatisticsModel>();
+            services.AddSingleton<UserModel>();
+
 
             Container = services.BuildServiceProvider();
         }

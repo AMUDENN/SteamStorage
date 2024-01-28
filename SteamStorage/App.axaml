@@ -18,6 +18,7 @@
 		<StyleInclude Source="/Resources/Styles/ListBoxStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/RadioButtonStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/RectangleStyles.axaml"/>
+        <StyleInclude Source="/Resources/Styles/TabControlStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/TextBlockStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/WindowStyles.axaml"/>
 

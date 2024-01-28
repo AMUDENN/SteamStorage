@@ -1,33 +1,19 @@
 ﻿using System.Diagnostics;
 using System.Net.Http.Json;
+using System.Net.NetworkInformation;
 using System.Text;
 using Microsoft.AspNetCore.SignalR.Client;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Events;
+using SteamStorageAPI.Services.LoggerService;
+using SteamStorageAPI.Services.PingResult;
+using SteamStorageAPI.Services.PingService;
+using SteamStorageAPI.Utilities;
 
 namespace SteamStorageAPI;
 
 public class ApiClient
 {
-    #region Constants
-
-    public const string CLIENT_NAME = "MainClient";
-    private const string SERVER_ADRESS = "http://localhost:5275/";
-    private const string TOKENHUB_ADRESS = "http://localhost:5245/token-hub";
-
-    #endregion Constants
-
-    #region Enums
-
-    public enum ApiControllers
-    {
-        Authorize,
-        Users,
-        Games
-    }
-
-    #endregion Enums
-
     #region Events
 
     public delegate void TokenChangedEventHandler(object sender, TokenChangedEventArgs args);
@@ -38,9 +24,8 @@ public class ApiClient
 
     #region Fields
 
-    private const string TOKEN_METHOD_NAME = "Token";
-    private const string JOIN_GROUP_METHOD_NAME = "JoinGroup";
-
+    private readonly ILoggerService _logger;
+    private readonly IPingService _ping;
     private readonly IHttpClientFactory _httpClientFactory;
 
     private string _token;
@@ -49,8 +34,10 @@ public class ApiClient
 
     #region Constructor
 
-    public ApiClient(IHttpClientFactory httpClientFactory)
+    public ApiClient(ILoggerService logger, IPingService ping, IHttpClientFactory httpClientFactory)
     {
+        _logger = logger;
+        _ping = ping;
         _httpClientFactory = httpClientFactory;
         _token = string.Empty;
     }
@@ -76,7 +63,7 @@ public class ApiClient
     public async void LogIn()
     {
         Authorize.AuthUrlResponse? authUrlResponse =
-            await GetAsync<Authorize.AuthUrlResponse>(ApiControllers.Authorize, "GetAuthUrl");
+            await GetAsync<Authorize.AuthUrlResponse>(ApiConstants.ApiControllers.Authorize, "GetAuthUrl");
 
         if (authUrlResponse is null) return;
 
@@ -86,10 +73,10 @@ public class ApiClient
         });
 
         HubConnection hubConnection = new HubConnectionBuilder()
-            .WithUrl(TOKENHUB_ADRESS)
+            .WithUrl(ApiConstants.TOKENHUB_ADRESS)
             .Build();
 
-        hubConnection.On<string>(TOKEN_METHOD_NAME, async token =>
+        hubConnection.On<string>(ApiConstants.TOKEN_METHOD_NAME, async token =>
         {
             Token = token;
             await hubConnection.StopAsync();
@@ -97,7 +84,7 @@ public class ApiClient
 
         await hubConnection.StartAsync();
 
-        await hubConnection.InvokeAsync(JOIN_GROUP_METHOD_NAME, authUrlResponse.Group);
+        await hubConnection.InvokeAsync(ApiConstants.JOIN_GROUP_METHOD_NAME, authUrlResponse.Group);
     }
 
     public void LogOut()
@@ -107,38 +94,47 @@ public class ApiClient
 
     #endregion Authorization
 
+    #region PING
+
+    public async Task<PingResult> GetApiPing()
+    {
+        return await _ping.GetPing(ApiConstants.HOST_NAME);
+    }
+
+    #endregion PING
+
     #region GET
 
     private async Task<TOut?> GetAsync<TOut>(Uri uri, CancellationToken cancellationToken = default)
     {
-        HttpClient client = _httpClientFactory.CreateClient(CLIENT_NAME);
-        HttpResponseMessage response = await client.GetAsync(uri, cancellationToken);
-        return await response.Content.ReadFromJsonAsync<TOut>(cancellationToken);
+        try
+        {
+            HttpClient client = _httpClientFactory.CreateClient(ApiConstants.CLIENT_NAME);
+            HttpResponseMessage response = await client.GetAsync(uri, cancellationToken);
+            return await response.Content.ReadFromJsonAsync<TOut>(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            await _logger.LogAsync($"ApiException \n{uri.ToString()}", ex);
+            return default;
+        }
     }
 
-    public async Task<TOut?> GetAsync<TOut>(ApiControllers apiController, string apiMethod,
+    public async Task<TOut?> GetAsync<TOut>(ApiConstants.ApiControllers apiController, string apiMethod,
         Dictionary<string, string>? args = null,
         CancellationToken cancellationToken = default)
     {
         return await GetAsync<TOut>(CreateUri(apiController, apiMethod, args), cancellationToken);
     }
 
-    public async Task<string> GetStringAsync(ApiControllers apiController, string apiMethod,
-        Dictionary<string, string>? args = null,
-        CancellationToken cancellationToken = default)
-    {
-        HttpClient client = _httpClientFactory.CreateClient(CLIENT_NAME);
-        return await client.GetStringAsync(CreateUri(apiController, apiMethod, args), cancellationToken);
-    }
-
     #endregion GET
 
     #region Methods
 
-    private static Uri CreateUri(ApiControllers apiController, string apiMethod,
+    private static Uri CreateUri(ApiConstants.ApiControllers apiController, string apiMethod,
         Dictionary<string, string>? args = null)
     {
-        StringBuilder uri = new($"{SERVER_ADRESS}api/{apiController}/{apiMethod}");
+        StringBuilder uri = new($"{ApiConstants.SERVER_ADRESS}api/{apiController}/{apiMethod}");
         if (args is not null)
         {
             uri.Append('?');

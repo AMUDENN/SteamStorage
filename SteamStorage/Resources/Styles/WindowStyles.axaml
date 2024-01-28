@@ -10,66 +10,49 @@
 		<Setter Property="TransparencyBackgroundFallback" Value="Transparent"/>
 		<Setter Property="Template">
 			<ControlTemplate>
-				
 				<Grid Margin="{TemplateBinding OffScreenMargin}">
-					
 					<Border x:Name="WindowBorder"
 							Classes="SmallRounded"
 							Background="{DynamicResource BackgroundBrush}" IsHitTestVisible="False"/>
-					
 					<Grid RowDefinitions="36, *">
-						
 						<Grid ColumnDefinitions="36, *, 108"
 							  Margin="10, 5"
 							  Grid.Row="0">
-							
 							<Image Classes="LogoImage" 
 								   Grid.Column="0"/>
-							
 							<TextBlock Text="{TemplateBinding Title}" 
 									   Classes="Center"
 									   Grid.Column="1"/>
-							
 							<StackPanel Orientation="Horizontal" 
 										Spacing="5" 
 										VerticalAlignment="Center"
 										HorizontalAlignment="Right"
 										Grid.Column="2">
-								
 								<Button x:Name="MinimizeButton"
 										Classes="WindowButton"
-										Command="{Binding MinimizeCommand}">
+										Command="{Binding MinimizeCommand, Mode=OneWay}">
 									<Image Classes="MinimizeImage"/>
 								</Button>
-								
 								<Button x:Name="MaximizeButton"
 										Classes="WindowButton"
-										Command="{Binding MaximizeCommand}">
+										Command="{Binding MaximizeCommand, Mode=OneWay}">
 									<Image Classes="MaximizeImage"/>
 								</Button>
-								
 								<Button x:Name="RestoreButton"
 										Classes="WindowButton"
-										Command="{Binding RestoreCommand}">
+										Command="{Binding RestoreCommand, Mode=OneWay}">
 									<Image Classes="RestoreImage"/>
 								</Button>
-								
 								<Button x:Name="CloseButton"
 										Classes="WindowButton"
-										Command="{Binding CloseCommand}">
+										Command="{Binding CloseCommand, Mode=OneWay}">
 									<Image Classes="CloseImage"/>
 								</Button>
-								
 							</StackPanel>
-							
 						</Grid>
-						
 						<ContentPresenter Content="{TemplateBinding Content}" Grid.Row="1"/>
-						
 					</Grid>
-					
 				</Grid>
-				
 			</ControlTemplate>
 		</Setter>
 
@@ -108,11 +91,9 @@
 				</Border>
 			</ControlTemplate>
 		</Setter>
-
 		<Style Selector="^:pointerover">
 			<Setter Property="Padding" Value="5"/>
 		</Style>
-		
 	</Style>
 
 	<Style Selector="Window TextBlock">

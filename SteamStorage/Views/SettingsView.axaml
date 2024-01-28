@@ -5,7 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SteamStorage.Views.SettingsView">
     
-    <Grid Margin="30, 0, 0, 0">
+    <Grid>
         
         <Grid.RowDefinitions>
             <RowDefinition Height="6*"/>
@@ -22,7 +22,7 @@
                   Margin="30">
                 
                 <TextBlock Text="Внешний вид приложения"
-                           Classes="MiddleText"
+                           Classes="BigText"
                            Grid.Row="0"/>
                 
             </Grid>
@@ -81,7 +81,7 @@
                         <Image Classes="GithubImage" Grid.Column="0"/>
                         
                         <TextBlock Text="GitHub" 
-                                   Classes="MiddleText" 
+                                   Classes="BigText" 
                                    Grid.Column="2"/>
                         
                     </Grid>
@@ -116,7 +116,7 @@
                         <Image Classes="TelegramImage" Grid.Column="0"/>
                         
                         <TextBlock Text="Telegram" 
-                                   Classes="MiddleText" 
+                                   Classes="BigText" 
                                    Grid.Column="2"/>
                         
                     </Grid>
@@ -151,7 +151,7 @@
                         <Image Classes="EmailImage" Grid.Column="0"/>
                         
                         <TextBlock Text="Email" 
-                                   Classes="MiddleText" 
+                                   Classes="BigText" 
                                    Grid.Column="2"/>
                         
                     </Grid>

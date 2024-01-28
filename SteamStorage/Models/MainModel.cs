@@ -30,12 +30,9 @@ public class MainModel : ObservableObject
     private ViewModelBase _currentViewModel;
     private readonly ViewModelBase _settingsViewModel;
 
-    private readonly IEnumerable<NavigationModel> _navigationOptions;
+    private readonly List<NavigationModel> _navigationOptions;
     private NavigationModel? _selectedNavigationModel;
     private bool _isSettingsChecked;
-
-    private readonly RelayCommand _logInCommand;
-    private readonly RelayCommand _logOutCommand;
 
     #endregion Fields
 
@@ -104,15 +101,9 @@ public class MainModel : ObservableObject
 
     #region Commands
 
-    public RelayCommand LogInCommand
-    {
-        get => _logInCommand;
-    }
+    public RelayCommand LogInCommand { get; }
 
-    public RelayCommand LogOutCommand
-    {
-        get => _logOutCommand;
-    }
+    public RelayCommand LogOutCommand { get; }
 
     #endregion Commands
 
@@ -149,8 +140,8 @@ public class MainModel : ObservableObject
         _steamId = STEAM_ID;
         _isUserLogin = false;
 
-        _logInCommand = new(DoLogInCommand);
-        _logOutCommand = new(DoLogOutCommand);
+        LogInCommand = new(DoLogInCommand);
+        LogOutCommand = new(DoLogOutCommand);
 
         _userModel.PropertyChanged += UserChangedHandler;
     }

@@ -12,9 +12,17 @@
         <entry key="SteamStorage/Resources/Images/Vectors/TelegramImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/BorderStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ButtonStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/GridStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/ImageStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ListBoxStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/RadioButtonStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/RectangleStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/TabControlStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/TextBlockStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/WindowStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Themes/DarkTheme.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/HomeView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/InventoryView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/MainView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/MainWindow.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ProfileView.axaml" value="SteamStorage/SteamStorage.csproj" />

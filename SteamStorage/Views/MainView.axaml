@@ -76,7 +76,7 @@
 				
 				<TextBlock x:Name="UserName" 
 						   Text="{Binding UserName, Mode=OneWay}" 
-						   Classes="Center BigText" 
+						   Classes="Center LargeText" 
 						   Grid.Row="1"/>
 
 				<TextBlock x:Name="SteamId" 
@@ -146,7 +146,9 @@
 
 		</Border>
 		
-		<ContentControl Content="{Binding CurrentViewModel}" Grid.Column="1"/>
+		<ContentControl Content="{Binding CurrentViewModel}" 
+		                Margin="30, 0, 0, 0"
+		                Grid.Column="1"/>
 
 	</Grid>
 

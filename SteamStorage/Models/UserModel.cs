@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
+using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
 
@@ -34,7 +35,7 @@ public class UserModel : ObservableObject
         {
             User = e.IsTokenEmpty
                 ? null
-                : await _apiClient.GetAsync<Users.UserResponse>(ApiClient.ApiControllers.Users,
+                : await _apiClient.GetAsync<Users.UserResponse>(ApiConstants.ApiControllers.Users,
                     "GetCurrentUserInfo");
         };
     }

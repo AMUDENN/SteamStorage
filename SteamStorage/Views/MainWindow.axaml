@@ -11,6 +11,6 @@
         Icon="\Resources\Images\Bitmaps\BlackIcon24.ico"
         Title="SteamStorage">
 	
-	<ContentControl Content="{Binding MainViewModel}"/>		
+	<ContentControl Content="{Binding MainViewModel, Mode=OneWay}"/>		
 
 </Window>

@@ -14,6 +14,18 @@
 			</Transitions>
 		</Setter>
 	</Style>
+	
+	<Style Selector="TextBlock.FirstAccent">
+		<Setter Property="Foreground" Value="{DynamicResource FirstAccentBrush}"/>
+	</Style>
+	
+	<Style Selector="TextBlock.Positive">
+		<Setter Property="Foreground" Value="{DynamicResource PositiveBrush}"/>
+	</Style>
+	
+	<Style Selector="TextBlock.Negative">
+		<Setter Property="Foreground" Value="{DynamicResource NegativeBrush}"/>
+	</Style>
 
 	<Style Selector="TextBlock.Light">
 		<Setter Property="Opacity" Value="0.5"/>
@@ -23,12 +35,16 @@
 		<Setter Property="TextAlignment" Value="Center"/>
 	</Style>
 
-	<Style Selector="TextBlock.BigText">
+	<Style Selector="TextBlock.LargeText">
 		<Setter Property="FontSize" Value="32"/>
 	</Style>
 
-	<Style Selector="TextBlock.MiddleText">
+	<Style Selector="TextBlock.BigText">
 		<Setter Property="FontSize" Value="24"/>
+	</Style>
+	
+	<Style Selector="TextBlock.MiddleText">
+		<Setter Property="FontSize" Value="20"/>
 	</Style>
 
 	<Style Selector="TextBlock.SmallText">

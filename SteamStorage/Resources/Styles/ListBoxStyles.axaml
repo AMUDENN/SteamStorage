@@ -21,7 +21,7 @@
         							HorizontalAlignment="Left"
         							VerticalAlignment="Center"
         							IsVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
-        							Classes="Accent"/>
+        							Classes="FirstAccent"/>
         					<Grid x:Name="ContentGrid"
         						  Height="60"
         						  Margin="20, 0">
@@ -39,7 +39,7 @@
         											Grid.Column="0"/>
         							<TextBlock x:Name="TitleTextBlock"
         									   Text="{Binding Title, Mode=OneWay}"
-        									   Classes="MiddleText"
+        									   Classes="BigText"
         									   IsVisible="True"
         									   Grid.Column="1"/>
         						</Grid>

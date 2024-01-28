@@ -1,6 +1,5 @@
-﻿using Avalonia.Controls;
-using CommunityToolkit.Mvvm.Input;
-using SteamStorage.Views;
+﻿using CommunityToolkit.Mvvm.Input;
+using SteamStorage.Models;
 
 namespace SteamStorage.ViewModels
 {
@@ -8,13 +7,7 @@ namespace SteamStorage.ViewModels
     {
         #region Fields
 
-        private readonly MainWindow _mainWindow;
-        private readonly MainViewModel _mainViewModel;
-
-        private readonly RelayCommand _minimizeCommand;
-        private readonly RelayCommand _maximizeCommand;
-        private readonly RelayCommand _restoreCommand;
-        private readonly RelayCommand _closeCommand;
+        private readonly MainWindowModel _model;
 
         #endregion Fields
 
@@ -22,7 +15,7 @@ namespace SteamStorage.ViewModels
 
         public MainViewModel MainViewModel
         {
-            get => _mainViewModel;
+            get => _model.MainViewModel;
         }
 
         #endregion Properties
@@ -31,53 +24,33 @@ namespace SteamStorage.ViewModels
 
         public RelayCommand MinimizeCommand
         {
-            get => _minimizeCommand;
+            get => _model.MinimizeCommand;
         }
 
         public RelayCommand MaximizeCommand
         {
-            get => _maximizeCommand;
+            get => _model.MaximizeCommand;
         }
 
         public RelayCommand RestoreCommand
         {
-            get => _restoreCommand;
+            get => _model.RestoreCommand;
         }
 
         public RelayCommand CloseCommand
         {
-            get => _closeCommand;
+            get => _model.CloseCommand;
         }
 
         #endregion Commands
 
         #region Constructor
 
-        public MainWindowViewModel(MainWindow mainWindow, MainViewModel mainViewModel)
+        public MainWindowViewModel(MainWindowModel model)
         {
-            _mainViewModel = mainViewModel;
-            _mainWindow = mainWindow;
-
-            _minimizeCommand = new(() => ChangeWindowState(WindowState.Minimized));
-            _maximizeCommand = new(() => ChangeWindowState(WindowState.Maximized));
-            _restoreCommand = new(() => ChangeWindowState(WindowState.Normal));
-            _closeCommand = new(DoCloseCommand);
+            _model = model;
         }
 
         #endregion Constructor
-
-        #region Methods
-
-        private void ChangeWindowState(WindowState windowState)
-        {
-            _mainWindow.WindowState = windowState;
-        }
-
-        private void DoCloseCommand()
-        {
-            _mainWindow.Close();
-        }
-
-        #endregion Methods
     }
 }

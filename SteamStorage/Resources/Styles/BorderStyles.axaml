@@ -24,17 +24,29 @@
 	<Style Selector="Border.WithoutRounding">
 		<Setter Property="CornerRadius" Value="0"/>
 	</Style>
-	
-	<Style Selector="Border.BackgroundAdditional">
-		<Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
-	</Style>
-
+		
 	<Style Selector="Border.Background">
 		<Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
 	</Style>
-
-	<Style Selector="Border.Accent">
-		<Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+		
+	<Style Selector="Border.BackgroundAdditional">
+        <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
+    </Style>
+		
+	<Style Selector="Border.FirstAccent">
+		<Setter Property="Background" Value="{DynamicResource FirstAccentBrush}"/>
 	</Style>
+		
+	<Style Selector="Border.FirstAccentGradient">
+		<Setter Property="Background" Value="{DynamicResource FirstAccentLinearBrush}"/>
+	</Style>
+		
+	<Style Selector="Border.SecondAccentGradient">
+		<Setter Property="Background" Value="{DynamicResource SecondAccentLinearBrush}"/>
+	</Style>
+		
+	<Style Selector="Border.ThirdAccentGradient">
+		<Setter Property="Background" Value="{DynamicResource ThirdAccentLinearBrush}"/>
+	</Style>		
 
 </Styles>
