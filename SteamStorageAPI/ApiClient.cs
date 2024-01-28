@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Net.Http.Json;
+using System.Reflection;
 using System.Text;
 using Microsoft.AspNetCore.SignalR.Client;
 using SteamStorageAPI.ApiEntities;
@@ -120,8 +121,13 @@ public class ApiClient
     }
 
     public async Task<TOut?> GetAsync<TOut>(ApiConstants.ApiControllers apiController, string apiMethod,
-        Dictionary<string, string>? args = null,
         CancellationToken cancellationToken = default)
+    {
+        return await GetAsync<TOut>(CreateUri(apiController, apiMethod), cancellationToken);
+    }
+
+    public async Task<TOut?> GetAsync<TOut, TIn>(ApiConstants.ApiControllers apiController, string apiMethod,
+        TIn? args = null, CancellationToken cancellationToken = default) where TIn : Request
     {
         return await GetAsync<TOut>(CreateUri(apiController, apiMethod, args), cancellationToken);
     }
@@ -130,19 +136,35 @@ public class ApiClient
 
     #region Methods
 
-    private static Uri CreateUri(ApiConstants.ApiControllers apiController, string apiMethod,
-        Dictionary<string, string>? args = null)
+    private static string CreateStringUri(ApiConstants.ApiControllers apiController, string apiMethod)
     {
-        StringBuilder uri = new($"{ApiConstants.SERVER_ADRESS}api/{apiController}/{apiMethod}");
-        if (args is not null)
+        return $"{ApiConstants.SERVER_ADRESS}api/{apiController}/{apiMethod}";
+    }
+
+    private static Uri CreateUri(ApiConstants.ApiControllers apiController, string apiMethod)
+    {
+        return new(CreateStringUri(apiController, apiMethod));
+    }
+
+    private static Uri CreateUri<TIn>(ApiConstants.ApiControllers apiController, string apiMethod, TIn? args = null)
+        where TIn : Request
+    {
+        StringBuilder uri = new(CreateStringUri(apiController, apiMethod));
+        if (args is null) return new(uri.ToString());
+        
+        Type type = args.GetType();
+        PropertyInfo[] properties = type.GetProperties();
+
+        uri.Append('?');
+        foreach (PropertyInfo property in properties)
         {
-            uri.Append('?');
-            foreach (KeyValuePair<string, string> arg in args)
-                uri.Append($"{arg.Key}={arg.Value}&");
-            uri.Remove(uri.Length - 1, 1);
+            object? value = property.GetValue(args);
+            if (value is null) continue;
+            uri.Append($"{property.Name}={value}&");
         }
 
-        Debug.WriteLine(uri.ToString());
+        uri.Remove(uri.Length - 1, 1);
+
         return new(uri.ToString());
     }
 

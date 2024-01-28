@@ -2,7 +2,7 @@
 
 namespace SteamStorageAPI.Services.LogFile;
 
-public class LogFile
+public class LogFile : IDisposable
 {
     #region Fields
 
@@ -26,6 +26,16 @@ public class LogFile
 
     #endregion Constructor
 
+    #region Destructor
+
+    void IDisposable.Dispose()
+    {
+        _streamWriter.Flush();
+        _streamWriter.Dispose();
+    }
+
+    #endregion Destructor
+
     #region Methods
 
     public async Task Write(string message)
@@ -38,7 +48,7 @@ public class LogFile
         }
         catch
         {
-            // ignored
+            System.Diagnostics.Debug.WriteLine("LogError");
         }
     }
 
@@ -49,6 +59,7 @@ public class LogFile
         if (directoryName is null) return;
         Directory.CreateDirectory(directoryName);
         File.Create(_filePath).Close();
+        System.Diagnostics.Debug.WriteLine($"Created file: {_filePath}");
     }
 
     #endregion Methods

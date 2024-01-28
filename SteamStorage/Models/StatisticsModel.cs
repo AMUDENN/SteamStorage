@@ -22,6 +22,8 @@ public class StatisticsModel : ObservableObject
     private double _financialGoal;
     private double _financialGoalPercentageCompletion;
 
+    private int _totalCount;
+
     private int _activesCount;
     private double _activesCurrentSum;
     private double _activesPercentageGrowth;
@@ -64,6 +66,12 @@ public class StatisticsModel : ObservableObject
     {
         get => _financialGoalPercentageCompletion;
         private set => SetProperty(ref _financialGoalPercentageCompletion, value);
+    }
+
+    public int TotalCount
+    {
+        get => _totalCount;
+        private set => SetProperty(ref _totalCount, value);
     }
 
     public int ActivesCount
@@ -132,6 +140,11 @@ public class StatisticsModel : ObservableObject
         private set => SetProperty(ref _status, value);
     }
 
+    public string CurrencyMark
+    {
+        get => _userModel.CurrencyMark;
+    }
+
     #endregion Properties
 
     #region Constructor
@@ -141,7 +154,9 @@ public class StatisticsModel : ObservableObject
         _apiClient = apiClient;
         _userModel = userModel;
 
-        _userModel.PropertyChanged += UserChangedHandler;
+        _userModel.UserChanged += UserChangedHandler;
+
+        _userModel.CurrencyChanged += CurrencyChangedHandler;
 
         RefreshPing();
     }
@@ -166,6 +181,13 @@ public class StatisticsModel : ObservableObject
 
         FinancialGoal = financialGoalResponse?.FinancialGoal ?? 0;
         FinancialGoalPercentageCompletion = financialGoalResponse?.PercentageCompletion ?? 0;
+
+
+        Statistics.ItemsCountResponse? itemsCountResponse =
+            await _apiClient.GetAsync<Statistics.ItemsCountResponse>(ApiConstants.ApiControllers.Statistics,
+                "GetItemsCount");
+
+        TotalCount = itemsCountResponse?.Count ?? 0;
 
 
         Statistics.ActiveStatisticResponse? activeStatisticResponse =
@@ -205,10 +227,16 @@ public class StatisticsModel : ObservableObject
         Status = pingResult.Status;
     }
 
-    private void UserChangedHandler(object? sender, PropertyChangedEventArgs e)
+    private void UserChangedHandler(object sender)
     {
         RefreshStatistics();
         RefreshPing();
+    }
+
+    private void CurrencyChangedHandler(object sender)
+    {
+        RefreshStatistics();
+        OnPropertyChanged(nameof(CurrencyMark));
     }
 
     #endregion Methods

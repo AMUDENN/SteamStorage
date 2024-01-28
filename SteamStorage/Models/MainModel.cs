@@ -143,7 +143,7 @@ public class MainModel : ObservableObject
         LogInCommand = new(DoLogInCommand);
         LogOutCommand = new(DoLogOutCommand);
 
-        _userModel.PropertyChanged += UserChangedHandler;
+        _userModel.UserChanged += UserChangedHandler;
     }
 
     #endregion Constructor
@@ -160,7 +160,7 @@ public class MainModel : ObservableObject
         _apiClient.LogOut();
     }
 
-    private void UserChangedHandler(object? sender, PropertyChangedEventArgs e)
+    private void UserChangedHandler(object sender)
     {
         IsUserLogin = _userModel.User is not null;
         UserName = _userModel.User?.Nickname ?? USERNAME;

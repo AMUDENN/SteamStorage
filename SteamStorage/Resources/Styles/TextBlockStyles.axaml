@@ -34,20 +34,24 @@
 	<Style Selector="TextBlock.Center">
 		<Setter Property="TextAlignment" Value="Center"/>
 	</Style>
-
+	
 	<Style Selector="TextBlock.LargeText">
-		<Setter Property="FontSize" Value="32"/>
+		<Setter Property="FontSize" Value="40"/>
 	</Style>
 
 	<Style Selector="TextBlock.BigText">
+		<Setter Property="FontSize" Value="32"/>
+	</Style>
+
+	<Style Selector="TextBlock.MiddleText">
 		<Setter Property="FontSize" Value="24"/>
 	</Style>
 	
-	<Style Selector="TextBlock.MiddleText">
+	<Style Selector="TextBlock.SmallText">
 		<Setter Property="FontSize" Value="20"/>
 	</Style>
 
-	<Style Selector="TextBlock.SmallText">
+	<Style Selector="TextBlock.LittleText">
 		<Setter Property="FontSize" Value="16"/>
 	</Style>
 	

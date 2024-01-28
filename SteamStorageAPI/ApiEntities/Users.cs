@@ -1,7 +1,11 @@
-﻿namespace SteamStorageAPI.ApiEntities;
+﻿using SteamStorageAPI.Utilities;
 
-public class Users
+namespace SteamStorageAPI.ApiEntities;
+
+public static class Users
 {
+    #region Records
+
     public record UserResponse(
         int UserId,
         long SteamId,
@@ -14,4 +18,10 @@ public class Users
         int CurrencyId,
         DateTime DateRegistration,
         decimal? GoalSum);
+
+    public record PutGoalSumRequest(decimal? GoalSum) : Request;
+
+    public record PutStartPageRequest(int StartPageId) : Request;
+
+    #endregion Records
 }

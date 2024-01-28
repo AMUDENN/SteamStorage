@@ -36,6 +36,11 @@ namespace SteamStorage.ViewModels
             get => _statisticsModel.FinancialGoalPercentageCompletion;
         }
 
+        public int TotalCount
+        {
+            get => _statisticsModel.TotalCount;
+        }
+
         public int ActivesCount
         {
             get => _statisticsModel.ActivesCount;
@@ -89,6 +94,11 @@ namespace SteamStorage.ViewModels
         public PingResult.ServerStatus Status
         {
             get => _statisticsModel.Status;
+        }
+
+        public string CurrencyMark
+        {
+            get => _statisticsModel.CurrencyMark;
         }
 
         #endregion Properties

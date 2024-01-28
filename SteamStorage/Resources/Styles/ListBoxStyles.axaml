@@ -39,7 +39,7 @@
         											Grid.Column="0"/>
         							<TextBlock x:Name="TitleTextBlock"
         									   Text="{Binding Title, Mode=OneWay}"
-        									   Classes="BigText"
+        									   Classes="MiddleText"
         									   IsVisible="True"
         									   Grid.Column="1"/>
         						</Grid>

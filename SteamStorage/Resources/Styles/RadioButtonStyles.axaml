@@ -32,7 +32,7 @@
 					                                  Margin="14"/>
                 					<TextBlock x:Name="TitleTextBlock"
                 					           Text="{TemplateBinding Tag}"
-                					           Classes="BigText"
+                					           Classes="MiddleText"
                 					           IsVisible="True"
                 					           Grid.Column="1"/>
                 				</Grid>

@@ -29,13 +29,44 @@
 				</Grid.RowDefinitions>
 				
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" MinWidth="450"/>
+					<ColumnDefinition Width="*" MinWidth="420"/>
 					<ColumnDefinition Width="30"  MinWidth="30"/>
-					<ColumnDefinition Width="*" MinWidth="450"/>
+					<ColumnDefinition Width="*" MinWidth="420"/>
 				</Grid.ColumnDefinitions>
 				
 				<Border Classes="BigRounded FirstAccentGradient" 
 				        Grid.Row="0" Grid.Column="0">
+					
+					<Grid Margin="30">
+							
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*"/>
+							<RowDefinition Height="*" MinHeight="40"/>
+							<RowDefinition Height="*" MinHeight="50"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+							
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="3*" MinWidth="20"/>
+							<ColumnDefinition Width="160" MinWidth="160"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+							
+						<TextBlock Text="Сумма инвестиций"
+						           Classes="MiddleText"
+						           Grid.Row="1" Grid.Column="1"/>
+							
+						<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+							<TextBlock Text="{Binding InvestedSum, StringFormat=N0, Mode=OneWay}"
+							           Classes="LargeText"/>
+							<TextBlock Text="{Binding CurrencyMark}"
+							           Classes="LargeText"
+							           Margin="5, 0, 0, 0"/>
+						</StackPanel>
+							
+					</Grid>
 					
 				</Border>
 				
@@ -49,11 +80,61 @@
 					
 					<Border Classes="BigRounded SecondAccentGradient" 
 					        Grid.Row="0">
+						
+						<Grid>
+							
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="*" MinHeight="40"/>
+								<RowDefinition Height="*" MinHeight="50"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+							
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" MinWidth="30"/>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="3*" MinWidth="10"/>
+								<ColumnDefinition Width="120" MinWidth="120"/>
+								<ColumnDefinition Width="*" MinWidth="30"/>
+							</Grid.ColumnDefinitions>
+							
+							<TextBlock Text="Финансовая цель"
+							           Classes="MiddleText"
+							           Grid.Row="1" Grid.Column="1"/>
+							
+							<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+								<TextBlock Text="{Binding FinancialGoal, StringFormat=N0, Mode=OneWay}"
+								           Classes="LargeText"/>
+								<TextBlock Text="{Binding CurrencyMark}"
+								           Classes="LargeText"
+								           Margin="5, 0, 0, 0"/>
+							</StackPanel>
+							
+						</Grid>
 					
 					</Border>
 					
 					<Border Classes="BigRounded ThirdAccentGradient" 
 					        Grid.Row="2">
+						
+						<Grid>
+							
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="*" MinHeight="40"/>
+								<RowDefinition Height="*" MinHeight="50"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+							
+							<TextBlock Text="Количество предметов"
+							           Classes="MiddleText Center"
+							           Grid.Row="1"/>
+							
+							<TextBlock Text="{Binding TotalCount, StringFormat=N0, Mode=OneWay}"
+							           Classes="LargeText Center"
+							           Grid.Row="2"/>
+							
+						</Grid>
 					
 					</Border>
 					
@@ -62,9 +143,10 @@
 				<Border Classes="BigRounded BackgroundAdditional" 
 				        Grid.Row="2" Grid.Column="0">
 					
-					<Grid Margin="30">
+					<Grid>
 						
 						<Grid.RowDefinitions>
+							<RowDefinition Height="*" MinHeight="30"/>
 							<RowDefinition Height="40" MinHeight="40"/>
 							<RowDefinition Height="4*" MinHeight="20"/>
 							<RowDefinition Height="40" MinHeight="40"/>
@@ -72,34 +154,37 @@
 							<RowDefinition Height="40" MinHeight="40"/>
 							<RowDefinition Height="3*" MinHeight="10"/>
 							<RowDefinition Height="40" MinHeight="40"/>
+							<RowDefinition Height="*" MinHeight="30"/>
 						</Grid.RowDefinitions>
 						
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="*"/>
-							<ColumnDefinition Width="*" MinWidth="360"/>
+							<ColumnDefinition Width="5*" MinWidth="360"/>
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
 						
 						<TextBlock Text="Активы" 
-						           Classes="LargeText Center" 
-						           Grid.Row="0" Grid.Column="1"/>
+						           Classes="BigText Center" 
+						           Grid.Row="1" Grid.Column="1"/>
 						
-						<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
-							<TextBlock Text="Количество: " Classes="BigText"/>
-							<TextBlock Text="{Binding ActivesCount, Mode=OneWay}" Classes="LargeText"/>
+						<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+							<TextBlock Text="Количество: " Classes="MiddleText"/>
+							<TextBlock Text="{Binding ActivesCount, StringFormat=N0, Mode=OneWay}" Classes="BigText"/>
 						</StackPanel>
 						
-						<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
-							<TextBlock Text="Сумма: " Classes="BigText"/>
-							<TextBlock Text="{Binding ActivesCurrentSum, Mode=OneWay}" Classes="LargeText"/>
-							<TextBlock Text=" руб." Classes="BigText"/>
+						<StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+							<TextBlock Text="Сумма: " Classes="MiddleText"/>
+							<TextBlock Text="{Binding ActivesCurrentSum, StringFormat=N0, Mode=OneWay}" Classes="BigText"/>
+							<TextBlock Text="{Binding CurrencyMark}"
+							           Classes="BigText"
+							           Margin="5, 0, 0, 0"/>
 						</StackPanel>
 						
-						<StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
-							<TextBlock Text="Изменение: " Classes="BigText"/>
-							<TextBlock Text="{Binding ActivesPercentageGrowth, Mode=OneWay, 
+						<StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1">
+							<TextBlock Text="Изменение: " Classes="MiddleText"/>
+							<TextBlock Text="{Binding ActivesPercentageGrowth, StringFormat=N0, Mode=OneWay, 
 											 Converter={StaticResource PercentConverter}, ConverterParameter=2}" 
-							           Classes="LargeText"
+							           Classes="BigText"
 							           Classes.Positive="{Binding ActivesPercentageGrowth, Mode=OneWay,
 											 Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
 							           Classes.Negative="{Binding ActivesPercentageGrowth, Mode=OneWay,
@@ -113,9 +198,10 @@
 				<Border Classes="BigRounded BackgroundAdditional" 
 				        Grid.Row="2" Grid.Column="2">
 					
-					<Grid Margin="30">
+					<Grid>
 						
 						<Grid.RowDefinitions>
+							<RowDefinition Height="*" MinHeight="30"/>
 							<RowDefinition Height="40" MinHeight="40"/>
 							<RowDefinition Height="4*" MinHeight="20"/>
 							<RowDefinition Height="40" MinHeight="40"/>
@@ -123,34 +209,37 @@
 							<RowDefinition Height="40" MinHeight="40"/>
 							<RowDefinition Height="3*" MinHeight="10"/>
 							<RowDefinition Height="40" MinHeight="40"/>
+							<RowDefinition Height="*" MinHeight="30"/>
 						</Grid.RowDefinitions>
 						
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="*"/>
-							<ColumnDefinition Width="*" MinWidth="360"/>
+							<ColumnDefinition Width="5*" MinWidth="360"/>
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
 						
 						<TextBlock Text="Архив" 
-						           Classes="LargeText Center" 
-						           Grid.Row="0" Grid.Column="1"/>
+						           Classes="BigText Center" 
+						           Grid.Row="1" Grid.Column="1"/>
 						
-						<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
-							<TextBlock Text="Количество: " Classes="BigText"/>
-							<TextBlock Text="{Binding ArchivesCount, Mode=OneWay}" Classes="LargeText"/>
+						<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+							<TextBlock Text="Количество: " Classes="MiddleText"/>
+							<TextBlock Text="{Binding ArchivesCount, StringFormat=N0, Mode=OneWay}" Classes="BigText"/>
 						</StackPanel>
 						
-						<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
-							<TextBlock Text="Сумма: " Classes="BigText"/>
-							<TextBlock Text="{Binding ArchivesSoldSum, Mode=OneWay}" Classes="LargeText"/>
-							<TextBlock Text=" руб." Classes="BigText"/>
+						<StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
+							<TextBlock Text="Сумма: " Classes="MiddleText"/>
+							<TextBlock Text="{Binding ArchivesSoldSum, StringFormat=N0, Mode=OneWay}" Classes="BigText"/>
+							<TextBlock Text="{Binding CurrencyMark}"
+							           Classes="BigText"
+							           Margin="5, 0, 0, 0"/>
 						</StackPanel>
 						
-						<StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
-							<TextBlock Text="Изменение: " Classes="BigText"/>
-							<TextBlock Text="{Binding ArchivesPercentageGrowth, Mode=OneWay, 
+						<StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1">
+							<TextBlock Text="Изменение: " Classes="MiddleText"/>
+							<TextBlock Text="{Binding ArchivesPercentageGrowth, StringFormat=N0, Mode=OneWay, 
 											 Converter={StaticResource PercentConverter}, ConverterParameter=2}" 
-							           Classes="LargeText"
+							           Classes="BigText"
 							           Classes.Positive="{Binding ArchivesPercentageGrowth, Mode=OneWay,
 											 Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
 							           Classes.Negative="{Binding ArchivesPercentageGrowth, Mode=OneWay,
@@ -164,22 +253,24 @@
 				<Border Classes="BigRounded BackgroundAdditional" 
 				        Grid.Row="4" Grid.Column="0">
 					
-					<Grid Margin="30">
+					<Grid>
 						
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="*"/>
-							<ColumnDefinition Width="*" MinWidth="420"/>
-							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*" MinWidth="30"/>
+							<ColumnDefinition Width="5*" MinWidth="420"/>
+							<ColumnDefinition Width="*" MinWidth="30"/>
 						</Grid.ColumnDefinitions>
 						
 						<Grid Grid.Column="1">
 							
 							<Grid.RowDefinitions>
+								<RowDefinition Height="*" MinHeight="30"/>
 								<RowDefinition Height="40" MinHeight="40"/>
 								<RowDefinition Height="*"/>
 								<RowDefinition Height="40" MinHeight="40"/>
 								<RowDefinition Height="*"/>
 								<RowDefinition Height="40" MinHeight="40"/>
+								<RowDefinition Height="*" MinHeight="30"/>
 							</Grid.RowDefinitions>
 							
 							<Grid.ColumnDefinitions>
@@ -189,17 +280,20 @@
                             </Grid.ColumnDefinitions>
 							
 							<TextBlock Text="Инвентарь" 
-                                       Classes="LargeText Center" 
-                                       Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0"/>
+                                       Classes="BigText Center" 
+                                       Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="0"/>
                             
-                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
-                            	<TextBlock Text="Количество: " Classes="BigText"/>
-                            	<TextBlock Text="{Binding InventoryCount, Mode=OneWay}" Classes="LargeText"/>
+                            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                            	<TextBlock Text="Количество: " Classes="MiddleText"/>
+                            	<TextBlock Text="{Binding InventoryCount, StringFormat=N0, Mode=OneWay}" Classes="BigText"/>
                             </StackPanel>
                             
-                            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
-                            	<TextBlock Text="Сумма: " Classes="BigText"/>
-                            	<TextBlock Text="{Binding InventorySum, Mode=OneWay}" Classes="LargeText"/>
+                            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+                            	<TextBlock Text="Сумма: " Classes="MiddleText"/>
+                            	<TextBlock Text="{Binding InventorySum, StringFormat=N0, Mode=OneWay}" Classes="BigText"/>
+	                            <TextBlock Text="{Binding CurrencyMark}"
+	                                       Classes="BigText"
+	                                       Margin="5, 0, 0, 0"/>
                             </StackPanel>
 							
 						</Grid>
@@ -211,36 +305,38 @@
 				<Border Classes="BigRounded BackgroundAdditional" 
 				        Grid.Row="4" Grid.Column="2">
 					
-					<Grid Margin="30">
+					<Grid>
 						
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="*"/>
-							<ColumnDefinition Width="*" MinWidth="420"/>
-							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*" MinWidth="30"/>
+							<ColumnDefinition Width="5*" MinWidth="420"/>
+							<ColumnDefinition Width="*" MinWidth="30"/>
 						</Grid.ColumnDefinitions>
 						
 						<Grid Grid.Column="1">
 							
 							<Grid.RowDefinitions>
+								<RowDefinition Height="*" MinHeight="30"/>
 								<RowDefinition Height="40" MinHeight="40"/>
 								<RowDefinition Height="*"/>
 								<RowDefinition Height="40" MinHeight="40"/>
 								<RowDefinition Height="*"/>
 								<RowDefinition Height="40" MinHeight="40"/>
+								<RowDefinition Height="*" MinHeight="30"/>
 							</Grid.RowDefinitions>
 							
 							<TextBlock Text="Состояние сервера" 
-							           Classes="LargeText Center" 
-							           Grid.Row="0"/>
+							           Classes="BigText Center" 
+							           Grid.Row="1"/>
 							
-							<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
-								<TextBlock Text="{Binding Status, Mode=OneWay}" Classes="BigText"/>
+							<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+								<TextBlock Text="{Binding Status, Mode=OneWay}" Classes="MiddleText"/>
 							</StackPanel>
 							
-							<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
-								<TextBlock Text="Ping: " Classes="BigText"/>
-								<TextBlock Text="{Binding Ping, Mode=OneWay}" Classes="BigText"/>
-								<TextBlock Text=" ms" Classes="BigText"/>
+							<StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+								<TextBlock Text="Ping: " Classes="MiddleText"/>
+								<TextBlock Text="{Binding Ping, StringFormat=N0, Mode=OneWay}" Classes="MiddleText"/>
+								<TextBlock Text=" ms" Classes="MiddleText"/>
 							</StackPanel>
 							
 						</Grid>

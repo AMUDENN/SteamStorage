@@ -22,7 +22,7 @@
                   Margin="30">
                 
                 <TextBlock Text="Внешний вид приложения"
-                           Classes="BigText"
+                           Classes="MiddleText"
                            Grid.Row="0"/>
                 
             </Grid>
@@ -81,7 +81,7 @@
                         <Image Classes="GithubImage" Grid.Column="0"/>
                         
                         <TextBlock Text="GitHub" 
-                                   Classes="BigText" 
+                                   Classes="MiddleText" 
                                    Grid.Column="2"/>
                         
                     </Grid>
@@ -116,7 +116,7 @@
                         <Image Classes="TelegramImage" Grid.Column="0"/>
                         
                         <TextBlock Text="Telegram" 
-                                   Classes="BigText" 
+                                   Classes="MiddleText" 
                                    Grid.Column="2"/>
                         
                     </Grid>
@@ -151,7 +151,7 @@
                         <Image Classes="EmailImage" Grid.Column="0"/>
                         
                         <TextBlock Text="Email" 
-                                   Classes="BigText" 
+                                   Classes="MiddleText" 
                                    Grid.Column="2"/>
                         
                     </Grid>
