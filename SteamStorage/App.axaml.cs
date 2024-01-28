@@ -7,7 +7,6 @@ using SteamStorage.ViewModels;
 using SteamStorage.Views;
 using System;
 using SteamStorage.Models;
-using SteamStorage.Utilities;
 using SteamStorageAPI;
 using SteamStorageAPI.Services.LoggerService;
 using SteamStorageAPI.Services.PingService;
