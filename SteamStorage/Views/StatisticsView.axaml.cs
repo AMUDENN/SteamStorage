@@ -2,9 +2,9 @@
 
 namespace SteamStorage.Views;
 
-public partial class SettingsView : UserControl
+public partial class StatisticsView : UserControl
 {
-    public SettingsView()
+    public StatisticsView()
     {
         InitializeComponent();
     }

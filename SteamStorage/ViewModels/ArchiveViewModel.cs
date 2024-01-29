@@ -1,6 +1,9 @@
-﻿namespace SteamStorage.ViewModels
+﻿using SteamStorage.ViewModels.Tools;
+
+namespace SteamStorage.ViewModels;
+
+public class ArchiveViewModel : ViewModelBase
 {
-    public class ArchiveViewModel : ViewModelBase
-    {
-    }
+    
 }
+

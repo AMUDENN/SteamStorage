@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using SteamStorage.Models.Tools;
 using SteamStorage.ViewModels;
+using SteamStorage.ViewModels.Tools;
 using SteamStorageAPI;
 
 namespace SteamStorage.Models;
 
-public class MainModel : ObservableObject
+public class MainModel : ModelBase
 {
     #region Constants
 

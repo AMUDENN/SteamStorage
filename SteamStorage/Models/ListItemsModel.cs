@@ -1,9 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using SteamStorage.Models.Tools;
 using SteamStorageAPI;
 
 namespace SteamStorage.Models;
 
-public class ListItemsModel : ObservableObject
+public class ListItemsModel : ModelBase
 {
     #region Fields
 

@@ -2,7 +2,7 @@
 
 namespace SteamStorage.ViewModels;
 
-public class ProfileViewModel : ViewModelBase
+public class ListItemsViewModel : ViewModelBase
 {
 
 }

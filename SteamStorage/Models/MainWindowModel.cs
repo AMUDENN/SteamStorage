@@ -1,12 +1,12 @@
 ﻿using Avalonia.Controls;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using SteamStorage.Models.Tools;
 using SteamStorage.ViewModels;
 using SteamStorage.Views;
 
 namespace SteamStorage.Models;
 
-public class MainWindowModel : ObservableObject
+public class MainWindowModel : ModelBase
 {
     #region Fields
 

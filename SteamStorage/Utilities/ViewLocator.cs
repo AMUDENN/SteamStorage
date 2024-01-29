@@ -2,28 +2,28 @@ using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using SteamStorage.ViewModels;
 using System;
+using SteamStorage.ViewModels.Tools;
 
-namespace SteamStorage.Utilities
+namespace SteamStorage.Utilities;
+
+public class ViewLocator : IDataTemplate
 {
-    public class ViewLocator : IDataTemplate
+    public Control? Build(object? data)
     {
-        public Control? Build(object? data)
-        {
-            if (data is null)
-                return null;
+        if (data is null)
+            return null;
 
-            string name = data.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
-            Type? type = Type.GetType(name);
+        string name = data.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
+        Type? type = Type.GetType(name);
 
-            if (type is null) return new TextBlock { Text = "Not Found: " + name };
-            Control control = (Control)Activator.CreateInstance(type)!;
-            control.DataContext = data;
-            return control;
-        }
+        if (type is null) return new TextBlock { Text = "Not Found: " + name };
+        Control control = (Control)Activator.CreateInstance(type)!;
+        control.DataContext = data;
+        return control;
+    }
 
-        public bool Match(object? data)
-        {
-            return data is ViewModelBase;
-        }
+    public bool Match(object? data)
+    {
+        return data is ViewModelBase;
     }
 }

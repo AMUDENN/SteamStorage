@@ -48,8 +48,10 @@ namespace SteamStorage
             services.AddSingleton<ArchiveViewModel>();
             services.AddSingleton<HomeViewModel>();
             services.AddSingleton<InventoryViewModel>();
+            services.AddSingleton<ListItemsViewModel>();
             services.AddSingleton<ProfileViewModel>();
             services.AddSingleton<SettingsViewModel>();
+            services.AddSingleton<StatisticsViewModel>();
 
             //Models
             services.AddSingleton<MainModel>();

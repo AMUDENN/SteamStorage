@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using SteamStorage.Models.Tools;
 using SteamStorage.Utilities;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
@@ -7,7 +6,7 @@ using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
 
-public class UserModel : ObservableObject
+public class UserModel : ModelBase
 {
     #region Events
 

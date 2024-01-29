@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using CommunityToolkit.Mvvm.ComponentModel;
+using SteamStorage.Models.Tools;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Services.PingResult;
@@ -9,7 +8,7 @@ using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
 
-public class StatisticsModel : ObservableObject
+public class StatisticsModel : ModelBase
 {
     #region Fields
 
@@ -157,6 +156,8 @@ public class StatisticsModel : ObservableObject
         _userModel.UserChanged += UserChangedHandler;
 
         _userModel.CurrencyChanged += CurrencyChangedHandler;
+
+        _inventoryGames = Enumerable.Empty<Statistics.InventoryGameStatisticResponse>();
 
         RefreshPing();
     }

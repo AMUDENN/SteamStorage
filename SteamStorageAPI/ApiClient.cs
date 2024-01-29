@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Text;
 using Microsoft.AspNetCore.SignalR.Client;
 using SteamStorageAPI.ApiEntities;
+using SteamStorageAPI.ApiEntities.Tools;
 using SteamStorageAPI.Events;
 using SteamStorageAPI.Services.LoggerService;
 using SteamStorageAPI.Services.PingResult;
