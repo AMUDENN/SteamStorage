@@ -8,8 +8,8 @@
             <Setter.Value>
                 <ControlTemplate>
                     <TextBlock Text="{TemplateBinding Header}"
-                               Classes="SmallText Underline"
-                               Classes.FirstAccent="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem}}, Path=IsSelected}"
+                               Classes="SmallTextBlock UnderlineTextBlock"
+                               Classes.FirstAccentTextBlock="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem}}, Path=IsSelected}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Margin="30, 0, 0, 0"/>

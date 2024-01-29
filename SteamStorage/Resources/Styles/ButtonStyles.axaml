@@ -12,7 +12,7 @@
                                   Height="60"
                                   Margin="20, 0">
                                 <Border x:Name="PointerOverBorder"
-                                        Classes="Background BigRoundedBorder"
+                                        Classes="BackgroundBorder BigRoundedBorder"
                                         Opacity="0"/>
                                     <Grid x:Name="GridTitle"
                                           ColumnDefinitions="60, *">
@@ -22,7 +22,7 @@
                                         <TextBlock x:Name="TitleTextBlock"
                                                    Text="{TemplateBinding Tag}"
                                                    Foreground="{TemplateBinding Foreground}"
-                                                   Classes="MiddleText"
+                                                   Classes="MiddleTextBlock"
                                                    IsVisible="True"
                                                    Grid.Column="1"/>
                                     </Grid>
@@ -88,7 +88,7 @@
             <Setter.Value>
                 <ControlTemplate>
                     <TextBlock Text="{TemplateBinding Content}"
-                               Classes="Underline MiddleText"
+                               Classes="UnderlineTextBlock MiddleTextBlock"
                                Foreground="{TemplateBinding Foreground}"/>
                 </ControlTemplate>
             </Setter.Value>

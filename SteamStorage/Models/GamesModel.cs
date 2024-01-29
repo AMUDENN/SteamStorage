@@ -32,6 +32,8 @@ public class GamesModel : ModelBase
         _apiClient = apiClient;
         _userModel = userModel;
 
+        _gameModels = [];
+
         userModel.UserChanged += (s) => GetGames();
     }
 

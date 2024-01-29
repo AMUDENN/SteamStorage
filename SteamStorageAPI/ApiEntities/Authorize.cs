@@ -1,12 +1,17 @@
-﻿namespace SteamStorageAPI.ApiEntities;
+﻿using SteamStorageAPI.ApiEntities.Tools;
 
-public class Authorize
+namespace SteamStorageAPI.ApiEntities;
+
+public static class Authorize
 {
     #region Records
 
-    public record AuthUrlResponse(string Url, string Group);
+    public record AuthUrlResponse(
+        string Url, 
+        string Group) : Response;
 
-    public record AuthResponse(string Token);
+    public record AuthResponse(
+        string Token) : Response;
 
     #endregion Records
 }

@@ -18,11 +18,16 @@ public static class Inventory
 
     #region Records
 
-    public record InventoryResponse(int Id, Skins.BaseSkinResponse Skin, int Count);
+    public record InventoryResponse(
+        int Id,
+        Skins.BaseSkinResponse Skin,
+        int Count) : Response;
 
-    public record InventoryPagesCountResponse(int Count);
+    public record InventoryPagesCountResponse(
+        int Count) : Response;
 
-    public record SavedInventoriesCountResponse(int Count);
+    public record SavedInventoriesCountResponse(
+        int Count) : Response;
 
     public record GetInventoryRequest(
         int? GameId,
@@ -32,11 +37,17 @@ public static class Inventory
         int PageNumber,
         int PageSize) : Request;
 
-    public record GetInventoryPagesCountRequest(int? GameId, string? Filter, int PageSize) : Request;
+    public record GetInventoryPagesCountRequest(
+        int? GameId,
+        string? Filter,
+        int PageSize) : Request;
 
-    public record GetSavedInventoriesCountRequest(int? GameId, string? Filter) : Request;
+    public record GetSavedInventoriesCountRequest(
+        int? GameId,
+        string? Filter) : Request;
 
-    public record RefreshInventoryRequest(int GameId) : Request;
+    public record RefreshInventoryRequest(
+        int GameId) : Request;
 
     #endregion Records
 }

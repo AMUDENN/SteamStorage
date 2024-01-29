@@ -19,17 +19,34 @@ public static class ActiveGroups
 
     #region Records
 
-    public record ActiveGroupsResponse(int Id, string Title, string Description, string Colour, decimal? GoalSum);
+    public record ActiveGroupsResponse(
+        int Id,
+        string Title,
+        string Description,
+        string Colour,
+        decimal? GoalSum) : Response;
 
-    public record ActiveGroupDynamicsResponse(int Id, DateTime DateUpdate, decimal Sum);
+    public record ActiveGroupDynamicsResponse(
+        int Id,
+        DateTime DateUpdate,
+        decimal Sum) : Response;
 
-    public record ActiveGroupsCountResponse(int Count);
+    public record ActiveGroupsCountResponse(
+        int Count) : Response;
 
-    public record GetActiveGroupsRequest(ActiveGroupOrderName? OrderName, bool? IsAscending) : Request;
+    public record GetActiveGroupsRequest(
+        ActiveGroupOrderName? OrderName,
+        bool? IsAscending) : Request;
 
-    public record GetActiveGroupDynamicRequest(int GroupId, int DaysDynamic) : Request;
+    public record GetActiveGroupDynamicRequest(
+        int GroupId,
+        int DaysDynamic) : Request;
 
-    public record PostActiveGroupRequest(string Title, string? Description, string? Colour, decimal? GoalSum) : Request;
+    public record PostActiveGroupRequest(
+        string Title,
+        string? Description,
+        string? Colour,
+        decimal? GoalSum) : Request;
 
     #endregion Records
 }

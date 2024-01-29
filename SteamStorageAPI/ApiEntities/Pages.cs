@@ -6,9 +6,12 @@ public static class Pages
 {
     #region Records
 
-    public record PageResponse(int Id, string Title);
+    public record PageResponse(
+        int Id, 
+        string Title) : Response;
 
-    public record SetPageRequest(int PageId) : Request;
+    public record SetPageRequest(
+        int PageId) : Request;
 
     #endregion Records
 }

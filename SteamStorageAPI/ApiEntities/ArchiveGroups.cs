@@ -19,18 +19,32 @@ public static class ArchiveGroups
 
     #region Records
 
-    public record ArchiveGroupsResponse(int Id, string Title, string Description, string Colour);
+    public record ArchiveGroupsResponse(
+        int Id, 
+        string Title, 
+        string Description, 
+        string Colour) : Response;
 
-    public record ArchiveGroupsCountResponse(int Count);
+    public record ArchiveGroupsCountResponse(
+        int Count) : Response;
 
-    public record GetArchiveGroupsRequest(ArchiveGroupOrderName? OrderName, bool? IsAscending) : Request;
+    public record GetArchiveGroupsRequest(
+        ArchiveGroupOrderName? OrderName, 
+        bool? IsAscending) : Request;
 
-    public record PostArchiveGroupRequest(string Title, string? Description, string? Colour) : Request;
+    public record PostArchiveGroupRequest(
+        string Title, 
+        string? Description, 
+        string? Colour) : Request;
 
-    public record PutArchiveGroupRequest(int GroupId, string Title, string? Description, string? Colour) : Request;
+    public record PutArchiveGroupRequest(
+        int GroupId, 
+        string Title, 
+        string? Description, 
+        string? Colour) : Request;
 
-    public record DeleteArchiveGroupRequest(int GroupId) : Request;
+    public record DeleteArchiveGroupRequest(
+        int GroupId) : Request;
 
     #endregion Records
-
 }

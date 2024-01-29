@@ -21,7 +21,7 @@
 							<Image Classes="LogoImage" 
 								   Grid.Column="0"/>
 							<TextBlock Text="{TemplateBinding Title}" 
-									   Classes="Center"
+									   Classes="CenterTextBlock"
 									   Grid.Column="1"/>
 							<StackPanel Orientation="Horizontal" 
 										Spacing="5" 

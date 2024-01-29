@@ -30,7 +30,7 @@
 			<ColumnDefinition Width="*" MinWidth="420"/>
 		</Grid.ColumnDefinitions>
 		
-		<Border Classes="BigRoundedBorder FirstAccentGradient" 
+		<Border Classes="BigRoundedBorder FirstAccentGradientBorder" 
 		        Grid.Row="0" Grid.Column="0">
 			
 			<Grid Margin="30">
@@ -51,14 +51,14 @@
 				</Grid.ColumnDefinitions>
 					
 				<TextBlock Text="Сумма инвестиций"
-				           Classes="MiddleText"
+				           Classes="MiddleTextBlock"
 				           Grid.Row="1" Grid.Column="1"/>
 					
 				<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
 					<TextBlock Text="{Binding InvestedSum, StringFormat=N0, Mode=OneWay}"
-					           Classes="LargeText"/>
+					           Classes="LargeTextBlock"/>
 					<TextBlock Text="{Binding CurrencyMark}"
-					           Classes="LargeText"
+					           Classes="LargeTextBlock"
 					           Margin="5, 0, 0, 0"/>
 				</StackPanel>
 					
@@ -74,7 +74,7 @@
 				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
 			
-			<Border Classes="BigRoundedBorder SecondAccentGradient" 
+			<Border Classes="BigRoundedBorder SecondAccentGradientBorder" 
 			        Grid.Row="0">
 				
 				<Grid>
@@ -95,14 +95,14 @@
 					</Grid.ColumnDefinitions>
 					
 					<TextBlock Text="Финансовая цель"
-					           Classes="MiddleText"
+					           Classes="MiddleTextBlock"
 					           Grid.Row="1" Grid.Column="1"/>
 					
 					<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
 						<TextBlock Text="{Binding FinancialGoal, StringFormat=N0, Mode=OneWay}"
-						           Classes="LargeText"/>
+						           Classes="LargeTextBlock"/>
 						<TextBlock Text="{Binding CurrencyMark}"
-						           Classes="LargeText"
+						           Classes="LargeTextBlock"
 						           Margin="5, 0, 0, 0"/>
 					</StackPanel>
 					
@@ -110,7 +110,7 @@
 			
 			</Border>
 			
-			<Border Classes="BigRoundedBorder ThirdAccentGradient" 
+			<Border Classes="BigRoundedBorder ThirdAccentGradientBorder" 
 			        Grid.Row="2">
 				
 				<Grid>
@@ -123,11 +123,11 @@
 					</Grid.RowDefinitions>
 					
 					<TextBlock Text="Количество предметов"
-					           Classes="MiddleText Center"
+					           Classes="MiddleTextBlock CenterTextBlock"
 					           Grid.Row="1"/>
 					
 					<TextBlock Text="{Binding TotalCount, StringFormat=N0, Mode=OneWay}"
-					           Classes="LargeText Center"
+					           Classes="LargeTextBlock CenterTextBlock"
 					           Grid.Row="2"/>
 					
 				</Grid>
@@ -136,7 +136,7 @@
 			
 		</Grid>
 		
-		<Border Classes="BigRoundedBorder BackgroundAdditional" 
+		<Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
 		        Grid.Row="2" Grid.Column="0">
 			
 			<Grid>
@@ -160,27 +160,27 @@
 				</Grid.ColumnDefinitions>
 				
 				<TextBlock Text="Активы" 
-				           Classes="BigText Center" 
+				           Classes="BigTextBlock CenterTextBlock" 
 				           Grid.Row="1" Grid.Column="1"/>
 				
 				<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
-					<TextBlock Text="Количество: " Classes="MiddleText"/>
-					<TextBlock Text="{Binding ActivesCount, StringFormat=N0, Mode=OneWay}" Classes="BigText"/>
+					<TextBlock Text="Количество: " Classes="MiddleTextBlock"/>
+					<TextBlock Text="{Binding ActivesCount, StringFormat=N0, Mode=OneWay}" Classes="BigTextBlock"/>
 				</StackPanel>
 				
 				<StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
-					<TextBlock Text="Сумма: " Classes="MiddleText"/>
-					<TextBlock Text="{Binding ActivesCurrentSum, StringFormat=N0, Mode=OneWay}" Classes="BigText"/>
+					<TextBlock Text="Сумма: " Classes="MiddleTextBlock"/>
+					<TextBlock Text="{Binding ActivesCurrentSum, StringFormat=N0, Mode=OneWay}" Classes="BigTextBlock"/>
 					<TextBlock Text="{Binding CurrencyMark}"
-					           Classes="BigText"
+					           Classes="BigTextBlock"
 					           Margin="5, 0, 0, 0"/>
 				</StackPanel>
 				
 				<StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1">
-					<TextBlock Text="Изменение: " Classes="MiddleText"/>
+					<TextBlock Text="Изменение: " Classes="MiddleTextBlock"/>
 					<TextBlock Text="{Binding ActivesPercentageGrowth, StringFormat=N0, Mode=OneWay, 
 									 Converter={StaticResource PercentConverter}, ConverterParameter=2}" 
-					           Classes="BigText"
+					           Classes="BigTextBlock"
 					           Classes.Positive="{Binding ActivesPercentageGrowth, Mode=OneWay,
 									 Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
 					           Classes.Negative="{Binding ActivesPercentageGrowth, Mode=OneWay,
@@ -191,7 +191,7 @@
 			
 		</Border>
 		
-		<Border Classes="BigRoundedBorder BackgroundAdditional" 
+		<Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
 		        Grid.Row="2" Grid.Column="2">
 			
 			<Grid>
@@ -215,27 +215,27 @@
 				</Grid.ColumnDefinitions>
 				
 				<TextBlock Text="Архив" 
-				           Classes="BigText Center" 
+				           Classes="BigTextBlock CenterTextBlock" 
 				           Grid.Row="1" Grid.Column="1"/>
 				
 				<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
-					<TextBlock Text="Количество: " Classes="MiddleText"/>
-					<TextBlock Text="{Binding ArchivesCount, StringFormat=N0, Mode=OneWay}" Classes="BigText"/>
+					<TextBlock Text="Количество: " Classes="MiddleTextBlock"/>
+					<TextBlock Text="{Binding ArchivesCount, StringFormat=N0, Mode=OneWay}" Classes="BigTextBlock"/>
 				</StackPanel>
 				
 				<StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
-					<TextBlock Text="Сумма: " Classes="MiddleText"/>
-					<TextBlock Text="{Binding ArchivesSoldSum, StringFormat=N0, Mode=OneWay}" Classes="BigText"/>
+					<TextBlock Text="Сумма: " Classes="MiddleTextBlock"/>
+					<TextBlock Text="{Binding ArchivesSoldSum, StringFormat=N0, Mode=OneWay}" Classes="BigTextBlock"/>
 					<TextBlock Text="{Binding CurrencyMark}"
-					           Classes="BigText"
+					           Classes="BigTextBlock"
 					           Margin="5, 0, 0, 0"/>
 				</StackPanel>
 				
 				<StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1">
-					<TextBlock Text="Изменение: " Classes="MiddleText"/>
+					<TextBlock Text="Изменение: " Classes="MiddleTextBlock"/>
 					<TextBlock Text="{Binding ArchivesPercentageGrowth, StringFormat=N0, Mode=OneWay, 
 									 Converter={StaticResource PercentConverter}, ConverterParameter=2}" 
-					           Classes="BigText"
+					           Classes="BigTextBlock"
 					           Classes.Positive="{Binding ArchivesPercentageGrowth, Mode=OneWay,
 									 Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
 					           Classes.Negative="{Binding ArchivesPercentageGrowth, Mode=OneWay,
@@ -246,7 +246,7 @@
 			
 		</Border>
 		
-		<Border Classes="BigRoundedBorder BackgroundAdditional" 
+		<Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
 		        Grid.Row="4" Grid.Column="0">
 			
 			<Grid>
@@ -276,19 +276,19 @@
                     </Grid.ColumnDefinitions>
 					
 					<TextBlock Text="Инвентарь" 
-                               Classes="BigText Center" 
+                               Classes="BigTextBlock CenterTextBlock" 
                                Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="0"/>
                     
                     <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
-                        <TextBlock Text="Количество: " Classes="MiddleText"/>
-                        <TextBlock Text="{Binding InventoryCount, StringFormat=N0, Mode=OneWay}" Classes="BigText"/>
+                        <TextBlock Text="Количество: " Classes="MiddleTextBlock"/>
+                        <TextBlock Text="{Binding InventoryCount, StringFormat=N0, Mode=OneWay}" Classes="BigTextBlock"/>
                     </StackPanel>
                     
                     <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
-                        <TextBlock Text="Сумма: " Classes="MiddleText"/>
-                        <TextBlock Text="{Binding InventorySum, StringFormat=N0, Mode=OneWay}" Classes="BigText"/>
+                        <TextBlock Text="Сумма: " Classes="MiddleTextBlock"/>
+                        <TextBlock Text="{Binding InventorySum, StringFormat=N0, Mode=OneWay}" Classes="BigTextBlock"/>
                         <TextBlock Text="{Binding CurrencyMark}"
-                                   Classes="BigText"
+                                   Classes="BigTextBlock"
                                    Margin="5, 0, 0, 0"/>
                     </StackPanel>
 					
@@ -298,7 +298,7 @@
 			
 		</Border>
 		
-		<Border Classes="BigRoundedBorder BackgroundAdditional" 
+		<Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
 		        Grid.Row="4" Grid.Column="2">
 			
 			<Grid>
@@ -322,17 +322,17 @@
 					</Grid.RowDefinitions>
 					
 					<TextBlock Text="Состояние сервера" 
-					           Classes="BigText Center" 
+					           Classes="BigTextBlock CenterTextBlock" 
 					           Grid.Row="1"/>
 					
 					<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
-						<TextBlock Text="{Binding Status, Mode=OneWay}" Classes="MiddleText"/>
+						<TextBlock Text="{Binding Status, Mode=OneWay}" Classes="MiddleTextBlock"/>
 					</StackPanel>
 					
 					<StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
-						<TextBlock Text="Ping: " Classes="MiddleText"/>
-						<TextBlock Text="{Binding Ping, StringFormat=N0, Mode=OneWay}" Classes="MiddleText"/>
-						<TextBlock Text=" ms" Classes="MiddleText"/>
+						<TextBlock Text="Ping: " Classes="MiddleTextBlock"/>
+						<TextBlock Text="{Binding Ping, StringFormat=N0, Mode=OneWay}" Classes="MiddleTextBlock"/>
+						<TextBlock Text=" ms" Classes="MiddleTextBlock"/>
 					</StackPanel>
 					
 				</Grid>

@@ -10,7 +10,7 @@
 		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
 	</Style>
 	
-	<Style Selector="ListBox.Navigation ListBoxItem">
+	<Style Selector="ListBox.NavigationListBox ListBoxItem">
 		<Setter Property="Template">
         	<Setter.Value>
         		<ControlTemplate x:DataType="utilityModels:NavigationModel">
@@ -22,16 +22,16 @@
         							HorizontalAlignment="Left"
         							VerticalAlignment="Center"
         							IsVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
-        							Classes="FirstAccent"/>
+        							Classes="FirstAccentBorder"/>
         					<Grid x:Name="ContentGrid"
         						  Height="60"
         						  Margin="20, 0">
         						<Border x:Name="ItemBorder"
         								Classes="BigRoundedBorder"
-        								Classes.Background="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
+        								Classes.BackgroundBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
         								Opacity="0.5"/>
         						<Border x:Name="PointerOverBorder"
-        								Classes="Background BigRoundedBorder"
+        								Classes="BackgroundBorder BigRoundedBorder"
         								Opacity="0"/>
         						<Grid x:Name="GridTitle"
         							  ColumnDefinitions="60, *">
@@ -40,7 +40,7 @@
         											Grid.Column="0"/>
         							<TextBlock x:Name="TitleTextBlock"
         									   Text="{Binding Title, Mode=OneWay}"
-        									   Classes="MiddleText"
+        									   Classes="MiddleTextBlock"
         									   IsVisible="True"
         									   Grid.Column="1"/>
         						</Grid>
@@ -55,24 +55,24 @@
         </Style>
 	</Style>
 	
-	<Style Selector="ListBox.Navigation.Min ListBoxItem /template/ Grid#ContentGrid">
+	<Style Selector="ListBox.NavigationListBox.Min ListBoxItem /template/ Grid#ContentGrid">
 		<Setter Property="Margin" Value="20, 0"/>
 	</Style>
 
-	<Style Selector="ListBox.Navigation.Min ListBoxItem /template/ Border#ItemBorder">
+	<Style Selector="ListBox.NavigationListBox.Min ListBoxItem /template/ Border#ItemBorder">
 		<Setter Property="CornerRadius" Value="10"/>
 	</Style>
 
-	<Style Selector="ListBox.Navigation.Min ListBoxItem /template/ TextBlock#TitleTextBlock">
+	<Style Selector="ListBox.NavigationListBox.Min ListBoxItem /template/ TextBlock#TitleTextBlock">
 		<Setter Property="IsVisible" Value="False"/>
 	</Style>
 	
-	<Style Selector="ListBox.Games ListBoxItem">
+	<Style Selector="ListBox.GamesListBox ListBoxItem">
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate x:DataType="utilityModels:GameModel">
 					<Border x:Name="MainBorder"
-							Classes="BackgroundAdditional SmallRoundedBorder"
+							Classes="BackgroundAdditionalBorder SmallRoundedBorder"
 							Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
 					        Height="60" Width="60">
 						<Border Classes="LittleRoundedBorder"

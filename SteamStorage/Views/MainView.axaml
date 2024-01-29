@@ -17,7 +17,7 @@
 	<Grid ColumnDefinitions="Auto, *" Margin="30">
 
 		<Border x:Name="MenuBorder"
-				Classes="BigRoundedBorder BackgroundAdditional"
+				Classes="BigRoundedBorder BackgroundAdditionalBorder"
 				Grid.Column="0">
 
 			<Border.Styles>
@@ -66,7 +66,7 @@
 						VerticalAlignment="Top"
 						Grid.Row="0">
 					<Grid>
-						<Border Classes="Background"
+						<Border Classes="BackgroundBorder"
 								Opacity="0.5"/>
 						<Image x:Name="AccountImage"
 							   Classes="AccountImage"/>
@@ -76,12 +76,12 @@
 				
 				<TextBlock x:Name="UserName" 
 						   Text="{Binding UserName, Mode=OneWay}" 
-						   Classes="Center BigText" 
+						   Classes="CenterTextBlock BigTextBlock" 
 						   Grid.Row="1"/>
 
 				<TextBlock x:Name="SteamId" 
 						   Text="{Binding SteamId, Mode=OneWay}" 
-						   Classes="Center LittleText" 
+						   Classes="CenterTextBlock LittleTextBlock" 
 						   Grid.Row="2"/>
 
 				<Rectangle Height="2" MaxWidth="180" 
@@ -90,7 +90,7 @@
 				
 				<ListBox ItemsSource="{Binding NavigationOptions, Mode=OneWay}" 
 						 SelectedItem="{Binding SelectedNavigationModel}"
-						 Classes="Navigation"
+						 Classes="NavigationListBox"
 						 Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}"
 						 Grid.Row="4">
 					
@@ -106,7 +106,7 @@
 						
 					<RadioButton Tag="Настройки"
 								 IsChecked="{Binding IsSettingsChecked}"
-								 Classes="Navigation"
+								 Classes="NavigationRadioButton"
 								 Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}" 
 								 Grid.Row="0">
 						<Image Classes="SettingsImage"/>

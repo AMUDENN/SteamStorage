@@ -17,11 +17,13 @@ public static class Users
         int StartPageId,
         int CurrencyId,
         DateTime DateRegistration,
-        decimal? GoalSum);
+        decimal? GoalSum) : Response;
 
-    public record PutGoalSumRequest(decimal? GoalSum) : Request;
+    public record PutGoalSumRequest(
+        decimal? GoalSum) : Request;
 
-    public record PutStartPageRequest(int StartPageId) : Request;
+    public record PutStartPageRequest(
+        int StartPageId) : Request;
 
     #endregion Records
 }

@@ -42,6 +42,8 @@ public class ListItemsModel : ModelBase
     public ListItemsModel(ApiClient apiClient)
     {
         _apiClient = apiClient;
+
+        IsAllGamesChecked = true;
     }
 
     #endregion Constructor

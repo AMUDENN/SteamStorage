@@ -27,11 +27,13 @@ public static class Archives
         decimal BuyPrice,
         decimal SoldPrice,
         decimal SoldSum,
-        double Change);
+        double Change) : Response;
 
-    public record ArchivesPagesCountResponse(int Count);
+    public record ArchivesPagesCountResponse(
+        int Count) : Response;
 
-    public record ArchivesCountResponse(int Count);
+    public record ArchivesCountResponse(
+        int Count) : Response;
 
     public record GetArchivesRequest(
         int? GroupId,
@@ -42,9 +44,16 @@ public static class Archives
         int PageNumber,
         int PageSize) : Request;
 
-    public record GetArchivesPagesCountRequest(int? GroupId, int? GameId, string? Filter, int PageSize) : Request;
+    public record GetArchivesPagesCountRequest(
+        int? GroupId, 
+        int? GameId, 
+        string? Filter, 
+        int PageSize) : Request;
 
-    public record GetArchivesCountRequest(int? GroupId, int? GameId, string? Filter) : Request;
+    public record GetArchivesCountRequest(
+        int? GroupId, 
+        int? GameId, 
+        string? Filter) : Request;
 
     public record PostArchiveRequest(
         int GroupId,
@@ -67,7 +76,8 @@ public static class Archives
         DateTime BuyDate,
         DateTime SoldDate) : Request;
 
-    public record DeleteArchiveRequest(int Id) : Request;
+    public record DeleteArchiveRequest(
+        int Id) : Request;
 
     #endregion Records
 }

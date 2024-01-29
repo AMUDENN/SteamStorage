@@ -15,14 +15,14 @@
             <RowDefinition Height="2*" MinHeight="220"/>
         </Grid.RowDefinitions>
         
-        <Border Classes="BigRoundedBorder BackgroundAdditional" 
+        <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
                 Grid.Row="0">
             
             <Grid RowDefinitions="30, 30, *" 
                   Margin="30">
                 
                 <TextBlock Text="Внешний вид приложения"
-                           Classes="MiddleText"
+                           Classes="MiddleTextBlock"
                            Grid.Row="0"/>
                 
             </Grid>
@@ -37,12 +37,12 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-            <Border Classes="BigRoundedBorder BackgroundAdditional" 
+            <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
                     Grid.Column="0">
                 <Button Content="Экспорт в Excel" Classes="UnderlineButton HorizontalCenter"/>
             </Border>
             
-            <Border Classes="BigRoundedBorder BackgroundAdditional" 
+            <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
                     Grid.Column="2">
                 <Button Content="Справочная информация" Classes="UnderlineButton HorizontalCenter"/>
             </Border>
@@ -59,7 +59,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-            <Border Classes="BigRoundedBorder BackgroundAdditional" 
+            <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
                     Grid.Column="0">
                 
                 <Grid Margin="30">
@@ -81,7 +81,7 @@
                         <Image Classes="GithubImage" Grid.Column="0"/>
                         
                         <TextBlock Text="GitHub" 
-                                   Classes="MiddleText" 
+                                   Classes="MiddleTextBlock" 
                                    Grid.Column="2"/>
                         
                     </Grid>
@@ -94,7 +94,7 @@
                 
             </Border>
             
-            <Border Classes="BigRoundedBorder BackgroundAdditional" 
+            <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
                     Grid.Column="2">
                 
                 <Grid Margin="30">
@@ -116,7 +116,7 @@
                         <Image Classes="TelegramImage" Grid.Column="0"/>
                         
                         <TextBlock Text="Telegram" 
-                                   Classes="MiddleText" 
+                                   Classes="MiddleTextBlock" 
                                    Grid.Column="2"/>
                         
                     </Grid>
@@ -129,7 +129,7 @@
                 
             </Border>
             
-            <Border Classes="BigRoundedBorder BackgroundAdditional" 
+            <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
                     Grid.Column="4">
                 
                 <Grid Margin="30">
@@ -151,7 +151,7 @@
                         <Image Classes="EmailImage" Grid.Column="0"/>
                         
                         <TextBlock Text="Email" 
-                                   Classes="MiddleText" 
+                                   Classes="MiddleTextBlock" 
                                    Grid.Column="2"/>
                         
                     </Grid>

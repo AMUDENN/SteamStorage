@@ -15,47 +15,47 @@
 		</Setter>
 	</Style>
 	
-	<Style Selector="TextBlock.FirstAccent">
+	<Style Selector="TextBlock.FirstAccentTextBlock">
 		<Setter Property="Foreground" Value="{DynamicResource FirstAccentBrush}"/>
 	</Style>
 	
-	<Style Selector="TextBlock.Positive">
+	<Style Selector="TextBlock.PositiveTextBlock">
 		<Setter Property="Foreground" Value="{DynamicResource PositiveBrush}"/>
 	</Style>
 	
-	<Style Selector="TextBlock.Negative">
+	<Style Selector="TextBlock.NegativeTextBlock">
 		<Setter Property="Foreground" Value="{DynamicResource NegativeBrush}"/>
 	</Style>
 
-	<Style Selector="TextBlock.Light">
+	<Style Selector="TextBlock.LightTextBlock">
 		<Setter Property="Opacity" Value="0.5"/>
 	</Style>
 
-	<Style Selector="TextBlock.Center">
+	<Style Selector="TextBlock.CenterTextBlock">
 		<Setter Property="TextAlignment" Value="Center"/>
 	</Style>
 	
-	<Style Selector="TextBlock.LargeText">
+	<Style Selector="TextBlock.LargeTextBlock">
 		<Setter Property="FontSize" Value="40"/>
 	</Style>
 
-	<Style Selector="TextBlock.BigText">
+	<Style Selector="TextBlock.BigTextBlock">
 		<Setter Property="FontSize" Value="32"/>
 	</Style>
 
-	<Style Selector="TextBlock.MiddleText">
+	<Style Selector="TextBlock.MiddleTextBlock">
 		<Setter Property="FontSize" Value="24"/>
 	</Style>
 	
-	<Style Selector="TextBlock.SmallText">
+	<Style Selector="TextBlock.SmallTextBlock">
 		<Setter Property="FontSize" Value="20"/>
 	</Style>
 
-	<Style Selector="TextBlock.LittleText">
+	<Style Selector="TextBlock.LittleTextBlock">
 		<Setter Property="FontSize" Value="16"/>
 	</Style>
 	
-	<Style Selector="TextBlock.Underline">
+	<Style Selector="TextBlock.UnderlineTextBlock">
 		<Setter Property="TextDecorations" Value="Underline"/>
 	</Style>
 	

@@ -27,11 +27,13 @@ public static class Actives
         decimal BuyPrice,
         decimal CurrentPrice,
         decimal CurrentSum,
-        double Change);
+        double Change) : Response;
 
-    public record ActivesPagesCountResponse(int Count);
+    public record ActivesPagesCountResponse(
+        int Count) : Response;
 
-    public record ActivesCountResponse(int Count);
+    public record ActivesCountResponse(
+        int Count) : Response;
 
     public record GetActivesRequest(
         int? GroupId,
@@ -42,9 +44,16 @@ public static class Actives
         int PageNumber,
         int PageSize) : Request;
 
-    public record GetActivesPagesCountRequest(int? GroupId, int? GameId, string? Filter, int PageSize) : Request;
+    public record GetActivesPagesCountRequest(
+        int? GroupId, 
+        int? GameId, 
+        string? Filter, 
+        int PageSize) : Request;
 
-    public record GetActivesCountRequest(int? GroupId, int? GameId, string? Filter) : Request;
+    public record GetActivesCountRequest(
+        int? GroupId, 
+        int? GameId, 
+        string? Filter) : Request;
 
     public record PostActiveRequest(
         int GroupId,
@@ -73,7 +82,8 @@ public static class Actives
         DateTime SoldDate,
         string? Description) : Request;
 
-    public record DeleteActiveRequest(int Id) : Request;
+    public record DeleteActiveRequest(
+        int Id) : Request;
 
     #endregion Records
 }

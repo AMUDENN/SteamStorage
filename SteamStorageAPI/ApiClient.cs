@@ -128,7 +128,8 @@ public class ApiClient
     }
 
     public async Task<TOut?> GetAsync<TOut, TIn>(ApiConstants.ApiControllers apiController, string apiMethod,
-        TIn? args = null, CancellationToken cancellationToken = default) where TIn : Request
+        TIn? args = null, CancellationToken cancellationToken = default)
+        where TIn : Request
     {
         return await GetAsync<TOut>(CreateUri(apiController, apiMethod, args), cancellationToken);
     }
@@ -152,7 +153,7 @@ public class ApiClient
     {
         StringBuilder uri = new(CreateStringUri(apiController, apiMethod));
         if (args is null) return new(uri.ToString());
-        
+
         Type type = args.GetType();
         PropertyInfo[] properties = type.GetProperties();
 
@@ -174,5 +175,5 @@ public class ApiClient
         TokenChanged?.Invoke(this, new(token));
     }
 
-    #endregion
+    #endregion Methods
 }
