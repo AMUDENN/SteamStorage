@@ -1,6 +1,5 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using SteamStorage.ViewModels;
 using System;
 using SteamStorage.ViewModels.Tools;
 

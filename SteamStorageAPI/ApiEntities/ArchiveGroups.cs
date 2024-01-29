@@ -1,5 +1,4 @@
 ﻿using SteamStorageAPI.ApiEntities.Tools;
-using SteamStorageAPI.Utilities;
 
 namespace SteamStorageAPI.ApiEntities;
 
