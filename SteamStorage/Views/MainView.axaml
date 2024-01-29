@@ -17,7 +17,7 @@
 	<Grid ColumnDefinitions="Auto, *" Margin="30">
 
 		<Border x:Name="MenuBorder"
-				Classes="BigRounded BackgroundAdditional"
+				Classes="BigRoundedBorder BackgroundAdditional"
 				Grid.Column="0">
 
 			<Border.Styles>
@@ -114,7 +114,7 @@
 
 					<Button Tag="Войти"
 					        Command="{Binding LogInCommand, Mode=OneWay}"
-					        Classes="ImageButton"
+					        Classes="ImageTextButton"
 					        IsVisible="{Binding !IsUserLogin, Mode=OneWay}"
 					        Foreground="{DynamicResource PositiveBrush}"
 							Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}"
@@ -124,7 +124,7 @@
 					
 					<Button Tag="Выйти"
 					        Command="{Binding LogOutCommand, Mode=OneWay}"
-					        Classes="ImageButton"
+					        Classes="ImageTextButton"
 					        IsVisible="{Binding IsUserLogin, Mode=OneWay}"
 					        Foreground="{DynamicResource NegativeBrush}"
 							Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}"

@@ -2,6 +2,7 @@
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
+using SteamStorage.Models.UtilityModels;
 using SteamStorage.ViewModels;
 using SteamStorage.ViewModels.Tools;
 using SteamStorageAPI;

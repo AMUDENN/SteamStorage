@@ -2,7 +2,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="SteamStorage.App"
 			 xmlns:utilities="using:SteamStorage.Utilities"
-             xmlns:local="using:SteamStorage"
              RequestedThemeVariant="Default">
 
     <Application.DataTemplates>
@@ -36,6 +35,7 @@
 		<StyleInclude Source="/Resources/Images/Vectors/MaximizeImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/MinimizeImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/ProfileImage.axaml"/>
+        <StyleInclude Source="/Resources/Images/Vectors/RemoveFilters.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/RestoreImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/SettingsImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/TelegramImage.axaml"/>

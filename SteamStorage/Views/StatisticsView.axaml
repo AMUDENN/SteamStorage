@@ -30,7 +30,7 @@
 			<ColumnDefinition Width="*" MinWidth="420"/>
 		</Grid.ColumnDefinitions>
 		
-		<Border Classes="BigRounded FirstAccentGradient" 
+		<Border Classes="BigRoundedBorder FirstAccentGradient" 
 		        Grid.Row="0" Grid.Column="0">
 			
 			<Grid Margin="30">
@@ -74,7 +74,7 @@
 				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
 			
-			<Border Classes="BigRounded SecondAccentGradient" 
+			<Border Classes="BigRoundedBorder SecondAccentGradient" 
 			        Grid.Row="0">
 				
 				<Grid>
@@ -110,7 +110,7 @@
 			
 			</Border>
 			
-			<Border Classes="BigRounded ThirdAccentGradient" 
+			<Border Classes="BigRoundedBorder ThirdAccentGradient" 
 			        Grid.Row="2">
 				
 				<Grid>
@@ -136,7 +136,7 @@
 			
 		</Grid>
 		
-		<Border Classes="BigRounded BackgroundAdditional" 
+		<Border Classes="BigRoundedBorder BackgroundAdditional" 
 		        Grid.Row="2" Grid.Column="0">
 			
 			<Grid>
@@ -191,7 +191,7 @@
 			
 		</Border>
 		
-		<Border Classes="BigRounded BackgroundAdditional" 
+		<Border Classes="BigRoundedBorder BackgroundAdditional" 
 		        Grid.Row="2" Grid.Column="2">
 			
 			<Grid>
@@ -246,7 +246,7 @@
 			
 		</Border>
 		
-		<Border Classes="BigRounded BackgroundAdditional" 
+		<Border Classes="BigRoundedBorder BackgroundAdditional" 
 		        Grid.Row="4" Grid.Column="0">
 			
 			<Grid>
@@ -298,7 +298,7 @@
 			
 		</Border>
 		
-		<Border Classes="BigRounded BackgroundAdditional" 
+		<Border Classes="BigRoundedBorder BackgroundAdditional" 
 		        Grid.Row="4" Grid.Column="2">
 			
 			<Grid>

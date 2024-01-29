@@ -7,4 +7,53 @@
              x:Class="SteamStorage.Views.ListItemsView"
              x:DataType="vm:ListItemsViewModel">
     
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" MinHeight="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" MinWidth="10"/>
+                <ColumnDefinition Width="10" MinWidth="10"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300" MinWidth="200"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="60" MinWidth="60"/>
+            </Grid.ColumnDefinitions>
+            
+            <RadioButton Content="Все"
+                         IsChecked="{Binding IsAllGamesChecked}"
+                         Classes="Games"
+                         Grid.Column="0"/>
+            
+            <ListBox ItemsSource="{Binding GameModels, Mode=OneWay}" 
+                     SelectedItem="{Binding SelectedGameModel}"
+                     Classes="Games"
+                     Grid.Column="2">
+            			
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" Spacing="10" Margin="0"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+    
+            </ListBox>
+            
+            <Button Classes="ImageButton BackgroundButton"
+                    Height="60" Width="60"
+                    Grid.Column="5">
+                <Image Classes="RemoveFiltersImage"
+                       Height="40" Width="40"/>
+            </Button>
+            
+        </Grid>
+        
+        
+        
+    </Grid>
+    
 </UserControl>

@@ -12,7 +12,7 @@
 			<ControlTemplate>
 				<Grid Margin="{TemplateBinding OffScreenMargin}">
 					<Border x:Name="WindowBorder"
-							Classes="SmallRounded"
+							Classes="SmallRoundedBorder"
 							Background="{DynamicResource BackgroundBrush}" IsHitTestVisible="False"/>
 					<Grid RowDefinitions="36, *">
 						<Grid ColumnDefinitions="36, *, 108"

@@ -1,7 +1,7 @@
 ﻿using Avalonia.Controls;
 using SteamStorage.ViewModels.Tools;
 
-namespace SteamStorage.Models;
+namespace SteamStorage.Models.UtilityModels;
 
 public class NavigationModel
 {

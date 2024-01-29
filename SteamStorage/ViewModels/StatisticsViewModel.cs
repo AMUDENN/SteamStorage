@@ -11,6 +11,7 @@ public class StatisticsViewModel : ViewModelBase
     #region Fields
 
     private readonly StatisticsModel _statisticsModel;
+    private readonly UserModel _userModel;
 
     #endregion Fields
 
@@ -98,18 +99,21 @@ public class StatisticsViewModel : ViewModelBase
 
     public string CurrencyMark
     {
-        get => _statisticsModel.CurrencyMark;
+        get => _userModel.CurrencyMark;
     }
 
     #endregion Properties
 
     #region Constructor
 
-    public StatisticsViewModel(StatisticsModel statisticsModel)
+    public StatisticsViewModel(StatisticsModel statisticsModel, UserModel userModel)
     {
         _statisticsModel = statisticsModel;
+        _userModel = userModel;
 
-        statisticsModel.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
+        statisticsModel.PropertyChanged += (s, e) => OnPropertyChanged(e.PropertyName);
+
+        userModel.CurrencyChanged += (s) => OnPropertyChanged(nameof(CurrencyMark));
     }
 
     #endregion Constructor

@@ -8,6 +8,7 @@
         <entry key="SteamStorage/Resources/Images/Vectors/GithubImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/LogInImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/LogOutImage.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/RemoveFilters.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/SettingsImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/TelegramImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/BorderStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
@@ -21,6 +22,8 @@
         <entry key="SteamStorage/Resources/Styles/TextBlockStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/WindowStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Themes/DarkTheme.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/ActivesView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/ArchiveView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/HomeView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/InventoryView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ListItemsView.axaml" value="SteamStorage/SteamStorage.csproj" />

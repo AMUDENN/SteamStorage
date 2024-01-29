@@ -12,16 +12,25 @@
 			</Transitions>
 		</Setter>
 	</Style>
+		
+	<Style Selector="Border.SmallBorder">
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
+	</Style>
 	
-	<Style Selector="Border.BigRounded">
+	<Style Selector="Border.BigRoundedBorder">
 		<Setter Property="CornerRadius" Value="20"/>
 	</Style>
 
-	<Style Selector="Border.SmallRounded">
+	<Style Selector="Border.SmallRoundedBorder">
 		<Setter Property="CornerRadius" Value="10"/>
 	</Style>
+		
+	<Style Selector="Border.LittleRoundedBorder">
+		<Setter Property="CornerRadius" Value="5"/>
+	</Style>
 
-	<Style Selector="Border.WithoutRounding">
+	<Style Selector="Border.WithoutRoundingBorder">
 		<Setter Property="CornerRadius" Value="0"/>
 	</Style>
 		

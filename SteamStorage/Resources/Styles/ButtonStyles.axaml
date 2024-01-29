@@ -1,7 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    <Style Selector="Button.ImageButton">
+    <Style Selector="Button.ImageTextButton">
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -12,7 +12,7 @@
                                   Height="60"
                                   Margin="20, 0">
                                 <Border x:Name="PointerOverBorder"
-                                        Classes="Background BigRounded"
+                                        Classes="Background BigRoundedBorder"
                                         Opacity="0"/>
                                     <Grid x:Name="GridTitle"
                                           ColumnDefinitions="60, *">
@@ -40,15 +40,15 @@
         </Style>
     </Style>
     
-    <Style Selector="Button.ImageButton.Min /template/ Grid#ContentGrid">
+    <Style Selector="Button.ImageTextButton.Min /template/ Grid#ContentGrid">
         <Setter Property="Margin" Value="20, 0"/>
     </Style>
 
-    <Style Selector="Button.ImageButton.Min /template/ Border#ItemBorder">
+    <Style Selector="Button.ImageTextButton.Min /template/ Border#ItemBorder">
         <Setter Property="CornerRadius" Value="10"/>
     </Style>
 
-    <Style Selector="Button.ImageButton.Min /template/ TextBlock#TitleTextBlock">
+    <Style Selector="Button.ImageTextButton.Min /template/ TextBlock#TitleTextBlock">
         <Setter Property="IsVisible" Value="False"/>
     </Style>
     
@@ -56,7 +56,29 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
     
-    <Style Selector="Button.HorizontalLeft">
+    <Style Selector="Button.ImageButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Classes="SmallRoundedBorder"
+                            Background="{TemplateBinding Background}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style Selector="^:pointerover">
+            <Setter Property="Opacity" Value="0.9"/>
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+    </Style>
+    
+    <Style Selector="Button.HorizontalLeftButton">
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
     
@@ -71,6 +93,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    
+    <Style Selector="Button.BackgroundButton">
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
     </Style>
 
 </Styles>

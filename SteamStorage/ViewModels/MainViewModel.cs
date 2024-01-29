@@ -1,6 +1,7 @@
 ﻿using SteamStorage.Models;
 using System.Collections.Generic;
 using CommunityToolkit.Mvvm.Input;
+using SteamStorage.Models.UtilityModels;
 using SteamStorage.ViewModels.Tools;
 
 namespace SteamStorage.ViewModels;
@@ -83,7 +84,7 @@ public class MainViewModel : ViewModelBase
     public MainViewModel(MainModel model)
     {
         _model = model;
-        _model.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
+        _model.PropertyChanged += (s, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

@@ -1,6 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:m="using:SteamStorage.Models">
+        xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+        xmlns:utilityModels="clr-namespace:SteamStorage.Models.UtilityModels">
 	
 	<Style Selector="ListBox">
 		<Setter Property="SelectionMode" Value="Single"/>
@@ -12,7 +13,7 @@
 	<Style Selector="ListBox.Navigation ListBoxItem">
 		<Setter Property="Template">
         	<Setter.Value>
-        		<ControlTemplate x:DataType="m:NavigationModel">
+        		<ControlTemplate x:DataType="utilityModels:NavigationModel">
         			<Border Background="Transparent">
         				<Grid>
         					<Border x:Name="Selected"
@@ -26,11 +27,11 @@
         						  Height="60"
         						  Margin="20, 0">
         						<Border x:Name="ItemBorder"
-        								Classes="BigRounded"
+        								Classes="BigRoundedBorder"
         								Classes.Background="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
         								Opacity="0.5"/>
         						<Border x:Name="PointerOverBorder"
-        								Classes="Background BigRounded"
+        								Classes="Background BigRoundedBorder"
         								Opacity="0"/>
         						<Grid x:Name="GridTitle"
         							  ColumnDefinitions="60, *">
@@ -64,6 +65,28 @@
 
 	<Style Selector="ListBox.Navigation.Min ListBoxItem /template/ TextBlock#TitleTextBlock">
 		<Setter Property="IsVisible" Value="False"/>
+	</Style>
+	
+	<Style Selector="ListBox.Games ListBoxItem">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate x:DataType="utilityModels:GameModel">
+					<Border x:Name="MainBorder"
+							Classes="BackgroundAdditional SmallRoundedBorder"
+							Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
+					        Height="60" Width="60">
+						<Border Classes="LittleRoundedBorder"
+						        Height="40" Width="40"
+						        HorizontalAlignment="Center" VerticalAlignment="Center">
+							<Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
+						</Border>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style Selector="^:pointerover /template/ Border#MainBorder">
+			<Setter Property="Opacity" Value="0.8"/>
+		</Style>
 	</Style>
 	
 </Styles>

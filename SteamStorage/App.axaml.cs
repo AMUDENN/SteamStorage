@@ -8,6 +8,7 @@ using SteamStorage.Views;
 using System;
 using SteamStorage.Models;
 using SteamStorageAPI;
+using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Services.LoggerService;
 using SteamStorageAPI.Services.PingService;
 using SteamStorageAPI.Utilities;
@@ -55,6 +56,7 @@ namespace SteamStorage
 
             //Models
             services.AddSingleton<MainModel>();
+            services.AddSingleton<GamesModel>();
             services.AddSingleton<ListItemsModel>();
             services.AddSingleton<StatisticsModel>();
             services.AddSingleton<UserModel>();

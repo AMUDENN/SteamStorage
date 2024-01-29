@@ -139,11 +139,6 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _status, value);
     }
 
-    public string CurrencyMark
-    {
-        get => _userModel.CurrencyMark;
-    }
-
     #endregion Properties
 
     #region Constructor
@@ -162,7 +157,7 @@ public class StatisticsModel : ModelBase
         RefreshPing();
     }
 
-    #endregion
+    #endregion Constructor
 
     #region Methods
 
@@ -237,7 +232,6 @@ public class StatisticsModel : ModelBase
     private void CurrencyChangedHandler(object sender)
     {
         RefreshStatistics();
-        OnPropertyChanged(nameof(CurrencyMark));
     }
 
     #endregion Methods

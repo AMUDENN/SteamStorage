@@ -15,7 +15,7 @@
             <RowDefinition Height="2*" MinHeight="220"/>
         </Grid.RowDefinitions>
         
-        <Border Classes="BigRounded BackgroundAdditional" 
+        <Border Classes="BigRoundedBorder BackgroundAdditional" 
                 Grid.Row="0">
             
             <Grid RowDefinitions="30, 30, *" 
@@ -37,12 +37,12 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-            <Border Classes="BigRounded BackgroundAdditional" 
+            <Border Classes="BigRoundedBorder BackgroundAdditional" 
                     Grid.Column="0">
                 <Button Content="Экспорт в Excel" Classes="UnderlineButton HorizontalCenter"/>
             </Border>
             
-            <Border Classes="BigRounded BackgroundAdditional" 
+            <Border Classes="BigRoundedBorder BackgroundAdditional" 
                     Grid.Column="2">
                 <Button Content="Справочная информация" Classes="UnderlineButton HorizontalCenter"/>
             </Border>
@@ -59,7 +59,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-            <Border Classes="BigRounded BackgroundAdditional" 
+            <Border Classes="BigRoundedBorder BackgroundAdditional" 
                     Grid.Column="0">
                 
                 <Grid Margin="30">
@@ -87,14 +87,14 @@
                     </Grid>
                     
                     <Button Content="github.com#SteamStorage" 
-                            Classes="UnderlineButton HorizontalLeft" 
+                            Classes="UnderlineButton HorizontalLeftButton" 
                             Grid.Row="2"/>
                     
                 </Grid>
                 
             </Border>
             
-            <Border Classes="BigRounded BackgroundAdditional" 
+            <Border Classes="BigRoundedBorder BackgroundAdditional" 
                     Grid.Column="2">
                 
                 <Grid Margin="30">
@@ -122,14 +122,14 @@
                     </Grid>
 
                     <Button Content="@amudenn" 
-                            Classes="UnderlineButton HorizontalLeft" 
+                            Classes="UnderlineButton HorizontalLeftButton" 
                             Grid.Row="2"/>
                     
                 </Grid>
                 
             </Border>
             
-            <Border Classes="BigRounded BackgroundAdditional" 
+            <Border Classes="BigRoundedBorder BackgroundAdditional" 
                     Grid.Column="4">
                 
                 <Grid Margin="30">
@@ -157,7 +157,7 @@
                     </Grid>
                     
                     <Button Content="SteamStorage@gmail.com" 
-                            Classes="UnderlineButton HorizontalLeft" 
+                            Classes="UnderlineButton HorizontalLeftButton" 
                             Grid.Row="2"/>
                     
                 </Grid>
