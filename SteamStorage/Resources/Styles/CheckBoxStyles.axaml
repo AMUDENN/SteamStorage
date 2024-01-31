@@ -1,0 +1,30 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="CheckBox.StarCheckBox">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Stretch">
+                    <Image x:Name="EmptyImage"
+                           Classes="EmptyStarImage"
+                           Opacity="1"/>
+                    <Image x:Name="FillImage"
+                           Classes="StarImage"
+                           Opacity="0"/>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:checked">
+            <Style Selector="^ /template/ Image#EmptyImage">
+                <Setter Property="Opacity" Value="0"/>
+            </Style>
+            <Style Selector="^ /template/ Image#FillImage">
+                <Setter Property="Opacity" Value="1"/>
+            </Style>
+        </Style>
+    </Style>    
+    
+    
+        
+</Styles>

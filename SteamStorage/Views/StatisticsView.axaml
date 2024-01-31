@@ -181,9 +181,9 @@
 					<TextBlock Text="{Binding ActivesPercentageGrowth, StringFormat=N0, Mode=OneWay, 
 									 Converter={StaticResource PercentConverter}, ConverterParameter=2}" 
 					           Classes="BigTextBlock"
-					           Classes.Positive="{Binding ActivesPercentageGrowth, Mode=OneWay,
+					           Classes.PositiveTextBlock="{Binding ActivesPercentageGrowth, Mode=OneWay,
 									 Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
-					           Classes.Negative="{Binding ActivesPercentageGrowth, Mode=OneWay,
+					           Classes.NegativeTextBlock="{Binding ActivesPercentageGrowth, Mode=OneWay,
 									 Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"/>
 				</StackPanel>
 				
@@ -236,9 +236,9 @@
 					<TextBlock Text="{Binding ArchivesPercentageGrowth, StringFormat=N0, Mode=OneWay, 
 									 Converter={StaticResource PercentConverter}, ConverterParameter=2}" 
 					           Classes="BigTextBlock"
-					           Classes.Positive="{Binding ArchivesPercentageGrowth, Mode=OneWay,
+					           Classes.PositiveTextBlock="{Binding ArchivesPercentageGrowth, Mode=OneWay,
 									 Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
-					           Classes.Negative="{Binding ArchivesPercentageGrowth, Mode=OneWay,
+					           Classes.NegativeTextBlock="{Binding ArchivesPercentageGrowth, Mode=OneWay,
 									 Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"/>
 				</StackPanel>
 				

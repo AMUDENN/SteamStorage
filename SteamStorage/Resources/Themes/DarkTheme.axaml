@@ -5,8 +5,8 @@
 	<SolidColorBrush x:Key="BackgroundAdditionalBrush" Color="#252C32"/>
 	<SolidColorBrush x:Key="ForegroundBrush" Color="#D2DADD"/>
 	<SolidColorBrush x:Key="FirstAccentBrush" Color="#5F34B9"/>
-	<SolidColorBrush x:Key="SecondAccentBrush" Color="#5F34B9"/>
-	<SolidColorBrush x:Key="ThirdAccentBrush" Color="#5F34B9"/>
+	<SolidColorBrush x:Key="SecondAccentBrush" Color="#9F4DC9"/>
+	<SolidColorBrush x:Key="ThirdAccentBrush" Color="#3E7FC5"/>
 	
 	<SolidColorBrush x:Key="PositiveBrush" Color="#1E9538"/>
 	<SolidColorBrush x:Key="NegativeBrush" Color="#E03737"/>

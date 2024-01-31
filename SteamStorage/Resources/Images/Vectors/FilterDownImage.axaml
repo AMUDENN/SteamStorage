@@ -1,0 +1,18 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Style Selector="Image.FilterDownImage">
+		<Setter Property="Source">
+			<Setter.Value>
+				<DrawingImage>
+					<DrawingImage.Drawing>
+						<DrawingGroup ClipGeometry="M0,0 V25 H30 V0 H0 Z">
+							<GeometryDrawing Brush="{DynamicResource ForegroundBrush}" Geometry="F1 M30,25z M0,0z M0,0L30,0 15,25 0,0z" />
+						</DrawingGroup>
+					</DrawingImage.Drawing>
+				</DrawingImage>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+</Styles>

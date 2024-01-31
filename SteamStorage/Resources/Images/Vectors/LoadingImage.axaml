@@ -1,0 +1,28 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Style Selector="Image.LoadingImage">
+		<Setter Property="Source">
+			<Setter.Value>
+				<DrawingImage>
+					<DrawingImage.Drawing>
+						<DrawingGroup ClipGeometry="M0,0 V1024 H1024 V0 H0 Z">
+							<GeometryDrawing Brush="{DynamicResource ForegroundBrush}" Geometry="F1 M1024,1024z M0,0z M512,1024C442.9,1024 375.8,1010.5 312.7,983.8 251.7,958 197,921 150,874 103,827 66,772.3 40.2,711.3 13.5,648.2 0,581.1 0,512 0,492.1 16.1,476 36,476 55.9,476 72,492.1 72,512 72,571.4 83.6,629 106.6,683.3 128.8,735.7 160.5,782.8 200.9,823.2 241.3,863.6 288.4,895.4 340.8,917.5 395,940.4 452.6,952 512,952 571.4,952 629,940.4 683.3,917.4 735.7,895.2 782.8,863.5 823.2,823.1 863.6,782.7 895.4,735.6 917.5,683.2 940.4,629 952,571.4 952,512 952,452.6 940.4,395 917.4,340.7A440.45,440.45,0,0,0,823.1,200.8A437.71,437.71,0,0,0,683.2,106.5C629,83.6 571.4,72 512,72 492.1,72 476,55.9 476,36 476,16.1 492.1,0 512,0 581.1,0 648.2,13.5 711.3,40.2 772.3,66 827,103 874,150 921,197 957.9,251.8 983.7,312.7 1010.4,375.8 1023.9,442.9 1023.9,512 1023.9,581.1 1010.4,648.2 983.7,711.3 958,772.3 921,827 874,874 827,921 772.2,957.9 711.3,983.7 648.2,1010.5 581.1,1024 512,1024z" />
+						</DrawingGroup>
+					</DrawingImage.Drawing>
+				</DrawingImage>
+			</Setter.Value>
+		</Setter>
+		<Style.Animations>
+			<Animation Duration="0:0:0.5" IterationCount="INFINITE">
+				<KeyFrame Cue="0%" KeySpline="0.4,0,0.6,1">
+					<Setter Property="(RotateTransform.Angle)" Value="0" />
+				</KeyFrame>
+				<KeyFrame Cue="100%" KeySpline="0.4,0,0.6,1">
+					<Setter Property="(RotateTransform.Angle)" Value="360" />
+				</KeyFrame>
+			</Animation>
+		</Style.Animations>
+	</Style>
+	
+</Styles>

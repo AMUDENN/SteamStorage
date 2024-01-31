@@ -25,11 +25,11 @@ namespace SteamStorage
             //ApiClient
             services.AddHttpClient(ApiConstants.CLIENT_NAME, client =>
             {
-                client.Timeout = TimeSpan.FromSeconds(2);
+                client.Timeout = TimeSpan.FromSeconds(20);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
             }).AddHttpMessageHandler<TokenHandler>();
-            services.AddSingleton<TokenHandler>();
+            services.AddScoped<TokenHandler>();
             services.AddSingleton<ApiClient>();
 
             //Custom API Services

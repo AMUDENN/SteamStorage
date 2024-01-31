@@ -11,6 +11,9 @@
         
         <Grid.RowDefinitions>
             <RowDefinition Height="60" MinHeight="60"/>
+            <RowDefinition Height="20" MinHeight="20"/>
+            <RowDefinition Height="30" MinHeight="30"/>
+            <RowDefinition Height="40" MinHeight="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
@@ -20,7 +23,7 @@
                 <ColumnDefinition Width="60" MinWidth="10"/>
                 <ColumnDefinition Width="10" MinWidth="10"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="300" MinWidth="200"/>
+                <ColumnDefinition Width="400" MinWidth="250"/>
                 <ColumnDefinition Width="20" MinWidth="20"/>
                 <ColumnDefinition Width="60" MinWidth="60"/>
             </Grid.ColumnDefinitions>
@@ -43,7 +46,13 @@
     
             </ListBox>
             
-            <Button Classes="ImageButton BackgroundButton"
+            <TextBox Text="{Binding Filter}"
+                     Watermark="Введите название"
+                     Classes="FilteringTextBox"
+                     Grid.Column="3"/>
+            
+            <Button Command="{Binding ClearFiltersCommand}"
+                    Classes="ImageButton BackgroundButton"
                     Height="60" Width="60"
                     Grid.Column="5">
                 <Image Classes="RemoveFiltersImage"
@@ -51,6 +60,92 @@
             </Button>
             
         </Grid>
+        
+        <Grid Margin="20, 0"
+              Grid.Row="2">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="340*"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="170*"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="30*"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Text="Изображение"  
+                       Classes="SmallTextBlock CenterTextBlock"
+                       Grid.Column="0"/>
+            
+            <ToggleButton Content="Название" 
+                          IsChecked="{Binding IsTitleOrdering}"
+                          Classes="FilteringToggleButton"
+                          Grid.Column="2"/>
+            
+            <ToggleButton Content="Текущая цена" 
+                          IsChecked="{Binding IsCurrentCostOrdering}"
+                          Classes="FilteringToggleButton"
+                          Grid.Column="4"/>
+            
+            <ToggleButton Content="Изменение (7дн)" 
+                          IsChecked="{Binding IsChange7Ordering}"
+                          Classes="FilteringToggleButton"
+                          Grid.Column="6"/>
+            
+            <ToggleButton Content="Изменение (30дн)" 
+                          IsChecked="{Binding IsChange30Ordering}"
+                          Classes="FilteringToggleButton"
+                          Grid.Column="8"/>
+            
+            <CheckBox IsChecked="{Binding IsMarked}"
+                      Classes="StarCheckBox" 
+                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                      Height="24" Width="24"
+                      MinHeight="24" MinWidth="24" 
+                      Grid.Column="10"/>
+            
+        </Grid>
+        
+        <Rectangle Height="2"
+                   Margin="25, 0" 
+                   Grid.Row="3"/>
+        
+        <ScrollViewer Grid.Row="4">
+            
+            <Grid>
+                
+                <TextBlock Text="{Binding NotFoundText, Mode=OneWay}"
+                           IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}"
+                           Classes="MiddleTextBlock CenterTextBlock"
+                           VerticalAlignment="Top"
+                           Margin="0, 20"/>
+                
+                <Image IsVisible="{Binding IsLoading}"
+                       Classes="LoadingImage"
+                       Height="48" Width="48"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Margin="0, 20"/>
+                           
+                <ListBox ItemsSource="{Binding ListItemModels, Mode=OneWay}"
+                        Classes="ListItemsListBox">
+                           
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Margin="0"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                   
+                </ListBox> 
+                
+            </Grid>
+            
+        </ScrollViewer>
         
     </Grid>
     

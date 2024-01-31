@@ -1,0 +1,52 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="ToggleButton.FilteringToggleButton">
+        <Setter Property="IsThreeState" Value="True"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="4" MinWidth="4"/>
+                            <ColumnDefinition Width="20" MinWidth="20"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{TemplateBinding Content}"
+                                   Classes="SmallTextBlock CenterTextBlock"
+                                   Grid.Column="0"/>
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center"
+                              MaxHeight="20"
+                              Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="5*" MinHeight="5"/>
+                                <RowDefinition Height="3*" MinHeight="3"/>
+                                <RowDefinition Height="5*" MinHeight="5"/>
+                            </Grid.RowDefinitions>
+                            <Image x:Name="UpImage"
+                                   Classes="FilterUpImage"
+                                   Opacity="0.8"
+                                   Grid.Row="0"/>
+                            <Image x:Name="DownImage"
+                                   Classes="FilterDownImage"
+                                   Opacity="0.8"
+                                   Grid.Row="2"/>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style Selector="^[IsChecked=True] /template/ Image#DownImage">
+            <Setter Property="Opacity" Value="0"/>
+        </Style>
+        <Style Selector="^[IsChecked=False] /template/ Image#UpImage">
+            <Setter Property="Opacity" Value="0"/>
+        </Style>
+    </Style>    
+        
+</Styles>

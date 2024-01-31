@@ -40,16 +40,16 @@
         </Style>
     </Style>
     
-    <Style Selector="Button.ImageTextButton.Min /template/ Grid#ContentGrid">
-        <Setter Property="Margin" Value="20, 0"/>
-    </Style>
-
-    <Style Selector="Button.ImageTextButton.Min /template/ Border#ItemBorder">
-        <Setter Property="CornerRadius" Value="10"/>
-    </Style>
-
-    <Style Selector="Button.ImageTextButton.Min /template/ TextBlock#TitleTextBlock">
-        <Setter Property="IsVisible" Value="False"/>
+    <Style Selector="Button.ImageTextButton.Min">
+        <Style Selector="^ /template/ Grid#ContentGrid">
+            <Setter Property="Margin" Value="20, 0"/>
+        </Style>
+        <Style Selector="^ /template/ Border#ItemBorder">
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+        <Style Selector="^ /template/ TextBlock#TitleTextBlock">
+            <Setter Property="IsVisible" Value="False"/>
+        </Style>
     </Style>
     
     <Style Selector="Button.HorizontalCenter">

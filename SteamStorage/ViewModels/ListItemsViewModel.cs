@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.ViewModels.Tools;
@@ -33,7 +34,67 @@ public class ListItemsViewModel : ViewModelBase
         set => _listItemsModel.IsAllGamesChecked = value;
     }
 
+    public string? Filter
+    {
+        get => _listItemsModel.Filter;
+        set => _listItemsModel.Filter = value;
+    }
+    
+    public bool? IsTitleOrdering
+    {
+        get => _listItemsModel.IsTitleOrdering;
+        set => _listItemsModel.IsTitleOrdering = value;
+    }
+    
+    public bool? IsCurrentCostOrdering
+    {
+        get => _listItemsModel.IsCurrentCostOrdering;
+        set => _listItemsModel.IsCurrentCostOrdering = value;
+    }
+    
+    public bool? IsChange7Ordering
+    {
+        get => _listItemsModel.IsChange7Ordering;
+        set => _listItemsModel.IsChange7Ordering = value;
+    }
+    
+    public bool? IsChange30Ordering
+    {
+        get => _listItemsModel.IsChange30Ordering;
+        set => _listItemsModel.IsChange30Ordering = value;
+    }
+    
+    public bool IsMarked
+    {
+        get => _listItemsModel.IsMarked;
+        set => _listItemsModel.IsMarked = value;
+    }
+    
+    public IEnumerable<ListItemModel> ListItemModels
+    {
+        get => _listItemsModel.ListItemModels;
+    }
+
+    public string? NotFoundText
+    {
+        get => _listItemsModel.NotFoundText;
+    }
+    
+    public bool IsLoading
+    {
+        get => _listItemsModel.IsLoading;
+    }
+
     #endregion Properties
+    
+    #region Commands
+
+    public RelayCommand ClearFiltersCommand
+    {
+        get => _listItemsModel.ClearFiltersCommand;
+    }
+
+    #endregion Commands
     
     #region Constructor
 

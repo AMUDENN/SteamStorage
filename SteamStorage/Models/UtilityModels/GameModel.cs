@@ -4,6 +4,7 @@ public class GameModel
 {
     #region Properties
 
+    public int Id { get; }
     public string ImageUrl { get; }
     public string Title { get; }
 
@@ -11,8 +12,9 @@ public class GameModel
 
     #region Constructor
 
-    public GameModel(string imageUrl, string title)
+    public GameModel(int id, string imageUrl, string title)
     {
+        Id = id;
         ImageUrl = imageUrl;
         Title = title;
     }

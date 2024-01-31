@@ -1,13 +1,24 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
-        xmlns:utilityModels="clr-namespace:SteamStorage.Models.UtilityModels">
+        xmlns:utilityModels="clr-namespace:SteamStorage.Models.UtilityModels"
+        xmlns:converters="using:SteamStorage.Resources.Converters">
+	
+	<Styles.Resources>
+		<converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
+		<converters:DoubleGreaterConverter x:Key="DoubleGreaterConverter"/>
+		<converters:PercentConverter x:Key="PercentConverter"/>
+	</Styles.Resources>
 	
 	<Style Selector="ListBox">
 		<Setter Property="SelectionMode" Value="Single"/>
 		<Setter Property="Background" Value="Transparent"/>
 		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
 		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+	</Style>
+	
+	<Style Selector="ListBoxItem">
+		<Setter Property="Padding" Value="0"/>
 	</Style>
 	
 	<Style Selector="ListBox.NavigationListBox ListBoxItem">
@@ -55,16 +66,16 @@
         </Style>
 	</Style>
 	
-	<Style Selector="ListBox.NavigationListBox.Min ListBoxItem /template/ Grid#ContentGrid">
-		<Setter Property="Margin" Value="20, 0"/>
-	</Style>
-
-	<Style Selector="ListBox.NavigationListBox.Min ListBoxItem /template/ Border#ItemBorder">
-		<Setter Property="CornerRadius" Value="10"/>
-	</Style>
-
-	<Style Selector="ListBox.NavigationListBox.Min ListBoxItem /template/ TextBlock#TitleTextBlock">
-		<Setter Property="IsVisible" Value="False"/>
+	<Style Selector="ListBox.NavigationListBox.Min ListBoxItem">
+		<Style Selector="^ /template/ Grid#ContentGrid">
+			<Setter Property="Margin" Value="20, 0"/>
+		</Style>
+		<Style Selector="^ /template/ Border#ItemBorder">
+        	<Setter Property="CornerRadius" Value="10"/>
+        </Style>
+        <Style Selector="^ /template/ TextBlock#TitleTextBlock">
+        	<Setter Property="IsVisible" Value="False"/>
+        </Style>
 	</Style>
 	
 	<Style Selector="ListBox.GamesListBox ListBoxItem">
@@ -86,6 +97,76 @@
 		</Setter>
 		<Style Selector="^:pointerover /template/ Border#MainBorder">
 			<Setter Property="Opacity" Value="0.8"/>
+		</Style>
+	</Style>
+	
+	<Style Selector="ListBox.ListItemsListBox ListBoxItem">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate x:DataType="utilityModels:ListItemModel">
+					<Border x:Name="MainBorder"
+							Classes="BackgroundAdditionalBorder BigRoundedBorder"
+					        Height="130"
+					        Margin="0, 0, 0, 20">
+						<Grid Margin="20">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="140"/>
+								<ColumnDefinition Width="20" MinWidth="20"/>
+								<ColumnDefinition Width="340*"/>
+								<ColumnDefinition Width="20" MinWidth="20"/>
+								<ColumnDefinition Width="170*"/>
+								<ColumnDefinition Width="20" MinWidth="20"/>
+								<ColumnDefinition Width="120*"/>
+								<ColumnDefinition Width="20" MinWidth="20"/>
+								<ColumnDefinition Width="120*"/>
+								<ColumnDefinition Width="20" MinWidth="20"/>
+								<ColumnDefinition Width="30*"/>
+							</Grid.ColumnDefinitions>
+							<Border Classes="SmallRoundedBorder BackgroundAdditionalBorder"
+							        Grid.Column="0">
+								<Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
+							</Border>
+							<TextBlock Text="{Binding Title, Mode=OneWay}"
+							           Classes="MiddleTextBlock LeftTextBlock"
+							           Grid.Column="2"/>
+							<StackPanel Orientation="Horizontal"
+							            HorizontalAlignment="Center"
+							            Grid.Column="4">
+								<TextBlock Text="{Binding CurrentPrice, StringFormat=N0, Mode=OneWay}"
+                                           Classes="MiddleTextBlock"/>
+                                <TextBlock Text="{Binding CurrencyMark}"
+                                           Classes="MiddleTextBlock"
+                                           Margin="5, 0, 0, 0"/>
+							</StackPanel>
+							<TextBlock Text="{Binding Change7D, StringFormat=N0, Mode=OneWay, 
+											  Converter={StaticResource PercentConverter}, ConverterParameter=2}"
+							           Classes="MiddleTextBlock CenterTextBlock"
+							           Classes.PositiveTextBlock="{Binding Change7D, Mode=OneWay,
+																   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
+							           Classes.NegativeTextBlock="{Binding Change7D, Mode=OneWay,
+																   Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
+							           Grid.Column="6"/>
+							<TextBlock Text="{Binding Change30D, StringFormat=N0, Mode=OneWay, 
+											  Converter={StaticResource PercentConverter}, ConverterParameter=2}"
+							           Classes="MiddleTextBlock CenterTextBlock"
+							           Classes.PositiveTextBlock="{Binding Change30D, Mode=OneWay,
+																   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
+							           Classes.NegativeTextBlock="{Binding Change30D, Mode=OneWay,
+																   Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
+							           Grid.Column="8"/>
+							<CheckBox IsChecked="{Binding IsMarked, Mode=OneWay}"
+							          Classes="StarCheckBox" 
+							          HorizontalAlignment="Center" VerticalAlignment="Center"
+							          Height="24" Width="24"
+							          MinHeight="24" MinWidth="24" 
+							          Grid.Column="10"/>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style Selector="^:selected /template/ Border#MainBorder">
+			<Setter Property="Height" Value="235"/>
 		</Style>
 	</Style>
 	

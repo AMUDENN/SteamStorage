@@ -91,7 +91,7 @@
 				<ListBox ItemsSource="{Binding NavigationOptions, Mode=OneWay}" 
 						 SelectedItem="{Binding SelectedNavigationModel}"
 						 Classes="NavigationListBox"
-						 Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}"
+						 Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
 						 Grid.Row="4">
 					
 					<ListBox.ItemsPanel>
@@ -107,7 +107,7 @@
 					<RadioButton Tag="Настройки"
 								 IsChecked="{Binding IsSettingsChecked}"
 								 Classes="NavigationRadioButton"
-								 Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}" 
+								 Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}" 
 								 Grid.Row="0">
 						<Image Classes="SettingsImage"/>
 					</RadioButton>
@@ -117,7 +117,7 @@
 					        Classes="ImageTextButton"
 					        IsVisible="{Binding !IsUserLogin, Mode=OneWay}"
 					        Foreground="{DynamicResource PositiveBrush}"
-							Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}"
+							Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
 							Grid.Row="2">
 						<Image Classes="LogInImage"/>
 					</Button>

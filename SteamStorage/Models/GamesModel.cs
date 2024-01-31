@@ -47,7 +47,7 @@ public class GamesModel : ModelBase
             await _apiClient.GetAsync<List<Games.GameResponse>>(ApiConstants.ApiControllers.Games,
                 "GetGames");
         if (gamesResponse is null) return;
-        GameModels = gamesResponse.Select(x => new GameModel(x.GameIconUrl, x.Title)).ToList();
+        GameModels = gamesResponse.Select(x => new GameModel(x.Id, x.GameIconUrl, x.Title)).ToList();
     }
 
     #endregion Methods
