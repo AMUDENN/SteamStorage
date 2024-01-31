@@ -77,5 +77,24 @@
 			<Setter Property="Opacity" Value="0.8"/>
 		</Style>
 	</Style>
+	
+	<Style Selector="RadioButton.PeriodRadioButton">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Border x:Name="MainBorder"
+					        Classes="BackgroundBorder SmallRoundedBorder"
+					        Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
+					        Height="35" Width="35">
+						<TextBlock Text="{TemplateBinding Content}"
+						           Classes="TinyTextBlock CenterTextBlock"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style Selector="^:pointerover /template/ Border#MainBorder">
+			<Setter Property="Opacity" Value="0.8"/>
+		</Style>
+	</Style>
         
 </Styles>

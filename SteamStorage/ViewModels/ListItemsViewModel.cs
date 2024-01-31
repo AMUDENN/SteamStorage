@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
@@ -74,6 +75,12 @@ public class ListItemsViewModel : ViewModelBase
     {
         get => _listItemsModel.ListItemModels;
     }
+    
+    public ListItemModel? SelectedListItemModel
+    {
+        get => _listItemsModel.SelectedListItemModel;
+        set => _listItemsModel.SelectedListItemModel = value;
+    }
 
     public string? NotFoundText
     {
@@ -83,6 +90,37 @@ public class ListItemsViewModel : ViewModelBase
     public bool IsLoading
     {
         get => _listItemsModel.IsLoading;
+    }
+    
+    public int PageSize
+    {
+        get => _listItemsModel.PageSize;
+    }
+
+    public int PageNumber
+    {
+        get => _listItemsModel.PageNumber;
+        set => _listItemsModel.PageNumber = value;
+    }
+
+    public int PagesCount
+    {
+        get => _listItemsModel.PagesCount;
+    }
+    
+    public int DisplayItemsCountStart
+    {
+        get => _listItemsModel.DisplayItemsCountStart;
+    }
+    
+    public int DisplayItemsCountEnd
+    {
+        get => _listItemsModel.DisplayItemsCountEnd;
+    }
+    
+    public int SavedItemsCount
+    {
+        get => _listItemsModel.SavedItemsCount;
     }
 
     #endregion Properties

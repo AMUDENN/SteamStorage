@@ -60,6 +60,10 @@
 		<Setter Property="FontSize" Value="16"/>
 	</Style>
 	
+	<Style Selector="TextBlock.TinyTextBlock">
+		<Setter Property="FontSize" Value="14"/>
+	</Style>
+	
 	<Style Selector="TextBlock.UnderlineTextBlock">
 		<Setter Property="TextDecorations" Value="Underline"/>
 	</Style>

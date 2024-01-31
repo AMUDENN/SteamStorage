@@ -39,10 +39,18 @@ public class ListItemsModel : ModelBase
     private bool _isMarked;
 
     private List<ListItemModel> _listItemModels;
+    private ListItemModel? _selectedListItemModel;
 
-    private string? _notFoundText;
     private bool _isLoading;
     private CancellationTokenSource _cancellationTokenSource;
+
+    private int _pageSize;
+    private int _pageNumber;
+    private int _pagesCount;
+
+    private int _displayItemsCountStart;
+    private int _displayItemsCountEnd;
+    private int _savedItemsCount;
 
     #endregion Fields
 
@@ -162,14 +170,23 @@ public class ListItemsModel : ModelBase
         private set
         {
             SetProperty(ref _listItemModels, value);
-            if (value.Count == 0 && !IsLoading) NotFoundText = EMPTY_LIST_TEXT;
+            OnPropertyChanged(nameof(NotFoundText));
+        }
+    }
+
+    public ListItemModel? SelectedListItemModel
+    {
+        get => _selectedListItemModel;
+        set
+        {
+            SetProperty(ref _selectedListItemModel, value);
+            SelectedListItemModel?.UpdateStats();
         }
     }
 
     public string? NotFoundText
     {
-        get => _notFoundText;
-        private set => SetProperty(ref _notFoundText, value);
+        get => ListItemModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
     }
 
     public bool IsLoading
@@ -178,8 +195,59 @@ public class ListItemsModel : ModelBase
         private set
         {
             SetProperty(ref _isLoading, value);
-            if (value) NotFoundText = null;
+            OnPropertyChanged(nameof(NotFoundText));
         }
+    }
+
+    public int PageSize
+    {
+        get => _pageSize;
+        private set
+        {
+            SetProperty(ref _pageSize, value);
+            GetSkins();
+        }
+    }
+
+    public int PageNumber
+    {
+        get => _pageNumber;
+        set
+        {
+            SetProperty(ref _pageNumber, value);
+            GetSkins();
+        }
+    }
+
+    public int PagesCount
+    {
+        get => _pagesCount;
+        private set
+        {
+            SetProperty(ref _pagesCount, value);
+            if (value < PageNumber)
+            {
+                PageNumber = value;
+            }
+        }
+    }
+
+    public int DisplayItemsCountStart
+    {
+        get => _displayItemsCountStart;
+        private set => SetProperty(ref _displayItemsCountStart, value < 1 ? 1 : value);
+    }
+
+    public int DisplayItemsCountEnd
+    {
+        get => _displayItemsCountEnd;
+        private set => SetProperty(ref _displayItemsCountEnd, value < PageSize ? PageSize : value);
+    }
+
+    public int SavedItemsCount
+    {
+        get => _savedItemsCount;
+        private set => SetProperty(ref _savedItemsCount, value);
     }
 
     private Skins.SkinOrderName? SkinOrderName
@@ -237,6 +305,9 @@ public class ListItemsModel : ModelBase
 
         IsLoading = false;
 
+        PageNumber = 1;
+        PageSize = 20;
+
         ClearFiltersCommand = new(DoClearFiltersCommand);
     }
 
@@ -246,11 +317,12 @@ public class ListItemsModel : ModelBase
 
     private void DoClearFiltersCommand()
     {
-        IsAllGamesChecked = true;
         Filter = null;
+        IsAllGamesChecked = true;
         SkinOrderName = null;
         IsAscending = null;
         IsMarked = false;
+        PageNumber = 1;
         SetOrderingsNull();
     }
 
@@ -266,7 +338,7 @@ public class ListItemsModel : ModelBase
     {
         GetSkins();
     }
-    
+
     private void CurrencyChangedHandler(object sender)
     {
         GetSkins();
@@ -278,24 +350,31 @@ public class ListItemsModel : ModelBase
         if (_userModel.User is null) return;
 
         IsLoading = true;
-        
+
         await CancellationTokenSource.CancelAsync();
 
         CancellationTokenSource = new();
         CancellationToken token = CancellationTokenSource.Token;
-        
 
-        List<Skins.SkinResponse>? skinsResponse =
-            await _apiClient.GetAsync<List<Skins.SkinResponse>, Skins.GetSkinsRequest>(
+        DisplayItemsCountStart = (PageNumber - 1) * PageSize + 1;
+        DisplayItemsCountEnd = PageNumber * PageSize;
+
+        Skins.SkinsResponse? skinsResponse =
+            await _apiClient.GetAsync<Skins.SkinsResponse, Skins.GetSkinsRequest>(
                 ApiConstants.ApiControllers.Skins,
                 "GetSkins",
-                new(SelectedGameModel?.Id, Filter, SkinOrderName, IsAscending, IsMarked ? IsMarked : null, 1, 30),
+                new(SelectedGameModel?.Id, Filter, SkinOrderName, IsAscending, IsMarked ? IsMarked : null, PageNumber,
+                    PageSize),
                 token);
+
         if (skinsResponse is null) return;
 
-        ListItemModels = skinsResponse.Select(x =>
-                new ListItemModel(x.Skin.Id, x.Skin.SkinIconUrl, x.Skin.Title, x.CurrentPrice, _userModel.CurrencyMark, x.Change7D, x.Change30D,
-                    x.IsMarked))
+        SavedItemsCount = skinsResponse.SkinsCount;
+        PagesCount = skinsResponse.PagesCount;
+
+        ListItemModels = skinsResponse.Skins.Select(x =>
+                new ListItemModel(_apiClient, x.Skin.Id, x.Skin.SkinIconUrl, x.Skin.Title, x.CurrentPrice,
+                    _userModel.CurrencyMark, x.Change7D, x.Change30D, x.IsMarked))
             .ToList();
 
         IsLoading = false;

@@ -28,6 +28,11 @@ public static class Actives
         decimal CurrentPrice,
         decimal CurrentSum,
         double Change) : Response;
+    
+    public record ActivesResponse(
+        int ActivesCount, 
+        int PagesCount, 
+        IEnumerable<ActiveResponse> Skins) : Response;
 
     public record ActivesPagesCountResponse(
         int Count) : Response;

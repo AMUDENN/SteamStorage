@@ -1,9 +1,33 @@
-﻿namespace SteamStorage.Models.UtilityModels;
+﻿using System;
+using System.Threading.Tasks;
+using SteamStorage.Models.Tools;
+using SteamStorage.Utilities;
+using SteamStorageAPI;
+using SteamStorageAPI.ApiEntities;
+using SteamStorageAPI.Utilities;
 
-public class ListItemModel
+namespace SteamStorage.Models.UtilityModels;
+
+public class ListItemModel : ModelBase
 {
+    #region Fields
+
+    private readonly ApiClient _apiClient;
+
+    private double? _changePeriod;
+    private string? _datePeriod;
+
+    private bool _isOneDayChecked;
+    private bool _isOneWeekChecked;
+    private bool _isOneMonthChecked;
+    private bool _isOneYearChecked;
+
+    private bool _isLoading;
+
+    #endregion Fields
+
     #region Properties
-    
+
     public int Id { get; }
     public string ImageUrl { get; }
     public string Title { get; }
@@ -13,12 +37,73 @@ public class ListItemModel
     public double Change30D { get; }
     public bool IsMarked { get; }
 
+    public double? ChangePeriod
+    {
+        get => _changePeriod;
+        private set => SetProperty(ref _changePeriod, value);
+    }
+
+    public string? DatePeriod
+    {
+        get => _datePeriod;
+        private set => SetProperty(ref _datePeriod, value);
+    }
+
+    public bool IsOneDayChecked
+    {
+        get => _isOneDayChecked;
+        set
+        {
+            SetProperty(ref _isOneDayChecked, value); 
+            GetDynamicStats(DateTime.Now.AddDays(-1), DateTime.Now);
+        }
+    }
+
+    public bool IsOneWeekChecked
+    {
+        get => _isOneWeekChecked;
+        set
+        {
+            SetProperty(ref _isOneWeekChecked, value); 
+            GetDynamicStats(DateTime.Now.AddDays(-7), DateTime.Now);
+        }
+    }
+
+    public bool IsOneMonthChecked
+    {
+        get => _isOneMonthChecked;
+        set
+        {
+            SetProperty(ref _isOneMonthChecked, value); 
+            GetDynamicStats(DateTime.Now.AddDays(-30), DateTime.Now);
+        }
+    }
+
+    public bool IsOneYearChecked
+    {
+        get => _isOneYearChecked;
+        set
+        {
+            SetProperty(ref _isOneYearChecked, value);
+            GetDynamicStats(DateTime.Now.AddDays(-365), DateTime.Now);
+        }
+    }
+
+    public bool IsLoading
+    {
+        get => _isLoading;
+        private set => SetProperty(ref _isLoading, value);
+    }
+
     #endregion Properties
 
     #region Constructor
 
-    public ListItemModel(int id, string imageUrl, string title, decimal currentPrice, string currencyMark, double change7D, double change30D, bool isMarked)
+    public ListItemModel(ApiClient apiClient, int id, string imageUrl, string title, decimal currentPrice,
+        string currencyMark, double change7D, double change30D, bool isMarked)
     {
+        _apiClient = apiClient;
+        
         Id = id;
         ImageUrl = imageUrl;
         Title = title;
@@ -27,7 +112,36 @@ public class ListItemModel
         Change7D = change7D;
         Change30D = change30D;
         IsMarked = isMarked;
+
+        IsLoading = false;
     }
 
     #endregion Constructor
+
+    #region Methods
+
+    public void UpdateStats()
+    {
+        if (!(IsOneDayChecked || IsOneWeekChecked || IsOneYearChecked))
+            IsOneMonthChecked = true;
+    }
+
+    private async void GetDynamicStats(DateTime dateStart, DateTime dateEnd)
+    {
+        IsLoading = true;
+        DatePeriod =
+            $"{dateStart.ToString(ProgramConstants.PERIOD_DATE_FORMAT)} - {dateEnd.ToString(ProgramConstants.PERIOD_DATE_FORMAT)}";
+        
+        Skins.SkinDynamicStatsResponse? skinDynamicsResponse =
+            await _apiClient.GetAsync<Skins.SkinDynamicStatsResponse, Skins.GetSkinDynamicsRequest>(
+                ApiConstants.ApiControllers.Skins,
+                "GetSkinDynamics",
+                new(Id, dateStart, dateEnd));
+
+        ChangePeriod = skinDynamicsResponse?.ChangePeriod;
+
+        IsLoading = false;
+    }
+
+    #endregion Methods
 }
