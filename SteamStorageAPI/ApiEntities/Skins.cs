@@ -79,6 +79,12 @@ public static class Skins
         int? GameId, 
         string? Filter, 
         bool? IsMarked) : Request;
+    
+    public record SetMarkedSkinRequest(
+        int SkinId) : Request;
+        
+    public record DeleteMarkedSkinRequest(
+        int SkinId) : Request;
 
     #endregion Records
 }

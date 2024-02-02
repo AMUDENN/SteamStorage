@@ -14,6 +14,8 @@ public class ListItemModel : ModelBase
 
     private readonly ApiClient _apiClient;
 
+    private bool _isMarked;
+
     private double? _changePeriod;
     private string? _datePeriod;
 
@@ -35,7 +37,19 @@ public class ListItemModel : ModelBase
     public string CurrencyMark { get; }
     public double Change7D { get; }
     public double Change30D { get; }
-    public bool IsMarked { get; }
+
+    public bool IsMarked
+    {
+        get => _isMarked;
+        set
+        {
+            SetProperty(ref _isMarked, value);
+            if (value)
+                PostIsMarked();
+            else
+                DeleteMarked();
+        }
+    }
 
     public double? ChangePeriod
     {
@@ -111,7 +125,7 @@ public class ListItemModel : ModelBase
         CurrencyMark = currencyMark;
         Change7D = change7D;
         Change30D = change30D;
-        IsMarked = isMarked;
+        _isMarked = isMarked;
 
         IsLoading = false;
     }
@@ -141,6 +155,18 @@ public class ListItemModel : ModelBase
         ChangePeriod = skinDynamicsResponse?.ChangePeriod;
 
         IsLoading = false;
+    }
+
+    private async void PostIsMarked()
+    {
+        await _apiClient.PostAsync(ApiConstants.ApiControllers.Skins, "SetMarkedSkin",
+            new Skins.SetMarkedSkinRequest(Id)); 
+    }
+
+    private async void DeleteMarked()
+    {
+        await _apiClient.DeleteAsync(ApiConstants.ApiControllers.Skins, "DeleteMarkedSkin",
+            new Skins.DeleteMarkedSkinRequest(Id)); 
     }
 
     #endregion Methods

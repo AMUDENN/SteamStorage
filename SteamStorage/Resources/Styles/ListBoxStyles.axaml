@@ -161,7 +161,7 @@
 							           Classes.NegativeTextBlock="{Binding Change30D, Mode=OneWay,
 																   Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
 							           Grid.Row="0" Grid.Column="8"/>
-							<CheckBox IsChecked="{Binding IsMarked, Mode=OneWay}"
+							<CheckBox IsChecked="{Binding IsMarked}"
 							          Classes="StarCheckBox" 
 							          HorizontalAlignment="Center" VerticalAlignment="Center"
 							          Height="24" Width="24"

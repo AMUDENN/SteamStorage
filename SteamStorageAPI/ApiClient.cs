@@ -116,7 +116,7 @@ public class ApiClient
         }
         catch (Exception ex)
         {
-            await _logger.LogAsync($"ApiException \n{uri.ToString()}", ex);
+            await _logger.LogAsync($"ApiException GET \n{uri.ToString()}", ex);
             return default;
         }
     }
@@ -135,6 +135,60 @@ public class ApiClient
     }
 
     #endregion GET
+    
+    #region POST
+
+    private async Task PostAsync<TIn>(Uri uri, TIn? args = null, CancellationToken cancellationToken = default)
+        where TIn : Request
+    {
+        try
+        {
+            HttpClient client = _httpClientFactory.CreateClient(ApiConstants.CLIENT_NAME);
+            await client.PostAsJsonAsync(uri, args, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            await _logger.LogAsync($"ApiException POST \n{uri.ToString()}", ex);
+        }
+    }
+
+    public async Task PostAsync<TIn>(ApiConstants.ApiControllers apiController, string apiMethod, TIn? args = null,
+        CancellationToken cancellationToken = default) where TIn : Request
+    {
+        await PostAsync(CreateUri(apiController, apiMethod), args, cancellationToken);
+    }
+
+    #endregion POST
+    
+    #region DELETE
+    
+    private async Task DeleteAsync<TIn>(Uri uri, TIn? args = null, CancellationToken cancellationToken = default)
+        where TIn : Request
+    {
+        try
+        {
+            HttpClient client = _httpClientFactory.CreateClient(ApiConstants.CLIENT_NAME);
+            HttpRequestMessage request = new()
+            {
+                Content = JsonContent.Create(args),
+                Method = HttpMethod.Delete,
+                RequestUri = uri
+            };
+            await client.SendAsync(request, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            await _logger.LogAsync($"ApiException POST \n{uri.ToString()}", ex);
+        }
+    }
+    
+    public async Task DeleteAsync<TIn>(ApiConstants.ApiControllers apiController, string apiMethod, TIn? args = null,
+        CancellationToken cancellationToken = default) where TIn : Request
+    {
+        await DeleteAsync(CreateUri(apiController, apiMethod), args, cancellationToken);
+    }
+    
+    #endregion DELETE
 
     #region Methods
 
