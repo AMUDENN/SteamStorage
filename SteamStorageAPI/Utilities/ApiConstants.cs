@@ -8,6 +8,7 @@ public static class ApiConstants
     public const string HOST_NAME = "localhost";
     public const string SERVER_ADRESS = "http://localhost:5275/";
     public const string TOKENHUB_ADRESS = "http://localhost:5245/token-hub";
+    public const string API_DATE_FORMAT = "MM.dd.yyyy";
 
     public const string TOKEN_METHOD_NAME = "Token";
     public const string JOIN_GROUP_METHOD_NAME = "JoinGroup";

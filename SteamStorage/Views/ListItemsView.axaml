@@ -16,6 +16,8 @@
             <RowDefinition Height="30" MinHeight="30"/>
             <RowDefinition Height="40" MinHeight="40"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="20" MinHeight="20"/>
+            <RowDefinition Height="30" MinHeight="30"/>
         </Grid.RowDefinitions>
         
         <Grid Grid.Row="0">
@@ -85,22 +87,22 @@
             
             <ToggleButton Content="Название" 
                           IsChecked="{Binding IsTitleOrdering}"
-                          Classes="FilteringToggleButton"
+                          Classes="OrderingToggleButton"
                           Grid.Column="2"/>
             
             <ToggleButton Content="Текущая цена" 
                           IsChecked="{Binding IsCurrentCostOrdering}"
-                          Classes="FilteringToggleButton"
+                          Classes="OrderingToggleButton"
                           Grid.Column="4"/>
             
             <ToggleButton Content="Изменение (7дн)" 
                           IsChecked="{Binding IsChange7Ordering}"
-                          Classes="FilteringToggleButton"
+                          Classes="OrderingToggleButton"
                           Grid.Column="6"/>
             
             <ToggleButton Content="Изменение (30дн)" 
                           IsChecked="{Binding IsChange30Ordering}"
-                          Classes="FilteringToggleButton"
+                          Classes="OrderingToggleButton"
                           Grid.Column="8"/>
             
             <CheckBox IsChecked="{Binding IsMarked}"
@@ -115,81 +117,70 @@
         <Rectangle Height="2"
                    Margin="25, 0" 
                    Grid.Row="3"/>
-        
-        <ScrollViewer Grid.Row="4">
             
-            <Grid>
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="40" MinHeight="40"/>
-                </Grid.RowDefinitions>
-                
-                <TextBlock Text="{Binding NotFoundText, Mode=OneWay}"
-                           IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}"
-                           Classes="MiddleTextBlock CenterTextBlock"
-                           VerticalAlignment="Top"
-                           Margin="0, 20"
-                           Grid.Row="0"/>
-                
-                <Image IsVisible="{Binding IsLoading}"
-                       Classes="LoadingImage"
-                       Height="48" Width="48"
-                       HorizontalAlignment="Center"
+        <Grid Grid.Row="4">
+            
+            <TextBlock Text="{Binding NotFoundText, Mode=OneWay}"
+                       IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}"
+                       Classes="MiddleTextBlock CenterTextBlock"
                        VerticalAlignment="Top"
-                       Margin="0, 20"
-                       Grid.Row="0"/>
-                           
-                <ListBox ItemsSource="{Binding ListItemModels, Mode=OneWay}"
-                         SelectedItem="{Binding SelectedListItemModel}"
-                         Classes="ListItemsListBox"
-                         Grid.Row="0">
-                           
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel Margin="0"/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                   
-                </ListBox> 
-                
-                <Grid Grid.Row="1">
-                    
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="300"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Left"
-                                Grid.Column="0">
-                        <TextBlock Text="Результаты: "
-                                   Classes="SmallTextBlock"/>
-                        <TextBlock Text="{Binding DisplayItemsCountStart, StringFormat=N0, Mode=OneWay}"
-                                   Classes="SmallTextBlock"/>
-                        <TextBlock Text=" - "
-                                   Classes="SmallTextBlock"/>
-                        <TextBlock Text="{Binding DisplayItemsCountEnd, StringFormat=N0, Mode=OneWay}"
-                                   Classes="SmallTextBlock"/>
-                        <TextBlock Text=" из "
-                                   Classes="SmallTextBlock"/>
-                        <TextBlock Text="{Binding SavedItemsCount, StringFormat=N0, Mode=OneWay}"
-                                   Classes="SmallTextBlock"/>
-                    </StackPanel>
-                    
-                    <controls:AdvancedNumericUpDown HorizontalAlignment="Right"
-                                                    Value="{Binding PageNumber}"
-                                                    FormatString="0"
-                                                    Increment="1"
-                                                    Minimum="1"
-                                                    Maximum="{Binding PagesCount, Mode=OneWay}"
-                                                    Grid.Column="1"/>
-                    
-                </Grid>
-                
-            </Grid>
+                       Margin="0, 20"/>
             
-        </ScrollViewer>
+            <Image IsVisible="{Binding IsLoading}"
+                   Classes="LoadingImage"
+                   Height="48" Width="48"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Margin="0, 20"/>
+                       
+            <ListBox ItemsSource="{Binding ListItemModels, Mode=OneWay}"
+                     SelectedItem="{Binding SelectedListItemModel}"
+                     Classes="ListItemsListBox">
+                       
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Margin="0"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+               
+            </ListBox> 
+            
+        </Grid>
+        
+        <Grid Grid.Row="6">
+                    
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+                    
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        Grid.Column="0">
+                <TextBlock Text="Результаты: "
+                           Classes="SmallTextBlock"/>
+                <TextBlock Text="{Binding DisplayItemsCountStart, StringFormat=N0, Mode=OneWay}"
+                           Classes="SmallTextBlock"/>
+                <TextBlock Text=" - "
+                           Classes="SmallTextBlock"/>
+                <TextBlock Text="{Binding DisplayItemsCountEnd, StringFormat=N0, Mode=OneWay}"
+                           Classes="SmallTextBlock"/>
+                <TextBlock Text=" из "
+                           Classes="SmallTextBlock"/>
+                <TextBlock Text="{Binding SavedItemsCount, StringFormat=N0, Mode=OneWay}"
+                           Classes="SmallTextBlock"/>
+            </StackPanel>
+                    
+            <controls:AdvancedNumericUpDown HorizontalAlignment="Right"
+                                            Value="{Binding PageNumber}"
+                                            FormatString="0"
+                                            Increment="1"
+                                            Minimum="1"
+                                            Maximum="{Binding PagesCount, Mode=OneWay}"
+                                            Watermark="{Binding CurrentPageNumber, Mode=OneWay}"
+                                            Grid.Column="1"/>
+                    
+        </Grid>
         
     </Grid>
     

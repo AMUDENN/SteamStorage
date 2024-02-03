@@ -11,7 +11,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" MinWidth="20"/>
                             <ColumnDefinition Width="*" MinWidth="20"/>
-                            <ColumnDefinition Width="Auto" MaxWidth="90"/>
+                            <ColumnDefinition Width="Auto" MaxWidth="70"/>
                             <ColumnDefinition Width="*" MinWidth="20"/>
                             <ColumnDefinition Width="*" MinWidth="20"/>
                         </Grid.ColumnDefinitions>
@@ -34,7 +34,9 @@
                                        Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                        Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                        ShowButtonSpinner="False"
+                                       Watermark="{TemplateBinding Watermark}"
                                        Classes="AdvancedNumericUpDown"
+                                       Width="70"
                                        Grid.Column="2"/>
                         
                         <Button Command="{TemplateBinding IncrementCommand}" 

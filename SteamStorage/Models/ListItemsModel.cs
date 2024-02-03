@@ -46,6 +46,7 @@ public class ListItemsModel : ModelBase
 
     private int _pageSize;
     private int? _pageNumber;
+    private int _currentPageNumber;
     private int _pagesCount;
 
     private int _displayItemsCountStart;
@@ -218,6 +219,12 @@ public class ListItemsModel : ModelBase
             if (PageNumber is not null) GetSkins();
         }
     }
+    
+    public int CurrentPageNumber
+    {
+        get => _currentPageNumber;
+        private set => SetProperty(ref _currentPageNumber, value);
+    }
 
     public int PagesCount
     {
@@ -356,16 +363,16 @@ public class ListItemsModel : ModelBase
         CancellationTokenSource = new();
         CancellationToken token = CancellationTokenSource.Token;
 
-        int pageNumber = PageNumber ?? 1;
+        CurrentPageNumber = PageNumber ?? 1;
         
-        DisplayItemsCountStart = (pageNumber - 1) * PageSize + 1;
-        DisplayItemsCountEnd = pageNumber * PageSize;
+        DisplayItemsCountStart = (CurrentPageNumber - 1) * PageSize + 1;
+        DisplayItemsCountEnd = CurrentPageNumber * PageSize;
 
         Skins.SkinsResponse? skinsResponse =
             await _apiClient.GetAsync<Skins.SkinsResponse, Skins.GetSkinsRequest>(
                 ApiConstants.ApiControllers.Skins,
                 "GetSkins",
-                new(SelectedGameModel?.Id, Filter, SkinOrderName, IsAscending, IsMarked ? IsMarked : null, pageNumber,
+                new(SelectedGameModel?.Id, Filter, SkinOrderName, IsAscending, IsMarked ? IsMarked : null, CurrentPageNumber,
                     PageSize),
                 token);
 

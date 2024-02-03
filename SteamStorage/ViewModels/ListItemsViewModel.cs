@@ -102,6 +102,11 @@ public class ListItemsViewModel : ViewModelBase
         get => _listItemsModel.PageNumber;
         set => _listItemsModel.PageNumber = value;
     }
+    
+    public int CurrentPageNumber
+    {
+        get => _listItemsModel.CurrentPageNumber;
+    }
 
     public int PagesCount
     {

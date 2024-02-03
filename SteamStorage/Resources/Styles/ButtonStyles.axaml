@@ -83,9 +83,9 @@
             <Setter Property="Padding" Value="1"/>
         </Style>
         <Style Selector="^.AdvancedNumericUpDownButton">
-            <Setter Property="Padding" Value="5, 10"/>
+            <Setter Property="Padding" Value="3, 5"/>
             <Style Selector="^:pressed">
-                <Setter Property="Padding" Value="4, 9"/>
+                <Setter Property="Padding" Value="2, 4"/>
             </Style>
         </Style>
     </Style>

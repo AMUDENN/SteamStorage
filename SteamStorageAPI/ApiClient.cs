@@ -216,7 +216,11 @@ public class ApiClient
         {
             object? value = property.GetValue(args);
             if (value is null) continue;
-            uri.Append($"{property.Name}={value}&");
+            
+            if (property.PropertyType == typeof(DateTime))
+                uri.Append($"{property.Name}={Convert.ToDateTime(value).ToString(ApiConstants.API_DATE_FORMAT)}&");
+            else
+                uri.Append($"{property.Name}={value}&");
         }
 
         uri.Remove(uri.Length - 1, 1);

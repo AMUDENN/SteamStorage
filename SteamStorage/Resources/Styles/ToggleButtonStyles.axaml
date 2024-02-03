@@ -1,7 +1,7 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style Selector="ToggleButton.FilteringToggleButton">
+    <Style Selector="ToggleButton.OrderingToggleButton">
         <Setter Property="IsThreeState" Value="True"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -18,9 +18,11 @@
                             <ColumnDefinition Width="20" MinWidth="20"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{TemplateBinding Content}"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                    Classes="SmallTextBlock CenterTextBlock"
                                    Grid.Column="0"/>
-                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center"
+                        <Grid HorizontalAlignment="Center" 
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                               MaxHeight="20"
                               Grid.Column="2">
                             <Grid.RowDefinitions>

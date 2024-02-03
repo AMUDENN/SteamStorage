@@ -86,7 +86,8 @@
     <Style Selector="TextBox.NumericUpDownTextBox">
         <Setter Property="LetterSpacing" Value="1.5"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="20"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -100,14 +101,15 @@
                                        FontSize="{TemplateBinding FontSize}"
                                        IsVisible="{TemplateBinding Text, Converter={x:Static StringConverters.IsNullOrEmpty}}"
                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       VerticalAlignment="Stretch"
                                        Foreground="{TemplateBinding Foreground}"/>
                             <ScrollViewer x:Name="PART_ScrollViewer"
                                           HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
-                                          VerticalScrollBarVisibility="Disabled"
+                                          VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
                                           IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
                                           AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
-                                          BringIntoViewOnFocusChange="{TemplateBinding (ScrollViewer.BringIntoViewOnFocusChange)}">
+                                          BringIntoViewOnFocusChange="{TemplateBinding (ScrollViewer.BringIntoViewOnFocusChange)}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <TextPresenter x:Name="PART_TextPresenter"
                                                Text="{TemplateBinding Text, Mode=TwoWay}"
                                                CaretIndex="{TemplateBinding CaretIndex}"

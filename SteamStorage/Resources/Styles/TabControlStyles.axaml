@@ -3,7 +3,7 @@
     
     <Style Selector="TabItem">
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="Margin" Value="0, 0, 0, 30"/>
+        <Setter Property="Margin" Value="0, 0, 0, 20"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>

@@ -23,7 +23,7 @@
                                    ButtonSpinnerLocation="{TemplateBinding ButtonSpinnerLocation}">
                         <TextBox x:Name="PART_TextBox"
                                  Classes="NumericUpDownTextBox"
-                                 Watermark="1"
+                                 Watermark="{TemplateBinding Watermark}"
                                  Text="{TemplateBinding Text}"
                                  AcceptsReturn="False"
                                  TextWrapping="NoWrap" />
