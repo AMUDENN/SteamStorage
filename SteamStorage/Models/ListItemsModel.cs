@@ -219,7 +219,7 @@ public class ListItemsModel : ModelBase
             if (PageNumber is not null) GetSkins();
         }
     }
-    
+
     public int CurrentPageNumber
     {
         get => _currentPageNumber;
@@ -322,6 +322,16 @@ public class ListItemsModel : ModelBase
 
     #region Methods
 
+    private void UserChangedHandler(object? sender)
+    {
+        GetSkins();
+    }
+
+    private void CurrencyChangedHandler(object? sender)
+    {
+        GetSkins();
+    }
+
     private void DoClearFiltersCommand()
     {
         Filter = null;
@@ -341,16 +351,6 @@ public class ListItemsModel : ModelBase
         IsChange30Ordering = null;
     }
 
-    private void UserChangedHandler(object sender)
-    {
-        GetSkins();
-    }
-
-    private void CurrencyChangedHandler(object sender)
-    {
-        GetSkins();
-    }
-
     private async void GetSkins()
     {
         ListItemModels = [];
@@ -364,7 +364,7 @@ public class ListItemsModel : ModelBase
         CancellationToken token = CancellationTokenSource.Token;
 
         CurrentPageNumber = PageNumber ?? 1;
-        
+
         DisplayItemsCountStart = (CurrentPageNumber - 1) * PageSize + 1;
         DisplayItemsCountEnd = CurrentPageNumber * PageSize;
 
@@ -372,8 +372,8 @@ public class ListItemsModel : ModelBase
             await _apiClient.GetAsync<Skins.SkinsResponse, Skins.GetSkinsRequest>(
                 ApiConstants.ApiControllers.Skins,
                 "GetSkins",
-                new(SelectedGameModel?.Id, Filter, SkinOrderName, IsAscending, IsMarked ? IsMarked : null, CurrentPageNumber,
-                    PageSize),
+                new(SelectedGameModel?.Id, Filter, SkinOrderName, IsAscending, IsMarked ? IsMarked : null,
+                    CurrentPageNumber, PageSize),
                 token);
 
         if (skinsResponse is null) return;

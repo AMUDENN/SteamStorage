@@ -7,7 +7,7 @@ public static class Pages
     #region Records
 
     public record PageResponse(
-        int Id, 
+        int Id,
         string Title) : Response;
 
     public record SetPageRequest(

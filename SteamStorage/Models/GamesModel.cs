@@ -13,7 +13,6 @@ public class GamesModel : ModelBase
     #region Fields
 
     private readonly ApiClient _apiClient;
-    private readonly UserModel _userModel;
 
     private List<GameModel> _gameModels;
 
@@ -30,16 +29,20 @@ public class GamesModel : ModelBase
     public GamesModel(ApiClient apiClient, UserModel userModel)
     {
         _apiClient = apiClient;
-        _userModel = userModel;
 
         _gameModels = [];
 
-        userModel.UserChanged += (s) => GetGames();
+        userModel.UserChanged += UserChangedHandler;
     }
 
     #endregion Constructor
 
     #region Methods
+
+    private void UserChangedHandler(object? sender)
+    {
+        GetGames();
+    }
 
     private async void GetGames()
     {

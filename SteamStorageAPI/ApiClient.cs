@@ -17,7 +17,7 @@ public class ApiClient
 {
     #region Events
 
-    public delegate void TokenChangedEventHandler(object sender, TokenChangedEventArgs args);
+    public delegate void TokenChangedEventHandler(object? sender, TokenChangedEventArgs args);
 
     public event TokenChangedEventHandler? TokenChanged;
 
@@ -135,7 +135,7 @@ public class ApiClient
     }
 
     #endregion GET
-    
+
     #region POST
 
     private async Task PostAsync<TIn>(Uri uri, TIn? args = null, CancellationToken cancellationToken = default)
@@ -159,9 +159,9 @@ public class ApiClient
     }
 
     #endregion POST
-    
+
     #region DELETE
-    
+
     private async Task DeleteAsync<TIn>(Uri uri, TIn? args = null, CancellationToken cancellationToken = default)
         where TIn : Request
     {
@@ -181,13 +181,13 @@ public class ApiClient
             await _logger.LogAsync($"ApiException POST \n{uri.ToString()}", ex);
         }
     }
-    
+
     public async Task DeleteAsync<TIn>(ApiConstants.ApiControllers apiController, string apiMethod, TIn? args = null,
         CancellationToken cancellationToken = default) where TIn : Request
     {
         await DeleteAsync(CreateUri(apiController, apiMethod), args, cancellationToken);
     }
-    
+
     #endregion DELETE
 
     #region Methods
@@ -216,7 +216,7 @@ public class ApiClient
         {
             object? value = property.GetValue(args);
             if (value is null) continue;
-            
+
             if (property.PropertyType == typeof(DateTime))
                 uri.Append($"{property.Name}={Convert.ToDateTime(value).ToString(ApiConstants.API_DATE_FORMAT)}&");
             else

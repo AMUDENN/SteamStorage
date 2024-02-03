@@ -2,6 +2,7 @@
 using SteamStorage.Utilities;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
+using SteamStorageAPI.Events;
 using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
@@ -10,11 +11,11 @@ public class UserModel : ModelBase
 {
     #region Events
 
-    public delegate void UserChangedEventHandler(object sender);
+    public delegate void UserChangedEventHandler(object? sender);
 
     public event UserChangedEventHandler? UserChanged;
 
-    public delegate void CurrencyChangedEventHandler(object sender);
+    public delegate void CurrencyChangedEventHandler(object? sender);
 
     public event CurrencyChangedEventHandler? CurrencyChanged;
 
@@ -65,18 +66,20 @@ public class UserModel : ModelBase
     {
         _apiClient = apiClient;
 
-        _apiClient.TokenChanged += async (s, e) =>
-        {
-            User = e.IsTokenEmpty
-                ? null
-                : await _apiClient.GetAsync<Users.UserResponse>(ApiConstants.ApiControllers.Users,
-                    "GetCurrentUserInfo");
-        };
+        apiClient.TokenChanged += TokenChangedHandler;
     }
 
     #endregion Constructor
 
     #region Methods
+
+    private async void TokenChangedHandler(object? sender, TokenChangedEventArgs e)
+    {
+        User = e.IsTokenEmpty
+            ? null
+            : await _apiClient.GetAsync<Users.UserResponse>(ApiConstants.ApiControllers.Users,
+                "GetCurrentUserInfo");
+    }
 
     private async void GetCurrency()
     {
@@ -96,6 +99,4 @@ public class UserModel : ModelBase
     }
 
     #endregion Methods
-
-
 }

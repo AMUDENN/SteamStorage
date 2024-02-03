@@ -4,7 +4,7 @@ public class TokenChangedEventArgs : EventArgs
 {
     #region Fields
 
-    public bool IsTokenEmpty { get; set; }
+    public bool IsTokenEmpty { get; }
 
     #endregion Fields
 

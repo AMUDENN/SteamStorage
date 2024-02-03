@@ -13,7 +13,6 @@ public class StatisticsModel : ModelBase
     #region Fields
 
     private readonly ApiClient _apiClient;
-    private readonly UserModel _userModel;
 
     private double _investedSum;
     private double _investedSumGrowth;
@@ -146,11 +145,10 @@ public class StatisticsModel : ModelBase
     public StatisticsModel(ApiClient apiClient, UserModel userModel)
     {
         _apiClient = apiClient;
-        _userModel = userModel;
 
-        _userModel.UserChanged += UserChangedHandler;
+        userModel.UserChanged += UserChangedHandler;
 
-        _userModel.CurrencyChanged += CurrencyChangedHandler;
+        userModel.CurrencyChanged += CurrencyChangedHandler;
 
         _inventoryGames = Enumerable.Empty<Statistics.InventoryGameStatisticResponse>();
 
@@ -160,6 +158,17 @@ public class StatisticsModel : ModelBase
     #endregion Constructor
 
     #region Methods
+
+    private void UserChangedHandler(object? sender)
+    {
+        RefreshStatistics();
+        RefreshPing();
+    }
+
+    private void CurrencyChangedHandler(object? sender)
+    {
+        RefreshStatistics();
+    }
 
     private async void RefreshStatistics()
     {
@@ -221,17 +230,6 @@ public class StatisticsModel : ModelBase
         PingResult pingResult = await _apiClient.GetApiPing();
         Ping = pingResult.Ping;
         Status = pingResult.Status;
-    }
-
-    private void UserChangedHandler(object sender)
-    {
-        RefreshStatistics();
-        RefreshPing();
-    }
-
-    private void CurrencyChangedHandler(object sender)
-    {
-        RefreshStatistics();
     }
 
     #endregion Methods

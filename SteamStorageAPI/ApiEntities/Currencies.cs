@@ -7,10 +7,10 @@ public static class Currencies
     #region Records
 
     public record CurrencyResponse(
-        int Id, 
-        int SteamCurrencyId, 
-        string Title, 
-        string Mark, 
+        int Id,
+        int SteamCurrencyId,
+        string Title,
+        string Mark,
         double Price) : Response;
 
     public record GetCurrencyRequest(

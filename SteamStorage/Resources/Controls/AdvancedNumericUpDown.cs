@@ -55,7 +55,7 @@ public class AdvancedNumericUpDown : NumericUpDown
 
     public AdvancedNumericUpDown()
     {
-        Initialized += (s, e) =>
+        Initialized += (_, _) =>
         {
             GoToStartCommand = new(DoGoToStart);
             GoToEndCommand = new(DoGoToEnd);

@@ -79,7 +79,7 @@ public class MainViewModel : ViewModelBase
     public MainViewModel(MainModel model)
     {
         _model = model;
-        _model.PropertyChanged += (s, e) => OnPropertyChanged(e.PropertyName);
+        model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

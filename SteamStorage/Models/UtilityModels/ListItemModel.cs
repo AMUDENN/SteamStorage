@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using SteamStorage.Models.Tools;
 using SteamStorage.Utilities;
 using SteamStorageAPI;
@@ -30,7 +29,7 @@ public class ListItemModel : ModelBase
 
     #region Properties
 
-    public int Id { get; }
+    private int Id { get; }
     public string ImageUrl { get; }
     public string Title { get; }
     public decimal CurrentPrice { get; }
@@ -68,7 +67,7 @@ public class ListItemModel : ModelBase
         get => _isOneDayChecked;
         set
         {
-            SetProperty(ref _isOneDayChecked, value); 
+            SetProperty(ref _isOneDayChecked, value);
             GetDynamicStats(DateTime.Now.AddDays(-1), DateTime.Now);
         }
     }
@@ -78,7 +77,7 @@ public class ListItemModel : ModelBase
         get => _isOneWeekChecked;
         set
         {
-            SetProperty(ref _isOneWeekChecked, value); 
+            SetProperty(ref _isOneWeekChecked, value);
             GetDynamicStats(DateTime.Now.AddDays(-7), DateTime.Now);
         }
     }
@@ -88,7 +87,7 @@ public class ListItemModel : ModelBase
         get => _isOneMonthChecked;
         set
         {
-            SetProperty(ref _isOneMonthChecked, value); 
+            SetProperty(ref _isOneMonthChecked, value);
             GetDynamicStats(DateTime.Now.AddDays(-30), DateTime.Now);
         }
     }
@@ -117,7 +116,7 @@ public class ListItemModel : ModelBase
         string currencyMark, double change7D, double change30D, bool isMarked)
     {
         _apiClient = apiClient;
-        
+
         Id = id;
         ImageUrl = imageUrl;
         Title = title;
@@ -145,7 +144,7 @@ public class ListItemModel : ModelBase
         IsLoading = true;
         DatePeriod =
             $"{dateStart.ToString(ProgramConstants.PERIOD_DATE_FORMAT)} - {dateEnd.ToString(ProgramConstants.PERIOD_DATE_FORMAT)}";
-        
+
         Skins.SkinDynamicStatsResponse? skinDynamicsResponse =
             await _apiClient.GetAsync<Skins.SkinDynamicStatsResponse, Skins.GetSkinDynamicsRequest>(
                 ApiConstants.ApiControllers.Skins,
@@ -160,13 +159,13 @@ public class ListItemModel : ModelBase
     private async void PostIsMarked()
     {
         await _apiClient.PostAsync(ApiConstants.ApiControllers.Skins, "SetMarkedSkin",
-            new Skins.SetMarkedSkinRequest(Id)); 
+            new Skins.SetMarkedSkinRequest(Id));
     }
 
     private async void DeleteMarked()
     {
         await _apiClient.DeleteAsync(ApiConstants.ApiControllers.Skins, "DeleteMarkedSkin",
-            new Skins.DeleteMarkedSkinRequest(Id)); 
+            new Skins.DeleteMarkedSkinRequest(Id));
     }
 
     #endregion Methods

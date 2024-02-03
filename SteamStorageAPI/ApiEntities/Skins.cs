@@ -31,24 +31,24 @@ public static class Skins
         double Change7D,
         double Change30D,
         bool IsMarked) : Response;
-    
+
     public record SkinsResponse(
-        int SkinsCount, 
-        int PagesCount, 
+        int SkinsCount,
+        int PagesCount,
         IEnumerable<SkinResponse> Skins) : Response;
-    
+
     public record SkinDynamicStatsResponse(
-        double ChangePeriod, 
+        double ChangePeriod,
         IEnumerable<SkinDynamicResponse> Dynamic) : Response;
 
     public record SkinDynamicResponse(
-        int Id, 
-        DateTime DateUpdate, 
+        int Id,
+        DateTime DateUpdate,
         decimal Price) : Response;
 
     public record SkinPagesCountResponse(
         int Count) : Response;
-    
+
     public record SavedSkinsCountResponse(
         int Count) : Response;
 
@@ -65,24 +65,24 @@ public static class Skins
         int PageSize) : Request;
 
     public record GetSkinDynamicsRequest(
-        int SkinId, 
-        DateTime StartDate, 
+        int SkinId,
+        DateTime StartDate,
         DateTime EndDate) : Request;
 
     public record GetSkinPagesCountRequest(
-        int? GameId, 
-        string? Filter, 
-        bool? IsMarked, 
+        int? GameId,
+        string? Filter,
+        bool? IsMarked,
         int PageSize) : Request;
-    
+
     public record GetSavedSkinsCountRequest(
-        int? GameId, 
-        string? Filter, 
+        int? GameId,
+        string? Filter,
         bool? IsMarked) : Request;
-    
+
     public record SetMarkedSkinRequest(
         int SkinId) : Request;
-        
+
     public record DeleteMarkedSkinRequest(
         int SkinId) : Request;
 

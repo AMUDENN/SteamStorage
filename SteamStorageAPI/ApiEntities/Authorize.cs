@@ -7,7 +7,7 @@ public static class Authorize
     #region Records
 
     public record AuthUrlResponse(
-        string Url, 
+        string Url,
         string Group) : Response;
 
     public record AuthResponse(

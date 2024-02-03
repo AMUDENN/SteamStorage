@@ -11,7 +11,7 @@ public class DoubleGreaterConverter : IValueConverter
         if (value is null) return false;
         try
         {
-            return (double)value! > System.Convert.ToDouble(parameter);
+            return (double)value > System.Convert.ToDouble(parameter);
         }
         catch
         {

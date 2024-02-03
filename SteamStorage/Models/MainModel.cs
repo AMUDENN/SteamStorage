@@ -144,12 +144,20 @@ public class MainModel : ModelBase
         LogInCommand = new(DoLogInCommand);
         LogOutCommand = new(DoLogOutCommand);
 
-        _userModel.UserChanged += UserChangedHandler;
+        userModel.UserChanged += UserChangedHandler;
     }
 
     #endregion Constructor
 
     #region Methods
+
+    private void UserChangedHandler(object? sender)
+    {
+        IsUserLogin = _userModel.User is not null;
+        UserName = _userModel.User?.Nickname ?? USERNAME;
+        SteamId = _userModel.User is null ? STEAM_ID : $"{STEAM_ID}: {_userModel.User.SteamId}";
+        ImageUrl = _userModel.User?.ImageUrlFull;
+    }
 
     private void DoLogInCommand()
     {
@@ -159,14 +167,6 @@ public class MainModel : ModelBase
     private void DoLogOutCommand()
     {
         _apiClient.LogOut();
-    }
-
-    private void UserChangedHandler(object sender)
-    {
-        IsUserLogin = _userModel.User is not null;
-        UserName = _userModel.User?.Nickname ?? USERNAME;
-        SteamId = _userModel.User is null ? STEAM_ID : $"{STEAM_ID}: {_userModel.User.SteamId}";
-        ImageUrl = _userModel.User?.ImageUrlFull;
     }
 
     #endregion Methods

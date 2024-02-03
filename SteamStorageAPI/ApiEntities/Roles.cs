@@ -7,7 +7,7 @@ public static class Roles
     #region Records
 
     public record RoleResponse(
-        int Id, 
+        int Id,
         string Title) : Response;
 
     #endregion Records

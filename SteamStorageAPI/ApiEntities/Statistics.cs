@@ -7,30 +7,30 @@ public static class Statistics
     #region Records
 
     public record InvestmentSumResponse(
-        double TotalSum, 
+        double TotalSum,
         double PercentageGrowth) : Response;
 
     public record FinancialGoalResponse(
-        double FinancialGoal, 
+        double FinancialGoal,
         double PercentageCompletion) : Response;
 
     public record ActiveStatisticResponse(
-        int Count, 
-        double CurrentSum, 
+        int Count,
+        double CurrentSum,
         double PercentageGrowth) : Response;
 
     public record ArchiveStatisticResponse(
-        int Count, 
-        double SoldSum, 
+        int Count,
+        double SoldSum,
         double PercentageGrowth) : Response;
 
     public record InventoryStatisticResponse(
-        int Count, 
-        double Sum, 
+        int Count,
+        double Sum,
         IEnumerable<InventoryGameStatisticResponse> Games) : Response;
 
     public record InventoryGameStatisticResponse(
-        string GameTitle, 
+        string GameTitle,
         double Percentage) : Response;
 
     public record ItemsCountResponse(

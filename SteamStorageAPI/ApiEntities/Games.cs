@@ -7,9 +7,9 @@ public static class Games
     #region Records
 
     public record GameResponse(
-        int Id, 
-        int SteamGameId, 
-        string Title, 
+        int Id,
+        int SteamGameId,
+        string Title,
         string GameIconUrl) : Response;
 
     #endregion Records

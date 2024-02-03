@@ -20,7 +20,9 @@ public class LogFile : IDisposable
         _dateTimeFormat = dateTimeFormat;
 
         _filePath = $"{Path.GetTempPath()}/{programName}/{DateTime.Now.ToString(dateFormat)}#{Guid.NewGuid()}.txt";
+        
         CreateFile();
+        
         _streamWriter = new(_filePath, true, Encoding.UTF8, 8192);
     }
 

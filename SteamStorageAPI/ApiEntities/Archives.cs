@@ -45,14 +45,14 @@ public static class Archives
         int PageSize) : Request;
 
     public record GetArchivesPagesCountRequest(
-        int? GroupId, 
-        int? GameId, 
-        string? Filter, 
+        int? GroupId,
+        int? GameId,
+        string? Filter,
         int PageSize) : Request;
 
     public record GetArchivesCountRequest(
-        int? GroupId, 
-        int? GameId, 
+        int? GroupId,
+        int? GameId,
         string? Filter) : Request;
 
     public record PostArchiveRequest(

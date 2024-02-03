@@ -28,10 +28,10 @@ public static class Actives
         decimal CurrentPrice,
         decimal CurrentSum,
         double Change) : Response;
-    
+
     public record ActivesResponse(
-        int ActivesCount, 
-        int PagesCount, 
+        int ActivesCount,
+        int PagesCount,
         IEnumerable<ActiveResponse> Skins) : Response;
 
     public record ActivesPagesCountResponse(
@@ -50,14 +50,14 @@ public static class Actives
         int PageSize) : Request;
 
     public record GetActivesPagesCountRequest(
-        int? GroupId, 
-        int? GameId, 
-        string? Filter, 
+        int? GroupId,
+        int? GameId,
+        string? Filter,
         int PageSize) : Request;
 
     public record GetActivesCountRequest(
-        int? GroupId, 
-        int? GameId, 
+        int? GroupId,
+        int? GameId,
         string? Filter) : Request;
 
     public record PostActiveRequest(

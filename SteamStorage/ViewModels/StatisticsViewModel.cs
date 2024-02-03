@@ -111,10 +111,19 @@ public class StatisticsViewModel : ViewModelBase
         _statisticsModel = statisticsModel;
         _userModel = userModel;
 
-        statisticsModel.PropertyChanged += (s, e) => OnPropertyChanged(e.PropertyName);
+        statisticsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
 
-        userModel.CurrencyChanged += (s) => OnPropertyChanged(nameof(CurrencyMark));
+        userModel.CurrencyChanged += CurrencyChangedHandler;
     }
 
     #endregion Constructor
+
+    #region Methods
+
+    private void CurrencyChangedHandler(object? sender)
+    {
+        OnPropertyChanged(nameof(CurrencyMark));
+    }
+
+    #endregion Methods
 }
