@@ -42,6 +42,7 @@
 		<StyleInclude Source="/Resources/Images/Vectors/InventoryImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/LeftArrowImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/LoadingImage.axaml"/>
+        <StyleInclude Source="/Resources/Images/Vectors/LockImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/LogInImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/LogoImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/LogOutImage.axaml"/>

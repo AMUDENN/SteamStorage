@@ -146,10 +146,35 @@
 
 		</Border>
 		
-		<ContentControl Content="{Binding CurrentViewModel}" 
+		<ContentControl Content="{Binding CurrentViewModel, Mode=OneWay}" 
 		                Margin="30, 0, 0, 0"
 		                Grid.Column="1"/>
-
+		
+		<Border Classes="BigRoundedBorder BackgroundAdditionalBorder"
+		        Opacity="0.98"
+		        IsVisible="{Binding !IsUserLogin, Mode=OneWay}"
+		        Margin="30, 0, 0, 0"
+		        Grid.Column="1">
+			
+			<Grid HorizontalAlignment="Center" VerticalAlignment="Center"
+			      MaxWidth="400">
+				
+				<Grid.RowDefinitions>
+					<RowDefinition Height="96" MinHeight="96"/>
+					<RowDefinition Height="20" MinHeight="20"/>
+					<RowDefinition Height="Auto" MinHeight="80"/>
+				</Grid.RowDefinitions>
+				
+				<Image Classes="LockImage" Grid.Row="0"/>
+				
+				<TextBlock Text="Войдите в аккаунт, чтобы просматривать содержимое" 
+				           Classes="CenterTextBlock MiddleTextBlock"
+				           Grid.Row="2"/>
+				
+			</Grid>
+			
+		</Border>
+		
 	</Grid>
 
 </UserControl>

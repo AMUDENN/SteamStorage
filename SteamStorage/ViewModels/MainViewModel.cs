@@ -19,31 +19,26 @@ public class MainViewModel : ViewModelBase
     public string? ImageUrl
     {
         get => _model.ImageUrl;
-        set => _model.ImageUrl = value;
     }
 
     public string UserName
     {
         get => _model.UserName;
-        set => _model.UserName = value;
     }
 
     public string SteamId
     {
         get => _model.SteamId;
-        set => _model.SteamId = value;
     }
 
     public bool IsUserLogin
     {
         get => _model.IsUserLogin;
-        set => _model.IsUserLogin = value;
     }
 
     public ViewModelBase CurrentViewModel
     {
         get => _model.CurrentViewModel;
-        set => _model.CurrentViewModel = value;
     }
 
     public IEnumerable<NavigationModel> NavigationOptions

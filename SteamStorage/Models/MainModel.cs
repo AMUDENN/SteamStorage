@@ -42,31 +42,31 @@ public class MainModel : ModelBase
     public string? ImageUrl
     {
         get => _imageUrl;
-        set => SetProperty(ref _imageUrl, value);
+        private set => SetProperty(ref _imageUrl, value);
     }
 
     public string UserName
     {
         get => _userName;
-        set => SetProperty(ref _userName, value);
+        private set => SetProperty(ref _userName, value);
     }
 
     public string SteamId
     {
         get => _steamId;
-        set => SetProperty(ref _steamId, value);
+        private set => SetProperty(ref _steamId, value);
     }
 
     public bool IsUserLogin
     {
         get => _isUserLogin;
-        set => SetProperty(ref _isUserLogin, value);
+        private set => SetProperty(ref _isUserLogin, value);
     }
 
     public ViewModelBase CurrentViewModel
     {
         get => _currentViewModel;
-        set => SetProperty(ref _currentViewModel, value);
+        private set => SetProperty(ref _currentViewModel, value);
     }
 
     public IEnumerable<NavigationModel> NavigationOptions
