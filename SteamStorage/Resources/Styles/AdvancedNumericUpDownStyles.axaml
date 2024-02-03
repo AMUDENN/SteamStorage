@@ -1,0 +1,58 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:SteamStorage.Resources.Controls"
+        x:DataType="controls:AdvancedNumericUpDown">
+
+    <Style Selector="controls|AdvancedNumericUpDown">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" MinWidth="20"/>
+                            <ColumnDefinition Width="*" MinWidth="20"/>
+                            <ColumnDefinition Width="Auto" MaxWidth="90"/>
+                            <ColumnDefinition Width="*" MinWidth="20"/>
+                            <ColumnDefinition Width="*" MinWidth="20"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Button Command="{TemplateBinding GoToStartCommand}"
+                                Classes="ImageButton AdvancedNumericUpDownButton BackgroundButton StretchButton"
+                                Grid.Column="0">
+                            <Image Classes="DoubleLeftArrowImage"/>
+                        </Button>
+                        
+                        <Button Command="{TemplateBinding DecrementCommand}" 
+                                Classes="ImageButton AdvancedNumericUpDownButton BackgroundButton StretchButton"
+                                Grid.Column="1">
+                            <Image Classes="LeftArrowImage"/>
+                        </Button>
+                        
+                        <NumericUpDown Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                       FormatString="{Binding FormatString, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                       Increment="{Binding Increment, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                       Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                       Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                       ShowButtonSpinner="False"
+                                       Classes="AdvancedNumericUpDown"
+                                       Grid.Column="2"/>
+                        
+                        <Button Command="{TemplateBinding IncrementCommand}" 
+                                Classes="ImageButton AdvancedNumericUpDownButton BackgroundButton StretchButton"
+                                Grid.Column="3">
+                            <Image Classes="RightArrowImage"/>
+                        </Button>
+                        
+                        <Button Command="{TemplateBinding GoToEndCommand}" 
+                                Classes="ImageButton AdvancedNumericUpDownButton BackgroundButton StretchButton"
+                                Grid.Column="4">
+                            <Image Classes="DoubleRightArrowImage"/>
+                        </Button>
+                        
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>            
+    </Style>
+        
+</Styles>

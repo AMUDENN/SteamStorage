@@ -56,7 +56,13 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
     
+    <Style Selector="Button.StretchButton">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+    </Style>
+    
     <Style Selector="Button.ImageButton">
+        <Setter Property="Padding" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -74,7 +80,13 @@
             <Setter Property="Opacity" Value="0.9"/>
         </Style>
         <Style Selector="^:pressed">
-            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Padding" Value="1"/>
+        </Style>
+        <Style Selector="^.AdvancedNumericUpDownButton">
+            <Setter Property="Padding" Value="5, 10"/>
+            <Style Selector="^:pressed">
+                <Setter Property="Padding" Value="4, 9"/>
+            </Style>
         </Style>
     </Style>
     

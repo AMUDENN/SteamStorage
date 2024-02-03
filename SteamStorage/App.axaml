@@ -10,12 +10,14 @@
   
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="/Resources/Styles/AdvancedNumericUpDownStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/BorderStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/ButtonStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/CheckBoxStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/GridStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/ImageStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/ListBoxStyles.axaml"/>
+        <StyleInclude Source="/Resources/Styles/NumericUpDownStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/RadioButtonStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/RectangleStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ScrollViewerStyles.axaml"/>
@@ -29,6 +31,8 @@
 		<StyleInclude Source="/Resources/Images/Vectors/ActivesImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/ArchiveImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/CloseImage.axaml"/>
+        <StyleInclude Source="/Resources/Images/Vectors/DoubleLeftArrowImage.axaml"/>
+        <StyleInclude Source="/Resources/Images/Vectors/DoubleRightArrowImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/EmailImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/EmptyStarImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/FilterDownImage.axaml"/>
@@ -36,6 +40,7 @@
         <StyleInclude Source="/Resources/Images/Vectors/GithubImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/HomeImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/InventoryImage.axaml"/>
+        <StyleInclude Source="/Resources/Images/Vectors/LeftArrowImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/LoadingImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/LogInImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/LogoImage.axaml"/>
@@ -46,6 +51,7 @@
 		<StyleInclude Source="/Resources/Images/Vectors/ProfileImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RemoveFilters.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/RestoreImage.axaml"/>
+        <StyleInclude Source="/Resources/Images/Vectors/RightArrowImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/SettingsImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/StarImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/TelegramImage.axaml"/>

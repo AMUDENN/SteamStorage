@@ -97,7 +97,7 @@ public class ListItemsViewModel : ViewModelBase
         get => _listItemsModel.PageSize;
     }
 
-    public int PageNumber
+    public int? PageNumber
     {
         get => _listItemsModel.PageNumber;
         set => _listItemsModel.PageNumber = value;

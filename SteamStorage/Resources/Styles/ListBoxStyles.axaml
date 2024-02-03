@@ -83,7 +83,7 @@
 			<Setter.Value>
 				<ControlTemplate x:DataType="utilityModels:GameModel">
 					<Border x:Name="MainBorder"
-							Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+							Classes="BackgroundAdditionalBorder SmallRoundedBorder ForegroundBorderBrush"
 							Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
 					        Height="60" Width="60">
 						<Border Classes="LittleRoundedBorder"

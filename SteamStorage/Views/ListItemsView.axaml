@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:SteamStorage.ViewModels"
+             xmlns:controls="using:SteamStorage.Resources.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SteamStorage.Views.ListItemsView"
              x:DataType="vm:ListItemsViewModel">
@@ -176,13 +177,13 @@
                                    Classes="SmallTextBlock"/>
                     </StackPanel>
                     
-                    <NumericUpDown HorizontalAlignment="Right"
-                                   Value="{Binding PageNumber}"
-                                   FormatString="0"
-                                   Increment="1"
-                                   Minimum="1"
-                                   Maximum="{Binding PagesCount, Mode=OneWay}"
-                                   Grid.Column="1"/>
+                    <controls:AdvancedNumericUpDown HorizontalAlignment="Right"
+                                                    Value="{Binding PageNumber}"
+                                                    FormatString="0"
+                                                    Increment="1"
+                                                    Minimum="1"
+                                                    Maximum="{Binding PagesCount, Mode=OneWay}"
+                                                    Grid.Column="1"/>
                     
                 </Grid>
                 

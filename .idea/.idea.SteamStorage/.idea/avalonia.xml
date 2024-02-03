@@ -4,25 +4,33 @@
     <option name="projectPerEditor">
       <map>
         <entry key="SteamStorage/App.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Controls/AdvancedNumericUpDown.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Controls/TemplatedControl1.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/DoubleLeftArrowImage.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/DoubleRightArrowImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/EmailImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/EmptyStarImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/FilterDownImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/FilterUpImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/GithubImage.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/LeftArrowImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/LoadingImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/LogInImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/LogOutImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/MagnifierImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/RemoveFilters.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/RightArrowImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/SettingsImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/StarImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/TelegramImage.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/AdvancedNumericUpDownStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/BorderStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ButtonStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/CheckBoxStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/GridStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ImageStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ListBoxStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/NumericUpDownStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/RadioButtonStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/RectangleStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ScrollViewerStyles.axaml" value="SteamStorage/SteamStorage.csproj" />

@@ -1,12 +1,28 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style Selector="TextBox">
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="CaretBrush" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="SelectionBrush" Value="{DynamicResource ThirdAccentBrush}"/>
+        <Style Selector="^:focused /template/ TextBlock#PART_Watermark">
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+            <Setter Property="Opacity" Value="0.4"/>
+        </Style>
+        <Style Selector="^:focus /template/ TextBlock#PART_Watermark">
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+            <Setter Property="Opacity" Value="0.4"/>
+        </Style>
+        <Style Selector="^:pointerover /template/ TextBlock#PART_Watermark">
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+            <Setter Property="Opacity" Value="0.45"/>
+        </Style>
+    </Style>
 
     <Style Selector="TextBox.FilteringTextBox">
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-        <Setter Property="CaretBrush" Value="{DynamicResource ForegroundBrush}"/>
-        <Setter Property="SelectionBrush" Value="{DynamicResource ThirdAccentBrush}"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -65,18 +81,60 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>    
-        <Style Selector="^:focused /template/ TextBlock#PART_Watermark">
-            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-            <Setter Property="Opacity" Value="0.4"/>
-        </Style>
-        <Style Selector="^:focus /template/ TextBlock#PART_Watermark">
-            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-            <Setter Property="Opacity" Value="0.4"/>
-        </Style>
-        <Style Selector="^:pointerover /template/ TextBlock#PART_Watermark">
-            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-            <Setter Property="Opacity" Value="0.45"/>
-        </Style>
+    </Style>    
+    
+    <Style Selector="TextBox.NumericUpDownTextBox">
+        <Setter Property="LetterSpacing" Value="1.5"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Classes="UnderlineBorder ForegroundBorderBrush TransparentBorder">
+                        <Grid Margin="5, 0">
+                            <TextBlock x:Name="PART_Watermark"
+                                       Opacity="0.5"
+                                       Text="{TemplateBinding Watermark}"
+                                       TextAlignment="{TemplateBinding TextAlignment}"
+                                       TextWrapping="{TemplateBinding TextWrapping}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       IsVisible="{TemplateBinding Text, Converter={x:Static StringConverters.IsNullOrEmpty}}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Foreground="{TemplateBinding Foreground}"/>
+                            <ScrollViewer x:Name="PART_ScrollViewer"
+                                          HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                                          VerticalScrollBarVisibility="Disabled"
+                                          IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
+                                          AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
+                                          BringIntoViewOnFocusChange="{TemplateBinding (ScrollViewer.BringIntoViewOnFocusChange)}">
+                                <TextPresenter x:Name="PART_TextPresenter"
+                                               Text="{TemplateBinding Text, Mode=TwoWay}"
+                                               CaretIndex="{TemplateBinding CaretIndex}"
+                                               SelectionStart="{TemplateBinding SelectionStart}"
+                                               SelectionEnd="{TemplateBinding SelectionEnd}"
+                                               TextAlignment="{TemplateBinding TextAlignment}"
+                                               TextWrapping="{TemplateBinding TextWrapping}"
+                                               LineHeight="{TemplateBinding LineHeight}"
+                                               LetterSpacing="{TemplateBinding LetterSpacing}"
+                                               PasswordChar="{TemplateBinding PasswordChar}"
+                                               RevealPassword="{TemplateBinding RevealPassword}"
+                                               SelectionBrush="{TemplateBinding SelectionBrush}"
+                                               SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                               CaretBrush="{TemplateBinding CaretBrush}"
+                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                <ScrollViewer.Styles>
+                                    <Style Selector="ScrollContentPresenter#PART_ContentPresenter">
+                                        <Setter Property="Cursor" Value="IBeam" />
+                                    </Style>
+                                </ScrollViewer.Styles>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>    
     </Style>    
         
 </Styles>

@@ -13,10 +13,17 @@
 		</Setter>
 	</Style>
 		
+	<Style Selector="Border.UnderlineBorder">
+		<Setter Property="BorderThickness" Value="0, 0, 0, 2"/>
+	</Style>	
+		
 	<Style Selector="Border.SmallBorder">
 		<Setter Property="BorderThickness" Value="2"/>
-		<Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
 	</Style>
+		
+	<Style Selector="Border.ForegroundBorderBrush">
+		<Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
+	</Style>	
 	
 	<Style Selector="Border.BigRoundedBorder">
 		<Setter Property="CornerRadius" Value="20"/>
@@ -33,6 +40,10 @@
 	<Style Selector="Border.WithoutRoundingBorder">
 		<Setter Property="CornerRadius" Value="0"/>
 	</Style>
+		
+	<Style Selector="Border.TransparentBorder">
+		<Setter Property="Background" Value="Transparent"/>
+	</Style>	
 		
 	<Style Selector="Border.ForegroundBorder">
 		<Setter Property="Background" Value="{DynamicResource ForegroundBrush}"/>
