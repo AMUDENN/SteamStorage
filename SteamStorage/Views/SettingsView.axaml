@@ -2,10 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:SteamStorage.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="SteamStorage.Views.SettingsView">
+             x:Class="SteamStorage.Views.SettingsView"
+             x:DataType="vm:SettingsViewModel">
     
-    <Grid>
+    <Grid Margin="10, 0">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="6*"/>
@@ -18,12 +20,30 @@
         <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
                 Grid.Row="0">
             
-            <Grid RowDefinitions="30, 30, *" 
-                  Margin="30">
+            <Grid Margin="30">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" MinHeight="30"/>
+                    <RowDefinition Height="30" MinHeight="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 
                 <TextBlock Text="Внешний вид приложения"
                            Classes="MiddleTextBlock"
                            Grid.Row="0"/>
+                
+                <ListBox ItemsSource="{Binding ThemeModels, Mode=OneWay}" 
+                         SelectedItem="{Binding SelectedThemeModel}"
+                         Classes="ThemeVariantsListBox"
+                         Grid.Row="2">
+                    
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Horizontal" Margin="0"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    
+                </ListBox>
                 
             </Grid>
             
@@ -39,12 +59,16 @@
             
             <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
                     Grid.Column="0">
-                <Button Content="Экспорт в Excel" Classes="UnderlineButton HorizontalCenter"/>
+                <Button Content="Экспорт в Excel" 
+                        Command="{Binding ExportToExcelCommand}"
+                        Classes="UnderlineButton HorizontalCenter"/>
             </Border>
             
             <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
                     Grid.Column="2">
-                <Button Content="Справочная информация" Classes="UnderlineButton HorizontalCenter"/>
+                <Button Content="Справочная информация" 
+                        Command="{Binding OpenReferenceInformationCommand}"
+                        Classes="UnderlineButton HorizontalCenter"/>
             </Border>
             
         </Grid>

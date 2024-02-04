@@ -5,8 +5,11 @@ public class GameModel
     #region Properties
 
     public int Id { get; }
+
     public string ImageUrl { get; }
+
     public string Title { get; }
+
 
     #endregion Properties
 

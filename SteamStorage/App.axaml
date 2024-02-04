@@ -1,8 +1,9 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="SteamStorage.App"
 			 xmlns:utilities="using:SteamStorage.Utilities"
-             RequestedThemeVariant="Default">
+             xmlns:themes="using:SteamStorage.Utilities"
+             x:Class="SteamStorage.App"
+             RequestedThemeVariant="{x:Static themes:ThemeVariants.Classic}">
 
     <Application.DataTemplates>
 		<utilities:ViewLocator/>
@@ -50,6 +51,8 @@
 		<StyleInclude Source="/Resources/Images/Vectors/MaximizeImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/MinimizeImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/ProfileImage.axaml"/>
+        <StyleInclude Source="/Resources/Images/Vectors/RadioButtonFalseImage.axaml"/>
+        <StyleInclude Source="/Resources/Images/Vectors/RadioButtonTrueImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RemoveFilters.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/RestoreImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RightArrowImage.axaml"/>
@@ -60,9 +63,10 @@
 
 	<Application.Resources>
 		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceInclude Source="avares://SteamStorage/Resources/Themes/DarkTheme.axaml"/>
-			</ResourceDictionary.MergedDictionaries>
+			<ResourceDictionary.ThemeDictionaries>
+				<ResourceInclude x:Key="{x:Static themes:ThemeVariants.Classic}" Source="avares://SteamStorage/Resources/Themes/ClassicTheme.axaml"/>
+				<ResourceInclude x:Key="{x:Static themes:ThemeVariants.Lime}" Source="avares://SteamStorage/Resources/Themes/LimeTheme.axaml"/>
+			</ResourceDictionary.ThemeDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>
 	

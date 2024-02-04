@@ -1,15 +1,18 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Styling;
+using SteamStorage.ViewModels;
 using SteamStorage.ViewModels.Tools;
+using SteamStorage.Views;
 
 namespace SteamStorage.Models.UtilityModels;
 
-public class NavigationModel
+public class ThemeModel
 {
     #region Properties
 
-    public Image Image { get; }
-
     public string Title { get; }
+
+    public ThemeVariant ThemeVariant { get; }
 
     public ViewModelBase Page { get; }
 
@@ -17,13 +20,11 @@ public class NavigationModel
 
     #region Constructor
 
-    public NavigationModel(string image, string title, ViewModelBase page)
+    public ThemeModel(string title, ThemeVariant themeVariant)
     {
-        Image newImage = new();
-        newImage.Classes.Add(image);
-        Image = newImage;
         Title = title;
-        Page = page;
+        ThemeVariant = themeVariant;
+        Page = new ThemeViewModel(themeVariant);
     }
 
     #endregion Constructor

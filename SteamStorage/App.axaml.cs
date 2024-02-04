@@ -6,7 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using SteamStorage.ViewModels;
 using SteamStorage.Views;
 using System;
+using Avalonia.Styling;
 using SteamStorage.Models;
+using SteamStorage.Services.ThemeService;
+using SteamStorage.Utilities;
+using SteamStorage.Utilities.Events;
 using SteamStorageAPI;
 using SteamStorageAPI.Services.LoggerService;
 using SteamStorageAPI.Services.PingService;
@@ -16,7 +20,21 @@ namespace SteamStorage
 {
     public partial class App : Application
     {
+        #region Events
+
+        public delegate void ThemeChangedEventHandler(object? sender, ThemeChangedEventArgs args);
+
+        public event ThemeChangedEventHandler? ThemeChanged;
+
+        #endregion Events
+
+        #region Properties
+
         private static IServiceProvider Container { get; }
+
+        #endregion Properties
+
+        #region Constructor
 
         static App()
         {
@@ -36,6 +54,9 @@ namespace SteamStorage
             services.AddSingleton<ILoggerService>(new LoggerService(ApiConstants.LOG_PROGRAM_NAME,
                 ApiConstants.LOG_DATE_FORMAT, ApiConstants.LOG_DATETIME_FORMAT));
             services.AddSingleton<IPingService, PingService>();
+            
+            //Custom Services
+            services.AddScoped<IThemeService, ThemeService>();
 
             //MainWindow
             services.AddSingleton<MainWindow>();
@@ -57,12 +78,17 @@ namespace SteamStorage
             services.AddSingleton<MainModel>();
             services.AddSingleton<GamesModel>();
             services.AddSingleton<ListItemsModel>();
+            services.AddSingleton<SettingsModel>();
             services.AddSingleton<StatisticsModel>();
             services.AddSingleton<UserModel>();
 
 
             Container = services.BuildServiceProvider();
         }
+
+        #endregion Constructor
+
+        #region Methods
 
         public override void Initialize()
         {
@@ -85,5 +111,7 @@ namespace SteamStorage
 
             base.OnFrameworkInitializationCompleted();
         }
+
+        #endregion Methods
     }
 }

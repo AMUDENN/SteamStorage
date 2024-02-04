@@ -16,5 +16,4 @@ public class TokenChangedEventArgs : EventArgs
     }
 
     #endregion Constructor
-
 }

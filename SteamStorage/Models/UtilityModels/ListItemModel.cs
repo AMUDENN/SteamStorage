@@ -30,11 +30,17 @@ public class ListItemModel : ModelBase
     #region Properties
 
     private int Id { get; }
+
     public string ImageUrl { get; }
+
     public string Title { get; }
+
     public decimal CurrentPrice { get; }
+
     public string CurrencyMark { get; }
+
     public double Change7D { get; }
+
     public double Change30D { get; }
 
     public bool IsMarked

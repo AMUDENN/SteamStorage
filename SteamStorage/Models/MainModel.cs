@@ -30,8 +30,7 @@ public class MainModel : ModelBase
 
     private ViewModelBase _currentViewModel;
     private readonly ViewModelBase _settingsViewModel;
-
-    private readonly List<NavigationModel> _navigationOptions;
+    
     private NavigationModel? _selectedNavigationModel;
     private bool _isSettingsChecked;
 
@@ -69,10 +68,7 @@ public class MainModel : ModelBase
         private set => SetProperty(ref _currentViewModel, value);
     }
 
-    public IEnumerable<NavigationModel> NavigationOptions
-    {
-        get => _navigationOptions;
-    }
+    public IEnumerable<NavigationModel> NavigationOptions { get; }
 
     public NavigationModel? SelectedNavigationModel
     {
@@ -122,7 +118,7 @@ public class MainModel : ModelBase
         _apiClient = apiClient;
         _userModel = userModel;
 
-        _navigationOptions =
+        NavigationOptions =
         [
             new("HomeImage", "Главная", homeViewModel),
             new("ActivesImage", "Активы", activesViewModel),
@@ -133,8 +129,8 @@ public class MainModel : ModelBase
 
         _settingsViewModel = settingsViewModel;
 
-        _selectedNavigationModel = _navigationOptions.First();
-        _currentViewModel = _navigationOptions.First().Page;
+        _selectedNavigationModel = NavigationOptions.First();
+        _currentViewModel = _selectedNavigationModel.Page;
         _isSettingsChecked = false;
 
         _userName = USERNAME;
