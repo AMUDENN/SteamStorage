@@ -50,8 +50,8 @@ public class SettingsModel : ModelBase
 
         ThemeModels =
         [
-            new("Классическая", ThemeVariants.Classic),
-            new("Лаймовая", ThemeVariants.Lime)
+            new("Классический", ThemeVariants.Classic),
+            new("Лаймовый", ThemeVariants.Lime)
         ];
 
         ExportToExcelCommand = new(DoExportToExcelCommand);

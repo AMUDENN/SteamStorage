@@ -7,7 +7,7 @@
              x:Class="SteamStorage.Views.ThemeView"
              x:DataType="vm:ThemeViewModel">
     
-    <ThemeVariantScope RequestedThemeVariant="{Binding ThemeVariant}">
+    <ThemeVariantScope RequestedThemeVariant="{Binding ThemeVariant, Mode=OneWay}">
         
         <Border Background="{DynamicResource FirstAccentBrush}">
             

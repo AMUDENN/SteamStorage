@@ -102,6 +102,7 @@
 	</Style>
 	
 	<Style Selector="ListBox.ListItemsListBox">
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
 		<Style Selector="^ ListBoxItem">
 			<Setter Property="Margin" Value="0, 0, 0, 20"/>
 			<Setter Property="Template">
@@ -141,7 +142,7 @@
 								<StackPanel Orientation="Horizontal"
 								            HorizontalAlignment="Center"
 								            Grid.Row="0" Grid.Column="4">
-									<TextBlock Text="{Binding CurrentPrice, StringFormat=N0, Mode=OneWay}"
+									<TextBlock Text="{Binding CurrentPrice, StringFormat=N2, Mode=OneWay}"
 	                                           Classes="MiddleTextBlock"/>
 	                                <TextBlock Text="{Binding CurrencyMark}"
 	                                           Classes="MiddleTextBlock"
@@ -202,7 +203,7 @@
 										<RowDefinition Height="35" MinHeight="35"/>
 									</Grid.RowDefinitions>
 									<Grid Grid.Row="0">
-										<Image IsVisible="{Binding IsLoading}"
+										<Image IsVisible="{Binding IsLoading, Mode=OneWay}"
 										       Classes="LoadingImage"
 										       Height="24" Width="24"
 										       HorizontalAlignment="Center"
@@ -253,7 +254,7 @@
 	
 	<Style Selector="ListBox.ThemeVariantsListBox">
 		<Style Selector="^ ListBoxItem">
-			<Setter Property="Margin" Value="0, 0, 30, 0"/>
+			<Setter Property="Margin" Value="0, 0, 30, 30"/>
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate x:DataType="utilityModels:ThemeModel">
@@ -267,7 +268,7 @@
 							
 							<Border Classes="LittleRoundedBorder ForegroundBorderBrush SmallBorder"
 							        Grid.Row="0">
-								<ContentControl Content="{Binding Page}"/>
+								<ContentControl Content="{Binding Page, Mode=OneWay}"/>
 							</Border>
 							<Grid HorizontalAlignment="Center" VerticalAlignment="Stretch"
 							      Grid.Row="2">
@@ -288,7 +289,7 @@
 								       Height="24" Width="24"
 								       VerticalAlignment="Center"
 								       Grid.Column="0"/>
-								<TextBlock Text="{Binding Title}"
+								<TextBlock Text="{Binding Title, Mode=OneWay}"
                                            Classes="MiddleTextBlock CenterTextBlock"
                                            Height="30"
                                            VerticalAlignment="Center"

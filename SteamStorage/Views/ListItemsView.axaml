@@ -54,7 +54,7 @@
                      Classes="FilteringTextBox"
                      Grid.Column="3"/>
             
-            <Button Command="{Binding ClearFiltersCommand}"
+            <Button Command="{Binding ClearFiltersCommand, Mode=OneWay}"
                     Classes="ImageButton BackgroundButton"
                     Height="60" Width="60"
                     Grid.Column="5">
@@ -126,7 +126,7 @@
                        VerticalAlignment="Top"
                        Margin="0, 20"/>
             
-            <Image IsVisible="{Binding IsLoading}"
+            <Image IsVisible="{Binding IsLoading, Mode=OneWay}"
                    Classes="LoadingImage"
                    Height="48" Width="48"
                    HorizontalAlignment="Center"

@@ -60,14 +60,14 @@
             <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
                     Grid.Column="0">
                 <Button Content="Экспорт в Excel" 
-                        Command="{Binding ExportToExcelCommand}"
+                        Command="{Binding ExportToExcelCommand, Mode=OneWay}"
                         Classes="UnderlineButton HorizontalCenter"/>
             </Border>
             
             <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
                     Grid.Column="2">
                 <Button Content="Справочная информация" 
-                        Command="{Binding OpenReferenceInformationCommand}"
+                        Command="{Binding OpenReferenceInformationCommand, Mode=OneWay}"
                         Classes="UnderlineButton HorizontalCenter"/>
             </Border>
             

@@ -42,6 +42,7 @@
         <entry key="SteamStorage/Resources/Styles/TextBoxStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ToggleButtonStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/WindowStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Themes/ClassicTheme.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Themes/DarkTheme.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Themes/LimeTheme.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ActivesView.axaml" value="SteamStorage/SteamStorage.csproj" />
