@@ -24,6 +24,10 @@
 	<Style Selector="Border.ForegroundBorderBrush">
 		<Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
 	</Style>	
+		
+	<Style Selector="Border.FirstAccentBorderBrush">
+		<Setter Property="BorderBrush" Value="{DynamicResource FirstAccentBrush}"/>
+	</Style>	
 	
 	<Style Selector="Border.BigRoundedBorder">
 		<Setter Property="CornerRadius" Value="20"/>

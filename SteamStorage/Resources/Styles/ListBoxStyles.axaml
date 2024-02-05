@@ -22,6 +22,8 @@
 	</Style>
 	
 	<Style Selector="ListBox.NavigationListBox">
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
 		<Style Selector="^ ListBoxItem">
 			<Setter Property="Template">
 				<Setter.Value>
@@ -79,25 +81,29 @@
 		</Style>
 	</Style>
 	
-	<Style Selector="ListBox.GamesListBox ListBoxItem">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate x:DataType="utilityModels:GameModel">
-					<Border x:Name="MainBorder"
-							Classes="BackgroundAdditionalBorder SmallRoundedBorder ForegroundBorderBrush"
-							Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
-					        Height="60" Width="60">
-						<Border Classes="LittleRoundedBorder"
-						        Height="40" Width="40"
-						        HorizontalAlignment="Center" VerticalAlignment="Center">
-							<Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
-						</Border>
-					</Border>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-		<Style Selector="^:pointerover /template/ Border#MainBorder">
-			<Setter Property="Opacity" Value="0.8"/>
+	<Style Selector="ListBox.GamesListBox">
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+		<Style Selector="^ ListBoxItem">
+			<Setter Property="Template">
+            	<Setter.Value>
+            		<ControlTemplate x:DataType="utilityModels:GameModel">
+            			<Border x:Name="MainBorder"
+            					Classes="BackgroundAdditionalBorder SmallRoundedBorder FirstAccentBorderBrush"
+            					Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
+            			        Height="60" Width="60">
+            				<Border Classes="LittleRoundedBorder"
+            				        Height="40" Width="40"
+            				        HorizontalAlignment="Center" VerticalAlignment="Center">
+            					<Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
+            				</Border>
+            			</Border>
+            		</ControlTemplate>
+            	</Setter.Value>
+            </Setter>
+            <Style Selector="^:pointerover /template/ Border#MainBorder">
+            	<Setter Property="Opacity" Value="0.8"/>
+            </Style>
 		</Style>
 	</Style>
 	
@@ -253,12 +259,13 @@
 	</Style>
 	
 	<Style Selector="ListBox.ThemeVariantsListBox">
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
 		<Style Selector="^ ListBoxItem">
 			<Setter Property="Margin" Value="0, 0, 30, 30"/>
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate x:DataType="utilityModels:ThemeModel">
-						<Grid MinWidth="600">
+						<Grid MinWidth="500">
 							
 							<Grid.RowDefinitions>
 								<RowDefinition Height="*"/>
@@ -266,9 +273,11 @@
 								<RowDefinition Height="30" MinHeight="30"/>
 							</Grid.RowDefinitions>
 							
-							<Border Classes="LittleRoundedBorder ForegroundBorderBrush SmallBorder"
+							<Border Classes="BigRoundedBorder ForegroundBorderBrush SmallBorder"
 							        Grid.Row="0">
-								<ContentControl Content="{Binding Page, Mode=OneWay}"/>
+								<Border Classes="BigRoundedBorder">
+									<ContentControl Content="{Binding Page, Mode=OneWay}"/>
+								</Border>
 							</Border>
 							<Grid HorizontalAlignment="Center" VerticalAlignment="Stretch"
 							      Grid.Row="2">

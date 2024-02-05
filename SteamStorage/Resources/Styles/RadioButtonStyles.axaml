@@ -63,7 +63,7 @@
 			<Setter.Value>
 				<ControlTemplate>
 					<Border x:Name="MainBorder"
-					        Classes="BackgroundAdditionalBorder SmallRoundedBorder ForegroundBorderBrush"
+					        Classes="BackgroundAdditionalBorder SmallRoundedBorder FirstAccentBorderBrush"
 					        Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
 					        Height="60" Width="60">
 						<TextBlock Text="{TemplateBinding Content}"

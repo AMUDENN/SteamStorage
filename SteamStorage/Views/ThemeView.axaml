@@ -9,7 +9,103 @@
     
     <ThemeVariantScope RequestedThemeVariant="{Binding ThemeVariant, Mode=OneWay}">
         
-        <Border Background="{DynamicResource FirstAccentBrush}">
+        <Border Classes="BackgroundBorder">
+            
+            <Grid RowDefinitions="7*,10,6*,10,4*" 
+                  ColumnDefinitions="30*,3*,50*,3*,50*"
+                  Margin="10" >
+
+                <Border Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                        Grid.RowSpan="5" Grid.Row="0" Grid.Column="0">
+                    
+                    <Grid RowDefinitions="9*, 4*, 2*, 6*, 26*, 6*, 10*" Margin="0, 7">
+                        
+                        <Border Classes="LittleRoundedBorder"
+                                VerticalAlignment="Top"
+                                Height="40" Width="40"
+                                Grid.Row="0">
+                            
+                            <Grid>
+                                
+                                <Border Classes="BackgroundBorder"
+                                        Opacity="0.5"/>
+                                
+                                <Image x:Name="AccountImage"
+                                       Classes="AccountImage"
+                                       Margin="5"/>
+                                
+                            </Grid>
+                            
+                        </Border>
+                        
+                        <TextBlock Text="Username" 
+                                   Classes="CenterTextBlock"
+                                   FontSize="12"
+                                   Grid.Row="1"/>
+                        
+                        <TextBlock Text="SteamID" 
+                                   Classes="CenterTextBlock LightTextBlock" 
+                                   FontSize="6"
+                                   Grid.Row="2"/>
+                        
+                        <Rectangle Height="2"
+                                   Margin="20, 0" 
+                                   Grid.Row="3"/>
+                        
+                        <Rectangle Height="2"
+                                   Margin="20, 0" 
+                                   Grid.Row="5"/>
+                        
+                    </Grid>
+                    
+                </Border>
+                
+                <Border Classes="FirstAccentGradientBorder SmallRoundedBorder"
+                        Grid.Row="0" Grid.Column="2">
+                    
+                </Border>
+                
+                <Grid Grid.Row="0" Grid.Column="4">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10" MinHeight="10"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Border Classes="SecondAccentGradientBorder SmallRoundedBorder"
+                            Grid.Row="0">
+                    
+                    </Border>
+                    
+                    <Border Classes="ThirdAccentGradientBorder SmallRoundedBorder"
+                            Grid.Row="2">
+                    
+                    </Border>
+                    
+                </Grid>
+                
+                <Border Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                        Grid.Row="2" Grid.Column="2">
+                    
+                </Border>
+                
+                <Border Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                        Grid.Row="2" Grid.Column="4">
+                    
+                </Border>
+                
+                <Border Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                        Grid.Row="4" Grid.Column="2">
+                    
+                </Border>
+                
+                <Border Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                        Grid.Row="4" Grid.Column="4">
+                    
+                </Border>
+                
+            </Grid>
             
         </Border>
         

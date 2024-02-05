@@ -8,6 +8,7 @@ public class PercentConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
+        if (value is null || parameter is null) return value;
         try
         {
             double val = System.Convert.ToDouble(value);
