@@ -45,19 +45,18 @@
         <Style Selector="^:pointerover /template/ Border#PointerOverBorder">
             <Setter Property="Opacity" Value="0.3"/>
         </Style>
+        <Style Selector="^.Min">
+	        <Style Selector="^ /template/ Grid#ContentGrid">
+            	<Setter Property="Margin" Value="20, 0"/>
+            </Style>
+            <Style Selector="^ /template/ Border#ItemBorder">
+                <Setter Property="CornerRadius" Value="10"/>
+            </Style>
+            <Style Selector="^ /template/ TextBlock#TitleTextBlock">
+                <Setter Property="IsVisible" Value="False"/>
+            </Style>
+        </Style>
     </Style>
-	
-	<Style Selector="RadioButton.NavigationRadioButton.Min">
-		<Style Selector="^ /template/ Grid#ContentGrid">
-			<Setter Property="Margin" Value="20, 0"/>
-		</Style>
-		<Style Selector="^ /template/ Border#ItemBorder">
-        	<Setter Property="CornerRadius" Value="10"/>
-        </Style>
-        <Style Selector="^ /template/ TextBlock#TitleTextBlock">
-        	<Setter Property="IsVisible" Value="False"/>
-        </Style>
-	</Style>
 	
 	<Style Selector="RadioButton.GamesRadioButton">
 		<Setter Property="Template">
