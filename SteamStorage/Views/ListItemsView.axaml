@@ -33,12 +33,12 @@
             
             <RadioButton Content="Все"
                          IsChecked="{Binding IsAllGamesChecked}"
-                         Classes="GamesRadioButton"
+                         Classes="GameRadioButton FirstAccentLinearGameRadioButton"
                          Grid.Column="0"/>
             
             <ListBox ItemsSource="{Binding GameModels, Mode=OneWay}" 
                      SelectedItem="{Binding SelectedGameModel}"
-                     Classes="GamesListBox"
+                     Classes="GamesListBox FirstAccentLinearGameListBox"
                      Grid.Column="2">
             			
                 <ListBox.ItemsPanel>
@@ -58,8 +58,8 @@
                     Classes="ImageButton BackgroundButton"
                     Height="60" Width="60"
                     Grid.Column="5">
-                <Image Classes="RemoveFiltersImage"
-                       Height="40" Width="40"/>
+                <controls:VectorImage Classes="RemoveFiltersVectorImage ForegroundVectorImage"
+                                      Height="40" Width="40"/>
             </Button>
             
         </Grid>

@@ -26,6 +26,7 @@
 		<StyleInclude Source="/Resources/Styles/TextBlockStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/TextBoxStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ToggleButtonStyles.axaml"/>
+        <StyleInclude Source="/Resources/Styles/VectorImageStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/WindowStyles.axaml"/>
 
 		<StyleInclude Source="/Resources/Images/Vectors/AccountImage.axaml"/>

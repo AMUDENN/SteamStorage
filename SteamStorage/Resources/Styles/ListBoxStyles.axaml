@@ -89,7 +89,7 @@
             	<Setter.Value>
             		<ControlTemplate x:DataType="utilityModels:GameModel">
             			<Border x:Name="MainBorder"
-            					Classes="BackgroundAdditionalBorder SmallRoundedBorder FirstAccentBorderBrush"
+            					Classes="BackgroundAdditionalBorder SmallRoundedBorder"
             					Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
             			        Height="60" Width="60">
             				<Border Classes="LittleRoundedBorder"
@@ -105,6 +105,15 @@
             	<Setter Property="Opacity" Value="0.8"/>
             </Style>
 		</Style>
+		<Style Selector="^.FirstAccentLinearGameListBox ListBoxItem /template/ Border#MainBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource FirstAccentLinearBrush}"/>
+        </Style>
+        <Style Selector="^.SecondAccentLinearGameListBox ListBoxItem /template/ Border#MainBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondAccentLinearBrush}"/>
+        </Style>
+        <Style Selector="^.ThirdAccentLinearGameListBox ListBoxItem /template/ Border#MainBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource ThirdAccentLinearBrush}"/>
+        </Style>
 	</Style>
 	
 	<Style Selector="ListBox.ListItemsListBox">
