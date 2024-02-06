@@ -1,5 +1,6 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:SteamStorage.Resources.Controls">
     
     <Style Selector="TextBox">
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
@@ -34,8 +35,8 @@
                                 <ColumnDefinition Width="20" MinWidth="10"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Classes="MagnifierImage"
-                                   Grid.Column="0"/>
+                            <controls:VectorImage Classes="MagnifierVectorImage ForegroundVectorImage"
+                                                  Grid.Column="0"/>
                             <TextBlock x:Name="PART_Watermark"
                                        Opacity="0.5"
                                        Text="{TemplateBinding Watermark}"

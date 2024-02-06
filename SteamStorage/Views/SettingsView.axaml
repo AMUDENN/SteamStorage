@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:SteamStorage.ViewModels"
+             xmlns:controls="using:SteamStorage.Resources.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SteamStorage.Views.SettingsView"
              x:DataType="vm:SettingsViewModel">
@@ -102,7 +103,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         
-                        <Image Classes="GithubImage" Grid.Column="0"/>
+                        <controls:VectorImage Classes="GithubVectorImage ForegroundVectorImage" Grid.Column="0"/>
                         
                         <TextBlock Text="GitHub" 
                                    Classes="MiddleTextBlock" 
@@ -137,7 +138,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         
-                        <Image Classes="TelegramImage" Grid.Column="0"/>
+                        <controls:VectorImage Classes="TelegramVectorImage ForegroundVectorImage" Grid.Column="0"/>
                         
                         <TextBlock Text="Telegram" 
                                    Classes="MiddleTextBlock" 
@@ -172,7 +173,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         
-                        <Image Classes="EmailImage" Grid.Column="0"/>
+                        <controls:VectorImage Classes="EmailVectorImage ForegroundVectorImage" Grid.Column="0"/>
                         
                         <TextBlock Text="Email" 
                                    Classes="MiddleTextBlock" 

@@ -1,6 +1,23 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
+    <Style Selector="Button.HorizontalCenter">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+    
+    <Style Selector="Button.StretchButton">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+    </Style>
+    
+    <Style Selector="Button.HorizontalLeftButton">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+    
+    <Style Selector="Button.BackgroundButton">
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+    </Style>
+        
     <Style Selector="Button.ImageTextButton">
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Template">
@@ -38,27 +55,17 @@
         <Style Selector="^:pressed /template/ Border#PointerOverBorder">
             <Setter Property="Opacity" Value="0.5"/>
         </Style>
-    </Style>
-    
-    <Style Selector="Button.ImageTextButton.Min">
-        <Style Selector="^ /template/ Grid#ContentGrid">
-            <Setter Property="Margin" Value="20, 0"/>
+        <Style Selector="^.Min">
+            <Style Selector="^ /template/ Grid#ContentGrid">
+                <Setter Property="Margin" Value="20, 0"/>
+            </Style>
+            <Style Selector="^ /template/ Border#ItemBorder">
+                <Setter Property="CornerRadius" Value="10"/>
+            </Style>
+            <Style Selector="^ /template/ TextBlock#TitleTextBlock">
+                <Setter Property="IsVisible" Value="False"/>
+            </Style>
         </Style>
-        <Style Selector="^ /template/ Border#ItemBorder">
-            <Setter Property="CornerRadius" Value="10"/>
-        </Style>
-        <Style Selector="^ /template/ TextBlock#TitleTextBlock">
-            <Setter Property="IsVisible" Value="False"/>
-        </Style>
-    </Style>
-    
-    <Style Selector="Button.HorizontalCenter">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-    </Style>
-    
-    <Style Selector="Button.StretchButton">
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="VerticalAlignment" Value="Stretch"/>
     </Style>
     
     <Style Selector="Button.ImageButton">
@@ -90,10 +97,6 @@
         </Style>
     </Style>
     
-    <Style Selector="Button.HorizontalLeftButton">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-    </Style>
-    
     <Style Selector="Button.UnderlineButton">
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="Template">
@@ -105,10 +108,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-    
-    <Style Selector="Button.BackgroundButton">
-        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
     </Style>
 
 </Styles>

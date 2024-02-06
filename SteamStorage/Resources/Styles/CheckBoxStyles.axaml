@@ -1,30 +1,29 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:SteamStorage.Resources.Controls">
 
     <Style Selector="CheckBox.StarCheckBox">
         <Setter Property="Template">
             <ControlTemplate>
                 <Grid HorizontalAlignment="Center"
                       VerticalAlignment="Stretch">
-                    <Image x:Name="EmptyImage"
-                           Classes="EmptyStarImage"
-                           Opacity="1"/>
-                    <Image x:Name="FillImage"
-                           Classes="StarImage"
-                           Opacity="0"/>
+                    <controls:VectorImage x:Name="EmptyVectorImage" 
+                                          Classes="EmptyStarVectorImage ForegroundVectorImage" 
+                                          Opacity="1"/>
+                    <controls:VectorImage x:Name="FillVectorImage" 
+                                          Classes="StarVectorImage ForegroundVectorImage" 
+                                          Opacity="0"/>
                 </Grid>
             </ControlTemplate>
         </Setter>
         <Style Selector="^:checked">
-            <Style Selector="^ /template/ Image#EmptyImage">
+            <Style Selector="^ /template/ controls|VectorImage#EmptyVectorImage">
                 <Setter Property="Opacity" Value="0"/>
             </Style>
-            <Style Selector="^ /template/ Image#FillImage">
+            <Style Selector="^ /template/ controls|VectorImage#FillVectorImage">
                 <Setter Property="Opacity" Value="1"/>
             </Style>
         </Style>
     </Style>    
-    
-    
         
 </Styles>

@@ -1,0 +1,26 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:SteamStorage.Resources.Controls"
+        x:DataType="controls:VectorImage">
+	
+	<Style Selector="controls|VectorImage.MinimizeVectorImage">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Image>
+						<Image.Source>
+							<DrawingImage>
+								<DrawingImage.Drawing>
+									<DrawingGroup ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+										<GeometryDrawing Brush="{Binding Brush, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M64,64z M0,0z M60,36L4,36C1.7875,36 0,34.2125 0,32 0,29.7875 1.7875,28 4,28L60,28C62.2125,28 64,29.7875 64,32 64,34.2125 62.2125,36 60,36z" />
+									</DrawingGroup>
+								</DrawingImage.Drawing>
+							</DrawingImage>
+						</Image.Source>
+					</Image>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+</Styles>

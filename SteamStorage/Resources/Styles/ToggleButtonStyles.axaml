@@ -1,5 +1,6 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:SteamStorage.Resources.Controls">
 
     <Style Selector="ToggleButton.OrderingToggleButton">
         <Setter Property="IsThreeState" Value="True"/>
@@ -30,23 +31,23 @@
                                 <RowDefinition Height="3*" MinHeight="3"/>
                                 <RowDefinition Height="5*" MinHeight="5"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="UpImage"
-                                   Classes="FilterUpImage"
-                                   Opacity="0.8"
-                                   Grid.Row="0"/>
-                            <Image x:Name="DownImage"
-                                   Classes="FilterDownImage"
-                                   Opacity="0.8"
-                                   Grid.Row="2"/>
+                            <controls:VectorImage x:Name="UpVectorImage"
+                                                  Classes="FilterUpVectorImage ForegroundVectorImage"
+                                                  Opacity="0.8"
+                                                  Grid.Row="0"/>
+                            <controls:VectorImage x:Name="DownVectorImage"
+                                                  Classes="FilterDownVectorImage ForegroundVectorImage"
+                                                  Opacity="0.8"
+                                                  Grid.Row="2"/>
                         </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style Selector="^[IsChecked=True] /template/ Image#DownImage">
+        <Style Selector="^[IsChecked=True] /template/ controls|VectorImage#DownVectorImage">
             <Setter Property="Opacity" Value="0"/>
         </Style>
-        <Style Selector="^[IsChecked=False] /template/ Image#UpImage">
+        <Style Selector="^[IsChecked=False] /template/ controls|VectorImage#UpVectorImage">
             <Setter Property="Opacity" Value="0"/>
         </Style>
     </Style>    

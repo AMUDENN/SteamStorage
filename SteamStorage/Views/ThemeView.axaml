@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:SteamStorage.ViewModels"
+             xmlns:controls="using:SteamStorage.Resources.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SteamStorage.Views.ThemeView"
              x:DataType="vm:ThemeViewModel">
@@ -30,9 +31,8 @@
                                 <Border Classes="BackgroundBorder"
                                         Opacity="0.5"/>
                                 
-                                <Image x:Name="AccountImage"
-                                       Classes="AccountImage"
-                                       Margin="5"/>
+                                <controls:VectorImage Classes="AccountVectorImage ForegroundVectorImage"
+                                                      Margin="5"/>
                                 
                             </Grid>
                             

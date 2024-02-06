@@ -1,0 +1,27 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:SteamStorage.Resources.Controls"
+        x:DataType="controls:VectorImage">
+	
+	<Style Selector="controls|VectorImage.RestoreVectorImage">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Image>
+						<Image.Source>
+							<DrawingImage>
+								<DrawingImage.Drawing>
+									<DrawingGroup ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+										<GeometryDrawing Brush="{Binding Brush, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M64,64z M0,0z M42.9691,20L4,20C3.20464,20.0009 2.44211,20.3173 1.8797,20.8797 1.31729,21.4421 1.00093,22.2046 1,23L1,58.125C1.00093,58.9204 1.31729,59.6829 1.8797,60.2453 2.44211,60.8077 3.20464,61.1241 4,61.125L42.9691,61.125C43.7645,61.1241 44.527,60.8077 45.0894,60.2453 45.6518,59.6829 45.9682,58.9204 45.9691,58.125L45.9691,23C45.9682,22.2046 45.6518,21.4421 45.0894,20.8797 44.527,20.3173 43.7645,20.0009 42.9691,20z M8.96924,52.875L8.96924,27.875 23.9692,27.875 37.9692,27.875 37.9692,38.875 37.9692,52.875 23.9692,52.875 8.96924,52.875z" />
+										<GeometryDrawing Brush="{Binding Brush, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M64,64z M0,0z M59,4L19,4C18.2046,4.00093 17.4421,4.31729 16.8797,4.8797 16.3173,5.44211 16.0009,6.20463 16,7L16,16 24,16 24,12 54,12 54,38.5 50,38.5 50,46.3929 59,46.3929C59.7954,46.3919 60.5579,46.0756 61.1203,45.5132 61.6827,44.9508 61.9991,44.1882 62,43.3929L62,7C61.9991,6.20463 61.6827,5.44211 61.1203,4.8797 60.5579,4.31729 59.7954,4.00093 59,4z" />
+									</DrawingGroup>
+								</DrawingImage.Drawing>
+							</DrawingImage>
+						</Image.Source>
+					</Image>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+</Styles>

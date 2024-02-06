@@ -126,12 +126,12 @@
                        VerticalAlignment="Top"
                        Margin="0, 20"/>
             
-            <Image IsVisible="{Binding IsLoading, Mode=OneWay}"
-                   Classes="LoadingImage"
-                   Height="48" Width="48"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top"
-                   Margin="0, 20"/>
+            <controls:VectorImage IsVisible="{Binding IsLoading, Mode=OneWay}"
+                                  Classes="LoadingVectorImage ForegroundVectorImage"
+                                  Height="48" Width="48"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Top"
+                                  Margin="0, 20"/>
                        
             <ListBox ItemsSource="{Binding ListItemModels, Mode=OneWay}"
                      SelectedItem="{Binding SelectedListItemModel}"

@@ -1,5 +1,4 @@
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Media;
 
@@ -9,17 +8,17 @@ public class VectorImage : TemplatedControl
 {
     #region PropertiesDeclaration
 
-    public static readonly StyledProperty<IBrush?> FillProperty =
-        AvaloniaProperty.Register<AdvancedNumericUpDown, IBrush?>(nameof(Fill));
+    public static readonly StyledProperty<IBrush?> BrushProperty =
+        AvaloniaProperty.Register<AdvancedNumericUpDown, IBrush?>(nameof(Brush));
 
     #endregion PropertiesDeclaration
 
     #region Properties
 
-    public IBrush? Fill
+    public IBrush? Brush
     {
-        get => GetValue(FillProperty);
-        set => SetValue(FillProperty, value);
+        get => GetValue(BrushProperty);
+        set => SetValue(BrushProperty, value);
     }
 
     #endregion Properties

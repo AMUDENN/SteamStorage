@@ -1,6 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:vm="using:SteamStorage.ViewModels"
+        xmlns:controls="using:SteamStorage.Resources.Controls"
 		x:DataType="vm:MainWindowViewModel">
 
 	<Style Selector="Window">
@@ -18,8 +19,9 @@
 						<Grid ColumnDefinitions="36, *, 108"
 							  Margin="10, 5"
 							  Grid.Row="0">
-							<Image Classes="LogoImage" 
-								   Grid.Column="0"/>
+							<controls:VectorImage Classes="LogoVectorImage" 
+							                      Margin="4"
+							                      Grid.Column="0"/>
 							<TextBlock Text="{TemplateBinding Title}" 
 									   Classes="CenterTextBlock"
 									   Grid.Column="1"/>
@@ -31,22 +33,22 @@
 								<Button x:Name="MinimizeButton"
 										Classes="WindowButton"
 										Command="{Binding MinimizeCommand, Mode=OneWay}">
-									<Image Classes="MinimizeImage"/>
+									<controls:VectorImage Classes="MinimizeVectorImage ForegroundVectorImage"/>
 								</Button>
 								<Button x:Name="MaximizeButton"
 										Classes="WindowButton"
 										Command="{Binding MaximizeCommand, Mode=OneWay}">
-									<Image Classes="MaximizeImage"/>
+									<controls:VectorImage Classes="MaximizeVectorImage ForegroundVectorImage"/>
 								</Button>
 								<Button x:Name="RestoreButton"
 										Classes="WindowButton"
 										Command="{Binding RestoreCommand, Mode=OneWay}">
-									<Image Classes="RestoreImage"/>
+									<controls:VectorImage Classes="RestoreVectorImage ForegroundVectorImage"/>
 								</Button>
 								<Button x:Name="CloseButton"
 										Classes="WindowButton"
 										Command="{Binding CloseCommand, Mode=OneWay}">
-									<Image Classes="CloseImage"/>
+									<controls:VectorImage Classes="CloseVectorImage ForegroundVectorImage"/>
 								</Button>
 							</StackPanel>
 						</Grid>
@@ -98,10 +100,6 @@
 
 	<Style Selector="Window TextBlock">
 		<Setter Property="FontSize" Value="16"/>
-	</Style>
-
-	<Style Selector="Image.LogoImage">
-		<Setter Property="Margin" Value="4"/>
 	</Style>
 	
 </Styles>

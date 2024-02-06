@@ -120,11 +120,11 @@ public class MainModel : ModelBase
 
         NavigationOptions =
         [
-            new("HomeImage", "Главная", homeViewModel),
-            new("ActivesImage", "Активы", activesViewModel),
-            new("ArchiveImage", "Архив", archiveViewModel),
-            new("InventoryImage", "Инвентарь", inventoryViewModel),
-            new("ProfileImage", "Профиль", profileViewModel)
+            new("HomeVectorImage", "Главная", homeViewModel),
+            new("ActivesVectorImage", "Активы", activesViewModel),
+            new("ArchiveVectorImage", "Архив", archiveViewModel),
+            new("InventoryVectorImage", "Инвентарь", inventoryViewModel),
+            new("ProfileVectorImage", "Профиль", profileViewModel)
         ];
 
         _settingsViewModel = settingsViewModel;

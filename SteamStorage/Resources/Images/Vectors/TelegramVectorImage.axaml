@@ -1,0 +1,28 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:SteamStorage.Resources.Controls"
+        x:DataType="controls:VectorImage">
+	
+	<Style Selector="controls|VectorImage.TelegramVectorImage">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Image>
+						<Image.Source>
+							<DrawingImage>
+								<DrawingImage.Drawing>
+									<DrawingGroup ClipGeometry="M0,0 V72 H72 V0 H0 Z">
+										<DrawingGroup Opacity="1">
+											<GeometryDrawing Brush="{Binding Brush, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F0 M72,72z M0,0z M72,36C72,55.8822 55.8822,72 36,72 16.1178,72 0,55.8822 0,36 0,16.1178 16.1178,0 36,0 55.8822,0 72,16.1178 72,36z M24.1073,32.7023C20.501,34.2768 16.7957,35.8947 13.4074,37.761 11.6382,39.0564 13.9896,39.9728 16.1957,40.8323 16.5464,40.9689 16.8933,41.104 17.2196,41.2391 17.4911,41.3226 17.767,41.4105 18.0468,41.4996 20.5004,42.2812 23.236,43.1529 25.618,41.8418 29.5309,39.594 33.2235,36.9954 36.9133,34.3988 38.1222,33.548 39.3307,32.6974 40.5466,31.8596 40.6036,31.8231 40.6679,31.7814 40.7382,31.736 41.7739,31.0644 44.1036,29.5543 43.2419,31.6351 41.2043,33.8635 39.0216,35.836 36.8273,37.8195 35.3483,39.1562 33.8638,40.4977 32.4148,41.9258 31.1529,42.9511 29.8424,45.0132 31.2555,46.4492 34.5103,48.7276 37.8161,50.951 41.1198,53.173 42.1949,53.896 43.2699,54.6191 44.3427,55.3438 46.161,56.7956 49.0028,55.6212 49.4025,53.3528 49.5803,52.3092 49.7588,51.2658 49.9372,50.2222 50.9236,44.4552 51.9104,38.6861 52.782,32.9002 52.9005,31.9926 53.0347,31.0851 53.1691,30.1771 53.4948,27.9765 53.8209,25.7731 53.9228,23.5606 53.6603,21.3526 50.983,21.8382 49.4932,22.3347 41.8354,25.2486 34.2542,28.3785 26.7029,31.5636 25.8474,31.9425 24.9803,32.3211 24.1073,32.7023z" />
+										</DrawingGroup>
+									</DrawingGroup>
+								</DrawingImage.Drawing>
+							</DrawingImage>
+						</Image.Source>
+					</Image>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+</Styles>

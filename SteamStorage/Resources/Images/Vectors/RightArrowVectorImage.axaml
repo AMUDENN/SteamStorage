@@ -1,0 +1,32 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:SteamStorage.Resources.Controls"
+        x:DataType="controls:VectorImage">
+	
+	<Style Selector="controls|VectorImage.RightArrowVectorImage">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Image>
+						<Image.Source>
+							<DrawingImage>
+								<DrawingImage.Drawing>
+									<DrawingGroup ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+										<GeometryDrawing Brush="{Binding Brush, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M64,64z M0,0z M15,13.3169L15,20.1333C15,20.6025,15.2507,21.0373,15.6575,21.2715L32.2685,30.8616C33.1446,31.3678,33.1446,32.6326,32.2685,33.1389L15.6575,42.729C15.2507,42.964,15,43.3979,15,43.8672L15,50.6836C15,51.6952,16.0955,52.3281,16.9716,51.8218L49.3316,33.1389C50.2077,32.6326,50.2077,31.3678,49.3316,30.8616L16.9716,12.1778C16.0955,11.6724,15,12.3044,15,13.3169z" />
+										<GeometryDrawing Brush="{Binding Brush, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M64,64z M0,0z M49.3318,30.8616L16.9718,12.1779C16.8131,12.0858,16.6471,12.0431,16.4811,12.0217L47.6881,30.039C48.5642,30.5452,48.5642,31.81,47.6881,32.3163L15.3281,51C15.2459,51.0477 15.1596,51.0756 15.075,51.1036 15.3281,51.8547 16.2263,52.2525 16.9718,51.8219L49.3318,33.1389C50.2087,32.6327,50.2087,31.367,49.3318,30.8616z" />
+										<GeometryDrawing Geometry="F1 M64,64z M0,0z M15,13.3169L15,20.1333C15,20.6025,15.2507,21.0373,15.6575,21.2715L32.2685,30.8616C33.1446,31.3678,33.1446,32.6326,32.2685,33.1389L15.6575,42.729C15.2507,42.964,15,43.3979,15,43.8672L15,50.6836C15,51.6952,16.0955,52.3281,16.9716,51.8218L49.3316,33.1389C50.2077,32.6326,50.2077,31.3678,49.3316,30.8616L16.9716,12.1778C16.0955,11.6724,15,12.3044,15,13.3169z">
+											<GeometryDrawing.Pen>
+												<Pen Brush="{Binding Brush, RelativeSource={RelativeSource TemplatedParent}}" Thickness="1" LineCap="Flat" LineJoin="Miter" MiterLimit="10" />
+											</GeometryDrawing.Pen>
+										</GeometryDrawing>
+									</DrawingGroup>
+								</DrawingImage.Drawing>
+							</DrawingImage>
+						</Image.Source>
+					</Image>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+</Styles>

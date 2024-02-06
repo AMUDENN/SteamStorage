@@ -5,6 +5,7 @@
 			 xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
 			 xmlns:vm="using:SteamStorage.ViewModels"
 			 xmlns:converters="using:SteamStorage.Resources.Converters"
+             xmlns:controls="using:SteamStorage.Resources.Controls"
              mc:Ignorable="d" 
 			 d:DesignWidth="1440" d:DesignHeight="1024"
              x:Class="SteamStorage.Views.MainView"
@@ -51,10 +52,10 @@
 					<Setter Property="CornerRadius" Value="20"/>
 				</Style>
 
-				<Style Selector="Border#MenuBorder Image#AccountImage">
+				<Style Selector="Border#MenuBorder controls|VectorImage#AccountVectorImage">
 					<Setter Property="Margin" Value="8"/>
 				</Style>
-				<Style Selector="Border#MenuBorder:pointerover Image#AccountImage">
+				<Style Selector="Border#MenuBorder:pointerover controls|VectorImage#AccountVectorImage">
 					<Setter Property="Margin" Value="16"/>
 				</Style>
 				
@@ -68,8 +69,8 @@
 					<Grid>
 						<Border Classes="BackgroundBorder"
 								Opacity="0.5"/>
-						<Image x:Name="AccountImage"
-							   Classes="AccountImage"/>
+						<controls:VectorImage x:Name="AccountVectorImage"
+						                      Classes="AccountVectorImage ForegroundVectorImage"/>
 						<Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
 					</Grid>
 				</Border>
@@ -109,7 +110,7 @@
 								 Classes="NavigationRadioButton"
 								 Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}" 
 								 Grid.Row="0">
-						<Image Classes="SettingsImage"/>
+						<controls:VectorImage Classes="SettingsVectorImage ForegroundVectorImage"/>
 					</RadioButton>
 
 					<Button Tag="Войти"
@@ -119,7 +120,7 @@
 					        Foreground="{DynamicResource PositiveBrush}"
 							Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
 							Grid.Row="2">
-						<Image Classes="LogInImage"/>
+						<controls:VectorImage Classes="LogInVectorImage PositiveVectorImage"/>
 					</Button>
 					
 					<Button Tag="Выйти"
@@ -129,7 +130,7 @@
 					        Foreground="{DynamicResource NegativeBrush}"
 							Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}"
 							Grid.Row="2">
-						<Image Classes="LogOutImage"/>
+						<controls:VectorImage Classes="LogOutVectorImage NegativeVectorImage"/>
 					</Button>
 										
 				</Grid>
@@ -165,7 +166,7 @@
 					<RowDefinition Height="Auto" MinHeight="80"/>
 				</Grid.RowDefinitions>
 				
-				<Image Classes="LockImage" Grid.Row="0"/>
+				<controls:VectorImage Classes="LockVectorImage ForegroundVectorImage" Grid.Row="0"/>
 				
 				<TextBlock Text="Войдите в аккаунт, чтобы просматривать содержимое" 
 				           Classes="CenterTextBlock MiddleTextBlock"

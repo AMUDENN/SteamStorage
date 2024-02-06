@@ -19,13 +19,13 @@
                         <Button Command="{TemplateBinding GoToStartCommand}"
                                 Classes="ImageButton AdvancedNumericUpDownButton BackgroundButton StretchButton"
                                 Grid.Column="0">
-                            <Image Classes="DoubleLeftArrowImage"/>
+                            <controls:VectorImage Classes="DoubleLeftArrowVectorImage ForegroundVectorImage"/>
                         </Button>
                         
                         <Button Command="{TemplateBinding DecrementCommand}" 
                                 Classes="ImageButton AdvancedNumericUpDownButton BackgroundButton StretchButton"
                                 Grid.Column="1">
-                            <Image Classes="LeftArrowImage"/>
+                            <controls:VectorImage Classes="LeftArrowVectorImage ForegroundVectorImage"/>
                         </Button>
                         
                         <NumericUpDown Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
@@ -42,13 +42,13 @@
                         <Button Command="{TemplateBinding IncrementCommand}" 
                                 Classes="ImageButton AdvancedNumericUpDownButton BackgroundButton StretchButton"
                                 Grid.Column="3">
-                            <Image Classes="RightArrowImage"/>
+                            <controls:VectorImage Classes="RightArrowVectorImage ForegroundVectorImage"/>
                         </Button>
                         
                         <Button Command="{TemplateBinding GoToEndCommand}" 
                                 Classes="ImageButton AdvancedNumericUpDownButton BackgroundButton StretchButton"
                                 Grid.Column="4">
-                            <Image Classes="DoubleRightArrowImage"/>
+                            <controls:VectorImage Classes="DoubleRightArrowVectorImage ForegroundVectorImage"/>
                         </Button>
                         
                     </Grid>

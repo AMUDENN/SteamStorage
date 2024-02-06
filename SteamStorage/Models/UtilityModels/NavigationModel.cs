@@ -1,13 +1,19 @@
-﻿using Avalonia.Controls;
+﻿using SteamStorage.Resources.Controls;
 using SteamStorage.ViewModels.Tools;
 
 namespace SteamStorage.Models.UtilityModels;
 
 public class NavigationModel
 {
+    #region Constants
+
+    private const string FOREGROUND_VECTOR_IMAGE_CLASS = "ForegroundVectorImage";
+
+    #endregion Constants
+
     #region Properties
 
-    public Image Image { get; }
+    public VectorImage VectorImage { get; }
 
     public string Title { get; }
 
@@ -19,9 +25,10 @@ public class NavigationModel
 
     public NavigationModel(string image, string title, ViewModelBase page)
     {
-        Image newImage = new();
+        VectorImage newImage = new();
         newImage.Classes.Add(image);
-        Image = newImage;
+        newImage.Classes.Add(FOREGROUND_VECTOR_IMAGE_CLASS);
+        VectorImage = newImage;
         Title = title;
         Page = page;
     }

@@ -1,0 +1,32 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:SteamStorage.Resources.Controls"
+        x:DataType="controls:VectorImage">
+	
+	<Style Selector="controls|VectorImage.RemoveFiltersVectorImage">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Image>
+						<Image.Source>
+							<DrawingImage>
+								<DrawingImage.Drawing>
+									<DrawingGroup ClipGeometry="M0,0 V40 H40 V0 H0 Z">
+										<DrawingGroup.Transform>
+											<TranslateTransform X="4.3518093046247125E-14" Y="0" />
+										</DrawingGroup.Transform>
+										<DrawingGroup Opacity="1">
+											<GeometryDrawing Brush="{Binding Brush, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M40,40z M0,0z M40,13.6305L38.0361,11.6666 31.6666,18.0361 25.2972,11.6666 23.3333,13.6305 29.7028,20 23.3333,26.368 25.2986,28.3333 31.6666,21.9638 38.0375,28.3333 40,26.3708 33.6305,20 40,13.6305z" />
+											<GeometryDrawing Brush="{Binding Brush, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M40,40z M0,0z M3.33333,0C2.44928,0 1.60143,0.351189 0.976311,0.976311 0.351189,1.60143 1.24538E-08,2.44928 1.24538E-08,3.33333L1.24538E-08,8.61817C-3.78332E-05,9.056 0.0861808,9.48955 0.253731,9.89406 0.421281,10.2986 0.66688,10.6661 0.9765,10.9757L13.3333,23.3333 13.3333,36.6667C13.3333,37.5507 13.6845,38.3986 14.3096,39.0237 14.9348,39.6488 15.7826,40 16.6667,40L23.3333,40C24.2174,40 25.0652,39.6488 25.6904,39.0237 26.3155,38.3986 26.6667,37.5507 26.6667,36.6667L26.6667,33.3333 23.3333,33.3333 23.3333,36.6667 16.6667,36.6667 16.6667,21.9515 15.6902,20.9757 3.33333,8.61817 3.33333,3.33333 36.6667,3.33333 36.6667,6.66667 40,6.66667 40,3.33333C40,2.44928 39.6488,1.60143 39.0237,0.976311 38.3986,0.351189 37.5507,0 36.6667,0L3.33333,0z" />
+										</DrawingGroup>
+									</DrawingGroup>
+								</DrawingImage.Drawing>
+							</DrawingImage>
+						</Image.Source>
+					</Image>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+</Styles>
