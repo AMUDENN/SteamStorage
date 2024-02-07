@@ -233,19 +233,19 @@
 										<RadioButton Content="1 д"
 										             IsChecked="{Binding IsOneDayChecked}"
 										             GroupName="Period"
-										             Classes="PeriodRadioButton"/>
+										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"/>
 										<RadioButton Content="1 н"
 										             IsChecked="{Binding IsOneWeekChecked}"
 										             GroupName="Period"
-										             Classes="PeriodRadioButton"/>
+										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"/>
 										<RadioButton Content="1 м"
 										             IsChecked="{Binding IsOneMonthChecked}"
 										             GroupName="Period"
-										             Classes="PeriodRadioButton"/>
+										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"/>
 										<RadioButton Content="1 г"
 										             IsChecked="{Binding IsOneYearChecked}"
 										             GroupName="Period"
-										             Classes="PeriodRadioButton"/>
+										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"/>
 									</StackPanel>
 								</Grid>
 								

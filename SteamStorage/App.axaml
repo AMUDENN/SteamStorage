@@ -28,7 +28,7 @@
         <StyleInclude Source="/Resources/Styles/ToggleButtonStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/VectorImageStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/WindowStyles.axaml"/>
-
+        
 		<StyleInclude Source="/Resources/Images/Vectors/AccountVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/ActivesVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/ArchiveVectorImage.axaml"/>

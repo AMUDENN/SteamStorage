@@ -1,25 +1,15 @@
-using Avalonia;
+using Avalonia.Automation;
+using Avalonia.Automation.Peers;
 using Avalonia.Controls.Primitives;
-using Avalonia.Media;
 
 namespace SteamStorage.Resources.Controls;
 
 public class VectorImage : TemplatedControl
 {
-    #region PropertiesDeclaration
-
-    public static readonly StyledProperty<IBrush?> BrushProperty =
-        AvaloniaProperty.Register<AdvancedNumericUpDown, IBrush?>(nameof(Brush));
-
-    #endregion PropertiesDeclaration
-
-    #region Properties
-
-    public IBrush? Brush
+    static VectorImage()
     {
-        get => GetValue(BrushProperty);
-        set => SetValue(BrushProperty, value);
+        AffectsRender<VectorImage>(ForegroundProperty);
+        AffectsMeasure<VectorImage>(ForegroundProperty);
+        AutomationProperties.ControlTypeOverrideProperty.OverrideDefaultValue<VectorImage>(AutomationControlType.Image);
     }
-
-    #endregion Properties
 }

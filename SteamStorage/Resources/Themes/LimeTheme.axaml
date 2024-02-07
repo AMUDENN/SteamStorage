@@ -3,7 +3,7 @@
 
 	<SolidColorBrush x:Key="BackgroundBrush" Color="#0F141A"/>
 	<SolidColorBrush x:Key="BackgroundAdditionalBrush" Color="#252C32"/>
-	<SolidColorBrush x:Key="ForegroundBrush" Color="#D2DADD"/>
+	<SolidColorBrush x:Key="ForegroundBrush" Color="#089137"/>
 	<SolidColorBrush x:Key="FirstAccentBrush" Color="#089137"/>
 	<SolidColorBrush x:Key="SecondAccentBrush" Color="#2D8553"/>
 	<SolidColorBrush x:Key="ThirdAccentBrush" Color="#4DB991"/>

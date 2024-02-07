@@ -12,7 +12,7 @@
 							<DrawingImage>
 								<DrawingImage.Drawing>
 									<DrawingGroup ClipGeometry="M0,0 V25 H30 V0 H0 Z">
-										<GeometryDrawing Brush="{Binding Brush, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M30,25z M0,0z M30,25L0,25 15,0 30,25z" />
+										<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M30,25z M0,0z M30,25L0,25 15,0 30,25z" />
 									</DrawingGroup>
 								</DrawingImage.Drawing>
 							</DrawingImage>

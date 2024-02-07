@@ -18,9 +18,10 @@
                             <ColumnDefinition Width="4" MinWidth="4"/>
                             <ColumnDefinition Width="20" MinWidth="20"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{TemplateBinding Content}"
+                        <TextBlock x:Name="ContentTextBlock"
+                                   Text="{TemplateBinding Content}"
                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   Classes="SmallTextBlock CenterTextBlock"
+                                   Classes="SmallTextBlock CenterTextBlock FirstAccentTextBlock"
                                    Grid.Column="0"/>
                         <Grid HorizontalAlignment="Center" 
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -31,24 +32,43 @@
                                 <RowDefinition Height="3*" MinHeight="3"/>
                                 <RowDefinition Height="5*" MinHeight="5"/>
                             </Grid.RowDefinitions>
-                            <controls:VectorImage x:Name="UpVectorImage"
+                            <controls:VectorImage x:Name="ForegroundUpVectorImage"
                                                   Classes="FilterUpVectorImage ForegroundVectorImage"
-                                                  Opacity="0.8"
+                                                  IsVisible="False"
                                                   Grid.Row="0"/>
-                            <controls:VectorImage x:Name="DownVectorImage"
+                            <controls:VectorImage x:Name="AccentUpVectorImage"
+                                                  Classes="FilterUpVectorImage FirstAccentLinearVectorImage"
+                                                  Opacity="0"
+                                                  Grid.Row="0"/>
+                            <controls:VectorImage x:Name="ForegroundDownVectorImage"
                                                   Classes="FilterDownVectorImage ForegroundVectorImage"
-                                                  Opacity="0.8"
+                                                  IsVisible="False"
+                                                  Grid.Row="2"/>
+                            <controls:VectorImage x:Name="AccentDownVectorImage"
+                                                  Classes="FilterDownVectorImage FirstAccentLinearVectorImage"
+                                                  Opacity="0"
                                                   Grid.Row="2"/>
                         </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style Selector="^[IsChecked=True] /template/ controls|VectorImage#DownVectorImage">
-            <Setter Property="Opacity" Value="0"/>
+        <Style Selector="^:indeterminate /template/ controls|VectorImage#ForegroundUpVectorImage, 
+                         ^:indeterminate /template/ controls|VectorImage#ForegroundDownVectorImage">
+            <Setter Property="IsVisible" Value="True"/>
         </Style>
-        <Style Selector="^[IsChecked=False] /template/ controls|VectorImage#UpVectorImage">
-            <Setter Property="Opacity" Value="0"/>
+        <Style Selector="^:indeterminate /template/ TextBlock#ContentTextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        </Style>
+        <Style Selector="^:checked">
+            <Style Selector="^ /template/ controls|VectorImage#AccentUpVectorImage">
+                <Setter Property="Opacity" Value="1"/>
+            </Style>
+        </Style>
+        <Style Selector="^:unchecked">
+            <Style Selector="^ /template/ controls|VectorImage#AccentDownVectorImage">
+                <Setter Property="Opacity" Value="1"/>
+            </Style>
         </Style>
     </Style>    
         

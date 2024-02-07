@@ -5,8 +5,8 @@
     <Style Selector="TextBox">
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="CaretBrush" Value="{DynamicResource ForegroundBrush}"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="SelectionBrush" Value="{DynamicResource ThirdAccentBrush}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Style Selector="^:focused /template/ TextBlock#PART_Watermark">
             <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
             <Setter Property="Opacity" Value="0.4"/>
