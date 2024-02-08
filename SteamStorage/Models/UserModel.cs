@@ -1,8 +1,9 @@
 ﻿using SteamStorage.Models.Tools;
+using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Utilities;
+using SteamStorage.Utilities.Events;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
-using SteamStorageAPI.Events;
 using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
@@ -24,6 +25,7 @@ public class UserModel : ModelBase
     #region Fields
 
     private readonly ApiClient _apiClient;
+    private readonly ISettingsService _settingsService;
 
     private Users.UserResponse? _user;
     private Currencies.CurrencyResponse? _currency;
@@ -62,20 +64,29 @@ public class UserModel : ModelBase
 
     #region Constructor
 
-    public UserModel(ApiClient apiClient)
+    public UserModel(ApiClient apiClient, ISettingsService settingsService)
     {
         _apiClient = apiClient;
-
-        apiClient.TokenChanged += TokenChangedHandler;
+        _settingsService = settingsService;
+        
+        settingsService.SettingsPropertyChanged += SettingsPropertyChangedHandler;
+        
+        SetUser();
     }
 
     #endregion Constructor
 
     #region Methods
 
-    private async void TokenChangedHandler(object? sender, TokenChangedEventArgs e)
+    private void SettingsPropertyChangedHandler(object? sender, SettingsPropertyChangedEventArgs e)
     {
-        User = string.IsNullOrEmpty(e.Token)
+        if (e.Property != nameof(_settingsService.UserSettings.Token)) return;
+        SetUser();
+    }
+
+    private async void SetUser()
+    {
+        User = string.IsNullOrEmpty(_settingsService.UserSettings.Token)
             ? null
             : await _apiClient.GetAsync<Users.UserResponse>(ApiConstants.ApiControllers.Users,
                 "GetCurrentUserInfo");

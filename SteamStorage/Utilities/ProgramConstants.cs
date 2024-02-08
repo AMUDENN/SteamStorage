@@ -9,5 +9,7 @@ public static class ProgramConstants
 
     public const string PERIOD_DATE_FORMAT = "dd.MM.yy";
 
+    public const string PROGRAM_NAME = "SteamStorage";
+
     #endregion Constants
 }

@@ -7,7 +7,9 @@ using SteamStorage.ViewModels;
 using SteamStorage.Views;
 using System;
 using SteamStorage.Models;
+using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Services.ThemeService;
+using SteamStorage.Utilities;
 using SteamStorageAPI;
 using SteamStorageAPI.Services.Logger.LoggerService;
 using SteamStorageAPI.Services.PingService;
@@ -32,7 +34,7 @@ namespace SteamStorage
             //ApiClient
             services.AddHttpClient(ApiConstants.CLIENT_NAME, client =>
             {
-                client.Timeout = TimeSpan.FromSeconds(20);
+                client.Timeout = TimeSpan.FromSeconds(5);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
             }).AddHttpMessageHandler<TokenHandler>();
@@ -46,6 +48,8 @@ namespace SteamStorage
 
             //Custom Services
             services.AddScoped<IThemeService, ThemeService>();
+            services.AddSingleton<ISettingsService, SettingsService>(x => new(ProgramConstants.PROGRAM_NAME,
+                x.GetRequiredService<ApiClient>(), x.GetRequiredService<IThemeService>()));
 
             //MainWindow
             services.AddSingleton<MainWindow>();

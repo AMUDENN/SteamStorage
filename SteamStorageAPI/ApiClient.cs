@@ -50,7 +50,7 @@ public class ApiClient
     public string Token
     {
         get => _token;
-        private set
+        set
         {
             _token = value;
             OnTokenChanged(value);

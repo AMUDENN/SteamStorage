@@ -6,12 +6,12 @@ namespace SteamStorage.Utilities.Events;
 
 public class ThemeChangedEventArgs : EventArgs
 {
-    #region Fields
+    #region Properties
 
     public ThemeVariant? OldTheme { get; }
     public ThemeVariant? NewTheme { get; }
 
-    #endregion Fields
+    #endregion Properties
 
     #region Constructor
 

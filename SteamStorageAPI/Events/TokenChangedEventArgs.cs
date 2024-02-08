@@ -2,11 +2,11 @@
 
 public class TokenChangedEventArgs : EventArgs
 {
-    #region Fields
+    #region Properties
 
     public string Token { get; }
 
-    #endregion Fields
+    #endregion Properties
 
     #region Constructor
 
