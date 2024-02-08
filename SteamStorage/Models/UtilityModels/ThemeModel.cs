@@ -1,8 +1,6 @@
-﻿using Avalonia.Controls;
-using Avalonia.Styling;
+﻿using Avalonia.Styling;
 using SteamStorage.ViewModels;
 using SteamStorage.ViewModels.Tools;
-using SteamStorage.Views;
 
 namespace SteamStorage.Models.UtilityModels;
 

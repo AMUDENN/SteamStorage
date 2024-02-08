@@ -4,7 +4,7 @@ public class TokenChangedEventArgs : EventArgs
 {
     #region Fields
 
-    public bool IsTokenEmpty { get; }
+    public string Token { get; }
 
     #endregion Fields
 
@@ -12,7 +12,7 @@ public class TokenChangedEventArgs : EventArgs
 
     public TokenChangedEventArgs(string token)
     {
-        IsTokenEmpty = string.IsNullOrEmpty(token);
+        Token = token;
     }
 
     #endregion Constructor

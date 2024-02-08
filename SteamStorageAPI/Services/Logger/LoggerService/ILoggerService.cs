@@ -1,4 +1,4 @@
-﻿namespace SteamStorageAPI.Services.LoggerService;
+﻿namespace SteamStorageAPI.Services.Logger.LoggerService;
 
 public interface ILoggerService
 {

@@ -5,7 +5,13 @@ namespace SteamStorage.Services.ThemeService;
 
 public class ThemeService : IThemeService
 {
+    #region Events
+
     public event IThemeService.ThemeChangedEventHandler? ThemeChanged;
+
+    #endregion Events
+
+    #region Methods
 
     public void ChangeTheme(ThemeVariant? themeVariant)
     {
@@ -20,4 +26,6 @@ public class ThemeService : IThemeService
     {
         ThemeChanged?.Invoke(this, new(oldTheme, newTheme));
     }
+
+    #endregion Methods
 }

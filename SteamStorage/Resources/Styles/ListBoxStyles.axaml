@@ -8,6 +8,7 @@
 	<Styles.Resources>
 		<converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
 		<converters:DoubleGreaterConverter x:Key="DoubleGreaterConverter"/>
+		<converters:DoubleMultiplicationConverter x:Key="DoubleMultiplicationConverter"/>
 		<converters:PercentConverter x:Key="PercentConverter"/>
 	</Styles.Resources>
 	
@@ -275,7 +276,8 @@
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate x:DataType="utilityModels:ThemeModel">
-						<Grid MinWidth="500">
+						<Grid VerticalAlignment="Stretch"
+						      Width="{Binding $self.Bounds.Height, Converter={StaticResource DoubleMultiplicationConverter}, ConverterParameter=1.25}">
 							
 							<Grid.RowDefinitions>
 								<RowDefinition Height="*"/>

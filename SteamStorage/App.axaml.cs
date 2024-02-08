@@ -6,13 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using SteamStorage.ViewModels;
 using SteamStorage.Views;
 using System;
-using Avalonia.Styling;
 using SteamStorage.Models;
 using SteamStorage.Services.ThemeService;
-using SteamStorage.Utilities;
-using SteamStorage.Utilities.Events;
 using SteamStorageAPI;
-using SteamStorageAPI.Services.LoggerService;
+using SteamStorageAPI.Services.Logger.LoggerService;
 using SteamStorageAPI.Services.PingService;
 using SteamStorageAPI.Utilities;
 
@@ -20,14 +17,6 @@ namespace SteamStorage
 {
     public partial class App : Application
     {
-        #region Events
-
-        public delegate void ThemeChangedEventHandler(object? sender, ThemeChangedEventArgs args);
-
-        public event ThemeChangedEventHandler? ThemeChanged;
-
-        #endregion Events
-
         #region Properties
 
         private static IServiceProvider Container { get; }
@@ -51,10 +40,10 @@ namespace SteamStorage
             services.AddSingleton<ApiClient>();
 
             //Custom API Services
-            services.AddSingleton<ILoggerService>(new LoggerService(ApiConstants.LOG_PROGRAM_NAME,
+            services.AddSingleton<ILoggerService, LoggerService>(_ => new(ApiConstants.LOG_PROGRAM_NAME,
                 ApiConstants.LOG_DATE_FORMAT, ApiConstants.LOG_DATETIME_FORMAT));
             services.AddSingleton<IPingService, PingService>();
-            
+
             //Custom Services
             services.AddScoped<IThemeService, ThemeService>();
 

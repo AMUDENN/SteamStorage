@@ -75,7 +75,7 @@ public class UserModel : ModelBase
 
     private async void TokenChangedHandler(object? sender, TokenChangedEventArgs e)
     {
-        User = e.IsTokenEmpty
+        User = string.IsNullOrEmpty(e.Token)
             ? null
             : await _apiClient.GetAsync<Users.UserResponse>(ApiConstants.ApiControllers.Users,
                 "GetCurrentUserInfo");

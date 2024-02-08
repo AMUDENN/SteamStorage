@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Text;
 
-namespace SteamStorageAPI.Services.LoggerService;
+namespace SteamStorageAPI.Services.Logger.LoggerService;
 
 public class LoggerService : ILoggerService
 {
@@ -24,17 +24,17 @@ public class LoggerService : ILoggerService
 
     public async Task LogAsync(string message)
     {
-        await _file.Write(message);
+        await _file.WriteAsync(message);
     }
 
     public async Task LogAsync(Exception exception)
     {
-        await _file.Write($"\n{CreateErrorMessage(exception)}");
+        await _file.WriteAsync($"\n{CreateErrorMessage(exception)}");
     }
 
     public async Task LogAsync(string message, Exception exception)
     {
-        await _file.Write($"{message}\n{CreateErrorMessage(exception)}");
+        await _file.WriteAsync($"{message}\n{CreateErrorMessage(exception)}");
     }
 
     private static string CreateErrorMessage(Exception exception)

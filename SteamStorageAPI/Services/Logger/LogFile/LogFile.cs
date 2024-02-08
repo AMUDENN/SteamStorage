@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace SteamStorageAPI.Services.LogFile;
+namespace SteamStorageAPI.Services.Logger.LogFile;
 
 public class LogFile : IDisposable
 {
@@ -19,10 +19,10 @@ public class LogFile : IDisposable
     {
         _dateTimeFormat = dateTimeFormat;
 
-        _filePath = $"{Path.GetTempPath()}/{programName}/{DateTime.Now.ToString(dateFormat)}#{Guid.NewGuid()}.txt";
-        
+        _filePath = @$"{Path.GetTempPath()}{programName}\Logs\{DateTime.Now.ToString(dateFormat)}#{Guid.NewGuid()}.txt";
+
         CreateFile();
-        
+
         _streamWriter = new(_filePath, true, Encoding.UTF8, 8192);
     }
 
@@ -40,7 +40,7 @@ public class LogFile : IDisposable
 
     #region Methods
 
-    public async Task Write(string message)
+    public async Task WriteAsync(string message)
     {
         try
         {

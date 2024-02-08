@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
-using SteamStorage.ViewModels;
 
 namespace SteamStorage.Models;
 
@@ -53,6 +53,8 @@ public class SettingsModel : ModelBase
             new("Классический", ThemeVariants.Classic),
             new("Лаймовый", ThemeVariants.Lime)
         ];
+
+        SelectedThemeModel = ThemeModels.First();
 
         ExportToExcelCommand = new(DoExportToExcelCommand);
         OpenReferenceInformationCommand = new(DoOpenReferenceInformationCommand);
