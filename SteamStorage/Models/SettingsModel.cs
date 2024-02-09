@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Avalonia.Media;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
+using SteamStorage.Utilities.Events;
 
 namespace SteamStorage.Models;
 
@@ -58,10 +58,9 @@ public class SettingsModel : ModelBase
             new("Лаймовый", ThemeVariants.Lime)
         ];
 
-        SelectedThemeModel =
-            ThemeModels.FirstOrDefault(
-                x => x.ThemeVariant.ToString() == _settingsService.UserSettings.Theme?.ToString()) ??
-            ThemeModels.First();
+        SetTheme();
+
+        settingsService.SettingsPropertyChanged += SettingsPropertyChangedHandler;
 
         ExportToExcelCommand = new(DoExportToExcelCommand);
         OpenReferenceInformationCommand = new(DoOpenReferenceInformationCommand);
@@ -70,6 +69,20 @@ public class SettingsModel : ModelBase
     #endregion Constructor
 
     #region Methods
+    
+    private void SettingsPropertyChangedHandler(object? sender, SettingsPropertyChangedEventArgs e)
+    {
+        if (e.Property != nameof(_settingsService.UserSettings.Theme)) return;
+        SetTheme();
+    }
+
+    private void SetTheme()
+    {
+        SelectedThemeModel =
+            ThemeModels.FirstOrDefault(
+                x => x.ThemeVariant.ToString() == _settingsService.UserSettings.Theme?.ToString()) ??
+            ThemeModels.First();
+    }
 
     private void DoExportToExcelCommand()
     {
