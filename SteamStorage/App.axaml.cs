@@ -37,8 +37,9 @@ namespace SteamStorage
                 client.Timeout = TimeSpan.FromSeconds(5);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
-            }).AddHttpMessageHandler<TokenHandler>();
+            }).AddHttpMessageHandler<TokenHandler>().AddHttpMessageHandler<UnauthorizedHandler>();
             services.AddScoped<TokenHandler>();
+            services.AddScoped<UnauthorizedHandler>();
             services.AddSingleton<ApiClient>();
 
             //Custom API Services

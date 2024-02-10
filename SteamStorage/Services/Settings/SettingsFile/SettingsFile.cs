@@ -28,7 +28,7 @@ public class SettingsFile
         try
         {
             DeleteFile();
-            using FileStream fs = new(_filePath, FileMode.OpenOrCreate);
+            using FileStream fs = new(_filePath, FileMode.OpenOrCreate, FileAccess.Write);
             JsonSerializer.Serialize(fs, value);
         }
         catch (Exception ex)
@@ -41,7 +41,7 @@ public class SettingsFile
     {
         try
         {
-            using FileStream fs = new(_filePath, FileMode.OpenOrCreate);
+            using FileStream fs = new(_filePath, FileMode.OpenOrCreate, FileAccess.Read);
             return JsonSerializer.Deserialize<T>(fs);
         }
         catch (Exception ex)

@@ -178,7 +178,7 @@ public class ApiClient
         }
         catch (Exception ex)
         {
-            await _logger.LogAsync($"ApiException POST \n{uri.ToString()}", ex);
+            await _logger.LogAsync($"ApiException DELETE \n{uri.ToString()}", ex);
         }
     }
 

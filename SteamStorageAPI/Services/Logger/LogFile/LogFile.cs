@@ -48,9 +48,9 @@ public class LogFile : IDisposable
             await _streamWriter.WriteLineAsync($"[{DateTime.Now.ToString(_dateTimeFormat)}]: {message}");
             await _streamWriter.FlushAsync();
         }
-        catch
+        catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine("LogError");
+            System.Diagnostics.Debug.WriteLine($"Log Write Error {ex.Message}");
         }
     }
 
