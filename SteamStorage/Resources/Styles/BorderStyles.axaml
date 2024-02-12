@@ -75,6 +75,6 @@
 		
 	<Style Selector="Border.ThirdAccentGradientBorder">
 		<Setter Property="Background" Value="{DynamicResource ThirdAccentLinearBrush}"/>
-	</Style>		
+	</Style>
 
 </Styles>

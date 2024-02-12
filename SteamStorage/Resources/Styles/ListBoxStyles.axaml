@@ -93,10 +93,11 @@
             			<Border x:Name="MainBorder"
             					Classes="BackgroundAdditionalBorder SmallRoundedBorder"
             					Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
-            			        Height="60" Width="60">
-            				<Border Classes="LittleRoundedBorder"
-            				        Height="40" Width="40"
-            				        HorizontalAlignment="Center" VerticalAlignment="Center">
+					            Height="60" Width="60"
+					            ToolTip.Tip="{Binding Title, Mode=OneWay}">
+				            <Border Classes="LittleRoundedBorder"
+				                    Height="40" Width="40"
+				                    HorizontalAlignment="Center" VerticalAlignment="Center">
             					<Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
             				</Border>
             			</Border>
@@ -135,6 +136,7 @@
 									<RowDefinition Height="10" MinHeight="10"/>
 									<RowDefinition Height="Auto"/>
 								</Grid.RowDefinitions>
+								
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="140"/>
 									<ColumnDefinition Width="20" MinWidth="20"/>
@@ -150,14 +152,17 @@
 								</Grid.ColumnDefinitions>
 								
 								<Border Classes="SmallRoundedBorder BackgroundAdditionalBorder"
+								        ToolTip.Tip="Изображение"
 								        Grid.Row="0" Grid.Column="0">
 									<Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
 								</Border>
 								<TextBlock Text="{Binding Title, Mode=OneWay}"
 								           Classes="MiddleTextBlock LeftTextBlock"
+								           ToolTip.Tip="Название"
 								           Grid.Row="0" Grid.Column="2"/>
 								<StackPanel Orientation="Horizontal"
 								            HorizontalAlignment="Center"
+								            ToolTip.Tip="Текущая цена"
 								            Grid.Row="0" Grid.Column="4">
 									<TextBlock Text="{Binding CurrentPrice, StringFormat=N2, Mode=OneWay}"
 	                                           Classes="MiddleTextBlock"/>
@@ -172,6 +177,7 @@
 																	   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
 								           Classes.NegativeTextBlock="{Binding Change7D, Mode=OneWay,
 																	   Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
+								           ToolTip.Tip="Изменение (7дн)"
 								           Grid.Row="0" Grid.Column="6"/>
 								<TextBlock Text="{Binding Change30D, StringFormat=N0, Mode=OneWay, 
 												  Converter={StaticResource PercentConverter}, ConverterParameter=2}"
@@ -180,6 +186,7 @@
 																	   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
 								           Classes.NegativeTextBlock="{Binding Change30D, Mode=OneWay,
 																	   Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
+								           ToolTip.Tip="Изменение (30дн)"
 								           Grid.Row="0" Grid.Column="8"/>
 								<CheckBox IsChecked="{Binding IsMarked}"
 								          Classes="StarCheckBox" 
@@ -234,19 +241,23 @@
 										<RadioButton Content="1 д"
 										             IsChecked="{Binding IsOneDayChecked}"
 										             GroupName="Period"
-										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"/>
+										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+										             ToolTip.Tip="1 день"/>
 										<RadioButton Content="1 н"
 										             IsChecked="{Binding IsOneWeekChecked}"
 										             GroupName="Period"
-										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"/>
+										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+										             ToolTip.Tip="1 неделя"/>
 										<RadioButton Content="1 м"
 										             IsChecked="{Binding IsOneMonthChecked}"
 										             GroupName="Period"
-										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"/>
+										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+										             ToolTip.Tip="1 месяц"/>
 										<RadioButton Content="1 г"
 										             IsChecked="{Binding IsOneYearChecked}"
 										             GroupName="Period"
-										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"/>
+										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+										             ToolTip.Tip="1 год"/>
 									</StackPanel>
 								</Grid>
 								

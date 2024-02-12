@@ -31,9 +31,9 @@ public class UnauthorizedHandler : DelegatingHandler
         HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
 
         if (response.StatusCode != HttpStatusCode.Unauthorized) return response;
-
-        await _logger.LogAsync("Unauthorized request");
+        
         _apiClient.Token = string.Empty;
+        await _logger.LogAsync("Unauthorized request");
 
         return response;
     }

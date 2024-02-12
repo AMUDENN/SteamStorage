@@ -96,6 +96,12 @@ public class ListItemsModel : ModelBase
         get => _isTitleOrdering;
         set
         {
+            if (_isTitleOrdering is not null && value is null)
+            {
+                SkinOrderName = null;
+                IsAscending = null;
+            }
+
             if (value is not null)
             {
                 SetOrderingsNull();
@@ -112,6 +118,12 @@ public class ListItemsModel : ModelBase
         get => _isCurrentCostOrdering;
         set
         {
+            if (_isCurrentCostOrdering is not null && value is null)
+            {
+                SkinOrderName = null;
+                IsAscending = null;
+            }
+
             if (value is not null)
             {
                 SetOrderingsNull();
@@ -128,6 +140,12 @@ public class ListItemsModel : ModelBase
         get => _isChange7Ordering;
         set
         {
+            if (_isChange7Ordering is not null && value is null)
+            {
+                SkinOrderName = null;
+                IsAscending = null;
+            }
+
             if (value is not null)
             {
                 SetOrderingsNull();
@@ -144,6 +162,12 @@ public class ListItemsModel : ModelBase
         get => _isChange30Ordering;
         set
         {
+            if (_isChange30Ordering is not null && value is null)
+            {
+                SkinOrderName = null;
+                IsAscending = null;
+            }
+
             if (value is not null)
             {
                 SetOrderingsNull();

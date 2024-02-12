@@ -1,0 +1,31 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style Selector="ToolTip">
+        <Setter Property="ShowDelay" Value="300"/>
+        <Setter Property="MaxWidth" Value="300"/>
+        <Setter Property="Opacity" Value="0"/>
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border x:Name="PART_LayoutRoot"
+                        Classes="BackgroundAdditionalBorder LittleRoundedBorder SmallBorder ForegroundBorderBrush">
+                    <ContentPresenter x:Name="PART_ContentPresenter"
+                                      Margin="12, 4"
+                                      MaxWidth="{TemplateBinding MaxWidth}"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      TextBlock.TextWrapping="Wrap"/>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:open">
+            <Setter Property="Opacity" Value="0.9" />
+        </Style>
+    </Style>
+    
+</Styles>

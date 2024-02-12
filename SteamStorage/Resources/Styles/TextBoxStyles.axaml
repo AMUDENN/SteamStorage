@@ -85,7 +85,7 @@
     </Style>    
     
     <Style Selector="TextBox.NumericUpDownTextBox">
-        <Setter Property="LetterSpacing" Value="1.5"/>
+        <Setter Property="LetterSpacing" Value="1.2"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="20"/>

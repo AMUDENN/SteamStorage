@@ -57,6 +57,7 @@
             <Button Command="{Binding ClearFiltersCommand, Mode=OneWay}"
                     Classes="ImageButton BackgroundButton"
                     Height="60" Width="60"
+                    ToolTip.Tip="Очистить фильтры"
                     Grid.Column="5">
                 <controls:VectorImage Classes="RemoveFiltersVectorImage ForegroundVectorImage"
                                       Height="40" Width="40"/>
@@ -173,11 +174,12 @@
                     
             <controls:AdvancedNumericUpDown HorizontalAlignment="Right"
                                             Value="{Binding PageNumber}"
-                                            FormatString="0"
                                             Increment="1"
                                             Minimum="1"
                                             Maximum="{Binding PagesCount, Mode=OneWay}"
                                             Watermark="{Binding CurrentPageNumber, Mode=OneWay}"
+                                            FormatString="0"
+                                            ParsingNumberStyle="Integer"
                                             Grid.Column="1"/>
                     
         </Grid>

@@ -2,8 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:utilities="using:SteamStorage.Utilities"
              xmlns:themes="using:SteamStorage.Utilities"
-             x:Class="SteamStorage.App"
-             RequestedThemeVariant="{x:Static themes:ThemeVariants.Classic}">
+             x:Class="SteamStorage.App">
 
     <Application.DataTemplates>
 		<utilities:ViewLocator/>
@@ -11,6 +10,7 @@
   
     <Application.Styles>
         <FluentTheme />
+        
         <StyleInclude Source="/Resources/Styles/AdvancedNumericUpDownStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/BorderStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/ButtonStyles.axaml"/>
@@ -26,6 +26,7 @@
 		<StyleInclude Source="/Resources/Styles/TextBlockStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/TextBoxStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ToggleButtonStyles.axaml"/>
+        <StyleInclude Source="/Resources/Styles/ToolTipStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/VectorImageStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/WindowStyles.axaml"/>
         

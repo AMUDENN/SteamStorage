@@ -1,6 +1,10 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
+    <Style Selector="Button[IsEnabled=False]">
+        <Setter Property="Opacity" Value="0.6"/>
+    </Style>
+    
     <Style Selector="Button.HorizontalCenter">
         <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
@@ -17,13 +21,18 @@
     <Style Selector="Button.BackgroundButton">
         <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
     </Style>
+    
+    <Style Selector="Button.BackgroundAdditionalButton">
+        <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
+    </Style>
         
     <Style Selector="Button.ImageTextButton">
+        <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Border Background="Transparent">
+                    <Border Background="{TemplateBinding Background}">
                         <Grid>
                             <Grid x:Name="ContentGrid"
                                   Height="60"
@@ -73,7 +82,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Border Classes="SmallRoundedBorder"
+                    <Border Classes="LittleRoundedBorder"
                             Background="{TemplateBinding Background}"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch">
@@ -90,9 +99,9 @@
             <Setter Property="Padding" Value="1"/>
         </Style>
         <Style Selector="^.AdvancedNumericUpDownButton">
-            <Setter Property="Padding" Value="3, 5"/>
+            <Setter Property="Padding" Value="3, 8"/>
             <Style Selector="^:pressed">
-                <Setter Property="Padding" Value="2, 4"/>
+                <Setter Property="Padding" Value="2, 7"/>
             </Style>
         </Style>
     </Style>
