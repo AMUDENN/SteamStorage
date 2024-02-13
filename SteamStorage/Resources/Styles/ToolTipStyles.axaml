@@ -13,16 +13,22 @@
         </Setter>
         <Setter Property="Template">
             <ControlTemplate>
-                <Border x:Name="PART_LayoutRoot"
-                        Classes="TopLevelBackgroundBorder LittleRoundedBorder">
-                    <ContentPresenter x:Name="PART_ContentPresenter"
-                                      Margin="12, 4"
-                                      FontSize="{TemplateBinding FontSize}"
-                                      MaxWidth="{TemplateBinding MaxWidth}"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      TextBlock.TextWrapping="Wrap"/>
-                </Border>
+                <Grid>
+                    <Border Classes="TransparentBorder LittleRoundedBorder BoxShadowBorder"
+                            BorderThickness="20"
+                            Margin="0"/>
+                    <Border x:Name="PART_LayoutRoot"
+                            Classes="TopLevelBackgroundBorder LittleRoundedBorder"
+                            Margin="10">
+                        <ContentPresenter x:Name="PART_ContentPresenter"
+                                          Margin="12, 4"
+                                          FontSize="{TemplateBinding FontSize}"
+                                          MaxWidth="{TemplateBinding MaxWidth}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          TextBlock.TextWrapping="Wrap"/>
+                    </Border>
+                </Grid>
             </ControlTemplate>
         </Setter>
         <Style Selector="^:open">

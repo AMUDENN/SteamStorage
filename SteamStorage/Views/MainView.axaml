@@ -18,7 +18,7 @@
 	<Grid ColumnDefinitions="Auto, *" Margin="30">
 
 		<Border x:Name="MenuBorder"
-				Classes="BigRoundedBorder BackgroundAdditionalBorder"
+				Classes="BackgroundAdditionalBorder BigRoundedBorder"
 				Grid.Column="0">
 
 			<Border.Styles>
@@ -44,12 +44,12 @@
 				<Style Selector="Border#MenuBorder Border#Profile">
 					<Setter Property="Height" Value="64"/>
 					<Setter Property="Width" Value="64"/>
-					<Setter Property="CornerRadius" Value="10"/>
+					<Setter Property="CornerRadius" Value="8"/>
 				</Style>
 				<Style Selector="Border#MenuBorder:pointerover Border#Profile">
 					<Setter Property="Height" Value="128"/>
 					<Setter Property="Width" Value="128"/>
-					<Setter Property="CornerRadius" Value="20"/>
+					<Setter Property="CornerRadius" Value="16"/>
 				</Style>
 
 				<Style Selector="Border#MenuBorder controls|VectorImage#AccountVectorImage">

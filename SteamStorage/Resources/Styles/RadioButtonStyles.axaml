@@ -10,7 +10,7 @@
                 		<Grid>
                 			<Border x:Name="Selected"
                 					Height="40" Width="10"
-                					CornerRadius="0, 20, 20, 0"
+                					CornerRadius="0, 16, 16, 0"
                 					HorizontalAlignment="Left"
                 					VerticalAlignment="Center"
                 					IsVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
@@ -50,7 +50,7 @@
             	<Setter Property="Margin" Value="20, 0"/>
             </Style>
             <Style Selector="^ /template/ Border#ItemBorder">
-                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="CornerRadius" Value="8"/>
             </Style>
             <Style Selector="^ /template/ TextBlock#TitleTextBlock">
                 <Setter Property="IsVisible" Value="False"/>

@@ -3,6 +3,7 @@
 
 	<Style Selector="Border">
 		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
 		<Setter Property="ClipToBounds" Value="True"/>
 		<Setter Property="Transitions">
 			<Transitions>
@@ -12,6 +13,10 @@
 			</Transitions>
 		</Setter>
 	</Style>
+		
+	<Style Selector="Border.BoxShadowBorder">
+		<Setter Property="BoxShadow" Value="3 3 6 0 Black"/>
+	</Style>	
 		
 	<Style Selector="Border.UnderlineBorder">
 		<Setter Property="BorderThickness" Value="0, 0, 0, 2"/>
@@ -34,15 +39,15 @@
 	</Style>	
 	
 	<Style Selector="Border.BigRoundedBorder">
-		<Setter Property="CornerRadius" Value="20"/>
+		<Setter Property="CornerRadius" Value="16"/>
 	</Style>
 
 	<Style Selector="Border.SmallRoundedBorder">
-		<Setter Property="CornerRadius" Value="10"/>
+		<Setter Property="CornerRadius" Value="8"/>
 	</Style>
 		
 	<Style Selector="Border.LittleRoundedBorder">
-		<Setter Property="CornerRadius" Value="5"/>
+		<Setter Property="CornerRadius" Value="4"/>
 	</Style>
 
 	<Style Selector="Border.WithoutRoundingBorder">

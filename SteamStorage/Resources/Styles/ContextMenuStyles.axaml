@@ -8,16 +8,21 @@
         <Setter Property="WindowManagerAddShadowHint" Value="False" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Classes="TopLevelBackgroundBorder SmallRoundedBorder"
-                        MaxWidth="{TemplateBinding MaxWidth}"
-                        MinHeight="{TemplateBinding MinHeight}">
-                    <ScrollViewer Margin="0, 7">
-                        <ItemsPresenter x:Name="PART_ItemsPresenter"
-                                        ItemsPanel="{TemplateBinding ItemsPanel}"
-                                        KeyboardNavigation.TabNavigation="Continue"
-                                        Grid.IsSharedSizeScope="True" />
-                    </ScrollViewer>
-                </Border>
+                <Grid>
+                    <Border Classes="TransparentBorder SmallRoundedBorder BoxShadowBorder" 
+                            BorderThickness="20"/>
+                    <Border Classes="TopLevelBackgroundBorder SmallRoundedBorder"
+                            MaxWidth="{TemplateBinding MaxWidth}"
+                            MinHeight="{TemplateBinding MinHeight}"
+                            Margin="10">
+                        <ScrollViewer Margin="0, 7">
+                            <ItemsPresenter x:Name="PART_ItemsPresenter"
+                                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                                            KeyboardNavigation.TabNavigation="Continue"
+                                            Grid.IsSharedSizeScope="True" />
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
             </ControlTemplate>
         </Setter>
     </Style>
@@ -34,11 +39,17 @@
             <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
                 <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
+            <Style Selector="^ /template/ TextBlock#PART_InputGestureText">
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+            </Style>
         </Style>
         <Style Selector="^:pressed /template/ Border#PART_LayoutRoot">
             <Setter Property="Opacity" Value="1"/>
             <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
             <Style Selector="^ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}" />
+            </Style>
+            <Style Selector="^ TextBlock#PART_InputGestureText">
                 <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}" />
             </Style>
         </Style>
@@ -48,6 +59,9 @@
                 <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}" />
+            </Style>
+            <Style Selector="^ TextBlock#PART_InputGestureText">
                 <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}" />
             </Style>
         </Style>
