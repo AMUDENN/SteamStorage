@@ -129,6 +129,17 @@
 						<Border x:Name="MainBorder"
 								Classes="BackgroundAdditionalBorder BigRoundedBorder"
 						        Height="130">
+							
+							<Border.ContextMenu>
+								<ContextMenu>
+									<MenuItem Header="Открыть в Steam" Command="{Binding OpenInSteamCommand}"/>
+									<Separator/>
+									<MenuItem Header="Добавить в активы" Command="{Binding AddToActivesCommand}"/>
+									<Separator/>
+									<MenuItem Header="Добавить в архив" Command="{Binding AddToArchiveCommand}"/>
+								</ContextMenu>
+							</Border.ContextMenu>
+							
 							<Grid Margin="20">
 								
 								<Grid.RowDefinitions>

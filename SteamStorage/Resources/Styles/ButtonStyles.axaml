@@ -18,6 +18,10 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
     
+    <Style Selector="Button.TransparentButton">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    
     <Style Selector="Button.BackgroundButton">
         <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
     </Style>

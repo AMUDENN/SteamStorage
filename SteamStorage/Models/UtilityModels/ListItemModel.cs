@@ -1,4 +1,5 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Utilities;
 using SteamStorageAPI;
@@ -30,9 +31,11 @@ public class ListItemModel : ModelBase
     #region Properties
 
     private int Id { get; }
+    
+    private string MarketUrl { get; }
 
     public string ImageUrl { get; }
-
+    
     public string Title { get; }
 
     public decimal CurrentPrice { get; }
@@ -116,15 +119,26 @@ public class ListItemModel : ModelBase
 
     #endregion Properties
 
+    #region Commands
+
+    public RelayCommand OpenInSteamCommand { get; }
+
+    public RelayCommand AddToActivesCommand { get; }
+
+    public RelayCommand AddToArchiveCommand { get; }
+
+    #endregion Commands
+
     #region Constructor
 
-    public ListItemModel(ApiClient apiClient, int id, string imageUrl, string title, decimal currentPrice,
-        string currencyMark, double change7D, double change30D, bool isMarked)
+    public ListItemModel(ApiClient apiClient, int id, string imageUrl, string marketUrl, string title,
+        decimal currentPrice, string currencyMark, double change7D, double change30D, bool isMarked)
     {
         _apiClient = apiClient;
 
         Id = id;
         ImageUrl = imageUrl;
+        MarketUrl = marketUrl;
         Title = title;
         CurrentPrice = currentPrice;
         CurrencyMark = currencyMark;
@@ -133,6 +147,10 @@ public class ListItemModel : ModelBase
         _isMarked = isMarked;
 
         IsLoading = false;
+
+        OpenInSteamCommand = new(DoOpenInSteamCommand);
+        AddToActivesCommand = new(DoAddToActivesCommand);
+        AddToArchiveCommand = new(DoAddToArchiveCommand);
     }
 
     #endregion Constructor
@@ -143,6 +161,21 @@ public class ListItemModel : ModelBase
     {
         if (!(IsOneDayChecked || IsOneWeekChecked || IsOneYearChecked))
             IsOneMonthChecked = true;
+    }
+
+    private void DoOpenInSteamCommand()
+    {
+        UrlUtility.OpenUrl(MarketUrl);
+    }
+
+    private void DoAddToActivesCommand()
+    {
+
+    }
+
+    private void DoAddToArchiveCommand()
+    {
+
     }
 
     private async void GetDynamicStats(DateTime dateStart, DateTime dateEnd)

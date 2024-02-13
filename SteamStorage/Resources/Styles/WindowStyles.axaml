@@ -4,7 +4,7 @@
         xmlns:controls="using:SteamStorage.Resources.Controls"
 		x:DataType="vm:MainWindowViewModel">
 
-	<Style Selector="Window">
+	<Style Selector="Window.MainWindow">
 		<Setter Property="ExtendClientAreaChromeHints" Value="NoChrome"/>
 		<Setter Property="ExtendClientAreaTitleBarHeightHint" Value="36"/>
 		<Setter Property="ExtendClientAreaToDecorationsHint" Value="True"/>
@@ -13,47 +13,57 @@
 			<ControlTemplate>
 				<Grid Margin="{TemplateBinding OffScreenMargin}">
 					<Border x:Name="WindowBorder"
-							Classes="SmallRoundedBorder"
-							Background="{DynamicResource BackgroundBrush}" IsHitTestVisible="False"/>
-					<Grid RowDefinitions="36, *">
-						<Grid ColumnDefinitions="36, *, 108"
-							  Margin="10, 5"
-							  Grid.Row="0">
-							<controls:VectorImage Classes="LogoVectorImage" 
-							                      Margin="4"
-							                      Grid.Column="0"/>
-							<TextBlock Text="{TemplateBinding Title}" 
-									   Classes="CenterTextBlock"
-									   Grid.Column="1"/>
-							<StackPanel Orientation="Horizontal" 
-										Spacing="5" 
-										VerticalAlignment="Center"
-										HorizontalAlignment="Right"
-										Grid.Column="2">
-								<Button x:Name="MinimizeButton"
-										Classes="WindowButton"
-										Command="{Binding MinimizeCommand, Mode=OneWay}">
-									<controls:VectorImage Classes="MinimizeVectorImage ForegroundVectorImage"/>
-								</Button>
-								<Button x:Name="MaximizeButton"
-										Classes="WindowButton"
-										Command="{Binding MaximizeCommand, Mode=OneWay}">
-									<controls:VectorImage Classes="MaximizeVectorImage ForegroundVectorImage"/>
-								</Button>
-								<Button x:Name="RestoreButton"
-										Classes="WindowButton"
-										Command="{Binding RestoreCommand, Mode=OneWay}">
-									<controls:VectorImage Classes="RestoreVectorImage ForegroundVectorImage"/>
-								</Button>
-								<Button x:Name="CloseButton"
-										Classes="WindowButton"
-										Command="{Binding CloseCommand, Mode=OneWay}">
-									<controls:VectorImage Classes="CloseVectorImage ForegroundVectorImage"/>
-								</Button>
-							</StackPanel>
+							Classes="SmallRoundedBorder BackgroundBorder"
+							IsHitTestVisible="False"/>
+					<Border x:Name="PART_TransparencyFallback" 
+					        IsHitTestVisible="False"/>
+					<VisualLayerManager>
+						<Grid RowDefinitions="36, *">
+							<Grid ColumnDefinitions="36, *, 108"
+							      Margin="10, 5"
+							      Grid.Row="0">
+								<controls:VectorImage Classes="LogoVectorImage" 
+								                      Margin="4"
+								                      Grid.Column="0"/>
+								<TextBlock Text="{TemplateBinding Title}" 
+										   Classes="CenterTextBlock LittleTextBlock"
+										   Grid.Column="1"/>
+								<StackPanel Orientation="Horizontal" 
+											Spacing="5" 
+											VerticalAlignment="Center"
+											HorizontalAlignment="Right"
+											Grid.Column="2">
+									<Button x:Name="MinimizeButton"
+											Classes="WindowButton"
+											Command="{Binding MinimizeCommand, Mode=OneWay}">
+										<controls:VectorImage Classes="MinimizeVectorImage ForegroundVectorImage"/>
+									</Button>
+									<Button x:Name="MaximizeButton"
+											Classes="WindowButton"
+											Command="{Binding MaximizeCommand, Mode=OneWay}">
+										<controls:VectorImage Classes="MaximizeVectorImage ForegroundVectorImage"/>
+									</Button>
+									<Button x:Name="RestoreButton"
+											Classes="WindowButton"
+											Command="{Binding RestoreCommand, Mode=OneWay}">
+										<controls:VectorImage Classes="RestoreVectorImage ForegroundVectorImage"/>
+									</Button>
+									<Button x:Name="CloseButton"
+											Classes="WindowButton"
+											Command="{Binding CloseCommand, Mode=OneWay}">
+										<controls:VectorImage Classes="CloseVectorImage ForegroundVectorImage"/>
+									</Button>
+								</StackPanel>
+							</Grid>
+							<ContentPresenter x:Name="PART_ContentPresenter"
+							                  ContentTemplate="{TemplateBinding ContentTemplate}"
+							                  Content="{TemplateBinding Content}"
+							                  Margin="{TemplateBinding Padding}"
+							                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+							                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+							                  Grid.Row="1"/>
 						</Grid>
-						<ContentPresenter Content="{TemplateBinding Content}" Grid.Row="1"/>
-					</Grid>
+					</VisualLayerManager>
 				</Grid>
 			</ControlTemplate>
 		</Setter>
@@ -96,10 +106,6 @@
 		<Style Selector="^:pointerover">
 			<Setter Property="Padding" Value="5"/>
 		</Style>
-	</Style>
-
-	<Style Selector="Window TextBlock">
-		<Setter Property="FontSize" Value="16"/>
 	</Style>
 	
 </Styles>

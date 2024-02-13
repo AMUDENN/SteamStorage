@@ -111,9 +111,10 @@
                         
                     </Grid>
                     
-                    <Button Content="github.com#SteamStorage" 
-                            Classes="UnderlineButton HorizontalLeftButton" 
-                            Grid.Row="2"/>
+                    <controls:HyperlinkButton Content="github.com#SteamStorage" 
+                                              NavigateUrl="https://github.com/AMUDENN/SteamStorage"
+                                              Classes="UnderlineHyperlinkButton" 
+                                              Grid.Row="2"/>
                     
                 </Grid>
                 
@@ -146,9 +147,10 @@
                         
                     </Grid>
 
-                    <Button Content="@amudenn" 
-                            Classes="UnderlineButton HorizontalLeftButton" 
-                            Grid.Row="2"/>
+                    <controls:HyperlinkButton Content="@amudenn" 
+                                              NavigateUrl="https://t.me/amudenn"
+                                              Classes="UnderlineHyperlinkButton" 
+                                              Grid.Row="2"/>
                     
                 </Grid>
                 
@@ -181,9 +183,10 @@
                         
                     </Grid>
                     
-                    <Button Content="SteamStorage@gmail.com" 
-                            Classes="UnderlineButton HorizontalLeftButton" 
-                            Grid.Row="2"/>
+                    <controls:HyperlinkButton Content="SteamStorage@gmail.com" 
+                                              NavigateUrl="mailto:SteamStorage@gmail.com"
+                                              Classes="UnderlineHyperlinkButton" 
+                                              Grid.Row="2"/>
                     
                 </Grid>
                 

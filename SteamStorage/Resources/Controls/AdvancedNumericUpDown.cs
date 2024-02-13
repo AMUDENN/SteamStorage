@@ -1,4 +1,6 @@
-﻿using Avalonia;
+﻿using System;
+using System.Windows.Input;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Utilities;
 using CommunityToolkit.Mvvm.Input;
@@ -15,21 +17,21 @@ public class AdvancedNumericUpDown : NumericUpDown
     public static readonly StyledProperty<bool> IsEndEnabledProperty =
         AvaloniaProperty.Register<AdvancedNumericUpDown, bool>(nameof(IsEndEnabled));
 
-    public static readonly StyledProperty<RelayCommand?> GoToStartCommandProperty =
-        AvaloniaProperty.Register<AdvancedNumericUpDown, RelayCommand?>(nameof(GoToStartCommand));
+    public static readonly StyledProperty<ICommand?> GoToStartCommandProperty =
+        AvaloniaProperty.Register<AdvancedNumericUpDown, ICommand?>(nameof(GoToStartCommand));
 
-    public static readonly StyledProperty<RelayCommand?> GoToEndCommandProperty =
-        AvaloniaProperty.Register<AdvancedNumericUpDown, RelayCommand?>(nameof(GoToEndCommand));
+    public static readonly StyledProperty<ICommand?> GoToEndCommandProperty =
+        AvaloniaProperty.Register<AdvancedNumericUpDown, ICommand?>(nameof(GoToEndCommand));
 
-    public static readonly StyledProperty<RelayCommand?> DecrementCommandProperty =
-        AvaloniaProperty.Register<AdvancedNumericUpDown, RelayCommand?>(nameof(DecrementCommand));
+    public static readonly StyledProperty<ICommand?> DecrementCommandProperty =
+        AvaloniaProperty.Register<AdvancedNumericUpDown, ICommand?>(nameof(DecrementCommand));
 
-    public static readonly StyledProperty<RelayCommand?> IncrementCommandProperty =
-        AvaloniaProperty.Register<AdvancedNumericUpDown, RelayCommand?>(nameof(IncrementCommand));
+    public static readonly StyledProperty<ICommand?> IncrementCommandProperty =
+        AvaloniaProperty.Register<AdvancedNumericUpDown, ICommand?>(nameof(IncrementCommand));
 
     #endregion PropertiesDeclaration
 
-    #region Commands
+    #region Properties
 
     public bool IsStartEnabled
     {
@@ -43,25 +45,29 @@ public class AdvancedNumericUpDown : NumericUpDown
         private set => SetValue(IsEndEnabledProperty, value);
     }
 
-    public RelayCommand? GoToStartCommand
+    #endregion Properties
+
+    #region Commands
+
+    public ICommand? GoToStartCommand
     {
         get => GetValue(GoToStartCommandProperty);
         private set => SetValue(GoToStartCommandProperty, value);
     }
 
-    public RelayCommand? GoToEndCommand
+    public ICommand? GoToEndCommand
     {
         get => GetValue(GoToEndCommandProperty);
         private set => SetValue(GoToEndCommandProperty, value);
     }
 
-    public RelayCommand? DecrementCommand
+    public ICommand? DecrementCommand
     {
         get => GetValue(DecrementCommandProperty);
         private set => SetValue(DecrementCommandProperty, value);
     }
 
-    public RelayCommand? IncrementCommand
+    public ICommand? IncrementCommand
     {
         get => GetValue(IncrementCommandProperty);
         private set => SetValue(IncrementCommandProperty, value);
@@ -73,13 +79,7 @@ public class AdvancedNumericUpDown : NumericUpDown
 
     public AdvancedNumericUpDown()
     {
-        Initialized += (_, _) =>
-        {
-            GoToStartCommand = new(DoGoToStart);
-            GoToEndCommand = new(DoGoToEnd);
-            DecrementCommand = new(DoDecrement);
-            IncrementCommand = new(DoIncrement);
-        };
+        Initialized += InitializedHandler;
 
         ValueChanged += ValueChangedHandler;
     }
@@ -88,13 +88,21 @@ public class AdvancedNumericUpDown : NumericUpDown
 
     #region Methods
 
+    private void InitializedHandler(object? sender, EventArgs args)
+    {
+        GoToStartCommand = new RelayCommand(DoGoToStart);
+        GoToEndCommand = new RelayCommand(DoGoToEnd);
+        DecrementCommand = new RelayCommand(DoDecrement);
+        IncrementCommand = new RelayCommand(DoIncrement);
+    }
+
     private void ValueChangedHandler(object? sender, NumericUpDownValueChangedEventArgs e)
     {
         IsStartEnabled = true;
         IsEndEnabled = true;
-        if (Value == Minimum)
+        if (Value <= Minimum)
             IsStartEnabled = false;
-        if (Value == Maximum)
+        if (Value >= Maximum)
             IsEndEnabled = false;
     }
 

@@ -406,8 +406,8 @@ public class ListItemsModel : ModelBase
         PagesCount = skinsResponse.PagesCount;
 
         ListItemModels = skinsResponse.Skins.Select(x =>
-                new ListItemModel(_apiClient, x.Skin.Id, x.Skin.SkinIconUrl, x.Skin.Title, x.CurrentPrice,
-                    _userModel.CurrencyMark, x.Change7D, x.Change30D, x.IsMarked))
+                new ListItemModel(_apiClient, x.Skin.Id, x.Skin.SkinIconUrl, x.Skin.MarketUrl, x.Skin.Title,
+                    x.CurrentPrice, _userModel.CurrencyMark, x.Change7D, x.Change30D, x.IsMarked))
             .ToList();
 
         IsLoading = false;

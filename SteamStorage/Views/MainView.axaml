@@ -58,7 +58,6 @@
 				<Style Selector="Border#MenuBorder:pointerover controls|VectorImage#AccountVectorImage">
 					<Setter Property="Margin" Value="16"/>
 				</Style>
-				
 			</Border.Styles>
 
 			<Grid RowDefinitions="128, 50, 25, *, 380, *, 140" Margin="0, 20">

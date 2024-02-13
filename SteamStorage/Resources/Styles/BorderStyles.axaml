@@ -21,6 +21,10 @@
 		<Setter Property="BorderThickness" Value="2"/>
 	</Style>
 		
+	<Style Selector="Border.LittleBorder">
+		<Setter Property="BorderThickness" Value="1"/>
+	</Style>	
+		
 	<Style Selector="Border.ForegroundBorderBrush">
 		<Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
 	</Style>	

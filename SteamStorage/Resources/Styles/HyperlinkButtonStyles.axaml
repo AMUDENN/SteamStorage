@@ -1,0 +1,29 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:SteamStorage.Resources.Controls"
+        x:DataType="controls:HyperlinkButton">
+
+    <Style Selector="controls|HyperlinkButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Button Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                            Command="{TemplateBinding OpenUrlCommand}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>    
+    </Style>
+    
+    <Style Selector="controls|HyperlinkButton.UnderlineHyperlinkButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Button Classes="UnderlineButton TransparentButton"
+                            Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                            Command="{TemplateBinding OpenUrlCommand}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>  
+    </Style>
+        
+</Styles>

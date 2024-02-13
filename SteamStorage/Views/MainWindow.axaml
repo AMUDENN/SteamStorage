@@ -7,10 +7,11 @@
 		d:DesignWidth="1440" d:DesignHeight="1024"
         x:Class="SteamStorage.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        Classes="MainWindow"
 		Width="1440" Height="1024"
         Icon="\Resources\Images\Bitmaps\BlackIcon24.ico"
         Title="SteamStorage">
 	
-	<ContentControl Content="{Binding MainViewModel, Mode=OneWay}"/>		
+	<TransitioningContentControl Content="{Binding MainViewModel, Mode=OneWay}"/>		
 
 </Window>

@@ -24,11 +24,11 @@
                         </Button>
                         
                         <NumericUpDown Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                       Increment="{Binding Increment, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                       Minimum="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                       Maximum="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                       FormatString="{Binding FormatString, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                       ParsingNumberStyle="{Binding ParsingNumberStyle, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                       Increment="{TemplateBinding Increment}"
+                                       Minimum="{TemplateBinding Minimum}"
+                                       Maximum="{TemplateBinding Maximum}"
+                                       FormatString="{TemplateBinding FormatString}"
+                                       ParsingNumberStyle="{TemplateBinding ParsingNumberStyle}"
                                        ShowButtonSpinner="False"
                                        Watermark="{TemplateBinding Watermark}"
                                        Classes="AdvancedNumericUpDown"
