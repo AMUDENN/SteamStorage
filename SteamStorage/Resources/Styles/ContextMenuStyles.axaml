@@ -8,10 +8,10 @@
         <Setter Property="WindowManagerAddShadowHint" Value="False" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Classes="BackgroundAdditionalBorder SmallRoundedBorder LittleBorder ForegroundBorderBrush"
+                <Border Classes="TopLevelBackgroundBorder SmallRoundedBorder"
                         MaxWidth="{TemplateBinding MaxWidth}"
                         MinHeight="{TemplateBinding MinHeight}">
-                    <ScrollViewer Margin="0, 10">
+                    <ScrollViewer Margin="0, 7">
                         <ItemsPresenter x:Name="PART_ItemsPresenter"
                                         ItemsPanel="{TemplateBinding ItemsPanel}"
                                         KeyboardNavigation.TabNavigation="Continue"
@@ -23,11 +23,40 @@
     </Style>
     
     <Style Selector="ContextMenu MenuItem">
-        
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Opacity" Value="0.9"/>
+        <Style Selector="^:selected">
+            <Setter Property="Opacity" Value="1"/>
+            <Style Selector="^ /template/ Border#PART_LayoutRoot">
+                <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+            </Style>
+        </Style>
+        <Style Selector="^:pressed /template/ Border#PART_LayoutRoot">
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
+            <Style Selector="^ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}" />
+            </Style>
+        </Style>
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="0.5"/>
+            <Style Selector="^ /template/ Border#PART_LayoutRoot">
+                <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}" />
+            </Style>
+        </Style>
     </Style>
     
     <Style Selector="ContextMenu Separator">
-        
+        <Setter Property="Background" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="Opacity" Value="0.5"/>
+        <Setter Property="Margin" Value="7"/>
     </Style>
         
 </Styles>

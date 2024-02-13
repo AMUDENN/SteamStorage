@@ -1,0 +1,10 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style Selector="ContentPresenter">
+        <Setter Property="FontFamily" Value="Inter, sans-serif"/>
+        <Setter Property="FontWeight" Value="600"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+    </Style>
+    
+</Styles>

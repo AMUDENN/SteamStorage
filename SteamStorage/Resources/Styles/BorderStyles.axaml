@@ -65,6 +65,14 @@
         <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
     </Style>
 		
+	<Style Selector="Border.TopLevelBackgroundBorder">
+		<Setter Property="Background" Value="{DynamicResource TopLevelBackgroundBrush}"/>
+	</Style>
+		
+	<Style Selector="Border.TopLevelLightBackgroundBorder">
+		<Setter Property="Background" Value="{DynamicResource TopLevelLightBackgroundBrush}"/>
+	</Style>
+		
 	<Style Selector="Border.FirstAccentBorder">
 		<Setter Property="Background" Value="{DynamicResource FirstAccentBrush}"/>
 	</Style>

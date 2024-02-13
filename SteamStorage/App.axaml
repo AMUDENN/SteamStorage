@@ -15,6 +15,7 @@
 		<StyleInclude Source="/Resources/Styles/BorderStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/ButtonStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/CheckBoxStyles.axaml"/>
+        <StyleInclude Source="/Resources/Styles/ContentPresenterStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ContextMenuStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/GridStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/HyperlinkButtonStyles.axaml"/>
