@@ -31,7 +31,8 @@ public static class Statistics
 
     public record InventoryGameStatisticResponse(
         string GameTitle,
-        double Percentage) : Response;
+        double Percentage,
+        int Count) : Response;
 
     public record ItemsCountResponse(
         int Count) : Response;

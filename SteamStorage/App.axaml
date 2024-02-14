@@ -1,7 +1,7 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:utilities="using:SteamStorage.Utilities"
-             xmlns:themes="using:SteamStorage.Utilities"
+             xmlns:themeVariants="clr-namespace:SteamStorage.Utilities.ThemeVariants"
              x:Class="SteamStorage.App">
 
     <Application.DataTemplates>
@@ -69,8 +69,8 @@
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.ThemeDictionaries>
-				<ResourceInclude x:Key="{x:Static themes:ThemeVariants.Classic}" Source="avares://SteamStorage/Resources/Themes/ClassicTheme.axaml"/>
-				<ResourceInclude x:Key="{x:Static themes:ThemeVariants.Lime}" Source="avares://SteamStorage/Resources/Themes/LimeTheme.axaml"/>
+				<ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.Classic}" Source="avares://SteamStorage/Resources/Themes/ClassicTheme.axaml"/>
+				<ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.Lime}" Source="avares://SteamStorage/Resources/Themes/LimeTheme.axaml"/>
 			</ResourceDictionary.ThemeDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>

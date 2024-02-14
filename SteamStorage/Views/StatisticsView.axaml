@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              xmlns:vm="using:SteamStorage.ViewModels"
              xmlns:converters="using:SteamStorage.Resources.Converters"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -155,7 +156,7 @@
 				
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="5*" MinWidth="360"/>
+					<ColumnDefinition Width="7*" MinWidth="360"/>
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				
@@ -210,7 +211,7 @@
 				
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="5*" MinWidth="360"/>
+					<ColumnDefinition Width="7*" MinWidth="360"/>
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				
@@ -253,7 +254,7 @@
 				
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*" MinWidth="30"/>
-					<ColumnDefinition Width="5*" MinWidth="420"/>
+					<ColumnDefinition Width="7*" MinWidth="420"/>
 					<ColumnDefinition Width="*" MinWidth="30"/>
 				</Grid.ColumnDefinitions>
 				
@@ -272,7 +273,7 @@
 					<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*" MinWidth="10"/>
-                        <ColumnDefinition Width="100" MinWidth="100"/>
+                        <ColumnDefinition Width="3*" MinWidth="120"/>
                     </Grid.ColumnDefinitions>
 					
 					<TextBlock Text="Инвентарь" 
@@ -292,12 +293,17 @@
                                    Margin="5, 0, 0, 0"/>
                     </StackPanel>
 					
+					<lvc:PieChart Series="{Binding InventoryGamesSeries, Mode=OneWay}"
+					              InitialRotation="-90"
+					              Margin="-50, -10"
+					              Grid.RowSpan="3" Grid.Row="3" Grid.Column="2"/>
+					
 				</Grid>
 				
 			</Grid>
 			
 		</Border>
-		
+	    
 		<Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
 		        Grid.Row="4" Grid.Column="2">
 			
@@ -305,7 +311,7 @@
 				
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*" MinWidth="30"/>
-					<ColumnDefinition Width="5*" MinWidth="420"/>
+					<ColumnDefinition Width="7*" MinWidth="420"/>
 					<ColumnDefinition Width="*" MinWidth="30"/>
 				</Grid.ColumnDefinitions>
 				

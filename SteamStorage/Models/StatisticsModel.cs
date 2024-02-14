@@ -1,6 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using LiveChartsCore;
+using LiveChartsCore.Measure;
+using LiveChartsCore.SkiaSharpView.Extensions;
+using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models.Tools;
+using SteamStorage.Services.ThemeService;
+using SteamStorage.Utilities.Events;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Services.PingResult;
@@ -13,6 +19,7 @@ public class StatisticsModel : ModelBase
     #region Fields
 
     private readonly ApiClient _apiClient;
+    private readonly IThemeService _themeService;
 
     private double _investedSum;
     private double _investedSumGrowth;
@@ -34,6 +41,7 @@ public class StatisticsModel : ModelBase
     private int _inventoryCount;
     private double _inventorySum;
     private IEnumerable<Statistics.InventoryGameStatisticResponse> _inventoryGames;
+    private IEnumerable<ISeries> _inventoryGamesSeries;
 
     private long _ping;
     private PingResult.ServerStatus _status;
@@ -120,10 +128,20 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _inventorySum, value);
     }
 
-    public IEnumerable<Statistics.InventoryGameStatisticResponse> InventoryGames
+    private IEnumerable<Statistics.InventoryGameStatisticResponse> InventoryGames
     {
         get => _inventoryGames;
-        private set => SetProperty(ref _inventoryGames, value);
+        set
+        {
+            SetProperty(ref _inventoryGames, value);
+            GetInventoryGamesSeries();
+        }
+    }
+
+    public IEnumerable<ISeries> InventoryGamesSeries
+    {
+        get => _inventoryGamesSeries;
+        private set => SetProperty(ref _inventoryGamesSeries, value);
     }
 
     public long Ping
@@ -142,15 +160,18 @@ public class StatisticsModel : ModelBase
 
     #region Constructor
 
-    public StatisticsModel(ApiClient apiClient, UserModel userModel)
+    public StatisticsModel(ApiClient apiClient, UserModel userModel, IThemeService themeService)
     {
         _apiClient = apiClient;
+        _themeService = themeService;
+
+        themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
         userModel.UserChanged += UserChangedHandler;
-
         userModel.CurrencyChanged += CurrencyChangedHandler;
 
         _inventoryGames = Enumerable.Empty<Statistics.InventoryGameStatisticResponse>();
+        _inventoryGamesSeries = Enumerable.Empty<ISeries>();
 
         RefreshPing();
     }
@@ -158,6 +179,11 @@ public class StatisticsModel : ModelBase
     #endregion Constructor
 
     #region Methods
+
+    private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
+    {
+        GetInventoryGamesSeries();
+    }
 
     private void UserChangedHandler(object? sender)
     {
@@ -168,6 +194,20 @@ public class StatisticsModel : ModelBase
     private void CurrencyChangedHandler(object? sender)
     {
         RefreshStatistics();
+    }
+
+    private void GetInventoryGamesSeries()
+    {
+        int i = 0;
+        InventoryGamesSeries = InventoryGames.OrderByDescending(x => x.Count).AsPieSeries((value, builder) =>
+        {
+            builder.MaxRadialColumnWidth = 20;
+            builder.HoverPushout = 0;
+            builder.Mapping = (game, point) => new(point, game.Count);
+            builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count}";
+            builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i));
+            i++;
+        });
     }
 
     private async void RefreshStatistics()
@@ -221,8 +261,6 @@ public class StatisticsModel : ModelBase
         InventorySum = inventoryStatisticResponse?.Sum ?? 0;
         InventoryGames = inventoryStatisticResponse?.Games ??
                          Enumerable.Empty<Statistics.InventoryGameStatisticResponse>();
-
-
     }
 
     private async void RefreshPing()

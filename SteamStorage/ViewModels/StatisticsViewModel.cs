@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using LiveChartsCore;
 using SteamStorage.Models;
 using SteamStorage.ViewModels.Tools;
 using SteamStorageAPI.ApiEntities;
@@ -81,10 +82,10 @@ public class StatisticsViewModel : ViewModelBase
     {
         get => _statisticsModel.InventorySum;
     }
-
-    public IEnumerable<Statistics.InventoryGameStatisticResponse> InventoryGames
+    
+    public IEnumerable<ISeries> InventoryGamesSeries
     {
-        get => _statisticsModel.InventoryGames;
+        get => _statisticsModel.InventoryGamesSeries;
     }
 
     public long Ping
