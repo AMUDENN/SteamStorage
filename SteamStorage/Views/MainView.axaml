@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+			 xmlns:asyncImageLoader="using:AsyncImageLoader"
 			 xmlns:vm="using:SteamStorage.ViewModels"
 			 xmlns:converters="using:SteamStorage.Resources.Converters"
              xmlns:controls="using:SteamStorage.Resources.Controls"

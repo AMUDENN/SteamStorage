@@ -1,7 +1,7 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:utilities="using:SteamStorage.Utilities"
-             xmlns:themeVariants="clr-namespace:SteamStorage.Utilities.ThemeVariants"
+             xmlns:themeVariants="using:SteamStorage.Utilities.ThemeVariants"
              x:Class="SteamStorage.App">
 
     <Application.DataTemplates>

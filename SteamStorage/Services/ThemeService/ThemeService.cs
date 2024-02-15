@@ -28,6 +28,7 @@ public class ThemeService : IThemeService
 
     public ThemeService()
     {
+        CurrentThemeVariant = ThemeVariant.Default;
         CurrentChartThemeVariant = ChartThemeVariants.Default;
 
         Application? app = Application.Current;

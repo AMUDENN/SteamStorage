@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Avalonia.Styling;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
@@ -57,6 +58,8 @@ public class SettingsModel : ModelBase
             new("Классический", ThemeVariants.Classic),
             new("Лаймовый", ThemeVariants.Lime)
         ];
+
+        _selectedThemeModel = ThemeModels.First();
 
         SetTheme();
 

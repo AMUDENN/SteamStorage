@@ -22,10 +22,10 @@ public class StatisticsViewModel : ViewModelBase
     {
         get => _statisticsModel.InvestedSum;
     }
-
-    public double InvestedSumGrowth
+    
+    public IEnumerable<ISeries> InvestedSumGrowthSeries
     {
-        get => _statisticsModel.InvestedSumGrowth;
+        get => _statisticsModel.InvestedSumGrowthSeries;
     }
 
     public double FinancialGoal

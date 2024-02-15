@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LiveChartsCore;
 using LiveChartsCore.Measure;
@@ -23,6 +24,7 @@ public class StatisticsModel : ModelBase
 
     private double _investedSum;
     private double _investedSumGrowth;
+    private IEnumerable<ISeries> _investedSumGrowthSeries;
 
     private double _financialGoal;
     private double _financialGoalPercentageCompletion;
@@ -56,10 +58,20 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _investedSum, value);
     }
 
-    public double InvestedSumGrowth
+    private double InvestedSumGrowth
     {
         get => _investedSumGrowth;
-        private set => SetProperty(ref _investedSumGrowth, value);
+        set
+        {
+            SetProperty(ref _investedSumGrowth, value);
+            GetInvestedSumGrowthSeries();
+        }
+    }
+
+    public IEnumerable<ISeries> InvestedSumGrowthSeries
+    {
+        get => _investedSumGrowthSeries;
+        private set => SetProperty(ref _investedSumGrowthSeries, value);
     }
 
     public double FinancialGoal
@@ -183,6 +195,7 @@ public class StatisticsModel : ModelBase
     private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
     {
         GetInventoryGamesSeries();
+        GetInvestedSumGrowthSeries();
     }
 
     private void UserChangedHandler(object? sender)
@@ -196,8 +209,31 @@ public class StatisticsModel : ModelBase
         RefreshStatistics();
     }
 
+    private void GetInvestedSumGrowthSeries()
+    {
+        double growth = InvestedSumGrowth < 0 ? 0 : InvestedSumGrowth > 1 ? 100 : InvestedSumGrowth * 100;
+
+        InvestedSumGrowthSeries = GaugeGenerator.BuildSolidGauge(
+            new GaugeItem(
+                90,
+                series =>
+                {
+                    series.AnimationsSpeed = TimeSpan.FromMilliseconds(200);
+                    series.MaxRadialColumnWidth = 20;
+                    series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(1));
+                    series.DataLabelsSize = 0;
+                }),
+            new GaugeItem(GaugeItem.Background, series =>
+            {
+                series.MaxRadialColumnWidth = 20;
+                series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(2));
+            }));
+    }
+
     private void GetInventoryGamesSeries()
     {
+        if(!InventoryGames.Any()) return;
+        
         int i = 0;
         InventoryGamesSeries = InventoryGames.OrderByDescending(x => x.Count).AsPieSeries((value, builder) =>
         {

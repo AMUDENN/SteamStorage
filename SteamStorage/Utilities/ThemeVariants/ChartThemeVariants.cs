@@ -9,7 +9,7 @@ public static class ChartThemeVariants
 
     public static IEnumerable<ChartThemeVariant> ChartThemes { get; }
 
-    public static ChartThemeVariant Default { get; } = new("Default", new List<SKColor>
+    public static ChartThemeVariant Default { get; } = new(nameof(ThemeConstants.Themes.Default), new List<SKColor>
     {
         new(80, 80, 80),
         new(90, 90, 90),

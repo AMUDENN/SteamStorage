@@ -1,7 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
-        xmlns:utilityModels="clr-namespace:SteamStorage.Models.UtilityModels"
+        xmlns:asyncImageLoader="using:AsyncImageLoader"
+        xmlns:utilityModels="using:SteamStorage.Models.UtilityModels"
         xmlns:converters="using:SteamStorage.Resources.Converters"
         xmlns:controls="using:SteamStorage.Resources.Controls">
 	
