@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using LiveChartsCore;
-using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models.Tools;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events;
+using SteamStorage.Utilities.ThemeVariants;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Services.PingResult;
@@ -28,6 +27,7 @@ public class StatisticsModel : ModelBase
 
     private double _financialGoal;
     private double _financialGoalPercentageCompletion;
+    private IEnumerable<ISeries> _financialGoalPercentageCompletionSeries;
 
     private int _totalCount;
 
@@ -58,10 +58,10 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _investedSum, value);
     }
 
-    private double InvestedSumGrowth
+    public double InvestedSumGrowth
     {
         get => _investedSumGrowth;
-        set
+        private set
         {
             SetProperty(ref _investedSumGrowth, value);
             GetInvestedSumGrowthSeries();
@@ -83,7 +83,17 @@ public class StatisticsModel : ModelBase
     public double FinancialGoalPercentageCompletion
     {
         get => _financialGoalPercentageCompletion;
-        private set => SetProperty(ref _financialGoalPercentageCompletion, value);
+        private set
+        {
+            SetProperty(ref _financialGoalPercentageCompletion, value);
+            GetFinancialGoalPercentageCompletion();
+        }
+    }
+
+    public IEnumerable<ISeries> FinancialGoalPercentageCompletionSeries
+    {
+        get => _financialGoalPercentageCompletionSeries;
+        private set => SetProperty(ref _financialGoalPercentageCompletionSeries, value);
     }
 
     public int TotalCount
@@ -182,6 +192,9 @@ public class StatisticsModel : ModelBase
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
 
+        _investedSumGrowthSeries = Enumerable.Empty<ISeries>();
+        _financialGoalPercentageCompletionSeries = Enumerable.Empty<ISeries>();
+
         _inventoryGames = Enumerable.Empty<Statistics.InventoryGameStatisticResponse>();
         _inventoryGamesSeries = Enumerable.Empty<ISeries>();
 
@@ -215,25 +228,49 @@ public class StatisticsModel : ModelBase
 
         InvestedSumGrowthSeries = GaugeGenerator.BuildSolidGauge(
             new GaugeItem(
-                90,
+                growth,
                 series =>
                 {
-                    series.AnimationsSpeed = TimeSpan.FromMilliseconds(200);
                     series.MaxRadialColumnWidth = 20;
-                    series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(1));
+                    series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
+                        .GetChartColor(ChartThemeVariants.ChartColors.SecondAccent).Color);
                     series.DataLabelsSize = 0;
                 }),
             new GaugeItem(GaugeItem.Background, series =>
             {
                 series.MaxRadialColumnWidth = 20;
-                series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(2));
+                series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
+                    .GetChartColor(ChartThemeVariants.ChartColors.ThirdAccent).Color);
+            }));
+    }
+
+    private void GetFinancialGoalPercentageCompletion()
+    {
+        double growth = FinancialGoalPercentageCompletion < 0 ? 0 :
+            FinancialGoalPercentageCompletion > 1 ? 100 : FinancialGoalPercentageCompletion * 100;
+
+        FinancialGoalPercentageCompletionSeries = GaugeGenerator.BuildSolidGauge(
+            new GaugeItem(
+                growth,
+                series =>
+                {
+                    series.MaxRadialColumnWidth = 20;
+                    series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
+                        .GetChartColor(ChartThemeVariants.ChartColors.FirstAccent).Color);
+                    series.DataLabelsSize = 0;
+                }),
+            new GaugeItem(GaugeItem.Background, series =>
+            {
+                series.MaxRadialColumnWidth = 20;
+                series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
+                    .GetChartColor(ChartThemeVariants.ChartColors.ThirdAccent).Color);
             }));
     }
 
     private void GetInventoryGamesSeries()
     {
-        if(!InventoryGames.Any()) return;
-        
+        if (!InventoryGames.Any()) return;
+
         int i = 0;
         InventoryGamesSeries = InventoryGames.OrderByDescending(x => x.Count).AsPieSeries((value, builder) =>
         {
@@ -241,7 +278,7 @@ public class StatisticsModel : ModelBase
             builder.HoverPushout = 0;
             builder.Mapping = (game, point) => new(point, game.Count);
             builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count}";
-            builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i));
+            builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
             i++;
         });
     }

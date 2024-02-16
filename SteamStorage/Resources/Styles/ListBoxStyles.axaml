@@ -1,6 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:asyncImageLoader="using:AsyncImageLoader"
+        xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
         xmlns:utilityModels="using:SteamStorage.Models.UtilityModels"
         xmlns:converters="using:SteamStorage.Resources.Converters"
         xmlns:controls="using:SteamStorage.Resources.Controls">
@@ -9,7 +10,7 @@
 		<converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
 		<converters:DoubleGreaterConverter x:Key="DoubleGreaterConverter"/>
 		<converters:DoubleMultiplicationConverter x:Key="DoubleMultiplicationConverter"/>
-		<converters:PercentConverter x:Key="PercentConverter"/>
+		<converters:MarkedPercentConverter x:Key="MarkedPercentConverter"/>
 	</Styles.Resources>
 	
 	<Style Selector="ListBox">
@@ -182,7 +183,7 @@
 	                                           Margin="5, 0, 0, 0"/>
 								</StackPanel>
 								<TextBlock Text="{Binding Change7D, StringFormat=N0, Mode=OneWay, 
-												  Converter={StaticResource PercentConverter}, ConverterParameter=2}"
+												  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
 								           Classes="MiddleTextBlock CenterTextBlock"
 								           Classes.PositiveTextBlock="{Binding Change7D, Mode=OneWay,
 																	   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
@@ -191,7 +192,7 @@
 								           ToolTip.Tip="Изменение (7дн)"
 								           Grid.Row="0" Grid.Column="6"/>
 								<TextBlock Text="{Binding Change30D, StringFormat=N0, Mode=OneWay, 
-												  Converter={StaticResource PercentConverter}, ConverterParameter=2}"
+												  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
 								           Classes="MiddleTextBlock CenterTextBlock"
 								           Classes.PositiveTextBlock="{Binding Change30D, Mode=OneWay,
 																	   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
@@ -214,7 +215,7 @@
 										<TextBlock Text="Изменение за период: "
 										           Classes="MiddleTextBlock LeftTextBlock"/>
 										<TextBlock Text="{Binding ChangePeriod, StringFormat=N0, Mode=OneWay,
-												   Converter={StaticResource PercentConverter}, ConverterParameter=2}"
+												   Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
 										           Classes="MiddleTextBlock CenterTextBlock"
 										           Classes.PositiveTextBlock="{Binding ChangePeriod, Mode=OneWay,
 																	   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
@@ -243,6 +244,11 @@
 										                      Height="24" Width="24"
 										                      HorizontalAlignment="Center"
 										                      VerticalAlignment="Center"/>
+										<lvc:CartesianChart Series="{Binding ChangeSeries, Mode=OneWay}"
+										                    XAxes="{Binding XAxis, Mode=OneWay}"
+										                    YAxes="{Binding YAxis, Mode=OneWay}"
+										                    ZoomMode="X"/>
+										
 									</Grid>
 									<StackPanel Orientation="Horizontal"
 									            Spacing="5"

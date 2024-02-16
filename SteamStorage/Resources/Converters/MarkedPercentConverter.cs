@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace SteamStorage.Resources.Converters;
 
-public class PercentConverter : IValueConverter
+public class MarkedPercentConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
@@ -14,7 +14,7 @@ public class PercentConverter : IValueConverter
             double val = System.Convert.ToDouble(value);
             int par = System.Convert.ToInt32(parameter);
             double percent = Math.Round(val * 100, par);
-            return $"{percent}%";
+            return percent > 0 ? $"+{percent}%" : $"{percent}%";
         }
         catch
         {

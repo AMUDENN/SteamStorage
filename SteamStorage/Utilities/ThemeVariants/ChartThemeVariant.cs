@@ -1,23 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-using SkiaSharp;
+using System.Linq;
 
 namespace SteamStorage.Utilities.ThemeVariants;
 
 public class ChartThemeVariant
 {
+    #region Properties
+
     private object Key { get; }
-    
-    public IEnumerable<SKColor> Colors { get; private set; }
-    
-    public ChartThemeVariant(object key, IEnumerable<SKColor> colors)
+
+    public IEnumerable<ChartColor> Colors { get; }
+
+    #endregion Properties
+
+    #region Constructor
+
+    public ChartThemeVariant(object key, IEnumerable<ChartColor> colors)
     {
         Key = key ?? throw new ArgumentNullException(nameof(key));
         Colors = colors;
     }
-    
+
+    #endregion Constructor
+
+    #region Methods
+
     public override string ToString()
     {
         return Key.ToString() ?? $"ChartThemeVariant {{ Key = {Key} }}";
     }
+
+    public ChartColor GetChartColor(ChartThemeVariants.ChartColors color)
+    {
+        return Colors.FirstOrDefault(x => x.Name == color) ?? ChartThemeVariants.Default.GetChartColor(color);
+    }
+
+    #endregion Methods
 }

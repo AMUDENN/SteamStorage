@@ -12,6 +12,7 @@
         <entry key="SteamStorage/Resources/Images/Vectors/ActivesImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/ActivesVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/ArchiveImage.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/BadConnectionVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/CloseImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/DoubleLeftArrowImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/DoubleLeftArrowVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
@@ -19,10 +20,12 @@
         <entry key="SteamStorage/Resources/Images/Vectors/DoubleRightArrowVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/EmailImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/EmptyStarImage.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/ExcellentConnectionVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/FilterDownImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/FilterDownVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/FilterUpImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/GithubImage.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/GoodConnectionVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/HomeImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/HomeVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/InventoryImage.axaml" value="SteamStorage/SteamStorage.csproj" />

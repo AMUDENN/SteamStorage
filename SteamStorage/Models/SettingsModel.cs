@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Avalonia.Styling;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;

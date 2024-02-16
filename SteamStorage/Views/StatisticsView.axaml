@@ -12,6 +12,7 @@
     <UserControl.Resources>
         <converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
         <converters:DoubleGreaterConverter x:Key="DoubleGreaterConverter"/>
+        <converters:MarkedPercentConverter x:Key="MarkedPercentConverter"/>
         <converters:PercentConverter x:Key="PercentConverter"/>
     </UserControl.Resources>
     
@@ -28,7 +29,7 @@
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" MinWidth="400"/>
 			<ColumnDefinition Width="30" MinWidth="30"/>
-			<ColumnDefinition Width="*" MinWidth="400"/>
+			<ColumnDefinition Width="*" MinWidth="380"/>
 		</Grid.ColumnDefinitions>
 		
 		<Border Classes="BigRoundedBorder FirstAccentGradientBorder" 
@@ -70,6 +71,14 @@
 				              TooltipPosition="Hidden"
 				              Margin="-30, -50"
 				              Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"/>
+				
+				<TextBlock Text="{Binding InvestedSumGrowth, StringFormat=N0, Mode=OneWay,
+								  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=0}"
+				           Classes="LargeTextBlock CenterTextBlock"
+				           HorizontalAlignment="Center"
+				           TextWrapping="NoWrap"
+				           Margin="10, 5, 10, 10"
+				           Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"/>
 
 			</Grid>
 			
@@ -96,11 +105,11 @@
 					</Grid.RowDefinitions>
 					
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="*" MinWidth="30"/>
+						<ColumnDefinition Width="2*"/>
 						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="3*" MinWidth="10"/>
+						<ColumnDefinition Width="*" MinWidth="10"/>
 						<ColumnDefinition Width="120" MinWidth="120"/>
-						<ColumnDefinition Width="*" MinWidth="30"/>
+						<ColumnDefinition Width="2*"/>
 					</Grid.ColumnDefinitions>
 					
 					<TextBlock Text="Финансовая цель"
@@ -114,6 +123,22 @@
 						           Classes="LargeTextBlock"
 						           Margin="5, 0, 0, 0"/>
 					</StackPanel>
+					
+					<lvc:PieChart Series="{Binding FinancialGoalPercentageCompletionSeries, Mode=OneWay}"
+					              MinValue="0"
+					              MaxValue="100"
+					              InitialRotation="-90"
+					              TooltipPosition="Hidden"
+					              Margin="-20, -40"
+					              Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"/>
+				
+					<TextBlock Text="{Binding FinancialGoalPercentageCompletion, StringFormat=N0, Mode=OneWay,
+									  Converter={StaticResource PercentConverter}, ConverterParameter=0}"
+					           Classes="MiddleTextBlock CenterTextBlock"
+					           HorizontalAlignment="Center"
+					           TextWrapping="NoWrap"
+					           Margin="3, 0, 3, 3"
+					           Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"/>
 					
 				</Grid>
 			
@@ -186,7 +211,7 @@
 				<StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
 					<TextBlock Text="Изменение: " Classes="MiddleTextBlock"/>
 					<TextBlock Text="{Binding ActivesPercentageGrowth, StringFormat=N0, Mode=OneWay, 
-									 Converter={StaticResource PercentConverter}, ConverterParameter=2}" 
+									 Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}" 
 					           Classes="BigTextBlock"
 					           Classes.PositiveTextBlock="{Binding ActivesPercentageGrowth, Mode=OneWay,
 									 Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
@@ -239,7 +264,7 @@
 				<StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
 					<TextBlock Text="Изменение: " Classes="MiddleTextBlock"/>
 					<TextBlock Text="{Binding ArchivesPercentageGrowth, StringFormat=N0, Mode=OneWay, 
-									 Converter={StaticResource PercentConverter}, ConverterParameter=2}" 
+									 Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}" 
 					           Classes="BigTextBlock"
 					           Classes.PositiveTextBlock="{Binding ArchivesPercentageGrowth, Mode=OneWay,
 									 Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
@@ -327,19 +352,33 @@
 						<RowDefinition Height="40" MinHeight="40"/>
 					</Grid.RowDefinitions>
 					
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="*" MinWidth="20"/>
+						<ColumnDefinition Width="7*" MinWidth="100"/>
+					</Grid.ColumnDefinitions>
+					
 					<TextBlock Text="Состояние сервера" 
 					           Classes="BigTextBlock CenterTextBlock" 
-					           Grid.Row="0"/>
+					           Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0"/>
 					
-					<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+					<StackPanel Orientation="Horizontal" 
+					            Grid.Row="2" Grid.Column="0">
 						<TextBlock Text="{Binding Status, Mode=OneWay}" Classes="MiddleTextBlock"/>
 					</StackPanel>
 					
-					<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+					<StackPanel Orientation="Horizontal" 
+					            Grid.Row="4" Grid.Column="0">
 						<TextBlock Text="Ping: " Classes="MiddleTextBlock"/>
 						<TextBlock Text="{Binding Ping, StringFormat=N0, Mode=OneWay}" Classes="MiddleTextBlock"/>
 						<TextBlock Text=" ms" Classes="MiddleTextBlock"/>
 					</StackPanel>
+					
+					<ToggleButton Classes="ConnectionToggleButton"
+					              IsChecked="{x:Null}"
+					              HorizontalAlignment="Left"
+					              Margin="5"
+					              Grid.RowSpan="3" Grid.Row="2" Grid.Column="2"/>
 					
 				</Grid>
 				

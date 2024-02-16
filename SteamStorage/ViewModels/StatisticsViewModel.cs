@@ -23,6 +23,11 @@ public class StatisticsViewModel : ViewModelBase
         get => _statisticsModel.InvestedSum;
     }
     
+    public double InvestedSumGrowth
+    {
+        get => _statisticsModel.InvestedSumGrowth;
+    }
+    
     public IEnumerable<ISeries> InvestedSumGrowthSeries
     {
         get => _statisticsModel.InvestedSumGrowthSeries;
@@ -36,6 +41,11 @@ public class StatisticsViewModel : ViewModelBase
     public double FinancialGoalPercentageCompletion
     {
         get => _statisticsModel.FinancialGoalPercentageCompletion;
+    }
+    
+    public IEnumerable<ISeries> FinancialGoalPercentageCompletionSeries
+    {
+        get => _statisticsModel.FinancialGoalPercentageCompletionSeries;
     }
 
     public int TotalCount
