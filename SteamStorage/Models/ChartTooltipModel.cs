@@ -62,8 +62,7 @@ public class ChartTooltipModel : ModelBase
         {
             Color = _themeService.CurrentChartThemeVariant.GetChartColor(ChartThemeVariants.ChartColors.Foreground)
                 .Color,
-            SKTypeface = SKTypeface.FromFamilyName(_themeService.CurrentChartThemeVariant.FontFamilyName,
-                SKFontStyleWeight.SemiBold, SKFontStyleWidth.Normal, SKFontStyleSlant.Upright)
+            SKTypeface = _themeService.CurrentChartThemeVariant.SkTypeface
         };
 
         SKColor background = _themeService.CurrentChartThemeVariant

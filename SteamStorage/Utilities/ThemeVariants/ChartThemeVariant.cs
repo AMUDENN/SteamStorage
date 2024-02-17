@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SkiaSharp;
 
 namespace SteamStorage.Utilities.ThemeVariants;
 
@@ -10,7 +11,7 @@ public class ChartThemeVariant
 
     private object Key { get; }
     
-    public string FontFamilyName { get; }
+    public SKTypeface SkTypeface { get; }
 
     public IEnumerable<ChartColor> Colors { get; }
 
@@ -18,10 +19,10 @@ public class ChartThemeVariant
 
     #region Constructor
 
-    public ChartThemeVariant(object key, string fontFamilyName, IEnumerable<ChartColor> colors)
+    public ChartThemeVariant(object key, SKTypeface skTypeface, IEnumerable<ChartColor> colors)
     {
         Key = key ?? throw new ArgumentNullException(nameof(key));
-        FontFamilyName = fontFamilyName;
+        SkTypeface = skTypeface;
         Colors = colors;
     }
 

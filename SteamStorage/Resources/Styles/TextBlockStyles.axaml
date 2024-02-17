@@ -14,10 +14,15 @@
 		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
 		<Setter Property="Transitions">
 			<Transitions>
+				<DoubleTransition Property="FontSize" Duration="0:0:0.2"/>
 				<DoubleTransition Property="Opacity" Duration="0:0:0.1"/>
 				<BrushTransition Property="Foreground" Duration="0:0:0.1"/>
 			</Transitions>
 		</Setter>
+	</Style>
+	
+	<Style Selector="TextBlock.NoWrapTextBlock">
+		<Setter Property="TextWrapping" Value="NoWrap"/>
 	</Style>
 	
 	<Style Selector="TextBlock.FirstAccentTextBlock">

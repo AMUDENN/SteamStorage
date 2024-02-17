@@ -151,7 +151,7 @@
 								</Grid.RowDefinitions>
 								
 								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="140"/>
+									<ColumnDefinition Width="140*" MinWidth="100" MaxWidth="140"/>
 									<ColumnDefinition Width="20" MinWidth="20"/>
 									<ColumnDefinition Width="340*"/>
 									<ColumnDefinition Width="20" MinWidth="20"/>
@@ -171,21 +171,18 @@
 								</Border>
 								<TextBlock Text="{Binding Title, Mode=OneWay}"
 								           Classes="MiddleTextBlock LeftTextBlock"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=650}"
 								           ToolTip.Tip="Название"
 								           Grid.Row="0" Grid.Column="2"/>
-								<StackPanel Orientation="Horizontal"
-								            HorizontalAlignment="Center"
-								            ToolTip.Tip="Текущая цена"
-								            Grid.Row="0" Grid.Column="4">
-									<TextBlock Text="{Binding CurrentPrice, StringFormat=N2, Mode=OneWay}"
-	                                           Classes="MiddleTextBlock"/>
-	                                <TextBlock Text="{Binding CurrencyMark}"
-	                                           Classes="MiddleTextBlock"
-	                                           Margin="5, 0, 0, 0"/>
-								</StackPanel>
+								<TextBlock Text="{Binding CurrentPriceString, Mode=OneWay}"
+								           Classes="MiddleTextBlock CenterTextBlock"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=650}"
+								           ToolTip.Tip="Текущая цена"
+								           Grid.Row="0" Grid.Column="4"/>
 								<TextBlock Text="{Binding Change7D, StringFormat=N0, Mode=OneWay, 
 												  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
 								           Classes="MiddleTextBlock CenterTextBlock"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=650}"
 								           Classes.PositiveTextBlock="{Binding Change7D, Mode=OneWay,
 																	   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
 								           Classes.NegativeTextBlock="{Binding Change7D, Mode=OneWay,
@@ -195,6 +192,7 @@
 								<TextBlock Text="{Binding Change30D, StringFormat=N0, Mode=OneWay, 
 												  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
 								           Classes="MiddleTextBlock CenterTextBlock"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=650}"
 								           Classes.PositiveTextBlock="{Binding Change30D, Mode=OneWay,
 																	   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
 								           Classes.NegativeTextBlock="{Binding Change30D, Mode=OneWay,
@@ -209,15 +207,16 @@
 								          Grid.Row="0" Grid.Column="10"/>
 								
 								<StackPanel x:Name="ChangeStackPanel"
-								            IsVisible="False"
+								            Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=290}"
+								            Opacity="0"
 								            Spacing="10"
 								            Grid.Row="2" Grid.Column="2">
 									<StackPanel Orientation="Horizontal">
 										<TextBlock Text="Изменение за период: "
-										           Classes="MiddleTextBlock LeftTextBlock"/>
+										           Classes="SmallTextBlock LeftTextBlock"/>
 										<TextBlock Text="{Binding ChangePeriod, StringFormat=N0, Mode=OneWay,
 												   Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
-										           Classes="MiddleTextBlock CenterTextBlock"
+										           Classes="SmallTextBlock CenterTextBlock"
 										           Classes.PositiveTextBlock="{Binding ChangePeriod, Mode=OneWay,
 																	   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
 										           Classes.NegativeTextBlock="{Binding ChangePeriod, Mode=OneWay,
@@ -225,13 +224,14 @@
 									</StackPanel>
 									<StackPanel Orientation="Horizontal">
 										<TextBlock Text="Период: "
-										           Classes="MiddleTextBlock LeftTextBlock"/>
+										           Classes="SmallTextBlock LeftTextBlock"/>
 										<TextBlock Text="{Binding DatePeriod, Mode=OneWay}"
-										           Classes="MiddleTextBlock CenterTextBlock"/>
+										           Classes="SmallTextBlock CenterTextBlock"/>
 									</StackPanel>
 								</StackPanel>
 								
-								<Grid x:Name="ChangeGraph"
+								<Grid x:Name="ChangeChart"
+								      Classes.Max="{Binding  #ChangeStackPanel.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=290}"
 								      IsVisible="False"
 								      Grid.Row="2" Grid.ColumnSpan="7" Grid.Column="4">
 									<Grid.RowDefinitions>
@@ -290,10 +290,17 @@
 					<Setter Property="Height" Value="235"/>
 				</Style>
 				<Style Selector="^ /template/ StackPanel#ChangeStackPanel">
+					<Setter Property="Opacity" Value="1"/>
+				</Style>
+				<Style Selector="^ /template/ StackPanel.Min#ChangeStackPanel">
+					<Setter Property="Opacity" Value="0"/>
+				</Style>
+				<Style Selector="^ /template/ Grid#ChangeChart">
 					<Setter Property="IsVisible" Value="True"/>
 				</Style>
-				<Style Selector="^ /template/ Grid#ChangeGraph">
-					<Setter Property="IsVisible" Value="True"/>
+				<Style Selector="^ /template/ Grid.Max#ChangeChart">
+					<Setter Property="Column" Value="2"/>
+					<Setter Property="ColumnSpan" Value="9"/>
 				</Style>
 			</Style>
 		</Style>

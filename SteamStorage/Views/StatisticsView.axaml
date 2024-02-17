@@ -27,9 +27,9 @@
 		</Grid.RowDefinitions>
 		
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" MinWidth="400"/>
+			<ColumnDefinition Width="*" MinWidth="260"/>
 			<ColumnDefinition Width="30" MinWidth="30"/>
-			<ColumnDefinition Width="*" MinWidth="380"/>
+			<ColumnDefinition Width="*" MinWidth="260"/>
 		</Grid.ColumnDefinitions>
 		
 		<Border Classes="BigRoundedBorder FirstAccentGradientBorder" 
@@ -74,9 +74,8 @@
 				
 				<TextBlock Text="{Binding InvestedSumGrowth, StringFormat=N0, Mode=OneWay,
 								  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=0}"
-				           Classes="LargeTextBlock CenterTextBlock"
+				           Classes="LargeTextBlock CenterTextBlock NoWrapTextBlock"
 				           HorizontalAlignment="Center"
-				           TextWrapping="NoWrap"
 				           Margin="10, 5, 10, 10"
 				           Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"/>
 
@@ -134,9 +133,8 @@
 				
 					<TextBlock Text="{Binding FinancialGoalPercentageCompletion, StringFormat=N0, Mode=OneWay,
 									  Converter={StaticResource PercentConverter}, ConverterParameter=0}"
-					           Classes="MiddleTextBlock CenterTextBlock"
+					           Classes="MiddleTextBlock CenterTextBlock NoWrapTextBlock"
 					           HorizontalAlignment="Center"
-					           TextWrapping="NoWrap"
 					           Margin="3, 0, 3, 3"
 					           Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"/>
 					

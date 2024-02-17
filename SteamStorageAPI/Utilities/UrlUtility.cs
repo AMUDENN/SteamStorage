@@ -9,7 +9,10 @@ public static class UrlUtility
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            Process.Start(new ProcessStartInfo("cmd", $"/c start {url}"));
+            Process.Start(new ProcessStartInfo(url)
+            {
+                UseShellExecute = true
+            });
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {

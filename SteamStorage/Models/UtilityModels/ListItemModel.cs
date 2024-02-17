@@ -45,7 +45,7 @@ public class ListItemModel : BaseSkinModel
 
     public decimal CurrentPrice { get; }
 
-    public string CurrencyMark { get; }
+    public string CurrentPriceString { get; }
 
     public double Change7D { get; }
 
@@ -172,7 +172,9 @@ public class ListItemModel : BaseSkinModel
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
         CurrentPrice = currentPrice;
-        CurrencyMark = currencyMark;
+
+        CurrentPriceString = $"{currentPrice:N2}{currencyMark}";
+
         Change7D = change7D;
         Change30D = change30D;
         _isMarked = isMarked;

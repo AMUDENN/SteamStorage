@@ -25,6 +25,7 @@
         <StyleInclude Source="/Resources/Styles/RadioButtonStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/RectangleStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ScrollViewerStyles.axaml"/>
+        <StyleInclude Source="/Resources/Styles/StackPanelStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/TabControlStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/TextBlockStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/TextBoxStyles.axaml"/>

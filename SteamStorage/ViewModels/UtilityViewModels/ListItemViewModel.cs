@@ -19,14 +19,9 @@ public class ListItemViewModel : BaseSkinViewModel
 
     #region Properties
 
-    public decimal CurrentPrice
+    public string CurrentPriceString
     {
-        get => _model.CurrentPrice;
-    }
-
-    public string CurrencyMark
-    {
-        get => _model.CurrencyMark;
+        get => _model.CurrentPriceString;
     }
 
     public double Change7D
@@ -137,13 +132,13 @@ public class ListItemViewModel : BaseSkinViewModel
     }
 
     #endregion Constructor
-    
+
     #region Methods
-    
+
     public void UpdateStats()
     {
         _model.UpdateStats();
     }
-    
+
     #endregion Methods
 }
