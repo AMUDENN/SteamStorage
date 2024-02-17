@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.ViewModels.Tools;
+using SteamStorage.ViewModels.UtilityViewModels;
 
 namespace SteamStorage.ViewModels;
 
@@ -70,12 +71,12 @@ public class ListItemsViewModel : ViewModelBase
         set => _listItemsModel.IsMarked = value;
     }
 
-    public IEnumerable<ListItemModel> ListItemModels
+    public IEnumerable<ListItemViewModel> ListItemModels
     {
         get => _listItemsModel.ListItemModels;
     }
 
-    public ListItemModel? SelectedListItemModel
+    public ListItemViewModel? SelectedListItemModel
     {
         get => _listItemsModel.SelectedListItemModel;
         set => _listItemsModel.SelectedListItemModel = value;

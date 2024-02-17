@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.ThemeService;
+using SteamStorage.ViewModels.UtilityViewModels;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Utilities;
@@ -22,6 +23,7 @@ public class ListItemsModel : ModelBase
     #region Fields
 
     private readonly ApiClient _apiClient;
+    private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
     private readonly IThemeService _themeService;
 
@@ -40,8 +42,8 @@ public class ListItemsModel : ModelBase
 
     private bool _isMarked;
 
-    private List<ListItemModel> _listItemModels;
-    private ListItemModel? _selectedListItemModel;
+    private List<ListItemViewModel> _listItemModels;
+    private ListItemViewModel? _selectedListItemModel;
 
     private bool _isLoading;
     private CancellationTokenSource _cancellationTokenSource;
@@ -191,7 +193,7 @@ public class ListItemsModel : ModelBase
         }
     }
 
-    public List<ListItemModel> ListItemModels
+    public List<ListItemViewModel> ListItemModels
     {
         get => _listItemModels;
         private set
@@ -201,7 +203,7 @@ public class ListItemsModel : ModelBase
         }
     }
 
-    public ListItemModel? SelectedListItemModel
+    public ListItemViewModel? SelectedListItemModel
     {
         get => _selectedListItemModel;
         set
@@ -319,9 +321,11 @@ public class ListItemsModel : ModelBase
 
     #region Constructor
 
-    public ListItemsModel(ApiClient apiClient, UserModel userModel, IThemeService themeService)
+    public ListItemsModel(ApiClient apiClient, ChartTooltipModel chartTooltipModel, UserModel userModel,
+        IThemeService themeService)
     {
         _apiClient = apiClient;
+        _chartTooltipModel = chartTooltipModel;
         _userModel = userModel;
         _themeService = themeService;
 
@@ -409,8 +413,10 @@ public class ListItemsModel : ModelBase
         PagesCount = skinsResponse.PagesCount;
 
         ListItemModels = skinsResponse.Skins.Select(x =>
-                new ListItemModel(_apiClient, _themeService, x.Skin.Id, x.Skin.SkinIconUrl, x.Skin.MarketUrl,
-                    x.Skin.Title, x.CurrentPrice, _userModel.CurrencyMark, x.Change7D, x.Change30D, x.IsMarked))
+                new ListItemViewModel(
+                    new(_apiClient, _themeService, x.Skin.Id, x.Skin.SkinIconUrl, x.Skin.MarketUrl, x.Skin.Title,
+                        x.CurrentPrice, _userModel.CurrencyMark, x.Change7D, x.Change30D, x.IsMarked),
+                    _chartTooltipModel))
             .ToList();
 
         IsLoading = false;
