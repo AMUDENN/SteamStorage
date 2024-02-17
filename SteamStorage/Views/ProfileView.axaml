@@ -5,6 +5,64 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SteamStorage.Views.ProfileView">
 
-	<TextBlock Text="Profile"/>
+	<Grid>
+		
+		<Grid.RowDefinitions>
+			<RowDefinition Height="20*" MinHeight="200"/>
+			<RowDefinition Height="30" MinHeight="30"/>
+			<RowDefinition Height="8*" MinHeight="80"/>
+			<RowDefinition Height="30" MinHeight="30"/>
+			<RowDefinition Height="11*" MinHeight="110"/>
+			<RowDefinition Height="30" MinHeight="30"/>
+			<RowDefinition Height="11*" MinHeight="110"/>
+			<RowDefinition Height="30" MinHeight="30"/>
+			<RowDefinition Height="11*" MinHeight="110"/>
+			<RowDefinition Height="15*" MinHeight="30"/>
+			<RowDefinition Height="60" MinHeight="60"/>
+			<RowDefinition Height="30" MinHeight="30"/>
+		</Grid.RowDefinitions>
+		
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="30" MinWidth="30"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		
+		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
+		        Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0">
+			
+		</Border>
+		
+		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
+		        Grid.Row="2" Grid.Column="0">
+			
+		</Border>
+		
+		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
+		        Grid.Row="2" Grid.Column="2">
+			
+		</Border>
+		
+		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
+		        Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0">
+			
+		</Border>
+		
+		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
+		        Grid.Row="6" Grid.Column="0">
+			
+		</Border>
+		
+		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
+		        Grid.Row="6" Grid.Column="2">
+			
+		</Border>
+		
+		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
+		        Grid.Row="8" Grid.Column="0">
+			
+		</Border>
+		
+	</Grid>
   
 </UserControl>

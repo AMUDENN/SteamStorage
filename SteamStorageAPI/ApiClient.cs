@@ -68,10 +68,7 @@ public class ApiClient
 
         if (authUrlResponse is null) return;
 
-        Process.Start(new ProcessStartInfo(authUrlResponse.Url)
-        {
-            UseShellExecute = true
-        });
+        UrlUtility.OpenUrl(authUrlResponse.Url);
 
         HubConnection hubConnection = new HubConnectionBuilder()
             .WithUrl(ApiConstants.TOKENHUB_ADRESS)
@@ -114,6 +111,11 @@ public class ApiClient
             HttpResponseMessage response = await client.GetAsync(uri, cancellationToken);
             return await response.Content.ReadFromJsonAsync<TOut>(cancellationToken);
         }
+        catch (OperationCanceledException)
+        {
+            Debug.WriteLine($"Task {uri.ToString()} was cancelled");
+            return default;
+        }
         catch (Exception ex)
         {
             await _logger.LogAsync($"ApiException GET \n{uri.ToString()}", ex);
@@ -146,6 +148,10 @@ public class ApiClient
             HttpClient client = _httpClientFactory.CreateClient(ApiConstants.CLIENT_NAME);
             await client.PostAsJsonAsync(uri, args, cancellationToken);
         }
+        catch (OperationCanceledException)
+        {
+            Debug.WriteLine($"Task {uri.ToString()} was cancelled");
+        }
         catch (Exception ex)
         {
             await _logger.LogAsync($"ApiException POST \n{uri.ToString()}", ex);
@@ -175,6 +181,10 @@ public class ApiClient
                 RequestUri = uri
             };
             await client.SendAsync(request, cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            Debug.WriteLine($"Task {uri.ToString()} was cancelled");
         }
         catch (Exception ex)
         {

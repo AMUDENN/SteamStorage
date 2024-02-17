@@ -9,7 +9,7 @@
              x:Class="SteamStorage.Views.StatisticsView"
              x:DataType="vm:StatisticsViewModel">
     
-    <UserControl.Resources>
+	<UserControl.Resources>
         <converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
         <converters:DoubleGreaterConverter x:Key="DoubleGreaterConverter"/>
         <converters:MarkedPercentConverter x:Key="MarkedPercentConverter"/>

@@ -9,6 +9,7 @@
 		<Setter Property="ExtendClientAreaTitleBarHeightHint" Value="36"/>
 		<Setter Property="ExtendClientAreaToDecorationsHint" Value="True"/>
 		<Setter Property="TransparencyBackgroundFallback" Value="Transparent"/>
+		<Setter Property="MinHeight" Value="930"/>
 		<Setter Property="Template">
 			<ControlTemplate>
 				<Grid Margin="{TemplateBinding OffScreenMargin}">

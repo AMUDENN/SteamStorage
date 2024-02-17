@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Diagnostics;
 
 namespace SteamStorageAPI.Services.Logger.LogFile;
 
@@ -50,7 +51,7 @@ public class LogFile : IDisposable
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Log Write Error {ex.Message}");
+            Debug.WriteLine($"Log Write Error {ex.Message}");
         }
     }
 
@@ -61,7 +62,7 @@ public class LogFile : IDisposable
         if (directoryName is null) return;
         Directory.CreateDirectory(directoryName);
         File.Create(_filePath).Close();
-        System.Diagnostics.Debug.WriteLine($"Created file: {_filePath}");
+        Debug.WriteLine($"Created file: {_filePath}");
     }
 
     #endregion Methods

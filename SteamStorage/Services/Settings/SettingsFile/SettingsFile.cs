@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Diagnostics;
 using System.Text.Json;
 
 namespace SteamStorage.Services.Settings.SettingsFile;
@@ -33,7 +34,7 @@ public class SettingsFile
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Settings Write Error: {ex.Message}");
+            Debug.WriteLine($"Settings Write Error: {ex.Message}");
         }
     }
 
@@ -46,7 +47,7 @@ public class SettingsFile
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Settings Read Error: {ex.Message}");
+            Debug.WriteLine($"Settings Read Error: {ex.Message}");
         }
 
         return default;
@@ -54,7 +55,7 @@ public class SettingsFile
 
     private void DeleteFile()
     {
-        if(!File.Exists(_filePath)) return;
+        if (!File.Exists(_filePath)) return;
         File.Delete(_filePath);
     }
 

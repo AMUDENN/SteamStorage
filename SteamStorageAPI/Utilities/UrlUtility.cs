@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace SteamStorage.Utilities;
+namespace SteamStorageAPI.Utilities;
 
 public static class UrlUtility
 {
