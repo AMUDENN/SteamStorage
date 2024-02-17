@@ -25,8 +25,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60" MinWidth="10"/>
                 <ColumnDefinition Width="10" MinWidth="10"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="400" MinWidth="250"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" MinWidth="30"/>
+                <ColumnDefinition Width="5*" MinWidth="200" MaxWidth="400"/>
                 <ColumnDefinition Width="20" MinWidth="20"/>
                 <ColumnDefinition Width="60" MinWidth="60"/>
             </Grid.ColumnDefinitions>
@@ -52,13 +53,13 @@
             <TextBox Text="{Binding Filter}"
                      Watermark="Введите название"
                      Classes="FilteringTextBox"
-                     Grid.Column="3"/>
+                     Grid.Column="4"/>
             
             <Button Command="{Binding ClearFiltersCommand, Mode=OneWay}"
                     Classes="ImageButton BackgroundButton"
                     Height="60" Width="60"
                     ToolTip.Tip="Очистить фильтры"
-                    Grid.Column="5">
+                    Grid.Column="6">
                 <controls:VectorImage Classes="RemoveFiltersVectorImage ForegroundVectorImage"
                                       Height="40" Width="40"/>
             </Button>

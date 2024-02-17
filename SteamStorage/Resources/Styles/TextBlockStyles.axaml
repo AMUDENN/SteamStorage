@@ -14,9 +14,9 @@
 		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
 		<Setter Property="Transitions">
 			<Transitions>
-				<DoubleTransition Property="FontSize" Duration="0:0:0.2"/>
-				<DoubleTransition Property="Opacity" Duration="0:0:0.1"/>
-				<BrushTransition Property="Foreground" Duration="0:0:0.1"/>
+				<DoubleTransition Property="FontSize" Duration="0:0:0.2" Easing="SineEaseOut"/>
+				<DoubleTransition Property="Opacity" Duration="0:0:0.1" Easing="SineEaseOut"/>
+				<BrushTransition Property="Foreground" Duration="0:0:0.1" Easing="SineEaseOut"/>
 			</Transitions>
 		</Setter>
 	</Style>

@@ -49,6 +49,11 @@ public class ListItemViewModel : BaseSkinViewModel
     {
         get => _model.DatePeriod;
     }
+    
+    public string? NotFoundText
+    {
+        get => _model.NotFoundText;
+    }
 
     public IEnumerable<ISeries> ChangeSeries
     {

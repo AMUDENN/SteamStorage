@@ -18,6 +18,12 @@ namespace SteamStorage.Models.UtilityModels;
 
 public class ListItemModel : BaseSkinModel
 {
+    #region Constants
+
+    private const string EMPTY_DYNAMIC_TEXT = "Динамика цены за данный период не найдена";
+
+    #endregion Constants
+
     #region Fields
 
     private readonly ApiClient _apiClient;
@@ -82,8 +88,14 @@ public class ListItemModel : BaseSkinModel
         set
         {
             SetProperty(ref _skinDynamic, value);
+            OnPropertyChanged(nameof(NotFoundText));
             GetDynamicChart();
         }
+    }
+
+    public string? NotFoundText
+    {
+        get => SkinDynamic?.Count() == 0 && !IsLoading ? EMPTY_DYNAMIC_TEXT : null;
     }
 
     public IEnumerable<ISeries> ChangeSeries
@@ -147,7 +159,11 @@ public class ListItemModel : BaseSkinModel
     public bool IsLoading
     {
         get => _isLoading;
-        private set => SetProperty(ref _isLoading, value);
+        private set
+        {
+            SetProperty(ref _isLoading, value);
+            OnPropertyChanged(nameof(NotFoundText));
+        }
     }
 
     #endregion Properties

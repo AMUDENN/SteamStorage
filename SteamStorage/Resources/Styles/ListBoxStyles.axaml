@@ -171,18 +171,18 @@
 								</Border>
 								<TextBlock Text="{Binding Title, Mode=OneWay}"
 								           Classes="MiddleTextBlock LeftTextBlock"
-								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=650}"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
 								           ToolTip.Tip="Название"
 								           Grid.Row="0" Grid.Column="2"/>
 								<TextBlock Text="{Binding CurrentPriceString, Mode=OneWay}"
 								           Classes="MiddleTextBlock CenterTextBlock"
-								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=650}"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
 								           ToolTip.Tip="Текущая цена"
 								           Grid.Row="0" Grid.Column="4"/>
 								<TextBlock Text="{Binding Change7D, StringFormat=N0, Mode=OneWay, 
 												  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
 								           Classes="MiddleTextBlock CenterTextBlock"
-								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=650}"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
 								           Classes.PositiveTextBlock="{Binding Change7D, Mode=OneWay,
 																	   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
 								           Classes.NegativeTextBlock="{Binding Change7D, Mode=OneWay,
@@ -192,7 +192,7 @@
 								<TextBlock Text="{Binding Change30D, StringFormat=N0, Mode=OneWay, 
 												  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
 								           Classes="MiddleTextBlock CenterTextBlock"
-								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=650}"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
 								           Classes.PositiveTextBlock="{Binding Change30D, Mode=OneWay,
 																	   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
 								           Classes.NegativeTextBlock="{Binding Change30D, Mode=OneWay,
@@ -240,6 +240,9 @@
 										<RowDefinition Height="35" MinHeight="35"/>
 									</Grid.RowDefinitions>
 									<Grid Grid.Row="0">
+										<TextBlock Text="{Binding NotFoundText, Mode=OneWay}"
+										           IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}"
+										           Classes="SmallTextBlock CenterTextBlock"/>
 										<controls:VectorImage IsVisible="{Binding IsLoading, Mode=OneWay}"
 										                      Classes="LoadingVectorImage ForegroundVectorImage"
 										                      Height="24" Width="24"
