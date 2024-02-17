@@ -9,6 +9,8 @@ public class ChartThemeVariant
     #region Properties
 
     private object Key { get; }
+    
+    public string FontFamilyName { get; }
 
     public IEnumerable<ChartColor> Colors { get; }
 
@@ -16,9 +18,10 @@ public class ChartThemeVariant
 
     #region Constructor
 
-    public ChartThemeVariant(object key, IEnumerable<ChartColor> colors)
+    public ChartThemeVariant(object key, string fontFamilyName, IEnumerable<ChartColor> colors)
     {
         Key = key ?? throw new ArgumentNullException(nameof(key));
+        FontFamilyName = fontFamilyName;
         Colors = colors;
     }
 

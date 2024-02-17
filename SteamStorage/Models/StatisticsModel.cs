@@ -187,10 +187,10 @@ public class StatisticsModel : ModelBase
         _apiClient = apiClient;
         _themeService = themeService;
 
-        themeService.ChartThemeChanged += ChartThemeChangedHandler;
-
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
+        
+        themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
         _investedSumGrowthSeries = Enumerable.Empty<ISeries>();
         _financialGoalPercentageCompletionSeries = Enumerable.Empty<ISeries>();
@@ -204,13 +204,7 @@ public class StatisticsModel : ModelBase
     #endregion Constructor
 
     #region Methods
-
-    private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
-    {
-        GetInventoryGamesSeries();
-        GetInvestedSumGrowthSeries();
-    }
-
+    
     private void UserChangedHandler(object? sender)
     {
         RefreshStatistics();
@@ -220,6 +214,13 @@ public class StatisticsModel : ModelBase
     private void CurrencyChangedHandler(object? sender)
     {
         RefreshStatistics();
+    }
+    
+    private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
+    {
+        GetInventoryGamesSeries();
+        GetInvestedSumGrowthSeries();
+        GetFinancialGoalPercentageCompletion();
     }
 
     private void GetInvestedSumGrowthSeries()

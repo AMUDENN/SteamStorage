@@ -6,7 +6,6 @@ using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
-using SteamStorage.Models.Tools;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Events;
@@ -17,7 +16,7 @@ using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models.UtilityModels;
 
-public class ListItemModel : ModelBase
+public class ListItemModel : BaseSkinModel
 {
     #region Fields
 
@@ -43,14 +42,6 @@ public class ListItemModel : ModelBase
     #endregion Fields
 
     #region Properties
-
-    private int Id { get; }
-
-    private string MarketUrl { get; }
-
-    public string ImageUrl { get; }
-
-    public string Title { get; }
 
     public decimal CurrentPrice { get; }
 
@@ -119,7 +110,7 @@ public class ListItemModel : ModelBase
         set
         {
             SetProperty(ref _isOneDayChecked, value);
-            GetDynamicStats(DateTime.Now.AddDays(-1), DateTime.Now);
+            if (value) GetDynamicStats(DateTime.Now.AddDays(-1), DateTime.Now);
         }
     }
 
@@ -129,7 +120,7 @@ public class ListItemModel : ModelBase
         set
         {
             SetProperty(ref _isOneWeekChecked, value);
-            GetDynamicStats(DateTime.Now.AddDays(-7), DateTime.Now);
+            if (value) GetDynamicStats(DateTime.Now.AddDays(-7), DateTime.Now);
         }
     }
 
@@ -139,7 +130,7 @@ public class ListItemModel : ModelBase
         set
         {
             SetProperty(ref _isOneMonthChecked, value);
-            GetDynamicStats(DateTime.Now.AddDays(-30), DateTime.Now);
+            if (value) GetDynamicStats(DateTime.Now.AddDays(-30), DateTime.Now);
         }
     }
 
@@ -149,7 +140,7 @@ public class ListItemModel : ModelBase
         set
         {
             SetProperty(ref _isOneYearChecked, value);
-            GetDynamicStats(DateTime.Now.AddDays(-365), DateTime.Now);
+            if (value) GetDynamicStats(DateTime.Now.AddDays(-365), DateTime.Now);
         }
     }
 
@@ -163,8 +154,6 @@ public class ListItemModel : ModelBase
 
     #region Commands
 
-    public RelayCommand OpenInSteamCommand { get; }
-
     public RelayCommand AddToActivesCommand { get; }
 
     public RelayCommand AddToArchiveCommand { get; }
@@ -173,19 +162,15 @@ public class ListItemModel : ModelBase
 
     #region Constructor
 
-    public ListItemModel(ApiClient apiClient, IThemeService themeService, int id, string imageUrl, string marketUrl,
-        string title,
-        decimal currentPrice, string currencyMark, double change7D, double change30D, bool isMarked)
+    public ListItemModel(ApiClient apiClient, IThemeService themeService, int skinId, string imageUrl, string marketUrl,
+        string title, decimal currentPrice, string currencyMark, double change7D, double change30D,
+        bool isMarked) : base(skinId, imageUrl, marketUrl, title)
     {
         _apiClient = apiClient;
         _themeService = themeService;
 
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
-        Id = id;
-        ImageUrl = imageUrl;
-        MarketUrl = marketUrl;
-        Title = title;
         CurrentPrice = currentPrice;
         CurrencyMark = currencyMark;
         Change7D = change7D;
@@ -198,7 +183,6 @@ public class ListItemModel : ModelBase
         _xAxis = Enumerable.Empty<Axis>();
         _yAxis = Enumerable.Empty<Axis>();
 
-        OpenInSteamCommand = new(DoOpenInSteamCommand);
         AddToActivesCommand = new(DoAddToActivesCommand);
         AddToArchiveCommand = new(DoAddToArchiveCommand);
     }
@@ -210,6 +194,16 @@ public class ListItemModel : ModelBase
     private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
     {
         GetDynamicChart();
+    }
+
+    private void DoAddToActivesCommand()
+    {
+
+    }
+
+    private void DoAddToArchiveCommand()
+    {
+
     }
 
     public void UpdateStats()
@@ -230,7 +224,8 @@ public class ListItemModel : ModelBase
             {
                 Values = SkinDynamic,
                 Mapping = (dynamic, point) => new(point, Convert.ToDouble(dynamic.Price)),
-                DataLabelsFormatter = index => $"{index.Model?.DateUpdate}: {index.Model?.Price}",
+                YToolTipLabelFormatter = index =>
+                    $"{index.Model?.DateUpdate.ToString(ProgramConstants.PERIOD_DATE_FORMAT)}: {index.Model?.Price}",
                 Stroke = new SolidColorPaint(chartColor) { StrokeThickness = 2 },
                 Fill = null,
                 LineSmoothness = 0,
@@ -267,21 +262,6 @@ public class ListItemModel : ModelBase
         };
     }
 
-    private void DoOpenInSteamCommand()
-    {
-        UrlUtility.OpenUrl(MarketUrl);
-    }
-
-    private void DoAddToActivesCommand()
-    {
-
-    }
-
-    private void DoAddToArchiveCommand()
-    {
-
-    }
-
     private async void GetDynamicStats(DateTime dateStart, DateTime dateEnd)
     {
         IsLoading = true;
@@ -292,7 +272,7 @@ public class ListItemModel : ModelBase
             await _apiClient.GetAsync<Skins.SkinDynamicStatsResponse, Skins.GetSkinDynamicsRequest>(
                 ApiConstants.ApiControllers.Skins,
                 "GetSkinDynamics",
-                new(Id, dateStart, dateEnd));
+                new(SkinId, dateStart, dateEnd));
 
         ChangePeriod = skinDynamicsResponse?.ChangePeriod;
 
@@ -304,13 +284,13 @@ public class ListItemModel : ModelBase
     private async void PostIsMarked()
     {
         await _apiClient.PostAsync(ApiConstants.ApiControllers.Skins, "SetMarkedSkin",
-            new Skins.SetMarkedSkinRequest(Id));
+            new Skins.SetMarkedSkinRequest(SkinId));
     }
 
     private async void DeleteMarked()
     {
         await _apiClient.DeleteAsync(ApiConstants.ApiControllers.Skins, "DeleteMarkedSkin",
-            new Skins.DeleteMarkedSkinRequest(Id));
+            new Skins.DeleteMarkedSkinRequest(SkinId));
     }
 
     #endregion Methods

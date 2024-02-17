@@ -321,6 +321,8 @@
                     </StackPanel>
 					
 					<lvc:PieChart Series="{Binding InventoryGamesSeries, Mode=OneWay}"
+					              TooltipTextPaint="{Binding TooltipTextPaint}"
+					              TooltipBackgroundPaint="{Binding TooltipBackgroundPaint}"
 					              InitialRotation="-90"
 					              Margin="-50, -10"
 					              Grid.RowSpan="3" Grid.Row="2" Grid.Column="2"/>

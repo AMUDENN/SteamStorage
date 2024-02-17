@@ -62,6 +62,7 @@
         <entry key="SteamStorage/Resources/Styles/AdvancedNumericUpDownStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/BorderStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ButtonStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/ChartStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/CheckBoxStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ContentPresenterStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ContextMenuStyles.axaml" value="SteamStorage/SteamStorage.csproj" />

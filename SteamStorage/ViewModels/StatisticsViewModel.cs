@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models;
 using SteamStorage.ViewModels.Tools;
-using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Services.PingResult;
 
 namespace SteamStorage.ViewModels;
@@ -13,6 +13,7 @@ public class StatisticsViewModel : ViewModelBase
 
     private readonly StatisticsModel _statisticsModel;
     private readonly UserModel _userModel;
+    private readonly ChartTooltipModel _chartTooltipModel;
 
     #endregion Fields
 
@@ -97,6 +98,16 @@ public class StatisticsViewModel : ViewModelBase
     {
         get => _statisticsModel.InventoryGamesSeries;
     }
+    
+    public SolidColorPaint TooltipTextPaint
+    {
+        get => _chartTooltipModel.TooltipTextPaint;
+    }
+    
+    public SolidColorPaint TooltipBackgroundPaint
+    {
+        get => _chartTooltipModel.TooltipBackgroundPaint;
+    }
 
     public long Ping
     {
@@ -117,12 +128,14 @@ public class StatisticsViewModel : ViewModelBase
 
     #region Constructor
 
-    public StatisticsViewModel(StatisticsModel statisticsModel, UserModel userModel)
+    public StatisticsViewModel(StatisticsModel statisticsModel, ChartTooltipModel chartTooltipModel, UserModel userModel)
     {
         _statisticsModel = statisticsModel;
         _userModel = userModel;
+        _chartTooltipModel = chartTooltipModel;
 
         statisticsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
 
         userModel.CurrencyChanged += CurrencyChangedHandler;
     }

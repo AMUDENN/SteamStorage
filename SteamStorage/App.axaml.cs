@@ -70,6 +70,7 @@ namespace SteamStorage
 
             //Models
             services.AddSingleton<MainModel>();
+            services.AddSingleton<ChartTooltipModel>();
             services.AddSingleton<GamesModel>();
             services.AddSingleton<ListItemsModel>();
             services.AddSingleton<SettingsModel>();

@@ -248,7 +248,6 @@
 										                    XAxes="{Binding XAxis, Mode=OneWay}"
 										                    YAxes="{Binding YAxis, Mode=OneWay}"
 										                    ZoomMode="X"/>
-										
 									</Grid>
 									<StackPanel Orientation="Horizontal"
 									            Spacing="5"
