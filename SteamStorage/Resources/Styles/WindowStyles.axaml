@@ -24,7 +24,7 @@
 							<Grid ColumnDefinitions="36, *, 108"
 							      Margin="10, 5"
 							      Grid.Row="0">
-								<controls:VectorImage Classes="LogoVectorImage" 
+								<controls:VectorImage Classes="LogoVectorImage ForegroundVectorImage" 
 								                      Margin="4"
 								                      Grid.Column="0"/>
 								<TextBlock Text="{TemplateBinding Title}" 

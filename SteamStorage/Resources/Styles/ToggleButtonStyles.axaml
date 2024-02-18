@@ -32,42 +32,38 @@
                                 <RowDefinition Height="3*" MinHeight="3"/>
                                 <RowDefinition Height="5*" MinHeight="5"/>
                             </Grid.RowDefinitions>
-                            <controls:VectorImage x:Name="ForegroundUpVectorImage"
-                                                  Classes="FilterUpVectorImage ForegroundVectorImage"
-                                                  IsVisible="False"
+                            <controls:VectorImage x:Name="UpVectorImage"
+                                                  Classes="FilterUpVectorImage"
+                                                  IsVisible="True"
                                                   Grid.Row="0"/>
-                            <controls:VectorImage x:Name="AccentUpVectorImage"
-                                                  Classes="FilterUpVectorImage FirstAccentLinearVectorImage"
-                                                  Opacity="0"
-                                                  Grid.Row="0"/>
-                            <controls:VectorImage x:Name="ForegroundDownVectorImage"
-                                                  Classes="FilterDownVectorImage ForegroundVectorImage"
-                                                  IsVisible="False"
-                                                  Grid.Row="2"/>
-                            <controls:VectorImage x:Name="AccentDownVectorImage"
-                                                  Classes="FilterDownVectorImage FirstAccentLinearVectorImage"
-                                                  Opacity="0"
+                            <controls:VectorImage x:Name="DownVectorImage"
+                                                  Classes="FilterDownVectorImage"
+                                                  IsVisible="True"
                                                   Grid.Row="2"/>
                         </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style Selector="^:indeterminate /template/ controls|VectorImage#ForegroundUpVectorImage, 
-                         ^:indeterminate /template/ controls|VectorImage#ForegroundDownVectorImage">
-            <Setter Property="IsVisible" Value="True"/>
-        </Style>
-        <Style Selector="^:indeterminate /template/ TextBlock#ContentTextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Style Selector="^:indeterminate /template/ TextBlock#ContentTextBlock,
+                         ^:indeterminate /template/ controls|VectorImage#UpVectorImage,
+                         ^:indeterminate /template/ controls|VectorImage#DownVectorImage">
+            <Setter Property="TextElement.Foreground" Value="{DynamicResource ForegroundBrush}"/>
         </Style>
         <Style Selector="^:checked">
-            <Style Selector="^ /template/ controls|VectorImage#AccentUpVectorImage">
-                <Setter Property="Opacity" Value="1"/>
+            <Style Selector="^ /template/ controls|VectorImage#DownVectorImage">
+                <Setter Property="IsVisible" Value="False"/>
+            </Style>
+            <Style Selector="^ /template/ controls|VectorImage#UpVectorImage">
+                <Setter Property="Foreground" Value="{DynamicResource FirstAccentLinearBrush}"/>
             </Style>
         </Style>
         <Style Selector="^:unchecked">
-            <Style Selector="^ /template/ controls|VectorImage#AccentDownVectorImage">
-                <Setter Property="Opacity" Value="1"/>
+            <Style Selector="^ /template/ controls|VectorImage#UpVectorImage">
+                <Setter Property="IsVisible" Value="False"/>
+            </Style>
+            <Style Selector="^ /template/ controls|VectorImage#DownVectorImage">
+                <Setter Property="Foreground" Value="{DynamicResource FirstAccentLinearBrush}"/>
             </Style>
         </Style>
     </Style> 
