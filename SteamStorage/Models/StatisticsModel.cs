@@ -39,7 +39,6 @@ public class StatisticsModel : ModelBase
     private double _archivesSoldSum;
     private double _archivesPercentageGrowth;
 
-
     private int _inventoryCount;
     private double _inventorySum;
     private IEnumerable<Statistics.InventoryGameStatisticResponse> _inventoryGames;

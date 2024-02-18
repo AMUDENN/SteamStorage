@@ -17,8 +17,14 @@
     </UserControl.Resources>
     
     <Grid>
+	    
+	    <Grid.Styles>
+		    <Style Selector="Grid.Min, lvc|PieChart.Min">
+			    <Setter Property="IsVisible" Value="False"/>
+		    </Style>
+	    </Grid.Styles>
 				
-		<Grid.RowDefinitions>
+	    <Grid.RowDefinitions>
 			<RowDefinition Height="3*" MinHeight="240"/>
 			<RowDefinition Height="30" MinHeight="30"/>
 			<RowDefinition Height="3*" MinHeight="270"/>
@@ -48,7 +54,7 @@
 					<ColumnDefinition Width="4*"/>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition Width="2*" MinWidth="20"/>
-					<ColumnDefinition Width="15*" MinWidth="100"/>
+					<ColumnDefinition Width="160" MinWidth="160"/>
 					<ColumnDefinition Width="4*"/>
 				</Grid.ColumnDefinitions>
 					
@@ -63,22 +69,26 @@
 					           Classes="LargeTextBlock"
 					           Margin="5, 0, 0, 0"/>
 				</StackPanel>
-
-				<lvc:PieChart Series="{Binding InvestedSumGrowthSeries, Mode=OneWay}"
-				              MinValue="0"
-				              MaxValue="100"
-				              InitialRotation="-90"
-				              TooltipPosition="Hidden"
-				              Margin="-30, -50"
-				              Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"/>
 				
-				<TextBlock Text="{Binding InvestedSumGrowth, StringFormat=N0, Mode=OneWay,
-								  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=0}"
-				           Classes="LargeTextBlock CenterTextBlock NoWrapTextBlock"
-				           HorizontalAlignment="Center"
-				           Margin="10, 5, 10, 10"
-				           Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"/>
-
+				<Grid x:Name="InvestedSumGrowthChartGrid" 
+				      Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=470}"
+				      Grid.RowSpan="2" Grid.Row="1" Grid.Column="3">
+					
+					<lvc:PieChart Series="{Binding InvestedSumGrowthSeries, Mode=OneWay}"
+					              MinValue="0"
+					              MaxValue="100"
+					              InitialRotation="-90"
+					              TooltipPosition="Hidden"
+					              Margin="-30, -50"/>
+                    				
+                    <TextBlock Text="{Binding InvestedSumGrowth, StringFormat=N0, Mode=OneWay,
+                    				  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=0}"
+                               Classes="LargeTextBlock CenterTextBlock NoWrapTextBlock"
+                               HorizontalAlignment="Center"
+                               Margin="10, 5, 10, 10"/>
+					
+				</Grid>
+				
 			</Grid>
 			
 		</Border>
@@ -123,20 +133,24 @@
 						           Margin="5, 0, 0, 0"/>
 					</StackPanel>
 					
-					<lvc:PieChart Series="{Binding FinancialGoalPercentageCompletionSeries, Mode=OneWay}"
-					              MinValue="0"
-					              MaxValue="100"
-					              InitialRotation="-90"
-					              TooltipPosition="Hidden"
-					              Margin="-20, -40"
-					              Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"/>
-				
-					<TextBlock Text="{Binding FinancialGoalPercentageCompletion, StringFormat=N0, Mode=OneWay,
-									  Converter={StaticResource PercentConverter}, ConverterParameter=0}"
-					           Classes="MiddleTextBlock CenterTextBlock NoWrapTextBlock"
-					           HorizontalAlignment="Center"
-					           Margin="3, 0, 3, 3"
-					           Grid.RowSpan="2" Grid.Row="1" Grid.Column="3"/>
+					<Grid x:Name="FinancialGoalChartGrid" 
+					      Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=470}"
+					      Grid.RowSpan="2" Grid.Row="1" Grid.Column="3">
+						
+						<lvc:PieChart Series="{Binding FinancialGoalPercentageCompletionSeries, Mode=OneWay}"
+						              MinValue="0"
+						              MaxValue="100"
+						              InitialRotation="-90"
+						              TooltipPosition="Hidden"
+						              Margin="-20, -40"/>
+                        				
+                        <TextBlock Text="{Binding FinancialGoalPercentageCompletion, StringFormat=N0, Mode=OneWay,
+                        				  Converter={StaticResource PercentConverter}, ConverterParameter=0}"
+                                   Classes="MiddleTextBlock CenterTextBlock NoWrapTextBlock"
+                                   HorizontalAlignment="Center"
+                                   Margin="3, 0, 3, 3"/>
+						
+					</Grid>
 					
 				</Grid>
 			
@@ -185,7 +199,7 @@
 				
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="10*" MinWidth="340"/>
+					<ColumnDefinition Width="10*"/>
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				
@@ -246,7 +260,7 @@
 				
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="10*" MinWidth="340"/>
+					<ColumnDefinition Width="10*"/>
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				
@@ -297,7 +311,7 @@
 				
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="10*" MinWidth="340"/>
+					<ColumnDefinition Width="10*"/>
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				
@@ -312,9 +326,9 @@
 					</Grid.RowDefinitions>
 					
 					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="4*" MaxWidth="270"/>
+                        <ColumnDefinition Width="*" MinWidth="10" MaxWidth="70"/>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*" MinWidth="10"/>
-                        <ColumnDefinition Width="3*" MinWidth="120"/>
                     </Grid.ColumnDefinitions>
 					
 					<TextBlock Text="Инвентарь" 
@@ -343,7 +357,9 @@
 					              TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
 					              TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
 					              InitialRotation="-90"
+					              Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=470}"
 					              Margin="-50, -10"
+					              Width="140"
 					              Grid.RowSpan="3" Grid.Row="2" Grid.Column="2"/>
 					
 				</Grid>
@@ -359,7 +375,7 @@
 				
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="10*" MinWidth="340"/>
+					<ColumnDefinition Width="10*"/>
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				
@@ -374,14 +390,14 @@
 					</Grid.RowDefinitions>
 					
 					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="4*" MaxWidth="270"/>
+						<ColumnDefinition Width="*" MinWidth="10" MaxWidth="70"/>
 						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="*" MinWidth="20"/>
-						<ColumnDefinition Width="7*" MinWidth="100"/>
 					</Grid.ColumnDefinitions>
 					
 					<TextBlock Text="Состояние сервера" 
 					           Classes="BigTextBlock CenterTextBlock" 
-					           Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0"/>
+					           Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0"/>
 					
 					<StackPanel Orientation="Horizontal" 
 					            Grid.Row="2" Grid.Column="0">

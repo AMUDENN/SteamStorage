@@ -10,7 +10,7 @@
 		<Setter Property="ExtendClientAreaToDecorationsHint" Value="True"/>
 		<Setter Property="TransparencyBackgroundFallback" Value="Transparent"/>
 		<Setter Property="MinHeight" Value="930"/>
-		<Setter Property="MinWidth" Value="950"/>
+		<Setter Property="MinWidth" Value="980"/>
 		<Setter Property="Template">
 			<ControlTemplate>
 				<Grid Margin="{TemplateBinding OffScreenMargin}">
