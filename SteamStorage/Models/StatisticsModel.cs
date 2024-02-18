@@ -171,10 +171,61 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _ping, value);
     }
 
-    public PingResult.ServerStatus Status
+    private PingResult.ServerStatus Status
     {
         get => _status;
-        private set => SetProperty(ref _status, value);
+        set
+        {
+            SetProperty(ref _status, value); 
+            OnPropertyChanged(nameof(ServerStatusString));
+            OnPropertyChanged(nameof(ServerStatusBool));
+            OnPropertyChanged(nameof(IsServerActive));
+        }
+    }
+
+    public string ServerStatusString
+    {
+        get
+        {
+            return Status switch
+            {
+                PingResult.ServerStatus.Excellent => "Отличное",
+                PingResult.ServerStatus.Good => "Хорошее",
+                PingResult.ServerStatus.Bad => "Плохое",
+                PingResult.ServerStatus.NoConnection => "Нет соединения",
+                _ => "Нет информации"
+            };
+        }
+    }
+
+    public bool? ServerStatusBool
+    {
+        get 
+        {
+            return Status switch
+            {
+                PingResult.ServerStatus.Excellent => null,
+                PingResult.ServerStatus.Good => true,
+                PingResult.ServerStatus.Bad => false,
+                PingResult.ServerStatus.NoConnection => false,
+                _ => false
+            };
+        }
+    }
+
+    public bool IsServerActive
+    {
+        get
+        {
+            return Status switch
+            {
+                PingResult.ServerStatus.Excellent => true,
+                PingResult.ServerStatus.Good => true,
+                PingResult.ServerStatus.Bad => true,
+                PingResult.ServerStatus.NoConnection => false,
+                _ => false
+            };
+        }
     }
 
     #endregion Properties

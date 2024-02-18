@@ -1,6 +1,14 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="using:SteamStorage.Resources.Controls">
+    
+    <Style Selector="ToggleButton">
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.2" Easing="SineEaseOut"/>
+            </Transitions>
+        </Setter>
+    </Style>
 
     <Style Selector="ToggleButton.OrderingToggleButton">
         <Setter Property="IsThreeState" Value="True"/>

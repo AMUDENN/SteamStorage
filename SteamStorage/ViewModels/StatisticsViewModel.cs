@@ -113,10 +113,20 @@ public class StatisticsViewModel : ViewModelBase
     {
         get => _statisticsModel.Ping;
     }
-
-    public PingResult.ServerStatus Status
+    
+    public string ServerStatusString
     {
-        get => _statisticsModel.Status;
+        get => _statisticsModel.ServerStatusString;
+    }
+    
+    public bool? ServerStatusBool
+    {
+        get => _statisticsModel.ServerStatusBool;
+    }
+    
+    public bool IsServerActive
+    {
+        get => _statisticsModel.IsServerActive;
     }
 
     public string CurrencyMark
