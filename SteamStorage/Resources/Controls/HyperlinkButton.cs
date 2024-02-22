@@ -60,11 +60,18 @@ public class HyperlinkButton : Button
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            Process.Start(new ProcessStartInfo("cmd", $"/c start {NavigateUrl}"));
+            Process.Start(new ProcessStartInfo(NavigateUrl)
+            {
+                UseShellExecute = true
+            });
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
             Process.Start("xdg-open", NavigateUrl);
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            Process.Start("open", NavigateUrl);
         }
     }
 

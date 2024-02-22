@@ -18,5 +18,9 @@ public static class UrlUtility
         {
             Process.Start("xdg-open", url);
         }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            Process.Start("open", url);
+        }
     }
 }
