@@ -1,4 +1,4 @@
-﻿namespace SteamStorageAPI.Services.PingService;
+﻿namespace SteamStorageAPI.Services.Ping.PingService;
 
 public interface IPingService
 {

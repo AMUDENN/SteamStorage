@@ -26,7 +26,7 @@ public class BaseSkinModel : ModelBase
 
     #region Constructor
 
-    public BaseSkinModel(int skinId, string imageUrl, string marketUrl, string title)
+    protected BaseSkinModel(int skinId, string imageUrl, string marketUrl, string title)
     {
         SkinId = skinId;
         ImageUrl = imageUrl;

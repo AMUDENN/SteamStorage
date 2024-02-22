@@ -9,7 +9,7 @@ using SteamStorage.Utilities.Events;
 using SteamStorage.Utilities.ThemeVariants;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
-using SteamStorageAPI.Services.PingResult;
+using SteamStorageAPI.Services.Ping.PingResult;
 using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;

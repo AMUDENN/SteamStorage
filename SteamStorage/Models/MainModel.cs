@@ -5,7 +5,7 @@ using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.ViewModels;
 using SteamStorage.ViewModels.Tools;
-using SteamStorageAPI;
+using SteamStorageAPI.Services.AuthorizationService;
 
 namespace SteamStorage.Models;
 
@@ -19,9 +19,9 @@ public class MainModel : ModelBase
     #endregion Constants
 
     #region Fields
-
-    private readonly ApiClient _apiClient;
+    
     private readonly UserModel _userModel;
+    private readonly IAuthorizationService _authorizationService;
 
     private string? _imageUrl;
     private string _userName;
@@ -106,8 +106,8 @@ public class MainModel : ModelBase
 
     #region Constructor
 
-    public MainModel(ApiClient apiClient,
-        UserModel userModel,
+    public MainModel(UserModel userModel,
+        IAuthorizationService authorizationService,
         ActivesViewModel activesViewModel,
         ArchiveViewModel archiveViewModel,
         HomeViewModel homeViewModel,
@@ -115,8 +115,8 @@ public class MainModel : ModelBase
         ProfileViewModel profileViewModel,
         SettingsViewModel settingsViewModel)
     {
-        _apiClient = apiClient;
         _userModel = userModel;
+        _authorizationService = authorizationService;
 
         NavigationOptions =
         [
@@ -157,12 +157,12 @@ public class MainModel : ModelBase
 
     private void DoLogInCommand()
     {
-        _apiClient.LogIn();
+        _authorizationService.LogIn();
     }
 
     private void DoLogOutCommand()
     {
-        _apiClient.LogOut();
+        _authorizationService.LogOut();
     }
 
     #endregion Methods

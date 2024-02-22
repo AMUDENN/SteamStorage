@@ -49,7 +49,7 @@ public class SettingsViewModel : ViewModelBase
     {
         _model = model;
 
-        model.PropertyChanged += (_, e) => { OnPropertyChanged(e.PropertyName); };
+        model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

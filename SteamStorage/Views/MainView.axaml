@@ -147,8 +147,8 @@
 		</Border>
 		
 		<TransitioningContentControl Content="{Binding CurrentViewModel, Mode=OneWay}" 
-		                              Margin="40, 10, 10, 0"
-		                              Grid.Column="1">
+		                             Margin="40, 10, 10, 0"
+		                             Grid.Column="1">
 			<TransitioningContentControl.PageTransition>
 				<CrossFade Duration="0:00:00.200" />
 			</TransitioningContentControl.PageTransition>

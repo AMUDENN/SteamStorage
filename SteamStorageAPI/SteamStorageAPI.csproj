@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <Folder Include="Services\Logger\" />
+      <Folder Include="Services\Ping\" />
     </ItemGroup>
 
 </Project>

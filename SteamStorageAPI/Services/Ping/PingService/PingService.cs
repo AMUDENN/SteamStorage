@@ -1,6 +1,6 @@
 ﻿using System.Net.NetworkInformation;
 
-namespace SteamStorageAPI.Services.PingService;
+namespace SteamStorageAPI.Services.Ping.PingService;
 
 public class PingService : IPingService
 {
@@ -8,7 +8,7 @@ public class PingService : IPingService
     {
         try
         {
-            Ping pingSender = new();
+            System.Net.NetworkInformation.Ping pingSender = new();
             PingReply reply = await pingSender.SendPingAsync(host);
 
             if (reply.Status == IPStatus.Success)

@@ -3,7 +3,6 @@ using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models;
 using SteamStorage.ViewModels.Tools;
-using SteamStorageAPI.Services.PingResult;
 
 namespace SteamStorage.ViewModels;
 

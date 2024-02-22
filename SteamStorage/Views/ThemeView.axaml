@@ -19,11 +19,11 @@
                 <Border Classes="BackgroundAdditionalBorder SmallRoundedBorder"
                         Grid.RowSpan="5" Grid.Row="0" Grid.Column="0">
                     
-                    <Grid RowDefinitions="9*, 4*, 2*, 6*, 26*, 6*, 10*" Margin="0, 7">
+                    <Grid RowDefinitions="55, 15, 10, 6*, 26*, 6*, 10*" Margin="0, 7">
                         
                         <Border Classes="LittleRoundedBorder"
                                 VerticalAlignment="Top"
-                                Height="40" Width="40"
+                                Height="50" Width="50"
                                 Grid.Row="0">
                             
                             <Grid>

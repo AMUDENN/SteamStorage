@@ -302,8 +302,8 @@
 					<Setter Property="IsVisible" Value="True"/>
 				</Style>
 				<Style Selector="^ /template/ Grid.Max#ChangeChart">
-					<Setter Property="Column" Value="2"/>
-					<Setter Property="ColumnSpan" Value="9"/>
+					<Setter Property="Column" Value="0"/>
+					<Setter Property="ColumnSpan" Value="11"/>
 				</Style>
 			</Style>
 		</Style>

@@ -1,4 +1,4 @@
-﻿namespace SteamStorageAPI.Services.PingResult;
+﻿namespace SteamStorageAPI.Services.Ping.PingResult;
 
 public class PingResult
 {

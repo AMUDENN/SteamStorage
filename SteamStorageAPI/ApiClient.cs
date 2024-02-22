@@ -2,13 +2,11 @@
 using System.Net.Http.Json;
 using System.Reflection;
 using System.Text;
-using Microsoft.AspNetCore.SignalR.Client;
-using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.ApiEntities.Tools;
 using SteamStorageAPI.Events;
 using SteamStorageAPI.Services.Logger.LoggerService;
-using SteamStorageAPI.Services.PingResult;
-using SteamStorageAPI.Services.PingService;
+using SteamStorageAPI.Services.Ping.PingResult;
+using SteamStorageAPI.Services.Ping.PingService;
 using SteamStorageAPI.Utilities;
 
 namespace SteamStorageAPI;
@@ -58,39 +56,6 @@ public class ApiClient
     }
 
     #endregion Properties
-
-    #region Authorization
-
-    public async void LogIn()
-    {
-        Authorize.AuthUrlResponse? authUrlResponse =
-            await GetAsync<Authorize.AuthUrlResponse>(ApiConstants.ApiControllers.Authorize, "GetAuthUrl");
-
-        if (authUrlResponse is null) return;
-
-        UrlUtility.OpenUrl(authUrlResponse.Url);
-
-        HubConnection hubConnection = new HubConnectionBuilder()
-            .WithUrl(ApiConstants.TOKENHUB_ADRESS)
-            .Build();
-
-        hubConnection.On<string>(ApiConstants.TOKEN_METHOD_NAME, async token =>
-        {
-            Token = token;
-            await hubConnection.StopAsync();
-        });
-
-        await hubConnection.StartAsync();
-
-        await hubConnection.InvokeAsync(ApiConstants.JOIN_GROUP_METHOD_NAME, authUrlResponse.Group);
-    }
-
-    public void LogOut()
-    {
-        Token = string.Empty;
-    }
-
-    #endregion Authorization
 
     #region PING
 
