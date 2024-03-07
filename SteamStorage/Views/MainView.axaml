@@ -76,12 +76,12 @@
 				
 				<TextBlock x:Name="UserName" 
 						   Text="{Binding UserName, Mode=OneWay}" 
-						   Classes="CenterTextBlock BigTextBlock NoWrapTextBlock" 
+						   Classes="CenterTextBlock BigTextBlock" 
 						   Grid.Row="1"/>
 
 				<TextBlock x:Name="SteamId" 
 						   Text="{Binding SteamId, Mode=OneWay}" 
-						   Classes="CenterTextBlock LittleTextBlock NoWrapTextBlock" 
+						   Classes="CenterTextBlock LittleTextBlock" 
 						   Grid.Row="2"/>
 
 				<Rectangle Height="2" MaxWidth="180" 

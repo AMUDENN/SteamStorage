@@ -15,7 +15,10 @@ public class GameModel
 
     #region Constructor
 
-    public GameModel(int id, string imageUrl, string title)
+    public GameModel(
+        int id, 
+        string imageUrl, 
+        string title)
     {
         Id = id;
         ImageUrl = imageUrl;

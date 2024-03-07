@@ -127,7 +127,9 @@ public class ListItemViewModel : BaseSkinViewModel
 
     #region Constructor
 
-    public ListItemViewModel(ListItemModel model, ChartTooltipModel chartTooltipModel) : base(model)
+    public ListItemViewModel(
+        ListItemModel model, 
+        ChartTooltipModel chartTooltipModel) : base(model)
     {
         _model = model;
         _chartTooltipModel = chartTooltipModel;

@@ -38,7 +38,8 @@ public class BaseSkinViewModel : ViewModelBase
 
     #region Constructor
 
-    public BaseSkinViewModel(BaseSkinModel model)
+    public BaseSkinViewModel(
+        BaseSkinModel model)
     {
         _model = model;
 

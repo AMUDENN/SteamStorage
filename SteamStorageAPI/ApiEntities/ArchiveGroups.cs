@@ -19,11 +19,20 @@ public static class ArchiveGroups
 
     #region Records
 
-    public record ArchiveGroupsResponse(
+    public record ArchiveGroupResponse(
         int Id,
         string Title,
-        string Description,
-        string Colour) : Response;
+        string? Description,
+        string Colour,
+        int Count,
+        decimal BuySum,
+        decimal SoldSum,
+        double Change,
+        DateTime DateCreation) : Response;
+
+    public record ArchiveGroupsResponse(
+        int Count,
+        IEnumerable<ArchiveGroupResponse> ArchiveGroups) : Response;
 
     public record ArchiveGroupsCountResponse(
         int Count) : Response;

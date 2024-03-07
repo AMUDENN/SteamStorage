@@ -18,7 +18,9 @@ public class ThemeModel
 
     #region Constructor
 
-    public ThemeModel(string title, ThemeVariant themeVariant)
+    public ThemeModel(
+        string title, 
+        ThemeVariant themeVariant)
     {
         Title = title;
         ThemeVariant = themeVariant;

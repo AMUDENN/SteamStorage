@@ -19,7 +19,10 @@ public class ChartThemeVariant
 
     #region Constructor
 
-    public ChartThemeVariant(object key, SKTypeface skTypeface, IEnumerable<ChartColor> colors)
+    public ChartThemeVariant(
+        object key, 
+        SKTypeface skTypeface, 
+        IEnumerable<ChartColor> colors)
     {
         Key = key ?? throw new ArgumentNullException(nameof(key));
         SkTypeface = skTypeface;

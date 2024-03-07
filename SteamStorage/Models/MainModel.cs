@@ -106,7 +106,8 @@ public class MainModel : ModelBase
 
     #region Constructor
 
-    public MainModel(UserModel userModel,
+    public MainModel(
+        UserModel userModel,
         IAuthorizationService authorizationService,
         ActivesViewModel activesViewModel,
         ArchiveViewModel archiveViewModel,

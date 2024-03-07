@@ -19,17 +19,31 @@ public static class ActiveGroups
 
     #region Records
 
-    public record ActiveGroupsResponse(
+    public record ActiveGroupResponse(
         int Id,
         string Title,
-        string Description,
+        string? Description,
         string Colour,
-        decimal? GoalSum) : Response;
+        decimal? GoalSum,
+        double? GoalSumCompletion,
+        int Count,
+        decimal BuySum,
+        decimal CurrentSum,
+        double Change,
+        DateTime DateCreation) : Response;
 
-    public record ActiveGroupDynamicsResponse(
+    public record ActiveGroupsResponse(
+        int Count,
+        IEnumerable<ActiveGroupResponse> ActiveGroups) : Response;
+
+    public record ActiveGroupDynamicResponse(
         int Id,
         DateTime DateUpdate,
         decimal Sum) : Response;
+        
+    public record ActiveGroupDynamicStatsResponse(
+        double ChangePeriod,
+        IEnumerable<ActiveGroupDynamicResponse> Dynamic) : Response;
 
     public record ActiveGroupsCountResponse(
         int Count) : Response;
@@ -40,7 +54,8 @@ public static class ActiveGroups
 
     public record GetActiveGroupDynamicRequest(
         int GroupId,
-        int DaysDynamic) : Request;
+        DateTime StartDate,
+        DateTime EndDate) : Request;
 
     public record PostActiveGroupRequest(
         string Title,

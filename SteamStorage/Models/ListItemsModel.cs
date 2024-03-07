@@ -321,7 +321,10 @@ public class ListItemsModel : ModelBase
 
     #region Constructor
 
-    public ListItemsModel(ApiClient apiClient, ChartTooltipModel chartTooltipModel, UserModel userModel,
+    public ListItemsModel(
+        ApiClient apiClient, 
+        ChartTooltipModel chartTooltipModel, 
+        UserModel userModel,
         IThemeService themeService)
     {
         _apiClient = apiClient;
@@ -409,7 +412,7 @@ public class ListItemsModel : ModelBase
 
         if (skinsResponse is null) return;
 
-        SavedItemsCount = skinsResponse.SkinsCount;
+        SavedItemsCount = skinsResponse.Count;
         PagesCount = skinsResponse.PagesCount;
 
         ListItemModels = skinsResponse.Skins.Select(x =>

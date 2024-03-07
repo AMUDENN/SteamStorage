@@ -49,8 +49,6 @@ public class ListItemModel : BaseSkinModel
 
     #region Properties
 
-    public decimal CurrentPrice { get; }
-
     public string CurrentPriceString { get; }
 
     public double Change7D { get; }
@@ -178,8 +176,17 @@ public class ListItemModel : BaseSkinModel
 
     #region Constructor
 
-    public ListItemModel(ApiClient apiClient, IThemeService themeService, int skinId, string imageUrl, string marketUrl,
-        string title, decimal currentPrice, string currencyMark, double change7D, double change30D,
+    public ListItemModel(
+        ApiClient apiClient, 
+        IThemeService themeService, 
+        int skinId, 
+        string imageUrl, 
+        string marketUrl,
+        string title, 
+        decimal currentPrice, 
+        string currencyMark, 
+        double change7D, 
+        double change30D,
         bool isMarked) : base(skinId, imageUrl, marketUrl, title)
     {
         _apiClient = apiClient;
@@ -187,12 +194,11 @@ public class ListItemModel : BaseSkinModel
 
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
-        CurrentPrice = currentPrice;
-
-        CurrentPriceString = $"{currentPrice:N2}{currencyMark}";
+        CurrentPriceString = $"{currentPrice:N2} {currencyMark}";
 
         Change7D = change7D;
         Change30D = change30D;
+        
         _isMarked = isMarked;
 
         IsLoading = false;

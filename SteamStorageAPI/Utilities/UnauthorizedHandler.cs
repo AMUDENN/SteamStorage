@@ -15,7 +15,9 @@ public class UnauthorizedHandler : DelegatingHandler
 
     #region Constructor
 
-    public UnauthorizedHandler(ILoggerService logger, ApiClient apiClient)
+    public UnauthorizedHandler(
+        ILoggerService logger, 
+        ApiClient apiClient)
     {
         _logger = logger;
         _apiClient = apiClient;

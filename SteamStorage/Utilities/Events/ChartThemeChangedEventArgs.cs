@@ -15,7 +15,9 @@ public class ChartThemeChangedEventArgs : EventArgs
 
     #region Constructor
 
-    public ChartThemeChangedEventArgs(ChartThemeVariant? oldTheme, ChartThemeVariant? newTheme)
+    public ChartThemeChangedEventArgs(
+        ChartThemeVariant? oldTheme, 
+        ChartThemeVariant? newTheme)
     {
         OldTheme = oldTheme;
         NewTheme = newTheme;

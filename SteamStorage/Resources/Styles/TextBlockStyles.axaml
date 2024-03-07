@@ -10,19 +10,19 @@
 	<Style Selector="TextBlock">
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
 		<Setter Property="VerticalAlignment" Value="Center"/>
-		<Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+		<Setter Property="TextWrapping" Value="NoWrap"/>
 		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
 		<Setter Property="Transitions">
 			<Transitions>
-				<DoubleTransition Property="FontSize" Duration="0:0:0.2" Easing="SineEaseOut"/>
+				<DoubleTransition Property="FontSize" Duration="0:0:0.2" Easing="LinearEasing"/>
 				<DoubleTransition Property="Opacity" Duration="0:0:0.1" Easing="SineEaseOut"/>
 				<BrushTransition Property="Foreground" Duration="0:0:0.1" Easing="SineEaseOut"/>
 			</Transitions>
 		</Setter>
 	</Style>
 	
-	<Style Selector="TextBlock.NoWrapTextBlock">
-		<Setter Property="TextWrapping" Value="NoWrap"/>
+	<Style Selector="TextBlock.WrapTextBlock">
+		<Setter Property="TextWrapping" Value="Wrap"/>
 	</Style>
 	
 	<Style Selector="TextBlock.FirstAccentTextBlock">

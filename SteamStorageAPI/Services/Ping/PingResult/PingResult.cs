@@ -23,7 +23,8 @@ public class PingResult
 
     #region Constructor
 
-    public PingResult(long ping)
+    public PingResult(
+        long ping)
     {
         Ping = ping;
         Status = ping switch

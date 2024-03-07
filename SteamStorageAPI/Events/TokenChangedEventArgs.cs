@@ -10,7 +10,8 @@ public class TokenChangedEventArgs : EventArgs
 
     #region Constructor
 
-    public TokenChangedEventArgs(string token)
+    public TokenChangedEventArgs(
+        string token)
     {
         Token = token;
     }

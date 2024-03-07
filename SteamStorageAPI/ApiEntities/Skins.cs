@@ -33,18 +33,18 @@ public static class Skins
         bool IsMarked) : Response;
 
     public record SkinsResponse(
-        int SkinsCount,
+        int Count,
         int PagesCount,
         IEnumerable<SkinResponse> Skins) : Response;
-
-    public record SkinDynamicStatsResponse(
-        double ChangePeriod,
-        IEnumerable<SkinDynamicResponse> Dynamic) : Response;
 
     public record SkinDynamicResponse(
         int Id,
         DateTime DateUpdate,
         decimal Price) : Response;
+
+    public record SkinDynamicStatsResponse(
+        double ChangePeriod,
+        IEnumerable<SkinDynamicResponse> Dynamic) : Response;
 
     public record SkinPagesCountResponse(
         int Count) : Response;

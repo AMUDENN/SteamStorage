@@ -23,16 +23,19 @@ public static class Actives
     public record ActiveResponse(
         int Id,
         Skins.BaseSkinResponse Skin,
+        DateTime BuyDate,
         int Count,
         decimal BuyPrice,
         decimal CurrentPrice,
         decimal CurrentSum,
+        decimal? GoalPrice,
+        double? GoalPriceCompletion,
         double Change) : Response;
 
     public record ActivesResponse(
-        int ActivesCount,
+        int Count,
         int PagesCount,
-        IEnumerable<ActiveResponse> Skins) : Response;
+        IEnumerable<ActiveResponse> Actives) : Response;
 
     public record ActivesPagesCountResponse(
         int Count) : Response;

@@ -36,7 +36,8 @@ public class ChartTooltipModel : ModelBase
 
     #region Constructor
 
-    public ChartTooltipModel(IThemeService themeService)
+    public ChartTooltipModel(
+        IThemeService themeService)
     {
         _themeService = themeService;
         themeService.ChartThemeChanged += ChartThemeChangedHandler;

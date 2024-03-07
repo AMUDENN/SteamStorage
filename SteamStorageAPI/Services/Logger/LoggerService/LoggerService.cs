@@ -13,7 +13,10 @@ public class LoggerService : ILoggerService
 
     #region Constructor
 
-    public LoggerService(string programName, string dateFormat, string dateTimeFormat)
+    public LoggerService(
+        string programName, 
+        string dateFormat, 
+        string dateTimeFormat)
     {
         _file = new(programName, dateFormat, dateTimeFormat);
     }

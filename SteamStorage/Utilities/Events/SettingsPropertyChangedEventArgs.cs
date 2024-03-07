@@ -12,7 +12,8 @@ public class SettingsPropertyChangedEventArgs : EventArgs
 
     #region Constructor
 
-    public SettingsPropertyChangedEventArgs(string? property)
+    public SettingsPropertyChangedEventArgs(
+        string? property)
     {
         Property = property;
     }

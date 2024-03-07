@@ -29,7 +29,10 @@ public class SettingsService : ISettingsService, IDisposable
 
     #region Constructor
 
-    public SettingsService(string programName, ApiClient apiClient, IThemeService themeService)
+    public SettingsService(
+        string programName, 
+        ApiClient apiClient, 
+        IThemeService themeService)
     { 
         _file = new(programName);
 

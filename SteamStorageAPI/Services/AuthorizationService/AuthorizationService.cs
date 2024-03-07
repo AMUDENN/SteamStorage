@@ -14,7 +14,8 @@ public class AuthorizationService : IAuthorizationService
 
     #region Constructor
 
-    public AuthorizationService(ApiClient apiClient)
+    public AuthorizationService(
+        ApiClient apiClient)
     {
         _apiClient = apiClient;
     }

@@ -26,7 +26,9 @@ public class GamesModel : ModelBase
 
     #region Constructor
 
-    public GamesModel(ApiClient apiClient, UserModel userModel)
+    public GamesModel(
+        ApiClient apiClient, 
+        UserModel userModel)
     {
         _apiClient = apiClient;
 

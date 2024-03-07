@@ -11,16 +11,15 @@ public class StatisticsViewModel : ViewModelBase
     #region Fields
 
     private readonly StatisticsModel _statisticsModel;
-    private readonly UserModel _userModel;
     private readonly ChartTooltipModel _chartTooltipModel;
 
     #endregion Fields
 
     #region Properties
 
-    public double InvestedSum
+    public string InvestedSumString
     {
-        get => _statisticsModel.InvestedSum;
+        get => _statisticsModel.InvestedSumString;
     }
     
     public double InvestedSumGrowth
@@ -33,9 +32,9 @@ public class StatisticsViewModel : ViewModelBase
         get => _statisticsModel.InvestedSumGrowthSeries;
     }
 
-    public double FinancialGoal
+    public string FinancialGoalString
     {
-        get => _statisticsModel.FinancialGoal;
+        get => _statisticsModel.FinancialGoalString;
     }
 
     public double FinancialGoalPercentageCompletion
@@ -58,9 +57,9 @@ public class StatisticsViewModel : ViewModelBase
         get => _statisticsModel.ActivesCount;
     }
 
-    public double ActivesCurrentSum
+    public string ActivesCurrentSumString
     {
-        get => _statisticsModel.ActivesCurrentSum;
+        get => _statisticsModel.ActivesCurrentSumString;
     }
 
     public double ActivesPercentageGrowth
@@ -73,9 +72,9 @@ public class StatisticsViewModel : ViewModelBase
         get => _statisticsModel.ArchivesCount;
     }
 
-    public double ArchivesSoldSum
+    public string ArchivesSoldSumString
     {
-        get => _statisticsModel.ArchivesSoldSum;
+        get => _statisticsModel.ArchivesSoldSumString;
     }
 
     public double ArchivesPercentageGrowth
@@ -88,9 +87,9 @@ public class StatisticsViewModel : ViewModelBase
         get => _statisticsModel.InventoryCount;
     }
 
-    public double InventorySum
+    public string InventorySumString
     {
-        get => _statisticsModel.InventorySum;
+        get => _statisticsModel.InventorySumString;
     }
     
     public IEnumerable<ISeries> InventoryGamesSeries
@@ -128,35 +127,20 @@ public class StatisticsViewModel : ViewModelBase
         get => _statisticsModel.IsServerActive;
     }
 
-    public string CurrencyMark
-    {
-        get => _userModel.CurrencyMark;
-    }
-
     #endregion Properties
 
     #region Constructor
 
-    public StatisticsViewModel(StatisticsModel statisticsModel, ChartTooltipModel chartTooltipModel, UserModel userModel)
+    public StatisticsViewModel(
+        StatisticsModel statisticsModel, 
+        ChartTooltipModel chartTooltipModel)
     {
         _statisticsModel = statisticsModel;
-        _userModel = userModel;
         _chartTooltipModel = chartTooltipModel;
 
         statisticsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
-
-        userModel.CurrencyChanged += CurrencyChangedHandler;
     }
 
     #endregion Constructor
-
-    #region Methods
-
-    private void CurrencyChangedHandler(object? sender)
-    {
-        OnPropertyChanged(nameof(CurrencyMark));
-    }
-
-    #endregion Methods
 }

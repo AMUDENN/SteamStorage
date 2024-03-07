@@ -47,7 +47,8 @@ public class MainWindowViewModel : ViewModelBase
 
     #region Constructor
 
-    public MainWindowViewModel(MainWindowModel model)
+    public MainWindowViewModel(
+        MainWindowModel model)
     {
         _model = model;
     }

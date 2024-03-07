@@ -21,7 +21,14 @@ public static class Inventory
     public record InventoryResponse(
         int Id,
         Skins.BaseSkinResponse Skin,
-        int Count) : Response;
+        int Count,
+        decimal CurrentPrice,
+        decimal CurrentSum) : Response;
+        
+    public record InventoriesResponse(
+        int Count,
+        int PagesCount,
+        IEnumerable<InventoryResponse> Inventories) : Response;
 
     public record InventoryPagesCountResponse(
         int Count) : Response;

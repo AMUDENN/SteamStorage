@@ -76,7 +76,8 @@ public class MainViewModel : ViewModelBase
 
     #region Constructor
 
-    public MainViewModel(MainModel model)
+    public MainViewModel(
+        MainModel model)
     {
         _model = model;
         model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);

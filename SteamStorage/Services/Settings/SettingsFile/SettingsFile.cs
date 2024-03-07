@@ -15,7 +15,8 @@ public class SettingsFile
 
     #region Constructor
 
-    public SettingsFile(string programName)
+    public SettingsFile(
+        string programName)
     {
         _filePath = @$"{Environment.SpecialFolder.ApplicationData}\{programName}\appSettings.json";
     }

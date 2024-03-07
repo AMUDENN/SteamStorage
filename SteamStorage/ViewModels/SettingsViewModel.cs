@@ -45,7 +45,8 @@ public class SettingsViewModel : ViewModelBase
 
     #region Constructor
 
-    public SettingsViewModel(SettingsModel model)
+    public SettingsViewModel(
+        SettingsModel model)
     {
         _model = model;
 

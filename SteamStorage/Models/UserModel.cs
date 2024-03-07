@@ -64,7 +64,9 @@ public class UserModel : ModelBase
 
     #region Constructor
 
-    public UserModel(ApiClient apiClient, ISettingsService settingsService)
+    public UserModel(
+        ApiClient apiClient, 
+        ISettingsService settingsService)
     {
         _apiClient = apiClient;
         _settingsService = settingsService;

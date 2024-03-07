@@ -44,7 +44,7 @@ namespace SteamStorage
             services.AddSingleton<ApiClient>();
 
             //Custom API Services
-            services.AddSingleton<IAuthorizationService, AuthorizationService>();
+            services.AddSingleton<IAuthorizationService, AuthorizationService>(); 
             services.AddSingleton<ILoggerService, LoggerService>(_ => new(ApiConstants.LOG_PROGRAM_NAME,
                 ApiConstants.LOG_DATE_FORMAT, ApiConstants.LOG_DATETIME_FORMAT));
             services.AddSingleton<IPingService, PingService>();

@@ -33,7 +33,10 @@ public class ApiClient
 
     #region Constructor
 
-    public ApiClient(ILoggerService logger, IPingService ping, IHttpClientFactory httpClientFactory)
+    public ApiClient(
+        ILoggerService logger, 
+        IPingService ping, 
+        IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
         _ping = ping;

@@ -23,11 +23,18 @@ public static class Archives
     public record ArchiveResponse(
         int Id,
         Skins.BaseSkinResponse Skin,
+        DateTime BuyDate,
+        DateTime SoldDate,
         int Count,
         decimal BuyPrice,
         decimal SoldPrice,
         decimal SoldSum,
         double Change) : Response;
+
+    public record ArchivesResponse(
+        int Count,
+        int PagesCount,
+        IEnumerable<ArchiveResponse> Archives) : Response;
 
     public record ArchivesPagesCountResponse(
         int Count) : Response;

@@ -47,7 +47,9 @@ public class SettingsModel : ModelBase
 
     #region Constructor
 
-    public SettingsModel(IThemeService themeService, ISettingsService settingsService)
+    public SettingsModel(
+        IThemeService themeService, 
+        ISettingsService settingsService)
     {
         _themeService = themeService;
         _settingsService = settingsService;

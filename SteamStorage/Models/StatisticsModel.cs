@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView.Extensions;
@@ -19,28 +20,29 @@ public class StatisticsModel : ModelBase
     #region Fields
 
     private readonly ApiClient _apiClient;
+    private readonly UserModel _userModel;
     private readonly IThemeService _themeService;
 
-    private double _investedSum;
+    private string _investedSumString;
     private double _investedSumGrowth;
     private IEnumerable<ISeries> _investedSumGrowthSeries;
 
-    private double _financialGoal;
+    private string _financialGoalString;
     private double _financialGoalPercentageCompletion;
     private IEnumerable<ISeries> _financialGoalPercentageCompletionSeries;
 
     private int _totalCount;
 
     private int _activesCount;
-    private double _activesCurrentSum;
+    private string _activesCurrentSumString;
     private double _activesPercentageGrowth;
 
     private int _archivesCount;
-    private double _archivesSoldSum;
+    private string _archivesSoldSumString;
     private double _archivesPercentageGrowth;
 
     private int _inventoryCount;
-    private double _inventorySum;
+    private string _inventorySumString;
     private IEnumerable<Statistics.InventoryGameStatisticResponse> _inventoryGames;
     private IEnumerable<ISeries> _inventoryGamesSeries;
 
@@ -51,10 +53,10 @@ public class StatisticsModel : ModelBase
 
     #region Properties
 
-    public double InvestedSum
+    public string InvestedSumString
     {
-        get => _investedSum;
-        private set => SetProperty(ref _investedSum, value);
+        get => _investedSumString;
+        private set => SetProperty(ref _investedSumString, value);
     }
 
     public double InvestedSumGrowth
@@ -73,10 +75,10 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _investedSumGrowthSeries, value);
     }
 
-    public double FinancialGoal
+    public string FinancialGoalString
     {
-        get => _financialGoal;
-        private set => SetProperty(ref _financialGoal, value);
+        get => _financialGoalString;
+        private set => SetProperty(ref _financialGoalString, value);
     }
 
     public double FinancialGoalPercentageCompletion
@@ -107,10 +109,10 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _activesCount, value);
     }
 
-    public double ActivesCurrentSum
+    public string ActivesCurrentSumString
     {
-        get => _activesCurrentSum;
-        private set => SetProperty(ref _activesCurrentSum, value);
+        get => _activesCurrentSumString;
+        private set => SetProperty(ref _activesCurrentSumString, value);
     }
 
     public double ActivesPercentageGrowth
@@ -125,10 +127,10 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _archivesCount, value);
     }
 
-    public double ArchivesSoldSum
+    public string ArchivesSoldSumString
     {
-        get => _archivesSoldSum;
-        private set => SetProperty(ref _archivesSoldSum, value);
+        get => _archivesSoldSumString;
+        private set => SetProperty(ref _archivesSoldSumString, value);
     }
 
     public double ArchivesPercentageGrowth
@@ -143,10 +145,10 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _inventoryCount, value);
     }
 
-    public double InventorySum
+    public string InventorySumString
     {
-        get => _inventorySum;
-        private set => SetProperty(ref _inventorySum, value);
+        get => _inventorySumString;
+        private set => SetProperty(ref _inventorySumString, value);
     }
 
     private IEnumerable<Statistics.InventoryGameStatisticResponse> InventoryGames
@@ -232,15 +234,25 @@ public class StatisticsModel : ModelBase
 
     #region Constructor
 
-    public StatisticsModel(ApiClient apiClient, UserModel userModel, IThemeService themeService)
+    public StatisticsModel(
+        ApiClient apiClient, 
+        UserModel userModel, 
+        IThemeService themeService)
     {
         _apiClient = apiClient;
+        _userModel = userModel;
         _themeService = themeService;
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
         
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
+
+        _inventorySumString = string.Empty;
+        _financialGoalString = string.Empty;
+        _activesCurrentSumString = string.Empty;
+        _archivesSoldSumString = string.Empty;
+        _inventorySumString = string.Empty;
 
         _investedSumGrowthSeries = Enumerable.Empty<ISeries>();
         _financialGoalPercentageCompletionSeries = Enumerable.Empty<ISeries>();
@@ -340,7 +352,7 @@ public class StatisticsModel : ModelBase
             await _apiClient.GetAsync<Statistics.InvestmentSumResponse>(ApiConstants.ApiControllers.Statistics,
                 "GetInvestmentSum");
 
-        InvestedSum = investmentSumResponse?.TotalSum ?? 0;
+        InvestedSumString = $"{investmentSumResponse?.TotalSum ?? 0:N2} {_userModel.CurrencyMark}";
         InvestedSumGrowth = investmentSumResponse?.PercentageGrowth ?? 0;
 
 
@@ -348,7 +360,7 @@ public class StatisticsModel : ModelBase
             await _apiClient.GetAsync<Statistics.FinancialGoalResponse>(ApiConstants.ApiControllers.Statistics,
                 "GetFinancialGoal");
 
-        FinancialGoal = financialGoalResponse?.FinancialGoal ?? 0;
+        FinancialGoalString = $"{financialGoalResponse?.FinancialGoal ?? 0:N0} {_userModel.CurrencyMark}";
         FinancialGoalPercentageCompletion = financialGoalResponse?.PercentageCompletion ?? 0;
 
 
@@ -364,7 +376,7 @@ public class StatisticsModel : ModelBase
                 "GetActiveStatistic");
 
         ActivesCount = activeStatisticResponse?.Count ?? 0;
-        ActivesCurrentSum = activeStatisticResponse?.CurrentSum ?? 0;
+        ActivesCurrentSumString = $"{activeStatisticResponse?.CurrentSum ?? 0:N2} {_userModel.CurrencyMark}";
         ActivesPercentageGrowth = activeStatisticResponse?.PercentageGrowth ?? 0;
 
 
@@ -373,7 +385,7 @@ public class StatisticsModel : ModelBase
                 "GetArchiveStatistic");
 
         ArchivesCount = archiveStatisticResponse?.Count ?? 0;
-        ArchivesSoldSum = archiveStatisticResponse?.SoldSum ?? 0;
+        ArchivesSoldSumString = $"{archiveStatisticResponse?.SoldSum ?? 0:N2} {_userModel.CurrencyMark}";
         ArchivesPercentageGrowth = archiveStatisticResponse?.PercentageGrowth ?? 0;
 
 
@@ -382,7 +394,7 @@ public class StatisticsModel : ModelBase
                 "GetInventoryStatistic");
 
         InventoryCount = inventoryStatisticResponse?.Count ?? 0;
-        InventorySum = inventoryStatisticResponse?.Sum ?? 0;
+        InventorySumString = $"{inventoryStatisticResponse?.Sum ?? 0:N2} {_userModel.CurrencyMark}";
         InventoryGames = inventoryStatisticResponse?.Games ??
                          Enumerable.Empty<Statistics.InventoryGameStatisticResponse>();
     }

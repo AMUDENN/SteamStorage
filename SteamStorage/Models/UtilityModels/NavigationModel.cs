@@ -23,7 +23,10 @@ public class NavigationModel
 
     #region Constructor
 
-    public NavigationModel(string image, string title, ViewModelBase page)
+    public NavigationModel(
+        string image, 
+        string title, 
+        ViewModelBase page)
     {
         VectorImage newImage = new();
         newImage.Classes.Add(image);

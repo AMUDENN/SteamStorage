@@ -10,7 +10,8 @@ public class TokenHandler : DelegatingHandler
 
     #region Constructor
 
-    public TokenHandler(ApiClient apiClient)
+    public TokenHandler(
+        ApiClient apiClient)
     {
         _apiClient = apiClient;
     }

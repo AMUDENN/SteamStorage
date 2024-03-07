@@ -13,7 +13,8 @@ public class ThemeViewModel : ViewModelBase
 
     #region Constructor
 
-    public ThemeViewModel(ThemeVariant themeVariant)
+    public ThemeViewModel(
+        ThemeVariant themeVariant)
     {
         ThemeVariant = themeVariant;
     }
