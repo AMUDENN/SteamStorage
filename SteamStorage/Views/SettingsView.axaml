@@ -36,15 +36,7 @@
                 <ListBox ItemsSource="{Binding ThemeModels, Mode=OneWay}" 
                          SelectedItem="{Binding SelectedThemeModel}"
                          Classes="ThemeVariantsListBox"
-                         Grid.Row="2">
-                    
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel Orientation="Horizontal" Margin="0"/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    
-                </ListBox>
+                         Grid.Row="2"/>
                 
             </Grid>
             

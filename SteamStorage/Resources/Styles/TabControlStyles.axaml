@@ -3,6 +3,13 @@
     
     <Style Selector="TabControl">
         <Setter Property="Padding" Value="0"/>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     
     <Style Selector="TabItem">
@@ -22,6 +29,9 @@
         </Setter>
         <Style Selector="^:pointerover /template/ TextBlock">
             <Setter Property="Opacity" Value="0.8"/>
+        </Style>
+        <Style Selector="^:disabled /template/ TextBlock">
+            <Setter Property="Opacity" Value="0.5"/>
         </Style>
     </Style>
         

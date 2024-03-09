@@ -10,8 +10,11 @@
     </Application.DataTemplates>
   
     <Application.Styles>
-        <FluentTheme />
+	    
+	    <!-- BaseTheme -->
+	    <FluentTheme/>
         
+        <!-- Styles -->
         <StyleInclude Source="/Resources/Styles/AdvancedNumericUpDownStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/BorderStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/ButtonStyles.axaml"/>
@@ -35,6 +38,13 @@
         <StyleInclude Source="/Resources/Styles/VectorImageStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/WindowStyles.axaml"/>
         
+        <!-- ListBoxes -->
+        <StyleInclude Source="/Resources/Styles/ListBoxes/GamesListBoxStyle.axaml"/>
+        <StyleInclude Source="/Resources/Styles/ListBoxes/ListItemsListBoxStyle.axaml"/>
+        <StyleInclude Source="/Resources/Styles/ListBoxes/NavigationListBoxStyle.axaml"/>
+        <StyleInclude Source="/Resources/Styles/ListBoxes/ThemeVariantListBoxStyle.axaml"/>
+        
+        <!-- Images -->
 		<StyleInclude Source="/Resources/Images/Vectors/AccountVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/ActivesVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/ArchiveVectorImage.axaml"/>
@@ -69,6 +79,7 @@
 		<StyleInclude Source="/Resources/Images/Vectors/SettingsVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/StarVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/TelegramVectorImage.axaml"/>
+	    
     </Application.Styles>
 
 	<Application.Resources>

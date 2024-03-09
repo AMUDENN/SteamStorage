@@ -40,16 +40,8 @@
             <ListBox ItemsSource="{Binding GameModels, Mode=OneWay}" 
                      SelectedItem="{Binding SelectedGameModel}"
                      Classes="GamesListBox FirstAccentLinearGameListBox"
-                     Grid.Column="2">
-            			
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" Spacing="10" Margin="0"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-    
-            </ListBox>
-            
+                     Grid.Column="2"/>
+
             <TextBox Text="{Binding Filter}"
                      Watermark="Введите название"
                      Classes="FilteringTextBox"
@@ -137,16 +129,8 @@
                        
             <ListBox ItemsSource="{Binding ListItemModels, Mode=OneWay}"
                      SelectedItem="{Binding SelectedListItemModel}"
-                     Classes="ListItemsListBox">
-                       
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel Margin="0"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-               
-            </ListBox> 
-            
+                     Classes="ListItemsListBox"/>
+
         </Grid>
         
         <Grid Grid.Row="6">

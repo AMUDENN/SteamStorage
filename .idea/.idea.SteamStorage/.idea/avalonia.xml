@@ -88,6 +88,10 @@
         <entry key="SteamStorage/Resources/Styles/HyperlinkButtonStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ImageStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ListBoxStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/ListBoxes/GamesListBoxStyle.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/ListBoxes/ListItemsListBoxStyle.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/ListBoxes/NavigationListBoxStyle.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/ListBoxes/ThemeVariantListBoxStyle.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/NumericUpDownStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/PieChartStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/RadioButtonStyles.axaml" value="SteamStorage/SteamStorage.csproj" />

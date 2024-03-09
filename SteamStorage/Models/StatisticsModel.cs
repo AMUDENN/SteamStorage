@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -231,6 +232,12 @@ public class StatisticsModel : ModelBase
     }
 
     #endregion Properties
+    
+    #region Commands
+
+    public RelayCommand AttachedToVisualTreeCommand { get; }
+
+    #endregion Commands
 
     #region Constructor
 
@@ -248,7 +255,7 @@ public class StatisticsModel : ModelBase
         
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
-        _inventorySumString = string.Empty;
+        _investedSumString = string.Empty;
         _financialGoalString = string.Empty;
         _activesCurrentSumString = string.Empty;
         _archivesSoldSumString = string.Empty;
@@ -259,6 +266,8 @@ public class StatisticsModel : ModelBase
 
         _inventoryGames = Enumerable.Empty<Statistics.InventoryGameStatisticResponse>();
         _inventoryGamesSeries = Enumerable.Empty<ISeries>();
+
+        AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
 
         RefreshPing();
     }
@@ -283,6 +292,12 @@ public class StatisticsModel : ModelBase
         GetInventoryGamesSeries();
         GetInvestedSumGrowthSeries();
         GetFinancialGoalPercentageCompletion();
+    }
+
+    private void DoAttachedToVisualTreeCommand()
+    {
+        RefreshStatistics();
+        RefreshPing();
     }
 
     private void GetInvestedSumGrowthSeries()

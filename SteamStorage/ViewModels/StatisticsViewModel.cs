@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models;
@@ -128,6 +129,15 @@ public class StatisticsViewModel : ViewModelBase
     }
 
     #endregion Properties
+    
+    #region Commands
+
+    public RelayCommand AttachedToVisualTreeCommand
+    {
+        get => _statisticsModel.AttachedToVisualTreeCommand;
+    }
+
+    #endregion Commands
 
     #region Constructor
 

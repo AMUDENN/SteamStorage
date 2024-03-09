@@ -92,15 +92,7 @@
 						 SelectedItem="{Binding SelectedNavigationModel}"
 						 Classes="NavigationListBox"
 						 Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
-						 Grid.Row="4">
-					
-					<ListBox.ItemsPanel>
-						<ItemsPanelTemplate>
-							<StackPanel Spacing="20" Margin="0"/>
-						</ItemsPanelTemplate>
-					</ListBox.ItemsPanel>
-
-				</ListBox>
+						 Grid.Row="4"/>
 
 				<Grid RowDefinitions="60, 20, 60" Grid.Row="6">
 						

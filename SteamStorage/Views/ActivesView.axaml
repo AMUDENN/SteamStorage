@@ -5,6 +5,41 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SteamStorage.Views.ActivesView">
 	
-	<TextBlock Text="Actives"/>
+	<TabControl>
+		
+		<TabItem Header="Обзор">
+			
+			<ContentControl/>	
+			
+		</TabItem>
+		
+		<TabItem Header="Список активов">
+			
+			<ContentControl/>	
+			
+		</TabItem>
+		
+		<TabItem Header="Управление группами" 
+		         IsEnabled="False">
+			
+			<ContentControl/>	
+			
+		</TabItem>
+		
+		<TabItem Header="Управление активами"
+		         IsEnabled="False">
+			
+			<ContentControl/>	
+			
+		</TabItem>
+		
+		<TabItem Header="Продажа актива"
+		         IsEnabled="False">
+			
+			<ContentControl/>	
+			
+		</TabItem>
+		
+	</TabControl>
 	
 </UserControl>
