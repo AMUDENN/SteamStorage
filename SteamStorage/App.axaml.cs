@@ -44,7 +44,7 @@ namespace SteamStorage
             services.AddSingleton<ApiClient>();
 
             //Custom API Services
-            services.AddSingleton<IAuthorizationService, AuthorizationService>(); 
+            services.AddSingleton<IAuthorizationService, AuthorizationService>();
             services.AddSingleton<ILoggerService, LoggerService>(_ => new(ApiConstants.LOG_PROGRAM_NAME,
                 ApiConstants.LOG_DATE_FORMAT, ApiConstants.LOG_DATETIME_FORMAT));
             services.AddSingleton<IPingService, PingService>();
@@ -61,6 +61,7 @@ namespace SteamStorage
 
             //ViewModels
             services.AddSingleton<MainViewModel>();
+            
             services.AddSingleton<ActivesViewModel>();
             services.AddSingleton<ArchiveViewModel>();
             services.AddSingleton<HomeViewModel>();
@@ -72,8 +73,11 @@ namespace SteamStorage
 
             //Models
             services.AddSingleton<MainModel>();
+
+            services.AddSingleton<ActivesModel>();
             services.AddSingleton<ChartTooltipModel>();
             services.AddSingleton<GamesModel>();
+            services.AddSingleton<HomeModel>();
             services.AddSingleton<ListItemsModel>();
             services.AddSingleton<SettingsModel>();
             services.AddSingleton<StatisticsModel>();

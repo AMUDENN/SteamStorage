@@ -10,7 +10,7 @@ public class MainViewModel : ViewModelBase
 {
     #region Fields
 
-    private readonly MainModel _model;
+    private readonly MainModel _mainModel;
 
     #endregion Fields
 
@@ -18,44 +18,44 @@ public class MainViewModel : ViewModelBase
 
     public string? ImageUrl
     {
-        get => _model.ImageUrl;
+        get => _mainModel.ImageUrl;
     }
 
     public string UserName
     {
-        get => _model.UserName;
+        get => _mainModel.UserName;
     }
 
     public string SteamId
     {
-        get => _model.SteamId;
+        get => _mainModel.SteamId;
     }
 
     public bool IsUserLogin
     {
-        get => _model.IsUserLogin;
+        get => _mainModel.IsUserLogin;
     }
 
     public ViewModelBase CurrentViewModel
     {
-        get => _model.CurrentViewModel;
+        get => _mainModel.CurrentViewModel;
     }
 
     public IEnumerable<NavigationModel> NavigationOptions
     {
-        get => _model.NavigationOptions;
+        get => _mainModel.NavigationOptions;
     }
 
     public NavigationModel? SelectedNavigationModel
     {
-        get => _model.SelectedNavigationModel;
-        set => _model.SelectedNavigationModel = value;
+        get => _mainModel.SelectedNavigationModel;
+        set => _mainModel.SelectedNavigationModel = value;
     }
 
     public bool IsSettingsChecked
     {
-        get => _model.IsSettingsChecked;
-        set => _model.IsSettingsChecked = value;
+        get => _mainModel.IsSettingsChecked;
+        set => _mainModel.IsSettingsChecked = value;
     }
 
     #endregion Properties
@@ -64,12 +64,12 @@ public class MainViewModel : ViewModelBase
 
     public RelayCommand LogInCommand
     {
-        get => _model.LogInCommand;
+        get => _mainModel.LogInCommand;
     }
 
     public RelayCommand LogOutCommand
     {
-        get => _model.LogOutCommand;
+        get => _mainModel.LogOutCommand;
     }
 
     #endregion Commands
@@ -77,10 +77,10 @@ public class MainViewModel : ViewModelBase
     #region Constructor
 
     public MainViewModel(
-        MainModel model)
+        MainModel mainModel)
     {
-        _model = model;
-        model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        _mainModel = mainModel;
+        mainModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

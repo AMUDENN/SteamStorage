@@ -30,11 +30,11 @@
 		<StyleInclude Source="/Resources/Styles/RectangleStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ScrollViewerStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/StackPanelStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/TabControlStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/TextBlockStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/TextBoxStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ToggleButtonStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ToolTipStyles.axaml"/>
+	    <StyleInclude Source="/Resources/Styles/TransitioningContentControlStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/VectorImageStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/WindowStyles.axaml"/>
         
@@ -42,6 +42,7 @@
         <StyleInclude Source="/Resources/Styles/ListBoxes/GamesListBoxStyle.axaml"/>
         <StyleInclude Source="/Resources/Styles/ListBoxes/ListItemsListBoxStyle.axaml"/>
         <StyleInclude Source="/Resources/Styles/ListBoxes/NavigationListBoxStyle.axaml"/>
+	    <StyleInclude Source="/Resources/Styles/ListBoxes/SecondaryNavigationListBoxStyle.axaml"/>
         <StyleInclude Source="/Resources/Styles/ListBoxes/ThemeVariantListBoxStyle.axaml"/>
         
         <!-- Images -->

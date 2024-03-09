@@ -2,44 +2,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:SteamStorage.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="SteamStorage.Views.ActivesView">
+             x:Class="SteamStorage.Views.ActivesView"
+             x:DataType="vm:ActivesViewModel">
 	
-	<TabControl>
+	<Grid RowDefinitions="Auto, *">
 		
-		<TabItem Header="Обзор">
-			
-			<ContentControl/>	
-			
-		</TabItem>
+		<ListBox ItemsSource="{Binding SecondaryNavigationOptions, Mode=OneWay}" 
+		         SelectedItem="{Binding SelectedSecondaryNavigationModel}"
+		         Classes="SecondaryNavigationListBox"
+		         Grid.Row="0"/>
 		
-		<TabItem Header="Список активов">
-			
-			<ContentControl/>	
-			
-		</TabItem>
+		<TransitioningContentControl Content="{Binding CurrentViewModel, Mode=OneWay}" 
+		                             Grid.Row="1"/>
 		
-		<TabItem Header="Управление группами" 
-		         IsEnabled="False">
-			
-			<ContentControl/>	
-			
-		</TabItem>
-		
-		<TabItem Header="Управление активами"
-		         IsEnabled="False">
-			
-			<ContentControl/>	
-			
-		</TabItem>
-		
-		<TabItem Header="Продажа актива"
-		         IsEnabled="False">
-			
-			<ContentControl/>	
-			
-		</TabItem>
-		
-	</TabControl>
+	</Grid>
 	
 </UserControl>

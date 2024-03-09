@@ -94,6 +94,10 @@
 						 Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
 						 Grid.Row="4"/>
 
+				<Rectangle Height="2" MaxWidth="180" 
+				           Margin="20, 0" 
+				           Grid.Row="5"/>
+				
 				<Grid RowDefinitions="60, 20, 60" Grid.Row="6">
 						
 					<RadioButton Tag="Настройки"
@@ -126,25 +130,13 @@
 										
 				</Grid>
 
-				<Rectangle Height="2" MaxWidth="180" 
-						   Margin="20, 0" 
-						   Grid.Row="5"/>
-
-				<Grid Grid.Row="6">
-
-				</Grid>
-
 			</Grid>
 
 		</Border>
 		
 		<TransitioningContentControl Content="{Binding CurrentViewModel, Mode=OneWay}" 
 		                             Margin="40, 10, 10, 0"
-		                             Grid.Column="1">
-			<TransitioningContentControl.PageTransition>
-				<CrossFade Duration="0:00:00.200" />
-			</TransitioningContentControl.PageTransition>
-		</TransitioningContentControl>
+		                             Grid.Column="1"/>
 		
 		<Border Classes="BigRoundedBorder BackgroundAdditionalBorder"
 		        Opacity="0.98"

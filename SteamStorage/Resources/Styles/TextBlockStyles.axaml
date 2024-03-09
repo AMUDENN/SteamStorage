@@ -19,6 +19,9 @@
 				<BrushTransition Property="Foreground" Duration="0:0:0.1" Easing="SineEaseOut"/>
 			</Transitions>
 		</Setter>
+		<Style Selector="^:disabled">
+			<Setter Property="Opacity" Value="0.5"/>
+		</Style>
 	</Style>
 	
 	<Style Selector="TextBlock.WrapTextBlock">

@@ -7,20 +7,16 @@
              x:Class="SteamStorage.Views.HomeView"
              x:DataType="vm:HomeViewModel">
 
-	<TabControl>
+	<Grid RowDefinitions="Auto, *">
 		
-		<TabItem Header="Статистика">
-			
-			<ContentControl Content="{Binding StatisticsViewModel, Mode=OneWay}"/>	
-			
-		</TabItem>
+		<ListBox ItemsSource="{Binding SecondaryNavigationOptions, Mode=OneWay}" 
+		         SelectedItem="{Binding SelectedSecondaryNavigationModel}"
+		         Classes="SecondaryNavigationListBox"
+		         Grid.Row="0"/>
 		
-		<TabItem Header="Список предметов">
-			
-			<ContentControl Content="{Binding ListItemsViewModel, Mode=OneWay}"/>	
-			
-		</TabItem>
+		<TransitioningContentControl Content="{Binding CurrentViewModel, Mode=OneWay}" 
+		                             Grid.Row="1"/>
 		
-	</TabControl>
+	</Grid>
 
 </UserControl>

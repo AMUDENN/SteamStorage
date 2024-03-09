@@ -1,0 +1,38 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:utilityModels="using:SteamStorage.Models.UtilityModels">
+	
+	<Style Selector="ListBox.SecondaryNavigationListBox">
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+		<Setter Property="Margin" Value="0, 0, 0, 20"/>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<StackPanel Orientation="Horizontal"/>
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style Selector="^ ListBoxItem">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate x:DataType="utilityModels:SecondaryNavigationModel">
+						
+						<TextBlock Text="{Binding Title, Mode=OneWay}"
+						           IsEnabled="{Binding IsEnabled, Mode=OneWay}"
+						           Classes="SmallTextBlock UnderlineTextBlock"
+						           Classes.FirstAccentTextBlock="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
+						           HorizontalAlignment="Center"
+						           VerticalAlignment="Center"
+						           Margin="30, 0, 0, 0"/>
+						
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Style Selector="^:pointerover /template/ TextBlock">
+				<Setter Property="Opacity" Value="0.8"/>
+			</Style>
+		</Style>
+	</Style>
+	
+</Styles>
