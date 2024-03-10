@@ -322,8 +322,8 @@ public class ListItemsModel : ModelBase
     #region Constructor
 
     public ListItemsModel(
-        ApiClient apiClient, 
-        ChartTooltipModel chartTooltipModel, 
+        ApiClient apiClient,
+        ChartTooltipModel chartTooltipModel,
         UserModel userModel,
         IThemeService themeService)
     {
@@ -332,11 +332,11 @@ public class ListItemsModel : ModelBase
         _userModel = userModel;
         _themeService = themeService;
 
-        _listItemModels = [];
-        _cancellationTokenSource = new();
-
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
+
+        _listItemModels = [];
+        _cancellationTokenSource = new();
 
         IsAllGamesChecked = true;
 

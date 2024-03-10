@@ -156,7 +156,7 @@
 				<controls:VectorImage Classes="LockVectorImage ForegroundVectorImage" Grid.Row="0"/>
 				
 				<TextBlock Text="Войдите в аккаунт, чтобы просматривать содержимое" 
-				           Classes="CenterTextBlock MiddleTextBlock"
+				           Classes="CenterTextBlock MiddleTextBlock WrapTextBlock"
 				           Grid.Row="2"/>
 				
 			</Grid>

@@ -24,6 +24,10 @@
 		</Style>
 	</Style>
 	
+	<Style Selector="TextBlock.LightWeightTextBlock">
+		<Setter Property="FontWeight" Value="400"/>
+	</Style>
+	
 	<Style Selector="TextBlock.WrapTextBlock">
 		<Setter Property="TextWrapping" Value="Wrap"/>
 	</Style>

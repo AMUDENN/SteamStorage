@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -16,7 +15,7 @@ using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models.UtilityModels;
 
-public class ListItemModel : BaseSkinModel
+public class ActiveGroupModel : BaseGroupModel
 {
     #region Constants
 
@@ -29,11 +28,9 @@ public class ListItemModel : BaseSkinModel
     private readonly ApiClient _apiClient;
     private readonly IThemeService _themeService;
 
-    private bool _isMarked;
-
     private double? _changePeriod;
     private string? _datePeriod;
-    private IEnumerable<Skins.SkinDynamicResponse>? _skinDynamic;
+    private IEnumerable<ActiveGroups.ActiveGroupDynamicResponse>? _groupDynamic;
     private IEnumerable<ISeries> _changeSeries;
     private IEnumerable<Axis> _xAxis;
     private IEnumerable<Axis> _yAxis;
@@ -49,24 +46,13 @@ public class ListItemModel : BaseSkinModel
 
     #region Properties
 
-    public string CurrentPriceString { get; }
+    public string BuySumString { get; }
 
-    public double Change7D { get; }
+    public string CurrentSumString { get; }
 
-    public double Change30D { get; }
-
-    public bool IsMarked
-    {
-        get => _isMarked;
-        set
-        {
-            SetProperty(ref _isMarked, value);
-            if (value)
-                PostIsMarked();
-            else
-                DeleteMarked();
-        }
-    }
+    public string GoalSumString { get; }
+    
+    public double Change { get; }
 
     public double? ChangePeriod
     {
@@ -80,12 +66,12 @@ public class ListItemModel : BaseSkinModel
         private set => SetProperty(ref _datePeriod, value);
     }
 
-    private IEnumerable<Skins.SkinDynamicResponse>? SkinDynamic
+    private IEnumerable<ActiveGroups.ActiveGroupDynamicResponse>? GroupDynamic
     {
-        get => _skinDynamic;
+        get => _groupDynamic;
         set
         {
-            SetProperty(ref _skinDynamic, value);
+            SetProperty(ref _groupDynamic, value);
             OnPropertyChanged(nameof(NotFoundText));
             GetDynamicChart();
         }
@@ -93,7 +79,7 @@ public class ListItemModel : BaseSkinModel
 
     public string? NotFoundText
     {
-        get => SkinDynamic?.Count() == 0 && !IsLoading ? EMPTY_DYNAMIC_TEXT : null;
+        get => GroupDynamic?.Count() == 0 && !IsLoading ? EMPTY_DYNAMIC_TEXT : null;
     }
 
     public IEnumerable<ISeries> ChangeSeries
@@ -166,49 +152,41 @@ public class ListItemModel : BaseSkinModel
 
     #endregion Properties
 
-    #region Commands
-
-    public RelayCommand AddToActivesCommand { get; }
-
-    public RelayCommand AddToArchiveCommand { get; }
-
-    #endregion Commands
-
     #region Constructor
 
-    public ListItemModel(
-        ApiClient apiClient, 
-        IThemeService themeService, 
-        int skinId, 
-        string imageUrl, 
-        string marketUrl,
-        string title, 
-        decimal currentPrice, 
-        string currencyMark, 
-        double change7D, 
-        double change30D,
-        bool isMarked) : base(skinId, imageUrl, marketUrl, title)
+    public ActiveGroupModel(
+        ApiClient apiClient,
+        IThemeService themeService,
+        int groupId,
+        string colour,
+        string title,
+        int count,
+        decimal? goalSum,
+        double? goalSumCompletion,
+        decimal buySum,
+        decimal currentSum,
+        string currencyMark,
+        double change,
+        DateTime dateCreation) : base(groupId, colour, title, count, dateCreation)
     {
         _apiClient = apiClient;
         _themeService = themeService;
 
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
-        CurrentPriceString = $"{currentPrice:N2} {currencyMark}";
+        GoalSumString = goalSum is null ? "(Не установлена)" : $"{goalSum:N2} {currencyMark} ({goalSumCompletion:N0}%)";
 
-        Change7D = change7D;
-        Change30D = change30D;
+        BuySumString = $"{buySum:N2} {currencyMark}";
+        CurrentSumString = $"{currentSum:N2} {currencyMark}";
+        GoalSumString = string.Empty;
+
+        Change = change;
         
-        _isMarked = isMarked;
-
-        IsLoading = false;
-
         _changeSeries = Enumerable.Empty<ISeries>();
         _xAxis = Enumerable.Empty<Axis>();
         _yAxis = Enumerable.Empty<Axis>();
 
-        AddToActivesCommand = new(DoAddToActivesCommand);
-        AddToArchiveCommand = new(DoAddToArchiveCommand);
+        IsLoading = false;
     }
 
     #endregion Constructor
@@ -218,16 +196,6 @@ public class ListItemModel : BaseSkinModel
     private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
     {
         GetDynamicChart();
-    }
-
-    private void DoAddToActivesCommand()
-    {
-
-    }
-
-    private void DoAddToArchiveCommand()
-    {
-
     }
 
     public void UpdateStats()
@@ -244,12 +212,12 @@ public class ListItemModel : BaseSkinModel
 
         ChangeSeries = new[]
         {
-            new LineSeries<Skins.SkinDynamicResponse>
+            new LineSeries<ActiveGroups.ActiveGroupDynamicResponse>
             {
-                Values = SkinDynamic,
-                Mapping = (dynamic, point) => new(point, Convert.ToDouble(dynamic.Price)),
+                Values = GroupDynamic,
+                Mapping = (dynamic, point) => new(point, Convert.ToDouble(dynamic.Sum)),
                 YToolTipLabelFormatter = index =>
-                    $"{index.Model?.DateUpdate.ToString(ProgramConstants.VIEW_DATE_FORMAT)}: {index.Model?.Price}",
+                    $"{index.Model?.DateUpdate.ToString(ProgramConstants.VIEW_DATE_FORMAT)}: {index.Model?.Sum}",
                 Stroke = new SolidColorPaint(chartColor) { StrokeThickness = 2 },
                 Fill = null,
                 LineSmoothness = 0,
@@ -273,11 +241,11 @@ public class ListItemModel : BaseSkinModel
         {
             new Axis
             {
-                MinLimit = SkinDynamic?.Any() == true
-                    ? Convert.ToDouble(SkinDynamic?.Min(x => x.Price)) / 1.1 - 0.01
+                MinLimit = GroupDynamic?.Any() == true
+                    ? Convert.ToDouble(GroupDynamic?.Min(x => x.Sum)) / 1.1 - 0.01
                     : 0,
-                MaxLimit = SkinDynamic?.Any() == true
-                    ? Convert.ToDouble(SkinDynamic?.Max(x => x.Price)) * 1.1 + 0.01
+                MaxLimit = GroupDynamic?.Any() == true
+                    ? Convert.ToDouble(GroupDynamic?.Max(x => x.Sum)) * 1.1 + 0.01
                     : 0,
                 Labels = null,
                 LabelsPaint = null,
@@ -292,29 +260,17 @@ public class ListItemModel : BaseSkinModel
         DatePeriod =
             $"{dateStart.ToString(ProgramConstants.VIEW_DATE_FORMAT)} - {dateEnd.ToString(ProgramConstants.VIEW_DATE_FORMAT)}";
 
-        Skins.SkinDynamicStatsResponse? skinDynamicsResponse =
-            await _apiClient.GetAsync<Skins.SkinDynamicStatsResponse, Skins.GetSkinDynamicsRequest>(
-                ApiConstants.ApiControllers.Skins,
-                "GetSkinDynamics",
-                new(SkinId, dateStart, dateEnd));
+        ActiveGroups.ActiveGroupDynamicStatsResponse? activeGroupDynamicResponse =
+            await _apiClient.GetAsync<ActiveGroups.ActiveGroupDynamicStatsResponse, ActiveGroups.GetActiveGroupDynamicRequest>(
+                ApiConstants.ApiControllers.ActiveGroups,
+                "GetActiveGroupDynamics",
+                new(GroupId, dateStart, dateEnd));
 
-        ChangePeriod = skinDynamicsResponse?.ChangePeriod;
+        ChangePeriod = activeGroupDynamicResponse?.ChangePeriod;
 
-        SkinDynamic = skinDynamicsResponse?.Dynamic;
+        GroupDynamic = activeGroupDynamicResponse?.Dynamic;
 
         IsLoading = false;
-    }
-
-    private async void PostIsMarked()
-    {
-        await _apiClient.PostAsync(ApiConstants.ApiControllers.Skins, "SetMarkedSkin",
-            new Skins.SetMarkedSkinRequest(SkinId));
-    }
-
-    private async void DeleteMarked()
-    {
-        await _apiClient.DeleteAsync(ApiConstants.ApiControllers.Skins, "DeleteMarkedSkin",
-            new Skins.DeleteMarkedSkinRequest(SkinId));
     }
 
     #endregion Methods

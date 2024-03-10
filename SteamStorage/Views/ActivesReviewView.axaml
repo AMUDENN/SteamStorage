@@ -1,0 +1,54 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+             xmlns:vm="using:SteamStorage.ViewModels"
+             xmlns:controls="using:SteamStorage.Resources.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SteamStorage.Views.ActivesReviewView"
+             x:DataType="vm:ActivesReviewViewModel">
+    
+    <i:Interaction.Behaviors>
+        <ia:EventTriggerBehavior EventName="AttachedToVisualTree">
+            <ia:InvokeCommandAction Command="{Binding AttachedToVisualTreeCommand, Mode=OneWay}"/>
+        </ia:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
+    
+    <Grid RowDefinitions="290, 30, 30, 30, *">
+        
+        <Border Classes="BigRoundedBorder FirstAccentGradientBorder" 
+                Grid.Row="0">
+            
+        </Border>
+        
+        <Grid Grid.Row="2">
+            
+        </Grid>
+        
+        <Grid Grid.Row="4">
+            
+            <TextBlock Text="{Binding NotFoundText, Mode=OneWay}"
+                       IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}"
+                       Classes="MiddleTextBlock CenterTextBlock"
+                       VerticalAlignment="Top"
+                       Margin="0, 20"/>
+            
+            <controls:VectorImage IsVisible="{Binding IsLoading, Mode=OneWay}"
+                                  Classes="LoadingVectorImage ForegroundVectorImage"
+                                  Height="48" Width="48"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Top"
+                                  Margin="0, 20"/>
+                       
+            <ListBox ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
+                     SelectedItem="{Binding SelectedActiveGroupModel}"
+                     Classes="ActiveGroupsListBox"/>
+
+        </Grid>
+        
+    </Grid>
+    
+    
+</UserControl>

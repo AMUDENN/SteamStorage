@@ -43,15 +43,15 @@ public class ActivesModel : ModelBase
     #region Constructor
 
     public ActivesModel(
-        StatisticsViewModel statisticsViewModel)
+        ActivesReviewViewModel activesReviewViewModel)
     {
         SecondaryNavigationOptions =
         [
-            new("Обзор", statisticsViewModel, true),
-            new("Список активов", statisticsViewModel, true),
-            new("Управление группами", statisticsViewModel, false),
-            new("Управление активами", statisticsViewModel, false),
-            new("Продажа актива", statisticsViewModel, false)
+            new("Обзор", activesReviewViewModel, true),
+            new("Список активов", activesReviewViewModel, true),
+            new("Управление группами", activesReviewViewModel, false),
+            new("Управление активами", activesReviewViewModel, false),
+            new("Продажа актива", activesReviewViewModel, false)
         ];
 
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();

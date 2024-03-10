@@ -1,45 +1,45 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using SteamStorage.Models;
+﻿using System;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.ViewModels.Tools;
 
 namespace SteamStorage.ViewModels.UtilityViewModels;
 
-public class BaseSkinViewModel : ViewModelBase
+public class BaseGroupViewModel : ViewModelBase
 {
     #region Fields
 
-    private readonly BaseSkinModel _model;
+    private readonly BaseGroupModel _model;
 
     #endregion Fields
 
     #region Properties
 
-    public string ImageUrl
+    public string Colour
     {
-        get => _model.ImageUrl;
+        get => _model.Colour;
     }
 
     public string Title
     {
         get => _model.Title;
     }
-    
-    #endregion Properties
 
-    #region Commands
-
-    public RelayCommand OpenInSteamCommand
+    public int Count
     {
-        get => _model.OpenInSteamCommand;
+        get => _model.Count;
     }
 
-    #endregion Commands
+    public string DateCreationString
+    {
+        get => _model.DateCreationString;
+    }
+
+    #endregion Properties
 
     #region Constructor
 
-    public BaseSkinViewModel(
-        BaseSkinModel model)
+    public BaseGroupViewModel(
+        BaseGroupModel model)
     {
         _model = model;
 

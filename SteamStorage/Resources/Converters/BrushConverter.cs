@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Globalization;
 using Avalonia.Data.Converters;
+using Avalonia.Media;
 
 namespace SteamStorage.Resources.Converters;
 
-public class DoubleMultiplicationConverter : IValueConverter
+public class BrushConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is null || parameter is null) return false;
+        if (value is not string brush) return false;
         try
         {
-            NumberFormatInfo nfi = new()
-            {
-                NumberDecimalSeparator = "."
-            };
-            return System.Convert.ToDouble(value) * System.Convert.ToDouble(parameter, nfi);
+            return SolidColorBrush.Parse(brush);
         }
         catch
         {

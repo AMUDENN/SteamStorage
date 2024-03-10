@@ -39,6 +39,7 @@
 		<StyleInclude Source="/Resources/Styles/WindowStyles.axaml"/>
         
         <!-- ListBoxes -->
+	    <StyleInclude Source="/Resources/Styles/ListBoxes/ActiveGroupsListBoxStyle.axaml"/>
         <StyleInclude Source="/Resources/Styles/ListBoxes/GamesListBoxStyle.axaml"/>
         <StyleInclude Source="/Resources/Styles/ListBoxes/ListItemsListBoxStyle.axaml"/>
         <StyleInclude Source="/Resources/Styles/ListBoxes/NavigationListBoxStyle.axaml"/>
