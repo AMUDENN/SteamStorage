@@ -1,5 +1,7 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
         xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
         xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels"
         xmlns:converters="using:SteamStorage.Resources.Converters"
@@ -30,6 +32,24 @@
 						<Border x:Name="MainBorder"
 						        Classes="BackgroundAdditionalBorder BigRoundedBorder"
 						        Height="110">
+							
+							<i:Interaction.Behaviors>
+								<ia:EventTriggerBehavior EventName="DoubleTapped">
+									<ia:InvokeCommandAction Command="{Binding OpenActivesCommand, Mode=OneWay}"/>
+								</ia:EventTriggerBehavior>
+							</i:Interaction.Behaviors>
+							
+							<Border.ContextMenu>
+								<ContextMenu>
+									<MenuItem Header="Открыть список активов" Command="{Binding OpenActivesCommand, Mode=OneWay}"/>
+									<Separator/>
+									<MenuItem Header="Добавить актив" Command="{Binding AddActiveCommand, Mode=OneWay}"/>
+									<Separator/>
+									<MenuItem Header="Изменить группу" Command="{Binding EditActiveGroupCommand, Mode=OneWay}"/>
+									<Separator/>
+									<MenuItem Header="Удалить группу" Command="{Binding DeleteActiveGroupCommand, Mode=OneWay}"/>
+								</ContextMenu>
+							</Border.ContextMenu>
 							
 							<Grid Margin="20">
 								

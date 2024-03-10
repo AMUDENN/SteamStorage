@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -22,7 +23,7 @@ public class ActiveGroupViewModel : BaseGroupViewModel
     {
         get => _model.GoalSumString;
     }
-    
+
     public string BuySumString
     {
         get => _model.BuySumString;
@@ -108,6 +109,30 @@ public class ActiveGroupViewModel : BaseGroupViewModel
     }
 
     #endregion Properties
+
+    #region Commands
+
+    public RelayCommand OpenActivesCommand
+    {
+        get => _model.OpenActivesCommand;
+    }
+
+    public RelayCommand AddActiveCommand
+    {
+        get => _model.AddActiveCommand;
+    }
+    
+    public RelayCommand EditActiveGroupCommand
+    {
+        get => _model.EditActiveGroupCommand;
+    }
+    
+    public RelayCommand DeleteActiveGroupCommand
+    {
+        get => _model.DeleteActiveGroupCommand;
+    }
+
+    #endregion Commands
 
     #region Constructor
 

@@ -16,16 +16,64 @@
         </ia:EventTriggerBehavior>
     </i:Interaction.Behaviors>
     
-    <Grid RowDefinitions="290, 30, 30, 30, *">
+    <Grid RowDefinitions="290, 30, 30, 40, *">
         
         <Border Classes="BigRoundedBorder FirstAccentGradientBorder" 
                 Grid.Row="0">
             
         </Border>
         
-        <Grid Grid.Row="2">
+        <Grid Margin="20, 0"
+              Grid.Row="2">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="10" MinWidth="10"/>
+                <ColumnDefinition Width="210*"/>
+                <ColumnDefinition Width="10" MinWidth="10"/>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="10" MinWidth="10"/>
+                <ColumnDefinition Width="190*"/>
+                <ColumnDefinition Width="10" MinWidth="10"/>
+                <ColumnDefinition Width="190*"/>
+                <ColumnDefinition Width="10" MinWidth="10"/>
+                <ColumnDefinition Width="150*"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Text="Цвет"  
+                       Classes="SmallTextBlock CenterTextBlock"
+                       Grid.Column="0"/>
+            
+            <ToggleButton Content="Название" 
+                          IsChecked="{Binding IsTitleOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="2"/>
+            
+            <ToggleButton Content="Количество" 
+                          IsChecked="{Binding IsCountOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="4"/>
+            
+            <ToggleButton Content="Сумма покупки" 
+                          IsChecked="{Binding IsBuySumOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="6"/>
+            
+            <ToggleButton Content="Текущая сумма" 
+                          IsChecked="{Binding IsCurrentSumOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="8"/>
+            
+            <ToggleButton Content="Изменение" 
+                          IsChecked="{Binding IsChangeOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="10"/>
             
         </Grid>
+        
+        <Rectangle Height="2"
+                   Margin="25, 0" 
+                   Grid.Row="3"/>
         
         <Grid Grid.Row="4">
             

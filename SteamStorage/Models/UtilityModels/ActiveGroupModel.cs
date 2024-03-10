@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -51,7 +52,7 @@ public class ActiveGroupModel : BaseGroupModel
     public string CurrentSumString { get; }
 
     public string GoalSumString { get; }
-    
+
     public double Change { get; }
 
     public double? ChangePeriod
@@ -152,6 +153,18 @@ public class ActiveGroupModel : BaseGroupModel
 
     #endregion Properties
 
+    #region Commands
+
+    public RelayCommand OpenActivesCommand { get; }
+
+    public RelayCommand AddActiveCommand { get; }
+    
+    public RelayCommand EditActiveGroupCommand { get; }
+
+    public RelayCommand DeleteActiveGroupCommand { get; }
+
+    #endregion Commands
+
     #region Constructor
 
     public ActiveGroupModel(
@@ -174,19 +187,22 @@ public class ActiveGroupModel : BaseGroupModel
 
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
-        GoalSumString = goalSum is null ? "(Не установлена)" : $"{goalSum:N2} {currencyMark} ({goalSumCompletion:N0}%)";
-
         BuySumString = $"{buySum:N2} {currencyMark}";
         CurrentSumString = $"{currentSum:N2} {currencyMark}";
-        GoalSumString = string.Empty;
+        GoalSumString = goalSum is null ? "(не установлена)" : $"{goalSum:N2} {currencyMark} ({goalSumCompletion:N0}%)";
 
         Change = change;
-        
+
         _changeSeries = Enumerable.Empty<ISeries>();
         _xAxis = Enumerable.Empty<Axis>();
         _yAxis = Enumerable.Empty<Axis>();
 
         IsLoading = false;
+
+        OpenActivesCommand = new(DoOpenActivesCommand);
+        AddActiveCommand = new(DoAddActiveCommand);
+        EditActiveGroupCommand = new(DoEditActiveGroupCommand);
+        DeleteActiveGroupCommand = new(DoDeleteActiveGroupCommand);
     }
 
     #endregion Constructor
@@ -196,6 +212,26 @@ public class ActiveGroupModel : BaseGroupModel
     private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
     {
         GetDynamicChart();
+    }
+
+    private void DoOpenActivesCommand()
+    {
+
+    }
+
+    private void DoAddActiveCommand()
+    {
+
+    }
+    
+    private void DoEditActiveGroupCommand()
+    {
+
+    }
+
+    private void DoDeleteActiveGroupCommand()
+    {
+
     }
 
     public void UpdateStats()
@@ -261,10 +297,11 @@ public class ActiveGroupModel : BaseGroupModel
             $"{dateStart.ToString(ProgramConstants.VIEW_DATE_FORMAT)} - {dateEnd.ToString(ProgramConstants.VIEW_DATE_FORMAT)}";
 
         ActiveGroups.ActiveGroupDynamicStatsResponse? activeGroupDynamicResponse =
-            await _apiClient.GetAsync<ActiveGroups.ActiveGroupDynamicStatsResponse, ActiveGroups.GetActiveGroupDynamicRequest>(
-                ApiConstants.ApiControllers.ActiveGroups,
-                "GetActiveGroupDynamics",
-                new(GroupId, dateStart, dateEnd));
+            await _apiClient
+                .GetAsync<ActiveGroups.ActiveGroupDynamicStatsResponse, ActiveGroups.GetActiveGroupDynamicRequest>(
+                    ApiConstants.ApiControllers.ActiveGroups,
+                    "GetActiveGroupDynamics",
+                    new(GroupId, dateStart, dateEnd));
 
         ChangePeriod = activeGroupDynamicResponse?.ChangePeriod;
 
