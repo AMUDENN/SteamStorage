@@ -54,6 +54,10 @@ public class ActiveModel : BaseSkinModel
     public string CurrentPriceString { get; }
     
     public string CurrentSumString { get; }
+    
+    public string GoalPriceString { get; }
+    
+    public string BuyDateString { get; }
 
     public double Change { get; }
 
@@ -166,18 +170,21 @@ public class ActiveModel : BaseSkinModel
     #region Constructor
 
     public ActiveModel(
-        ApiClient apiClient, 
-        IThemeService themeService, 
-        int skinId, 
-        string imageUrl, 
+        ApiClient apiClient,
+        IThemeService themeService,
+        int skinId,
+        string imageUrl,
         string marketUrl,
-        string title, 
+        string title,
         int count,
-        decimal buyPrice, 
+        decimal buyPrice,
         decimal currentPrice,
         decimal currentSum,
-        string currencyMark, 
-        double change) : base(skinId, imageUrl, marketUrl, title)
+        decimal? goalPrice,
+        double? goalPriceCompletion,
+        string currencyMark,
+        double change,
+        DateTime buyDate) : base(skinId, imageUrl, marketUrl, title)
     {
         _apiClient = apiClient;
         _themeService = themeService;
@@ -189,6 +196,11 @@ public class ActiveModel : BaseSkinModel
         BuyPriceString = $"{buyPrice:N2} {currencyMark}";
         CurrentPriceString = $"{currentPrice:N2} {currencyMark}";
         CurrentSumString = $"{currentSum:N2} {currencyMark}";
+        GoalPriceString = goalPrice is null
+            ? "(не установлена)"
+            : $"{goalPrice:N2} {currencyMark} ({goalPriceCompletion:N0}%)";
+
+        BuyDateString = buyDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
 
         Change = change;
 

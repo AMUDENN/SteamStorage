@@ -38,6 +38,16 @@ public class ActiveViewModel : BaseSkinViewModel
     {
         get => _model.CurrentSumString;
     }
+    
+    public string GoalPriceString
+    {
+        get => _model.GoalPriceString;
+    }
+    
+    public string BuyDateString
+    {
+        get => _model.BuyDateString;
+    }
 
     public double Change
     {
