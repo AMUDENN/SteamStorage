@@ -8,31 +8,31 @@ using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
 
-public class GamesModel : ModelBase
+public class ActiveGroupsModel : ModelBase
 {
     #region Fields
 
     private readonly ApiClient _apiClient;
 
-    private List<GameModel> _gameModels;
+    private List<BaseGroupModel> _activeGroupModels;
 
     #endregion Fields
 
-    public List<GameModel> GameModels
+    public List<BaseGroupModel> ActiveGroupModels
     {
-        get => _gameModels;
-        private set => SetProperty(ref _gameModels, value);
+        get => _activeGroupModels;
+        private set => SetProperty(ref _activeGroupModels, value);
     }
 
     #region Constructor
 
-    public GamesModel(
-        ApiClient apiClient, 
+    public ActiveGroupsModel(
+        ApiClient apiClient,
         UserModel userModel)
     {
         _apiClient = apiClient;
 
-        _gameModels = [];
+        _activeGroupModels = [];
 
         userModel.UserChanged += UserChangedHandler;
     }
@@ -48,12 +48,13 @@ public class GamesModel : ModelBase
 
     private async void GetGames()
     {
-        List<Games.GameResponse>? gamesResponse =
-            await _apiClient.GetAsync<List<Games.GameResponse>>(
+        ActiveGroups.ActiveGroupsResponse? groupsResponses =
+            await _apiClient.GetAsync<ActiveGroups.ActiveGroupsResponse, ActiveGroups.GetActiveGroupsRequest>(
                 ApiConstants.ApiControllers.Games,
-                "GetGames");
-        if (gamesResponse is null) return;
-        GameModels = gamesResponse.Select(x => new GameModel(x.Id, x.GameIconUrl, x.Title)).ToList();
+                "GetGames",
+                new(null, null));
+        if (groupsResponses is null) return;
+        ActiveGroupModels = groupsResponses.ActiveGroups.Select(x => new BaseGroupModel(x.Id, x.Title)).ToList();
     }
 
     #endregion Methods

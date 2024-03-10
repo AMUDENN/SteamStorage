@@ -12,7 +12,7 @@ using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
 
-public class ListItemsModel : ModelBase
+public class ListActivesModel : ModelBase
 {
     #region Constants
 
@@ -27,23 +27,25 @@ public class ListItemsModel : ModelBase
     private readonly UserModel _userModel;
     private readonly IThemeService _themeService;
 
+    private BaseGroupModel? _selectedGroupModel;
+
     private GameModel? _selectedGameModel;
     private bool _isAllGamesChecked;
 
     private string? _filter;
 
     private bool? _isTitleOrdering;
-    private bool? _isCurrentCostOrdering;
-    private bool? _isChange7Ordering;
-    private bool? _isChange30Ordering;
+    private bool? _isCountOrdering;
+    private bool? _isBuyPriceOrdering;
+    private bool? _isCurrentPriceOrdering;
+    private bool? _isCurrentSumOrdering;
+    private bool? _isChangeOrdering;
 
-    private Skins.SkinOrderName? _skinOrderName;
+    private Actives.ActiveOrderName? _activeOrderName;
     private bool? _isAscending;
 
-    private bool _isMarked;
-
-    private List<ListItemViewModel> _listItemModels;
-    private ListItemViewModel? _selectedListItemModel;
+    private List<ActiveViewModel> _activeModels;
+    private ActiveViewModel? _selectedActiveModel;
 
     private bool _isLoading;
     private CancellationTokenSource _cancellationTokenSource;
@@ -60,6 +62,16 @@ public class ListItemsModel : ModelBase
     #endregion Fields
 
     #region Properties
+
+    public BaseGroupModel? SelectedGroupModel
+    {
+        get => _selectedGroupModel;
+        set
+        {
+            SetProperty(ref _selectedGroupModel, value);
+            GetSkins();
+        }
+    }
 
     public GameModel? SelectedGameModel
     {
@@ -102,14 +114,14 @@ public class ListItemsModel : ModelBase
         {
             if (_isTitleOrdering is not null && value is null)
             {
-                SkinOrderName = null;
+                ActiveOrderName = null;
                 IsAscending = null;
             }
 
             if (value is not null)
             {
                 SetOrderingsNull();
-                SkinOrderName = Skins.SkinOrderName.Title;
+                ActiveOrderName = Actives.ActiveOrderName.Title;
                 IsAscending = value;
             }
 
@@ -117,105 +129,139 @@ public class ListItemsModel : ModelBase
         }
     }
 
-    public bool? IsCurrentCostOrdering
+    public bool? IsCountOrdering
     {
-        get => _isCurrentCostOrdering;
+        get => _isCountOrdering;
         set
         {
-            if (_isCurrentCostOrdering is not null && value is null)
+            if (_isCountOrdering is not null && value is null)
             {
-                SkinOrderName = null;
+                ActiveOrderName = null;
                 IsAscending = null;
             }
 
             if (value is not null)
             {
                 SetOrderingsNull();
-                SkinOrderName = Skins.SkinOrderName.Price;
+                ActiveOrderName = Actives.ActiveOrderName.Count;
                 IsAscending = value;
             }
 
-            SetProperty(ref _isCurrentCostOrdering, value);
+            SetProperty(ref _isCountOrdering, value);
         }
     }
 
-    public bool? IsChange7Ordering
+    public bool? IsBuyPriceOrdering
     {
-        get => _isChange7Ordering;
+        get => _isBuyPriceOrdering;
         set
         {
-            if (_isChange7Ordering is not null && value is null)
+            if (_isBuyPriceOrdering is not null && value is null)
             {
-                SkinOrderName = null;
+                ActiveOrderName = null;
                 IsAscending = null;
             }
 
             if (value is not null)
             {
                 SetOrderingsNull();
-                SkinOrderName = Skins.SkinOrderName.Change7D;
+                ActiveOrderName = Actives.ActiveOrderName.BuyPrice;
                 IsAscending = value;
             }
 
-            SetProperty(ref _isChange7Ordering, value);
+            SetProperty(ref _isBuyPriceOrdering, value);
         }
     }
 
-    public bool? IsChange30Ordering
+    public bool? IsCurrentPriceOrdering
     {
-        get => _isChange30Ordering;
+        get => _isCurrentPriceOrdering;
         set
         {
-            if (_isChange30Ordering is not null && value is null)
+            if (_isCurrentPriceOrdering is not null && value is null)
             {
-                SkinOrderName = null;
+                ActiveOrderName = null;
                 IsAscending = null;
             }
 
             if (value is not null)
             {
                 SetOrderingsNull();
-                SkinOrderName = Skins.SkinOrderName.Change30D;
+                ActiveOrderName = Actives.ActiveOrderName.CurrentPrice;
                 IsAscending = value;
             }
 
-            SetProperty(ref _isChange30Ordering, value);
+            SetProperty(ref _isCurrentPriceOrdering, value);
         }
     }
 
-    public bool IsMarked
+    public bool? IsCurrentSumOrdering
     {
-        get => _isMarked;
+        get => _isCurrentSumOrdering;
         set
         {
-            SetProperty(ref _isMarked, value);
-            GetSkins();
+            if (_isCurrentSumOrdering is not null && value is null)
+            {
+                ActiveOrderName = null;
+                IsAscending = null;
+            }
+
+            if (value is not null)
+            {
+                SetOrderingsNull();
+                ActiveOrderName = Actives.ActiveOrderName.CurrentSum;
+                IsAscending = value;
+            }
+
+            SetProperty(ref _isCurrentSumOrdering, value);
         }
     }
 
-    public List<ListItemViewModel> ListItemModels
+    public bool? IsChangeOrdering
     {
-        get => _listItemModels;
+        get => _isChangeOrdering;
+        set
+        {
+            if (_isChangeOrdering is not null && value is null)
+            {
+                ActiveOrderName = null;
+                IsAscending = null;
+            }
+
+            if (value is not null)
+            {
+                SetOrderingsNull();
+                ActiveOrderName = Actives.ActiveOrderName.Change;
+                IsAscending = value;
+            }
+
+            SetProperty(ref _isChangeOrdering, value);
+        }
+    }
+
+    public List<ActiveViewModel> ActiveModels
+    {
+        get => _activeModels;
         private set
         {
-            SetProperty(ref _listItemModels, value);
+            SetProperty(ref _activeModels, value);
             OnPropertyChanged(nameof(NotFoundText));
         }
     }
 
-    public ListItemViewModel? SelectedListItemModel
+    public ActiveViewModel? SelectedActiveModel
     {
-        get => _selectedListItemModel;
+        get => _selectedActiveModel;
         set
         {
-            SetProperty(ref _selectedListItemModel, value);
-            SelectedListItemModel?.UpdateStats();
+            SetProperty(ref _selectedActiveModel, value);
+            SelectedActiveModel?.UpdateStats();
         }
     }
 
     public string? NotFoundText
     {
-        get => ListItemModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
+        get => ActiveModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
     }
 
     public bool IsLoading
@@ -285,12 +331,12 @@ public class ListItemsModel : ModelBase
         private set => SetProperty(ref _savedItemsCount, value);
     }
 
-    private Skins.SkinOrderName? SkinOrderName
+    private Actives.ActiveOrderName? ActiveOrderName
     {
-        get => _skinOrderName;
+        get => _activeOrderName;
         set
         {
-            SetProperty(ref _skinOrderName, value);
+            SetProperty(ref _activeOrderName, value);
             GetSkins();
         }
     }
@@ -315,13 +361,17 @@ public class ListItemsModel : ModelBase
 
     #region Commands
 
+    public RelayCommand AddGroupCommand { get; }
+
+    public RelayCommand AddActiveCommand { get; }
+
     public RelayCommand ClearFiltersCommand { get; }
 
     #endregion Commands
 
     #region Constructor
 
-    public ListItemsModel(
+    public ListActivesModel(
         ApiClient apiClient,
         ChartTooltipModel chartTooltipModel,
         UserModel userModel,
@@ -335,20 +385,20 @@ public class ListItemsModel : ModelBase
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
 
-        _listItemModels = [];
+        _activeModels = [];
         _cancellationTokenSource = new();
 
         IsAllGamesChecked = true;
 
         SetOrderingsNull();
 
-        IsMarked = false;
-
         IsLoading = false;
 
         PageNumber = 1;
         PageSize = 20;
 
+        AddGroupCommand = new(DoAddGroupCommand);
+        AddActiveCommand = new(DoAddActiveCommand);
         ClearFiltersCommand = new(DoClearFiltersCommand);
     }
 
@@ -366,13 +416,22 @@ public class ListItemsModel : ModelBase
         GetSkins();
     }
 
+    private void DoAddGroupCommand()
+    {
+
+    }
+
+    private void DoAddActiveCommand()
+    {
+
+    }
+
     private void DoClearFiltersCommand()
     {
         Filter = null;
         IsAllGamesChecked = true;
-        SkinOrderName = null;
+        ActiveOrderName = null;
         IsAscending = null;
-        IsMarked = false;
         PageNumber = 1;
         SetOrderingsNull();
     }
@@ -380,14 +439,16 @@ public class ListItemsModel : ModelBase
     private void SetOrderingsNull()
     {
         IsTitleOrdering = null;
-        IsCurrentCostOrdering = null;
-        IsChange7Ordering = null;
-        IsChange30Ordering = null;
+        IsCountOrdering = null;
+        IsBuyPriceOrdering = null;
+        IsCurrentPriceOrdering = null;
+        IsCurrentSumOrdering = null;
+        IsChangeOrdering = null;
     }
 
     private async void GetSkins()
     {
-        ListItemModels = [];
+        ActiveModels = [];
         if (_userModel.User is null) return;
 
         IsLoading = true;
@@ -402,23 +463,23 @@ public class ListItemsModel : ModelBase
         DisplayItemsCountStart = (CurrentPageNumber - 1) * PageSize + 1;
         DisplayItemsCountEnd = CurrentPageNumber * PageSize;
 
-        Skins.SkinsResponse? skinsResponse =
-            await _apiClient.GetAsync<Skins.SkinsResponse, Skins.GetSkinsRequest>(
-                ApiConstants.ApiControllers.Skins,
-                "GetSkins",
-                new(SelectedGameModel?.Id, Filter, SkinOrderName, IsAscending, IsMarked ? IsMarked : null,
+        Actives.ActivesResponse? activesResponse =
+            await _apiClient.GetAsync<Actives.ActivesResponse, Actives.GetActivesRequest>(
+                ApiConstants.ApiControllers.Actives,
+                "GetActives",
+                new(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter, ActiveOrderName, IsAscending,
                     CurrentPageNumber, PageSize),
                 token);
 
-        if (skinsResponse is null) return;
+        if (activesResponse is null) return;
 
-        SavedItemsCount = skinsResponse.Count;
-        PagesCount = skinsResponse.PagesCount;
+        SavedItemsCount = activesResponse.Count;
+        PagesCount = activesResponse.PagesCount;
 
-        ListItemModels = skinsResponse.Skins.Select(x =>
-                new ListItemViewModel(
+        ActiveModels = activesResponse.Actives.Select(x =>
+                new ActiveViewModel(
                     new(_apiClient, _themeService, x.Skin.Id, x.Skin.SkinIconUrl, x.Skin.MarketUrl, x.Skin.Title,
-                        x.CurrentPrice, _userModel.CurrencyMark, x.Change7D, x.Change30D, x.IsMarked),
+                        x.Count, x.BuyPrice, x.CurrentPrice, x.CurrentSum, _userModel.CurrencyMark, x.Change),
                     _chartTooltipModel))
             .ToList();
 

@@ -43,12 +43,13 @@ public class ActivesModel : ModelBase
     #region Constructor
 
     public ActivesModel(
-        ActivesReviewViewModel activesReviewViewModel)
+        ActivesReviewViewModel activesReviewViewModel,
+        ListActivesViewModel listActivesViewModel)
     {
         SecondaryNavigationOptions =
         [
             new("Обзор", activesReviewViewModel, true),
-            new("Список активов", activesReviewViewModel, true),
+            new("Список активов", listActivesViewModel, true),
             new("Управление группами", activesReviewViewModel, false),
             new("Управление активами", activesReviewViewModel, false),
             new("Продажа актива", activesReviewViewModel, false)

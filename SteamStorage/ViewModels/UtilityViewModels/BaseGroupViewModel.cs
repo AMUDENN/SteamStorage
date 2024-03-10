@@ -8,7 +8,7 @@ public class BaseGroupViewModel : ViewModelBase
 {
     #region Fields
 
-    private readonly BaseGroupModel _model;
+    private readonly ExtendedBaseGroupModel _model;
 
     #endregion Fields
 
@@ -39,7 +39,7 @@ public class BaseGroupViewModel : ViewModelBase
     #region Constructor
 
     public BaseGroupViewModel(
-        BaseGroupModel model)
+        ExtendedBaseGroupModel model)
     {
         _model = model;
 

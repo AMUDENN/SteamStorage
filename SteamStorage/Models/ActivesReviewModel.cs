@@ -265,6 +265,9 @@ public class ActivesReviewModel : ModelBase
 
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
+        _investedSumString = string.Empty;
+        _currentSumString = string.Empty;
+
         _activeGroupModels = [];
         _cancellationTokenSource = new();
 

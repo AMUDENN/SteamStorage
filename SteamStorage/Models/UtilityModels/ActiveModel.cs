@@ -16,7 +16,7 @@ using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models.UtilityModels;
 
-public class ActiveGroupModel : ExtendedBaseGroupModel
+public class ActiveModel : BaseSkinModel
 {
     #region Constants
 
@@ -31,7 +31,7 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
 
     private double? _changePeriod;
     private string? _datePeriod;
-    private IEnumerable<ActiveGroups.ActiveGroupDynamicResponse>? _groupDynamic;
+    private IEnumerable<Skins.SkinDynamicResponse>? _skinDynamic;
     private IEnumerable<ISeries> _changeSeries;
     private IEnumerable<Axis> _xAxis;
     private IEnumerable<Axis> _yAxis;
@@ -47,11 +47,13 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
 
     #region Properties
 
-    public string BuySumString { get; }
-
+    public int Count { get; }
+    
+    public string BuyPriceString { get; }
+    
+    public string CurrentPriceString { get; }
+    
     public string CurrentSumString { get; }
-
-    public string GoalSumString { get; }
 
     public double Change { get; }
 
@@ -67,12 +69,12 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         private set => SetProperty(ref _datePeriod, value);
     }
 
-    private IEnumerable<ActiveGroups.ActiveGroupDynamicResponse>? GroupDynamic
+    private IEnumerable<Skins.SkinDynamicResponse>? SkinDynamic
     {
-        get => _groupDynamic;
+        get => _skinDynamic;
         set
         {
-            SetProperty(ref _groupDynamic, value);
+            SetProperty(ref _skinDynamic, value);
             OnPropertyChanged(nameof(NotFoundText));
             GetDynamicChart();
         }
@@ -80,7 +82,7 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
 
     public string? NotFoundText
     {
-        get => GroupDynamic?.Count() == 0 && !IsLoading ? EMPTY_DYNAMIC_TEXT : null;
+        get => SkinDynamic?.Count() == 0 && !IsLoading ? EMPTY_DYNAMIC_TEXT : null;
     }
 
     public IEnumerable<ISeries> ChangeSeries
@@ -155,54 +157,49 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
 
     #region Commands
 
-    public RelayCommand OpenActivesCommand { get; }
+    public RelayCommand EditCommand { get; }
 
-    public RelayCommand AddActiveCommand { get; }
-    
-    public RelayCommand EditActiveGroupCommand { get; }
-
-    public RelayCommand DeleteActiveGroupCommand { get; }
+    public RelayCommand DeleteCommand { get; }
 
     #endregion Commands
 
     #region Constructor
 
-    public ActiveGroupModel(
-        ApiClient apiClient,
-        IThemeService themeService,
-        int groupId,
-        string colour,
-        string title,
+    public ActiveModel(
+        ApiClient apiClient, 
+        IThemeService themeService, 
+        int skinId, 
+        string imageUrl, 
+        string marketUrl,
+        string title, 
         int count,
-        decimal? goalSum,
-        double? goalSumCompletion,
-        decimal buySum,
+        decimal buyPrice, 
+        decimal currentPrice,
         decimal currentSum,
-        string currencyMark,
-        double change,
-        DateTime dateCreation) : base(groupId, colour, title, count, dateCreation)
+        string currencyMark, 
+        double change) : base(skinId, imageUrl, marketUrl, title)
     {
         _apiClient = apiClient;
         _themeService = themeService;
 
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
-        BuySumString = $"{buySum:N2} {currencyMark}";
+        Count = count;
+
+        BuyPriceString = $"{buyPrice:N2} {currencyMark}";
+        CurrentPriceString = $"{currentPrice:N2} {currencyMark}";
         CurrentSumString = $"{currentSum:N2} {currencyMark}";
-        GoalSumString = goalSum is null ? "(не установлена)" : $"{goalSum:N2} {currencyMark} ({goalSumCompletion:N0}%)";
 
         Change = change;
+
+        IsLoading = false;
 
         _changeSeries = Enumerable.Empty<ISeries>();
         _xAxis = Enumerable.Empty<Axis>();
         _yAxis = Enumerable.Empty<Axis>();
 
-        IsLoading = false;
-
-        OpenActivesCommand = new(DoOpenActivesCommand);
-        AddActiveCommand = new(DoAddActiveCommand);
-        EditActiveGroupCommand = new(DoEditActiveGroupCommand);
-        DeleteActiveGroupCommand = new(DoDeleteActiveGroupCommand);
+        EditCommand = new(DoEditCommand);
+        DeleteCommand = new(DoDeleteCommand);
     }
 
     #endregion Constructor
@@ -214,22 +211,12 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         GetDynamicChart();
     }
 
-    private void DoOpenActivesCommand()
+    private void DoEditCommand()
     {
 
     }
 
-    private void DoAddActiveCommand()
-    {
-
-    }
-    
-    private void DoEditActiveGroupCommand()
-    {
-
-    }
-
-    private void DoDeleteActiveGroupCommand()
+    private void DoDeleteCommand()
     {
 
     }
@@ -248,12 +235,12 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
 
         ChangeSeries = new[]
         {
-            new LineSeries<ActiveGroups.ActiveGroupDynamicResponse>
+            new LineSeries<Skins.SkinDynamicResponse>
             {
-                Values = GroupDynamic,
-                Mapping = (dynamic, point) => new(point, Convert.ToDouble(dynamic.Sum)),
+                Values = SkinDynamic,
+                Mapping = (dynamic, point) => new(point, Convert.ToDouble(dynamic.Price)),
                 YToolTipLabelFormatter = index =>
-                    $"{index.Model?.DateUpdate.ToString(ProgramConstants.VIEW_DATE_FORMAT)}: {index.Model?.Sum}",
+                    $"{index.Model?.DateUpdate.ToString(ProgramConstants.VIEW_DATE_FORMAT)}: {index.Model?.Price}",
                 Stroke = new SolidColorPaint(chartColor) { StrokeThickness = 2 },
                 Fill = null,
                 LineSmoothness = 0,
@@ -277,11 +264,11 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         {
             new Axis
             {
-                MinLimit = GroupDynamic?.Any() == true
-                    ? Convert.ToDouble(GroupDynamic?.Min(x => x.Sum)) / 1.1 - 0.01
+                MinLimit = SkinDynamic?.Any() == true
+                    ? Convert.ToDouble(SkinDynamic?.Min(x => x.Price)) / 1.1 - 0.01
                     : 0,
-                MaxLimit = GroupDynamic?.Any() == true
-                    ? Convert.ToDouble(GroupDynamic?.Max(x => x.Sum)) * 1.1 + 0.01
+                MaxLimit = SkinDynamic?.Any() == true
+                    ? Convert.ToDouble(SkinDynamic?.Max(x => x.Price)) * 1.1 + 0.01
                     : 0,
                 Labels = null,
                 LabelsPaint = null,
@@ -296,16 +283,15 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         DatePeriod =
             $"{dateStart.ToString(ProgramConstants.VIEW_DATE_FORMAT)} - {dateEnd.ToString(ProgramConstants.VIEW_DATE_FORMAT)}";
 
-        ActiveGroups.ActiveGroupDynamicStatsResponse? activeGroupDynamicResponse =
-            await _apiClient
-                .GetAsync<ActiveGroups.ActiveGroupDynamicStatsResponse, ActiveGroups.GetActiveGroupDynamicRequest>(
-                    ApiConstants.ApiControllers.ActiveGroups,
-                    "GetActiveGroupDynamics",
-                    new(GroupId, dateStart, dateEnd));
+        Skins.SkinDynamicStatsResponse? skinDynamicsResponse =
+            await _apiClient.GetAsync<Skins.SkinDynamicStatsResponse, Skins.GetSkinDynamicsRequest>(
+                ApiConstants.ApiControllers.Skins,
+                "GetSkinDynamics",
+                new(SkinId, dateStart, dateEnd));
 
-        ChangePeriod = activeGroupDynamicResponse?.ChangePeriod;
+        ChangePeriod = skinDynamicsResponse?.ChangePeriod;
 
-        GroupDynamic = activeGroupDynamicResponse?.Dynamic;
+        SkinDynamic = skinDynamicsResponse?.Dynamic;
 
         IsLoading = false;
     }

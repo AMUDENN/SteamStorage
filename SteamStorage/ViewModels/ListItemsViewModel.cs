@@ -92,11 +92,6 @@ public class ListItemsViewModel : ViewModelBase
         get => _listItemsModel.IsLoading;
     }
 
-    public int PageSize
-    {
-        get => _listItemsModel.PageSize;
-    }
-
     public int? PageNumber
     {
         get => _listItemsModel.PageNumber;
