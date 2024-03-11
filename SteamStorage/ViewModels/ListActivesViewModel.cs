@@ -145,14 +145,14 @@ public class ListActivesViewModel : ViewModelBase
 
     #region Commands
 
-    public RelayCommand AddGroupCommand
+    public RelayCommand AddActiveGroupCommand
     {
-        get => _listActivesModel.AddGroupCommand;
+        get => _activeGroupsModel.AddActiveGroupCommand;
     }
 
-    public RelayCommand AddActiveCommand
+    public RelayCommand<ActiveGroupModel> AddActiveCommand
     {
-        get => _listActivesModel.AddActiveCommand;
+        get => _activeGroupsModel.AddActiveCommand;
     }
 
     public RelayCommand ClearFiltersCommand

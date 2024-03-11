@@ -10,14 +10,14 @@
                     <StackPanel Orientation="Horizontal">
                         
                         <Button Command="{TemplateBinding GoToStartCommand}"
-                                Classes="ImageButton AdvancedNumericUpDownButton BackgroundAdditionalButton StretchButton"
+                                Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
                                 IsEnabled="{TemplateBinding IsStartEnabled}"
                                 Width="35">
                             <controls:VectorImage Classes="DoubleLeftArrowVectorImage ForegroundVectorImage"/>
                         </Button>
                         
                         <Button Command="{TemplateBinding DecrementCommand}" 
-                                Classes="ImageButton AdvancedNumericUpDownButton BackgroundAdditionalButton StretchButton"
+                                Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
                                 IsEnabled="{TemplateBinding IsStartEnabled}"
                                 Width="35" Margin="6, 0">
                             <controls:VectorImage Classes="LeftArrowVectorImage ForegroundVectorImage"/>
@@ -35,14 +35,14 @@
                                        Width="70"/>
                         
                         <Button Command="{TemplateBinding IncrementCommand}" 
-                                Classes="ImageButton AdvancedNumericUpDownButton BackgroundAdditionalButton StretchButton"
+                                Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
                                 IsEnabled="{TemplateBinding IsEndEnabled}"
                                 Width="35" Margin="6, 0">
                             <controls:VectorImage Classes="RightArrowVectorImage ForegroundVectorImage"/>
                         </Button>
                         
                         <Button Command="{TemplateBinding GoToEndCommand}" 
-                                Classes="ImageButton AdvancedNumericUpDownButton BackgroundAdditionalButton StretchButton"
+                                Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
                                 IsEnabled="{TemplateBinding IsEndEnabled}"
                                 Width="35">
                             <controls:VectorImage Classes="DoubleRightArrowVectorImage ForegroundVectorImage"/>

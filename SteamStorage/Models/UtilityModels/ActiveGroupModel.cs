@@ -153,18 +153,6 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
 
     #endregion Properties
 
-    #region Commands
-
-    public RelayCommand OpenActivesCommand { get; }
-
-    public RelayCommand AddActiveCommand { get; }
-    
-    public RelayCommand EditActiveGroupCommand { get; }
-
-    public RelayCommand DeleteActiveGroupCommand { get; }
-
-    #endregion Commands
-
     #region Constructor
 
     public ActiveGroupModel(
@@ -198,11 +186,6 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         _yAxis = Enumerable.Empty<Axis>();
 
         IsLoading = false;
-
-        OpenActivesCommand = new(DoOpenActivesCommand);
-        AddActiveCommand = new(DoAddActiveCommand);
-        EditActiveGroupCommand = new(DoEditActiveGroupCommand);
-        DeleteActiveGroupCommand = new(DoDeleteActiveGroupCommand);
     }
 
     #endregion Constructor
@@ -212,26 +195,6 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
     private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
     {
         GetDynamicChart();
-    }
-
-    private void DoOpenActivesCommand()
-    {
-
-    }
-
-    private void DoAddActiveCommand()
-    {
-
-    }
-    
-    private void DoEditActiveGroupCommand()
-    {
-
-    }
-
-    private void DoDeleteActiveGroupCommand()
-    {
-
     }
 
     public void UpdateStats()

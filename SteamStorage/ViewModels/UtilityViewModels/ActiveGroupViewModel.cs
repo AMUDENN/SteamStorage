@@ -13,6 +13,7 @@ public class ActiveGroupViewModel : BaseGroupViewModel
     #region Fields
 
     private readonly ActiveGroupModel _model;
+    private readonly ActiveGroupsModel _activeGroupsModel;
     private readonly ChartTooltipModel _chartTooltipModel;
 
     #endregion Fields
@@ -112,24 +113,29 @@ public class ActiveGroupViewModel : BaseGroupViewModel
 
     #region Commands
 
-    public RelayCommand OpenActivesCommand
+    public RelayCommand<ActiveGroupModel> OpenActivesCommand
     {
-        get => _model.OpenActivesCommand;
+        get => _activeGroupsModel.OpenActivesCommand;
     }
 
-    public RelayCommand AddActiveCommand
+    public RelayCommand<ActiveGroupModel> AddActiveCommand
     {
-        get => _model.AddActiveCommand;
+        get => _activeGroupsModel.AddActiveCommand;
+    }
+
+    public RelayCommand AddActiveGroupCommand
+    {
+        get => _activeGroupsModel.AddActiveGroupCommand; 
     }
     
-    public RelayCommand EditActiveGroupCommand
+    public RelayCommand<ActiveGroupModel> EditActiveGroupCommand
     {
-        get => _model.EditActiveGroupCommand;
+        get => _activeGroupsModel.EditActiveGroupCommand;
     }
     
-    public RelayCommand DeleteActiveGroupCommand
+    public RelayCommand<ActiveGroupModel> DeleteActiveGroupCommand
     {
-        get => _model.DeleteActiveGroupCommand;
+        get => _activeGroupsModel.DeleteActiveGroupCommand;
     }
 
     #endregion Commands
@@ -138,9 +144,11 @@ public class ActiveGroupViewModel : BaseGroupViewModel
 
     public ActiveGroupViewModel(
         ActiveGroupModel model,
+        ActiveGroupsModel activeGroupsModel,
         ChartTooltipModel chartTooltipModel) : base(model)
     {
         _model = model;
+        _activeGroupsModel = activeGroupsModel;
         _chartTooltipModel = chartTooltipModel;
 
         model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);

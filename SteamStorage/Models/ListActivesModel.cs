@@ -361,10 +361,6 @@ public class ListActivesModel : ModelBase
 
     #region Commands
 
-    public RelayCommand AddGroupCommand { get; }
-
-    public RelayCommand AddActiveCommand { get; }
-
     public RelayCommand ClearFiltersCommand { get; }
 
     #endregion Commands
@@ -396,9 +392,7 @@ public class ListActivesModel : ModelBase
 
         PageNumber = 1;
         PageSize = 20;
-
-        AddGroupCommand = new(DoAddGroupCommand);
-        AddActiveCommand = new(DoAddActiveCommand);
+        
         ClearFiltersCommand = new(DoClearFiltersCommand);
     }
 
@@ -414,16 +408,6 @@ public class ListActivesModel : ModelBase
     private void CurrencyChangedHandler(object? sender)
     {
         GetSkins();
-    }
-
-    private void DoAddGroupCommand()
-    {
-
-    }
-
-    private void DoAddActiveCommand()
-    {
-
     }
 
     private void DoClearFiltersCommand()

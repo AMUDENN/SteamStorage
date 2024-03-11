@@ -279,11 +279,11 @@
 	            </Style>
 	            <Style Selector="^ /template/ DockPanel.Max#TopDockPanel">
 		            <Setter Property="Grid.Column" Value="0"/>
-		            <Setter Property="Grid.ColumnSpan" Value="11"/>
+		            <Setter Property="Grid.ColumnSpan" Value="13"/>
 	            </Style>
 	            <Style Selector="^ /template/ Grid.Max#ChangeChart">
 		            <Setter Property="Column" Value="0"/>
-		            <Setter Property="ColumnSpan" Value="11"/>
+		            <Setter Property="ColumnSpan" Value="13"/>
 	            </Style>
             </Style>
         </Style>

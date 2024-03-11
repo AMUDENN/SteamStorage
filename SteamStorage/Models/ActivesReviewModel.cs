@@ -23,6 +23,7 @@ public class ActivesReviewModel : ModelBase
     #region Fields
 
     private readonly ApiClient _apiClient;
+    private readonly ActiveGroupsModel _activeGroupsModel;
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
     private readonly IThemeService _themeService;
@@ -240,7 +241,7 @@ public class ActivesReviewModel : ModelBase
     }
 
     #endregion Properties
-    
+
     #region Commands
 
     public RelayCommand AttachedToVisualTreeCommand { get; }
@@ -251,11 +252,13 @@ public class ActivesReviewModel : ModelBase
 
     public ActivesReviewModel(
         ApiClient apiClient,
+        ActiveGroupsModel activeGroupsModel,
         ChartTooltipModel chartTooltipModel,
         UserModel userModel,
         IThemeService themeService)
     {
         _apiClient = apiClient;
+        _activeGroupsModel = activeGroupsModel;
         _chartTooltipModel = chartTooltipModel;
         _userModel = userModel;
         _themeService = themeService;
@@ -274,7 +277,7 @@ public class ActivesReviewModel : ModelBase
         SetOrderingsNull();
 
         IsLoading = false;
-        
+
         AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
     }
 
@@ -312,6 +315,7 @@ public class ActivesReviewModel : ModelBase
     {
         RefreshStatistics();
         GetGroups();
+        _activeGroupsModel.UpdateGroups();
     }
 
     private void RefreshStatistics()
@@ -343,7 +347,9 @@ public class ActivesReviewModel : ModelBase
         ActiveGroupModels = groupsResponse.ActiveGroups.Select(x =>
                 new ActiveGroupViewModel(
                     new(_apiClient, _themeService, x.Id, x.Colour, x.Title, x.Count, x.GoalSum, x.GoalSumCompletion,
-                        x.BuySum, x.CurrentSum, _userModel.CurrencyMark, x.Change, x.DateCreation), _chartTooltipModel))
+                        x.BuySum, x.CurrentSum, _userModel.CurrencyMark, x.Change, x.DateCreation),
+                    _activeGroupsModel,
+                    _chartTooltipModel))
             .ToList();
 
         IsLoading = false;

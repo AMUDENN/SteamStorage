@@ -1,6 +1,10 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
+    <Style Selector="Button">
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+    
     <Style Selector="Button[IsEnabled=False]">
         <Setter Property="Opacity" Value="0.6"/>
     </Style>
@@ -29,9 +33,42 @@
     <Style Selector="Button.BackgroundAdditionalButton">
         <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
     </Style>
+    
+    <Style Selector="Button.BigRoundedButton">
+        <Setter Property="CornerRadius" Value="16"/>
+    </Style>
+
+    <Style Selector="Button.SmallRoundedButton">
+        <Setter Property="CornerRadius" Value="8"/>
+    </Style>
+		
+    <Style Selector="Button.LittleRoundedButton">
+        <Setter Property="CornerRadius" Value="4"/>
+    </Style>
+
+    <Style Selector="Button.WithoutRoundingButton">
+        <Setter Property="CornerRadius" Value="0"/>
+    </Style>
         
+    <Style Selector="Button.TextButton">
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <TextBlock Text="{TemplateBinding Content}"
+                                   Classes="SmallTextBlock CenterTextBlock"
+                                   Foreground="{TemplateBinding Foreground}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style Selector="Button.ImageTextButton">
-        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -72,7 +109,7 @@
             <Style Selector="^ /template/ Grid#ContentGrid">
                 <Setter Property="Margin" Value="20, 0"/>
             </Style>
-            <Style Selector="^ /template/ Border#ItemBorder">
+            <Style Selector="^ /template/ Border#PointerOverBorder">
                 <Setter Property="CornerRadius" Value="8"/>
             </Style>
             <Style Selector="^ /template/ TextBlock#TitleTextBlock">
@@ -86,7 +123,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Border Classes="LittleRoundedBorder"
+                    <Border x:Name="Border"
+                            CornerRadius="{TemplateBinding CornerRadius}"
                             Background="{TemplateBinding Background}"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch">
