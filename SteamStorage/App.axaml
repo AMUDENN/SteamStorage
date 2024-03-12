@@ -43,6 +43,7 @@
 	    <StyleInclude Source="/Resources/Styles/ListBoxes/ActiveGroupsListBoxStyle.axaml"/>
 	    <StyleInclude Source="/Resources/Styles/ListBoxes/ActivesListBoxStyle.axaml"/>
         <StyleInclude Source="/Resources/Styles/ListBoxes/GamesListBoxStyle.axaml"/>
+	    <StyleInclude Source="/Resources/Styles/ListBoxes/InventoryItemsListBoxStyle.axaml"/>
         <StyleInclude Source="/Resources/Styles/ListBoxes/ListItemsListBoxStyle.axaml"/>
         <StyleInclude Source="/Resources/Styles/ListBoxes/NavigationListBoxStyle.axaml"/>
 	    <StyleInclude Source="/Resources/Styles/ListBoxes/SecondaryNavigationListBoxStyle.axaml"/>
@@ -51,9 +52,9 @@
         <!-- Images -->
 		<StyleInclude Source="/Resources/Images/Vectors/AccountVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/ActivesVectorImage.axaml"/>
-	    <StyleInclude Source="/Resources/Images/Vectors/AddCircleImage.axaml"/>
+	    <StyleInclude Source="/Resources/Images/Vectors/AddCircleVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/ArchiveVectorImage.axaml"/>
-	    <StyleInclude Source="/Resources/Images/Vectors/ArrowDownImage.axaml"/>
+	    <StyleInclude Source="/Resources/Images/Vectors/ArrowDownVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/BadConnectionVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/CloseVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/DoubleLeftArrowVectorImage.axaml"/>
@@ -79,6 +80,7 @@
 		<StyleInclude Source="/Resources/Images/Vectors/ProfileVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RadioButtonFalseVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RadioButtonTrueVectorImage.axaml"/>
+	    <StyleInclude Source="/Resources/Images/Vectors/RefreshVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RemoveFiltersVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/RestoreVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RightArrowVectorImage.axaml"/>

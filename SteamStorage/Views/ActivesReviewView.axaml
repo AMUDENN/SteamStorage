@@ -16,7 +16,7 @@
         </ia:EventTriggerBehavior>
     </i:Interaction.Behaviors>
     
-    <Grid RowDefinitions="290, 30, 30, 60, *">
+    <Grid RowDefinitions="290, 30, 30, 40, *">
         
         <Border Classes="BigRoundedBorder FirstAccentGradientBorder" 
                 Grid.Row="0">

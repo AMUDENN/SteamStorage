@@ -1,14 +1,13 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using SteamStorage.Models;
+﻿using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
 
 namespace SteamStorage.ViewModels.UtilityViewModels;
 
-public class ActiveViewModel : BaseDynamicsSkinViewModel
+public class InventoryItemViewModel : BaseDynamicsSkinViewModel
 {
     #region Fields
 
-    private readonly ActiveModel _model;
+    private readonly InventoryItemModel _model;
 
     #endregion Fields
 
@@ -17,11 +16,6 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
     public int Count
     {
         get => _model.Count;
-    }
-
-    public string BuyPriceString
-    {
-        get => _model.BuyPriceString;
     }
 
     public string CurrentPriceString
@@ -33,42 +27,13 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
     {
         get => _model.CurrentSumString;
     }
-    
-    public string GoalPriceString
-    {
-        get => _model.GoalPriceString;
-    }
-    
-    public string BuyDateString
-    {
-        get => _model.BuyDateString;
-    }
-
-    public double Change
-    {
-        get => _model.Change;
-    }
 
     #endregion Properties
 
-    #region Commands
-
-    public RelayCommand EditCommand
-    {
-        get => _model.EditCommand;
-    }
-
-    public RelayCommand DeleteCommand
-    {
-        get => _model.DeleteCommand;
-    }
-
-    #endregion Commands
-
     #region Constructor
 
-    public ActiveViewModel(
-        ActiveModel model,
+    public InventoryItemViewModel(
+        InventoryItemModel model,
         ChartTooltipModel chartTooltipModel) : base(model, chartTooltipModel)
     {
         _model = model;

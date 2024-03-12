@@ -2,9 +2,174 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+             xmlns:vm="using:SteamStorage.ViewModels"
+             xmlns:controls="using:SteamStorage.Resources.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="SteamStorage.Views.InventoryView">
+             x:Class="SteamStorage.Views.InventoryView"
+             x:DataType="vm:InventoryViewModel">
+	
+	<i:Interaction.Behaviors>
+		<ia:EventTriggerBehavior EventName="AttachedToVisualTree">
+			<ia:InvokeCommandAction Command="{Binding AttachedToVisualTreeCommand, Mode=OneWay}"/>
+		</ia:EventTriggerBehavior>
+	</i:Interaction.Behaviors>
 
-	<TextBlock Text="Inventory"/>
+	<Grid RowDefinitions="180, 30, 60, 30, 30, 40, *, 20, 30">
+        
+		<Border Classes="BigRoundedBorder ThirdAccentGradientBorder" 
+		        Grid.Row="0">
+            
+		</Border>
+		
+		<Grid Grid.Row="2">
+            
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="60" MinWidth="10"/>
+				<ColumnDefinition Width="10" MinWidth="10"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*" MinWidth="30"/>
+				<ColumnDefinition Width="5*" MinWidth="200" MaxWidth="400"/>
+				<ColumnDefinition Width="20" MinWidth="20"/>
+				<ColumnDefinition Width="60" MinWidth="60"/>
+				<ColumnDefinition Width="20" MinWidth="20"/>
+				<ColumnDefinition Width="60" MinWidth="60"/>
+			</Grid.ColumnDefinitions>
+            
+			<RadioButton Content="Все"
+			             IsChecked="{Binding IsAllGamesChecked}"
+			             Classes="GameRadioButton ThirdAccentLinearGameRadioButton"
+			             Grid.Column="0"/>
+            
+			<ListBox ItemsSource="{Binding GameModels, Mode=OneWay}" 
+			         SelectedItem="{Binding SelectedGameModel}"
+			         Classes="GamesListBox ThirdAccentLinearGameListBox"
+			         Grid.Column="2"/>
+
+			<TextBox Text="{Binding Filter}"
+			         Watermark="Введите название"
+			         Classes="FilteringTextBox"
+			         Grid.Column="4"/>
+            
+			<Button Command="{Binding ClearFiltersCommand, Mode=OneWay}"
+			        Classes="ImageButton BackgroundButton"
+			        Height="60" Width="60"
+			        ToolTip.Tip="Очистить фильтры"
+			        Grid.Column="6">
+				<controls:VectorImage Classes="RemoveFiltersVectorImage ForegroundVectorImage"
+				                      Height="40" Width="40"/>
+			</Button>
+			
+			<Button Command="{Binding RefreshInventoryCommand, Mode=OneWay}"
+			        Classes="ImageButton BackgroundButton"
+			        Height="60" Width="60"
+			        ToolTip.Tip="Обновить инвентарь"
+			        Grid.Column="8">
+				<controls:VectorImage Classes="RefreshVectorImage ForegroundVectorImage"
+				                      Height="40" Width="40"/>
+			</Button>
+            
+		</Grid>
+		
+		<Grid Margin="20, 0"
+              Grid.Row="4">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140*" MinWidth="100" MaxWidth="140"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="330*"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="160*"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="160*"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Text="Изображение"  
+                       Classes="SmallTextBlock CenterTextBlock"
+                       Grid.Column="0"/>
+            
+            <ToggleButton Content="Название" 
+                          IsChecked="{Binding IsTitleOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="2"/>
+            
+            <ToggleButton Content="Количество" 
+                          IsChecked="{Binding IsCountOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="4"/>
+            
+            <ToggleButton Content="Текущая цена" 
+                          IsChecked="{Binding IsPriceOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="6"/>
+            
+            <ToggleButton Content="Сумма" 
+                          IsChecked="{Binding IsSumOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="8"/>
+            
+        </Grid>
+		
+		<Rectangle Height="2"
+		           Margin="25, 0" 
+		           Grid.Row="5"/>
+		
+		<Grid Grid.Row="6">
+            
+			<TextBlock Text="{Binding NotFoundText, Mode=OneWay}"
+			           IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}"
+			           Classes="MiddleTextBlock CenterTextBlock"
+			           VerticalAlignment="Top"
+			           Margin="0, 20"/>
+            
+			<controls:VectorImage IsVisible="{Binding IsLoading, Mode=OneWay}"
+			                      Classes="LoadingVectorImage ForegroundVectorImage"
+			                      Height="48" Width="48"
+			                      HorizontalAlignment="Center"
+			                      VerticalAlignment="Top"
+			                      Margin="0, 20"/>
+                       
+			<ListBox ItemsSource="{Binding InventoryModels, Mode=OneWay}"
+			         SelectedItem="{Binding SelectedInventoryModel}"
+			         Classes="InventoryItemsListBox"/>
+
+		</Grid>
+		
+		<Grid ColumnDefinitions="Auto,*" 
+		      Grid.Row="8">
+
+			<StackPanel Orientation="Horizontal"
+			            HorizontalAlignment="Left"
+			            Grid.Column="0">
+				<TextBlock Text="Результаты: "
+				           Classes="SmallTextBlock"/>
+				<TextBlock Text="{Binding DisplayItemsCountStart, StringFormat=N0, Mode=OneWay}"
+				           Classes="SmallTextBlock"/>
+				<TextBlock Text=" - "
+				           Classes="SmallTextBlock"/>
+				<TextBlock Text="{Binding DisplayItemsCountEnd, StringFormat=N0, Mode=OneWay}"
+				           Classes="SmallTextBlock"/>
+				<TextBlock Text=" из "
+				           Classes="SmallTextBlock"/>
+				<TextBlock Text="{Binding SavedItemsCount, StringFormat=N0, Mode=OneWay}"
+				           Classes="SmallTextBlock"/>
+			</StackPanel>
+                    
+			<controls:AdvancedNumericUpDown HorizontalAlignment="Right"
+			                                Value="{Binding PageNumber}"
+			                                Increment="1"
+			                                Minimum="1"
+			                                Maximum="{Binding PagesCount, Mode=OneWay}"
+			                                Watermark="{Binding CurrentPageNumber, Mode=OneWay}"
+			                                FormatString="0"
+			                                ParsingNumberStyle="Integer"
+			                                Grid.Column="1"/>
+                    
+		</Grid>
+		
+	</Grid>
   
 </UserControl>

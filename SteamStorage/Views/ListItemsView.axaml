@@ -8,17 +8,7 @@
              x:Class="SteamStorage.Views.ListItemsView"
              x:DataType="vm:ListItemsViewModel">
     
-    <Grid>
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60" MinHeight="60"/>
-            <RowDefinition Height="20" MinHeight="20"/>
-            <RowDefinition Height="30" MinHeight="30"/>
-            <RowDefinition Height="40" MinHeight="40"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20" MinHeight="20"/>
-            <RowDefinition Height="30" MinHeight="30"/>
-        </Grid.RowDefinitions>
+    <Grid RowDefinitions="60, 20, 30, 40, *, 20, 30">
         
         <Grid Grid.Row="0">
             
