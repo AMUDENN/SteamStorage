@@ -413,6 +413,7 @@ public class ListActivesModel : ModelBase
     private void DoClearFiltersCommand()
     {
         Filter = null;
+        SelectedGroupModel = null;
         IsAllGamesChecked = true;
         ActiveOrderName = null;
         IsAscending = null;

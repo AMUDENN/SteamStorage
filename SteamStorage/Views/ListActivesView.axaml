@@ -27,12 +27,16 @@
 
             <ComboBox ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
                       SelectedItem="{Binding SelectedGroupModel}" 
+                      PlaceholderText="Выберите группу"
+                      Classes="GroupComboBox"
                       Grid.Column="0"/>
             
             <Button Command="{Binding AddActiveGroupCommand, Mode=OneWay}"
                     Classes="ImageButton SmallRoundedButton BackgroundAdditionalButton StretchButton"
+                    Padding="9"
+                    ToolTip.Tip="Добавить группу"
                     Grid.Column="2">
-                
+                <controls:VectorImage Classes="AddCircleImage ForegroundVectorImage"/>
             </Button>
             
             <Button Content="Добавить предмет"

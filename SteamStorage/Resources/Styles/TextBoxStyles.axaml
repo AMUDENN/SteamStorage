@@ -95,7 +95,6 @@
                     <Border Classes="UnderlineBorder ForegroundBorderBrush TransparentBorder">
                         <Grid Margin="5, 0">
                             <TextBlock x:Name="PART_Watermark"
-                                       Opacity="0.5"
                                        Text="{TemplateBinding Watermark}"
                                        TextAlignment="{TemplateBinding TextAlignment}"
                                        TextWrapping="{TemplateBinding TextWrapping}"
@@ -103,7 +102,8 @@
                                        IsVisible="{TemplateBinding Text, Converter={x:Static StringConverters.IsNullOrEmpty}}"
                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                        VerticalAlignment="Stretch"
-                                       Foreground="{TemplateBinding Foreground}"/>
+                                       Foreground="{TemplateBinding Foreground}"
+                                       Classes="LightTextBlock"/>
                             <ScrollViewer x:Name="PART_ScrollViewer"
                                           HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
                                           VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"

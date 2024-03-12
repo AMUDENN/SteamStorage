@@ -20,6 +20,11 @@ public class ActiveGroupViewModel : BaseGroupViewModel
 
     #region Properties
 
+    public ActiveGroupModel ActiveGroupModel
+    {
+        get => _model;
+    }
+
     public string GoalSumString
     {
         get => _model.GoalSumString;

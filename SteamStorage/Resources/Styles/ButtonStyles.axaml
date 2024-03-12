@@ -60,11 +60,18 @@
                             CornerRadius="{TemplateBinding CornerRadius}">
                         <TextBlock Text="{TemplateBinding Content}"
                                    Classes="SmallTextBlock CenterTextBlock"
-                                   Foreground="{TemplateBinding Foreground}"/>
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Margin="0, 0, 0, 3"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style Selector="^:pointerover">
+            <Setter Property="Opacity" Value="0.9"/>
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Padding" Value="1"/>
+        </Style>
     </Style>
     
     <Style Selector="Button.ImageTextButton">
