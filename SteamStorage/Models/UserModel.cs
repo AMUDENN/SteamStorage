@@ -45,10 +45,10 @@ public class UserModel : ModelBase
         }
     }
 
-    private Currencies.CurrencyResponse? Currency
+    public Currencies.CurrencyResponse? Currency
     {
         get => _currency;
-        set
+        private set
         {
             SetProperty(ref _currency, value);
             OnCurrencyChanged();
@@ -90,7 +90,8 @@ public class UserModel : ModelBase
     {
         User = string.IsNullOrEmpty(_settingsService.UserSettings.Token)
             ? null
-            : await _apiClient.GetAsync<Users.UserResponse>(ApiConstants.ApiControllers.Users,
+            : await _apiClient.GetAsync<Users.UserResponse>(
+                ApiConstants.ApiControllers.Users,
                 "GetCurrentUserInfo");
     }
 
@@ -98,7 +99,13 @@ public class UserModel : ModelBase
     {
         Currency = await _apiClient.GetAsync<Currencies.CurrencyResponse, Currencies.GetCurrencyRequest>(
             ApiConstants.ApiControllers.Currencies,
-            "GetCurrency", new(User?.CurrencyId ?? ProgramConstants.BASE_CURRENCY_ID));
+            "GetCurrency", 
+            new(User?.CurrencyId ?? ProgramConstants.BASE_CURRENCY_ID));
+    }
+
+    public void UpdateCurrencyInfo()
+    {
+        GetCurrency();
     }
 
     private void OnUserChanged()

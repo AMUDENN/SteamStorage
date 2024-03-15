@@ -80,11 +80,13 @@ namespace SteamStorage
             services.AddSingleton<ActivesModel>();
             services.AddSingleton<ActivesReviewModel>();
             services.AddSingleton<ChartTooltipModel>();
+            services.AddSingleton<CurrenciesModel>();
             services.AddSingleton<GamesModel>();
             services.AddSingleton<HomeModel>();
             services.AddSingleton<InventoryModel>();
             services.AddSingleton<ListActivesModel>();
             services.AddSingleton<ListItemsModel>();
+            services.AddSingleton<ProfileModel>();
             services.AddSingleton<SettingsModel>();
             services.AddSingleton<StatisticsModel>();
             services.AddSingleton<UserModel>();

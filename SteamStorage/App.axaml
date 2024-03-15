@@ -80,12 +80,14 @@
 		<StyleInclude Source="/Resources/Images/Vectors/ProfileVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RadioButtonFalseVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RadioButtonTrueVectorImage.axaml"/>
+	    <StyleInclude Source="/Resources/Images/Vectors/RecycleBinVectorImage.axaml"/>
 	    <StyleInclude Source="/Resources/Images/Vectors/RefreshVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RemoveFiltersVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/RestoreVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RightArrowVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/SettingsVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/StarVectorImage.axaml"/>
+	    <StyleInclude Source="/Resources/Images/Vectors/SteamVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/TelegramVectorImage.axaml"/>
 	    
     </Application.Styles>

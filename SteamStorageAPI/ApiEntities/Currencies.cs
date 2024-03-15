@@ -11,7 +11,8 @@ public static class Currencies
         int SteamCurrencyId,
         string Title,
         string Mark,
-        double Price) : Response;
+        double Price,
+        DateTime DateUpdate) : Response;
 
     public record GetCurrencyRequest(
         int Id) : Request;

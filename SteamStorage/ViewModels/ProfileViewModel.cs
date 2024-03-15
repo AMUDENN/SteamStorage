@@ -1,8 +1,95 @@
-﻿using SteamStorage.ViewModels.Tools;
+﻿using System.Collections.Generic;
+using CommunityToolkit.Mvvm.Input;
+using SteamStorage.Models;
+using SteamStorage.Models.UtilityModels;
+using SteamStorage.ViewModels.Tools;
 
 namespace SteamStorage.ViewModels;
 
 public class ProfileViewModel : ViewModelBase
 {
+    #region Fields
 
+    private readonly ProfileModel _profileModel;
+    private readonly CurrenciesModel _currenciesModel;
+
+    #endregion Fields
+    
+    #region Properties
+
+    public string? ImageUrl
+    {
+        get => _profileModel.ImageUrl;
+    }
+
+    public string? UserName
+    {
+        get => _profileModel.UserName;
+    }
+
+    public string? SteamId
+    {
+        get => _profileModel.SteamId;
+    }
+
+    public string? Role
+    {
+        get => _profileModel.Role;
+    }
+    
+    public string? DateRegistration
+    {
+        get => _profileModel.DateRegistration;
+    }
+    
+    public IEnumerable<CurrencyModel> CurrencyModels
+    {
+        get => _currenciesModel.CurrencyModels;
+    }
+    
+    public CurrencyModel? SelectedCurrency
+    {
+        get => _profileModel.SelectedCurrency;
+        set => _profileModel.SelectedCurrency = value;
+    }
+    
+    public string? ExchangeRate
+    {
+        get => _profileModel.ExchangeRate;
+    }
+
+    #endregion Properties
+    
+    #region Commands
+
+    public RelayCommand OpenSteamProfileCommand
+    {
+        get => _profileModel.OpenSteamProfileCommand;
+    }
+    
+    public RelayCommand DeleteProfileCommand
+    {
+        get => _profileModel.DeleteProfileCommand;
+    }
+    
+    public RelayCommand AttachedToVisualTreeCommand
+    {
+        get => _profileModel.AttachedToVisualTreeCommand;
+    }
+    
+    #endregion Commands
+    
+    #region Constructor
+
+    public ProfileViewModel(
+        ProfileModel profileModel,
+        CurrenciesModel currenciesModel)
+    {
+        _profileModel = profileModel;
+        _currenciesModel = currenciesModel;
+        profileModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        currenciesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+    }
+
+    #endregion Constructor
 }

@@ -13,7 +13,7 @@ public static class Users
         string? ImageUrlMedium,
         string? ImageUrlFull,
         string? Nickname,
-        int RoleId,
+        string Role,
         int StartPageId,
         int CurrencyId,
         DateTime DateRegistration,

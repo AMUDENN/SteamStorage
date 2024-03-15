@@ -64,6 +64,7 @@
         <entry key="SteamStorage/Resources/Images/Vectors/RadioButtonFalseVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/RadioButtonTrueImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/RadioButtonTrueVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/RecycleBinVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/RefreshVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/RemoveFilters.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/RemoveFiltersVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
@@ -77,6 +78,7 @@
         <entry key="SteamStorage/Resources/Images/Vectors/Sources/Styles1.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/StarImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/StarVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/SteamVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/TelegramImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/TelegramVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/AdvancedImage.axaml" value="SteamStorage/SteamStorage.csproj" />
@@ -98,6 +100,7 @@
         <entry key="SteamStorage/Resources/Styles/ListBoxes/ActivesListBoxStyle.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ListBoxes/GamesListBoxStyle.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ListBoxes/InventoryItemListBoxStyle.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/ListBoxes/InventoryItemsListBoxStyle.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ListBoxes/ListItemsListBoxStyle.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ListBoxes/NavigationListBoxStyle.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ListBoxes/SecondaryNavigationListBoxStyle.axaml" value="SteamStorage/SteamStorage.csproj" />

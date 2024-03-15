@@ -135,7 +135,7 @@
 		</Border>
 		
 		<TransitioningContentControl Content="{Binding CurrentViewModel, Mode=OneWay}" 
-		                             Margin="40, 10, 10, 0"
+		                             Margin="40, 5, 10, 0"
 		                             Grid.Column="1"/>
 		
 		<Border Classes="BigRoundedBorder BackgroundAdditionalBorder"

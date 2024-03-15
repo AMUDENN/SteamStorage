@@ -2,8 +2,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+             xmlns:asyncImageLoader="using:AsyncImageLoader"
+             xmlns:vm="using:SteamStorage.ViewModels"
+             xmlns:controls="using:SteamStorage.Resources.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="SteamStorage.Views.ProfileView">
+             x:Class="SteamStorage.Views.ProfileView"
+             x:DataType="vm:ProfileViewModel">
+	
+	<i:Interaction.Behaviors>
+		<ia:EventTriggerBehavior EventName="AttachedToVisualTree">
+			<ia:InvokeCommandAction Command="{Binding AttachedToVisualTreeCommand, Mode=OneWay}"/>
+		</ia:EventTriggerBehavior>
+	</i:Interaction.Behaviors>
 
 	<Grid>
 		
@@ -31,15 +43,61 @@
 		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
 		        Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0">
 			
+			<Grid RowDefinitions="*, 96, *" 
+			      ColumnDefinitions="96, 30, *"
+			      Margin="30">
+				
+				<Border Classes="BigRoundedBorder"
+				        Grid.Row="1" Grid.Column="0">
+					<Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
+				</Border>
+				
+				<Grid RowDefinitions="50, *, 40"
+				      Grid.Row="1" Grid.Column="2">
+					
+					<Grid ColumnDefinitions="Auto, 10, 36, *" 
+					      Grid.Row="0">
+						
+						<TextBlock Text="{Binding UserName, Mode=OneWay}" 
+						           Classes="LeftTextBlock BigTextBlock"
+						           Grid.Column="0"/>
+						
+						<Button Command="{Binding OpenSteamProfileCommand, Mode=OneWay}"
+						        Classes="ImageButton TransparentButton"
+						        Height="36" Width="36"
+						        ToolTip.Tip="Открыть профиль Steam"
+						        Grid.Column="2">
+							<controls:VectorImage Classes="SteamVectorImage ForegroundVectorImage"
+							                      Height="30" Width="30"/>
+						</Button>
+						
+					</Grid>
+					
+					<TextBlock Text="{Binding SteamId, Mode=OneWay}" 
+					           Classes="LeftTextBlock LittleTextBlock LightTextBlock" 
+					           Grid.Row="2"/>
+					
+				</Grid>
+				
+			</Grid>
+			
 		</Border>
 		
 		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
 		        Grid.Row="2" Grid.Column="0">
 			
+			<TextBlock Text="{Binding Role, Mode=OneWay}" 
+			           Classes="CenterTextBlock MiddleTextBlock"
+			           Margin="20"/>
+			
 		</Border>
 		
 		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
 		        Grid.Row="2" Grid.Column="2">
+			
+			<TextBlock Text="{Binding DateRegistration, Mode=OneWay}" 
+			           Classes="CenterTextBlock MiddleTextBlock"
+			           Margin="20"/>
 			
 		</Border>
 		
@@ -51,10 +109,34 @@
 		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
 		        Grid.Row="6" Grid.Column="0">
 			
+			<Grid ColumnDefinitions="*, Auto, *">
+				
+				<Grid ColumnDefinitions="Auto, 150" 
+				      Height="50"
+				      Grid.Column="1">
+					
+					<TextBlock Text="Валюта: "
+					           Classes="MiddleTextBlock"
+					           Grid.Column="0"/>
+                				
+					<ComboBox ItemsSource="{Binding CurrencyModels, Mode=OneWay}"
+					          SelectedItem="{Binding SelectedCurrency}" 
+					          PlaceholderText="Выберите валюту"
+					          Classes="CurrencyComboBox"
+					          Grid.Column="1"/>
+                	
+                </Grid>
+				
+			</Grid>
+			
 		</Border>
 		
 		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
 		        Grid.Row="6" Grid.Column="2">
+			
+			<TextBlock Text="{Binding ExchangeRate, Mode=OneWay}" 
+			           Classes="CenterTextBlock MiddleTextBlock"
+			           Margin="20"/>
 			
 		</Border>
 		
@@ -62,6 +144,16 @@
 		        Grid.Row="8" Grid.Column="0">
 			
 		</Border>
+		
+		<Button Command="{Binding DeleteProfileCommand, Mode=OneWay}"
+		        Tag="Удалить аккаунт"
+		        Classes="ImageTextButton UnderlineImageTextButton"
+		        Foreground="{DynamicResource NegativeBrush}"
+		        HorizontalAlignment="Center"
+		        Grid.Row="10" Grid.ColumnSpan="3" Grid.Column="0">
+			<controls:VectorImage Classes="RecycleBinVectorImage NegativeVectorImage" 
+			                      Height="32" Width="32"/>
+		</Button>
 		
 	</Grid>
   

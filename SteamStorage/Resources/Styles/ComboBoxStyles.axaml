@@ -31,7 +31,7 @@
                                    Foreground="{TemplateBinding PlaceholderForeground}"
                                    IsVisible="{TemplateBinding SelectionBoxItem, Converter={x:Static ObjectConverters.IsNull}}" 
                                    Classes="SmallTextBlock LightTextBlock"
-                                   Margin="0, 0, 0, 3"
+                                   Margin="10, 0, 0, 3"
                                    Grid.Column="0"/>
                         
                         <ContentControl x:Name="ContentPresenter"
@@ -39,7 +39,7 @@
                                         ContentTemplate="{TemplateBinding ItemTemplate}"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                        Margin="0, 0, 0, 3"
+                                        Margin="10, 0, 0, 3"
                                         Grid.Column="0"/>
 
                         <Border x:Name="DropDownOverlay"
@@ -209,6 +209,23 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    
+    <Style Selector="ComboBox.CurrencyComboBox">
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate x:DataType="utilityModels:CurrencyModel">
+                    <TextBlock Text="{Binding Title}"
+                               Classes="SmallTextBlock"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style Selector="^ /template/ Border#Background">
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
     </Style>
         
 </Styles>
