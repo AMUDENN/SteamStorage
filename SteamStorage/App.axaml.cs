@@ -86,6 +86,7 @@ namespace SteamStorage
             services.AddSingleton<InventoryModel>();
             services.AddSingleton<ListActivesModel>();
             services.AddSingleton<ListItemsModel>();
+            services.AddSingleton<PagesModel>();
             services.AddSingleton<ProfileModel>();
             services.AddSingleton<SettingsModel>();
             services.AddSingleton<StatisticsModel>();

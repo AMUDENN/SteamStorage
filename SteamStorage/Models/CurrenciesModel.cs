@@ -10,6 +10,14 @@ namespace SteamStorage.Models;
 
 public class CurrenciesModel : ModelBase
 {
+    #region Events
+
+    public delegate void CurrenciesLoadedEventHandler(object? sender);
+
+    public event CurrenciesLoadedEventHandler? CurrenciesLoaded;
+    
+    #endregion Events
+    
     #region Fields
 
     private readonly ApiClient _apiClient;
@@ -52,6 +60,12 @@ public class CurrenciesModel : ModelBase
                 "GetCurrencies");
         if (currencyResponses is null) return;
         CurrencyModels = currencyResponses.Select(x => new CurrencyModel(x.Id, x.Title, x.Mark)).ToList();
+        OnCurrenciesLoaded();
+    }
+    
+    private void OnCurrenciesLoaded()
+    {
+        CurrenciesLoaded?.Invoke(this);
     }
 
     #endregion Methods

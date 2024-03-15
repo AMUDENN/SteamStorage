@@ -104,30 +104,32 @@
 		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
 		        Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0">
 			
+			<TextBlock Text="Тут будет финансовая цель" 
+			           Classes="CenterTextBlock MiddleTextBlock"
+			           Margin="20"/>
+			
 		</Border>
 		
 		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
 		        Grid.Row="6" Grid.Column="0">
-			
-			<Grid ColumnDefinitions="*, Auto, *">
 				
-				<Grid ColumnDefinitions="Auto, 150" 
-				      Height="50"
-				      Grid.Column="1">
-					
-					<TextBlock Text="Валюта: "
-					           Classes="MiddleTextBlock"
-					           Grid.Column="0"/>
-                				
-					<ComboBox ItemsSource="{Binding CurrencyModels, Mode=OneWay}"
-					          SelectedItem="{Binding SelectedCurrency}" 
-					          PlaceholderText="Выберите валюту"
-					          Classes="CurrencyComboBox"
-					          Grid.Column="1"/>
-                	
-                </Grid>
+			<Grid ColumnDefinitions="*, 150" 
+			      HorizontalAlignment="Center"
+			      Height="50"
+			      Margin="20">
 				
-			</Grid>
+				<TextBlock Text="Валюта: "
+				           Classes="MiddleTextBlock"
+				           Margin="0, 0, 10, 0"
+				           Grid.Column="0"/>
+                			
+				<ComboBox ItemsSource="{Binding CurrencyModels, Mode=OneWay}"
+				          SelectedItem="{Binding SelectedCurrency}" 
+				          PlaceholderText="Выберите валюту"
+				          Classes="CurrencyComboBox DarkComboBox"
+				          Grid.Column="1"/>
+                
+            </Grid>
 			
 		</Border>
 		
@@ -143,10 +145,28 @@
 		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
 		        Grid.Row="8" Grid.Column="0">
 			
+			<Grid ColumnDefinitions="*, 150" 
+			      HorizontalAlignment="Center"
+			      Height="50"
+			      Margin="20">
+					
+				<TextBlock Text="Начальная страница: "
+				           Classes="MiddleTextBlock"
+				           Margin="0, 0, 10, 0"
+				           Grid.Column="0"/>
+                			
+				<ComboBox ItemsSource="{Binding PageModels, Mode=OneWay}"
+				          SelectedItem="{Binding SelectedPage}" 
+				          PlaceholderText="Выберите страницу"
+				          Classes="PageComboBox DarkComboBox"
+				          Grid.Column="1"/>
+                
+			</Grid>
+			
 		</Border>
 		
-		<Button Command="{Binding DeleteProfileCommand, Mode=OneWay}"
-		        Tag="Удалить аккаунт"
+		<Button Tag="Удалить аккаунт"
+		        Command="{Binding DeleteProfileCommand, Mode=OneWay}"
 		        Classes="ImageTextButton UnderlineImageTextButton"
 		        Foreground="{DynamicResource NegativeBrush}"
 		        HorizontalAlignment="Center"

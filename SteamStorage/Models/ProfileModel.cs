@@ -13,6 +13,7 @@ public class ProfileModel : ModelBase
 
     private readonly UserModel _userModel;
     private readonly CurrenciesModel _currenciesModel;
+    private readonly PagesModel _pagesModel;
 
     private string? _imageUrl;
     private string? _userName;
@@ -25,6 +26,8 @@ public class ProfileModel : ModelBase
     private CurrencyModel? _selectedCurrency;
     
     private string? _exchangeRate;
+
+    private PageModel? _selectedPage;
 
     #endregion Fields
 
@@ -75,6 +78,16 @@ public class ProfileModel : ModelBase
         get => _exchangeRate;
         private set => SetProperty(ref _exchangeRate, value);
     }
+    
+    public PageModel? SelectedPage
+    {
+        get => _selectedPage;
+        set
+        {
+            SetProperty(ref _selectedPage, value); 
+            SetPage();
+        }
+    }
 
     #endregion Properties
     
@@ -92,13 +105,19 @@ public class ProfileModel : ModelBase
 
     public ProfileModel(
         UserModel userModel,
-        CurrenciesModel currenciesModel)
+        CurrenciesModel currenciesModel,
+        PagesModel pagesModel)
     {
         _userModel = userModel;
         _currenciesModel = currenciesModel;
+        _pagesModel = pagesModel;
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
+
+        currenciesModel.CurrenciesLoaded += CurrenciesLoadedHandler;
+        
+        pagesModel.PagesLoaded += PagesLoadedHandler;
 
         OpenSteamProfileCommand = new(DoOpenSteamProfileCommand);
         DeleteProfileCommand = new(DoDeleteProfileCommand);
@@ -120,24 +139,37 @@ public class ProfileModel : ModelBase
             DateRegistration = null;
             SelectedCurrency = null;
             ExchangeRate = null;
+            SelectedPage = null;
         }
 
         UserName = _userModel.User?.Nickname;
         SteamId = $"SteamID: {_userModel.User?.SteamId}";
         ImageUrl = _userModel.User?.ImageUrlFull;
-        
+
         Role = $"Роль: {_userModel.User?.Role}";
 
         DateRegistration =
             $"Дата регистрации: {_userModel.User?.DateRegistration.ToString(ProgramConstants.VIEW_DATE_FORMAT)}";
+
+        SelectedPage ??= _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.User?.StartPageId);
     }
 
     private void CurrencyChangedHandler(object? sender)
     {
-        SelectedCurrency = _currenciesModel.CurrencyModels.FirstOrDefault(x => x.Id == _userModel.Currency?.Id);
+        SelectedCurrency ??= _currenciesModel.CurrencyModels.FirstOrDefault(x => x.Id == _userModel.Currency?.Id);
 
         ExchangeRate =
             $"1$ = {_userModel.Currency?.Price ?? 0:N2} {_userModel.CurrencyMark} ({(_userModel.Currency?.DateUpdate ?? DateTime.Now).ToString(ProgramConstants.VIEW_DATE_FORMAT)})";
+    }
+
+    private void CurrenciesLoadedHandler(object? sender)
+    {
+        SelectedCurrency = _currenciesModel.CurrencyModels.FirstOrDefault(x => x.Id == _userModel.Currency?.Id);
+    }
+    
+    private void PagesLoadedHandler(object? sender)
+    {
+        SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.User?.StartPageId);
     }
 
     private void DoOpenSteamProfileCommand()
@@ -159,6 +191,11 @@ public class ProfileModel : ModelBase
     {
         //TODO: SetCurrency API
         _userModel.UpdateCurrencyInfo();
+    }
+
+    private void SetPage()
+    {
+        
     }
 
     #endregion Methods
