@@ -451,7 +451,7 @@ public class ListActivesModel : ModelBase
         Actives.ActivesResponse? activesResponse =
             await _apiClient.GetAsync<Actives.ActivesResponse, Actives.GetActivesRequest>(
                 ApiConstants.ApiControllers.Actives,
-                "GetActives",
+                ApiConstants.ApiMethods.GetActives,
                 new(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter, ActiveOrderName, IsAscending,
                     CurrentPageNumber, PageSize),
                 token);

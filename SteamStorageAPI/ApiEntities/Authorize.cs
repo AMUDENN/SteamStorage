@@ -10,8 +10,5 @@ public static class Authorize
         string Url,
         string Group) : Response;
 
-    public record AuthResponse(
-        string Token) : Response;
-
     #endregion Records
 }

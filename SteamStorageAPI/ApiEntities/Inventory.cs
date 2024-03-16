@@ -24,7 +24,7 @@ public static class Inventory
         int Count,
         decimal CurrentPrice,
         decimal CurrentSum) : Response;
-        
+
     public record InventoriesResponse(
         int Count,
         int PagesCount,

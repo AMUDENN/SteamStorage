@@ -57,7 +57,7 @@ public class PagesModel : ModelBase
         IEnumerable<Pages.PageResponse>? pageResponses =
             await _apiClient.GetAsync<IEnumerable<Pages.PageResponse>>(
                 ApiConstants.ApiControllers.Pages,
-                "GetPages");
+                ApiConstants.ApiMethods.GetPages);
         if (pageResponses is null) return;
         PageModels = pageResponses.Select(x => new PageModel(x.Id, x.Title)).ToList();
         OnPagesLoaded();

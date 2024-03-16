@@ -27,7 +27,9 @@ public class AuthorizationService : IAuthorizationService
     public async void LogIn()
     {
         Authorize.AuthUrlResponse? authUrlResponse =
-            await _apiClient.GetAsync<Authorize.AuthUrlResponse>(ApiConstants.ApiControllers.Authorize, "GetAuthUrl");
+            await _apiClient.GetAsync<Authorize.AuthUrlResponse>(
+                ApiConstants.ApiControllers.Authorize,
+                ApiConstants.ApiMethods.GetAuthUrl);
 
         if (authUrlResponse is null) return;
 
@@ -37,11 +39,12 @@ public class AuthorizationService : IAuthorizationService
             .WithUrl(ApiConstants.TOKENHUB_ADRESS)
             .Build();
 
-        hubConnection.On<string>(ApiConstants.TOKEN_METHOD_NAME, async token =>
-        {
-            _apiClient.Token = token;
-            await hubConnection.StopAsync();
-        });
+        hubConnection.On<string>(ApiConstants.TOKEN_METHOD_NAME,
+            async token =>
+            {
+                _apiClient.Token = token;
+                await hubConnection.StopAsync();
+            });
 
         await hubConnection.StartAsync();
 

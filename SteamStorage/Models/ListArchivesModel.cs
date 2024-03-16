@@ -440,7 +440,7 @@ public class ListArchivesModel : ModelBase
         Archives.ArchivesResponse? archivesResponse =
             await _apiClient.GetAsync<Archives.ArchivesResponse, Archives.GetArchivesRequest>(
                 ApiConstants.ApiControllers.Archives,
-                "GetArchives",
+                ApiConstants.ApiMethods.GetArchives,
                 new(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter, ArchiveOrderName, IsAscending,
                     CurrentPageNumber, PageSize),
                 token);

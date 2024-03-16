@@ -17,13 +17,13 @@ public class LogFile : IDisposable
     #region Constructor
 
     public LogFile(
-        string programName, 
+        string directory, 
         string dateFormat, 
         string dateTimeFormat)
     {
         _dateTimeFormat = dateTimeFormat;
 
-        _filePath = @$"{Path.GetTempPath()}{programName}\Logs\{DateTime.Now.ToString(dateFormat)}#{Guid.NewGuid()}.txt";
+        _filePath = @$"{directory}\{DateTime.Now.ToString(dateFormat)}#{Guid.NewGuid()}.txt";
 
         CreateFile();
 

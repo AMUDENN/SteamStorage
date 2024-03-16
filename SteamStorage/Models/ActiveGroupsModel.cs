@@ -106,7 +106,7 @@ public class ActiveGroupsModel : ModelBase
         ActiveGroups.ActiveGroupsResponse? groupsResponses =
             await _apiClient.GetAsync<ActiveGroups.ActiveGroupsResponse, ActiveGroups.GetActiveGroupsRequest>(
                 ApiConstants.ApiControllers.ActiveGroups,
-                "GetActiveGroups",
+                ApiConstants.ApiMethods.GetActiveGroups,
                 new(null, null));
         if (groupsResponses is null) return;
         ActiveGroupModels = groupsResponses.ActiveGroups.Select(x => new BaseGroupModel(x.Id, x.Title)).ToList();

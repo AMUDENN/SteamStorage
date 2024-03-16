@@ -240,7 +240,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         Skins.SkinDynamicStatsResponse? skinDynamicsResponse =
             await _apiClient.GetAsync<Skins.SkinDynamicStatsResponse, Skins.GetSkinDynamicsRequest>(
                 ApiConstants.ApiControllers.Skins,
-                "GetSkinDynamics",
+                ApiConstants.ApiMethods.GetSkinDynamics,
                 new(SkinId, dateStart, dateEnd));
 
         ChangePeriod = skinDynamicsResponse?.ChangePeriod;

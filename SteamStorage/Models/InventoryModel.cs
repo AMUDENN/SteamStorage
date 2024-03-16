@@ -406,7 +406,7 @@ public class InventoryModel : ModelBase
         Inventory.InventoriesResponse? inventoriesResponse =
             await _apiClient.GetAsync<Inventory.InventoriesResponse, Inventory.GetInventoryRequest>(
                 ApiConstants.ApiControllers.Inventory,
-                "GetInventory",
+                ApiConstants.ApiMethods.GetInventory,
                 new(SelectedGameModel?.Id, Filter, InventoryOrderName, IsAscending, CurrentPageNumber, PageSize),
                 token);
 

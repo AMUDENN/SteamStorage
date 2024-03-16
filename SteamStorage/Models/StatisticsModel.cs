@@ -364,31 +364,35 @@ public class StatisticsModel : ModelBase
     private async void RefreshStatistics()
     {
         Statistics.InvestmentSumResponse? investmentSumResponse =
-            await _apiClient.GetAsync<Statistics.InvestmentSumResponse>(ApiConstants.ApiControllers.Statistics,
-                "GetInvestmentSum");
+            await _apiClient.GetAsync<Statistics.InvestmentSumResponse>(
+                ApiConstants.ApiControllers.Statistics,
+                ApiConstants.ApiMethods.GetInvestmentSum);
 
         InvestedSumString = $"{investmentSumResponse?.TotalSum ?? 0:N2} {_userModel.CurrencyMark}";
         InvestedSumGrowth = investmentSumResponse?.PercentageGrowth ?? 0;
 
 
         Statistics.FinancialGoalResponse? financialGoalResponse =
-            await _apiClient.GetAsync<Statistics.FinancialGoalResponse>(ApiConstants.ApiControllers.Statistics,
-                "GetFinancialGoal");
+            await _apiClient.GetAsync<Statistics.FinancialGoalResponse>(
+                ApiConstants.ApiControllers.Statistics,
+                ApiConstants.ApiMethods.GetFinancialGoal);
 
         FinancialGoalString = $"{financialGoalResponse?.FinancialGoal ?? 0:N0} {_userModel.CurrencyMark}";
         FinancialGoalPercentageCompletion = financialGoalResponse?.PercentageCompletion ?? 0;
 
 
         Statistics.ItemsCountResponse? itemsCountResponse =
-            await _apiClient.GetAsync<Statistics.ItemsCountResponse>(ApiConstants.ApiControllers.Statistics,
-                "GetItemsCount");
+            await _apiClient.GetAsync<Statistics.ItemsCountResponse>(
+                ApiConstants.ApiControllers.Statistics,
+                ApiConstants.ApiMethods.GetItemsCount);
 
         TotalCount = itemsCountResponse?.Count ?? 0;
 
 
         Statistics.ActiveStatisticResponse? activeStatisticResponse =
-            await _apiClient.GetAsync<Statistics.ActiveStatisticResponse>(ApiConstants.ApiControllers.Statistics,
-                "GetActiveStatistic");
+            await _apiClient.GetAsync<Statistics.ActiveStatisticResponse>(
+                ApiConstants.ApiControllers.Statistics,
+                ApiConstants.ApiMethods.GetActiveStatistic);
 
         ActivesCount = activeStatisticResponse?.Count ?? 0;
         ActivesCurrentSumString = $"{activeStatisticResponse?.CurrentSum ?? 0:N2} {_userModel.CurrencyMark}";
@@ -396,8 +400,9 @@ public class StatisticsModel : ModelBase
 
 
         Statistics.ArchiveStatisticResponse? archiveStatisticResponse =
-            await _apiClient.GetAsync<Statistics.ArchiveStatisticResponse>(ApiConstants.ApiControllers.Statistics,
-                "GetArchiveStatistic");
+            await _apiClient.GetAsync<Statistics.ArchiveStatisticResponse>(
+                ApiConstants.ApiControllers.Statistics,
+                ApiConstants.ApiMethods.GetArchiveStatistic);
 
         ArchivesCount = archiveStatisticResponse?.Count ?? 0;
         ArchivesSoldSumString = $"{archiveStatisticResponse?.SoldSum ?? 0:N2} {_userModel.CurrencyMark}";
@@ -405,8 +410,9 @@ public class StatisticsModel : ModelBase
 
 
         Statistics.InventoryStatisticResponse? inventoryStatisticResponse =
-            await _apiClient.GetAsync<Statistics.InventoryStatisticResponse>(ApiConstants.ApiControllers.Statistics,
-                "GetInventoryStatistic");
+            await _apiClient.GetAsync<Statistics.InventoryStatisticResponse>(
+                ApiConstants.ApiControllers.Statistics,
+                ApiConstants.ApiMethods.GetInventoryStatistic);
 
         InventoryCount = inventoryStatisticResponse?.Count ?? 0;
         InventorySumString = $"{inventoryStatisticResponse?.Sum ?? 0:N2} {_userModel.CurrencyMark}";

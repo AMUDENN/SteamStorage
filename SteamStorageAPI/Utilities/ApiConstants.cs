@@ -13,10 +13,6 @@ public static class ApiConstants
     public const string TOKEN_METHOD_NAME = "Token";
     public const string JOIN_GROUP_METHOD_NAME = "JoinGroup";
 
-    public const string LOG_DATETIME_FORMAT = "yy.MM.dd hh:mm:ss";
-    public const string LOG_DATE_FORMAT = "yyMMdd";
-    public const string LOG_PROGRAM_NAME = "SteamStorage";
-
     #endregion Constants
 
     #region Enums
@@ -32,10 +28,76 @@ public static class ApiConstants
         Games,
         Inventory,
         Pages,
-        Roles,
         Skins,
         Statistics,
         Users
+    }
+
+    public enum ApiMethods
+    {
+        GetActiveGroups = 100,
+        GetActiveGroupDynamics,
+        GetActiveGroupsCount,
+        PostActiveGroup,
+        PutActiveGroup,
+        DeleteActiveGroup,
+        
+        GetActives = 200,
+        GetActivesPagesCount,
+        GetActivesCount,
+        PostActive,
+        PutActive,
+        SoldActive,
+        DeleteActive,
+        
+        GetArchiveGroups = 300,
+        GetArchiveGroupsCount,
+        PostArchiveGroup,
+        PutArchiveGroup,
+        DeleteArchiveGroup,
+        
+        GetArchives = 400,
+        GetArchivesPagesCount,
+        GetArchivesCount,
+        PostArchive,
+        PutArchive,
+        DeleteArchive,
+        
+        GetAuthUrl = 500,
+        
+        GetCurrencies = 600,
+        GetCurrency,
+        SetCurrency,
+        
+        GetGames = 700,
+        
+        GetInventory = 800,
+        GetInventoryPagesCount,
+        GetSavedInventoriesCount,
+        RefreshInventory,
+        
+        GetPages = 900,
+        SetStartPage,
+        
+        GetSkinInfo = 1000,
+        GetSkins,
+        GetSkinDynamics,
+        GetSkinPagesCount,
+        GetSteamSkinsCount,
+        GetSavedSkinsCount,
+        SetMarkedSkin,
+        DeleteMarkedSkin,
+        
+        GetInvestmentSum = 1100,
+        GetFinancialGoal,
+        GetActiveStatistic,
+        GetArchiveStatistic,
+        GetInventoryStatistic,
+        GetItemsCount,
+        
+        GetCurrentUserInfo = 1200,
+        PutGoalSum,
+        DeleteUser
     }
 
     #endregion Enums

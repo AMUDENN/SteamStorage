@@ -33,26 +33,34 @@ namespace SteamStorage
             ServiceCollection services = [];
 
             //ApiClient
-            services.AddHttpClient(ApiConstants.CLIENT_NAME, client =>
-            {
-                client.Timeout = TimeSpan.FromSeconds(15);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Add("Accept", "application/json");
-            }).AddHttpMessageHandler<TokenHandler>().AddHttpMessageHandler<UnauthorizedHandler>();
+            services.AddHttpClient(ApiConstants.CLIENT_NAME,
+                    client =>
+                    {
+                        client.Timeout = TimeSpan.FromSeconds(15);
+                        client.DefaultRequestHeaders.Clear();
+                        client.DefaultRequestHeaders.Add("Accept", "application/json");
+                    })
+                .AddHttpMessageHandler<TokenHandler>()
+                .AddHttpMessageHandler<UnauthorizedHandler>();
             services.AddScoped<TokenHandler>();
             services.AddScoped<UnauthorizedHandler>();
             services.AddSingleton<ApiClient>();
 
             //Custom API Services
             services.AddSingleton<IAuthorizationService, AuthorizationService>();
-            services.AddSingleton<ILoggerService, LoggerService>(_ => new(ApiConstants.LOG_PROGRAM_NAME,
-                ApiConstants.LOG_DATE_FORMAT, ApiConstants.LOG_DATETIME_FORMAT));
+            services.AddSingleton<ILoggerService, LoggerService>(_ =>
+                new(ProgramConstants.LOG_PROGRAM_NAME,
+                    ProgramConstants.LOG_DATE_FORMAT,
+                    ProgramConstants.LOG_DATETIME_FORMAT,
+                    ProgramConstants.LOG_FILES_LIFETIME_DAYS));
             services.AddSingleton<IPingService, PingService>();
 
             //Custom Services
             services.AddScoped<IThemeService, ThemeService>();
-            services.AddSingleton<ISettingsService, SettingsService>(x => new(ProgramConstants.PROGRAM_NAME,
-                x.GetRequiredService<ApiClient>(), x.GetRequiredService<IThemeService>()));
+            services.AddSingleton<ISettingsService, SettingsService>(x => 
+                new(ProgramConstants.PROGRAM_NAME,
+                x.GetRequiredService<ApiClient>(), 
+                x.GetRequiredService<IThemeService>()));
 
             //MainWindow
             services.AddSingleton<MainWindow>();

@@ -263,7 +263,7 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
             await _apiClient
                 .GetAsync<ActiveGroups.ActiveGroupDynamicStatsResponse, ActiveGroups.GetActiveGroupDynamicRequest>(
                     ApiConstants.ApiControllers.ActiveGroups,
-                    "GetActiveGroupDynamics",
+                    ApiConstants.ApiMethods.GetActiveGroupDynamics,
                     new(GroupId, dateStart, dateEnd));
 
         ChangePeriod = activeGroupDynamicResponse?.ChangePeriod;

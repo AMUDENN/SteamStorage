@@ -14,11 +14,17 @@ public class LoggerService : ILoggerService
     #region Constructor
 
     public LoggerService(
-        string programName, 
-        string dateFormat, 
-        string dateTimeFormat)
+        string programName,
+        string dateFormat,
+        string dateTimeFormat,
+        int logFilesLifetime)
     {
-        _file = new(programName, dateFormat, dateTimeFormat);
+        string directory = $@"{Path.GetTempPath()}{programName}\Logs";
+
+        LogUtility.LogUtility.DeleteEmptyLogFiles(directory);
+        LogUtility.LogUtility.DeleteOldLogFiles(directory, logFilesLifetime);
+
+        _file = new(directory, dateFormat, dateTimeFormat);
     }
 
     #endregion Constructor
