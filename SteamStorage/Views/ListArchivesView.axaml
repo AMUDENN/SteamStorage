@@ -1,0 +1,201 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:SteamStorage.ViewModels"
+             xmlns:controls="using:SteamStorage.Resources.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SteamStorage.Views.ListArchivesView"
+             x:DataType="vm:ListArchivesViewModel">
+    
+    <Grid RowDefinitions="120, 20, 50, 20, 60, 20, 30, 40, *, 20, 30">
+        
+        <Border Classes="BigRoundedBorder SecondAccentGradientBorder" 
+                Grid.Row="0">
+            
+        </Border>
+        
+        <Grid Grid.Row="2">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="200" MaxWidth="400"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*" MinWidth="250" MaxWidth="400"/>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox ItemsSource="{Binding ArchiveGroupModels, Mode=OneWay}"
+                      SelectedItem="{Binding SelectedGroupModel}" 
+                      PlaceholderText="Выберите группу"
+                      Classes="GroupComboBox"
+                      Grid.Column="0"/>
+            
+            <Button Command="{Binding AddArchiveGroupCommand, Mode=OneWay}"
+                    Classes="ImageButton SmallRoundedButton BackgroundAdditionalButton StretchButton"
+                    Padding="9"
+                    ToolTip.Tip="Добавить группу"
+                    Grid.Column="2">
+                <controls:VectorImage Classes="AddCircleImage ForegroundVectorImage"/>
+            </Button>
+            
+            <Button Content="Добавить предмет"
+                    Command="{Binding AddArchiveCommand}"
+                    Classes="TextButton SmallRoundedButton BackgroundAdditionalButton StretchButton"
+                    Grid.Column="4"/>
+            
+        </Grid>
+        
+        <Grid Grid.Row="4">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" MinWidth="10"/>
+                <ColumnDefinition Width="10" MinWidth="10"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" MinWidth="30"/>
+                <ColumnDefinition Width="5*" MinWidth="200" MaxWidth="400"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="60" MinWidth="60"/>
+            </Grid.ColumnDefinitions>
+            
+            <RadioButton Content="Все"
+                         IsChecked="{Binding IsAllGamesChecked}"
+                         Classes="GameRadioButton SecondAccentLinearGameRadioButton"
+                         Grid.Column="0"/>
+            
+            <ListBox ItemsSource="{Binding GameModels, Mode=OneWay}" 
+                     SelectedItem="{Binding SelectedGameModel}"
+                     Classes="GamesListBox SecondAccentLinearGameListBox"
+                     Grid.Column="2"/>
+
+            <TextBox Text="{Binding Filter}"
+                     Watermark="Введите название"
+                     Classes="FilteringTextBox"
+                     Grid.Column="4"/>
+            
+            <Button Command="{Binding ClearFiltersCommand, Mode=OneWay}"
+                    Classes="ImageButton BackgroundButton"
+                    Height="60" Width="60"
+                    ToolTip.Tip="Очистить фильтры"
+                    Grid.Column="6">
+                <controls:VectorImage Classes="RemoveFiltersVectorImage ForegroundVectorImage"
+                                      Height="40" Width="40"/>
+            </Button>
+            
+        </Grid>
+        
+        <Grid Margin="20, 0"
+              Grid.Row="6">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140*" MinWidth="100" MaxWidth="140"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="260*"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="20" MinWidth="20"/>
+                <ColumnDefinition Width="70*"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Text="Изображение "  
+                       Classes="SmallTextBlock CenterTextBlock"
+                       Grid.Column="0"/>
+            
+            <ToggleButton Content="Название" 
+                          IsChecked="{Binding IsTitleOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="2"/>  
+            
+            <ToggleButton Content="Количество" 
+                          IsChecked="{Binding IsCountOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="4"/>
+            
+            <ToggleButton Content="Цена покупки" 
+                          IsChecked="{Binding IsBuyPriceOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="6"/>
+            
+            <ToggleButton Content="Цена продажи" 
+                          IsChecked="{Binding IsSoldPriceOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="8"/>
+            
+            <ToggleButton Content="Сумма продажи" 
+                          IsChecked="{Binding IsSoldSumOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="10"/>
+            
+            <ToggleButton Content="Изменение" 
+                          IsChecked="{Binding IsChangeOrdering}"
+                          Classes="OrderingToggleButton"
+                          Grid.Column="12"/>
+            
+        </Grid>
+        
+        <Rectangle Height="2"
+                   Margin="25, 0" 
+                   Grid.Row="7"/>
+        
+        <Grid Grid.Row="8">
+            
+            <TextBlock Text="{Binding NotFoundText, Mode=OneWay}"
+                       IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}"
+                       Classes="MiddleTextBlock CenterTextBlock"
+                       VerticalAlignment="Top"
+                       Margin="0, 20"/>
+            
+            <controls:VectorImage IsVisible="{Binding IsLoading, Mode=OneWay}"
+                                  Classes="LoadingVectorImage ForegroundVectorImage"
+                                  Height="48" Width="48"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Top"
+                                  Margin="0, 20"/>
+                       
+            <ListBox ItemsSource="{Binding ArchiveModels, Mode=OneWay}"
+                     SelectedItem="{Binding SelectedArchiveModel}"
+                     Classes="ArchivesListBox"/>
+
+        </Grid>
+        
+        <Grid ColumnDefinitions="Auto,*" 
+              Grid.Row="10">
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        Grid.Column="0">
+                <TextBlock Text="Результаты: "
+                           Classes="SmallTextBlock"/>
+                <TextBlock Text="{Binding DisplayItemsCountStart, StringFormat=N0, Mode=OneWay}"
+                           Classes="SmallTextBlock"/>
+                <TextBlock Text=" - "
+                           Classes="SmallTextBlock"/>
+                <TextBlock Text="{Binding DisplayItemsCountEnd, StringFormat=N0, Mode=OneWay}"
+                           Classes="SmallTextBlock"/>
+                <TextBlock Text=" из "
+                           Classes="SmallTextBlock"/>
+                <TextBlock Text="{Binding SavedItemsCount, StringFormat=N0, Mode=OneWay}"
+                           Classes="SmallTextBlock"/>
+            </StackPanel>
+                    
+            <controls:AdvancedNumericUpDown HorizontalAlignment="Right"
+                                            Value="{Binding PageNumber}"
+                                            Increment="1"
+                                            Minimum="1"
+                                            Maximum="{Binding PagesCount, Mode=OneWay}"
+                                            Watermark="{Binding CurrentPageNumber, Mode=OneWay}"
+                                            FormatString="0"
+                                            ParsingNumberStyle="Integer"
+                                            Grid.Column="1"/>
+                    
+        </Grid>
+        
+    </Grid>
+    
+</UserControl>

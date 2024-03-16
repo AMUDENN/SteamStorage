@@ -6,7 +6,7 @@ using SteamStorageAPI;
 
 namespace SteamStorage.Models.UtilityModels;
 
-public class ActiveModel : BaseDynamicsSkinModel
+public class ArchiveModel : BaseSkinModel
 {
     #region Properties
 
@@ -14,15 +14,15 @@ public class ActiveModel : BaseDynamicsSkinModel
 
     public string BuyPriceString { get; }
 
-    public string CurrentPriceString { get; }
+    public string SoldPriceString { get; }
 
-    public string CurrentSumString { get; }
-
-    public string GoalPriceString { get; }
+    public string SoldSumString { get; }
 
     public double Change { get; }
 
     public string BuyDateString { get; }
+
+    public string SoldDateString { get; }
 
     #endregion Properties
 
@@ -36,35 +36,30 @@ public class ActiveModel : BaseDynamicsSkinModel
 
     #region Constructor
 
-    public ActiveModel(
-        ApiClient apiClient,
-        IThemeService themeService,
+    public ArchiveModel(
         int skinId,
         string imageUrl,
         string marketUrl,
         string title,
         int count,
         decimal buyPrice,
-        decimal currentPrice,
-        decimal currentSum,
-        decimal? goalPrice,
-        double? goalPriceCompletion,
+        decimal soldPrice,
+        decimal soldSum,
         string currencyMark,
         double change,
-        DateTime buyDate) : base(apiClient, themeService, skinId, imageUrl, marketUrl, title)
+        DateTime buyDate,
+        DateTime soldDate) : base(skinId, imageUrl, marketUrl, title)
     {
         Count = count;
 
         BuyPriceString = $"{buyPrice:N2} {currencyMark}";
-        CurrentPriceString = $"{currentPrice:N2} {currencyMark}";
-        CurrentSumString = $"{currentSum:N2} {currencyMark}";
-        GoalPriceString = goalPrice is null
-            ? "(не установлена)"
-            : $"{goalPrice:N2} {currencyMark} ({goalPriceCompletion:N0}%)";
+        SoldPriceString = $"{soldPrice:N2} {currencyMark}";
+        SoldSumString = $"{soldSum:N2} {currencyMark}";
 
         Change = change;
-
+        
         BuyDateString = buyDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
+        SoldDateString = soldDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
 
         EditCommand = new(DoEditCommand);
         DeleteCommand = new(DoDeleteCommand);

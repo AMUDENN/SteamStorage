@@ -7,7 +7,7 @@ using SteamStorage.ViewModels.Tools;
 
 namespace SteamStorage.Models;
 
-public class ActivesModel : ModelBase
+public class ArchivesModel : ModelBase
 {
     #region Fields
 
@@ -42,17 +42,16 @@ public class ActivesModel : ModelBase
 
     #region Constructor
 
-    public ActivesModel(
-        ActivesReviewViewModel activesReviewViewModel,
-        ListActivesViewModel listActivesViewModel)
+    public ArchivesModel(
+        ArchivesReviewViewModel archivesReviewViewModel,
+        ListArchivesViewModel listArchivesViewModel)
     {
         SecondaryNavigationOptions =
         [
-            new("Обзор", activesReviewViewModel, true),
-            new("Список активов", listActivesViewModel, true),
-            new("Управление группами", activesReviewViewModel, false),
-            new("Управление активами", activesReviewViewModel, false),
-            new("Продажа актива", activesReviewViewModel, false)
+            new("Обзор", archivesReviewViewModel, true),
+            new("Список позиций", listArchivesViewModel, true),
+            new("Управление группами", archivesReviewViewModel, false),
+            new("Управление позициями", archivesReviewViewModel, false)
         ];
 
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();

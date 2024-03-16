@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace SteamStorage.Views;
 
-public partial class ArchiveView : UserControl
+public partial class ArchivesView : UserControl
 {
-    public ArchiveView()
+    public ArchivesView()
     {
         InitializeComponent();
     }

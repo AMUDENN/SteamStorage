@@ -4,11 +4,11 @@ using SteamStorage.Models.UtilityModels;
 
 namespace SteamStorage.ViewModels.UtilityViewModels;
 
-public class ActiveViewModel : BaseDynamicsSkinViewModel
+public class ArchiveViewModel : BaseSkinViewModel
 {
     #region Fields
 
-    private readonly ActiveModel _model;
+    private readonly ArchiveModel _model;
 
     #endregion Fields
 
@@ -24,29 +24,29 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
         get => _model.BuyPriceString;
     }
 
-    public string CurrentPriceString
+    public string SoldPriceString
     {
-        get => _model.CurrentPriceString;
+        get => _model.SoldPriceString;
     }
 
-    public string CurrentSumString
+    public string SoldSumString
     {
-        get => _model.CurrentSumString;
-    }
-
-    public string GoalPriceString
-    {
-        get => _model.GoalPriceString;
+        get => _model.SoldSumString;
     }
 
     public double Change
     {
         get => _model.Change;
     }
-
+    
     public string BuyDateString
     {
         get => _model.BuyDateString;
+    }
+    
+    public string SoldDateString
+    {
+        get => _model.SoldDateString;
     }
 
     #endregion Properties
@@ -67,14 +67,12 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
 
     #region Constructor
 
-    public ActiveViewModel(
-        ActiveModel model,
-        ChartTooltipModel chartTooltipModel) : base(model, chartTooltipModel)
+    public ArchiveViewModel(
+        ArchiveModel model) : base(model)
     {
         _model = model;
 
         model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
-        chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

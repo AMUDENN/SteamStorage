@@ -110,7 +110,7 @@ public class MainModel : ModelBase
         UserModel userModel,
         IAuthorizationService authorizationService,
         ActivesViewModel activesViewModel,
-        ArchiveViewModel archiveViewModel,
+        ArchivesViewModel archivesViewModel,
         HomeViewModel homeViewModel,
         InventoryViewModel inventoryViewModel,
         ProfileViewModel profileViewModel,
@@ -123,7 +123,7 @@ public class MainModel : ModelBase
         [
             new("HomeVectorImage", "Главная", homeViewModel),
             new("ActivesVectorImage", "Активы", activesViewModel),
-            new("ArchiveVectorImage", "Архив", archiveViewModel),
+            new("ArchiveVectorImage", "Архив", archivesViewModel),
             new("InventoryVectorImage", "Инвентарь", inventoryViewModel),
             new("ProfileVectorImage", "Профиль", profileViewModel)
         ];

@@ -1,0 +1,171 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+        xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels"
+        xmlns:converters="using:SteamStorage.Resources.Converters">
+	
+	<Styles.Resources>
+		<converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
+		<converters:DoubleGreaterConverter x:Key="DoubleGreaterConverter"/>
+		<converters:MarkedPercentConverter x:Key="MarkedPercentConverter"/>
+		<converters:BrushConverter x:Key="BrushConverter"/>
+	</Styles.Resources>
+	
+	<Style Selector="ListBox.ArchiveGroupsListBox">
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<VirtualizingStackPanel Margin="0"/>
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style Selector="^ ListBoxItem">
+			<Setter Property="Margin" Value="0, 0, 0, 20"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate x:DataType="utilityViewModels:ArchiveGroupViewModel">
+						
+						<Border x:Name="MainBorder"
+						        Classes="BackgroundAdditionalBorder BigRoundedBorder"
+						        Height="110">
+							
+							<i:Interaction.Behaviors>
+								<ia:EventTriggerBehavior EventName="DoubleTapped">
+									<ia:InvokeCommandAction Command="{Binding OpenArchivesCommand, Mode=OneWay}"/>
+								</ia:EventTriggerBehavior>
+							</i:Interaction.Behaviors>
+							
+							<Border.ContextMenu>
+								<ContextMenu>
+									<MenuItem Header="Открыть список активов" 
+									          Command="{Binding OpenArchivesCommand, Mode=OneWay}"
+									          CommandParameter="{Binding ArchiveGroupModel}"/>
+									<Separator/>
+									<MenuItem Header="Добавить актив" 
+									          Command="{Binding AddArchiveCommand, Mode=OneWay}"
+									          CommandParameter="{Binding ArchiveGroupModel}"/>
+									<Separator/>
+									<MenuItem Header="Добавить группу" 
+									          Command="{Binding AddArchiveGroupCommand, Mode=OneWay}"/>
+									<Separator/>
+									<MenuItem Header="Изменить группу" 
+									          Command="{Binding EditArchiveGroupCommand, Mode=OneWay}"
+									          CommandParameter="{Binding ArchiveGroupModel}"/>
+									<Separator/>
+									<MenuItem Header="Удалить группу" 
+									          Command="{Binding DeleteArchiveGroupCommand, Mode=OneWay}"
+									          CommandParameter="{Binding ArchiveGroupModel}"/>
+								</ContextMenu>
+							</Border.ContextMenu>
+							
+							<Grid Margin="20">
+								
+								<Grid.RowDefinitions>
+									<RowDefinition Height="70" MinHeight="70"/>
+									<RowDefinition Height="10" MinHeight="10"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+								
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="50"/>
+									<ColumnDefinition Width="10" MinWidth="10"/>
+									<ColumnDefinition Width="210*"/>
+									<ColumnDefinition Width="10" MinWidth="10"/>
+									<ColumnDefinition Width="150*"/>
+									<ColumnDefinition Width="10" MinWidth="10"/>
+									<ColumnDefinition Width="190*"/>
+									<ColumnDefinition Width="10" MinWidth="10"/>
+									<ColumnDefinition Width="190*"/>
+									<ColumnDefinition Width="10" MinWidth="10"/>
+									<ColumnDefinition Width="150*"/>
+								</Grid.ColumnDefinitions>
+								
+								<Border Classes="SmallRoundedBorder"
+								        Height="32" Width="32"
+								        Background="{Binding Colour, Converter={StaticResource BrushConverter}}"
+								        ToolTip.Tip="Цвет группы"
+								        Grid.Row="0" Grid.Column="0"/>
+								
+								<TextBlock Text="{Binding Title, Mode=OneWay}"
+								           Classes="MiddleTextBlock LeftTextBlock WrapTextBlock"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+								           ToolTip.Tip="Название"
+								           Grid.Row="0" Grid.Column="2"/>
+								
+								<TextBlock Text="{Binding Count, StringFormat=N0, Mode=OneWay}"
+								           Classes="MiddleTextBlock CenterTextBlock"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+								           ToolTip.Tip="Количество"
+								           Grid.Row="0" Grid.Column="4"/>
+								
+								<TextBlock Text="{Binding BuySumString, Mode=OneWay}"
+								           Classes="MiddleTextBlock CenterTextBlock"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+								           ToolTip.Tip="Сумма покупки"
+								           Grid.Row="0" Grid.Column="6"/>
+								
+								<TextBlock Text="{Binding SoldSumString, Mode=OneWay}"
+								           Classes="MiddleTextBlock CenterTextBlock"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+								           ToolTip.Tip="Сумма продажи"
+								           Grid.Row="0" Grid.Column="8"/>
+								
+								<TextBlock Text="{Binding Change, StringFormat=N0, Mode=OneWay, 
+												  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
+								           Classes="MiddleTextBlock CenterTextBlock"
+								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+								           Classes.PositiveTextBlock="{Binding Change, Mode=OneWay,
+																	   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
+								           Classes.NegativeTextBlock="{Binding Change, Mode=OneWay,
+																	   Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
+								           ToolTip.Tip="Изменение"
+								           Grid.Row="0" Grid.Column="10"/>
+								
+								<DockPanel x:Name="TopDockPanel"
+								           Classes.Max="{Binding $parent[ListBoxItem].Bounds.Width, 
+																  Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
+								           Height="40" 
+								           HorizontalAlignment="Stretch"
+								           Grid.Row="2" Grid.ColumnSpan="9" Grid.Column="2">
+									
+									<StackPanel Orientation="Horizontal" 
+									            HorizontalAlignment="Right"
+									            DockPanel.Dock="Right">
+										
+										<TextBlock Text="Дата создания: "
+										           Classes="SmallTextBlock LeftTextBlock"/>
+										
+										<TextBlock Text="{Binding DateCreationString}"
+										           Classes="SmallTextBlock LeftTextBlock"/>
+										
+									</StackPanel>
+									
+								</DockPanel>
+								
+							</Grid>
+							
+						</Border>
+						
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Style Selector="^:selected">
+				<Style Selector="^ /template/ Border#MainBorder">
+					<Setter Property="Height" Value="160"/>
+				</Style>
+				<Style Selector="^ /template/ DockPanel.Max#TopDockPanel">
+					<Setter Property="Grid.Column" Value="0"/>
+					<Setter Property="Grid.ColumnSpan" Value="11"/>
+				</Style>
+			</Style>
+		</Style>
+	</Style>
+	
+</Styles>

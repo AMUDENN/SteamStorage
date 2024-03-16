@@ -64,10 +64,12 @@ namespace SteamStorage
 
             services.AddSingleton<ActivesReviewViewModel>();
             services.AddSingleton<ActivesViewModel>();
-            services.AddSingleton<ArchiveViewModel>();
+            services.AddSingleton<ArchivesReviewViewModel>();
+            services.AddSingleton<ArchivesViewModel>();
             services.AddSingleton<HomeViewModel>();
             services.AddSingleton<InventoryViewModel>();
             services.AddSingleton<ListActivesViewModel>();
+            services.AddSingleton<ListArchivesViewModel>();
             services.AddSingleton<ListItemsViewModel>();
             services.AddSingleton<ProfileViewModel>();
             services.AddSingleton<SettingsViewModel>();
@@ -79,12 +81,16 @@ namespace SteamStorage
             services.AddSingleton<ActiveGroupsModel>();
             services.AddSingleton<ActivesModel>();
             services.AddSingleton<ActivesReviewModel>();
+            services.AddSingleton<ArchiveGroupsModel>();
+            services.AddSingleton<ArchivesModel>();
+            services.AddSingleton<ArchivesReviewModel>();
             services.AddSingleton<ChartTooltipModel>();
             services.AddSingleton<CurrenciesModel>();
             services.AddSingleton<GamesModel>();
             services.AddSingleton<HomeModel>();
             services.AddSingleton<InventoryModel>();
             services.AddSingleton<ListActivesModel>();
+            services.AddSingleton<ListArchivesModel>();
             services.AddSingleton<ListItemsModel>();
             services.AddSingleton<PagesModel>();
             services.AddSingleton<ProfileModel>();

@@ -54,14 +54,16 @@
                     Grid.Column="0">
                 <Button Content="Экспорт в Excel" 
                         Command="{Binding ExportToExcelCommand, Mode=OneWay}"
-                        Classes="UnderlineButton HorizontalCenter"/>
+                        Classes="UnderlineButton HorizontalCenter"
+                        Margin="20, 0"/>
             </Border>
             
             <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" 
                     Grid.Column="2">
                 <Button Content="Справочная информация" 
                         Command="{Binding OpenReferenceInformationCommand, Mode=OneWay}"
-                        Classes="UnderlineButton HorizontalCenter"/>
+                        Classes="UnderlineButton HorizontalCenter"
+                        Margin="20, 0"/>
             </Border>
             
         </Grid>

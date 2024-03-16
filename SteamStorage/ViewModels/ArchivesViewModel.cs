@@ -5,11 +5,11 @@ using SteamStorage.ViewModels.Tools;
 
 namespace SteamStorage.ViewModels;
 
-public class ActivesViewModel : ViewModelBase
+public class ArchivesViewModel : ViewModelBase
 {
     #region Fields
 
-    private readonly ActivesModel _activesModel;
+    private readonly ArchivesModel _archivesModel;
 
     #endregion Fields
 
@@ -17,29 +17,29 @@ public class ActivesViewModel : ViewModelBase
 
     public ViewModelBase CurrentViewModel
     {
-        get => _activesModel.CurrentViewModel;
+        get => _archivesModel.CurrentViewModel;
     }
 
     public IEnumerable<SecondaryNavigationModel> SecondaryNavigationOptions
     {
-        get => _activesModel.SecondaryNavigationOptions;
+        get => _archivesModel.SecondaryNavigationOptions;
     }
 
     public SecondaryNavigationModel? SelectedSecondaryNavigationModel
     {
-        get => _activesModel.SelectedSecondaryNavigationModel;
-        set => _activesModel.SelectedSecondaryNavigationModel = value;
+        get => _archivesModel.SelectedSecondaryNavigationModel;
+        set => _archivesModel.SelectedSecondaryNavigationModel = value;
     }
 
     #endregion Properties
 
     #region Constructor
 
-    public ActivesViewModel(
-        ActivesModel activesModel)
+    public ArchivesViewModel(
+        ArchivesModel archivesModel)
     {
-        _activesModel = activesModel;
-        activesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        _archivesModel = archivesModel;
+        archivesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

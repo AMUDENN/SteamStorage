@@ -68,8 +68,9 @@ public class ProfileModel : ModelBase
         get => _selectedCurrency;
         set
         {
-            SetProperty(ref _selectedCurrency, value); 
-            SetCurrency();
+            if (value is not null && value != _selectedCurrency)
+                SetCurrency();
+            SetProperty(ref _selectedCurrency, value);
         }
     }
     
@@ -151,12 +152,12 @@ public class ProfileModel : ModelBase
         DateRegistration =
             $"Дата регистрации: {_userModel.User?.DateRegistration.ToString(ProgramConstants.VIEW_DATE_FORMAT)}";
 
-        SelectedPage ??= _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.User?.StartPageId);
+        SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.User?.StartPageId);
     }
 
     private void CurrencyChangedHandler(object? sender)
     {
-        SelectedCurrency ??= _currenciesModel.CurrencyModels.FirstOrDefault(x => x.Id == _userModel.Currency?.Id);
+        SelectedCurrency = _currenciesModel.CurrencyModels.FirstOrDefault(x => x.Id == _userModel.Currency?.Id);
 
         ExchangeRate =
             $"1$ = {_userModel.Currency?.Price ?? 0:N2} {_userModel.CurrencyMark} ({(_userModel.Currency?.DateUpdate ?? DateTime.Now).ToString(ProgramConstants.VIEW_DATE_FORMAT)})";

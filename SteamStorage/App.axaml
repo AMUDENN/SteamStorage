@@ -42,6 +42,8 @@
         <!-- ListBoxes -->
 	    <StyleInclude Source="/Resources/Styles/ListBoxes/ActiveGroupsListBoxStyle.axaml"/>
 	    <StyleInclude Source="/Resources/Styles/ListBoxes/ActivesListBoxStyle.axaml"/>
+	    <StyleInclude Source="/Resources/Styles/ListBoxes/ArchiveGroupsListBoxStyle.axaml"/>
+	    <StyleInclude Source="/Resources/Styles/ListBoxes/ArchivesListBoxStyle.axaml"/>
         <StyleInclude Source="/Resources/Styles/ListBoxes/GamesListBoxStyle.axaml"/>
 	    <StyleInclude Source="/Resources/Styles/ListBoxes/InventoryItemsListBoxStyle.axaml"/>
         <StyleInclude Source="/Resources/Styles/ListBoxes/ListItemsListBoxStyle.axaml"/>
