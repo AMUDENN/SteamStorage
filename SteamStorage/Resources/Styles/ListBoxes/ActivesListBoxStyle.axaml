@@ -37,6 +37,8 @@
 									<Separator/>
 									<MenuItem Header="Изменить актив" Command="{Binding EditCommand, Mode=OneWay}"/>
 									<Separator/>
+									<MenuItem Header="Продать актив" Command="{Binding SoldCommand, Mode=OneWay}"/>
+									<Separator/>
 									<MenuItem Header="Удалить актив" Command="{Binding DeleteCommand, Mode=OneWay}"/>
 								</ContextMenu>
 							</Border.ContextMenu>

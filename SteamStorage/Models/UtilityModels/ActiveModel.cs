@@ -29,6 +29,8 @@ public class ActiveModel : BaseDynamicsSkinModel
     #region Commands
 
     public RelayCommand EditCommand { get; }
+    
+    public RelayCommand SoldCommand { get; }
 
     public RelayCommand DeleteCommand { get; }
 
@@ -67,6 +69,7 @@ public class ActiveModel : BaseDynamicsSkinModel
         BuyDateString = buyDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
 
         EditCommand = new(DoEditCommand);
+        SoldCommand = new(DoSoldCommand);
         DeleteCommand = new(DoDeleteCommand);
     }
 
@@ -75,6 +78,11 @@ public class ActiveModel : BaseDynamicsSkinModel
     #region Methods
 
     private void DoEditCommand()
+    {
+
+    }
+    
+    private void DoSoldCommand()
     {
 
     }

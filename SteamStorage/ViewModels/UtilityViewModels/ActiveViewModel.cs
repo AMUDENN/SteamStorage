@@ -57,6 +57,11 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
     {
         get => _model.EditCommand;
     }
+    
+    public RelayCommand SoldCommand
+    {
+        get => _model.SoldCommand;
+    }
 
     public RelayCommand DeleteCommand
     {

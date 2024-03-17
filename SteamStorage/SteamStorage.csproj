@@ -69,11 +69,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Assets\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <ProjectReference Include="..\SteamStorageAPI\SteamStorageAPI.csproj" />
   </ItemGroup>
 
@@ -85,6 +80,14 @@
     </Compile>
     <Compile Update="Views\ArchiveGroupEditView.axaml.cs">
       <DependentUpon>ArchiveGroupEditView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ActiveEditView.axaml.cs">
+      <DependentUpon>ActiveEditView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ActiveSoldView.axaml.cs">
+      <DependentUpon>ActiveSoldView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
