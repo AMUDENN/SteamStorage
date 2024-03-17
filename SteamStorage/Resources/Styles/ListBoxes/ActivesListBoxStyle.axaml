@@ -37,13 +37,16 @@
 									          Command="{Binding OpenInSteamCommand, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Изменить актив" 
-									          Command="{Binding EditCommand, Mode=OneWay}"/>
+									          Command="{Binding EditCommand, Mode=OneWay}"
+									          CommandParameter="{Binding ActiveModel, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Продать актив" 
-									          Command="{Binding SoldCommand, Mode=OneWay}"/>
+									          Command="{Binding SoldCommand, Mode=OneWay}"
+									          CommandParameter="{Binding ActiveModel, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Удалить актив" 
-									          Command="{Binding DeleteCommand, Mode=OneWay}"/>
+									          Command="{Binding DeleteCommand, Mode=OneWay}"
+									          CommandParameter="{Binding ActiveModel, Mode=OneWay}"/>
 								</ContextMenu>
 							</Border.ContextMenu>
 							

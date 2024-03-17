@@ -9,11 +9,17 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
     #region Fields
 
     private readonly ActiveModel _model;
+    private readonly ListActivesModel _listActivesModel;
 
     #endregion Fields
 
     #region Properties
 
+    public ActiveModel ActiveModel
+    {
+        get => _model;
+    }
+    
     public int Count
     {
         get => _model.Count;
@@ -53,19 +59,19 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
 
     #region Commands
 
-    public RelayCommand EditCommand
+    public RelayCommand<ActiveModel> EditCommand
     {
-        get => _model.EditCommand;
+        get => _listActivesModel.EditCommand;
     }
     
-    public RelayCommand SoldCommand
+    public RelayCommand<ActiveModel> SoldCommand
     {
-        get => _model.SoldCommand;
+        get => _listActivesModel.SoldCommand;
     }
 
-    public RelayCommand DeleteCommand
+    public RelayCommand<ActiveModel> DeleteCommand
     {
-        get => _model.DeleteCommand;
+        get => _listActivesModel.DeleteCommand;
     }
 
     #endregion Commands
@@ -74,11 +80,14 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
 
     public ActiveViewModel(
         ActiveModel model,
+        ListActivesModel listActivesModel,
         ChartTooltipModel chartTooltipModel) : base(model, chartTooltipModel)
     {
         _model = model;
+        _listActivesModel = listActivesModel;
 
         model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        listActivesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.ThemeService;
+using SteamStorage.Utilities.Events.Actives;
 using SteamStorage.ViewModels.UtilityViewModels;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
@@ -19,6 +20,18 @@ public class ListActivesModel : ModelBase
     private const string EMPTY_LIST_TEXT = "Элементы не найдены";
 
     #endregion Constants
+    
+    #region Events
+    
+    public delegate void EditActiveEventHandler(object? sender, EditActiveEventArgs args);
+
+    public event EditActiveEventHandler? EditActive;
+    
+    public delegate void SoldActiveEventHandler(object? sender, SoldActiveEventArgs args);
+
+    public event SoldActiveEventHandler? SoldActive;
+    
+    #endregion Events
 
     #region Fields
 
@@ -363,6 +376,12 @@ public class ListActivesModel : ModelBase
 
     public RelayCommand ClearFiltersCommand { get; }
 
+    public RelayCommand<ActiveModel> EditCommand { get; }
+
+    public RelayCommand<ActiveModel> SoldCommand { get; }
+
+    public RelayCommand<ActiveModel> DeleteCommand { get; }
+
     #endregion Commands
 
     #region Constructor
@@ -392,7 +411,10 @@ public class ListActivesModel : ModelBase
 
         PageNumber = 1;
         PageSize = 20;
-        
+
+        EditCommand = new(DoEditCommand);
+        SoldCommand = new(DoSoldCommand);
+        DeleteCommand = new(DoDeleteCommand);
         ClearFiltersCommand = new(DoClearFiltersCommand);
     }
 
@@ -419,6 +441,21 @@ public class ListActivesModel : ModelBase
         IsAscending = null;
         PageNumber = 1;
         SetOrderingsNull();
+    }
+
+    private void DoEditCommand(ActiveModel? model)
+    {
+        OnEditActive(model);
+    }
+
+    private void DoSoldCommand(ActiveModel? model)
+    {
+        OnSoldActive(model);
+    }
+
+    private void DoDeleteCommand(ActiveModel? model)
+    {
+
     }
 
     private void SetOrderingsNull()
@@ -466,10 +503,21 @@ public class ListActivesModel : ModelBase
                     new(_apiClient, _themeService, x.Skin.Id, x.Skin.SkinIconUrl, x.Skin.MarketUrl, x.Skin.Title,
                         x.Count, x.BuyPrice, x.CurrentPrice, x.CurrentSum, x.GoalPrice, x.GoalPriceCompletion,
                         _userModel.CurrencyMark, x.Change, x.BuyDate),
+                    this,
                     _chartTooltipModel))
             .ToList();
 
         IsLoading = false;
+    }
+    
+    private void OnEditActive(ActiveModel? model)
+    {
+        EditActive?.Invoke(this, new(model));
+    }
+    
+    private void OnSoldActive(ActiveModel? model)
+    {
+        SoldActive?.Invoke(this, new(model));
     }
 
     #endregion Methods

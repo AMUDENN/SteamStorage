@@ -26,16 +26,6 @@ public class ActiveModel : BaseDynamicsSkinModel
 
     #endregion Properties
 
-    #region Commands
-
-    public RelayCommand EditCommand { get; }
-    
-    public RelayCommand SoldCommand { get; }
-
-    public RelayCommand DeleteCommand { get; }
-
-    #endregion Commands
-
     #region Constructor
 
     public ActiveModel(
@@ -67,30 +57,7 @@ public class ActiveModel : BaseDynamicsSkinModel
         Change = change;
 
         BuyDateString = buyDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
-
-        EditCommand = new(DoEditCommand);
-        SoldCommand = new(DoSoldCommand);
-        DeleteCommand = new(DoDeleteCommand);
     }
 
     #endregion Constructor
-
-    #region Methods
-
-    private void DoEditCommand()
-    {
-
-    }
-    
-    private void DoSoldCommand()
-    {
-
-    }
-
-    private void DoDeleteCommand()
-    {
-
-    }
-
-    #endregion Methods
 }

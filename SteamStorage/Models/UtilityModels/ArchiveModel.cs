@@ -1,5 +1,4 @@
 ﻿using System;
-using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Utilities;
 
 namespace SteamStorage.Models.UtilityModels;
@@ -23,14 +22,6 @@ public class ArchiveModel : BaseSkinModel
     public string SoldDateString { get; }
 
     #endregion Properties
-
-    #region Commands
-
-    public RelayCommand EditCommand { get; }
-
-    public RelayCommand DeleteCommand { get; }
-
-    #endregion Commands
 
     #region Constructor
 
@@ -58,24 +49,7 @@ public class ArchiveModel : BaseSkinModel
         
         BuyDateString = buyDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
         SoldDateString = soldDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
-
-        EditCommand = new(DoEditCommand);
-        DeleteCommand = new(DoDeleteCommand);
     }
 
     #endregion Constructor
-
-    #region Methods
-
-    private void DoEditCommand()
-    {
-
-    }
-
-    private void DoDeleteCommand()
-    {
-
-    }
-
-    #endregion Methods
 }

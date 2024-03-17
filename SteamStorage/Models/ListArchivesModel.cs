@@ -4,6 +4,7 @@ using System.Threading;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Utilities.Events.Archives;
 using SteamStorage.ViewModels.UtilityViewModels;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
@@ -18,6 +19,14 @@ public class ListArchivesModel : ModelBase
     private const string EMPTY_LIST_TEXT = "Элементы не найдены";
 
     #endregion Constants
+    
+    #region Events
+    
+    public delegate void EditArchiveEventHandler(object? sender, EditArchiveEventArgs args);
+
+    public event EditArchiveEventHandler? EditArchive;
+    
+    #endregion Events
 
     #region Fields
 
@@ -355,6 +364,10 @@ public class ListArchivesModel : ModelBase
     #region Commands
 
     public RelayCommand ClearFiltersCommand { get; }
+    
+    public RelayCommand<ArchiveModel> EditCommand { get; }
+
+    public RelayCommand<ArchiveModel> DeleteCommand { get; }
 
     #endregion Commands
 
@@ -383,6 +396,8 @@ public class ListArchivesModel : ModelBase
         PageSize = 20;
 
         ClearFiltersCommand = new(DoClearFiltersCommand);
+        EditCommand = new(DoEditCommand);
+        DeleteCommand = new(DoDeleteCommand);
     }
 
     #endregion Constructor
@@ -408,6 +423,16 @@ public class ListArchivesModel : ModelBase
         IsAscending = null;
         PageNumber = 1;
         SetOrderingsNull();
+    }
+    
+    private void DoEditCommand(ArchiveModel? model)
+    {
+        OnEditArchive(model);
+    }
+
+    private void DoDeleteCommand(ArchiveModel? model)
+    {
+
     }
 
     private void SetOrderingsNull()
@@ -453,10 +478,16 @@ public class ListArchivesModel : ModelBase
         ArchiveModels = archivesResponse.Archives.Select(x =>
                 new ArchiveViewModel(
                     new(x.Skin.Id, x.Skin.SkinIconUrl, x.Skin.MarketUrl, x.Skin.Title, x.Count, x.BuyPrice, x.SoldPrice,
-                        x.SoldSum, _userModel.CurrencyMark, x.Change, x.BuyDate, x.SoldDate)))
+                        x.SoldSum, _userModel.CurrencyMark, x.Change, x.BuyDate, x.SoldDate),
+                    this))
             .ToList();
 
         IsLoading = false;
+    }
+    
+    private void OnEditArchive(ArchiveModel? model)
+    {
+        EditArchive?.Invoke(this, new(model));
     }
 
     #endregion Methods

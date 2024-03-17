@@ -35,10 +35,12 @@
 									          Command="{Binding OpenInSteamCommand, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Изменить элемент архива" 
-									          Command="{Binding EditCommand, Mode=OneWay}"/>
+									          Command="{Binding EditCommand, Mode=OneWay}"
+									          CommandParameter="{Binding ArchiveModel, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Удалить элемент архива" 
-									          Command="{Binding DeleteCommand, Mode=OneWay}"/>
+									          Command="{Binding DeleteCommand, Mode=OneWay}"
+									          CommandParameter="{Binding ArchiveModel, Mode=OneWay}"/>
 								</ContextMenu>
 							</Border.ContextMenu>
 							

@@ -52,6 +52,7 @@ public class ActivesModel : ModelBase
         ActiveEditViewModel activeEditViewModel,
         ActiveSoldViewModel activeSoldViewModel,
         ActiveGroupsModel activeGroupsModel,
+        ListActivesModel listActivesModel,
         ListItemsModel listItemsModel)
     {
         SecondaryNavigationOptions =
@@ -70,6 +71,9 @@ public class ActivesModel : ModelBase
         activeGroupsModel.OpenActives += OpenActivesHandler;
         activeGroupsModel.EditActiveGroup += EditActiveGroupHandler;
 
+        listActivesModel.EditActive += EditActiveHandler;
+        listActivesModel.SoldActive += SoldActiveHandler;
+
         listItemsModel.AddToActives += AddToActivesHandler;
     }
 
@@ -86,12 +90,28 @@ public class ActivesModel : ModelBase
     
     private void OpenActivesHandler(object? sender, OpenActivesEventArgs args)
     {
-        
+        SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ListActivesViewModel));
+
+        SelectedSecondaryNavigationModel = navigationModel;
     }
     
     private void EditActiveGroupHandler(object? sender, EditActiveGroupEventArgs args)
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveGroupEditViewModel));
+
+        SelectedSecondaryNavigationModel = navigationModel;
+    }
+    
+    private void EditActiveHandler(object? sender, EditActiveEventArgs args)
+    {
+        SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveEditViewModel));
+
+        SelectedSecondaryNavigationModel = navigationModel;
+    }
+    
+    private void SoldActiveHandler(object? sender, SoldActiveEventArgs args)
+    {
+        SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveSoldViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
     }

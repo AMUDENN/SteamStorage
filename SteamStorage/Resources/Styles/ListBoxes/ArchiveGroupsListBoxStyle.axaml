@@ -39,11 +39,11 @@
 							
 							<Border.ContextMenu>
 								<ContextMenu>
-									<MenuItem Header="Открыть список активов" 
+									<MenuItem Header="Открыть архив" 
 									          Command="{Binding OpenArchivesCommand, Mode=OneWay}"
 									          CommandParameter="{Binding ArchiveGroupModel, Mode=OneWay}"/>
 									<Separator/>
-									<MenuItem Header="Добавить актив" 
+									<MenuItem Header="Добавить элемент архива" 
 									          Command="{Binding AddArchiveCommand, Mode=OneWay}"
 									          CommandParameter="{Binding ArchiveGroupModel, Mode=OneWay}"/>
 									<Separator/>

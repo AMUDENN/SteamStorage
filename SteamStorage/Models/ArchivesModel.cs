@@ -51,6 +51,7 @@ public class ArchivesModel : ModelBase
         ArchiveGroupEditViewModel archiveGroupEditViewModel,
         ArchiveEditViewModel archiveEditViewModel,
         ArchiveGroupsModel archiveGroupsModel,
+        ListArchivesModel listArchivesModel,
         ListItemsModel listItemsModel)
     {
         SecondaryNavigationOptions =
@@ -68,6 +69,8 @@ public class ArchivesModel : ModelBase
         archiveGroupsModel.OpenArchives += OpenArchivesHandler;
         archiveGroupsModel.EditArchiveGroup += EditArchiveGroupHandler;
 
+        listArchivesModel.EditArchive += EditArchiveHandler;
+
         listItemsModel.AddToArchive += AddToArchiveHandler;
     }
 
@@ -77,17 +80,28 @@ public class ArchivesModel : ModelBase
 
     private void AddArchiveHandler(object? sender, AddArchiveEventArgs args)
     {
-        
+        SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveEditViewModel));
+
+        SelectedSecondaryNavigationModel = navigationModel;
     }
     
     private void OpenArchivesHandler(object? sender, OpenArchivesEventArgs args)
     {
-        
+        SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ListArchivesViewModel));
+
+        SelectedSecondaryNavigationModel = navigationModel;
     }
     
     private void EditArchiveGroupHandler(object? sender, EditArchiveGroupEventArgs args)
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveGroupEditViewModel));
+
+        SelectedSecondaryNavigationModel = navigationModel;
+    }
+    
+    private void EditArchiveHandler(object? sender, EditArchiveEventArgs args)
+    {
+        SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
     }

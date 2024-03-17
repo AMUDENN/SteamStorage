@@ -9,11 +9,17 @@ public class ArchiveViewModel : BaseSkinViewModel
     #region Fields
 
     private readonly ArchiveModel _model;
+    private readonly ListArchivesModel _listArchivesModel;
 
     #endregion Fields
 
     #region Properties
 
+    public ArchiveModel ArchiveModel
+    {
+        get => _model;
+    }
+    
     public int Count
     {
         get => _model.Count;
@@ -53,14 +59,14 @@ public class ArchiveViewModel : BaseSkinViewModel
 
     #region Commands
 
-    public RelayCommand EditCommand
+    public RelayCommand<ArchiveModel>  EditCommand
     {
-        get => _model.EditCommand;
+        get => _listArchivesModel.EditCommand;
     }
 
-    public RelayCommand DeleteCommand
+    public RelayCommand<ArchiveModel>  DeleteCommand
     {
-        get => _model.DeleteCommand;
+        get => _listArchivesModel.DeleteCommand;
     }
 
     #endregion Commands
@@ -68,11 +74,14 @@ public class ArchiveViewModel : BaseSkinViewModel
     #region Constructor
 
     public ArchiveViewModel(
-        ArchiveModel model) : base(model)
+        ArchiveModel model,
+        ListArchivesModel listArchivesModel) : base(model)
     {
         _model = model;
+        _listArchivesModel = listArchivesModel;
 
         model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        listArchivesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor
