@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Utilities.Events.Actives;
+using SteamStorage.Utilities.Events.ListItems;
 using SteamStorage.ViewModels;
 using SteamStorage.ViewModels.Tools;
 
@@ -49,7 +51,8 @@ public class ActivesModel : ModelBase
         ActiveGroupEditViewModel activeGroupEditViewModel,
         ActiveEditViewModel activeEditViewModel,
         ActiveSoldViewModel activeSoldViewModel,
-        ActiveGroupsModel activeGroupsModel)
+        ActiveGroupsModel activeGroupsModel,
+        ListItemsModel listItemsModel)
     {
         SecondaryNavigationOptions =
         [
@@ -66,6 +69,8 @@ public class ActivesModel : ModelBase
         activeGroupsModel.AddActive += AddActiveHandler;
         activeGroupsModel.OpenActives += OpenActivesHandler;
         activeGroupsModel.EditActiveGroup += EditActiveGroupHandler;
+
+        listItemsModel.AddToActives += AddToActivesHandler;
     }
 
     #endregion Constructor
@@ -74,7 +79,9 @@ public class ActivesModel : ModelBase
 
     private void AddActiveHandler(object? sender, AddActiveEventArgs args)
     {
-        
+        SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveEditViewModel));
+
+        SelectedSecondaryNavigationModel = navigationModel;
     }
     
     private void OpenActivesHandler(object? sender, OpenActivesEventArgs args)
@@ -84,10 +91,21 @@ public class ActivesModel : ModelBase
     
     private void EditActiveGroupHandler(object? sender, EditActiveGroupEventArgs args)
     {
-        SecondaryNavigationModel? navigationModel =
-            SecondaryNavigationOptions.FirstOrDefault(x => x.Page.GetType() == typeof(ActiveGroupEditViewModel));
+        SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveGroupEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+    }
+
+    private void AddToActivesHandler(object? sender, AddToActivesEventArgs args)
+    {
+        SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveEditViewModel));
+
+        SelectedSecondaryNavigationModel = navigationModel;
+    }
+
+    private SecondaryNavigationModel? FindViewModel(Type type)
+    {
+        return SecondaryNavigationOptions.FirstOrDefault(x => x.Page.GetType() == type);
     }
 
     #endregion Methods

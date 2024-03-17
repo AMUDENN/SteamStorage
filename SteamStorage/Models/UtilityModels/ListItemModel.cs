@@ -39,14 +39,6 @@ public class ListItemModel : BaseDynamicsSkinModel
 
     #endregion Properties
 
-    #region Commands
-
-    public RelayCommand AddToActivesCommand { get; }
-
-    public RelayCommand AddToArchiveCommand { get; }
-
-    #endregion Commands
-
     #region Constructor
 
     public ListItemModel(
@@ -70,29 +62,16 @@ public class ListItemModel : BaseDynamicsSkinModel
         Change30D = change30D;
 
         _isMarked = isMarked;
-
-        AddToActivesCommand = new(DoAddToActivesCommand);
-        AddToArchiveCommand = new(DoAddToArchiveCommand);
     }
 
     #endregion Constructor
 
     #region Methods
 
-    private void DoAddToActivesCommand()
-    {
-
-    }
-
-    private void DoAddToArchiveCommand()
-    {
-
-    }
-
     private async void PostIsMarked()
     {
         await _apiClient.PostAsync(
-            ApiConstants.ApiControllers.Skins, 
+            ApiConstants.ApiControllers.Skins,
             ApiConstants.ApiMethods.SetMarkedSkin,
             new Skins.SetMarkedSkinRequest(SkinId));
     }
@@ -100,7 +79,7 @@ public class ListItemModel : BaseDynamicsSkinModel
     private async void DeleteMarked()
     {
         await _apiClient.DeleteAsync(
-            ApiConstants.ApiControllers.Skins, 
+            ApiConstants.ApiControllers.Skins,
             ApiConstants.ApiMethods.DeleteMarkedSkin,
             new Skins.DeleteMarkedSkinRequest(SkinId));
     }

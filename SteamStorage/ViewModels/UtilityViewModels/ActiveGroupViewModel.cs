@@ -157,6 +157,7 @@ public class ActiveGroupViewModel : BaseGroupViewModel
         _chartTooltipModel = chartTooltipModel;
 
         model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        activeGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

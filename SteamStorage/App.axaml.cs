@@ -75,6 +75,7 @@ namespace SteamStorage
             services.AddSingleton<ActiveSoldViewModel>();
             services.AddSingleton<ActivesReviewViewModel>();
             services.AddSingleton<ActivesViewModel>();
+            services.AddSingleton<ArchiveEditViewModel>();
             services.AddSingleton<ArchiveGroupEditViewModel>();
             services.AddSingleton<ArchivesReviewViewModel>();
             services.AddSingleton<ArchivesViewModel>();
@@ -98,6 +99,7 @@ namespace SteamStorage
             services.AddSingleton<ActivesReviewModel>();
             services.AddSingleton<ArchiveGroupEditModel>();
             services.AddSingleton<ArchiveGroupsModel>();
+            services.AddSingleton<ArchiveEditModel>();
             services.AddSingleton<ArchivesModel>();
             services.AddSingleton<ArchivesReviewModel>();
             services.AddSingleton<ChartTooltipModel>();

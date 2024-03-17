@@ -33,11 +33,16 @@
 							
 							<Border.ContextMenu>
 								<ContextMenu>
-									<MenuItem Header="Открыть в Steam" Command="{Binding OpenInSteamCommand, Mode=OneWay}"/>
+									<MenuItem Header="Открыть в Steam" 
+									          Command="{Binding OpenInSteamCommand, Mode=OneWay}"/>
 									<Separator/>
-									<MenuItem Header="Добавить в активы" Command="{Binding AddToActivesCommand, Mode=OneWay}"/>
+									<MenuItem Header="Добавить в активы" 
+									          Command="{Binding AddToActivesCommand, Mode=OneWay}"
+									          CommandParameter="{Binding ListItemModel, Mode=OneWay}"/>
 									<Separator/>
-									<MenuItem Header="Добавить в архив" Command="{Binding AddToArchiveCommand, Mode=OneWay}"/>
+									<MenuItem Header="Добавить в архив" 
+									          Command="{Binding AddToArchiveCommand, Mode=OneWay}"
+									          CommandParameter="{Binding ListItemModel, Mode=OneWay}"/>
 								</ContextMenu>
 							</Border.ContextMenu>
 							

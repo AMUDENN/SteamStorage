@@ -1,18 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CommunityToolkit.Mvvm.Input;
-using LiveChartsCore;
-using LiveChartsCore.SkiaSharpView;
-using LiveChartsCore.SkiaSharpView.Painting;
-using SkiaSharp;
-using SteamStorage.Services.ThemeService;
-using SteamStorage.Utilities;
-using SteamStorage.Utilities.Events;
-using SteamStorage.Utilities.ThemeVariants;
-using SteamStorageAPI;
-using SteamStorageAPI.ApiEntities;
-using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models.UtilityModels;
 

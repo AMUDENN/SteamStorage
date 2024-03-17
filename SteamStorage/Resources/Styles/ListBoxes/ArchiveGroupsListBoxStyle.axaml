@@ -41,22 +41,22 @@
 								<ContextMenu>
 									<MenuItem Header="Открыть список активов" 
 									          Command="{Binding OpenArchivesCommand, Mode=OneWay}"
-									          CommandParameter="{Binding ArchiveGroupModel}"/>
+									          CommandParameter="{Binding ArchiveGroupModel, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Добавить актив" 
 									          Command="{Binding AddArchiveCommand, Mode=OneWay}"
-									          CommandParameter="{Binding ArchiveGroupModel}"/>
+									          CommandParameter="{Binding ArchiveGroupModel, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Добавить группу" 
 									          Command="{Binding AddArchiveGroupCommand, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Изменить группу" 
 									          Command="{Binding EditArchiveGroupCommand, Mode=OneWay}"
-									          CommandParameter="{Binding ArchiveGroupModel}"/>
+									          CommandParameter="{Binding ArchiveGroupModel, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Удалить группу" 
 									          Command="{Binding DeleteArchiveGroupCommand, Mode=OneWay}"
-									          CommandParameter="{Binding ArchiveGroupModel}"/>
+									          CommandParameter="{Binding ArchiveGroupModel, Mode=OneWay}"/>
 								</ContextMenu>
 							</Border.ContextMenu>
 							

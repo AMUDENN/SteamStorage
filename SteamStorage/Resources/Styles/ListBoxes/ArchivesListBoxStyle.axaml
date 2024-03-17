@@ -31,11 +31,14 @@
 							
 							<Border.ContextMenu>
 								<ContextMenu>
-									<MenuItem Header="Открыть в Steam" Command="{Binding OpenInSteamCommand, Mode=OneWay}"/>
+									<MenuItem Header="Открыть в Steam" 
+									          Command="{Binding OpenInSteamCommand, Mode=OneWay}"/>
 									<Separator/>
-									<MenuItem Header="Изменить актив" Command="{Binding EditCommand, Mode=OneWay}"/>
+									<MenuItem Header="Изменить актив" 
+									          Command="{Binding EditCommand, Mode=OneWay}"/>
 									<Separator/>
-									<MenuItem Header="Удалить актив" Command="{Binding DeleteCommand, Mode=OneWay}"/>
+									<MenuItem Header="Удалить актив" 
+									          Command="{Binding DeleteCommand, Mode=OneWay}"/>
 								</ContextMenu>
 							</Border.ContextMenu>
 							

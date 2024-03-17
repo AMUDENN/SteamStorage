@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.ThemeService;
+using SteamStorage.Utilities.Events.ListItems;
 using SteamStorage.ViewModels.UtilityViewModels;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
@@ -19,6 +20,18 @@ public class ListItemsModel : ModelBase
     private const string EMPTY_LIST_TEXT = "Элементы не найдены";
 
     #endregion Constants
+    
+    #region Events
+    
+    public delegate void AddToActivesEventHandler(object? sender, AddToActivesEventArgs args);
+
+    public event AddToActivesEventHandler? AddToActives;
+    
+    public delegate void AddToArchiveEventHandler(object? sender, AddToArchiveEventArgs args);
+
+    public event AddToArchiveEventHandler? AddToArchive;
+    
+    #endregion Events
 
     #region Fields
 
@@ -316,6 +329,10 @@ public class ListItemsModel : ModelBase
     #region Commands
 
     public RelayCommand ClearFiltersCommand { get; }
+    
+    public RelayCommand<ListItemModel> AddToActivesCommand { get; }
+    
+    public RelayCommand<ListItemModel> AddToArchiveCommand { get; }
 
     #endregion Commands
 
@@ -350,6 +367,8 @@ public class ListItemsModel : ModelBase
         PageSize = 20;
 
         ClearFiltersCommand = new(DoClearFiltersCommand);
+        AddToActivesCommand = new(DoAddToActivesCommand);
+        AddToArchiveCommand = new(DoAddToArchiveCommand);
     }
 
     #endregion Constructor
@@ -375,6 +394,16 @@ public class ListItemsModel : ModelBase
         IsMarked = false;
         PageNumber = 1;
         SetOrderingsNull();
+    }
+
+    private void DoAddToActivesCommand(ListItemModel? model)
+    {
+        OnAddToActives(model);
+    }
+    
+    private void DoAddToArchiveCommand(ListItemModel? model)
+    {
+        OnAddToArchive(model);
     }
 
     private void SetOrderingsNull()
@@ -419,10 +448,21 @@ public class ListItemsModel : ModelBase
                 new ListItemViewModel(
                     new(_apiClient, _themeService, x.Skin.Id, x.Skin.SkinIconUrl, x.Skin.MarketUrl, x.Skin.Title,
                         x.CurrentPrice, _userModel.CurrencyMark, x.Change7D, x.Change30D, x.IsMarked),
+                    this,
                     _chartTooltipModel))
             .ToList();
 
         IsLoading = false;
+    }
+    
+    private void OnAddToActives(ListItemModel? model)
+    {
+        AddToActives?.Invoke(this, new(model));
+    }
+    
+    private void OnAddToArchive(ListItemModel? model)
+    {
+        AddToArchive?.Invoke(this, new(model));
     }
 
     #endregion Methods

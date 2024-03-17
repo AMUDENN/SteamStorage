@@ -9,11 +9,17 @@ public class ListItemViewModel : BaseDynamicsSkinViewModel
     #region Fields
 
     private readonly ListItemModel _model;
+    private readonly ListItemsModel _listItemsModel;
 
     #endregion Fields
 
     #region Properties
 
+    public ListItemModel ListItemModel
+    {
+        get => _model;
+    }
+    
     public string CurrentPriceString
     {
         get => _model.CurrentPriceString;
@@ -39,14 +45,14 @@ public class ListItemViewModel : BaseDynamicsSkinViewModel
 
     #region Commands
 
-    public RelayCommand AddToActivesCommand
+    public RelayCommand<ListItemModel> AddToActivesCommand
     {
-        get => _model.AddToActivesCommand;
+        get => _listItemsModel.AddToActivesCommand;
     }
 
-    public RelayCommand AddToArchiveCommand
+    public RelayCommand<ListItemModel> AddToArchiveCommand
     {
-        get => _model.AddToArchiveCommand;
+        get => _listItemsModel.AddToArchiveCommand;
     }
 
     #endregion Commands
@@ -55,11 +61,14 @@ public class ListItemViewModel : BaseDynamicsSkinViewModel
 
     public ListItemViewModel(
         ListItemModel model, 
+        ListItemsModel listItemsModel,
         ChartTooltipModel chartTooltipModel) : base(model, chartTooltipModel)
     {
         _model = model;
-
+        _listItemsModel = listItemsModel;
+        
         model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        listItemsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

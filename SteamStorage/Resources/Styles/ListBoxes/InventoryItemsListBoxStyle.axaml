@@ -33,7 +33,8 @@
 							
 							<Border.ContextMenu>
 								<ContextMenu>
-									<MenuItem Header="Открыть в Steam" Command="{Binding OpenInSteamCommand, Mode=OneWay}"/>
+									<MenuItem Header="Открыть в Steam" 
+									          Command="{Binding OpenInSteamCommand, Mode=OneWay}"/>
 								</ContextMenu>
 							</Border.ContextMenu>
 							

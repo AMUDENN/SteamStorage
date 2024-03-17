@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Utilities.Events.Archives;
+using SteamStorage.Utilities.Events.ListItems;
 using SteamStorage.ViewModels;
 using SteamStorage.ViewModels.Tools;
 
@@ -47,14 +49,16 @@ public class ArchivesModel : ModelBase
         ArchivesReviewViewModel archivesReviewViewModel,
         ListArchivesViewModel listArchivesViewModel,
         ArchiveGroupEditViewModel archiveGroupEditViewModel,
-        ArchiveGroupsModel archiveGroupsModel)
+        ArchiveEditViewModel archiveEditViewModel,
+        ArchiveGroupsModel archiveGroupsModel,
+        ListItemsModel listItemsModel)
     {
         SecondaryNavigationOptions =
         [
             new("Обзор", archivesReviewViewModel, true),
             new("Список позиций", listArchivesViewModel, true),
             new("Управление группами", archiveGroupEditViewModel, false),
-            new("Управление позициями", archivesReviewViewModel, false)
+            new("Управление позициями", archiveEditViewModel, false)
         ];
 
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();
@@ -63,6 +67,8 @@ public class ArchivesModel : ModelBase
         archiveGroupsModel.AddArchive += AddArchiveHandler;
         archiveGroupsModel.OpenArchives += OpenArchivesHandler;
         archiveGroupsModel.EditArchiveGroup += EditArchiveGroupHandler;
+
+        listItemsModel.AddToArchive += AddToArchiveHandler;
     }
 
     #endregion Constructor
@@ -81,10 +87,21 @@ public class ArchivesModel : ModelBase
     
     private void EditArchiveGroupHandler(object? sender, EditArchiveGroupEventArgs args)
     {
-        SecondaryNavigationModel? navigationModel =
-            SecondaryNavigationOptions.FirstOrDefault(x => x.Page.GetType() == typeof(ArchiveGroupEditViewModel));
+        SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveGroupEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+    }
+    
+    private void AddToArchiveHandler(object? sender, AddToArchiveEventArgs args)
+    {
+        SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveEditViewModel));
+
+        SelectedSecondaryNavigationModel = navigationModel;
+    }
+    
+    private SecondaryNavigationModel? FindViewModel(Type type)
+    {
+        return SecondaryNavigationOptions.FirstOrDefault(x => x.Page.GetType() == type);
     }
 
     #endregion Methods

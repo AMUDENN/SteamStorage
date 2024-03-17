@@ -43,22 +43,22 @@
 								<ContextMenu>
 									<MenuItem Header="Открыть список активов" 
 									          Command="{Binding OpenActivesCommand, Mode=OneWay}"
-									          CommandParameter="{Binding ActiveGroupModel}"/>
+									          CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Добавить актив" 
 									          Command="{Binding AddActiveCommand, Mode=OneWay}"
-									          CommandParameter="{Binding ActiveGroupModel}"/>
+									          CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Добавить группу" 
 									          Command="{Binding AddActiveGroupCommand, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Изменить группу" 
 									          Command="{Binding EditActiveGroupCommand, Mode=OneWay}"
-									          CommandParameter="{Binding ActiveGroupModel}"/>
+									          CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"/>
 									<Separator/>
 									<MenuItem Header="Удалить группу" 
 									          Command="{Binding DeleteActiveGroupCommand, Mode=OneWay}"
-									          CommandParameter="{Binding ActiveGroupModel}"/>
+									          CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"/>
 								</ContextMenu>
 							</Border.ContextMenu>
 							

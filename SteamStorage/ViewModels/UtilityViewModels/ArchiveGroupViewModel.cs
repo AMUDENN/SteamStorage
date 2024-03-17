@@ -76,6 +76,7 @@ public class ArchiveGroupViewModel : BaseGroupViewModel
         _archiveGroupsModel = archiveGroupsModel;
 
         model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        archiveGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor
