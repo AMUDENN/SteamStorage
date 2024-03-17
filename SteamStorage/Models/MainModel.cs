@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Utilities.Events.ListItems;
 using SteamStorage.ViewModels;
 using SteamStorage.ViewModels.Tools;
 using SteamStorageAPI.Services.AuthorizationService;
@@ -109,12 +111,13 @@ public class MainModel : ModelBase
     public MainModel(
         UserModel userModel,
         IAuthorizationService authorizationService,
+        HomeViewModel homeViewModel,
         ActivesViewModel activesViewModel,
         ArchivesViewModel archivesViewModel,
-        HomeViewModel homeViewModel,
         InventoryViewModel inventoryViewModel,
         ProfileViewModel profileViewModel,
-        SettingsViewModel settingsViewModel)
+        SettingsViewModel settingsViewModel,
+        ListItemsModel listItemsModel)
     {
         _userModel = userModel;
         _authorizationService = authorizationService;
@@ -142,6 +145,9 @@ public class MainModel : ModelBase
         LogOutCommand = new(DoLogOutCommand);
 
         userModel.UserChanged += UserChangedHandler;
+
+        listItemsModel.AddToActives += AddToActivesHandler;
+        listItemsModel.AddToArchive += AddToArchivesHandler;
     }
 
     #endregion Constructor
@@ -155,6 +161,20 @@ public class MainModel : ModelBase
         SteamId = _userModel.User is null ? STEAM_ID : $"{STEAM_ID}: {_userModel.User.SteamId}";
         ImageUrl = _userModel.User?.ImageUrlFull;
     }
+    
+    private void AddToActivesHandler(object? sender, AddToActivesEventArgs args)
+    {
+        NavigationModel? navigationModel = FindViewModel(typeof(ActivesViewModel));
+
+        SelectedNavigationModel = navigationModel;
+    }
+    
+    private void AddToArchivesHandler(object? sender, AddToArchiveEventArgs args)
+    {
+        NavigationModel? navigationModel = FindViewModel(typeof(ArchivesViewModel));
+
+        SelectedNavigationModel = navigationModel;
+    }
 
     private void DoLogInCommand()
     {
@@ -164,6 +184,11 @@ public class MainModel : ModelBase
     private void DoLogOutCommand()
     {
         _authorizationService.LogOut();
+    }
+    
+    private NavigationModel? FindViewModel(Type type)
+    {
+        return NavigationOptions.FirstOrDefault(x => x.Page.GetType() == type);
     }
 
     #endregion Methods

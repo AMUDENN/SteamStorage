@@ -34,10 +34,10 @@
 									<MenuItem Header="Открыть в Steam" 
 									          Command="{Binding OpenInSteamCommand, Mode=OneWay}"/>
 									<Separator/>
-									<MenuItem Header="Изменить актив" 
+									<MenuItem Header="Изменить элемент архива" 
 									          Command="{Binding EditCommand, Mode=OneWay}"/>
 									<Separator/>
-									<MenuItem Header="Удалить актив" 
+									<MenuItem Header="Удалить элемент архива" 
 									          Command="{Binding DeleteCommand, Mode=OneWay}"/>
 								</ContextMenu>
 							</Border.ContextMenu>
