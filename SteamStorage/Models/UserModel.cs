@@ -2,6 +2,7 @@
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Events;
+using SteamStorage.Utilities.Events.Settings;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Utilities;

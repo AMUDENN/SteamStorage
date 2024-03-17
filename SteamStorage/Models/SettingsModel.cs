@@ -6,6 +6,7 @@ using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events;
+using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
 
 namespace SteamStorage.Models;

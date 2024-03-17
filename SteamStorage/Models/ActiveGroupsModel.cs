@@ -3,6 +3,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Utilities.Events.Actives;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Utilities;
@@ -11,6 +12,22 @@ namespace SteamStorage.Models;
 
 public class ActiveGroupsModel : ModelBase
 {
+    #region Events
+    
+    public delegate void AddActiveEventHandler(object? sender, AddActiveEventArgs args);
+
+    public event AddActiveEventHandler? AddActive;
+    
+    public delegate void OpenActivesEventHandler(object? sender, OpenActivesEventArgs args);
+
+    public event OpenActivesEventHandler? OpenActives;
+    
+    public delegate void EditActiveGroupEventHandler(object? sender, EditActiveGroupEventArgs args);
+
+    public event EditActiveGroupEventHandler? EditActiveGroup;
+    
+    #endregion Events
+    
     #region Fields
 
     private readonly ApiClient _apiClient;
@@ -73,22 +90,22 @@ public class ActiveGroupsModel : ModelBase
 
     private void DoAddActiveCommand(ActiveGroupModel? group)
     {
-        
+        OnAddActive(group);
     }
     
     private void DoOpenActivesCommand(ActiveGroupModel? group)
     {
-
+        OnOpenActives(group);
     }
     
     private void DoAddActiveGroupCommand()
     {
-
+        OnEditActiveGroup(null);
     }
     
     private void DoEditActiveGroupCommand(ActiveGroupModel? group)
     {
-
+        OnEditActiveGroup(group);
     }
 
     private void DoDeleteActiveGroupCommand(ActiveGroupModel? group)
@@ -110,6 +127,21 @@ public class ActiveGroupsModel : ModelBase
                 new(null, null));
         if (groupsResponses is null) return;
         ActiveGroupModels = groupsResponses.ActiveGroups.Select(x => new BaseGroupModel(x.Id, x.Title)).ToList();
+    }
+
+    private void OnAddActive(ActiveGroupModel? group)
+    {
+        AddActive?.Invoke(this, new(group));
+    }
+    
+    private void OnOpenActives(ActiveGroupModel? group)
+    {
+        OpenActives?.Invoke(this, new(group));
+    }
+    
+    private void OnEditActiveGroup(ActiveGroupModel? group)
+    {
+        EditActiveGroup?.Invoke(this, new(group));
     }
 
     #endregion Methods

@@ -1,4 +1,5 @@
 ﻿using SteamStorage.Utilities.Events;
+using SteamStorage.Utilities.Events.Settings;
 
 namespace SteamStorage.Services.Settings.SettingsService;
 

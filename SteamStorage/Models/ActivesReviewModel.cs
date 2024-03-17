@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events;
+using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.ViewModels.UtilityViewModels;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;

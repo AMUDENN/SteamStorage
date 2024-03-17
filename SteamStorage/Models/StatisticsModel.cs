@@ -8,6 +8,7 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models.Tools;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events;
+using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;

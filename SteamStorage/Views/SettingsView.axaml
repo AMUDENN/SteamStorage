@@ -105,7 +105,7 @@
                         
                     </Grid>
                     
-                    <controls:HyperlinkButton Content="github.com#SteamStorage" 
+                    <controls:HyperlinkButton Content="github.com/SteamStorage" 
                                               NavigateUrl="https://github.com/AMUDENN/SteamStorage"
                                               Classes="UnderlineHyperlinkButton" 
                                               Grid.Row="2"/>

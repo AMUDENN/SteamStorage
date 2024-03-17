@@ -70,8 +70,10 @@ namespace SteamStorage
             //ViewModels
             services.AddSingleton<MainViewModel>();
 
+            services.AddSingleton<ActiveGroupEditViewModel>();
             services.AddSingleton<ActivesReviewViewModel>();
             services.AddSingleton<ActivesViewModel>();
+            services.AddSingleton<ArchiveGroupEditViewModel>();
             services.AddSingleton<ArchivesReviewViewModel>();
             services.AddSingleton<ArchivesViewModel>();
             services.AddSingleton<HomeViewModel>();
@@ -86,9 +88,11 @@ namespace SteamStorage
             //Models
             services.AddSingleton<MainModel>();
 
+            services.AddSingleton<ActiveGroupEditModel>();
             services.AddSingleton<ActiveGroupsModel>();
             services.AddSingleton<ActivesModel>();
             services.AddSingleton<ActivesReviewModel>();
+            services.AddSingleton<ArchiveGroupEditModel>();
             services.AddSingleton<ArchiveGroupsModel>();
             services.AddSingleton<ArchivesModel>();
             services.AddSingleton<ArchivesReviewModel>();

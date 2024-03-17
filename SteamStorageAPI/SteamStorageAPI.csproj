@@ -4,6 +4,9 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>SteamStorageAPI</Title>
+        <Authors>AMUDENN</Authors>
+        <Description>A class library for interacting with the SteamStorage API</Description>
     </PropertyGroup>
 
     <ItemGroup>

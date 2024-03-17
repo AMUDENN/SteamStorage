@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SteamStorage.Utilities.Events;
+namespace SteamStorage.Utilities.Events.Settings;
 
 public class SettingsPropertyChangedEventArgs : EventArgs
 {

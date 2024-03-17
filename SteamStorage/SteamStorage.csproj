@@ -83,5 +83,9 @@
       <DependentUpon>ArchivesReviewView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ArchiveGroupEditView.axaml.cs">
+      <DependentUpon>ArchiveGroupEditView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

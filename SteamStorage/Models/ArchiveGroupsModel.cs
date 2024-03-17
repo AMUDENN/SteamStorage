@@ -3,6 +3,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Utilities.Events.Archives;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Utilities;
@@ -11,6 +12,22 @@ namespace SteamStorage.Models;
 
 public class ArchiveGroupsModel : ModelBase
 {
+    #region Events
+    
+    public delegate void AddArchiveEventHandler(object? sender, AddArchiveEventArgs args);
+
+    public event AddArchiveEventHandler? AddArchive;
+    
+    public delegate void OpenArchivesEventHandler(object? sender, OpenArchivesEventArgs args);
+
+    public event OpenArchivesEventHandler? OpenArchives;
+    
+    public delegate void EditArchiveGroupEventHandler(object? sender, EditArchiveGroupEventArgs args);
+
+    public event EditArchiveGroupEventHandler? EditArchiveGroup;
+    
+    #endregion Events
+    
     #region Fields
 
     private readonly ApiClient _apiClient;
@@ -73,22 +90,22 @@ public class ArchiveGroupsModel : ModelBase
 
     private void DoAddArchiveCommand(ArchiveGroupModel? group)
     {
-
+        OnAddArchive(group);
     }
 
     private void DoOpenArchivesCommand(ArchiveGroupModel? group)
     {
-
+        OnOpenArchives(group);
     }
 
     private void DoAddArchiveGroupCommand()
     {
-
+        OnEditArchiveGroup(null);
     }
 
     private void DoEditArchiveGroupCommand(ArchiveGroupModel? group)
     {
-
+        OnEditArchiveGroup(group);
     }
 
     private void DoDeleteArchiveGroupCommand(ArchiveGroupModel? group)
@@ -110,6 +127,21 @@ public class ArchiveGroupsModel : ModelBase
                 new(null, null));
         if (groupsResponses is null) return;
         ArchiveGroupModels = groupsResponses.ArchiveGroups.Select(x => new BaseGroupModel(x.Id, x.Title)).ToList();
+    }
+    
+    private void OnAddArchive(ArchiveGroupModel? group)
+    {
+        AddArchive?.Invoke(this, new(group));
+    }
+    
+    private void OnOpenArchives(ArchiveGroupModel? group)
+    {
+        OpenArchives?.Invoke(this, new(group));
+    }
+    
+    private void OnEditArchiveGroup(ArchiveGroupModel? group)
+    {
+        EditArchiveGroup?.Invoke(this, new(group));
     }
 
     #endregion Methods

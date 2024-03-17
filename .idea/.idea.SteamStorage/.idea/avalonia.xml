@@ -125,8 +125,10 @@
         <entry key="SteamStorage/Resources/Themes/ClassicTheme.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Themes/DarkTheme.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Themes/LimeTheme.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/ActiveGroupEditView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ActivesReviewView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ActivesView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/ArchiveGroupEditView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ArchiveView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ArchivesReviewView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/HomeView.axaml" value="SteamStorage/SteamStorage.csproj" />

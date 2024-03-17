@@ -2,6 +2,7 @@
 using System.Linq;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Utilities.Events.Actives;
 using SteamStorage.ViewModels;
 using SteamStorage.ViewModels.Tools;
 
@@ -44,20 +45,48 @@ public class ActivesModel : ModelBase
 
     public ActivesModel(
         ActivesReviewViewModel activesReviewViewModel,
-        ListActivesViewModel listActivesViewModel)
+        ListActivesViewModel listActivesViewModel,
+        ActiveGroupEditViewModel activeGroupEditViewModel,
+        ActiveGroupsModel activeGroupsModel)
     {
         SecondaryNavigationOptions =
         [
             new("Обзор", activesReviewViewModel, true),
             new("Список активов", listActivesViewModel, true),
-            new("Управление группами", activesReviewViewModel, false),
+            new("Управление группами", activeGroupEditViewModel, false),
             new("Управление активами", activesReviewViewModel, false),
             new("Продажа актива", activesReviewViewModel, false)
         ];
 
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();
         _currentViewModel = _selectedSecondaryNavigationModel.Page;
+
+        activeGroupsModel.AddActive += AddActiveHandler;
+        activeGroupsModel.OpenActives += OpenActivesHandler;
+        activeGroupsModel.EditActiveGroup += EditActiveGroupHandler;
     }
 
     #endregion Constructor
+
+    #region Methods
+
+    private void AddActiveHandler(object? sender, AddActiveEventArgs args)
+    {
+        
+    }
+    
+    private void OpenActivesHandler(object? sender, OpenActivesEventArgs args)
+    {
+        
+    }
+    
+    private void EditActiveGroupHandler(object? sender, EditActiveGroupEventArgs args)
+    {
+        SecondaryNavigationModel? navigationModel =
+            SecondaryNavigationOptions.FirstOrDefault(x => x.Page.GetType() == typeof(ActiveGroupEditViewModel));
+
+        SelectedSecondaryNavigationModel = navigationModel;
+    }
+
+    #endregion Methods
 }

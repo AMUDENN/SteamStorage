@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events;
+using SteamStorage.Utilities.Events.Settings;
 using SteamStorageAPI;
 using SteamStorageAPI.Events;
 

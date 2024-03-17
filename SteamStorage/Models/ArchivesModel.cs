@@ -2,6 +2,7 @@
 using System.Linq;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Utilities.Events.Archives;
 using SteamStorage.ViewModels;
 using SteamStorage.ViewModels.Tools;
 
@@ -44,19 +45,47 @@ public class ArchivesModel : ModelBase
 
     public ArchivesModel(
         ArchivesReviewViewModel archivesReviewViewModel,
-        ListArchivesViewModel listArchivesViewModel)
+        ListArchivesViewModel listArchivesViewModel,
+        ArchiveGroupEditViewModel archiveGroupEditViewModel,
+        ArchiveGroupsModel archiveGroupsModel)
     {
         SecondaryNavigationOptions =
         [
             new("Обзор", archivesReviewViewModel, true),
             new("Список позиций", listArchivesViewModel, true),
-            new("Управление группами", archivesReviewViewModel, false),
+            new("Управление группами", archiveGroupEditViewModel, false),
             new("Управление позициями", archivesReviewViewModel, false)
         ];
 
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();
         _currentViewModel = _selectedSecondaryNavigationModel.Page;
+        
+        archiveGroupsModel.AddArchive += AddArchiveHandler;
+        archiveGroupsModel.OpenArchives += OpenArchivesHandler;
+        archiveGroupsModel.EditArchiveGroup += EditArchiveGroupHandler;
     }
 
     #endregion Constructor
+    
+    #region Methods
+
+    private void AddArchiveHandler(object? sender, AddArchiveEventArgs args)
+    {
+        
+    }
+    
+    private void OpenArchivesHandler(object? sender, OpenArchivesEventArgs args)
+    {
+        
+    }
+    
+    private void EditArchiveGroupHandler(object? sender, EditArchiveGroupEventArgs args)
+    {
+        SecondaryNavigationModel? navigationModel =
+            SecondaryNavigationOptions.FirstOrDefault(x => x.Page.GetType() == typeof(ArchiveGroupEditViewModel));
+
+        SelectedSecondaryNavigationModel = navigationModel;
+    }
+
+    #endregion Methods
 }

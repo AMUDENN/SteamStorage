@@ -1,5 +1,6 @@
 ﻿using Avalonia.Styling;
 using SteamStorage.Utilities.Events;
+using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
 
 namespace SteamStorage.Services.ThemeService;
