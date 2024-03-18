@@ -81,26 +81,24 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Border Background="{TemplateBinding Background}">
-                        <Grid>
-                            <Grid x:Name="ContentGrid"
-                                  Height="60"
-                                  Margin="20, 0">
-                                <Border x:Name="PointerOverBorder"
-                                        Classes="BackgroundBorder BigRoundedBorder"
-                                        Opacity="0"/>
-                                    <Grid x:Name="GridTitle"
-                                          ColumnDefinitions="60, Auto">
-                                        <ContentPresenter Content="{TemplateBinding Content}"
-                                                          Margin="14"
-                                                          Grid.Column="0"/>
-                                        <TextBlock x:Name="TitleTextBlock"
-                                                   Text="{TemplateBinding Tag}"
-                                                   Foreground="{TemplateBinding Foreground}"
-                                                   Classes="MiddleTextBlock"
-                                                   IsVisible="True"
-                                                   Grid.Column="1"/>
-                                    </Grid>
-                            </Grid>
+                        <Grid x:Name="ContentGrid"
+                              Height="60"
+                              Margin="20, 0">
+                            <Border x:Name="PointerOverBorder"
+                                    Classes="BackgroundBorder BigRoundedBorder"
+                                    Opacity="0"/>
+                                <Grid x:Name="GridTitle"
+                                      ColumnDefinitions="60, Auto">
+                                    <ContentPresenter Content="{TemplateBinding Content}"
+                                                      Margin="14"
+                                                      Grid.Column="0"/>
+                                    <TextBlock x:Name="TitleTextBlock"
+                                               Text="{TemplateBinding Tag}"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               Classes="MiddleTextBlock CenterTextBlock"
+                                               IsVisible="True"
+                                               Grid.Column="1"/>
+                                </Grid>
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -125,6 +123,9 @@
         </Style>
         <Style Selector="^.UnderlineImageTextButton /template/ TextBlock#TitleTextBlock">
             <Setter Property="TextDecorations" Value="Underline"/>
+        </Style>
+        <Style Selector="^.TransparentImageTextButton /template/ Border#PointerOverBorder">
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
     </Style>
     
@@ -164,7 +165,7 @@
             <Setter.Value>
                 <ControlTemplate>
                     <TextBlock Text="{TemplateBinding Content}"
-                               Classes="UnderlineTextBlock MiddleTextBlock"
+                               Classes="UnderlineTextBlock MiddleTextBlock CenterTextBlock"
                                Foreground="{TemplateBinding Foreground}"/>
                 </ControlTemplate>
             </Setter.Value>

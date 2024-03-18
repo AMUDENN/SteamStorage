@@ -179,4 +179,13 @@ public class ListActivesViewModel : ViewModelBase
     }
 
     #endregion Constructor
+    
+    #region Methods
+
+    public void OpenActiveGroup(ActiveGroupModel? model)
+    {
+        _listActivesModel.OpenActiveGroup(model);
+    }
+    
+    #endregion Methods
 }

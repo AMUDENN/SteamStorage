@@ -457,6 +457,11 @@ public class ListActivesModel : ModelBase
     {
 
     }
+    
+    public void OpenActiveGroup(ActiveGroupModel? model)
+    {
+        
+    }
 
     private void SetOrderingsNull()
     {

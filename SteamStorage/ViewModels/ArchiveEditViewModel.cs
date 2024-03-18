@@ -30,5 +30,15 @@ public class ArchiveEditViewModel : ViewModelBase
         _archiveEditModel.SetEditArchive(model);
     }
     
+    public void SetAddArchive(ArchiveGroupModel? model)
+    {
+        _archiveEditModel.SetAddArchive(model);
+    }
+    
+    public void SetAddArchive(ListItemModel? model)
+    {
+        _archiveEditModel.SetAddArchive(model);
+    }
+    
     #endregion Methods
 }

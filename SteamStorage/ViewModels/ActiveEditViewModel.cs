@@ -30,5 +30,15 @@ public class ActiveEditViewModel : ViewModelBase
         _activeEditModel.SetEditActive(model);
     }
     
+    public void SetAddActive(ActiveGroupModel? model)
+    {
+        _activeEditModel.SetAddActive(model);
+    }
+    
+    public void SetAddActive(ListItemModel? model)
+    {
+        _activeEditModel.SetAddActive(model);
+    }
+    
     #endregion Methods
 }

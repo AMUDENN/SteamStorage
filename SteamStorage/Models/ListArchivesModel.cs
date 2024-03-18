@@ -435,6 +435,11 @@ public class ListArchivesModel : ModelBase
 
     }
 
+    public void OpenArchiveGroup(ArchiveGroupModel? model)
+    {
+        
+    }
+    
     private void SetOrderingsNull()
     {
         IsTitleOrdering = null;

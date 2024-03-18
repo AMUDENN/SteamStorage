@@ -86,6 +86,8 @@ public class ActivesModel : ModelBase
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+        
+        (navigationModel?.Page as ActiveEditViewModel)?.SetAddActive(args.Group);
     }
     
     private void OpenActivesHandler(object? sender, OpenActivesEventArgs args)
@@ -93,6 +95,8 @@ public class ActivesModel : ModelBase
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ListActivesViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+        
+        (navigationModel?.Page as ListActivesViewModel)?.OpenActiveGroup(args.Group);
     }
     
     private void EditActiveGroupHandler(object? sender, EditActiveGroupEventArgs args)
@@ -100,6 +104,8 @@ public class ActivesModel : ModelBase
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveGroupEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+        
+        (navigationModel?.Page as ActiveGroupEditViewModel)?.SetEditGroup(args.Group);
     }
     
     private void EditActiveHandler(object? sender, EditActiveEventArgs args)
@@ -107,6 +113,8 @@ public class ActivesModel : ModelBase
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+        
+        (navigationModel?.Page as ActiveEditViewModel)?.SetEditActive(args.ActiveModel);
     }
     
     private void SoldActiveHandler(object? sender, SoldActiveEventArgs args)
@@ -114,6 +122,8 @@ public class ActivesModel : ModelBase
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveSoldViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+        
+        (navigationModel?.Page as ActiveSoldViewModel)?.SetSoldActive(args.ActiveModel);
     }
 
     private void AddToActivesHandler(object? sender, AddToActivesEventArgs args)
@@ -121,6 +131,8 @@ public class ActivesModel : ModelBase
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+        
+        (navigationModel?.Page as ActiveEditViewModel)?.SetAddActive(args.ListItem);
     }
 
     private SecondaryNavigationModel? FindViewModel(Type type)

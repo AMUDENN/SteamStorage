@@ -18,12 +18,12 @@ public class ListArchivesViewModel : ViewModelBase
     #endregion Fields
 
     #region Properties
-    
+
     public IEnumerable<BaseGroupModel> ArchiveGroupModels
     {
         get => _archiveGroupsModel.ArchiveGroupModels;
     }
-    
+
     public BaseGroupModel? SelectedGroupModel
     {
         get => _listArchivesModel.SelectedGroupModel;
@@ -58,31 +58,31 @@ public class ListArchivesViewModel : ViewModelBase
         get => _listArchivesModel.IsTitleOrdering;
         set => _listArchivesModel.IsTitleOrdering = value;
     }
-    
+
     public bool? IsCountOrdering
     {
         get => _listArchivesModel.IsCountOrdering;
         set => _listArchivesModel.IsCountOrdering = value;
     }
-    
+
     public bool? IsBuyPriceOrdering
     {
         get => _listArchivesModel.IsBuyPriceOrdering;
         set => _listArchivesModel.IsBuyPriceOrdering = value;
     }
-    
+
     public bool? IsSoldPriceOrdering
     {
         get => _listArchivesModel.IsSoldPriceOrdering;
         set => _listArchivesModel.IsSoldPriceOrdering = value;
     }
-    
+
     public bool? IsSoldSumOrdering
     {
         get => _listArchivesModel.IsSoldSumOrdering;
         set => _listArchivesModel.IsSoldSumOrdering = value;
     }
-    
+
     public bool? IsChangeOrdering
     {
         get => _listArchivesModel.IsChangeOrdering;
@@ -174,9 +174,18 @@ public class ListArchivesViewModel : ViewModelBase
         _gamesModel = gamesModel;
 
         listArchivesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
-        archiveGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName); 
+        archiveGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         gamesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor
+
+    #region Methods
+
+    public void OpenArchiveGroup(ArchiveGroupModel? model)
+    {
+        _listArchivesModel.OpenArchiveGroup(model);
+    }
+
+    #endregion Methods
 }

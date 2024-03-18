@@ -83,6 +83,8 @@ public class ArchivesModel : ModelBase
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+
+        (navigationModel?.Page as ArchiveEditViewModel)?.SetAddArchive(args.Group);
     }
     
     private void OpenArchivesHandler(object? sender, OpenArchivesEventArgs args)
@@ -90,6 +92,8 @@ public class ArchivesModel : ModelBase
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ListArchivesViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+        
+        (navigationModel?.Page as ListArchivesViewModel)?.OpenArchiveGroup(args.Group);
     }
     
     private void EditArchiveGroupHandler(object? sender, EditArchiveGroupEventArgs args)
@@ -97,6 +101,8 @@ public class ArchivesModel : ModelBase
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveGroupEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+        
+        (navigationModel?.Page as ArchiveGroupEditViewModel)?.SetEditGroup(args.Group);
     }
     
     private void EditArchiveHandler(object? sender, EditArchiveEventArgs args)
@@ -104,6 +110,8 @@ public class ArchivesModel : ModelBase
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+        
+        (navigationModel?.Page as ArchiveEditViewModel)?.SetEditArchive(args.ArchiveModel);
     }
     
     private void AddToArchiveHandler(object? sender, AddToArchiveEventArgs args)
@@ -111,6 +119,8 @@ public class ArchivesModel : ModelBase
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
+        
+        (navigationModel?.Page as ArchiveEditViewModel)?.SetAddArchive(args.ListItem);
     }
     
     private SecondaryNavigationModel? FindViewModel(Type type)
