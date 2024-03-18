@@ -40,7 +40,7 @@ public static class ActiveGroups
         int Id,
         DateTime DateUpdate,
         decimal Sum) : Response;
-        
+
     public record ActiveGroupDynamicStatsResponse(
         double ChangePeriod,
         IEnumerable<ActiveGroupDynamicResponse> Dynamic) : Response;

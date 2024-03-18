@@ -130,14 +130,14 @@ public class ActiveGroupViewModel : BaseGroupViewModel
 
     public RelayCommand AddActiveGroupCommand
     {
-        get => _activeGroupsModel.AddActiveGroupCommand; 
+        get => _activeGroupsModel.AddActiveGroupCommand;
     }
-    
+
     public RelayCommand<ActiveGroupModel> EditActiveGroupCommand
     {
         get => _activeGroupsModel.EditActiveGroupCommand;
     }
-    
+
     public RelayCommand<ActiveGroupModel> DeleteActiveGroupCommand
     {
         get => _activeGroupsModel.DeleteActiveGroupCommand;

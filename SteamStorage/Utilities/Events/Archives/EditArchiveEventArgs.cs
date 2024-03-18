@@ -1,8 +1,9 @@
-﻿using SteamStorage.Models.UtilityModels;
+﻿using System;
+using SteamStorage.Models.UtilityModels;
 
 namespace SteamStorage.Utilities.Events.Archives;
 
-public class EditArchiveEventArgs
+public class EditArchiveEventArgs : EventArgs
 {
     #region Properties
 

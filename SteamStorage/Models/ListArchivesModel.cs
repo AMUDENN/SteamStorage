@@ -19,13 +19,13 @@ public class ListArchivesModel : ModelBase
     private const string EMPTY_LIST_TEXT = "Элементы не найдены";
 
     #endregion Constants
-    
+
     #region Events
-    
+
     public delegate void EditArchiveEventHandler(object? sender, EditArchiveEventArgs args);
 
     public event EditArchiveEventHandler? EditArchive;
-    
+
     #endregion Events
 
     #region Fields
@@ -364,7 +364,7 @@ public class ListArchivesModel : ModelBase
     #region Commands
 
     public RelayCommand ClearFiltersCommand { get; }
-    
+
     public RelayCommand<ArchiveModel> EditCommand { get; }
 
     public RelayCommand<ArchiveModel> DeleteCommand { get; }
@@ -424,7 +424,7 @@ public class ListArchivesModel : ModelBase
         PageNumber = 1;
         SetOrderingsNull();
     }
-    
+
     private void DoEditCommand(ArchiveModel? model)
     {
         OnEditArchive(model);
@@ -437,9 +437,9 @@ public class ListArchivesModel : ModelBase
 
     public void OpenArchiveGroup(ArchiveGroupModel? model)
     {
-        
+
     }
-    
+
     private void SetOrderingsNull()
     {
         IsTitleOrdering = null;
@@ -489,7 +489,7 @@ public class ListArchivesModel : ModelBase
 
         IsLoading = false;
     }
-    
+
     private void OnEditArchive(ArchiveModel? model)
     {
         EditArchive?.Invoke(this, new(model));

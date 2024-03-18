@@ -1,7 +1,6 @@
 ﻿using SteamStorage.Models.Tools;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Utilities;
-using SteamStorage.Utilities.Events;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
@@ -66,14 +65,14 @@ public class UserModel : ModelBase
     #region Constructor
 
     public UserModel(
-        ApiClient apiClient, 
+        ApiClient apiClient,
         ISettingsService settingsService)
     {
         _apiClient = apiClient;
         _settingsService = settingsService;
-        
+
         settingsService.SettingsPropertyChanged += SettingsPropertyChangedHandler;
-        
+
         SetUser();
     }
 
@@ -100,7 +99,7 @@ public class UserModel : ModelBase
     {
         Currency = await _apiClient.GetAsync<Currencies.CurrencyResponse, Currencies.GetCurrencyRequest>(
             ApiConstants.ApiControllers.Currencies,
-            ApiConstants.ApiMethods.GetCurrency, 
+            ApiConstants.ApiMethods.GetCurrency,
             new(User?.CurrencyId ?? ProgramConstants.BASE_CURRENCY_ID));
     }
 

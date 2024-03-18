@@ -22,13 +22,13 @@ public class ArchiveGroupEditViewModel : ViewModelBase
     }
 
     #endregion Constructor
-    
+
     #region Methods
 
     public void SetEditGroup(ArchiveGroupModel? model)
     {
         _archiveGroupEditModel.SetEditGroup(model);
     }
-    
+
     #endregion Methods
 }

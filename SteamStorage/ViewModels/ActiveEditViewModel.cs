@@ -22,23 +22,23 @@ public class ActiveEditViewModel : ViewModelBase
     }
 
     #endregion Constructor
-    
+
     #region Methods
 
     public void SetEditActive(ActiveModel? model)
     {
         _activeEditModel.SetEditActive(model);
     }
-    
+
     public void SetAddActive(ActiveGroupModel? model)
     {
         _activeEditModel.SetAddActive(model);
     }
-    
+
     public void SetAddActive(ListItemModel? model)
     {
         _activeEditModel.SetAddActive(model);
     }
-    
+
     #endregion Methods
 }

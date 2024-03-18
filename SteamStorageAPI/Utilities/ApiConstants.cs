@@ -41,7 +41,7 @@ public static class ApiConstants
         PostActiveGroup,
         PutActiveGroup,
         DeleteActiveGroup,
-        
+
         GetActives = 200,
         GetActivesPagesCount,
         GetActivesCount,
@@ -49,36 +49,36 @@ public static class ApiConstants
         PutActive,
         SoldActive,
         DeleteActive,
-        
+
         GetArchiveGroups = 300,
         GetArchiveGroupsCount,
         PostArchiveGroup,
         PutArchiveGroup,
         DeleteArchiveGroup,
-        
+
         GetArchives = 400,
         GetArchivesPagesCount,
         GetArchivesCount,
         PostArchive,
         PutArchive,
         DeleteArchive,
-        
+
         GetAuthUrl = 500,
-        
+
         GetCurrencies = 600,
         GetCurrency,
         SetCurrency,
-        
+
         GetGames = 700,
-        
+
         GetInventory = 800,
         GetInventoryPagesCount,
         GetSavedInventoriesCount,
         RefreshInventory,
-        
+
         GetPages = 900,
         SetStartPage,
-        
+
         GetSkinInfo = 1000,
         GetSkins,
         GetSkinDynamics,
@@ -87,14 +87,14 @@ public static class ApiConstants
         GetSavedSkinsCount,
         SetMarkedSkin,
         DeleteMarkedSkin,
-        
+
         GetInvestmentSum = 1100,
         GetFinancialGoal,
         GetActiveStatistic,
         GetArchiveStatistic,
         GetInventoryStatistic,
         GetItemsCount,
-        
+
         GetCurrentUserInfo = 1200,
         PutGoalSum,
         DeleteUser

@@ -1,8 +1,9 @@
-﻿using SteamStorage.Models.UtilityModels;
+﻿using System;
+using SteamStorage.Models.UtilityModels;
 
 namespace SteamStorage.Utilities.Events.ListItems;
 
-public class AddToActivesEventArgs
+public class AddToActivesEventArgs : EventArgs
 {
     #region Properties
 

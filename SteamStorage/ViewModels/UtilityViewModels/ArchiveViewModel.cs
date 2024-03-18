@@ -19,7 +19,7 @@ public class ArchiveViewModel : BaseSkinViewModel
     {
         get => _model;
     }
-    
+
     public int Count
     {
         get => _model.Count;
@@ -44,12 +44,12 @@ public class ArchiveViewModel : BaseSkinViewModel
     {
         get => _model.Change;
     }
-    
+
     public string BuyDateString
     {
         get => _model.BuyDateString;
     }
-    
+
     public string SoldDateString
     {
         get => _model.SoldDateString;
@@ -59,12 +59,12 @@ public class ArchiveViewModel : BaseSkinViewModel
 
     #region Commands
 
-    public RelayCommand<ArchiveModel>  EditCommand
+    public RelayCommand<ArchiveModel> EditCommand
     {
         get => _listArchivesModel.EditCommand;
     }
 
-    public RelayCommand<ArchiveModel>  DeleteCommand
+    public RelayCommand<ArchiveModel> DeleteCommand
     {
         get => _listArchivesModel.DeleteCommand;
     }

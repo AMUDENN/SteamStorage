@@ -15,7 +15,7 @@ public class ProfileViewModel : ViewModelBase
     private readonly PagesModel _pagesModel;
 
     #endregion Fields
-    
+
     #region Properties
 
     public string? ImageUrl
@@ -37,33 +37,33 @@ public class ProfileViewModel : ViewModelBase
     {
         get => _profileModel.Role;
     }
-    
+
     public string? DateRegistration
     {
         get => _profileModel.DateRegistration;
     }
-    
+
     public IEnumerable<CurrencyModel> CurrencyModels
     {
         get => _currenciesModel.CurrencyModels;
     }
-    
+
     public CurrencyModel? SelectedCurrency
     {
         get => _profileModel.SelectedCurrency;
         set => _profileModel.SelectedCurrency = value;
     }
-    
+
     public string? ExchangeRate
     {
         get => _profileModel.ExchangeRate;
     }
-    
+
     public IEnumerable<PageModel> PageModels
     {
         get => _pagesModel.PageModels;
     }
-    
+
     public PageModel? SelectedPage
     {
         get => _profileModel.SelectedPage;
@@ -71,26 +71,26 @@ public class ProfileViewModel : ViewModelBase
     }
 
     #endregion Properties
-    
+
     #region Commands
 
     public RelayCommand OpenSteamProfileCommand
     {
         get => _profileModel.OpenSteamProfileCommand;
     }
-    
+
     public RelayCommand DeleteProfileCommand
     {
         get => _profileModel.DeleteProfileCommand;
     }
-    
+
     public RelayCommand AttachedToVisualTreeCommand
     {
         get => _profileModel.AttachedToVisualTreeCommand;
     }
-    
+
     #endregion Commands
-    
+
     #region Constructor
 
     public ProfileViewModel(

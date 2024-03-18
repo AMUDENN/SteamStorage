@@ -306,7 +306,7 @@ public class InventoryModel : ModelBase
     public RelayCommand ClearFiltersCommand { get; }
 
     public RelayCommand RefreshInventoryCommand { get; }
-    
+
     public RelayCommand AttachedToVisualTreeCommand { get; }
 
     #endregion Commands

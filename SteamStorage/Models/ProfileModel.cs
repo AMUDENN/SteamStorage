@@ -18,13 +18,13 @@ public class ProfileModel : ModelBase
     private string? _imageUrl;
     private string? _userName;
     private string? _steamId;
-    
+
     private string? _role;
-    
+
     private string? _dateRegistration;
 
     private CurrencyModel? _selectedCurrency;
-    
+
     private string? _exchangeRate;
 
     private PageModel? _selectedPage;
@@ -50,13 +50,13 @@ public class ProfileModel : ModelBase
         get => _steamId;
         private set => SetProperty(ref _steamId, value);
     }
-    
+
     public string? Role
     {
         get => _role;
         private set => SetProperty(ref _role, value);
     }
-    
+
     public string? DateRegistration
     {
         get => _dateRegistration;
@@ -73,33 +73,33 @@ public class ProfileModel : ModelBase
             SetProperty(ref _selectedCurrency, value);
         }
     }
-    
+
     public string? ExchangeRate
     {
         get => _exchangeRate;
         private set => SetProperty(ref _exchangeRate, value);
     }
-    
+
     public PageModel? SelectedPage
     {
         get => _selectedPage;
         set
         {
-            SetProperty(ref _selectedPage, value); 
+            SetProperty(ref _selectedPage, value);
             SetPage();
         }
     }
 
     #endregion Properties
-    
+
     #region Commands
-    
+
     public RelayCommand OpenSteamProfileCommand { get; }
-    
+
     public RelayCommand DeleteProfileCommand { get; }
-    
+
     public RelayCommand AttachedToVisualTreeCommand { get; }
-    
+
     #endregion Commands
 
     #region Constructor
@@ -117,7 +117,7 @@ public class ProfileModel : ModelBase
         userModel.CurrencyChanged += CurrencyChangedHandler;
 
         currenciesModel.CurrenciesLoaded += CurrenciesLoadedHandler;
-        
+
         pagesModel.PagesLoaded += PagesLoadedHandler;
 
         OpenSteamProfileCommand = new(DoOpenSteamProfileCommand);
@@ -167,7 +167,7 @@ public class ProfileModel : ModelBase
     {
         SelectedCurrency = _currenciesModel.CurrencyModels.FirstOrDefault(x => x.Id == _userModel.Currency?.Id);
     }
-    
+
     private void PagesLoadedHandler(object? sender)
     {
         SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.User?.StartPageId);
@@ -175,12 +175,12 @@ public class ProfileModel : ModelBase
 
     private void DoOpenSteamProfileCommand()
     {
-        
+
     }
 
     private void DoDeleteProfileCommand()
     {
-        
+
     }
 
     private void DoAttachedToVisualTreeCommand()
@@ -196,7 +196,7 @@ public class ProfileModel : ModelBase
 
     private void SetPage()
     {
-        
+
     }
 
     #endregion Methods

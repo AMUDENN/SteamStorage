@@ -15,9 +15,9 @@ public class PagesModel : ModelBase
     public delegate void PagesLoadedEventHandler(object? sender);
 
     public event PagesLoadedEventHandler? PagesLoaded;
-    
+
     #endregion Events
-    
+
     #region Fields
 
     private readonly ApiClient _apiClient;
@@ -62,7 +62,7 @@ public class PagesModel : ModelBase
         PageModels = pageResponses.Select(x => new PageModel(x.Id, x.Title)).ToList();
         OnPagesLoaded();
     }
-    
+
     private void OnPagesLoaded()
     {
         PagesLoaded?.Invoke(this);

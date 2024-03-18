@@ -22,13 +22,13 @@ public class ActiveGroupEditViewModel : ViewModelBase
     }
 
     #endregion Constructor
-    
+
     #region Methods
 
     public void SetEditGroup(ActiveGroupModel? model)
     {
         _activeGroupEditModel.SetEditGroup(model);
     }
-    
+
     #endregion Methods
 }

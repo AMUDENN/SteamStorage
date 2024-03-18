@@ -24,8 +24,8 @@ public class NavigationModel
     #region Constructor
 
     public NavigationModel(
-        string image, 
-        string title, 
+        string image,
+        string title,
         ViewModelBase page)
     {
         VectorImage newImage = new();

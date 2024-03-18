@@ -34,7 +34,7 @@ public class ArchiveGroupViewModel : BaseGroupViewModel
     {
         get => _model.Change;
     }
-    
+
     #endregion Properties
 
     #region Commands
@@ -51,14 +51,14 @@ public class ArchiveGroupViewModel : BaseGroupViewModel
 
     public RelayCommand AddArchiveGroupCommand
     {
-        get => _archiveGroupsModel.AddArchiveGroupCommand; 
+        get => _archiveGroupsModel.AddArchiveGroupCommand;
     }
-    
+
     public RelayCommand<ArchiveGroupModel> EditArchiveGroupCommand
     {
         get => _archiveGroupsModel.EditArchiveGroupCommand;
     }
-    
+
     public RelayCommand<ArchiveGroupModel> DeleteArchiveGroupCommand
     {
         get => _archiveGroupsModel.DeleteArchiveGroupCommand;

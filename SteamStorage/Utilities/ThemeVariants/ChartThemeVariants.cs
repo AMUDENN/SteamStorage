@@ -14,10 +14,10 @@ public static class ChartThemeVariants
         ThirdAccent,
         FourthAccent,
         FifthAccent,
-        
+
         Positive,
         Negative,
-        
+
         Background,
         Foreground
     }

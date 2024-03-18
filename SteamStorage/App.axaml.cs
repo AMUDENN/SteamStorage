@@ -11,10 +11,7 @@ using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
 using SteamStorageAPI;
-using SteamStorageAPI.Services.AuthorizationService;
-using SteamStorageAPI.Services.Logger.LoggerService;
-using SteamStorageAPI.Services.Ping.PingService;
-using SteamStorageAPI.Utilities;
+using SteamStorageAPI.Utilities.Extensions.ServiceCollection;
 
 namespace SteamStorage
 {
@@ -32,35 +29,30 @@ namespace SteamStorage
         {
             ServiceCollection services = [];
 
-            //ApiClient
-            services.AddHttpClient(ApiConstants.CLIENT_NAME,
-                    client =>
-                    {
-                        client.Timeout = TimeSpan.FromSeconds(15);
-                        client.DefaultRequestHeaders.Clear();
-                        client.DefaultRequestHeaders.Add("Accept", "application/json");
-                    })
-                .AddHttpMessageHandler<TokenHandler>()
-                .AddHttpMessageHandler<UnauthorizedHandler>();
-            services.AddScoped<TokenHandler>();
-            services.AddScoped<UnauthorizedHandler>();
-            services.AddSingleton<ApiClient>();
+            //SteamStorageApi
+            services.AddSteamStorageApi(options =>
+            {
+                options.ClientTimeout = ProgramConstants.API_CLIENT_TIMEOUT;
+            });
 
-            //Custom API Services
-            services.AddSingleton<IAuthorizationService, AuthorizationService>();
-            services.AddSingleton<ILoggerService, LoggerService>(_ =>
-                new(ProgramConstants.LOG_PROGRAM_NAME,
-                    ProgramConstants.LOG_DATE_FORMAT,
-                    ProgramConstants.LOG_DATETIME_FORMAT,
-                    ProgramConstants.LOG_FILES_LIFETIME_DAYS));
-            services.AddSingleton<IPingService, PingService>();
+            //Custom SteamStorageApi Services
+            services.AddSteamStorageAuthorizationService();
+            services.AddSteamStoragePingService();
+            services.AddSteamStorageLoggerService(options =>
+            {
+                options.ProgramName = ProgramConstants.LOG_PROGRAM_NAME;
+                options.DateFormat = ProgramConstants.LOG_DATE_FORMAT;
+                options.DateTimeFormat = ProgramConstants.LOG_DATETIME_FORMAT;
+                options.LogFilesLifetime = ProgramConstants.LOG_FILES_LIFETIME_DAYS;
+            });
+            
 
             //Custom Services
             services.AddScoped<IThemeService, ThemeService>();
-            services.AddSingleton<ISettingsService, SettingsService>(x => 
+            services.AddSingleton<ISettingsService, SettingsService>(x =>
                 new(ProgramConstants.PROGRAM_NAME,
-                x.GetRequiredService<ApiClient>(), 
-                x.GetRequiredService<IThemeService>()));
+                    x.GetRequiredService<ApiClient>(),
+                    x.GetRequiredService<IThemeService>()));
 
             //MainWindow
             services.AddSingleton<MainWindow>();

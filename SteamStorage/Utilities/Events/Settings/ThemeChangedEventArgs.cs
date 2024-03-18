@@ -16,7 +16,7 @@ public class ThemeChangedEventArgs : EventArgs
     #region Constructor
 
     public ThemeChangedEventArgs(
-        ThemeVariant? oldTheme, 
+        ThemeVariant? oldTheme,
         ThemeVariant? newTheme)
     {
         OldTheme = oldTheme;

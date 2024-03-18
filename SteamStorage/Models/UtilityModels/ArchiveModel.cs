@@ -46,7 +46,7 @@ public class ArchiveModel : BaseSkinModel
         SoldSumString = $"{soldSum:N2} {currencyMark}";
 
         Change = change;
-        
+
         BuyDateString = buyDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
         SoldDateString = soldDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
     }

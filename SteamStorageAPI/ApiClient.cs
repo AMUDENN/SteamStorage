@@ -3,11 +3,11 @@ using System.Net.Http.Json;
 using System.Reflection;
 using System.Text;
 using SteamStorageAPI.ApiEntities.Tools;
-using SteamStorageAPI.Events;
 using SteamStorageAPI.Services.Logger.LoggerService;
 using SteamStorageAPI.Services.Ping.PingResult;
 using SteamStorageAPI.Services.Ping.PingService;
 using SteamStorageAPI.Utilities;
+using SteamStorageAPI.Utilities.Events;
 
 namespace SteamStorageAPI;
 
@@ -34,8 +34,8 @@ public class ApiClient
     #region Constructor
 
     public ApiClient(
-        ILoggerService logger, 
-        IPingService ping, 
+        ILoggerService logger,
+        IPingService ping,
         IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
@@ -72,7 +72,7 @@ public class ApiClient
     #region GET
 
     private async Task<TOut?> GetAsync<TOut>(
-        Uri uri, 
+        Uri uri,
         CancellationToken cancellationToken = default)
     {
         try
@@ -94,7 +94,7 @@ public class ApiClient
     }
 
     public async Task<TOut?> GetAsync<TOut>(
-        ApiConstants.ApiControllers apiController, 
+        ApiConstants.ApiControllers apiController,
         ApiConstants.ApiMethods apiMethod,
         CancellationToken cancellationToken = default)
     {
@@ -102,9 +102,9 @@ public class ApiClient
     }
 
     public async Task<TOut?> GetAsync<TOut, TIn>(
-        ApiConstants.ApiControllers apiController, 
+        ApiConstants.ApiControllers apiController,
         ApiConstants.ApiMethods apiMethod,
-        TIn? args = null, 
+        TIn? args = null,
         CancellationToken cancellationToken = default)
         where TIn : Request
     {
@@ -116,9 +116,9 @@ public class ApiClient
     #region POST
 
     private async Task PostAsync<TIn>(
-        Uri uri, 
-        TIn? args = null, 
-        CancellationToken cancellationToken = default) 
+        Uri uri,
+        TIn? args = null,
+        CancellationToken cancellationToken = default)
         where TIn : Request
     {
         try
@@ -137,10 +137,10 @@ public class ApiClient
     }
 
     public async Task PostAsync<TIn>(
-        ApiConstants.ApiControllers apiController, 
-        ApiConstants.ApiMethods apiMethod, 
+        ApiConstants.ApiControllers apiController,
+        ApiConstants.ApiMethods apiMethod,
         TIn? args = null,
-        CancellationToken cancellationToken = default) 
+        CancellationToken cancellationToken = default)
         where TIn : Request
     {
         await PostAsync(CreateUri(apiController, apiMethod), args, cancellationToken);
@@ -151,9 +151,9 @@ public class ApiClient
     #region DELETE
 
     private async Task DeleteAsync<TIn>(
-        Uri uri, 
-        TIn? args = null, 
-        CancellationToken cancellationToken = default) 
+        Uri uri,
+        TIn? args = null,
+        CancellationToken cancellationToken = default)
         where TIn : Request
     {
         try
@@ -178,10 +178,10 @@ public class ApiClient
     }
 
     public async Task DeleteAsync<TIn>(
-        ApiConstants.ApiControllers apiController, 
-        ApiConstants.ApiMethods apiMethod, 
+        ApiConstants.ApiControllers apiController,
+        ApiConstants.ApiMethods apiMethod,
         TIn? args = null,
-        CancellationToken cancellationToken = default) 
+        CancellationToken cancellationToken = default)
         where TIn : Request
     {
         await DeleteAsync(CreateUri(apiController, apiMethod), args, cancellationToken);
@@ -192,23 +192,23 @@ public class ApiClient
     #region Methods
 
     private static string CreateStringUri(
-        ApiConstants.ApiControllers apiController, 
+        ApiConstants.ApiControllers apiController,
         ApiConstants.ApiMethods apiMethod)
     {
         return $"{ApiConstants.SERVER_ADRESS}api/{apiController}/{apiMethod}";
     }
 
     private static Uri CreateUri(
-        ApiConstants.ApiControllers apiController, 
+        ApiConstants.ApiControllers apiController,
         ApiConstants.ApiMethods apiMethod)
     {
         return new(CreateStringUri(apiController, apiMethod));
     }
 
     private static Uri CreateUri<TIn>(
-        ApiConstants.ApiControllers apiController, 
-        ApiConstants.ApiMethods apiMethod, 
-        TIn? args = null) 
+        ApiConstants.ApiControllers apiController,
+        ApiConstants.ApiMethods apiMethod,
+        TIn? args = null)
         where TIn : Request
     {
         StringBuilder uri = new(CreateStringUri(apiController, apiMethod));

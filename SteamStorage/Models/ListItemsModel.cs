@@ -20,17 +20,17 @@ public class ListItemsModel : ModelBase
     private const string EMPTY_LIST_TEXT = "Элементы не найдены";
 
     #endregion Constants
-    
+
     #region Events
-    
+
     public delegate void AddToActivesEventHandler(object? sender, AddToActivesEventArgs args);
 
     public event AddToActivesEventHandler? AddToActives;
-    
+
     public delegate void AddToArchiveEventHandler(object? sender, AddToArchiveEventArgs args);
 
     public event AddToArchiveEventHandler? AddToArchive;
-    
+
     #endregion Events
 
     #region Fields
@@ -329,9 +329,9 @@ public class ListItemsModel : ModelBase
     #region Commands
 
     public RelayCommand ClearFiltersCommand { get; }
-    
+
     public RelayCommand<ListItemModel> AddToActivesCommand { get; }
-    
+
     public RelayCommand<ListItemModel> AddToArchiveCommand { get; }
 
     #endregion Commands
@@ -400,7 +400,7 @@ public class ListItemsModel : ModelBase
     {
         OnAddToActives(model);
     }
-    
+
     private void DoAddToArchiveCommand(ListItemModel? model)
     {
         OnAddToArchive(model);
@@ -454,12 +454,12 @@ public class ListItemsModel : ModelBase
 
         IsLoading = false;
     }
-    
+
     private void OnAddToActives(ListItemModel? model)
     {
         AddToActives?.Invoke(this, new(model));
     }
-    
+
     private void OnAddToArchive(ListItemModel? model)
     {
         AddToArchive?.Invoke(this, new(model));

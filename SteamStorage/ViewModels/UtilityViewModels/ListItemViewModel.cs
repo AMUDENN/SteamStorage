@@ -19,7 +19,7 @@ public class ListItemViewModel : BaseDynamicsSkinViewModel
     {
         get => _model;
     }
-    
+
     public string CurrentPriceString
     {
         get => _model.CurrentPriceString;
@@ -60,13 +60,13 @@ public class ListItemViewModel : BaseDynamicsSkinViewModel
     #region Constructor
 
     public ListItemViewModel(
-        ListItemModel model, 
+        ListItemModel model,
         ListItemsModel listItemsModel,
         ChartTooltipModel chartTooltipModel) : base(model, chartTooltipModel)
     {
         _model = model;
         _listItemsModel = listItemsModel;
-        
+
         model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         listItemsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);

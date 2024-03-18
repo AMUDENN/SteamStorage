@@ -9,8 +9,8 @@ public class ActiveSoldModel : ModelBase
 
     public void SetSoldActive(ActiveModel? model)
     {
-        
+
     }
-    
+
     #endregion Methods
 }

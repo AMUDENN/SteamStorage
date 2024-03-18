@@ -22,13 +22,13 @@ public class ActiveSoldViewModel : ViewModelBase
     }
 
     #endregion Constructor
-    
+
     #region Methods
 
     public void SetSoldActive(ActiveModel? model)
     {
         _activeSoldModel.SetSoldActive(model);
     }
-    
+
     #endregion Methods
 }

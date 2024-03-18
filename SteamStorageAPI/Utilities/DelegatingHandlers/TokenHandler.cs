@@ -1,4 +1,4 @@
-﻿namespace SteamStorageAPI.Utilities;
+﻿namespace SteamStorageAPI.Utilities.DelegatingHandlers;
 
 public class TokenHandler : DelegatingHandler
 {

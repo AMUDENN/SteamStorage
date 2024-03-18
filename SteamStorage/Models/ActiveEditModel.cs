@@ -9,18 +9,18 @@ public class ActiveEditModel : ModelBase
 
     public void SetEditActive(ActiveModel? model)
     {
-        
+
     }
-    
+
     public void SetAddActive(ActiveGroupModel? model)
     {
-        
+
     }
-    
+
     public void SetAddActive(ListItemModel? model)
     {
-        
+
     }
-    
+
     #endregion Methods
 }

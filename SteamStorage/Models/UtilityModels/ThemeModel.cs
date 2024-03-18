@@ -19,7 +19,7 @@ public class ThemeModel
     #region Constructor
 
     public ThemeModel(
-        string title, 
+        string title,
         ThemeVariant themeVariant)
     {
         Title = title;

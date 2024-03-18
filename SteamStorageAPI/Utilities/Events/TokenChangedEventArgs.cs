@@ -1,4 +1,4 @@
-﻿namespace SteamStorageAPI.Events;
+﻿namespace SteamStorageAPI.Utilities.Events;
 
 public class TokenChangedEventArgs : EventArgs
 {

@@ -19,7 +19,7 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
     {
         get => _model;
     }
-    
+
     public int Count
     {
         get => _model.Count;
@@ -63,7 +63,7 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
     {
         get => _listActivesModel.EditCommand;
     }
-    
+
     public RelayCommand<ActiveModel> SoldCommand
     {
         get => _listActivesModel.SoldCommand;

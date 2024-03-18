@@ -18,12 +18,12 @@ public class ListActivesViewModel : ViewModelBase
     #endregion Fields
 
     #region Properties
-    
+
     public IEnumerable<BaseGroupModel> ActiveGroupModels
     {
         get => _activeGroupsModel.ActiveGroupModels;
     }
-    
+
     public BaseGroupModel? SelectedGroupModel
     {
         get => _listActivesModel.SelectedGroupModel;
@@ -58,31 +58,31 @@ public class ListActivesViewModel : ViewModelBase
         get => _listActivesModel.IsTitleOrdering;
         set => _listActivesModel.IsTitleOrdering = value;
     }
-    
+
     public bool? IsCountOrdering
     {
         get => _listActivesModel.IsCountOrdering;
         set => _listActivesModel.IsCountOrdering = value;
     }
-    
+
     public bool? IsBuyPriceOrdering
     {
         get => _listActivesModel.IsBuyPriceOrdering;
         set => _listActivesModel.IsBuyPriceOrdering = value;
     }
-    
+
     public bool? IsCurrentPriceOrdering
     {
         get => _listActivesModel.IsCurrentPriceOrdering;
         set => _listActivesModel.IsCurrentPriceOrdering = value;
     }
-    
+
     public bool? IsCurrentSumOrdering
     {
         get => _listActivesModel.IsCurrentSumOrdering;
         set => _listActivesModel.IsCurrentSumOrdering = value;
     }
-    
+
     public bool? IsChangeOrdering
     {
         get => _listActivesModel.IsChangeOrdering;
@@ -174,18 +174,18 @@ public class ListActivesViewModel : ViewModelBase
         _gamesModel = gamesModel;
 
         listActivesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
-        activeGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName); 
+        activeGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         gamesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor
-    
+
     #region Methods
 
     public void OpenActiveGroup(ActiveGroupModel? model)
     {
         _listActivesModel.OpenActiveGroup(model);
     }
-    
+
     #endregion Methods
 }

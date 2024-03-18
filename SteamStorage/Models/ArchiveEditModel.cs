@@ -9,18 +9,18 @@ public class ArchiveEditModel : ModelBase
 
     public void SetEditArchive(ArchiveModel? model)
     {
-        
+
     }
-    
+
     public void SetAddArchive(ArchiveGroupModel? model)
     {
-        
+
     }
-    
+
     public void SetAddArchive(ListItemModel? model)
     {
-        
+
     }
-    
+
     #endregion Methods
 }

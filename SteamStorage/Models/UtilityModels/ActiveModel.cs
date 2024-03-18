@@ -1,5 +1,4 @@
 ﻿using System;
-using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
 using SteamStorageAPI;

@@ -22,23 +22,23 @@ public class ArchiveEditViewModel : ViewModelBase
     }
 
     #endregion Constructor
-    
+
     #region Methods
 
     public void SetEditArchive(ArchiveModel? model)
     {
         _archiveEditModel.SetEditArchive(model);
     }
-    
+
     public void SetAddArchive(ArchiveGroupModel? model)
     {
         _archiveEditModel.SetAddArchive(model);
     }
-    
+
     public void SetAddArchive(ListItemModel? model)
     {
         _archiveEditModel.SetAddArchive(model);
     }
-    
+
     #endregion Methods
 }

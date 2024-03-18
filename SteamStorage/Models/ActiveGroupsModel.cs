@@ -13,21 +13,21 @@ namespace SteamStorage.Models;
 public class ActiveGroupsModel : ModelBase
 {
     #region Events
-    
+
     public delegate void AddActiveEventHandler(object? sender, AddActiveEventArgs args);
 
     public event AddActiveEventHandler? AddActive;
-    
+
     public delegate void OpenActivesEventHandler(object? sender, OpenActivesEventArgs args);
 
     public event OpenActivesEventHandler? OpenActives;
-    
+
     public delegate void EditActiveGroupEventHandler(object? sender, EditActiveGroupEventArgs args);
 
     public event EditActiveGroupEventHandler? EditActiveGroup;
-    
+
     #endregion Events
-    
+
     #region Fields
 
     private readonly ApiClient _apiClient;
@@ -45,19 +45,19 @@ public class ActiveGroupsModel : ModelBase
     }
 
     #endregion Properties
-    
+
     #region Commands
-    
+
     public RelayCommand<ActiveGroupModel> AddActiveCommand { get; }
-    
+
     public RelayCommand<ActiveGroupModel> OpenActivesCommand { get; }
-    
+
     public RelayCommand AddActiveGroupCommand { get; }
-    
+
     public RelayCommand<ActiveGroupModel> EditActiveGroupCommand { get; }
 
     public RelayCommand<ActiveGroupModel> DeleteActiveGroupCommand { get; }
-    
+
     #endregion Commands
 
     #region Constructor
@@ -92,17 +92,17 @@ public class ActiveGroupsModel : ModelBase
     {
         OnAddActive(group);
     }
-    
+
     private void DoOpenActivesCommand(ActiveGroupModel? group)
     {
         OnOpenActives(group);
     }
-    
+
     private void DoAddActiveGroupCommand()
     {
         OnEditActiveGroup(null);
     }
-    
+
     private void DoEditActiveGroupCommand(ActiveGroupModel? group)
     {
         OnEditActiveGroup(group);
@@ -133,12 +133,12 @@ public class ActiveGroupsModel : ModelBase
     {
         AddActive?.Invoke(this, new(group));
     }
-    
+
     private void OnOpenActives(ActiveGroupModel? group)
     {
         OpenActives?.Invoke(this, new(group));
     }
-    
+
     private void OnEditActiveGroup(ActiveGroupModel? group)
     {
         EditActiveGroup?.Invoke(this, new(group));

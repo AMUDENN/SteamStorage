@@ -83,7 +83,7 @@ public class ActivesReviewViewModel : ViewModelBase
     }
 
     #endregion Properties
-    
+
     #region Commands
 
     public RelayCommand AttachedToVisualTreeCommand

@@ -8,11 +8,11 @@ namespace SteamStorage.Services.ThemeService;
 public interface IThemeService
 {
     public delegate void ThemeChangedEventHandler(object? sender, ThemeChangedEventArgs args);
-    
+
     public delegate void ChartThemeChangedEventHandler(object? sender, ChartThemeChangedEventArgs args);
 
     public event ThemeChangedEventHandler? ThemeChanged;
-    
+
     public event ChartThemeChangedEventHandler? ChartThemeChanged;
 
     public ThemeVariant CurrentThemeVariant { get; }

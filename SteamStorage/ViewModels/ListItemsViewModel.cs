@@ -137,7 +137,7 @@ public class ListItemsViewModel : ViewModelBase
     #region Constructor
 
     public ListItemsViewModel(
-        ListItemsModel listItemsModel, 
+        ListItemsModel listItemsModel,
         GamesModel gamesModel)
     {
         _listItemsModel = listItemsModel;

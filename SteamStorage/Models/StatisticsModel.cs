@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
@@ -7,7 +6,6 @@ using LiveChartsCore.SkiaSharpView.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models.Tools;
 using SteamStorage.Services.ThemeService;
-using SteamStorage.Utilities.Events;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
 using SteamStorageAPI;
@@ -180,7 +178,7 @@ public class StatisticsModel : ModelBase
         get => _status;
         set
         {
-            SetProperty(ref _status, value); 
+            SetProperty(ref _status, value);
             OnPropertyChanged(nameof(ServerStatusString));
             OnPropertyChanged(nameof(ServerStatusBool));
             OnPropertyChanged(nameof(IsServerActive));
@@ -204,7 +202,7 @@ public class StatisticsModel : ModelBase
 
     public bool? ServerStatusBool
     {
-        get 
+        get
         {
             return Status switch
             {
@@ -233,7 +231,7 @@ public class StatisticsModel : ModelBase
     }
 
     #endregion Properties
-    
+
     #region Commands
 
     public RelayCommand AttachedToVisualTreeCommand { get; }
@@ -243,8 +241,8 @@ public class StatisticsModel : ModelBase
     #region Constructor
 
     public StatisticsModel(
-        ApiClient apiClient, 
-        UserModel userModel, 
+        ApiClient apiClient,
+        UserModel userModel,
         IThemeService themeService)
     {
         _apiClient = apiClient;
@@ -253,7 +251,7 @@ public class StatisticsModel : ModelBase
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
-        
+
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
         _investedSumString = string.Empty;
@@ -276,7 +274,7 @@ public class StatisticsModel : ModelBase
     #endregion Constructor
 
     #region Methods
-    
+
     private void UserChangedHandler(object? sender)
     {
         RefreshStatistics();
@@ -287,7 +285,7 @@ public class StatisticsModel : ModelBase
     {
         RefreshStatistics();
     }
-    
+
     private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
     {
         GetInventoryGamesSeries();

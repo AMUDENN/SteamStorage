@@ -5,7 +5,6 @@ using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Services.ThemeService;
-using SteamStorage.Utilities.Events;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
 
@@ -49,7 +48,7 @@ public class SettingsModel : ModelBase
     #region Constructor
 
     public SettingsModel(
-        IThemeService themeService, 
+        IThemeService themeService,
         ISettingsService settingsService)
     {
         _themeService = themeService;
@@ -74,7 +73,7 @@ public class SettingsModel : ModelBase
     #endregion Constructor
 
     #region Methods
-    
+
     private void SettingsPropertyChangedHandler(object? sender, SettingsPropertyChangedEventArgs e)
     {
         if (e.Property != nameof(_settingsService.UserSettings.Theme)) return;

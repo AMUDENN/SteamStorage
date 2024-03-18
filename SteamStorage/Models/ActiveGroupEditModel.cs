@@ -9,8 +9,8 @@ public class ActiveGroupEditModel : ModelBase
 
     public void SetEditGroup(ActiveGroupModel? model)
     {
-        
+
     }
-    
+
     #endregion Methods
 }

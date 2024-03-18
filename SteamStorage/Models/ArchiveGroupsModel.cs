@@ -13,21 +13,21 @@ namespace SteamStorage.Models;
 public class ArchiveGroupsModel : ModelBase
 {
     #region Events
-    
+
     public delegate void AddArchiveEventHandler(object? sender, AddArchiveEventArgs args);
 
     public event AddArchiveEventHandler? AddArchive;
-    
+
     public delegate void OpenArchivesEventHandler(object? sender, OpenArchivesEventArgs args);
 
     public event OpenArchivesEventHandler? OpenArchives;
-    
+
     public delegate void EditArchiveGroupEventHandler(object? sender, EditArchiveGroupEventArgs args);
 
     public event EditArchiveGroupEventHandler? EditArchiveGroup;
-    
+
     #endregion Events
-    
+
     #region Fields
 
     private readonly ApiClient _apiClient;
@@ -128,17 +128,17 @@ public class ArchiveGroupsModel : ModelBase
         if (groupsResponses is null) return;
         ArchiveGroupModels = groupsResponses.ArchiveGroups.Select(x => new BaseGroupModel(x.Id, x.Title)).ToList();
     }
-    
+
     private void OnAddArchive(ArchiveGroupModel? group)
     {
         AddArchive?.Invoke(this, new(group));
     }
-    
+
     private void OnOpenArchives(ArchiveGroupModel? group)
     {
         OpenArchives?.Invoke(this, new(group));
     }
-    
+
     private void OnEditArchiveGroup(ArchiveGroupModel? group)
     {
         EditArchiveGroup?.Invoke(this, new(group));

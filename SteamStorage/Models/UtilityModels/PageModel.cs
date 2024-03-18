@@ -5,7 +5,7 @@ public class PageModel
     #region Properties
 
     public int Id { get; }
-    
+
     public string Title { get; }
 
     #endregion Properties

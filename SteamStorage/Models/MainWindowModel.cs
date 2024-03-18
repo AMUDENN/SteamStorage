@@ -35,7 +35,7 @@ public class MainWindowModel : ModelBase
     #region Constructor
 
     public MainWindowModel(
-        MainWindow mainWindow, 
+        MainWindow mainWindow,
         MainViewModel mainViewModel)
     {
         MainViewModel = mainViewModel;

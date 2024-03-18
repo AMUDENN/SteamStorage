@@ -22,12 +22,12 @@ public class StatisticsViewModel : ViewModelBase
     {
         get => _statisticsModel.InvestedSumString;
     }
-    
+
     public double InvestedSumGrowth
     {
         get => _statisticsModel.InvestedSumGrowth;
     }
-    
+
     public IEnumerable<ISeries> InvestedSumGrowthSeries
     {
         get => _statisticsModel.InvestedSumGrowthSeries;
@@ -42,7 +42,7 @@ public class StatisticsViewModel : ViewModelBase
     {
         get => _statisticsModel.FinancialGoalPercentageCompletion;
     }
-    
+
     public IEnumerable<ISeries> FinancialGoalPercentageCompletionSeries
     {
         get => _statisticsModel.FinancialGoalPercentageCompletionSeries;
@@ -92,17 +92,17 @@ public class StatisticsViewModel : ViewModelBase
     {
         get => _statisticsModel.InventorySumString;
     }
-    
+
     public IEnumerable<ISeries> InventoryGamesSeries
     {
         get => _statisticsModel.InventoryGamesSeries;
     }
-    
+
     public SolidColorPaint TooltipTextPaint
     {
         get => _chartTooltipModel.TooltipTextPaint;
     }
-    
+
     public SolidColorPaint TooltipBackgroundPaint
     {
         get => _chartTooltipModel.TooltipBackgroundPaint;
@@ -112,24 +112,24 @@ public class StatisticsViewModel : ViewModelBase
     {
         get => _statisticsModel.Ping;
     }
-    
+
     public string ServerStatusString
     {
         get => _statisticsModel.ServerStatusString;
     }
-    
+
     public bool? ServerStatusBool
     {
         get => _statisticsModel.ServerStatusBool;
     }
-    
+
     public bool IsServerActive
     {
         get => _statisticsModel.IsServerActive;
     }
 
     #endregion Properties
-    
+
     #region Commands
 
     public RelayCommand AttachedToVisualTreeCommand
@@ -142,7 +142,7 @@ public class StatisticsViewModel : ViewModelBase
     #region Constructor
 
     public StatisticsViewModel(
-        StatisticsModel statisticsModel, 
+        StatisticsModel statisticsModel,
         ChartTooltipModel chartTooltipModel)
     {
         _statisticsModel = statisticsModel;

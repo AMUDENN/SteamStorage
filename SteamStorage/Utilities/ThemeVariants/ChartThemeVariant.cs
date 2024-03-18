@@ -10,7 +10,7 @@ public class ChartThemeVariant
     #region Properties
 
     private object Key { get; }
-    
+
     public SKTypeface SkTypeface { get; }
 
     public IEnumerable<ChartColor> Colors { get; }
@@ -20,8 +20,8 @@ public class ChartThemeVariant
     #region Constructor
 
     public ChartThemeVariant(
-        object key, 
-        SKTypeface skTypeface, 
+        object key,
+        SKTypeface skTypeface,
         IEnumerable<ChartColor> colors)
     {
         Key = key ?? throw new ArgumentNullException(nameof(key));

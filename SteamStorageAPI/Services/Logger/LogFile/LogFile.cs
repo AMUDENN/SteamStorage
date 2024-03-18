@@ -17,8 +17,8 @@ public class LogFile : IDisposable
     #region Constructor
 
     public LogFile(
-        string directory, 
-        string dateFormat, 
+        string directory,
+        string dateFormat,
         string dateTimeFormat)
     {
         _dateTimeFormat = dateTimeFormat;

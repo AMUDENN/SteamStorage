@@ -9,8 +9,8 @@ public class ArchiveGroupEditModel : ModelBase
 
     public void SetEditGroup(ArchiveGroupModel? model)
     {
-        
+
     }
-    
+
     #endregion Methods
 }

@@ -20,17 +20,17 @@ public class ListActivesModel : ModelBase
     private const string EMPTY_LIST_TEXT = "Элементы не найдены";
 
     #endregion Constants
-    
+
     #region Events
-    
+
     public delegate void EditActiveEventHandler(object? sender, EditActiveEventArgs args);
 
     public event EditActiveEventHandler? EditActive;
-    
+
     public delegate void SoldActiveEventHandler(object? sender, SoldActiveEventArgs args);
 
     public event SoldActiveEventHandler? SoldActive;
-    
+
     #endregion Events
 
     #region Fields
@@ -457,10 +457,10 @@ public class ListActivesModel : ModelBase
     {
 
     }
-    
+
     public void OpenActiveGroup(ActiveGroupModel? model)
     {
-        
+
     }
 
     private void SetOrderingsNull()
@@ -514,12 +514,12 @@ public class ListActivesModel : ModelBase
 
         IsLoading = false;
     }
-    
+
     private void OnEditActive(ActiveModel? model)
     {
         EditActive?.Invoke(this, new(model));
     }
-    
+
     private void OnSoldActive(ActiveModel? model)
     {
         SoldActive?.Invoke(this, new(model));

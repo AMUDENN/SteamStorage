@@ -1,10 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using SteamStorage.Services.ThemeService;
-using SteamStorage.Utilities.Events;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorageAPI;
-using SteamStorageAPI.Events;
+using SteamStorageAPI.Utilities.Events;
 
 namespace SteamStorage.Services.Settings.SettingsService;
 
@@ -17,7 +16,7 @@ public class SettingsService : ISettingsService, IDisposable
     #endregion Events
 
     #region Fields
-    
+
     private readonly SettingsFile.SettingsFile _file;
 
     #endregion Fields
@@ -31,19 +30,19 @@ public class SettingsService : ISettingsService, IDisposable
     #region Constructor
 
     public SettingsService(
-        string programName, 
-        ApiClient apiClient, 
+        string programName,
+        ApiClient apiClient,
         IThemeService themeService)
-    { 
+    {
         _file = new(programName);
 
         UserSettings = _file.Read<UserSettings.UserSettings>() ?? new();
-        
+
         UserSettings.PropertyChanged += PropertyChangedHandler;
-        
+
         apiClient.TokenChanged += TokenChangedHandler;
         themeService.ThemeChanged += ThemeChangedHandler;
-        
+
         apiClient.Token = UserSettings.Token ?? string.Empty;
     }
 

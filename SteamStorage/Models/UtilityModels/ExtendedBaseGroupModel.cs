@@ -6,11 +6,11 @@ namespace SteamStorage.Models.UtilityModels;
 public class ExtendedBaseGroupModel : BaseGroupModel
 {
     #region Properties
-    
+
     public string Colour { get; }
 
     public int Count { get; }
-    
+
     public string DateCreationString { get; }
 
     #endregion Properties

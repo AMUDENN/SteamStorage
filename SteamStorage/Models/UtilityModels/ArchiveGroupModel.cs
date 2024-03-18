@@ -11,7 +11,7 @@ public class ArchiveGroupModel : ExtendedBaseGroupModel
     public string SoldSumString { get; }
 
     public double Change { get; }
-    
+
     #endregion Properties
 
     #region Constructor

@@ -21,7 +21,7 @@ public class MainModel : ModelBase
     #endregion Constants
 
     #region Fields
-    
+
     private readonly UserModel _userModel;
     private readonly IAuthorizationService _authorizationService;
 
@@ -32,7 +32,7 @@ public class MainModel : ModelBase
 
     private ViewModelBase _currentViewModel;
     private readonly ViewModelBase _settingsViewModel;
-    
+
     private NavigationModel? _selectedNavigationModel;
     private bool _isSettingsChecked;
 
@@ -161,14 +161,14 @@ public class MainModel : ModelBase
         SteamId = _userModel.User is null ? STEAM_ID : $"{STEAM_ID}: {_userModel.User.SteamId}";
         ImageUrl = _userModel.User?.ImageUrlFull;
     }
-    
+
     private void AddToActivesHandler(object? sender, AddToActivesEventArgs args)
     {
         NavigationModel? navigationModel = FindViewModel(typeof(ActivesViewModel));
 
         SelectedNavigationModel = navigationModel;
     }
-    
+
     private void AddToArchivesHandler(object? sender, AddToArchiveEventArgs args)
     {
         NavigationModel? navigationModel = FindViewModel(typeof(ArchivesViewModel));
@@ -185,7 +185,7 @@ public class MainModel : ModelBase
     {
         _authorizationService.LogOut();
     }
-    
+
     private NavigationModel? FindViewModel(Type type)
     {
         return NavigationOptions.FirstOrDefault(x => x.Page.GetType() == type);

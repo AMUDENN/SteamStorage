@@ -64,7 +64,7 @@ public class ArchivesModel : ModelBase
 
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();
         _currentViewModel = _selectedSecondaryNavigationModel.Page;
-        
+
         archiveGroupsModel.AddArchive += AddArchiveHandler;
         archiveGroupsModel.OpenArchives += OpenArchivesHandler;
         archiveGroupsModel.EditArchiveGroup += EditArchiveGroupHandler;
@@ -75,7 +75,7 @@ public class ArchivesModel : ModelBase
     }
 
     #endregion Constructor
-    
+
     #region Methods
 
     private void AddArchiveHandler(object? sender, AddArchiveEventArgs args)
@@ -86,43 +86,43 @@ public class ArchivesModel : ModelBase
 
         (navigationModel?.Page as ArchiveEditViewModel)?.SetAddArchive(args.Group);
     }
-    
+
     private void OpenArchivesHandler(object? sender, OpenArchivesEventArgs args)
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ListArchivesViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
-        
+
         (navigationModel?.Page as ListArchivesViewModel)?.OpenArchiveGroup(args.Group);
     }
-    
+
     private void EditArchiveGroupHandler(object? sender, EditArchiveGroupEventArgs args)
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveGroupEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
-        
+
         (navigationModel?.Page as ArchiveGroupEditViewModel)?.SetEditGroup(args.Group);
     }
-    
+
     private void EditArchiveHandler(object? sender, EditArchiveEventArgs args)
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
-        
+
         (navigationModel?.Page as ArchiveEditViewModel)?.SetEditArchive(args.ArchiveModel);
     }
-    
+
     private void AddToArchiveHandler(object? sender, AddToArchiveEventArgs args)
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveEditViewModel));
 
         SelectedSecondaryNavigationModel = navigationModel;
-        
+
         (navigationModel?.Page as ArchiveEditViewModel)?.SetAddArchive(args.ListItem);
     }
-    
+
     private SecondaryNavigationModel? FindViewModel(Type type)
     {
         return SecondaryNavigationOptions.FirstOrDefault(x => x.Page.GetType() == type);

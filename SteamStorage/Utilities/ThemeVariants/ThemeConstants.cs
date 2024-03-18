@@ -6,8 +6,10 @@ public static class ThemeConstants
 
     public enum Themes
     {
-        Default, Classic, Lime
+        Default,
+        Classic,
+        Lime
     }
-    
+
     #endregion Enums
 }

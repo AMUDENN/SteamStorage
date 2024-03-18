@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.ViewModels.Tools;
 
@@ -24,7 +23,7 @@ public class BaseSkinViewModel : ViewModelBase
     {
         get => _model.Title;
     }
-    
+
     #endregion Properties
 
     #region Commands
