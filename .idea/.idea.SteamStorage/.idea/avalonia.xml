@@ -95,6 +95,7 @@
         <entry key="SteamStorage/Resources/Styles/CustomControls/AdvancedNumericUpDownStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/CustomControls/AdvancedTextBoxStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/CustomControls/DefaultContentControlStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/DatePickerStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/DrawingImageStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/GridStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/HyperlinkButtonStyles.axaml" value="SteamStorage/SteamStorage.csproj" />

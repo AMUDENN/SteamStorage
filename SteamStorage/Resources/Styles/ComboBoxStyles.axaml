@@ -137,9 +137,6 @@
                 <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
         </Style>
-        <Style Selector="^:pointerover">
-            <Setter Property="Opacity" Value="0.9"/>
-        </Style>
         <Style Selector="^:pressed">
             <Setter Property="Padding" Value="1"/>
         </Style>
@@ -207,6 +204,12 @@
             <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Opacity" Value="0.5"/>
+        </Style>
+        <Style Selector="^:pointerover /template/ Border#Background">
+            <Setter Property="Opacity" Value="0.6"/>
+        </Style>
+        <Style Selector="^:focus /template/ Border#Background">
+            <Setter Property="Opacity" Value="0.7"/>
         </Style>
     </Style>
     

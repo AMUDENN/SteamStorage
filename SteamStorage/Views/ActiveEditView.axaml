@@ -93,15 +93,18 @@
                                                     Classes="MiddleDefaultContentControl"
                                                     Grid.RowSpan="3" Grid.Row="2" Grid.Column="2">
                         <TextBox Text="{Binding Description}"
+                                 MaxLength="300"
                                  Classes="DarkTextBox BigTextBox SmallTextBox"
                                  Height="190"/>
                     </controls:DefaultContentControl>
                     
                     <controls:DefaultContentControl Header="Дата покупки: "
+                                                    DefaultValue="{Binding DefaultBuyDate, Mode=OneWay}" 
                                                     Classes="MiddleDefaultContentControl"
                                                     Grid.Row="6" Grid.Column="2">
-                        <TextBlock Text="Тут будет дата" 
-                                   Height="50"/>
+                        <DatePicker SelectedDate="{Binding BuyDate}"
+                                    Height="50"
+                                    Classes="DarkDatePicker SmallDatePicker"/>
                     </controls:DefaultContentControl>
                     
                 </Grid>

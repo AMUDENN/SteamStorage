@@ -21,6 +21,7 @@
 	    <StyleInclude Source="/Resources/Styles/ComboBoxStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ContentPresenterStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ContextMenuStyles.axaml"/>
+	    <StyleInclude Source="/Resources/Styles/DatePickerStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/GridStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/HyperlinkButtonStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/ImageStyles.axaml"/>

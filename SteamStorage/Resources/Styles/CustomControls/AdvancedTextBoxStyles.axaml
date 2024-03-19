@@ -117,6 +117,12 @@
         <Style Selector="^ /template/ Border#PART_BorderElement">
             <Setter Property="Opacity" Value="0.5"/>
         </Style>
+        <Style Selector="^:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Opacity" Value="0.6"/>
+        </Style>
+        <Style Selector="^:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Opacity" Value="0.7"/>
+        </Style>
     </Style>
         
 </Styles>
