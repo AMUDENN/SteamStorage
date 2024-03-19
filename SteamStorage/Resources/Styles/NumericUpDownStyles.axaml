@@ -22,7 +22,7 @@
                                    DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
                                    ButtonSpinnerLocation="{TemplateBinding ButtonSpinnerLocation}">
                         <TextBox x:Name="PART_TextBox"
-                                 Classes="NumericUpDownTextBox"
+                                 Classes="NumericUpDownTextBox SmallTextBox"
                                  Watermark="{TemplateBinding Watermark}"
                                  Text="{TemplateBinding Text}"
                                  AcceptsReturn="False"

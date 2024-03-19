@@ -34,8 +34,14 @@
 
             <TextBox Text="{Binding Filter}"
                      Watermark="Введите название"
-                     Classes="FilteringTextBox"
-                     Grid.Column="4"/>
+                     Classes="FilteringTextBox SmallTextBox"
+                     Grid.Column="4">
+                <TextBox.InnerLeftContent>
+                    <controls:VectorImage Classes="MagnifierVectorImage ForegroundVectorImage"
+                                          Width="32"
+                                          Margin="15, 0, 0, 0"/>
+                </TextBox.InnerLeftContent>
+            </TextBox>
             
             <Button Command="{Binding ClearFiltersCommand, Mode=OneWay}"
                     Classes="ImageButton BackgroundButton"

@@ -22,6 +22,14 @@
                     <ColumnDefinition Width="51*"/>
                 </Grid.ColumnDefinitions>
                 
+                <controls:DefaultContentControl Header="Текст"
+                                                DefaultValue="123" 
+                                                Classes="MiddleDefaultContentControl"
+                                                Grid.Column="0">
+                    <controls:AdvancedTextBox PreviewCharRegex="[0-9]"
+                                              Classes="DarkAdvancedTextBox SmallAdvancedTextBox"/>
+                </controls:DefaultContentControl>
+                
             </Grid>
             
             <Grid ColumnDefinitions="Auto,*,Auto,30,Auto" 

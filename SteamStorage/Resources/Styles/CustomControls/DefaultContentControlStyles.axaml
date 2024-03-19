@@ -1,0 +1,52 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:SteamStorage.Resources.Controls"
+        x:DataType="controls:DefaultContentControl">
+
+    <Style Selector="controls|DefaultContentControl">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Background="{TemplateBinding Background}"
+                        Padding="{TemplateBinding Padding}">
+                    <Grid RowDefinitions="auto *">
+                        <Grid ColumnDefinitions="Auto, *, Auto"
+                              Height="50"
+                              HorizontalAlignment="Stretch"
+                              Margin="0, 0, 0, 10"
+                              Grid.Row="0">
+                            <TextBlock x:Name="PART_Header"
+                                       Text="{TemplateBinding Header}"
+                                       Grid.Column="0"/>
+                            <Button x:Name="PART_ResetButton"
+                                    Content="Сбросить"
+                                    Command="{TemplateBinding ResetCommand}"
+                                    Background="Transparent"
+                                    Classes="TextButton UnderlineButton"
+                                    Grid.Column="2"/>
+                        </Grid>
+                        <ContentPresenter x:Name="PART_ContentPresenter"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}"
+                                          RecognizesAccessKey="True"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Grid.Row="1"/>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    
+    <Style Selector="controls|DefaultContentControl.MiddleDefaultContentControl">
+        <Style Selector="^ /template/ TextBlock#PART_Header">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        <Style Selector="^ /template/ Button#PART_ResetButton">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+    </Style>
+        
+</Styles>

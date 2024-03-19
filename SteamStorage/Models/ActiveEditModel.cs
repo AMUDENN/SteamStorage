@@ -5,6 +5,18 @@ namespace SteamStorage.Models;
 
 public class ActiveEditModel : ModelBase
 {
+    #region Fields
+
+    
+    
+    #endregion Fields
+    
+    #region Properties
+
+    
+    
+    #endregion Properties
+    
     #region Methods
 
     public void SetEditActive(ActiveModel? model)

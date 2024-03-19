@@ -11,6 +11,12 @@ public class ActiveEditViewModel : ViewModelBase
     private readonly ActiveEditModel _activeEditModel;
 
     #endregion Fields
+    
+    #region Properties
+    
+    
+    
+    #endregion Properties
 
     #region Constructor
 

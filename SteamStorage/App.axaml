@@ -15,7 +15,6 @@
 	    <FluentTheme/>
         
         <!-- Styles -->
-        <StyleInclude Source="/Resources/Styles/AdvancedNumericUpDownStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/BorderStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/ButtonStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/CheckBoxStyles.axaml"/>
@@ -36,9 +35,17 @@
         <StyleInclude Source="/Resources/Styles/ToggleButtonStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ToolTipStyles.axaml"/>
 	    <StyleInclude Source="/Resources/Styles/TransitioningContentControlStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/VectorImageStyles.axaml"/>
-		<StyleInclude Source="/Resources/Styles/WindowStyles.axaml"/>
         
+		<StyleInclude Source="/Resources/Styles/WindowStyles.axaml"/>
+	    
+	    
+	    <!-- CustomControls -->
+        <StyleInclude Source="/Resources/Styles/CustomControls/AdvancedNumericUpDownStyles.axaml"/>
+        <StyleInclude Source="/Resources/Styles/CustomControls/AdvancedTextBoxStyles.axaml"/>
+	    <StyleInclude Source="/Resources/Styles/CustomControls/DefaultContentControlStyles.axaml"/>
+	    <StyleInclude Source="/Resources/Styles/CustomControls/VectorImageStyles.axaml"/>
+	    
+	    
         <!-- ListBoxes -->
 	    <StyleInclude Source="/Resources/Styles/ListBoxes/ActiveGroupsListBoxStyle.axaml"/>
 	    <StyleInclude Source="/Resources/Styles/ListBoxes/ActivesListBoxStyle.axaml"/>
@@ -51,6 +58,7 @@
 	    <StyleInclude Source="/Resources/Styles/ListBoxes/SecondaryNavigationListBoxStyle.axaml"/>
         <StyleInclude Source="/Resources/Styles/ListBoxes/ThemeVariantListBoxStyle.axaml"/>
         
+	    
         <!-- Images -->
 		<StyleInclude Source="/Resources/Images/Vectors/AccountVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/ActivesVectorImage.axaml"/>
