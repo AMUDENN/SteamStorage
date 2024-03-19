@@ -18,7 +18,7 @@
                 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="35*"/>
-                    <ColumnDefinition Width="7*" MinWidth="30" MaxWidth="70"/>
+                    <ColumnDefinition Width="7*" MinWidth="30" MaxWidth="100"/>
                     <ColumnDefinition Width="51*"/>
                 </Grid.ColumnDefinitions>
                 

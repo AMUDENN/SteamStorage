@@ -39,6 +39,12 @@
     <Style Selector="TextBox.SmallTextBox">
         <Setter Property="FontSize" Value="20"/>
     </Style>
+    
+    <Style Selector="TextBox.BigTextBox">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+    </Style>
 
     <Style Selector="TextBox.FilteringTextBox">
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -127,12 +133,6 @@
         <Style Selector="^:error /template/ Border#PART_BorderElement">
             <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
         </Style>
-    </Style>
-    
-    <Style Selector="TextBox.BigTextBox">
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="HorizontalContentAlignment" Value="Left"/>
-        <Setter Property="VerticalContentAlignment" Value="Top"/>
     </Style>
         
 </Styles>
