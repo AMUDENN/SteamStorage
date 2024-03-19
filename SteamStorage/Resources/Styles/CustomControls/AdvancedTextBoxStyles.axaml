@@ -100,6 +100,10 @@
         </Style>
     </Style>
     
+    <Style Selector="controls|AdvancedTextBox.CenterAdvancedTextBox">
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+    
     <Style Selector="controls|AdvancedTextBox.SmallAdvancedTextBox">
         <Setter Property="FontSize" Value="20"/>
     </Style>

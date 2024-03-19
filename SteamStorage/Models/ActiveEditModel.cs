@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 
@@ -7,21 +8,29 @@ namespace SteamStorage.Models;
 
 public class ActiveEditModel : ModelBase
 {
+    #region Constants
+
+    public const string TITLE = "Изменение актива";
+
+    #endregion Constants
+
     #region Fields
 
     private readonly ActiveGroupsModel _activeGroupsModel;
 
+    private string _title;
+
     private BaseGroupModel? _defaultGroupModel;
     private BaseGroupModel? _selectedGroupModel;
 
-    private int _defaultCount;
-    private int _count;
+    private string _defaultCount;
+    private string _count;
 
-    private decimal _defaultBuyPrice;
-    private decimal _buyPrice;
+    private string _defaultBuyPrice;
+    private string _buyPrice;
 
-    private decimal? _defaultGoalPrice;
-    private decimal? _goalPrice;
+    private string? _defaultGoalPrice;
+    private string? _goalPrice;
 
     //item
 
@@ -35,6 +44,12 @@ public class ActiveEditModel : ModelBase
 
     #region Properties
 
+    public string Title
+    {
+        get => _title;
+        private set => SetProperty(ref _title, value);
+    }
+
     public BaseGroupModel? DefaultGroupModel
     {
         get => _defaultGroupModel;
@@ -44,43 +59,59 @@ public class ActiveEditModel : ModelBase
     public BaseGroupModel? SelectedGroupModel
     {
         get => _selectedGroupModel;
-        set => SetProperty(ref _selectedGroupModel, value);
+        set
+        {
+            SetProperty(ref _selectedGroupModel, value);
+            SaveCommand.NotifyCanExecuteChanged();
+        }
     }
 
-    public int DefaultCount
+    public string DefaultCount
     {
         get => _defaultCount;
         private set => SetProperty(ref _defaultCount, value);
     }
 
-    public int Count
+    public string Count
     {
         get => _count;
-        set => SetProperty(ref _count, value);
+        set
+        {
+            SetProperty(ref _count, value);
+            SaveCommand.NotifyCanExecuteChanged();
+        }
     }
 
-    public decimal DefaultBuyPrice
+    public string DefaultBuyPrice
     {
         get => _defaultBuyPrice;
         private set => SetProperty(ref _defaultBuyPrice, value);
     }
 
-    public decimal BuyPrice
+    public string BuyPrice
     {
         get => _buyPrice;
-        set => SetProperty(ref _buyPrice, value);
+        set
+        {
+            SetProperty(ref _buyPrice, value);
+            SaveCommand.NotifyCanExecuteChanged();
+        }
     }
 
-    public decimal? DefaultGoalPrice
+    public string? DefaultGoalPrice
     {
         get => _defaultGoalPrice;
         private set => SetProperty(ref _defaultGoalPrice, value);
     }
 
-    public decimal? GoalPrice
+    public string? GoalPrice
     {
         get => _goalPrice;
-        set => SetProperty(ref _goalPrice, value);
+        set
+        {
+            SetProperty(ref _goalPrice, value);
+            SaveCommand.NotifyCanExecuteChanged();
+        }
     }
 
     public string? DefaultDescription
@@ -109,6 +140,14 @@ public class ActiveEditModel : ModelBase
 
     #endregion Properties
 
+    #region Commands
+
+    public RelayCommand DeleteCommand { get; }
+
+    public RelayCommand SaveCommand { get; }
+
+    #endregion Commands
+
     #region Constructor
 
     public ActiveEditModel(
@@ -116,13 +155,39 @@ public class ActiveEditModel : ModelBase
     {
         _activeGroupsModel = activeGroupsModel;
 
-        _defaultDescription = string.Empty;
-        _description = string.Empty;
+        _title = string.Empty;
+
+        _defaultCount = string.Empty;
+        _count = string.Empty;
+
+        _defaultBuyPrice = string.Empty;
+        _buyPrice = string.Empty;
+
+        DeleteCommand = new(DoDeleteCommand);
+        SaveCommand = new(DoSaveCommand, CanExecuteSaveCommand);
     }
 
     #endregion Constructor
 
     #region Methods
+
+    private void DoDeleteCommand()
+    {
+
+    }
+
+    private void DoSaveCommand()
+    {
+
+    }
+
+    private bool CanExecuteSaveCommand()
+    {
+        return SelectedGroupModel is not null
+               && int.TryParse(Count, out int _)
+               && decimal.TryParse(BuyPrice, out decimal _)
+               && (string.IsNullOrEmpty(GoalPrice) || decimal.TryParse(GoalPrice, out decimal _));
+    }
 
     private void SetValuesFromDefault()
     {
@@ -136,13 +201,15 @@ public class ActiveEditModel : ModelBase
 
     public void SetEditActive(ActiveModel? model)
     {
+        SetTitle(model);
+
         DefaultGroupModel = _activeGroupsModel.ActiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
-        DefaultCount = model?.Count ?? 1;
+        DefaultCount = $"{model?.Count ?? 1:N0}";
 
-        DefaultBuyPrice = model?.BuyPrice ?? 1;
+        DefaultBuyPrice = $"{model?.BuyPrice ?? 1:N2}";
 
-        DefaultGoalPrice = model?.GoalPrice;
+        DefaultGoalPrice = $"{model?.GoalPrice:N2}";
 
         DefaultDescription = model?.Description;
 
@@ -153,11 +220,13 @@ public class ActiveEditModel : ModelBase
 
     public void SetAddActive(ActiveGroupModel? model)
     {
+        SetTitle(null);
+
         DefaultGroupModel = _activeGroupsModel.ActiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
-        DefaultCount = 1;
+        DefaultCount = "1";
 
-        DefaultBuyPrice = 1;
+        DefaultBuyPrice = "1";
 
         DefaultGoalPrice = null;
 
@@ -170,11 +239,13 @@ public class ActiveEditModel : ModelBase
 
     public void SetAddActive(ListItemModel? model)
     {
+        SetTitle(model);
+
         DefaultGroupModel = null;
 
-        DefaultCount = 1;
+        DefaultCount = "1";
 
-        DefaultBuyPrice = model?.CurrentPrice ?? 1;
+        DefaultBuyPrice = $"{model?.CurrentPrice ?? 1:N2}";
 
         DefaultGoalPrice = null;
 
@@ -183,6 +254,12 @@ public class ActiveEditModel : ModelBase
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
 
         SetValuesFromDefault();
+    }
+
+    private void SetTitle(BaseSkinModel? model)
+    {
+        if (model is null) Title = TITLE;
+        Title = $"{TITLE}: «{model?.Title}»";
     }
 
     #endregion Methods

@@ -10,8 +10,12 @@
     
     <Border Classes="BackgroundAdditionalBorder BigRoundedBorder">
         
-        <Grid RowDefinitions="40,30,*,30,60" 
+        <Grid RowDefinitions="Auto,30,*,30,60" 
               Margin="30">
+            
+            <TextBlock Text="{Binding Title, Mode=OneWay}"
+                       Classes="BigTextBlock WrapTextBlock CenterTextBlock"
+                       Grid.Row="0"/>
 
             <Grid Margin="30"
                   RowDefinitions="*, Auto, *"
@@ -27,7 +31,7 @@
                     </Grid.ColumnDefinitions>
                     
                     <controls:DefaultContentControl Header="Группа: "
-                                                    DefaultValue="{Binding DefaultGroupModel}" 
+                                                    DefaultValue="{Binding DefaultGroupModel, Mode=OneWay}" 
                                                     Classes="MiddleDefaultContentControl"
                                                     Grid.Row="0" Grid.Column="0">
                         <ComboBox ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
@@ -38,29 +42,35 @@
                     </controls:DefaultContentControl>
                     
                     <controls:DefaultContentControl Header="Количество: "
-                                                    DefaultValue="{Binding DefaultCount}" 
+                                                    DefaultValue="{Binding DefaultCount, Mode=OneWay}" 
                                                     Classes="MiddleDefaultContentControl"
                                                     Grid.Row="2" Grid.Column="0">
-                        <controls:AdvancedTextBox PreviewCharRegex="[0-9]"
-                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox"
+                        <controls:AdvancedTextBox Text="{Binding Count}"
+                                                  StringFormat="N0"
+                                                  PreviewCharRegex="[0-9]"
+                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
                                                   Height="50"/>
                     </controls:DefaultContentControl>
                     
                     <controls:DefaultContentControl Header="Цена покупки: "
-                                                    DefaultValue="{Binding DefaultBuyPrice}" 
+                                                    DefaultValue="{Binding DefaultBuyPrice, Mode=OneWay}" 
                                                     Classes="MiddleDefaultContentControl"
                                                     Grid.Row="4" Grid.Column="0">
-                        <controls:AdvancedTextBox PreviewCharRegex="[0-9]"
-                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox"
+                        <controls:AdvancedTextBox Text="{Binding BuyPrice}"
+                                                  StringFormat="N2"
+                                                  PreviewCharRegex="[0-9.,]"
+                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
                                                   Height="50"/>
                     </controls:DefaultContentControl>
                     
                     <controls:DefaultContentControl Header="Финансовая цель: "
-                                                    DefaultValue="{Binding DefaultGoalPrice}" 
+                                                    DefaultValue="{Binding DefaultGoalPrice, Mode=OneWay}" 
                                                     Classes="MiddleDefaultContentControl"
                                                     Grid.Row="6" Grid.Column="0">
-                        <controls:AdvancedTextBox PreviewCharRegex="[0-9]"
-                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox"
+                        <controls:AdvancedTextBox Text="{Binding GoalPrice}"
+                                                  StringFormat="N2"
+                                                  PreviewCharRegex="[0-9.,]"
+                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
                                                   Height="50"/>
                     </controls:DefaultContentControl>
                     
@@ -77,6 +87,7 @@
                         Grid.Column="0"/>
                 
                 <Button Tag="Удалить"
+                        Command="{Binding DeleteCommand, Mode=OneWay}"
                         Classes="ImageTextButton UnderlineImageTextButton TransparentImageTextButton StretchButton"
                         Foreground="{DynamicResource NegativeBrush}"
                         HorizontalAlignment="Center"
@@ -86,6 +97,7 @@
                 </Button>
                 
                 <Button Content="Сохранить"
+                        Command="{Binding SaveCommand, Mode=OneWay}"
                         Classes="UnderlineButton StretchButton"
                         Grid.Column="4"/>
                 

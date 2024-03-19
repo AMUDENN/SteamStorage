@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.ViewModels.Tools;
@@ -14,14 +15,19 @@ public class ActiveEditViewModel : ViewModelBase
     private readonly ActiveGroupsModel _activeGroupsModel;
 
     #endregion Fields
-    
+
     #region Properties
-    
+
     public IEnumerable<BaseGroupModel> ActiveGroupModels
     {
         get => _activeGroupsModel.ActiveGroupModels;
     }
-    
+
+    public string Title
+    {
+        get => _activeEditModel.Title;
+    }
+
     public BaseGroupModel? DefaultGroupModel
     {
         get => _activeEditModel.DefaultGroupModel;
@@ -33,34 +39,34 @@ public class ActiveEditViewModel : ViewModelBase
         set => _activeEditModel.SelectedGroupModel = value;
     }
 
-    public int DefaultCount
+    public string DefaultCount
     {
         get => _activeEditModel.DefaultCount;
     }
 
-    public int Count
+    public string Count
     {
         get => _activeEditModel.Count;
         set => _activeEditModel.Count = value;
     }
 
-    public decimal DefaultBuyPrice
+    public string DefaultBuyPrice
     {
         get => _activeEditModel.DefaultBuyPrice;
     }
 
-    public decimal BuyPrice
+    public string BuyPrice
     {
         get => _activeEditModel.BuyPrice;
         set => _activeEditModel.BuyPrice = value;
     }
 
-    public decimal? DefaultGoalPrice
+    public string? DefaultGoalPrice
     {
         get => _activeEditModel.DefaultGoalPrice;
     }
 
-    public decimal? GoalPrice
+    public string? GoalPrice
     {
         get => _activeEditModel.GoalPrice;
         set => _activeEditModel.GoalPrice = value;
@@ -87,8 +93,22 @@ public class ActiveEditViewModel : ViewModelBase
         get => _activeEditModel.BuyDate;
         set => _activeEditModel.BuyDate = value;
     }
-    
+
     #endregion Properties
+
+    #region Commands
+
+    public RelayCommand DeleteCommand
+    {
+        get => _activeEditModel.DeleteCommand;
+    }
+    
+    public RelayCommand SaveCommand
+    {
+        get => _activeEditModel.SaveCommand;
+    }
+
+    #endregion Commands
 
     #region Constructor
 
@@ -98,7 +118,7 @@ public class ActiveEditViewModel : ViewModelBase
     {
         _activeEditModel = activeEditModel;
         _activeGroupsModel = activeGroupsModel;
-        
+
         activeEditModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         activeGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }

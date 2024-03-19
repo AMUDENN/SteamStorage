@@ -13,6 +13,9 @@ public class AdvancedTextBox : TextBox
     public static readonly StyledProperty<string?> PreviewCharRegexProperty =
         AvaloniaProperty.Register<AdvancedTextBox, string?>(nameof(PreviewCharRegex));
 
+    public static readonly StyledProperty<string?> StringFormatProperty =
+        AvaloniaProperty.Register<AdvancedTextBox, string?>(nameof(StringFormat));
+
     #endregion PropertiesDeclaration
 
     #region Properties
@@ -27,6 +30,12 @@ public class AdvancedTextBox : TextBox
         }
     }
 
+    public string? StringFormat
+    {
+        get => GetValue(StringFormatProperty);
+        set => SetValue(StringFormatProperty, value);
+    }
+
     private Regex? PreviewCharRegexExpression { get; set; }
 
     #endregion Properties
@@ -36,6 +45,8 @@ public class AdvancedTextBox : TextBox
     public AdvancedTextBox()
     {
         KeyDown += KeyDownHandler;
+
+        LostFocus += LostFocusHandler;
 
         PastingFromClipboard += PastingFromClipboardHandler;
     }
@@ -48,6 +59,17 @@ public class AdvancedTextBox : TextBox
     {
         if (PreviewCharRegexExpression is not null && e.KeySymbol is not null)
             e.Handled = !PreviewCharRegexExpression.IsMatch(e.KeySymbol);
+    }
+
+    private void LostFocusHandler(object? sender, RoutedEventArgs e)
+    {
+        if (StringFormat is null) return;
+
+        bool result = int.TryParse(Text, out int intNumber);
+        if (result) Text = intNumber.ToString(StringFormat);
+
+        result = double.TryParse(Text, out double doubleNumber);
+        if (result) Text = doubleNumber.ToString(StringFormat);
     }
 
     private void PastingFromClipboardHandler(object? sender, RoutedEventArgs e)
