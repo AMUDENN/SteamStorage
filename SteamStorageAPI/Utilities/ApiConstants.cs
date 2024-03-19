@@ -80,6 +80,7 @@ public static class ApiConstants
         SetStartPage,
 
         GetSkinInfo = 1000,
+        GetBaseSkins,
         GetSkins,
         GetSkinDynamics,
         GetSkinPagesCount,

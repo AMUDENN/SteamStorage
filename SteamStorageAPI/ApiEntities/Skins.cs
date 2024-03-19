@@ -54,6 +54,9 @@ public static class Skins
 
     public record GetSkinRequest(
         int SkinId) : Request;
+    
+    public record GetBaseSkinRequest(
+        string? Filter) : Request;
 
     public record GetSkinsRequest(
         int? GameId,
