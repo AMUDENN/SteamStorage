@@ -7,9 +7,17 @@ public class ArchiveModel : BaseSkinModel
 {
     #region Properties
 
+    public int ArchiveId { get; }
+
+    public int GroupId { get; }
+
     public int Count { get; }
 
+    public decimal BuyPrice { get; }
+
     public string BuyPriceString { get; }
+
+    public decimal SoldPrice { get; }
 
     public string SoldPriceString { get; }
 
@@ -17,7 +25,11 @@ public class ArchiveModel : BaseSkinModel
 
     public double Change { get; }
 
+    public DateTime BuyDate { get; }
+
     public string BuyDateString { get; }
+
+    public DateTime SoldDate { get; }
 
     public string SoldDateString { get; }
 
@@ -30,6 +42,8 @@ public class ArchiveModel : BaseSkinModel
         string imageUrl,
         string marketUrl,
         string title,
+        int archiveId,
+        int groupId,
         int count,
         decimal buyPrice,
         decimal soldPrice,
@@ -39,13 +53,22 @@ public class ArchiveModel : BaseSkinModel
         DateTime buyDate,
         DateTime soldDate) : base(skinId, imageUrl, marketUrl, title)
     {
+        ArchiveId = archiveId;
+        GroupId = groupId;
+
         Count = count;
+
+        BuyPrice = buyPrice;
+        SoldPrice = soldPrice;
 
         BuyPriceString = $"{buyPrice:N2} {currencyMark}";
         SoldPriceString = $"{soldPrice:N2} {currencyMark}";
         SoldSumString = $"{soldSum:N2} {currencyMark}";
 
         Change = change;
+
+        BuyDate = buyDate;
+        SoldDate = soldDate;
 
         BuyDateString = buyDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
         SoldDateString = soldDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);

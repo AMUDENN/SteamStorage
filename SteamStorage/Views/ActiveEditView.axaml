@@ -14,21 +14,57 @@
               Margin="30">
 
             <Grid Margin="30"
+                  RowDefinitions="*, Auto, *"
                   Grid.Row="2">
                 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="35*"/>
-                    <ColumnDefinition Width="7*" MinWidth="30" MaxWidth="70"/>
-                    <ColumnDefinition Width="51*"/>
-                </Grid.ColumnDefinitions>
-                
-                <controls:DefaultContentControl Header="Текст"
-                                                DefaultValue="123" 
-                                                Classes="MiddleDefaultContentControl"
-                                                Grid.Column="0">
-                    <controls:AdvancedTextBox PreviewCharRegex="[0-9]"
-                                              Classes="DarkAdvancedTextBox SmallAdvancedTextBox"/>
-                </controls:DefaultContentControl>
+                <Grid RowDefinitions="Auto, 30, Auto, 30, Auto, 30, Auto" 
+                      Grid.Row="1">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="7*" MinWidth="30" MaxWidth="70"/>
+                        <ColumnDefinition Width="51*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <controls:DefaultContentControl Header="Группа: "
+                                                    DefaultValue="{Binding DefaultGroupModel}" 
+                                                    Classes="MiddleDefaultContentControl"
+                                                    Grid.Row="0" Grid.Column="0">
+                        <ComboBox ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
+                                  SelectedItem="{Binding SelectedGroupModel}" 
+                                  PlaceholderText="Выберите группу"
+                                  Classes="GroupComboBox DarkComboBox"
+                                  Height="50"/>
+                    </controls:DefaultContentControl>
+                    
+                    <controls:DefaultContentControl Header="Количество: "
+                                                    DefaultValue="{Binding DefaultCount}" 
+                                                    Classes="MiddleDefaultContentControl"
+                                                    Grid.Row="2" Grid.Column="0">
+                        <controls:AdvancedTextBox PreviewCharRegex="[0-9]"
+                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox"
+                                                  Height="50"/>
+                    </controls:DefaultContentControl>
+                    
+                    <controls:DefaultContentControl Header="Цена покупки: "
+                                                    DefaultValue="{Binding DefaultBuyPrice}" 
+                                                    Classes="MiddleDefaultContentControl"
+                                                    Grid.Row="4" Grid.Column="0">
+                        <controls:AdvancedTextBox PreviewCharRegex="[0-9]"
+                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox"
+                                                  Height="50"/>
+                    </controls:DefaultContentControl>
+                    
+                    <controls:DefaultContentControl Header="Финансовая цель: "
+                                                    DefaultValue="{Binding DefaultGoalPrice}" 
+                                                    Classes="MiddleDefaultContentControl"
+                                                    Grid.Row="6" Grid.Column="0">
+                        <controls:AdvancedTextBox PreviewCharRegex="[0-9]"
+                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox"
+                                                  Height="50"/>
+                    </controls:DefaultContentControl>
+                    
+                </Grid>
                 
             </Grid>
             

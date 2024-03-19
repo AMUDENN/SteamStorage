@@ -17,6 +17,8 @@ public class ListItemModel : BaseDynamicsSkinModel
 
     #region Properties
 
+    public decimal CurrentPrice { get; }
+
     public string CurrentPriceString { get; }
 
     public double Change7D { get; }
@@ -54,6 +56,8 @@ public class ListItemModel : BaseDynamicsSkinModel
         bool isMarked) : base(apiClient, themeService, skinId, imageUrl, marketUrl, title)
     {
         _apiClient = apiClient;
+
+        CurrentPrice = currentPrice;
 
         CurrentPriceString = $"{currentPrice:N2} {currencyMark}";
 

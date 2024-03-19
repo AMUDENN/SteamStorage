@@ -12,20 +12,22 @@
                         Background="{TemplateBinding Background}"
                         Padding="{TemplateBinding Padding}">
                     <Grid RowDefinitions="auto *">
-                        <Grid ColumnDefinitions="Auto, *, Auto"
+                        <Grid ColumnDefinitions="*, Auto"
                               Height="50"
                               HorizontalAlignment="Stretch"
                               Margin="0, 0, 0, 10"
                               Grid.Row="0">
                             <TextBlock x:Name="PART_Header"
                                        Text="{TemplateBinding Header}"
+                                       HorizontalAlignment="Left"
+                                       Margin="0, 0, 10, 0"
                                        Grid.Column="0"/>
                             <Button x:Name="PART_ResetButton"
                                     Content="Сбросить"
                                     Command="{TemplateBinding ResetCommand}"
                                     Background="Transparent"
                                     Classes="TextButton UnderlineButton"
-                                    Grid.Column="2"/>
+                                    Grid.Column="1"/>
                         </Grid>
                         <ContentPresenter x:Name="PART_ContentPresenter"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"

@@ -482,8 +482,20 @@ public class ListArchivesModel : ModelBase
 
         ArchiveModels = archivesResponse.Archives.Select(x =>
                 new ArchiveViewModel(
-                    new(x.Skin.Id, x.Skin.SkinIconUrl, x.Skin.MarketUrl, x.Skin.Title, x.Count, x.BuyPrice, x.SoldPrice,
-                        x.SoldSum, _userModel.CurrencyMark, x.Change, x.BuyDate, x.SoldDate),
+                    new(x.Skin.Id,
+                        x.Skin.SkinIconUrl,
+                        x.Skin.MarketUrl,
+                        x.Skin.Title,
+                        x.Id,
+                        x.GroupId,
+                        x.Count,
+                        x.BuyPrice,
+                        x.SoldPrice,
+                        x.SoldSum,
+                        _userModel.CurrencyMark,
+                        x.Change,
+                        x.BuyDate,
+                        x.SoldDate),
                     this))
             .ToList();
 

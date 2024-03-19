@@ -22,6 +22,7 @@ public static class Actives
 
     public record ActiveResponse(
         int Id,
+        int GroupId,
         Skins.BaseSkinResponse Skin,
         DateTime BuyDate,
         int Count,
@@ -30,7 +31,8 @@ public static class Actives
         decimal CurrentSum,
         decimal? GoalPrice,
         double? GoalPriceCompletion,
-        double Change) : Response;
+        double Change,
+        string? Description) : Response;
 
     public record ActivesResponse(
         int Count,

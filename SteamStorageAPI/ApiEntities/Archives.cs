@@ -22,6 +22,7 @@ public static class Archives
 
     public record ArchiveResponse(
         int Id,
+        int GroupId,
         Skins.BaseSkinResponse Skin,
         DateTime BuyDate,
         DateTime SoldDate,
@@ -29,7 +30,8 @@ public static class Archives
         decimal BuyPrice,
         decimal SoldPrice,
         decimal SoldSum,
-        double Change) : Response;
+        double Change,
+        string? Description) : Response;
 
     public record ArchivesResponse(
         int Count,

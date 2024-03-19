@@ -9,7 +9,13 @@ public class ActiveModel : BaseDynamicsSkinModel
 {
     #region Properties
 
+    public int ActiveId { get; }
+
+    public int GroupId { get; }
+
     public int Count { get; }
+
+    public decimal BuyPrice { get; }
 
     public string BuyPriceString { get; }
 
@@ -17,11 +23,17 @@ public class ActiveModel : BaseDynamicsSkinModel
 
     public string CurrentSumString { get; }
 
+    public decimal? GoalPrice { get; }
+
     public string GoalPriceString { get; }
 
     public double Change { get; }
 
+    public DateTime BuyDate { get; }
+
     public string BuyDateString { get; }
+
+    public string? Description { get; }
 
     #endregion Properties
 
@@ -34,6 +46,8 @@ public class ActiveModel : BaseDynamicsSkinModel
         string imageUrl,
         string marketUrl,
         string title,
+        int activeId,
+        int groupId,
         int count,
         decimal buyPrice,
         decimal currentPrice,
@@ -42,9 +56,16 @@ public class ActiveModel : BaseDynamicsSkinModel
         double? goalPriceCompletion,
         string currencyMark,
         double change,
-        DateTime buyDate) : base(apiClient, themeService, skinId, imageUrl, marketUrl, title)
+        DateTime buyDate,
+        string? description) : base(apiClient, themeService, skinId, imageUrl, marketUrl, title)
     {
+        ActiveId = activeId;
+        GroupId = groupId;
+
         Count = count;
+
+        BuyPrice = buyPrice;
+        GoalPrice = goalPrice;
 
         BuyPriceString = $"{buyPrice:N2} {currencyMark}";
         CurrentPriceString = $"{currentPrice:N2} {currencyMark}";
@@ -55,7 +76,11 @@ public class ActiveModel : BaseDynamicsSkinModel
 
         Change = change;
 
+        BuyDate = buyDate;
+
         BuyDateString = buyDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
+
+        Description = description;
     }
 
     #endregion Constructor
