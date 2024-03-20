@@ -163,17 +163,17 @@
         </Setter>
         <Style Selector="^:pointerover /template/ ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}"/>
-            <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         </Style>
         <Style Selector="^:disabled /template/ ContentPresenter">
             <Setter Property="Opacity" Value="0.5"/>
             <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}"/>
-            <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
         </Style>
         <Style Selector="^:pressed /template/ ContentPresenter">
             <Setter Property="Opacity" Value="1"/>
             <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}"/>
-            <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         </Style>
         <Style Selector="^:selected">
             <Setter Property="Opacity" Value="1"/>

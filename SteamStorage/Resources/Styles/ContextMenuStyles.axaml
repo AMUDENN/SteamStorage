@@ -49,10 +49,10 @@
             <Setter Property="Opacity" Value="1"/>
             <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
             <Style Selector="^ ContentPresenter#PART_HeaderPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
             <Style Selector="^ TextBlock#PART_InputGestureText">
-                <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
         </Style>
         <Style Selector="^:disabled">
@@ -61,10 +61,10 @@
                 <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
             <Style Selector="^ TextBlock#PART_InputGestureText">
-                <Setter Property="Foreground" Value="{DynamicResource TopLevelForegroundBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
         </Style>
     </Style>

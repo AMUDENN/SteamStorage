@@ -184,10 +184,9 @@ public class ActiveEditModel : ModelBase
     private bool CanExecuteSaveCommand()
     {
         return SelectedGroupModel is not null
-               && decimal.TryParse(Count, out decimal _)
+               && decimal.TryParse(Count, out decimal _) //TODO: Must be int
                && decimal.TryParse(BuyPrice, out decimal _)
-               && (string.IsNullOrEmpty(GoalPrice) ||
-                   decimal.TryParse(GoalPrice, out decimal _));
+               && (string.IsNullOrEmpty(GoalPrice) || decimal.TryParse(GoalPrice, out decimal _));
     }
 
     private void SetValuesFromDefault()
