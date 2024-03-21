@@ -3,6 +3,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Utilities;
 
 namespace SteamStorage.Models;
 
@@ -10,7 +11,7 @@ public class ActiveEditModel : ModelBase
 {
     #region Constants
 
-    public const string TITLE = "Изменение актива";
+    private const string TITLE = "Изменение актива";
 
     #endregion Constants
 
@@ -184,7 +185,7 @@ public class ActiveEditModel : ModelBase
     private bool CanExecuteSaveCommand()
     {
         return SelectedGroupModel is not null
-               && decimal.TryParse(Count, out decimal _) //TODO: Must be int
+               && int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int _)
                && decimal.TryParse(BuyPrice, out decimal _)
                && (string.IsNullOrEmpty(GoalPrice) || decimal.TryParse(GoalPrice, out decimal _));
     }

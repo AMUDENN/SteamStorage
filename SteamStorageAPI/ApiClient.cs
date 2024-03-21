@@ -23,8 +23,7 @@ public class ApiClient
 
     #region Fields
 
-    private readonly ILoggerService _logger;
-    private readonly IPingService _ping;
+    private readonly ILoggerService? _logger;
     private readonly IHttpClientFactory _httpClientFactory;
 
     private string _token;
@@ -34,12 +33,10 @@ public class ApiClient
     #region Constructor
 
     public ApiClient(
-        ILoggerService logger,
-        IPingService ping,
+        ILoggerService? logger,
         IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
-        _ping = ping;
         _httpClientFactory = httpClientFactory;
         _token = string.Empty;
     }
@@ -60,15 +57,6 @@ public class ApiClient
 
     #endregion Properties
 
-    #region PING
-
-    public async Task<PingResult> GetApiPing()
-    {
-        return await _ping.GetPing(ApiConstants.HOST_NAME);
-    }
-
-    #endregion PING
-
     #region GET
 
     private async Task<TOut?> GetAsync<TOut>(
@@ -88,7 +76,8 @@ public class ApiClient
         }
         catch (Exception ex)
         {
-            await _logger.LogAsync($"ApiException GET \n{uri.ToString()}", ex);
+            if (_logger is not null)
+                await _logger.LogAsync($"ApiException GET \n{uri.ToString()}", ex);
             return default;
         }
     }
@@ -132,7 +121,8 @@ public class ApiClient
         }
         catch (Exception ex)
         {
-            await _logger.LogAsync($"ApiException POST \n{uri.ToString()}", ex);
+            if (_logger is not null)
+                await _logger.LogAsync($"ApiException POST \n{uri.ToString()}", ex);
         }
     }
 
@@ -173,7 +163,8 @@ public class ApiClient
         }
         catch (Exception ex)
         {
-            await _logger.LogAsync($"ApiException DELETE \n{uri.ToString()}", ex);
+            if (_logger is not null)
+                await _logger.LogAsync($"ApiException DELETE \n{uri.ToString()}", ex);
         }
     }
 

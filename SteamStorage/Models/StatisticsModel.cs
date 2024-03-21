@@ -11,6 +11,7 @@ using SteamStorage.Utilities.ThemeVariants;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Services.Ping.PingResult;
+using SteamStorageAPI.Services.Ping.PingService;
 using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
@@ -20,6 +21,9 @@ public class StatisticsModel : ModelBase
     #region Fields
 
     private readonly ApiClient _apiClient;
+    private readonly IPingService _pingService;
+
+
     private readonly UserModel _userModel;
     private readonly IThemeService _themeService;
 
@@ -242,10 +246,12 @@ public class StatisticsModel : ModelBase
 
     public StatisticsModel(
         ApiClient apiClient,
+        IPingService pingService,
         UserModel userModel,
         IThemeService themeService)
     {
         _apiClient = apiClient;
+        _pingService = pingService;
         _userModel = userModel;
         _themeService = themeService;
 
@@ -421,7 +427,7 @@ public class StatisticsModel : ModelBase
 
     private async void RefreshPing()
     {
-        PingResult pingResult = await _apiClient.GetApiPing();
+        PingResult pingResult = await _pingService.GetPing(ApiConstants.HOST_NAME);
         Ping = pingResult.Ping;
         Status = pingResult.Status;
     }

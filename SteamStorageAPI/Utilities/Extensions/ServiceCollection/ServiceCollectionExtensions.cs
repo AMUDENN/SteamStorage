@@ -18,6 +18,7 @@ public static class ServiceCollectionExtensions
         SteamStorageApiOptions options = new();
         configureOptions?.Invoke(options);
 
+        //Main HttpClient
         services.AddHttpClient(ApiConstants.CLIENT_NAME,
                 client =>
                 {
@@ -27,8 +28,11 @@ public static class ServiceCollectionExtensions
                 })
             .AddHttpMessageHandler<TokenHandler>()
             .AddHttpMessageHandler<UnauthorizedHandler>();
+        //TokenHandler
         services.AddScoped<TokenHandler>();
+        //UnauthorizedHandler
         services.AddScoped<UnauthorizedHandler>();
+        //ApiClient
         services.AddSingleton<ApiClient>();
 
         return services;
@@ -41,6 +45,7 @@ public static class ServiceCollectionExtensions
         SteamStorageLoggerOptions options = new();
         configureOptions?.Invoke(options);
 
+        //LoggerService
         services.AddSingleton<ILoggerService, LoggerService>(_ =>
             new(options.ProgramName,
                 options.DateFormat,
@@ -53,14 +58,16 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddSteamStorageAuthorizationService(
         this IServiceCollection services)
     {
+        //AuthorizationService
         services.AddScoped<IAuthorizationService, AuthorizationService>();
 
         return services;
     }
-
+    
     public static IServiceCollection AddSteamStoragePingService(
         this IServiceCollection services)
     {
+        //PingService
         services.AddScoped<IPingService, PingService>();
 
         return services;
