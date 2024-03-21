@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
@@ -43,6 +44,7 @@ public class ActiveEditModel : ModelBase
     private BaseSkinViewModel? _defaultSkinModel;
     private BaseSkinViewModel? _selectedSkinModel;
     private string? _filter;
+    private AutoCompleteFilterPredicate<object?>? _itemFilter;
     private List<BaseSkinViewModel> _skinModels;
 
     private string? _defaultDescription;
@@ -154,6 +156,12 @@ public class ActiveEditModel : ModelBase
         }
     }
 
+    public AutoCompleteFilterPredicate<object?>? ItemFilter
+    {
+        get => _itemFilter;
+        private set => SetProperty(ref _itemFilter, value);
+    }
+
     public List<BaseSkinViewModel> SkinModels
     {
         get => _skinModels;
@@ -220,6 +228,8 @@ public class ActiveEditModel : ModelBase
         _skinModels = [];
         _cancellationTokenSource = new();
 
+        ItemFilter = ItemFilterPredicate;
+
         DeleteCommand = new(DoDeleteCommand);
         SaveCommand = new(DoSaveCommand, CanExecuteSaveCommand);
     }
@@ -245,6 +255,13 @@ public class ActiveEditModel : ModelBase
                && decimal.TryParse(BuyPrice, out decimal _)
                && (string.IsNullOrEmpty(GoalPrice) || decimal.TryParse(GoalPrice, out decimal _))
                && SelectedSkinModel is not null;
+    }
+
+    private bool ItemFilterPredicate(string? search, object? item)
+    {
+        return item is not null &&
+               (string.IsNullOrEmpty(search) ||
+                ((BaseSkinViewModel)item).Title.Contains(search, StringComparison.CurrentCultureIgnoreCase));
     }
 
     private void SetTitle(BaseSkinViewModel? model)

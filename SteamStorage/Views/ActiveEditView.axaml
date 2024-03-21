@@ -7,9 +7,7 @@
              xmlns:controls="using:SteamStorage.Resources.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SteamStorage.Views.ActiveEditView"
-             x:DataType="vm:ActiveEditViewModel"
-             xmlns:asyncImageLoader="using:AsyncImageLoader"
-             xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels">
+             x:DataType="vm:ActiveEditViewModel">
     
     <UserControl.Resources>
         <converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
@@ -90,7 +88,9 @@
                         <AutoCompleteBox SelectedItem="{Binding SelectedSkinModel}" 
                                          ItemsSource="{Binding SkinModels, Mode=OneWay}"
                                          SearchText="{Binding Filter, Mode=OneWayToSource}"
-                                         Classes="BaseSkinsAutoCompleteBox DarkAutoCompleteBox"
+                                         ItemFilter="{Binding ItemFilter, Mode=OneWay}"
+                                         Watermark="Выберите предмет из выпадающего списка"
+                                         Classes="BaseSkinsAutoCompleteBox DarkAutoCompleteBox SmallAutoCompleteBox"
                                          Height="50"/>
                     </controls:DefaultContentControl>
                     
@@ -100,7 +100,7 @@
                                                     Grid.RowSpan="3" Grid.Row="2" Grid.Column="2">
                         <TextBox Text="{Binding Description}"
                                  MaxLength="300"
-                                 Classes="DarkTextBox BigTextBox SmallTextBox"
+                                 Classes="DarkTextBox BigWrappingTextBox SmallTextBox"
                                  Height="190"/>
                     </controls:DefaultContentControl>
                     

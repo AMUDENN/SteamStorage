@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
@@ -89,8 +90,13 @@ public class ActiveEditViewModel : ViewModelBase
         get => _activeEditModel.Filter;
         set => _activeEditModel.Filter = value;
     }
+
+    public AutoCompleteFilterPredicate<object?>? ItemFilter
+    {
+        get=> _activeEditModel.ItemFilter;
+    }
     
-    public List<BaseSkinViewModel> SkinModels
+    public IEnumerable<BaseSkinViewModel> SkinModels
     {
         get => _activeEditModel.SkinModels;
     }

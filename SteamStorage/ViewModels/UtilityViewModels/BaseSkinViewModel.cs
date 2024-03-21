@@ -46,4 +46,13 @@ public class BaseSkinViewModel : ViewModelBase
     }
 
     #endregion Constructor
+
+    #region Methods
+
+    public override string ToString()
+    {
+        return Title;
+    }
+
+    #endregion Methods
 }

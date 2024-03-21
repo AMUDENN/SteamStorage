@@ -7,13 +7,17 @@
         
     </Style>
     
+    <Style Selector="AutoCompleteBox.SmallAutoCompleteBox">
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+    
     <Style Selector="AutoCompleteBox.DarkAutoCompleteBox">
-        <Setter Property="FontSize" Value="18"/>
         <Setter Property="CornerRadius" Value="8"/>
         <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Padding" Value="0"/>
         <Setter Property="Template">
             <ControlTemplate>
                 <Grid x:Name="PART_LayoutRoot">
@@ -21,8 +25,9 @@
                              Watermark="{TemplateBinding Watermark}"
                              Width="{TemplateBinding Width}"
                              Padding="{TemplateBinding Padding}"
-                             Classes="DarkTextBox"
-                             Margin="0"
+                             FontSize="{TemplateBinding FontSize}"
+                             BorderThickness="0"
+                             Classes="DarkTextBox SmallTextBox"
                              DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"/>
                     <Popup x:Name="PART_Popup" 
                            WindowManagerAddShadowHint="False"
@@ -54,13 +59,13 @@
                 <DataTemplate x:DataType="utilityViewModels:BaseSkinViewModel">
                     <Grid ColumnDefinitions="40, *"
                           Height="30">
-                        <TextBlock Text="{Binding Title, Mode=OneWay}"
-                                   Classes="LittleTextBlock LeftTextBlock LightWeightTextBlock"
-                                   Grid.Column="0"/>
                         <Border Classes="LittleRoundedBorder BackgroundAdditionalBorder"
-                                Grid.Column="1">
+                                Grid.Column="0">
                             <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
                         </Border>
+                        <TextBlock Text="{Binding Title, Mode=OneWay}"
+                                   Classes="LittleTextBlock LeftTextBlock LightWeightTextBlock"
+                                   Grid.Column="1"/>
                     </Grid>
                 </DataTemplate>
             </Setter.Value>

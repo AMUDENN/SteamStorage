@@ -74,6 +74,7 @@ public class DefaultContentControl : ContentControl
                 cb.SelectedItem = DefaultValue;
                 break;
             case AutoCompleteBox acb:
+                acb.Text = null;
                 acb.SelectedItem = DefaultValue;
                 break;
             case DatePicker dp:
