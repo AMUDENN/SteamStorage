@@ -4,8 +4,6 @@ using System.Reflection;
 using System.Text;
 using SteamStorageAPI.ApiEntities.Tools;
 using SteamStorageAPI.Services.Logger.LoggerService;
-using SteamStorageAPI.Services.Ping.PingResult;
-using SteamStorageAPI.Services.Ping.PingService;
 using SteamStorageAPI.Utilities;
 using SteamStorageAPI.Utilities.Events;
 

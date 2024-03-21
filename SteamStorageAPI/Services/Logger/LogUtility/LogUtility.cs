@@ -2,7 +2,7 @@
 
 namespace SteamStorageAPI.Services.Logger.LogUtility;
 
-public static class LogUtility
+internal static class LogUtility
 {
     #region Methods
 

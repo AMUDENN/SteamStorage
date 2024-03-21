@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace SteamStorageAPI.Services.Logger.LogFile;
 
-public class LogFile : IDisposable
+internal sealed class LogFile : IDisposable
 {
     #region Fields
 

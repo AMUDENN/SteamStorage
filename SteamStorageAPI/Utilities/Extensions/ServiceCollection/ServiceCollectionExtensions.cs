@@ -63,12 +63,13 @@ public static class ServiceCollectionExtensions
 
         return services;
     }
-    
+
     public static IServiceCollection AddSteamStoragePingService(
         this IServiceCollection services)
     {
         //PingService
-        services.AddScoped<IPingService, PingService>();
+        services.AddScoped<IPingService, PingService>(_ =>
+            new(ApiConstants.HOST_NAME));
 
         return services;
     }

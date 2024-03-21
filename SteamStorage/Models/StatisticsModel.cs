@@ -427,7 +427,7 @@ public class StatisticsModel : ModelBase
 
     private async void RefreshPing()
     {
-        PingResult pingResult = await _pingService.GetPing(ApiConstants.HOST_NAME);
+        PingResult pingResult = await _pingService.GetPing();
         Ping = pingResult.Ping;
         Status = pingResult.Status;
     }

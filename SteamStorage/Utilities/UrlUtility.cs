@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace SteamStorageAPI.Utilities;
+namespace SteamStorage.Utilities;
 
-internal static class UrlUtility
+public static class UrlUtility
 {
     internal static void OpenUrl(string url)
     {

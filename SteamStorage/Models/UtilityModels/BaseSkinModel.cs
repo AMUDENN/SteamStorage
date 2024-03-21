@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
-using SteamStorageAPI.Utilities;
+using SteamStorage.Utilities;
 
 namespace SteamStorage.Models.UtilityModels;
 
