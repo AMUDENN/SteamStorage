@@ -7,6 +7,7 @@
         <Title>SteamStorageAPI</Title>
         <Authors>AMUDENN</Authors>
         <Description>A class library for interacting with the SteamStorage API</Description>
+        <PackageIcon>Resources\icon.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Resources\" />
       <Folder Include="Services\Ping\" />
     </ItemGroup>
 
