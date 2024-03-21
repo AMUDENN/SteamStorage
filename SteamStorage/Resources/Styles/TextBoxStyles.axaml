@@ -6,6 +6,7 @@
         <Setter Property="CaretBrush" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="SelectionBrush" Value="{DynamicResource ThirdAccentBrush}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="ContextFlyout" Value="{x:Null}"/>
         <Style Selector="^:disabled">
             <Setter Property="Opacity" Value="0.5"/>
             <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>

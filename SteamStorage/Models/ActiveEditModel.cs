@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Utilities;
+using SteamStorage.ViewModels.UtilityViewModels;
+using SteamStorageAPI;
+using SteamStorageAPI.ApiEntities;
+using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
 
@@ -17,6 +23,7 @@ public class ActiveEditModel : ModelBase
 
     #region Fields
 
+    private readonly ApiClient _apiClient;
     private readonly ActiveGroupsModel _activeGroupsModel;
 
     private string _title;
@@ -33,13 +40,18 @@ public class ActiveEditModel : ModelBase
     private string? _defaultGoalPrice;
     private string? _goalPrice;
 
-    //item
+    private BaseSkinViewModel? _defaultSkinModel;
+    private BaseSkinViewModel? _selectedSkinModel;
+    private string? _filter;
+    private List<BaseSkinViewModel> _skinModels;
 
     private string? _defaultDescription;
     private string? _description;
 
     private DateTimeOffset _defaultBuyDate;
     private DateTimeOffset _buyDate;
+
+    private CancellationTokenSource _cancellationTokenSource;
 
     #endregion Fields
 
@@ -115,6 +127,39 @@ public class ActiveEditModel : ModelBase
         }
     }
 
+    public BaseSkinViewModel? DefaultSkinModel
+    {
+        get => _defaultSkinModel;
+        private set => SetProperty(ref _defaultSkinModel, value);
+    }
+
+    public BaseSkinViewModel? SelectedSkinModel
+    {
+        get => _selectedSkinModel;
+        set
+        {
+            SetProperty(ref _selectedSkinModel, value);
+            SaveCommand.NotifyCanExecuteChanged();
+            SetTitle(value);
+        }
+    }
+
+    public string? Filter
+    {
+        get => _filter;
+        set
+        {
+            SetProperty(ref _filter, value);
+            GetSkins();
+        }
+    }
+
+    public List<BaseSkinViewModel> SkinModels
+    {
+        get => _skinModels;
+        private set => SetProperty(ref _skinModels, value);
+    }
+
     public string? DefaultDescription
     {
         get => _defaultDescription;
@@ -139,6 +184,12 @@ public class ActiveEditModel : ModelBase
         set => SetProperty(ref _buyDate, value);
     }
 
+    private CancellationTokenSource CancellationTokenSource
+    {
+        get => _cancellationTokenSource;
+        set => SetProperty(ref _cancellationTokenSource, value);
+    }
+
     #endregion Properties
 
     #region Commands
@@ -152,8 +203,10 @@ public class ActiveEditModel : ModelBase
     #region Constructor
 
     public ActiveEditModel(
+        ApiClient apiClient,
         ActiveGroupsModel activeGroupsModel)
     {
+        _apiClient = apiClient;
         _activeGroupsModel = activeGroupsModel;
 
         _title = string.Empty;
@@ -163,6 +216,9 @@ public class ActiveEditModel : ModelBase
 
         _defaultBuyPrice = string.Empty;
         _buyPrice = string.Empty;
+
+        _skinModels = [];
+        _cancellationTokenSource = new();
 
         DeleteCommand = new(DoDeleteCommand);
         SaveCommand = new(DoSaveCommand, CanExecuteSaveCommand);
@@ -187,7 +243,14 @@ public class ActiveEditModel : ModelBase
         return SelectedGroupModel is not null
                && int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int _)
                && decimal.TryParse(BuyPrice, out decimal _)
-               && (string.IsNullOrEmpty(GoalPrice) || decimal.TryParse(GoalPrice, out decimal _));
+               && (string.IsNullOrEmpty(GoalPrice) || decimal.TryParse(GoalPrice, out decimal _))
+               && SelectedSkinModel is not null;
+    }
+
+    private void SetTitle(BaseSkinViewModel? model)
+    {
+        if (model is null) Title = TITLE;
+        Title = $"{TITLE}: «{model?.Title}»";
     }
 
     private void SetValuesFromDefault()
@@ -196,14 +259,13 @@ public class ActiveEditModel : ModelBase
         Count = DefaultCount;
         BuyPrice = DefaultBuyPrice;
         GoalPrice = DefaultGoalPrice;
+        SelectedSkinModel = DefaultSkinModel;
         Description = DefaultDescription;
         BuyDate = DefaultBuyDate;
     }
 
     public void SetEditActive(ActiveModel? model)
     {
-        SetTitle(model);
-
         DefaultGroupModel = _activeGroupsModel.ActiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = $"{model?.Count ?? 1:N0}";
@@ -211,6 +273,8 @@ public class ActiveEditModel : ModelBase
         DefaultBuyPrice = $"{model?.BuyPrice ?? 1:N2}";
 
         DefaultGoalPrice = $"{model?.GoalPrice:N2}";
+
+        DefaultSkinModel = model is not null ? new(model) : null;
 
         DefaultDescription = model?.Description;
 
@@ -221,8 +285,6 @@ public class ActiveEditModel : ModelBase
 
     public void SetAddActive(ActiveGroupModel? model)
     {
-        SetTitle(null);
-
         DefaultGroupModel = _activeGroupsModel.ActiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = "1";
@@ -230,6 +292,8 @@ public class ActiveEditModel : ModelBase
         DefaultBuyPrice = "1";
 
         DefaultGoalPrice = null;
+
+        DefaultSkinModel = null;
 
         DefaultDescription = null;
 
@@ -240,8 +304,6 @@ public class ActiveEditModel : ModelBase
 
     public void SetAddActive(ListItemModel? model)
     {
-        SetTitle(model);
-
         DefaultGroupModel = null;
 
         DefaultCount = "1";
@@ -250,6 +312,8 @@ public class ActiveEditModel : ModelBase
 
         DefaultGoalPrice = null;
 
+        DefaultSkinModel = model is not null ? new(model) : null;
+
         DefaultDescription = null;
 
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
@@ -257,10 +321,30 @@ public class ActiveEditModel : ModelBase
         SetValuesFromDefault();
     }
 
-    private void SetTitle(BaseSkinModel? model)
+    private async void GetSkins()
     {
-        if (model is null) Title = TITLE;
-        Title = $"{TITLE}: «{model?.Title}»";
+        SkinModels = [];
+
+        await CancellationTokenSource.CancelAsync();
+
+        CancellationTokenSource = new();
+        CancellationToken token = CancellationTokenSource.Token;
+
+        IEnumerable<Skins.BaseSkinResponse>? skinsResponse =
+            await _apiClient.GetAsync<IEnumerable<Skins.BaseSkinResponse>, Skins.GetBaseSkinsRequest>(
+                ApiConstants.ApiControllers.Skins,
+                ApiConstants.ApiMethods.GetBaseSkins,
+                new(Filter),
+                token);
+
+        if (skinsResponse is null) return;
+
+        SkinModels = skinsResponse.Select(x =>
+                new BaseSkinViewModel(new(x.Id,
+                    x.SkinIconUrl,
+                    x.MarketUrl,
+                    x.Title)))
+            .ToList();
     }
 
     #endregion Methods

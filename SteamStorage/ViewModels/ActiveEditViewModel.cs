@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.ViewModels.Tools;
+using SteamStorage.ViewModels.UtilityViewModels;
 
 namespace SteamStorage.ViewModels;
 
@@ -70,6 +71,28 @@ public class ActiveEditViewModel : ViewModelBase
     {
         get => _activeEditModel.GoalPrice;
         set => _activeEditModel.GoalPrice = value;
+    }
+    
+    public BaseSkinViewModel? DefaultSkinModel
+    {
+        get => _activeEditModel.DefaultSkinModel;
+    }
+
+    public BaseSkinViewModel? SelectedSkinModel
+    {
+        get => _activeEditModel.SelectedSkinModel;
+        set => _activeEditModel.SelectedSkinModel = value;
+    }
+    
+    public string? Filter
+    {
+        get => _activeEditModel.Filter;
+        set => _activeEditModel.Filter = value;
+    }
+    
+    public List<BaseSkinViewModel> SkinModels
+    {
+        get => _activeEditModel.SkinModels;
     }
 
     public string? DefaultDescription

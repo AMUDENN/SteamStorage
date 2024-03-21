@@ -73,6 +73,9 @@ public class DefaultContentControl : ContentControl
             case ComboBox cb:
                 cb.SelectedItem = DefaultValue;
                 break;
+            case AutoCompleteBox acb:
+                acb.SelectedItem = DefaultValue;
+                break;
             case DatePicker dp:
                 dp.SelectedDate = DefaultValue is DateTimeOffset offset ? offset : DateTimeOffset.Now;
                 break;

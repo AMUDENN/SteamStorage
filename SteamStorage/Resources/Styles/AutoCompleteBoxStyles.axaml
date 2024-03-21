@@ -1,0 +1,70 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:asyncImageLoader="using:AsyncImageLoader"
+        xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels">
+    
+    <Style Selector="AutoCompleteBox">
+        
+    </Style>
+    
+    <Style Selector="AutoCompleteBox.DarkAutoCompleteBox">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid x:Name="PART_LayoutRoot">
+                    <TextBox x:Name="PART_TextBox"
+                             Watermark="{TemplateBinding Watermark}"
+                             Width="{TemplateBinding Width}"
+                             Padding="{TemplateBinding Padding}"
+                             Classes="DarkTextBox"
+                             Margin="0"
+                             DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"/>
+                    <Popup x:Name="PART_Popup" 
+                           WindowManagerAddShadowHint="False"
+                           MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}" 
+                           MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                           IsLightDismissEnabled="True"
+                           PlacementTarget="{TemplateBinding}">
+                        <Border x:Name="PART_SuggestionsContainer"
+                                Padding="{DynamicResource AutoCompleteListMargin}"
+                                BorderThickness="{DynamicResource AutoCompleteListBorderThemeThickness}"
+                                BorderBrush="{DynamicResource AutoCompleteBoxSuggestionsListBorderBrush}"
+                                Background="{DynamicResource AutoCompleteBoxSuggestionsListBackground}"
+                                CornerRadius="{DynamicResource OverlayCornerRadius}">
+                            <ListBox x:Name="PART_SelectingItemsControl"
+                                     BorderThickness="0"
+                                     Background="Transparent"
+                                     ItemTemplate="{TemplateBinding ItemTemplate}"
+                                     Margin="{DynamicResource AutoCompleteListPadding}"/>
+                        </Border>
+                    </Popup>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    
+    <Style Selector="AutoCompleteBox.BaseSkinsAutoCompleteBox">
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate x:DataType="utilityViewModels:BaseSkinViewModel">
+                    <Grid ColumnDefinitions="40, *"
+                          Height="30">
+                        <TextBlock Text="{Binding Title, Mode=OneWay}"
+                                   Classes="LittleTextBlock LeftTextBlock LightWeightTextBlock"
+                                   Grid.Column="0"/>
+                        <Border Classes="LittleRoundedBorder BackgroundAdditionalBorder"
+                                Grid.Column="1">
+                            <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+        
+</Styles>

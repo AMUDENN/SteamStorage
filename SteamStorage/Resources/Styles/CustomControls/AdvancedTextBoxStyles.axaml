@@ -8,6 +8,7 @@
         <Setter Property="CaretBrush" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="SelectionBrush" Value="{DynamicResource ThirdAccentBrush}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="ContextFlyout" Value="{x:Null}"/>
         <Setter Property="Template">
             <ControlTemplate>
                 <DataValidationErrors>
@@ -18,9 +19,7 @@
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 MinWidth="{TemplateBinding MinWidth}"
-                                MinHeight="{TemplateBinding MinHeight}">
-                        </Border>
-
+                                MinHeight="{TemplateBinding MinHeight}"/>
                         <Border Margin="{TemplateBinding BorderThickness}">
                             <Grid ColumnDefinitions="Auto,*,Auto" >
                                 <ContentPresenter Content="{TemplateBinding InnerLeftContent}"
@@ -73,7 +72,7 @@
                                         </Panel>
                                         <ScrollViewer.Styles>
                                             <Style Selector="ScrollContentPresenter#PART_ContentPresenter">
-                                            <Setter Property="Cursor" Value="IBeam" />
+                                            <Setter Property="Cursor" Value="IBeam"/>
                                             </Style>
                                         </ScrollViewer.Styles>
                                     </ScrollViewer>

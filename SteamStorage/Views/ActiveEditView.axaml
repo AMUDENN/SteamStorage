@@ -7,7 +7,9 @@
              xmlns:controls="using:SteamStorage.Resources.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SteamStorage.Views.ActiveEditView"
-             x:DataType="vm:ActiveEditViewModel">
+             x:DataType="vm:ActiveEditViewModel"
+             xmlns:asyncImageLoader="using:AsyncImageLoader"
+             xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels">
     
     <UserControl.Resources>
         <converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
@@ -82,10 +84,14 @@
                     </controls:DefaultContentControl>
                     
                     <controls:DefaultContentControl Header="Предмет: "
+                                                    DefaultValue="{Binding DefaultSkinModel, Mode=OneWay}"
                                                     Classes="MiddleDefaultContentControl"
                                                     Grid.Row="0" Grid.Column="2">
-                        <TextBlock Text="Тут будет предмет" 
-                                   Height="50"/>
+                        <AutoCompleteBox SelectedItem="{Binding SelectedSkinModel}" 
+                                         ItemsSource="{Binding SkinModels, Mode=OneWay}"
+                                         SearchText="{Binding Filter, Mode=OneWayToSource}"
+                                         Classes="BaseSkinsAutoCompleteBox DarkAutoCompleteBox"
+                                         Height="50"/>
                     </controls:DefaultContentControl>
                     
                     <controls:DefaultContentControl Header="Описание: "
