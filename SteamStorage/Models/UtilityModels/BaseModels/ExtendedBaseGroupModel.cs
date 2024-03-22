@@ -1,7 +1,7 @@
 ﻿using System;
 using SteamStorage.Utilities;
 
-namespace SteamStorage.Models.UtilityModels;
+namespace SteamStorage.Models.UtilityModels.BaseModels;
 
 public class ExtendedBaseGroupModel : BaseGroupModel
 {

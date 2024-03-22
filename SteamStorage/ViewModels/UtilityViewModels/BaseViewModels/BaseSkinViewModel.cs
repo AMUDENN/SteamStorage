@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using SteamStorage.Models.UtilityModels;
+using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.ViewModels.Tools;
 
-namespace SteamStorage.ViewModels.UtilityViewModels;
+namespace SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 
 public class BaseSkinViewModel : ViewModelBase
 {

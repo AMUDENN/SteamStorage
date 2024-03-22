@@ -11,6 +11,10 @@ public static class Games
         int SteamGameId,
         string Title,
         string GameIconUrl) : Response;
+    
+    public record GamesResponse(
+        int Count,
+        IEnumerable<GameResponse> Games) : Response;
 
     #endregion Records
 }

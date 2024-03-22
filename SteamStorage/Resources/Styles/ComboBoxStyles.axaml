@@ -1,7 +1,8 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:utilityModels="using:SteamStorage.Models.UtilityModels"
-        xmlns:controls="using:SteamStorage.Resources.Controls">
+        xmlns:controls="using:SteamStorage.Resources.Controls"
+        xmlns:baseModels="clr-namespace:SteamStorage.Models.UtilityModels.BaseModels">
     
     <Style Selector="ComboBox">
         <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
@@ -216,7 +217,7 @@
     <Style Selector="ComboBox.GroupComboBox">
         <Setter Property="ItemTemplate">
             <Setter.Value>
-                <DataTemplate x:DataType="utilityModels:BaseGroupModel">
+                <DataTemplate x:DataType="baseModels:BaseGroupModel">
                     <TextBlock Text="{Binding Title}"
                                Classes="SmallTextBlock"/>
                 </DataTemplate>

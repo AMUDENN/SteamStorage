@@ -1,4 +1,5 @@
 ﻿using System;
+using SteamStorage.Models.UtilityModels.BaseModels;
 
 namespace SteamStorage.Models.UtilityModels;
 

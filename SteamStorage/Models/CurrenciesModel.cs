@@ -54,12 +54,12 @@ public class CurrenciesModel : ModelBase
 
     private async void GetCurrencies()
     {
-        IEnumerable<Currencies.CurrencyResponse>? currencyResponses =
-            await _apiClient.GetAsync<IEnumerable<Currencies.CurrencyResponse>>(
+        Currencies.CurrenciesResponse? currencyResponses =
+            await _apiClient.GetAsync<Currencies.CurrenciesResponse>(
                 ApiConstants.ApiControllers.Currencies,
                 ApiConstants.ApiMethods.GetCurrencies);
         if (currencyResponses is null) return;
-        CurrencyModels = currencyResponses.Select(x => new CurrencyModel(x.Id, x.Title, x.Mark)).ToList();
+        CurrencyModels = currencyResponses.Currencies.Select(x => new CurrencyModel(x.Id, x.Title, x.Mark)).ToList();
         OnCurrenciesLoaded();
     }
 

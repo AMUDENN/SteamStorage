@@ -5,6 +5,7 @@ using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
+using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Events.Settings;

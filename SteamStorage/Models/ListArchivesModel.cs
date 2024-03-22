@@ -4,6 +4,7 @@ using System.Threading;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Utilities.Events.Archives;
 using SteamStorage.ViewModels.UtilityViewModels;
 using SteamStorageAPI;

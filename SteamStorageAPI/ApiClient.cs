@@ -60,6 +60,7 @@ public class ApiClient
     private async Task<TOut?> GetAsync<TOut>(
         Uri uri,
         CancellationToken cancellationToken = default)
+        where TOut : Response
     {
         try
         {
@@ -84,6 +85,7 @@ public class ApiClient
         ApiConstants.ApiControllers apiController,
         ApiConstants.ApiMethods apiMethod,
         CancellationToken cancellationToken = default)
+        where TOut : Response
     {
         return await GetAsync<TOut>(CreateUri(apiController, apiMethod), cancellationToken);
     }
@@ -93,6 +95,7 @@ public class ApiClient
         ApiConstants.ApiMethods apiMethod,
         TIn? args = null,
         CancellationToken cancellationToken = default)
+        where TOut : Response
         where TIn : Request
     {
         return await GetAsync<TOut>(CreateUri(apiController, apiMethod, args), cancellationToken);

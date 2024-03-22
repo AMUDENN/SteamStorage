@@ -24,6 +24,10 @@ public static class Skins
         string Title,
         string MarketHashName,
         string MarketUrl) : Response;
+    
+    public record BaseSkinsResponse(
+        int Count,
+        IEnumerable<BaseSkinResponse> Skins) : Response;
 
     public record SkinResponse(
         BaseSkinResponse Skin,

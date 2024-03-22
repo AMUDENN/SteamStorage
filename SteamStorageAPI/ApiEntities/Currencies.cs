@@ -13,6 +13,10 @@ public static class Currencies
         string Mark,
         double Price,
         DateTime DateUpdate) : Response;
+    
+    public record CurrenciesResponse(
+        int Count,
+        IEnumerable<CurrencyResponse> Currencies) : Response;
 
     public record GetCurrencyRequest(
         int Id) : Request;

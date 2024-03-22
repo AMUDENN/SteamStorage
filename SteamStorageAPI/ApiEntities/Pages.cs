@@ -9,6 +9,10 @@ public static class Pages
     public record PageResponse(
         int Id,
         string Title) : Response;
+    
+    public record PagesResponse(
+        int Count,
+        IEnumerable<PageResponse> Pages) : Response;
 
     public record SetPageRequest(
         int PageId) : Request;

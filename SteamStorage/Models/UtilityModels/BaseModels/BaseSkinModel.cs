@@ -2,7 +2,7 @@
 using SteamStorage.Models.Tools;
 using SteamStorage.Utilities;
 
-namespace SteamStorage.Models.UtilityModels;
+namespace SteamStorage.Models.UtilityModels.BaseModels;
 
 public class BaseSkinModel : ModelBase
 {

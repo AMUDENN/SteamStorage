@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Avalonia.Controls;
-using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
-using SteamStorage.ViewModels.Tools;
-using SteamStorage.ViewModels.UtilityViewModels;
+using SteamStorage.Models.UtilityModels.BaseModels;
+using SteamStorage.ViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels;
 
-public class ActiveEditViewModel : ViewModelBase
+public class ActiveEditViewModel : BaseItemEditViewModel
 {
     #region Fields
 
@@ -25,22 +21,6 @@ public class ActiveEditViewModel : ViewModelBase
     public IEnumerable<BaseGroupModel> ActiveGroupModels
     {
         get => _activeGroupsModel.ActiveGroupModels;
-    }
-
-    public string Title
-    {
-        get => _activeEditModel.Title;
-    }
-
-    public BaseGroupModel? DefaultGroupModel
-    {
-        get => _activeEditModel.DefaultGroupModel;
-    }
-
-    public BaseGroupModel? SelectedGroupModel
-    {
-        get => _activeEditModel.SelectedGroupModel;
-        set => _activeEditModel.SelectedGroupModel = value;
     }
 
     public string DefaultCount
@@ -75,38 +55,6 @@ public class ActiveEditViewModel : ViewModelBase
         get => _activeEditModel.GoalPrice;
         set => _activeEditModel.GoalPrice = value;
     }
-    
-    public BaseSkinViewModel? DefaultSkinModel
-    {
-        get => _activeEditModel.DefaultSkinModel;
-    }
-
-    public BaseSkinViewModel? SelectedSkinModel
-    {
-        get => _activeEditModel.SelectedSkinModel;
-        set => _activeEditModel.SelectedSkinModel = value;
-    }
-    
-    public string? Filter
-    {
-        get => _activeEditModel.Filter;
-        set => _activeEditModel.Filter = value;
-    }
-
-    public AutoCompleteFilterPredicate<object?>? ItemFilter
-    {
-        get=> _activeEditModel.ItemFilter;
-    }
-    
-    public Func<string?, CancellationToken, Task<IEnumerable<object>>>? AsyncPopulator
-    {
-        get=> _activeEditModel.AsyncPopulator;
-    }
-    
-    public IEnumerable<BaseSkinViewModel> SkinModels
-    {
-        get => _activeEditModel.SkinModels;
-    }
 
     public string? DefaultDescription
     {
@@ -132,25 +80,11 @@ public class ActiveEditViewModel : ViewModelBase
 
     #endregion Properties
 
-    #region Commands
-
-    public RelayCommand DeleteCommand
-    {
-        get => _activeEditModel.DeleteCommand;
-    }
-    
-    public RelayCommand SaveCommand
-    {
-        get => _activeEditModel.SaveCommand;
-    }
-
-    #endregion Commands
-
     #region Constructor
 
     public ActiveEditViewModel(
         ActiveEditModel activeEditModel,
-        ActiveGroupsModel activeGroupsModel)
+        ActiveGroupsModel activeGroupsModel) : base(activeEditModel)
     {
         _activeEditModel = activeEditModel;
         _activeGroupsModel = activeGroupsModel;

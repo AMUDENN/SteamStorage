@@ -3,9 +3,9 @@ using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models;
-using SteamStorage.Models.UtilityModels;
+using SteamStorage.Models.UtilityModels.BaseModels;
 
-namespace SteamStorage.ViewModels.UtilityViewModels;
+namespace SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 
 public class BaseDynamicsSkinViewModel : BaseSkinViewModel
 {

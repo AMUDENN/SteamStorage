@@ -5,6 +5,7 @@ using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels.UtilityViewModels;
 

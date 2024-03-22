@@ -1,5 +1,6 @@
 ﻿using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels.UtilityViewModels;
 

@@ -1,6 +1,6 @@
 ﻿using SteamStorage.Models.Tools;
 
-namespace SteamStorage.Models.UtilityModels;
+namespace SteamStorage.Models.UtilityModels.BaseModels;
 
 public class BaseGroupModel : ModelBase
 {

@@ -13,7 +13,7 @@ using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Utilities;
 
-namespace SteamStorage.Models.UtilityModels;
+namespace SteamStorage.Models.UtilityModels.BaseModels;
 
 public class BaseDynamicsSkinModel : BaseSkinModel
 {

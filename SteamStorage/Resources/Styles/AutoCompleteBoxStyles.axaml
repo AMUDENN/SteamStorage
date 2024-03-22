@@ -1,7 +1,8 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:asyncImageLoader="using:AsyncImageLoader"
-        xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels">
+        xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels"
+        xmlns:baseViewModels="clr-namespace:SteamStorage.ViewModels.UtilityViewModels.BaseViewModels">
     
     <Style Selector="AutoCompleteBox">
         
@@ -56,7 +57,7 @@
     <Style Selector="AutoCompleteBox.BaseSkinsAutoCompleteBox">
         <Setter Property="ItemTemplate">
             <Setter.Value>
-                <DataTemplate x:DataType="utilityViewModels:BaseSkinViewModel">
+                <DataTemplate x:DataType="baseViewModels:BaseSkinViewModel">
                     <Grid ColumnDefinitions="40, *"
                           Height="30"
                           Margin="11, 4, 11, 7">
