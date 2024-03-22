@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
@@ -45,6 +46,7 @@ public class ActiveEditModel : ModelBase
     private BaseSkinViewModel? _selectedSkinModel;
     private string? _filter;
     private AutoCompleteFilterPredicate<object?>? _itemFilter;
+    private Func<string?, CancellationToken, Task<IEnumerable<object>>>? _asyncPopulator;
     private List<BaseSkinViewModel> _skinModels;
 
     private string? _defaultDescription;
@@ -162,6 +164,12 @@ public class ActiveEditModel : ModelBase
         private set => SetProperty(ref _itemFilter, value);
     }
 
+    public Func<string?, CancellationToken, Task<IEnumerable<object>>>? AsyncPopulator
+    {
+        get => _asyncPopulator;
+        private set => SetProperty(ref _asyncPopulator, value);
+    }
+
     public List<BaseSkinViewModel> SkinModels
     {
         get => _skinModels;
@@ -229,6 +237,7 @@ public class ActiveEditModel : ModelBase
         _cancellationTokenSource = new();
 
         ItemFilter = ItemFilterPredicate;
+        AsyncPopulator = PopulateAsync;
 
         DeleteCommand = new(DoDeleteCommand);
         SaveCommand = new(DoSaveCommand, CanExecuteSaveCommand);
@@ -262,6 +271,17 @@ public class ActiveEditModel : ModelBase
         return item is not null &&
                (string.IsNullOrEmpty(search) ||
                 ((BaseSkinViewModel)item).Title.Contains(search, StringComparison.CurrentCultureIgnoreCase));
+    }
+
+    private async Task<IEnumerable<object>> PopulateAsync(string? searchText, CancellationToken cancellationToken)
+    {
+        await Task.Delay(TimeSpan.FromSeconds(0.4), cancellationToken);
+
+        return
+            SkinModels.Where(data =>
+                    string.IsNullOrEmpty(searchText) ||
+                    data.Title.Contains(searchText, StringComparison.CurrentCultureIgnoreCase))
+                .ToList();
     }
 
     private void SetTitle(BaseSkinViewModel? model)

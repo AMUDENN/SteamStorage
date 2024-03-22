@@ -37,10 +37,10 @@
                            PlacementTarget="{TemplateBinding}">
                         <Border x:Name="PART_SuggestionsContainer"
                                 Padding="{DynamicResource AutoCompleteListMargin}"
-                                BorderThickness="{DynamicResource AutoCompleteListBorderThemeThickness}"
-                                BorderBrush="{DynamicResource AutoCompleteBoxSuggestionsListBorderBrush}"
-                                Background="{DynamicResource AutoCompleteBoxSuggestionsListBackground}"
-                                CornerRadius="{DynamicResource OverlayCornerRadius}">
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Background="{DynamicResource TopLevelBackgroundBrush}"
+                                Classes="SmallRoundedBorder">
                             <ListBox x:Name="PART_SelectingItemsControl"
                                      BorderThickness="0"
                                      Background="Transparent"
@@ -58,18 +58,37 @@
             <Setter.Value>
                 <DataTemplate x:DataType="utilityViewModels:BaseSkinViewModel">
                     <Grid ColumnDefinitions="40, *"
-                          Height="30">
-                        <Border Classes="LittleRoundedBorder BackgroundAdditionalBorder"
+                          Height="30"
+                          Margin="11, 4, 11, 7">
+                        <Border Classes="LittleRoundedBorder TransparentBorder"
                                 Grid.Column="0">
                             <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
                         </Border>
                         <TextBlock Text="{Binding Title, Mode=OneWay}"
                                    Classes="LittleTextBlock LeftTextBlock LightWeightTextBlock"
+                                   Margin="10, 0, 0, 0"
                                    Grid.Column="1"/>
                     </Grid>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+        <Style Selector="^ ListBox#PART_SelectingItemsControl ListBoxItem">
+            <Setter Property="Opacity" Value="0.9"/>
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+            </Style>
+            <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+            </Style>
+            <Style Selector="^:selected /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+            </Style>
+        </Style>
     </Style>
         
 </Styles>

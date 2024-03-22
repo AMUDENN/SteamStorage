@@ -89,6 +89,7 @@
                                          ItemsSource="{Binding SkinModels, Mode=OneWay}"
                                          SearchText="{Binding Filter, Mode=OneWayToSource}"
                                          ItemFilter="{Binding ItemFilter, Mode=OneWay}"
+                                         AsyncPopulator="{Binding AsyncPopulator, Mode=OneWay}"
                                          Watermark="Выберите предмет из выпадающего списка"
                                          Classes="BaseSkinsAutoCompleteBox DarkAutoCompleteBox SmallAutoCompleteBox"
                                          Height="50"/>

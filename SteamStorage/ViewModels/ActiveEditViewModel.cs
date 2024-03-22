@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models;
@@ -94,6 +96,11 @@ public class ActiveEditViewModel : ViewModelBase
     public AutoCompleteFilterPredicate<object?>? ItemFilter
     {
         get=> _activeEditModel.ItemFilter;
+    }
+    
+    public Func<string?, CancellationToken, Task<IEnumerable<object>>>? AsyncPopulator
+    {
+        get=> _activeEditModel.AsyncPopulator;
     }
     
     public IEnumerable<BaseSkinViewModel> SkinModels
