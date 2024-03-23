@@ -125,7 +125,7 @@ public abstract class BaseItemEditModel : ModelBase
 
     #region Constructor
 
-    public BaseItemEditModel(
+    protected BaseItemEditModel(
         ApiClient apiClient)
     {
         _apiClient = apiClient;
@@ -154,6 +154,8 @@ public abstract class BaseItemEditModel : ModelBase
     protected abstract void DoSaveCommand();
 
     protected abstract bool CanExecuteSaveCommand();
+    
+    protected abstract void SetTitle(BaseSkinViewModel? model);
 
     private bool ItemFilterPredicate(string? search, object? item)
     {
@@ -173,12 +175,8 @@ public abstract class BaseItemEditModel : ModelBase
                 .ToList();
     }
 
-    protected abstract void SetTitle(BaseSkinViewModel? model);
-
     private async void GetSkins()
     {
-        SkinModels = [];
-
         await CancellationTokenSource.CancelAsync();
 
         CancellationTokenSource = new();

@@ -92,7 +92,7 @@ public abstract class BaseItemEditViewModel : ViewModelBase
 
     #region Constructor
 
-    public BaseItemEditViewModel(
+    protected BaseItemEditViewModel(
         BaseItemEditModel baseItemEditModel)
     {
         _baseItemEditModel = baseItemEditModel;

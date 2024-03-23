@@ -1,3 +1,3 @@
 ﻿namespace SteamStorageAPI.ApiEntities.Tools;
 
-public record Request;
+public abstract record Request;

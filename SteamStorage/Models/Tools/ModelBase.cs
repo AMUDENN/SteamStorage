@@ -2,4 +2,4 @@
 
 namespace SteamStorage.Models.Tools;
 
-public class ModelBase : ObservableObject;
+public abstract class ModelBase : ObservableObject;

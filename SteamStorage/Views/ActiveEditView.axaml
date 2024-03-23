@@ -123,6 +123,7 @@
                   Grid.Row="2">
 
                 <Button Content="Назад"
+                        Command="{Binding BackCommand, Mode=OneWay}"
                         Classes="UnderlineButton StretchButton"
                         Grid.Column="0"/>
                 

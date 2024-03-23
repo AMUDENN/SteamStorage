@@ -134,7 +134,7 @@ public class ActiveEditModel : BaseItemEditModel
 
     protected override void DoBackCommand()
     {
-
+        
     }
 
     protected override void DoDeleteCommand()
