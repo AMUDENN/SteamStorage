@@ -8,7 +8,7 @@ using SteamStorageAPI;
 
 namespace SteamStorage.Models;
 
-public class ActiveEditModel : BaseItemEditModel
+public class ActiveEditModel : ExtendedBaseItemEditModel
 {
     #region Constants
 

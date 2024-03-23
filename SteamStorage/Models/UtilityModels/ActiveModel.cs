@@ -20,6 +20,8 @@ public class ActiveModel : BaseDynamicsSkinModel
 
     public string BuyPriceString { get; }
 
+    public decimal CurrentPrice { get; } 
+    
     public string CurrentPriceString { get; }
 
     public string CurrentSumString { get; }
@@ -27,6 +29,8 @@ public class ActiveModel : BaseDynamicsSkinModel
     public decimal? GoalPrice { get; }
 
     public string GoalPriceString { get; }
+    
+    public double? GoalPriceCompletion { get; }
 
     public double Change { get; }
 
@@ -66,7 +70,9 @@ public class ActiveModel : BaseDynamicsSkinModel
         Count = count;
 
         BuyPrice = buyPrice;
+        CurrentPrice = currentPrice;
         GoalPrice = goalPrice;
+        GoalPriceCompletion = goalPriceCompletion;
 
         BuyPriceString = $"{buyPrice:N2} {currencyMark}";
         CurrentPriceString = $"{currentPrice:N2} {currencyMark}";

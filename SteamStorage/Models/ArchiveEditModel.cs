@@ -1,11 +1,14 @@
-﻿using SteamStorage.Models.BaseModels;
+﻿using System;
+using System.Linq;
+using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Utilities;
 using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 using SteamStorageAPI;
 
 namespace SteamStorage.Models;
 
-public class ArchiveEditModel : BaseItemEditModel
+public class ArchiveEditModel : ExtendedBaseItemEditModel
 {
     #region Constants
 
@@ -17,11 +20,111 @@ public class ArchiveEditModel : BaseItemEditModel
 
     private readonly ArchiveGroupsModel _archiveGroupsModel;
 
+    private string _defaultCount;
+    private string _count;
+
+    private string _defaultBuyPrice;
+    private string _buyPrice;
+
+    private string _defaultSoldPrice;
+    private string _soldPrice;
+
+    private string? _defaultDescription;
+    private string? _description;
+
+    private DateTimeOffset _defaultBuyDate;
+    private DateTimeOffset _buyDate;
+
+    private DateTimeOffset _defaultSoldDate;
+    private DateTimeOffset _soldDate;
+
     #endregion Fields
 
     #region Properties
 
+    public string DefaultCount
+    {
+        get => _defaultCount;
+        private set => SetProperty(ref _defaultCount, value);
+    }
 
+    public string Count
+    {
+        get => _count;
+        set
+        {
+            SetProperty(ref _count, value);
+            SaveCommand.NotifyCanExecuteChanged();
+        }
+    }
+
+    public string DefaultBuyPrice
+    {
+        get => _defaultBuyPrice;
+        private set => SetProperty(ref _defaultBuyPrice, value);
+    }
+
+    public string BuyPrice
+    {
+        get => _buyPrice;
+        set
+        {
+            SetProperty(ref _buyPrice, value);
+            SaveCommand.NotifyCanExecuteChanged();
+        }
+    }
+
+    public string DefaultSoldPrice
+    {
+        get => _defaultSoldPrice;
+        private set => SetProperty(ref _defaultSoldPrice, value);
+    }
+
+    public string SoldPrice
+    {
+        get => _soldPrice;
+        set
+        {
+            SetProperty(ref _soldPrice, value);
+            SaveCommand.NotifyCanExecuteChanged();
+        }
+    }
+
+    public string? DefaultDescription
+    {
+        get => _defaultDescription;
+        private set => SetProperty(ref _defaultDescription, value);
+    }
+
+    public string? Description
+    {
+        get => _description;
+        set => SetProperty(ref _description, value);
+    }
+
+    public DateTimeOffset DefaultBuyDate
+    {
+        get => _defaultBuyDate;
+        private set => SetProperty(ref _defaultBuyDate, value);
+    }
+
+    public DateTimeOffset BuyDate
+    {
+        get => _buyDate;
+        set => SetProperty(ref _buyDate, value);
+    }
+
+    public DateTimeOffset DefaultSoldDate
+    {
+        get => _defaultSoldDate;
+        private set => SetProperty(ref _defaultSoldDate, value);
+    }
+
+    public DateTimeOffset SoldDate
+    {
+        get => _soldDate;
+        set => SetProperty(ref _soldDate, value);
+    }
 
     #endregion Properties
 
@@ -32,6 +135,15 @@ public class ArchiveEditModel : BaseItemEditModel
         ArchiveGroupsModel archiveGroupsModel) : base(apiClient)
     {
         _archiveGroupsModel = archiveGroupsModel;
+
+        _defaultCount = string.Empty;
+        _count = string.Empty;
+
+        _defaultBuyPrice = string.Empty;
+        _buyPrice = string.Empty;
+
+        _defaultSoldPrice = string.Empty;
+        _soldPrice = string.Empty;
     }
 
     #endregion Constructor
@@ -55,7 +167,11 @@ public class ArchiveEditModel : BaseItemEditModel
 
     protected override bool CanExecuteSaveCommand()
     {
-        return true;
+        return SelectedGroupModel is not null
+               && int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int _)
+               && decimal.TryParse(BuyPrice, out decimal _)
+               && decimal.TryParse(SoldPrice, out decimal _)
+               && SelectedSkinModel is not null;
     }
 
     protected override void SetTitle(BaseSkinViewModel? model)
@@ -66,22 +182,77 @@ public class ArchiveEditModel : BaseItemEditModel
 
     private void SetValuesFromDefault()
     {
-
+        SelectedGroupModel = DefaultGroupModel;
+        Count = DefaultCount;
+        BuyPrice = DefaultBuyPrice;
+        SoldPrice = DefaultSoldPrice;
+        SelectedSkinModel = DefaultSkinModel;
+        Description = DefaultDescription;
+        BuyDate = DefaultBuyDate;
+        SoldDate = DefaultSoldDate;
     }
 
     public void SetEditArchive(ArchiveModel? model)
     {
+        DefaultGroupModel = _archiveGroupsModel.ArchiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
+        DefaultCount = $"{model?.Count ?? 1:N0}";
+
+        DefaultBuyPrice = $"{model?.BuyPrice ?? 1:N2}";
+
+        DefaultSoldPrice = $"{model?.SoldPrice:N2}";
+
+        DefaultSkinModel = model is not null ? new(model) : null;
+
+        DefaultDescription = model?.Description;
+
+        DefaultBuyDate = DateTime.SpecifyKind(model?.BuyDate ?? DateTime.Now, DateTimeKind.Local);
+
+        DefaultSoldDate = DateTime.SpecifyKind(model?.SoldDate ?? DateTime.Now, DateTimeKind.Local);
+
+        SetValuesFromDefault();
     }
 
     public void SetAddArchive(ArchiveGroupModel? model)
     {
+        DefaultGroupModel = _archiveGroupsModel.ArchiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
+        DefaultCount = "1";
+
+        DefaultBuyPrice = "1";
+
+        DefaultSoldPrice = "1";
+
+        DefaultSkinModel = null;
+
+        DefaultDescription = null;
+
+        DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
+
+        DefaultSoldDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
+
+        SetValuesFromDefault();
     }
 
     public void SetAddArchive(ListItemModel? model)
     {
+        DefaultGroupModel = null;
 
+        DefaultCount = "1";
+
+        DefaultBuyPrice = $"{model?.CurrentPrice ?? 1:N2}";
+
+        DefaultSoldPrice = $"{model?.CurrentPrice ?? 1:N2}";
+
+        DefaultSkinModel = model is not null ? new(model) : null;
+
+        DefaultDescription = null;
+
+        DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
+
+        DefaultSoldDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
+
+        SetValuesFromDefault();
     }
 
     #endregion Methods

@@ -7,7 +7,7 @@ using SteamStorage.ViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels;
 
-public class ActiveEditViewModel : BaseItemEditViewModel
+public class ActiveEditViewModel : ExtendedBaseItemEditViewModel
 {
     #region Fields
 

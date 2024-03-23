@@ -33,6 +33,8 @@ public class ArchiveModel : BaseSkinModel
     public DateTime SoldDate { get; }
 
     public string SoldDateString { get; }
+    
+    public string? Description { get; }
 
     #endregion Properties
 
@@ -52,7 +54,8 @@ public class ArchiveModel : BaseSkinModel
         string currencyMark,
         double change,
         DateTime buyDate,
-        DateTime soldDate) : base(skinId, imageUrl, marketUrl, title)
+        DateTime soldDate,
+        string? description) : base(skinId, imageUrl, marketUrl, title)
     {
         ArchiveId = archiveId;
         GroupId = groupId;
@@ -73,6 +76,8 @@ public class ArchiveModel : BaseSkinModel
 
         BuyDateString = buyDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
         SoldDateString = soldDate.ToString(ProgramConstants.VIEW_DATE_FORMAT);
+
+        Description = description;
     }
 
     #endregion Constructor

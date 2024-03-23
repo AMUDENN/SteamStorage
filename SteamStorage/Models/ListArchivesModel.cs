@@ -496,7 +496,8 @@ public class ListArchivesModel : ModelBase
                         _userModel.CurrencyMark,
                         x.Change,
                         x.BuyDate,
-                        x.SoldDate),
+                        x.SoldDate,
+                        x.Description),
                     this))
             .ToList();
 
