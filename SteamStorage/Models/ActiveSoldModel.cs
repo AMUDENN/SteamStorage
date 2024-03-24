@@ -106,7 +106,11 @@ public class ActiveSoldModel : BaseEditModel
     public string? Description
     {
         get => _description;
-        set => SetProperty(ref _description, value);
+        set
+        {
+            SetProperty(ref _description, value);
+            SaveCommand.NotifyCanExecuteChanged();
+        }
     }
 
     public string? BuyPrice

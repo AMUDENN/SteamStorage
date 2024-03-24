@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
+using SteamStorage.Utilities;
 
 namespace SteamStorage.Models;
 
@@ -241,7 +243,8 @@ public class ActiveGroupEditModel : BaseEditModel
     {
         return Title.Length is >= 3 and <= 100
                && Description?.Length <= 300
-               && (string.IsNullOrEmpty(GoalSum) || decimal.TryParse(GoalSum, out decimal _));
+               && (string.IsNullOrEmpty(GoalSum) || decimal.TryParse(GoalSum, out decimal _))
+               && (string.IsNullOrEmpty(Colour) || Regex.IsMatch(Colour, ProgramConstants.COLOUR_PATTERN));
     }
 
     private void SetTitle(BaseGroupModel? model)

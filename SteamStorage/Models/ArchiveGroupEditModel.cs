@@ -1,6 +1,8 @@
-﻿using SteamStorage.Models.BaseModels;
+﻿using System.Text.RegularExpressions;
+using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
+using SteamStorage.Utilities;
 
 namespace SteamStorage.Models;
 
@@ -138,7 +140,8 @@ public class ArchiveGroupEditModel : BaseEditModel
     protected override bool CanExecuteSaveCommand()
     {
         return Title.Length is >= 3 and <= 100
-               && Description?.Length <= 300;
+               && Description?.Length <= 300
+               && (string.IsNullOrEmpty(Colour) || Regex.IsMatch(Colour, ProgramConstants.COLOUR_PATTERN));
     }
 
     private void SetTitle(BaseGroupModel? model)

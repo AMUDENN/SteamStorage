@@ -116,7 +116,11 @@ public class ActiveEditModel : BaseItemEditModel
     public string? Description
     {
         get => _description;
-        set => SetProperty(ref _description, value);
+        set
+        {
+            SetProperty(ref _description, value);
+            SaveCommand.NotifyCanExecuteChanged();
+        }
     }
 
     public DateTimeOffset DefaultBuyDate
