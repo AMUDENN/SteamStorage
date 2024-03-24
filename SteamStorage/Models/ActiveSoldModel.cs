@@ -18,7 +18,7 @@ public class ActiveSoldModel : BaseEditModel
 
     private BaseGroupModel? _defaultArchiveGroupModel;
     private BaseGroupModel? _selectedArchiveGroupModel;
-    
+
     private string _defaultCount;
     private string _count;
 
@@ -31,11 +31,7 @@ public class ActiveSoldModel : BaseEditModel
     private string? _defaultDescription;
     private string? _description;
 
-    private string _buyPrice;
-    private int _totalCount;
-    private string _currentPrice;
-    private string _buyDate;
-    private double? _goalPriceCompletion;
+    private ActiveModel? _activeModel;
 
     #endregion Fields
 
@@ -56,14 +52,14 @@ public class ActiveSoldModel : BaseEditModel
             SaveCommand.NotifyCanExecuteChanged();
         }
     }
-    
-    public string DefaultCount
+
+    public string DefaultSoldCount
     {
         get => _defaultCount;
         private set => SetProperty(ref _defaultCount, value);
     }
 
-    public string Count
+    public string SoldCount
     {
         get => _count;
         set
@@ -113,34 +109,29 @@ public class ActiveSoldModel : BaseEditModel
         set => SetProperty(ref _description, value);
     }
 
-    public string BuyPrice
+    public string? BuyPrice
     {
-        get => _buyPrice;
-        private set => SetProperty(ref _buyPrice, value);
+        get => _activeModel?.BuyPriceString;
     }
 
-    public int TotalCount
+    public int? Count
     {
-        get => _totalCount;
-        private set => SetProperty(ref _totalCount, value);
+        get => _activeModel?.Count;
     }
 
-    public string CurrentPrice
+    public string? CurrentPriceString
     {
-        get => _currentPrice;
-        private set => SetProperty(ref _currentPrice, value);
+        get => _activeModel?.CurrentPriceString;
     }
 
-    public string BuyDate
+    public string? BuyDate
     {
-        get => _buyDate;
-        private set => SetProperty(ref _buyDate, value);
+        get => _activeModel?.BuyDateString;
     }
 
     public double? GoalPriceCompletion
     {
-        get => _goalPriceCompletion;
-        private set => SetProperty(ref _goalPriceCompletion, value);
+        get => _activeModel?.GoalPriceCompletion;
     }
 
     #endregion Properties
@@ -154,10 +145,6 @@ public class ActiveSoldModel : BaseEditModel
 
         _defaultSoldPrice = string.Empty;
         _soldPrice = string.Empty;
-
-        _buyPrice = string.Empty;
-        _currentPrice = string.Empty;
-        _buyDate = string.Empty;
     }
 
     #endregion Constructor
@@ -182,8 +169,9 @@ public class ActiveSoldModel : BaseEditModel
     protected override bool CanExecuteSaveCommand()
     {
         return SelectedArchiveGroupModel is not null
-               && int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int _)
-               && decimal.TryParse(SoldPrice, out decimal _);
+               && int.TryParse(SoldCount.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int _)
+               && decimal.TryParse(SoldPrice, out decimal _)
+               && Description?.Length <= 300;
     }
 
     private void SetTitle(BaseSkinModel? model)
@@ -195,7 +183,7 @@ public class ActiveSoldModel : BaseEditModel
     private void SetValuesFromDefault()
     {
         SelectedArchiveGroupModel = DefaultArchiveGroupModel;
-        Count = DefaultCount;
+        SoldCount = DefaultSoldCount;
         SoldPrice = DefaultSoldPrice;
         SoldDate = DefaultSoldDate;
         Description = DefaultDescription;
@@ -205,7 +193,7 @@ public class ActiveSoldModel : BaseEditModel
     {
         DefaultArchiveGroupModel = null;
 
-        DefaultCount = $"{model?.Count ?? 1:N0}";
+        DefaultSoldCount = $"{model?.Count ?? 1:N0}";
 
         DefaultSoldPrice = $"{model?.CurrentPrice ?? 1:N2}";
 
@@ -213,15 +201,9 @@ public class ActiveSoldModel : BaseEditModel
 
         DefaultDescription = model?.Description;
 
-        BuyPrice = model?.BuyPriceString ?? string.Empty;
+        _activeModel = model;
 
-        TotalCount = model?.Count ?? 1;
-
-        CurrentPrice = model?.CurrentPriceString ?? string.Empty;
-
-        BuyDate = model?.BuyDateString ?? string.Empty;
-
-        GoalPriceCompletion = model?.GoalPriceCompletion;
+        if (model is not null) model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
 
         SetTitle(model);
 

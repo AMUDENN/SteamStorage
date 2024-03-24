@@ -34,15 +34,15 @@ public class ActiveSoldViewModel : BaseEditViewModel
         set => _activeSoldModel.SelectedArchiveGroupModel = value;
     }
 
-    public string DefaultCount
+    public string DefaultSoldCount
     {
-        get => _activeSoldModel.DefaultCount;
+        get => _activeSoldModel.DefaultSoldCount;
     }
 
-    public string Count
+    public string SoldCount
     {
-        get => _activeSoldModel.Count;
-        set => _activeSoldModel.Count = value;
+        get => _activeSoldModel.SoldCount;
+        set => _activeSoldModel.SoldCount = value;
     }
 
     public string DefaultSoldPrice
@@ -78,22 +78,22 @@ public class ActiveSoldViewModel : BaseEditViewModel
         set => _activeSoldModel.Description = value;
     }
 
-    public string BuyPrice
+    public string? BuyPrice
     {
         get => _activeSoldModel.BuyPrice;
     }
 
-    public int TotalCount
+    public int? Count
     {
-        get => _activeSoldModel.TotalCount;
+        get => _activeSoldModel.Count;
     }
 
-    public string CurrentPrice
+    public string? CurrentPriceString
     {
-        get => _activeSoldModel.CurrentPrice;
+        get => _activeSoldModel.CurrentPriceString;
     }
 
-    public string BuyDate
+    public string? BuyDate
     {
         get => _activeSoldModel.BuyDate;
     }

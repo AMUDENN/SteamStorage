@@ -346,8 +346,20 @@ public class ActivesReviewModel : ModelBase
 
         ActiveGroupModels = groupsResponse.ActiveGroups.Select(x =>
                 new ActiveGroupViewModel(
-                    new(_apiClient, _themeService, x.Id, x.Colour, x.Title, x.Count, x.GoalSum, x.GoalSumCompletion,
-                        x.BuySum, x.CurrentSum, _userModel.CurrencyMark, x.Change, x.DateCreation),
+                    new(_apiClient,
+                        _themeService, 
+                        x.Id, 
+                        x.Colour, 
+                        x.Title, 
+                        x.Count, 
+                        x.GoalSum, 
+                        x.GoalSumCompletion,
+                        x.BuySum, 
+                        x.CurrentSum, 
+                        _userModel.CurrencyMark, 
+                        x.Change, 
+                        x.DateCreation,
+                        x.Description),
                     _activeGroupsModel,
                     _chartTooltipModel))
             .ToList();

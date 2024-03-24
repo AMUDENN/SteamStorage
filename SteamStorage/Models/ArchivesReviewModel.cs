@@ -337,8 +337,16 @@ public class ArchivesReviewModel : ModelBase
 
         ArchiveGroupModels = groupsResponse.ArchiveGroups.Select(x =>
                 new ArchiveGroupViewModel(
-                    new(x.Id, x.Colour, x.Title, x.Count, x.BuySum, x.SoldSum, _userModel.CurrencyMark, x.Change,
-                        x.DateCreation),
+                    new(x.Id, 
+                        x.Colour, 
+                        x.Title, 
+                        x.Count, 
+                        x.BuySum, 
+                        x.SoldSum, 
+                        _userModel.CurrencyMark, 
+                        x.Change,
+                        x.DateCreation,
+                        x.Description),
                     _archiveGroupsModel))
             .ToList();
 

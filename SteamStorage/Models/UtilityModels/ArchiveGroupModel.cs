@@ -26,7 +26,8 @@ public class ArchiveGroupModel : ExtendedBaseGroupModel
         decimal soldSum,
         string currencyMark,
         double change,
-        DateTime dateCreation) : base(groupId, colour, title, count, dateCreation)
+        DateTime dateCreation,
+        string? description) : base(groupId, colour, title, count, dateCreation, description)
     {
         BuySumString = $"{buySum:N2} {currencyMark}";
         SoldSumString = $"{soldSum:N2} {currencyMark}";

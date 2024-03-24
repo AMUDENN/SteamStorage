@@ -46,6 +46,8 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
     #endregion Fields
 
     #region Properties
+    
+    public double? GoalSumCompletion { get; }
 
     public string BuySumString { get; }
 
@@ -168,13 +170,16 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         decimal currentSum,
         string currencyMark,
         double change,
-        DateTime dateCreation) : base(groupId, colour, title, count, dateCreation)
+        DateTime dateCreation,
+        string? description) : base(groupId, colour, title, count, dateCreation, description)
     {
         _apiClient = apiClient;
         _themeService = themeService;
 
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
+        GoalSumCompletion = goalSumCompletion;
+        
         BuySumString = $"{buySum:N2} {currencyMark}";
         CurrentSumString = $"{currentSum:N2} {currencyMark}";
         GoalSumString = goalSum is null ? "(не установлена)" : $"{goalSum:N2} {currencyMark} ({goalSumCompletion:N0}%)";

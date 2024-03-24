@@ -12,6 +12,8 @@ public class ExtendedBaseGroupModel : BaseGroupModel
     public int Count { get; }
 
     public string DateCreationString { get; }
+    
+    public string? Description { get; }
 
     #endregion Properties
 
@@ -22,11 +24,13 @@ public class ExtendedBaseGroupModel : BaseGroupModel
         string colour,
         string title,
         int count,
-        DateTime dateCreation) : base(groupId, title)
+        DateTime dateCreation,
+        string? description) : base(groupId, title)
     {
         Colour = colour;
         Count = count;
         DateCreationString = dateCreation.ToString(ProgramConstants.VIEW_DATE_FORMAT);
+        Description = description;
     }
 
     #endregion Constructor

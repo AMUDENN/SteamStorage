@@ -173,6 +173,7 @@ public class ActiveEditModel : BaseItemEditModel
                && int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int _)
                && decimal.TryParse(BuyPrice, out decimal _)
                && (string.IsNullOrEmpty(GoalPrice) || decimal.TryParse(GoalPrice, out decimal _))
+               && Description?.Length <= 300
                && SelectedSkinModel is not null;
     }
 
