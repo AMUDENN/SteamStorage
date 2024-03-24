@@ -7,6 +7,7 @@
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="CornerRadius" Value="0"/>
+        <Setter Property="MinWidth" Value="100"/>
         <Setter Property="Template">
             <ControlTemplate>
                 <DataValidationErrors>
@@ -20,7 +21,7 @@
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 IsEnabled="{TemplateBinding IsEnabled}"
-                                MinWidth="{DynamicResource DatePickerThemeMinWidth}"
+                                MinWidth="{TemplateBinding MinWidth}"
                                 MaxWidth="{DynamicResource DatePickerThemeMaxWidth}"
                                 Classes="StretchButton"
                                 TemplatedControl.IsTemplateFocusTarget="True">
@@ -31,8 +32,7 @@
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         CornerRadius="{TemplateBinding CornerRadius}"
                                         MinWidth="{TemplateBinding MinWidth}"
-                                        MinHeight="{TemplateBinding MinHeight}">
-                                </Border>
+                                        MinHeight="{TemplateBinding MinHeight}"/>
                                 <Grid x:Name="PART_ButtonContentGrid" 
                                       ColumnDefinitions="78*,Auto,132*,Auto,78*">
                                     <TextBlock x:Name="PART_DayTextBlock" 
