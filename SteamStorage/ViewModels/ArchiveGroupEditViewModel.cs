@@ -12,6 +12,68 @@ public class ArchiveGroupEditViewModel : BaseEditViewModel
 
     #endregion Fields
 
+    #region Properties
+
+    public string DefaultGroupTitle
+    {
+        get => _archiveGroupEditModel.DefaultGroupTitle;
+    }
+
+    public string GroupTitle
+    {
+        get => _archiveGroupEditModel.GroupTitle;
+        set => _archiveGroupEditModel.GroupTitle = value;
+    }
+
+    public string? DefaultDescription
+    {
+        get => _archiveGroupEditModel.DefaultDescription;
+    }
+
+    public string? Description
+    {
+        get => _archiveGroupEditModel.Description;
+        set => _archiveGroupEditModel.Description = value;
+    }
+
+    public string? DefaultColour
+    {
+        get => _archiveGroupEditModel.DefaultColour;
+    }
+
+    public string? Colour
+    {
+        get => _archiveGroupEditModel.Colour;
+        set => _archiveGroupEditModel.Colour = value;
+    }
+
+    public bool IsNewGroup
+    {
+        get => _archiveGroupEditModel.IsNewGroup;
+    }
+
+    public string? DateCreationString
+    {
+        get => _archiveGroupEditModel.DateCreationString;
+    }
+
+    public string? BuySumString
+    {
+        get => _archiveGroupEditModel.BuySumString;
+    }
+
+    public string? SoldSumString
+    {
+        get => _archiveGroupEditModel.SoldSumString;
+    }
+
+    public int? Count
+    {
+        get => _archiveGroupEditModel.Count;
+    }
+
+    #endregion Properties
+
     #region Constructor
 
     public ArchiveGroupEditViewModel(
