@@ -52,7 +52,6 @@ public class ActiveGroupEditModel : BaseEditModel
         {
             SetProperty(ref _groupTitle, value);
             SaveCommand.NotifyCanExecuteChanged();
-            SetTitle(_activeGroupModel);
         }
     }
 
@@ -265,11 +264,11 @@ public class ActiveGroupEditModel : BaseEditModel
     {
         DefaultGroupTitle = model?.Title ?? string.Empty;
 
-        DefaultDescription = model?.Description;
+        DefaultDescription = model?.Description ?? string.Empty;
 
-        DefaultGoalSum = model?.GoalSumString;
+        DefaultGoalSum = $"{model?.GoalSum:N2}";
 
-        DefaultColour = model?.Colour;
+        DefaultColour = model?.Colour ?? string.Empty;
 
         _activeGroupModel = model;
 

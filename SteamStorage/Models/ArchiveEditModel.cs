@@ -229,7 +229,7 @@ public class ArchiveEditModel : BaseItemEditModel
 
         DefaultSkinModel = model is not null ? new(model) : null;
 
-        DefaultDescription = model?.Description;
+        DefaultDescription = model?.Description ?? string.Empty;
 
         DefaultBuyDate = DateTime.SpecifyKind(model?.BuyDate ?? DateTime.Now, DateTimeKind.Local);
 
@@ -250,7 +250,7 @@ public class ArchiveEditModel : BaseItemEditModel
 
         DefaultSkinModel = null;
 
-        DefaultDescription = null;
+        DefaultDescription = string.Empty;
 
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
 
@@ -271,7 +271,7 @@ public class ArchiveEditModel : BaseItemEditModel
 
         DefaultSkinModel = model is not null ? new(model) : null;
 
-        DefaultDescription = null;
+        DefaultDescription = string.Empty;
 
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
 

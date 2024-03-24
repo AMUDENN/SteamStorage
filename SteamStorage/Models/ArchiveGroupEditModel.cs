@@ -46,7 +46,6 @@ public class ArchiveGroupEditModel : BaseEditModel
         {
             SetProperty(ref _groupTitle, value);
             SaveCommand.NotifyCanExecuteChanged();
-            SetTitle(_archiveGroupModel);
         }
     }
 
@@ -161,9 +160,9 @@ public class ArchiveGroupEditModel : BaseEditModel
     {
         DefaultGroupTitle = model?.Title ?? string.Empty;
 
-        DefaultDescription = model?.Description;
+        DefaultDescription = model?.Description ?? string.Empty;
 
-        DefaultColour = model?.Colour;
+        DefaultColour = model?.Colour ?? string.Empty;
 
         _archiveGroupModel = model;
 

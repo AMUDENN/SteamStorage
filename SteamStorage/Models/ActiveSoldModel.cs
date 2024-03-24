@@ -203,7 +203,7 @@ public class ActiveSoldModel : BaseEditModel
 
         DefaultSoldDate = DateTimeOffset.Now;
 
-        DefaultDescription = model?.Description;
+        DefaultDescription = model?.Description ?? string.Empty;
 
         _activeModel = model;
 

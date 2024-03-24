@@ -53,6 +53,8 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
 
     public string CurrentSumString { get; }
 
+    public decimal? GoalSum { get; }
+    
     public string GoalSumString { get; }
 
     public double Change { get; }
@@ -178,6 +180,8 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
 
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
+        GoalSum = goalSum;
+        
         GoalSumCompletion = goalSumCompletion;
         
         BuySumString = $"{buySum:N2} {currencyMark}";

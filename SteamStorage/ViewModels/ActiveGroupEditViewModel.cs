@@ -120,7 +120,7 @@ public class ActiveGroupEditViewModel : BaseEditViewModel
 
     public IEnumerable<Axis>? YAxis
     {
-        get => _activeGroupEditModel.XAxis;
+        get => _activeGroupEditModel.YAxis;
     }
 
     public bool? IsOneDayChecked
