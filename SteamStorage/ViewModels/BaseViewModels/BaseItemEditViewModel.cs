@@ -1,11 +1,14 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Avalonia.Controls;
 using SteamStorage.Models.BaseModels;
-using SteamStorage.Models.UtilityModels.BaseModels;
-using SteamStorage.ViewModels.Tools;
+using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels.BaseViewModels;
 
-public abstract class BaseItemEditViewModel : ViewModelBase
+public abstract class BaseItemEditViewModel : BaseEditViewModel
 {
     #region Fields
 
@@ -15,47 +18,44 @@ public abstract class BaseItemEditViewModel : ViewModelBase
 
     #region Properties
 
-    public string Title
+    public BaseSkinViewModel? DefaultSkinModel
     {
-        get => _baseItemEditModel.Title;
+        get => _baseItemEditModel.DefaultSkinModel;
     }
 
-    public BaseGroupModel? DefaultGroupModel
+    public BaseSkinViewModel? SelectedSkinModel
     {
-        get => _baseItemEditModel.DefaultGroupModel;
+        get => _baseItemEditModel.SelectedSkinModel;
+        set => _baseItemEditModel.SelectedSkinModel = value;
     }
 
-    public BaseGroupModel? SelectedGroupModel
+    public string? Filter
     {
-        get => _baseItemEditModel.SelectedGroupModel;
-        set => _baseItemEditModel.SelectedGroupModel = value;
+        get => _baseItemEditModel.Filter;
+        set => _baseItemEditModel.Filter = value;
+    }
+
+    public AutoCompleteFilterPredicate<object?>? ItemFilter
+    {
+        get => _baseItemEditModel.ItemFilter;
+    }
+
+    public Func<string?, CancellationToken, Task<IEnumerable<object>>>? AsyncPopulator
+    {
+        get => _baseItemEditModel.AsyncPopulator;
+    }
+
+    public IEnumerable<BaseSkinViewModel> SkinModels
+    {
+        get => _baseItemEditModel.SkinModels;
     }
 
     #endregion Properties
 
-    #region Commands
-
-    public RelayCommand BackCommand
-    {
-        get => _baseItemEditModel.BackCommand;
-    }
-
-    public RelayCommand DeleteCommand
-    {
-        get => _baseItemEditModel.DeleteCommand;
-    }
-
-    public RelayCommand SaveCommand
-    {
-        get => _baseItemEditModel.SaveCommand;
-    }
-
-    #endregion Commands
-
     #region Constructor
 
     protected BaseItemEditViewModel(
-        BaseItemEditModel baseItemEditModel)
+        BaseItemEditModel baseItemEditModel) : base(baseItemEditModel)
     {
         _baseItemEditModel = baseItemEditModel;
 

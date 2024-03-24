@@ -2,13 +2,14 @@
 using System.Linq;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Utilities;
 using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 using SteamStorageAPI;
 
 namespace SteamStorage.Models;
 
-public class ArchiveEditModel : ExtendedBaseItemEditModel
+public class ArchiveEditModel : BaseItemEditModel
 {
     #region Constants
 
@@ -20,6 +21,9 @@ public class ArchiveEditModel : ExtendedBaseItemEditModel
 
     private readonly ArchiveGroupsModel _archiveGroupsModel;
 
+    private BaseGroupModel? _defaultArchiveGroupModel;
+    private BaseGroupModel? _selectedArchiveGroupModel;
+    
     private string _defaultCount;
     private string _count;
 
@@ -42,6 +46,22 @@ public class ArchiveEditModel : ExtendedBaseItemEditModel
 
     #region Properties
 
+    public BaseGroupModel? DefaultArchiveGroupModel
+    {
+        get => _defaultArchiveGroupModel;
+        private set => SetProperty(ref _defaultArchiveGroupModel, value);
+    }
+
+    public BaseGroupModel? SelectedArchiveGroupModel
+    {
+        get => _selectedArchiveGroupModel;
+        set
+        {
+            SetProperty(ref _selectedArchiveGroupModel, value);
+            SaveCommand.NotifyCanExecuteChanged();
+        }
+    }
+    
     public string DefaultCount
     {
         get => _defaultCount;
@@ -167,7 +187,7 @@ public class ArchiveEditModel : ExtendedBaseItemEditModel
 
     protected override bool CanExecuteSaveCommand()
     {
-        return SelectedGroupModel is not null
+        return SelectedArchiveGroupModel is not null
                && int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int _)
                && decimal.TryParse(BuyPrice, out decimal _)
                && decimal.TryParse(SoldPrice, out decimal _)
@@ -182,7 +202,7 @@ public class ArchiveEditModel : ExtendedBaseItemEditModel
 
     private void SetValuesFromDefault()
     {
-        SelectedGroupModel = DefaultGroupModel;
+        SelectedArchiveGroupModel = DefaultArchiveGroupModel;
         Count = DefaultCount;
         BuyPrice = DefaultBuyPrice;
         SoldPrice = DefaultSoldPrice;
@@ -194,7 +214,7 @@ public class ArchiveEditModel : ExtendedBaseItemEditModel
 
     public void SetEditArchive(ArchiveModel? model)
     {
-        DefaultGroupModel = _archiveGroupsModel.ArchiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
+        DefaultArchiveGroupModel = _archiveGroupsModel.ArchiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = $"{model?.Count ?? 1:N0}";
 
@@ -215,7 +235,7 @@ public class ArchiveEditModel : ExtendedBaseItemEditModel
 
     public void SetAddArchive(ArchiveGroupModel? model)
     {
-        DefaultGroupModel = _archiveGroupsModel.ArchiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
+        DefaultArchiveGroupModel = _archiveGroupsModel.ArchiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = "1";
 
@@ -236,7 +256,7 @@ public class ArchiveEditModel : ExtendedBaseItemEditModel
 
     public void SetAddArchive(ListItemModel? model)
     {
-        DefaultGroupModel = null;
+        DefaultArchiveGroupModel = null;
 
         DefaultCount = "1";
 

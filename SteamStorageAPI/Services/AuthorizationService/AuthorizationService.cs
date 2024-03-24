@@ -36,7 +36,7 @@ public class AuthorizationService : IAuthorizationService
         UrlUtility.OpenUrl(authUrlResponse.Url);
 
         HubConnection hubConnection = new HubConnectionBuilder()
-            .WithUrl(ApiConstants.TOKENHUB_ADRESS)
+            .WithUrl(ApiConstants.TOKEN_HUB_ENDPOINT)
             .Build();
 
         hubConnection.On<string>(ApiConstants.TOKEN_METHOD_NAME,

@@ -187,7 +187,7 @@ public class ApiClient
         ApiConstants.ApiControllers apiController,
         ApiConstants.ApiMethods apiMethod)
     {
-        return $"{ApiConstants.SERVER_ADRESS}api/{apiController}/{apiMethod}";
+        return $"{ApiConstants.SERVER_ADDRESS}api/{apiController}/{apiMethod}";
     }
 
     private static Uri CreateUri(

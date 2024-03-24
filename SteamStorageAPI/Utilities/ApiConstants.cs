@@ -7,8 +7,8 @@ public static class ApiConstants
     public const string CLIENT_NAME = "MainClient";
     public const string HOST_NAME = "localhost";
     
-    internal const string SERVER_ADRESS = "http://localhost:5275/";
-    internal const string TOKENHUB_ADRESS = "http://localhost:5245/token-hub";
+    internal const string SERVER_ADDRESS = "http://localhost:5275/";
+    internal const string TOKEN_HUB_ENDPOINT = "http://localhost:5245/token-hub";
     
     internal const string API_DATE_FORMAT = "MM.dd.yyyy";
 

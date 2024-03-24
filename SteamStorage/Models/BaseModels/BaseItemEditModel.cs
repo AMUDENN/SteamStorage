@@ -1,78 +1,149 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using SteamStorage.Models.Tools;
-using SteamStorage.Models.UtilityModels.BaseModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Avalonia.Controls;
+using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
+using SteamStorageAPI;
+using SteamStorageAPI.ApiEntities;
+using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models.BaseModels;
 
-public abstract class BaseItemEditModel : ModelBase
+public abstract class BaseItemEditModel : BaseEditModel
 {
     #region Fields
 
-    private string _title;
+    private readonly ApiClient _apiClient;
 
-    private BaseGroupModel? _defaultGroupModel;
-    private BaseGroupModel? _selectedGroupModel;
+    private BaseSkinViewModel? _defaultSkinModel;
+    private BaseSkinViewModel? _selectedSkinModel;
+    private string? _filter;
+    private AutoCompleteFilterPredicate<object?>? _itemFilter;
+    private Func<string?, CancellationToken, Task<IEnumerable<object>>>? _asyncPopulator;
+    private List<BaseSkinViewModel> _skinModels;
+
+    private CancellationTokenSource _cancellationTokenSource;
 
     #endregion Fields
 
     #region Properties
 
-    public string Title
+    public BaseSkinViewModel? DefaultSkinModel
     {
-        get => _title;
-        protected set => SetProperty(ref _title, value);
+        get => _defaultSkinModel;
+        protected set => SetProperty(ref _defaultSkinModel, value);
     }
 
-    public BaseGroupModel? DefaultGroupModel
+    public BaseSkinViewModel? SelectedSkinModel
     {
-        get => _defaultGroupModel;
-        protected set => SetProperty(ref _defaultGroupModel, value);
-    }
-
-    public BaseGroupModel? SelectedGroupModel
-    {
-        get => _selectedGroupModel;
+        get => _selectedSkinModel;
         set
         {
-            SetProperty(ref _selectedGroupModel, value);
+            SetProperty(ref _selectedSkinModel, value);
             SaveCommand.NotifyCanExecuteChanged();
+            SetTitle(value);
         }
+    }
+
+    public string? Filter
+    {
+        get => _filter;
+        set
+        {
+            SetProperty(ref _filter, value);
+            GetSkins();
+        }
+    }
+
+    public AutoCompleteFilterPredicate<object?>? ItemFilter
+    {
+        get => _itemFilter;
+        private set => SetProperty(ref _itemFilter, value);
+    }
+
+    public Func<string?, CancellationToken, Task<IEnumerable<object>>>? AsyncPopulator
+    {
+        get => _asyncPopulator;
+        private set => SetProperty(ref _asyncPopulator, value);
+    }
+
+    public List<BaseSkinViewModel> SkinModels
+    {
+        get => _skinModels;
+        private set => SetProperty(ref _skinModels, value);
+    }
+
+    private CancellationTokenSource CancellationTokenSource
+    {
+        get => _cancellationTokenSource;
+        set => SetProperty(ref _cancellationTokenSource, value);
     }
 
     #endregion Properties
 
-    #region Commands
-
-    public RelayCommand BackCommand { get; }
-
-    public RelayCommand DeleteCommand { get; }
-
-    public RelayCommand SaveCommand { get; }
-
-    #endregion Commands
-
     #region Constructor
 
-    protected BaseItemEditModel()
+    protected BaseItemEditModel(
+        ApiClient apiClient)
     {
-        _title = string.Empty;
+        _apiClient = apiClient;
 
-        BackCommand = new(DoBackCommand);
-        DeleteCommand = new(DoDeleteCommand);
-        SaveCommand = new(DoSaveCommand, CanExecuteSaveCommand);
+        _skinModels = [];
+        _cancellationTokenSource = new();
+
+        ItemFilter = ItemFilterPredicate;
+        AsyncPopulator = PopulateAsync;
     }
 
     #endregion Constructor
 
     #region Methods
 
-    protected abstract void DoBackCommand();
+    protected abstract void SetTitle(BaseSkinViewModel? model);
 
-    protected abstract void DoDeleteCommand();
+    private bool ItemFilterPredicate(string? search, object? item)
+    {
+        return item is not null &&
+               (string.IsNullOrEmpty(search) ||
+                ((BaseSkinViewModel)item).Title.Contains(search, StringComparison.CurrentCultureIgnoreCase));
+    }
 
-    protected abstract void DoSaveCommand();
+    private async Task<IEnumerable<object>> PopulateAsync(string? searchText, CancellationToken cancellationToken)
+    {
+        await Task.Delay(TimeSpan.FromSeconds(0.4), cancellationToken);
 
-    protected abstract bool CanExecuteSaveCommand();
+        return
+            SkinModels.Where(data =>
+                    string.IsNullOrEmpty(searchText) ||
+                    data.Title.Contains(searchText, StringComparison.CurrentCultureIgnoreCase))
+                .ToList();
+    }
+
+    private async void GetSkins()
+    {
+        await CancellationTokenSource.CancelAsync();
+
+        CancellationTokenSource = new();
+        CancellationToken token = CancellationTokenSource.Token;
+
+        Skins.BaseSkinsResponse? skinsResponse =
+            await _apiClient.GetAsync<Skins.BaseSkinsResponse, Skins.GetBaseSkinsRequest>(
+                ApiConstants.ApiControllers.Skins,
+                ApiConstants.ApiMethods.GetBaseSkins,
+                new(Filter),
+                token);
+
+        if (skinsResponse is null) return;
+
+        SkinModels = skinsResponse.Skins.Select(x =>
+                new BaseSkinViewModel(new(x.Id,
+                    x.SkinIconUrl,
+                    x.MarketUrl,
+                    x.Title)))
+            .ToList();
+    }
 
     #endregion Methods
 }

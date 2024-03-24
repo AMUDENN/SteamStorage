@@ -7,7 +7,7 @@ using SteamStorage.ViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels;
 
-public class ArchiveEditViewModel : ExtendedBaseItemEditViewModel
+public class ArchiveEditViewModel : BaseItemEditViewModel
 {
     #region Fields
 
@@ -21,6 +21,17 @@ public class ArchiveEditViewModel : ExtendedBaseItemEditViewModel
     public IEnumerable<BaseGroupModel> ArchiveGroupModels
     {
         get => _archiveGroupsModel.ArchiveGroupModels;
+    }
+    
+    public BaseGroupModel? DefaultArchiveGroupModel
+    {
+        get => _archiveEditModel.DefaultArchiveGroupModel;
+    }
+
+    public BaseGroupModel? SelectedArchiveGroupModel
+    {
+        get => _archiveEditModel.SelectedArchiveGroupModel;
+        set => _archiveEditModel.SelectedArchiveGroupModel = value;
     }
 
     public string DefaultCount

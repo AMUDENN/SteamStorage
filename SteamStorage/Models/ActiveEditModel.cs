@@ -2,13 +2,14 @@
 using System.Linq;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Utilities;
 using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 using SteamStorageAPI;
 
 namespace SteamStorage.Models;
 
-public class ActiveEditModel : ExtendedBaseItemEditModel
+public class ActiveEditModel : BaseItemEditModel
 {
     #region Constants
 
@@ -19,6 +20,9 @@ public class ActiveEditModel : ExtendedBaseItemEditModel
     #region Fields
 
     private readonly ActiveGroupsModel _activeGroupsModel;
+    
+    private BaseGroupModel? _defaultActiveGroupModel;
+    private BaseGroupModel? _selectedActiveGroupModel;
 
     private string _defaultCount;
     private string _count;
@@ -39,6 +43,22 @@ public class ActiveEditModel : ExtendedBaseItemEditModel
 
     #region Properties
 
+    public BaseGroupModel? DefaultActiveGroupModel
+    {
+        get => _defaultActiveGroupModel;
+        private set => SetProperty(ref _defaultActiveGroupModel, value);
+    }
+
+    public BaseGroupModel? SelectedActiveGroupModel
+    {
+        get => _selectedActiveGroupModel;
+        set
+        {
+            SetProperty(ref _selectedActiveGroupModel, value);
+            SaveCommand.NotifyCanExecuteChanged();
+        }
+    }
+    
     public string DefaultCount
     {
         get => _defaultCount;
@@ -149,7 +169,7 @@ public class ActiveEditModel : ExtendedBaseItemEditModel
 
     protected override bool CanExecuteSaveCommand()
     {
-        return SelectedGroupModel is not null
+        return SelectedActiveGroupModel is not null
                && int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int _)
                && decimal.TryParse(BuyPrice, out decimal _)
                && (string.IsNullOrEmpty(GoalPrice) || decimal.TryParse(GoalPrice, out decimal _))
@@ -164,7 +184,7 @@ public class ActiveEditModel : ExtendedBaseItemEditModel
 
     private void SetValuesFromDefault()
     {
-        SelectedGroupModel = DefaultGroupModel;
+        SelectedActiveGroupModel = DefaultActiveGroupModel;
         Count = DefaultCount;
         BuyPrice = DefaultBuyPrice;
         GoalPrice = DefaultGoalPrice;
@@ -175,7 +195,7 @@ public class ActiveEditModel : ExtendedBaseItemEditModel
 
     public void SetEditActive(ActiveModel? model)
     {
-        DefaultGroupModel = _activeGroupsModel.ActiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
+        DefaultActiveGroupModel = _activeGroupsModel.ActiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = $"{model?.Count ?? 1:N0}";
 
@@ -194,7 +214,7 @@ public class ActiveEditModel : ExtendedBaseItemEditModel
 
     public void SetAddActive(ActiveGroupModel? model)
     {
-        DefaultGroupModel = _activeGroupsModel.ActiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
+        DefaultActiveGroupModel = _activeGroupsModel.ActiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = "1";
 
@@ -213,7 +233,7 @@ public class ActiveEditModel : ExtendedBaseItemEditModel
 
     public void SetAddActive(ListItemModel? model)
     {
-        DefaultGroupModel = null;
+        DefaultActiveGroupModel = null;
 
         DefaultCount = "1";
 

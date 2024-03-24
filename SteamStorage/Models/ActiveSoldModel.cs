@@ -6,7 +6,7 @@ using SteamStorage.Utilities;
 
 namespace SteamStorage.Models;
 
-public class ActiveSoldModel : BaseItemEditModel
+public class ActiveSoldModel : BaseEditModel
 {
     #region Constants
 
@@ -16,6 +16,9 @@ public class ActiveSoldModel : BaseItemEditModel
 
     #region Fields
 
+    private BaseGroupModel? _defaultArchiveGroupModel;
+    private BaseGroupModel? _selectedArchiveGroupModel;
+    
     private string _defaultCount;
     private string _count;
 
@@ -38,6 +41,22 @@ public class ActiveSoldModel : BaseItemEditModel
 
     #region Properties
 
+    public BaseGroupModel? DefaultArchiveGroupModel
+    {
+        get => _defaultArchiveGroupModel;
+        private set => SetProperty(ref _defaultArchiveGroupModel, value);
+    }
+
+    public BaseGroupModel? SelectedArchiveGroupModel
+    {
+        get => _selectedArchiveGroupModel;
+        set
+        {
+            SetProperty(ref _selectedArchiveGroupModel, value);
+            SaveCommand.NotifyCanExecuteChanged();
+        }
+    }
+    
     public string DefaultCount
     {
         get => _defaultCount;
@@ -162,7 +181,7 @@ public class ActiveSoldModel : BaseItemEditModel
 
     protected override bool CanExecuteSaveCommand()
     {
-        return SelectedGroupModel is not null
+        return SelectedArchiveGroupModel is not null
                && int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int _)
                && decimal.TryParse(SoldPrice, out decimal _);
     }
@@ -175,7 +194,7 @@ public class ActiveSoldModel : BaseItemEditModel
 
     private void SetValuesFromDefault()
     {
-        SelectedGroupModel = DefaultGroupModel;
+        SelectedArchiveGroupModel = DefaultArchiveGroupModel;
         Count = DefaultCount;
         SoldPrice = DefaultSoldPrice;
         SoldDate = DefaultSoldDate;
@@ -184,7 +203,7 @@ public class ActiveSoldModel : BaseItemEditModel
 
     public void SetSoldActive(ActiveModel? model)
     {
-        DefaultGroupModel = null;
+        DefaultArchiveGroupModel = null;
 
         DefaultCount = $"{model?.Count ?? 1:N0}";
 

@@ -38,11 +38,11 @@
                     </Grid.ColumnDefinitions>
                     
                     <controls:DefaultContentControl Header="Группа: "
-                                                    DefaultValue="{Binding DefaultGroupModel, Mode=OneWay}" 
+                                                    DefaultValue="{Binding DefaultActiveGroupModel, Mode=OneWay}" 
                                                     Classes="MiddleDefaultContentControl"
                                                     Grid.Row="0" Grid.Column="0">
                         <ComboBox ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
-                                  SelectedItem="{Binding SelectedGroupModel}" 
+                                  SelectedItem="{Binding SelectedActiveGroupModel}" 
                                   PlaceholderText="Выберите группу"
                                   Classes="GroupComboBox DarkComboBox"
                                   Height="50"/>

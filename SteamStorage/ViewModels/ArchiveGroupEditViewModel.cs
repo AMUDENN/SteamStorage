@@ -1,10 +1,10 @@
 ﻿using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
-using SteamStorage.ViewModels.Tools;
+using SteamStorage.ViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels;
 
-public class ArchiveGroupEditViewModel : ViewModelBase
+public class ArchiveGroupEditViewModel : BaseEditViewModel
 {
     #region Fields
 
@@ -15,7 +15,7 @@ public class ArchiveGroupEditViewModel : ViewModelBase
     #region Constructor
 
     public ArchiveGroupEditViewModel(
-        ArchiveGroupEditModel archiveGroupEditModel)
+        ArchiveGroupEditModel archiveGroupEditModel) : base(archiveGroupEditModel)
     {
         _archiveGroupEditModel = archiveGroupEditModel;
         archiveGroupEditModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
