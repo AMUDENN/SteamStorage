@@ -33,7 +33,8 @@
 							
 							<i:Interaction.Behaviors>
 								<ia:EventTriggerBehavior EventName="DoubleTapped">
-									<ia:InvokeCommandAction Command="{Binding OpenArchivesCommand, Mode=OneWay}"/>
+									<ia:InvokeCommandAction Command="{Binding OpenArchivesCommand, Mode=OneWay}"
+									                        CommandParameter="{Binding ArchiveGroupModel, Mode=OneWay}"/>
 								</ia:EventTriggerBehavior>
 							</i:Interaction.Behaviors>
 							

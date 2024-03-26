@@ -185,7 +185,7 @@ public class ListActivesViewModel : ViewModelBase
 
     public void OpenActiveGroup(ActiveGroupModel? model)
     {
-        _listActivesModel.OpenActiveGroup(model);
+        _listActivesModel.OpenActiveGroup(ActiveGroupModels, model);
     }
 
     #endregion Methods

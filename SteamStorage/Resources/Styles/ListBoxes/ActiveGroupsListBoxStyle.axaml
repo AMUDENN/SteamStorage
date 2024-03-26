@@ -35,7 +35,8 @@
 							
 							<i:Interaction.Behaviors>
 								<ia:EventTriggerBehavior EventName="DoubleTapped">
-									<ia:InvokeCommandAction Command="{Binding OpenActivesCommand, Mode=OneWay}"/>
+									<ia:InvokeCommandAction Command="{Binding OpenActivesCommand, Mode=OneWay}"
+									                        CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"/>
 								</ia:EventTriggerBehavior>
 							</i:Interaction.Behaviors>
 							

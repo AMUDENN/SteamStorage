@@ -1,13 +1,26 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
+using SteamStorage.Models.UtilityModels;
+using SteamStorage.Utilities.Events.Edit;
 
 namespace SteamStorage.Models.BaseModels;
 
 public abstract class BaseEditModel : ModelBase
 {
+    #region Events
+
+    public delegate void GoingBackEventHandler(object? sender, GoingBackEventArgs args);
+
+    public event GoingBackEventHandler? GoingBack;
+
+    #endregion Events
+
     #region Fields
 
     private string _title;
+
+    private NavigationModel? _navigationModel;
+    private SecondaryNavigationModel? _secondaryNavigationModel;
 
     #endregion Fields
 
@@ -46,13 +59,32 @@ public abstract class BaseEditModel : ModelBase
 
     #region Methods
 
-    protected abstract void DoBackCommand();
+    public void SetSourceNavigationModel(
+        NavigationModel navigationModel,
+        SecondaryNavigationModel secondaryNavigationModel)
+    {
+        _navigationModel = navigationModel;
+        _secondaryNavigationModel = secondaryNavigationModel;
+    }
+
+    protected virtual void DoBackCommand()
+    {
+        if (_navigationModel is not null && _secondaryNavigationModel is not null)
+            OnGoingBack(_navigationModel, _secondaryNavigationModel);
+    }
 
     protected abstract void DoDeleteCommand();
 
     protected abstract void DoSaveCommand();
 
     protected abstract bool CanExecuteSaveCommand();
+
+    private void OnGoingBack(
+        NavigationModel navigationModel,
+        SecondaryNavigationModel secondaryNavigationModel)
+    {
+        GoingBack?.Invoke(this, new(navigationModel, secondaryNavigationModel));
+    }
 
     #endregion Methods
 }

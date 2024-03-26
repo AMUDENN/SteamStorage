@@ -1,8 +1,9 @@
-﻿using SteamStorage.Models.UtilityModels;
+﻿using System;
+using SteamStorage.Models.UtilityModels;
 
 namespace SteamStorage.Utilities.Events.Actives;
 
-public class SoldActiveEventArgs
+public class SoldActiveEventArgs : EventArgs
 {
     #region Properties
 

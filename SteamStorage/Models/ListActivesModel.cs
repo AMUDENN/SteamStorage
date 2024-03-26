@@ -459,9 +459,9 @@ public class ListActivesModel : ModelBase
 
     }
 
-    public void OpenActiveGroup(ActiveGroupModel? model)
+    public void OpenActiveGroup(IEnumerable<BaseGroupModel> groupModels, ActiveGroupModel? model)
     {
-
+        SelectedGroupModel = groupModels.SingleOrDefault(x => x.GroupId == model?.GroupId);
     }
 
     private void SetOrderingsNull()

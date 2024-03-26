@@ -185,7 +185,7 @@ public class ListArchivesViewModel : ViewModelBase
 
     public void OpenArchiveGroup(ArchiveGroupModel? model)
     {
-        _listArchivesModel.OpenArchiveGroup(model);
+        _listArchivesModel.OpenArchiveGroup(ArchiveGroupModels, model);
     }
 
     #endregion Methods

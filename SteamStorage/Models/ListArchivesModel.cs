@@ -436,9 +436,9 @@ public class ListArchivesModel : ModelBase
 
     }
 
-    public void OpenArchiveGroup(ArchiveGroupModel? model)
+    public void OpenArchiveGroup(IEnumerable<BaseGroupModel> groupModels, ArchiveGroupModel? model)
     {
-
+        SelectedGroupModel = groupModels.SingleOrDefault(x => x.GroupId == model?.GroupId);
     }
 
     private void SetOrderingsNull()
