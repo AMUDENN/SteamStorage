@@ -67,9 +67,9 @@ public class ArchiveGroupEditViewModel : BaseEditViewModel
         get => _archiveGroupEditModel.SoldSumString;
     }
 
-    public string Count
+    public string CountString
     {
-        get => _archiveGroupEditModel.Count;
+        get => _archiveGroupEditModel.CountString;
     }
 
     #endregion Properties

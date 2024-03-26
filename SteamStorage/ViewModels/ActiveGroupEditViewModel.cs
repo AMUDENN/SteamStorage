@@ -78,9 +78,9 @@ public class ActiveGroupEditViewModel : BaseEditViewModel
         get => _activeGroupEditModel.BuySumString;
     }
 
-    public string Count
+    public string CountString
     {
-        get => _activeGroupEditModel.Count;
+        get => _activeGroupEditModel.CountString;
     }
 
     public string CurrentSumString
@@ -123,25 +123,25 @@ public class ActiveGroupEditViewModel : BaseEditViewModel
         get => _activeGroupEditModel.YAxis;
     }
 
-    public bool? IsOneDayChecked
+    public bool IsOneDayChecked
     {
         get => _activeGroupEditModel.IsOneDayChecked;
         set => _activeGroupEditModel.IsOneDayChecked = value;
     }
 
-    public bool? IsOneWeekChecked
+    public bool IsOneWeekChecked
     {
         get => _activeGroupEditModel.IsOneWeekChecked;
         set => _activeGroupEditModel.IsOneWeekChecked = value;
     }
 
-    public bool? IsOneMonthChecked
+    public bool IsOneMonthChecked
     {
         get => _activeGroupEditModel.IsOneMonthChecked;
         set => _activeGroupEditModel.IsOneMonthChecked = value;
     }
 
-    public bool? IsOneYearChecked
+    public bool IsOneYearChecked
     {
         get => _activeGroupEditModel.IsOneYearChecked;
         set => _activeGroupEditModel.IsOneYearChecked = value;

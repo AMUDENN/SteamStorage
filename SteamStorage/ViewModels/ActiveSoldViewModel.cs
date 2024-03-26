@@ -78,14 +78,14 @@ public class ActiveSoldViewModel : BaseEditViewModel
         set => _activeSoldModel.Description = value;
     }
 
-    public string BuyPrice
+    public string BuyPriceString
     {
-        get => _activeSoldModel.BuyPrice;
+        get => _activeSoldModel.BuyPriceString;
     }
 
-    public string Count
+    public string CountString
     {
-        get => _activeSoldModel.Count;
+        get => _activeSoldModel.CountString;
     }
 
     public string CurrentPriceString
@@ -93,9 +93,9 @@ public class ActiveSoldViewModel : BaseEditViewModel
         get => _activeSoldModel.CurrentPriceString;
     }
 
-    public string BuyDate
+    public string BuyDateString
     {
-        get => _activeSoldModel.BuyDate;
+        get => _activeSoldModel.BuyDateString;
     }
 
     public string GoalPriceCompletion

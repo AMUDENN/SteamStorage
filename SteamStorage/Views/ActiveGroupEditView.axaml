@@ -85,16 +85,19 @@
                       IsVisible="{Binding !IsNewGroup, Mode=OneWay}"
                       Grid.Row="1" Grid.Column="2">
                     
-                    <StackPanel Orientation="Horizontal"
-                                Grid.Row="0">
+	                <Grid HorizontalAlignment="Right"
+	                      ColumnDefinitions="Auto, *"
+	                      Grid.Row="0">
                         
-                        <TextBlock Text="Дата создания: "
-                                   Classes="SmallTextBlock RightTextBlock"/>
+		                <TextBlock Text="Дата создания: "
+		                           Classes="SmallTextBlock RightTextBlock"
+		                           Grid.Column="0"/>
+                                                
+		                <TextBlock Text="{Binding DateCreationString, Mode=OneWay}"
+		                           Classes="SmallTextBlock RightTextBlock"
+		                           Grid.Column="1"/>
                         
-                        <TextBlock Text="{Binding DateCreationString, Mode=OneWay}"
-                                   Classes="SmallTextBlock RightTextBlock"/>
-                        
-                    </StackPanel>
+	                </Grid>
                     
                     <StackPanel Orientation="Horizontal"
                                 Grid.Row="2">
@@ -201,15 +204,15 @@
 		                               Grid.Row="1" Grid.Column="0"/>
                             
 		                    <TextBlock Text="{Binding BuySumString, Mode=OneWay}"
-		                               Classes="MiddleTextBlock CenterTextBlock"
+		                               Classes="BigTextBlock CenterTextBlock"
 		                               Grid.Row="2" Grid.Column="0"/>
 		                    
 		                    <TextBlock Text="Количество"
 		                               Classes="MiddleTextBlock CenterTextBlock"
 		                               Grid.Row="1" Grid.Column="2"/>
                             
-		                    <TextBlock Text="{Binding Count, Mode=OneWay}"
-		                               Classes="MiddleTextBlock CenterTextBlock"
+		                    <TextBlock Text="{Binding CountString, Mode=OneWay}"
+		                               Classes="BigTextBlock CenterTextBlock"
 		                               Grid.Row="2" Grid.Column="2"/>
 		                    
 		                    <TextBlock Text="Текущая сумма"
@@ -217,7 +220,7 @@
 		                               Grid.Row="4" Grid.Column="0"/>
                             
 		                    <TextBlock Text="{Binding CurrentSumString, Mode=OneWay}"
-		                               Classes="MiddleTextBlock CenterTextBlock"
+		                               Classes="BigTextBlock CenterTextBlock"
 		                               Grid.Row="5" Grid.Column="0"/>
 		                    
 		                    <TextBlock Text="Финансовая цель"
@@ -225,7 +228,7 @@
 		                               Grid.Row="4" Grid.Column="2"/>
                             
 		                    <TextBlock Text="{Binding GoalSumCompletion, Mode=OneWay}"
-		                               Classes="MiddleTextBlock CenterTextBlock"
+		                               Classes="BigTextBlock CenterTextBlock"
 		                               Grid.Row="5" Grid.Column="2"/>
 		                    
 	                    </Grid>

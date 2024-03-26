@@ -11,7 +11,7 @@ public class ArchiveGroupEditModel : BaseEditModel
     #region Constants
 
     private const string TITLE = "Изменение группы";
-    
+
     private const string NO_DATA = "(нет данных)";
 
     #endregion Constants
@@ -29,7 +29,10 @@ public class ArchiveGroupEditModel : BaseEditModel
 
     private bool _isNewGroup;
 
-    private ArchiveGroupModel? _archiveGroupModel;
+    private string _dateCreationString;
+    private string _buySumString;
+    private string _soldSumString;
+    private string _countString;
 
     #endregion Fields
 
@@ -91,22 +94,26 @@ public class ArchiveGroupEditModel : BaseEditModel
 
     public string DateCreationString
     {
-        get => _archiveGroupModel?.DateCreationString ?? NO_DATA;
+        get => _dateCreationString;
+        private set => SetProperty(ref _dateCreationString, value);
     }
 
     public string BuySumString
     {
-        get => _archiveGroupModel?.BuySumString ?? NO_DATA;
+        get => _buySumString;
+        private set => SetProperty(ref _buySumString, value);
     }
 
     public string SoldSumString
     {
-        get => _archiveGroupModel?.SoldSumString ?? NO_DATA;
+        get => _soldSumString;
+        private set => SetProperty(ref _soldSumString, value);
     }
 
-    public string Count
+    public string CountString
     {
-        get => _archiveGroupModel?.Count is null ? NO_DATA : $"{_archiveGroupModel?.Count:N0}";
+        get => _countString;
+        private set => SetProperty(ref _countString, value);
     }
 
     #endregion Properties
@@ -117,6 +124,11 @@ public class ArchiveGroupEditModel : BaseEditModel
     {
         _defaultGroupTitle = string.Empty;
         _groupTitle = string.Empty;
+
+        _dateCreationString = string.Empty;
+        _buySumString = string.Empty;
+        _soldSumString = string.Empty;
+        _countString = string.Empty;
     }
 
     #endregion Constructor
@@ -166,15 +178,12 @@ public class ArchiveGroupEditModel : BaseEditModel
 
         DefaultColour = model?.Colour ?? string.Empty;
 
-        _archiveGroupModel = model;
+        DateCreationString = model?.DateCreationString ?? NO_DATA;
+        BuySumString = model?.BuySumString ?? NO_DATA;
+        SoldSumString = model?.SoldSumString ?? NO_DATA;
+        CountString = model?.Count is null ? NO_DATA : $"{model?.Count:N0}";
 
-        if (model is null)
-            IsNewGroup = true;
-        else
-        {
-            model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
-            IsNewGroup = false;
-        }
+        IsNewGroup = model is null;
 
         SetTitle(model);
 

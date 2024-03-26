@@ -33,7 +33,11 @@ public class ActiveSoldModel : BaseEditModel
     private string? _defaultDescription;
     private string? _description;
 
-    private ActiveModel? _activeModel;
+    private string _buyPriceString;
+    private string _countString;
+    private string _currentPriceString;
+    private string _buyDateString;
+    private string _goalPriceCompletion;
 
     #endregion Fields
 
@@ -115,29 +119,34 @@ public class ActiveSoldModel : BaseEditModel
         }
     }
 
-    public string BuyPrice
+    public string BuyPriceString
     {
-        get => _activeModel?.BuyPriceString ?? NO_DATA;
+        get => _buyPriceString;
+        private set => SetProperty(ref _buyPriceString, value);
     }
 
-    public string Count
+    public string CountString
     {
-        get => _activeModel?.Count is null ? NO_DATA : $"{_activeModel?.Count:N0}";
+        get => _countString;
+        private set => SetProperty(ref _countString, value);
     }
 
     public string CurrentPriceString
     {
-        get => _activeModel?.CurrentPriceString ?? NO_DATA;
+        get => _currentPriceString;
+        private set => SetProperty(ref _currentPriceString, value);
     }
 
-    public string BuyDate
+    public string BuyDateString
     {
-        get => _activeModel?.BuyDateString ?? NO_DATA;
+        get => _buyDateString;
+        private set => SetProperty(ref _buyDateString, value);
     }
 
     public string GoalPriceCompletion
     {
-        get => _activeModel?.GoalPriceCompletion is null ? NO_DATA : $"{_activeModel?.GoalPriceCompletion * 100:N0}";
+        get => _goalPriceCompletion;
+        private set => SetProperty(ref _goalPriceCompletion, value);
     }
 
     #endregion Properties
@@ -151,6 +160,12 @@ public class ActiveSoldModel : BaseEditModel
 
         _defaultSoldPrice = string.Empty;
         _soldPrice = string.Empty;
+
+        _buyPriceString = string.Empty;
+        _countString = string.Empty;
+        _currentPriceString = string.Empty;
+        _buyDateString = string.Empty;
+        _goalPriceCompletion = string.Empty;
     }
 
     #endregion Constructor
@@ -207,9 +222,11 @@ public class ActiveSoldModel : BaseEditModel
 
         DefaultDescription = model?.Description ?? string.Empty;
 
-        _activeModel = model;
-
-        if (model is not null) model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        BuyPriceString = model?.BuyPriceString ?? NO_DATA;
+        CountString = model?.Count is null ? NO_DATA : $"{model.Count:N0}";
+        CurrentPriceString = model?.CurrentPriceString ?? NO_DATA;
+        BuyDateString = model?.BuyDateString ?? NO_DATA;
+        GoalPriceCompletion = model?.GoalPriceCompletion is null ? NO_DATA : $"{model.GoalPriceCompletion:N0}%";
 
         SetTitle(model);
 

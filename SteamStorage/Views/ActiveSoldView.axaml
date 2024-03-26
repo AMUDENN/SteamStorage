@@ -98,23 +98,23 @@
                             Grid.Row="2">
                         
                         <Grid RowDefinitions="40, 40, *, 40, 40, *, 40, 40"
-                              ColumnDefinitions="3*, *, 3*"
+                              ColumnDefinitions="6*, *, 6*"
                               Margin="20">
                             
                             <TextBlock Text="Цена покупки"
                                        Classes="MiddleTextBlock CenterTextBlock"
                                        Grid.Row="0" Grid.Column="0"/>
                             
-                            <TextBlock Text="{Binding BuyPrice, Mode=OneWay}"
-                                       Classes="MiddleTextBlock CenterTextBlock"
+                            <TextBlock Text="{Binding BuyPriceString, Mode=OneWay}"
+                                       Classes="BigTextBlock CenterTextBlock"
                                        Grid.Row="1" Grid.Column="0"/>
                             
                             <TextBlock Text="Количество"
                                        Classes="MiddleTextBlock CenterTextBlock"
                                        Grid.Row="0" Grid.Column="2"/>
                             
-                            <TextBlock Text="{Binding Count, Mode=OneWay}"
-                                       Classes="MiddleTextBlock CenterTextBlock"
+                            <TextBlock Text="{Binding CountString, Mode=OneWay}"
+                                       Classes="BigTextBlock CenterTextBlock"
                                        Grid.Row="1" Grid.Column="2"/>
                             
                             <TextBlock Text="Текущая цена"
@@ -122,15 +122,15 @@
                                        Grid.Row="3" Grid.Column="0"/>
                             
                             <TextBlock Text="{Binding CurrentPriceString, Mode=OneWay}"
-                                       Classes="MiddleTextBlock CenterTextBlock"
+                                       Classes="BigTextBlock CenterTextBlock"
                                        Grid.Row="4" Grid.Column="0"/>
                             
                             <TextBlock Text="Дата покупки"
                                        Classes="MiddleTextBlock CenterTextBlock"
                                        Grid.Row="3" Grid.Column="2"/>
                             
-                            <TextBlock Text="{Binding BuyDate, Mode=OneWay}"
-                                       Classes="MiddleTextBlock CenterTextBlock"
+                            <TextBlock Text="{Binding BuyDateString, Mode=OneWay}"
+                                       Classes="BigTextBlock CenterTextBlock"
                                        Grid.Row="4" Grid.Column="2"/>
                             
                             <TextBlock Text="Финансовая цель"
@@ -138,7 +138,7 @@
                                        Grid.Row="6" Grid.ColumnSpan="3" Grid.Column="0"/>
                             
                             <TextBlock Text="{Binding GoalPriceCompletion, Mode=OneWay}"
-                                       Classes="MiddleTextBlock CenterTextBlock"
+                                       Classes="BigTextBlock CenterTextBlock"
                                        Grid.Row="7" Grid.ColumnSpan="3" Grid.Column="0"/>
                             
                         </Grid>

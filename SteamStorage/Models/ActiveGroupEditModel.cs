@@ -36,6 +36,12 @@ public class ActiveGroupEditModel : BaseEditModel
 
     private bool _isNewGroup;
 
+    private string _dateCreationString;
+    private string _buySumString;
+    private string _countString;
+    private string _currentSumString;
+    private string _goalSumCompletion;
+
     private ActiveGroupModel? _activeGroupModel;
 
     #endregion Fields
@@ -114,27 +120,32 @@ public class ActiveGroupEditModel : BaseEditModel
 
     public string DateCreationString
     {
-        get => _activeGroupModel?.DateCreationString ?? NO_DATA;
+        get => _dateCreationString;
+        private set => SetProperty(ref _dateCreationString, value);
     }
 
     public string BuySumString
     {
-        get => _activeGroupModel?.BuySumString ?? NO_DATA;
+        get => _buySumString;
+        private set => SetProperty(ref _buySumString, value);
     }
 
-    public string Count
+    public string CountString
     {
-        get => _activeGroupModel?.Count is null ? NO_DATA : $"{_activeGroupModel?.Count:N0}";
+        get => _countString;
+        private set => SetProperty(ref _countString, value);
     }
 
     public string CurrentSumString
     {
-        get => _activeGroupModel?.CurrentSumString ?? NO_DATA;
+        get => _currentSumString;
+        private set => SetProperty(ref _currentSumString, value);
     }
 
     public string GoalSumCompletion
     {
-        get => _activeGroupModel?.GoalSumCompletion is null ? NO_DATA : $"{_activeGroupModel?.GoalSumCompletion}";
+        get => _goalSumCompletion;
+        private set => SetProperty(ref _goalSumCompletion, value);
     }
 
     public double ChangePeriod
@@ -167,43 +178,43 @@ public class ActiveGroupEditModel : BaseEditModel
         get => _activeGroupModel?.YAxis ?? Enumerable.Empty<Axis>();
     }
 
-    public bool? IsOneDayChecked
+    public bool IsOneDayChecked
     {
-        get => _activeGroupModel?.IsOneDayChecked;
+        get => _activeGroupModel?.IsOneDayChecked ?? false;
         set
         {
-            if (_activeGroupModel is not null && value is not null)
-                _activeGroupModel.IsOneDayChecked = (bool)value;
+            if (_activeGroupModel is not null)
+                _activeGroupModel.IsOneDayChecked = value;
         }
     }
 
-    public bool? IsOneWeekChecked
+    public bool IsOneWeekChecked
     {
-        get => _activeGroupModel?.IsOneWeekChecked;
+        get => _activeGroupModel?.IsOneWeekChecked ?? false;
         set
         {
-            if (_activeGroupModel is not null && value is not null)
-                _activeGroupModel.IsOneWeekChecked = (bool)value;
+            if (_activeGroupModel is not null)
+                _activeGroupModel.IsOneWeekChecked = value;
         }
     }
 
-    public bool? IsOneMonthChecked
+    public bool IsOneMonthChecked
     {
-        get => _activeGroupModel?.IsOneMonthChecked;
+        get => _activeGroupModel?.IsOneMonthChecked ?? false;
         set
         {
-            if (_activeGroupModel is not null && value is not null)
-                _activeGroupModel.IsOneMonthChecked = (bool)value;
+            if (_activeGroupModel is not null)
+                _activeGroupModel.IsOneMonthChecked = value;
         }
     }
 
-    public bool? IsOneYearChecked
+    public bool IsOneYearChecked
     {
-        get => _activeGroupModel?.IsOneYearChecked;
+        get => _activeGroupModel?.IsOneYearChecked ?? false;
         set
         {
-            if (_activeGroupModel is not null && value is not null)
-                _activeGroupModel.IsOneYearChecked = (bool)value;
+            if (_activeGroupModel is not null)
+                _activeGroupModel.IsOneYearChecked = value;
         }
     }
 
@@ -220,6 +231,12 @@ public class ActiveGroupEditModel : BaseEditModel
     {
         _defaultGroupTitle = string.Empty;
         _groupTitle = string.Empty;
+
+        _dateCreationString = string.Empty;
+        _buySumString = string.Empty;
+        _countString = string.Empty;
+        _currentSumString = string.Empty;
+        _goalSumCompletion = string.Empty;
     }
 
     #endregion Constructor
@@ -273,6 +290,12 @@ public class ActiveGroupEditModel : BaseEditModel
 
         DefaultColour = model?.Colour ?? string.Empty;
 
+        DateCreationString = model?.DateCreationString ?? NO_DATA;
+        BuySumString = model?.BuySumString ?? NO_DATA;
+        CountString = model?.Count is null ? NO_DATA : $"{model.Count:N0}";
+        CurrentSumString = model?.CurrentSumString ?? NO_DATA;
+        GoalSumCompletion = model?.GoalSumCompletion is null ? NO_DATA : $"{model.GoalSumCompletion:N0}%";
+
         _activeGroupModel = model;
 
         if (model is null)
@@ -281,6 +304,7 @@ public class ActiveGroupEditModel : BaseEditModel
         {
             model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
             IsNewGroup = false;
+            IsOneMonthChecked = true;
         }
 
         SetTitle(model);

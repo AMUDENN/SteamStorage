@@ -30,8 +30,8 @@
                 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="35*"/>
-                    <ColumnDefinition Width="7*" MinWidth="30" MaxWidth="100"/>
-                    <ColumnDefinition Width="51*"/>
+                    <ColumnDefinition Width="20*" MinWidth="30" MaxWidth="250"/>
+                    <ColumnDefinition Width="40*"/>
                 </Grid.ColumnDefinitions>
                 
                 <Grid RowDefinitions="Auto, 30, Auto, 30, Auto" 
@@ -72,16 +72,19 @@
                 <Grid RowDefinitions="50, 30, *"
                       Grid.Row="1" Grid.Column="2">
                     
-                    <StackPanel Orientation="Horizontal"
-                                Grid.Row="0">
+                    <Grid HorizontalAlignment="Right"
+                          ColumnDefinitions="Auto, *"
+                          Grid.Row="0">
                         
                         <TextBlock Text="Дата создания: "
-                                   Classes="SmallTextBlock RightTextBlock"/>
-                        
+                                   Classes="SmallTextBlock RightTextBlock"
+                                   Grid.Column="0"/>
+                                                
                         <TextBlock Text="{Binding DateCreationString, Mode=OneWay}"
-                                   Classes="SmallTextBlock RightTextBlock"/>
+                                   Classes="SmallTextBlock RightTextBlock"
+                                   Grid.Column="1"/>
                         
-                    </StackPanel>
+                    </Grid>
                     
                     <Border Classes="SecondAccentGradientBorder BigRoundedBorder"
                             Grid.Row="2">
@@ -94,7 +97,7 @@
                                        Grid.Row="1"/>
                             
                             <TextBlock Text="{Binding BuySumString, Mode=OneWay}"
-                                       Classes="MiddleTextBlock CenterTextBlock"
+                                       Classes="BigTextBlock CenterTextBlock"
                                        Grid.Row="2"/>
                             
                             <TextBlock Text="Сумма продажи"
@@ -102,15 +105,15 @@
                                        Grid.Row="4"/>
                             
                             <TextBlock Text="{Binding SoldSumString, Mode=OneWay}"
-                                       Classes="MiddleTextBlock CenterTextBlock"
+                                       Classes="BigTextBlock CenterTextBlock"
                                        Grid.Row="5"/>
                             
                             <TextBlock Text="Количество"
                                        Classes="MiddleTextBlock CenterTextBlock"
                                        Grid.Row="7"/>
                             
-                            <TextBlock Text="{Binding Count, Mode=OneWay}"
-                                       Classes="MiddleTextBlock CenterTextBlock"
+                            <TextBlock Text="{Binding CountString, Mode=OneWay}"
+                                       Classes="BigTextBlock CenterTextBlock"
                                        Grid.Row="8"/>
                             
                         </Grid>
