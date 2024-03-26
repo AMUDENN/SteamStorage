@@ -9,6 +9,7 @@ public static class Users
     public record UserResponse(
         int UserId,
         long SteamId,
+        string ProfileUrl,
         string? ImageUrl,
         string? ImageUrlMedium,
         string? ImageUrlFull,

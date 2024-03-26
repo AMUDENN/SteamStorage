@@ -15,6 +15,8 @@ public class ProfileModel : ModelBase
     private readonly CurrenciesModel _currenciesModel;
     private readonly PagesModel _pagesModel;
 
+    private string _profileUrl;
+
     private string? _imageUrl;
     private string? _userName;
     private string? _steamId;
@@ -120,6 +122,8 @@ public class ProfileModel : ModelBase
 
         pagesModel.PagesLoaded += PagesLoadedHandler;
 
+        _profileUrl = string.Empty;
+        
         OpenSteamProfileCommand = new(DoOpenSteamProfileCommand);
         DeleteProfileCommand = new(DoDeleteProfileCommand);
         AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
@@ -141,18 +145,22 @@ public class ProfileModel : ModelBase
             SelectedCurrency = null;
             ExchangeRate = null;
             SelectedPage = null;
+            _profileUrl = string.Empty;
+            return;
         }
 
-        UserName = _userModel.User?.Nickname;
-        SteamId = $"SteamID: {_userModel.User?.SteamId}";
-        ImageUrl = _userModel.User?.ImageUrlFull;
+        _profileUrl = _userModel.User.ProfileUrl;
+        
+        UserName = _userModel.User.Nickname;
+        SteamId = $"SteamID: {_userModel.User.SteamId}";
+        ImageUrl = _userModel.User.ImageUrlFull;
 
-        Role = $"Роль: {_userModel.User?.Role}";
+        Role = $"Роль: {_userModel.User.Role}";
 
         DateRegistration =
-            $"Дата регистрации: {_userModel.User?.DateRegistration.ToString(ProgramConstants.VIEW_DATE_FORMAT)}";
+            $"Дата регистрации: {_userModel.User.DateRegistration.ToString(ProgramConstants.VIEW_DATE_FORMAT)}";
 
-        SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.User?.StartPageId);
+        SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.User.StartPageId);
     }
 
     private void CurrencyChangedHandler(object? sender)
@@ -175,7 +183,7 @@ public class ProfileModel : ModelBase
 
     private void DoOpenSteamProfileCommand()
     {
-
+        UrlUtility.OpenUrl(_profileUrl);
     }
 
     private void DoDeleteProfileCommand()
