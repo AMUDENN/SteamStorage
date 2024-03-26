@@ -56,6 +56,10 @@
 		<Setter Property="TextAlignment" Value="Left"/>
 	</Style>
 	
+	<Style Selector="TextBlock.RightTextBlock">
+		<Setter Property="TextAlignment" Value="Right"/>
+	</Style>
+	
 	<Style Selector="TextBlock.LargeTextBlock">
 		<Setter Property="FontSize" Value="40"/>
 	</Style>

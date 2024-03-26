@@ -52,22 +52,22 @@ public class ArchiveGroupEditViewModel : BaseEditViewModel
         get => _archiveGroupEditModel.IsNewGroup;
     }
 
-    public string? DateCreationString
+    public string DateCreationString
     {
         get => _archiveGroupEditModel.DateCreationString;
     }
 
-    public string? BuySumString
+    public string BuySumString
     {
         get => _archiveGroupEditModel.BuySumString;
     }
 
-    public string? SoldSumString
+    public string SoldSumString
     {
         get => _archiveGroupEditModel.SoldSumString;
     }
 
-    public int? Count
+    public string Count
     {
         get => _archiveGroupEditModel.Count;
     }

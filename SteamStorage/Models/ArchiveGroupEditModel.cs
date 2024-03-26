@@ -11,6 +11,8 @@ public class ArchiveGroupEditModel : BaseEditModel
     #region Constants
 
     private const string TITLE = "Изменение группы";
+    
+    private const string NO_DATA = "(нет данных)";
 
     #endregion Constants
 
@@ -87,24 +89,24 @@ public class ArchiveGroupEditModel : BaseEditModel
         private set => SetProperty(ref _isNewGroup, value);
     }
 
-    public string? DateCreationString
+    public string DateCreationString
     {
-        get => _archiveGroupModel?.DateCreationString;
+        get => _archiveGroupModel?.DateCreationString ?? NO_DATA;
     }
 
-    public string? BuySumString
+    public string BuySumString
     {
-        get => _archiveGroupModel?.BuySumString;
+        get => _archiveGroupModel?.BuySumString ?? NO_DATA;
     }
 
-    public string? SoldSumString
+    public string SoldSumString
     {
-        get => _archiveGroupModel?.SoldSumString;
+        get => _archiveGroupModel?.SoldSumString ?? NO_DATA;
     }
 
-    public int? Count
+    public string Count
     {
-        get => _archiveGroupModel?.Count;
+        get => _archiveGroupModel?.Count is null ? NO_DATA : $"{_archiveGroupModel?.Count:N0}";
     }
 
     #endregion Properties

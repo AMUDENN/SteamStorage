@@ -12,6 +12,8 @@ public class ActiveSoldModel : BaseEditModel
 
     private const string TITLE = "Продажа актива";
 
+    private const string NO_DATA = "(нет данных)";
+
     #endregion Constants
 
     #region Fields
@@ -113,29 +115,29 @@ public class ActiveSoldModel : BaseEditModel
         }
     }
 
-    public string? BuyPrice
+    public string BuyPrice
     {
-        get => _activeModel?.BuyPriceString;
+        get => _activeModel?.BuyPriceString ?? NO_DATA;
     }
 
-    public int? Count
+    public string Count
     {
-        get => _activeModel?.Count;
+        get => _activeModel?.Count is null ? NO_DATA : $"{_activeModel?.Count:N0}";
     }
 
-    public string? CurrentPriceString
+    public string CurrentPriceString
     {
-        get => _activeModel?.CurrentPriceString;
+        get => _activeModel?.CurrentPriceString ?? NO_DATA;
     }
 
-    public string? BuyDate
+    public string BuyDate
     {
-        get => _activeModel?.BuyDateString;
+        get => _activeModel?.BuyDateString ?? NO_DATA;
     }
 
-    public double? GoalPriceCompletion
+    public string GoalPriceCompletion
     {
-        get => _activeModel?.GoalPriceCompletion;
+        get => _activeModel?.GoalPriceCompletion is null ? NO_DATA : $"{_activeModel?.GoalPriceCompletion * 100:N0}";
     }
 
     #endregion Properties

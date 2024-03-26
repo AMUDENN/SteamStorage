@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
@@ -14,6 +15,8 @@ public class ActiveGroupEditModel : BaseEditModel
     #region Constants
 
     private const string TITLE = "Изменение группы";
+
+    private const string NO_DATA = "(нет данных)";
 
     #endregion Constants
 
@@ -109,39 +112,39 @@ public class ActiveGroupEditModel : BaseEditModel
         private set => SetProperty(ref _isNewGroup, value);
     }
 
-    public string? DateCreationString
+    public string DateCreationString
     {
-        get => _activeGroupModel?.DateCreationString;
+        get => _activeGroupModel?.DateCreationString ?? NO_DATA;
     }
 
-    public string? BuySumString
+    public string BuySumString
     {
-        get => _activeGroupModel?.BuySumString;
+        get => _activeGroupModel?.BuySumString ?? NO_DATA;
     }
 
-    public int? Count
+    public string Count
     {
-        get => _activeGroupModel?.Count;
+        get => _activeGroupModel?.Count is null ? NO_DATA : $"{_activeGroupModel?.Count:N0}";
     }
 
-    public string? CurrentSumString
+    public string CurrentSumString
     {
-        get => _activeGroupModel?.CurrentSumString;
+        get => _activeGroupModel?.CurrentSumString ?? NO_DATA;
     }
 
-    public double? GoalSumCompletion
+    public string GoalSumCompletion
     {
-        get => _activeGroupModel?.GoalSumCompletion;
+        get => _activeGroupModel?.GoalSumCompletion is null ? NO_DATA : $"{_activeGroupModel?.GoalSumCompletion}";
     }
 
-    public double? ChangePeriod
+    public double ChangePeriod
     {
-        get => _activeGroupModel?.ChangePeriod;
+        get => _activeGroupModel?.ChangePeriod ?? 0;
     }
 
-    public string? DatePeriod
+    public string DatePeriod
     {
-        get => _activeGroupModel?.DatePeriod;
+        get => _activeGroupModel?.DatePeriod ?? NO_DATA;
     }
 
     public string? NotFoundText
@@ -149,19 +152,19 @@ public class ActiveGroupEditModel : BaseEditModel
         get => _activeGroupModel?.NotFoundText;
     }
 
-    public IEnumerable<ISeries>? ChangeSeries
+    public IEnumerable<ISeries> ChangeSeries
     {
-        get => _activeGroupModel?.ChangeSeries;
+        get => _activeGroupModel?.ChangeSeries ?? Enumerable.Empty<ISeries>();
     }
 
-    public IEnumerable<Axis>? XAxis
+    public IEnumerable<Axis> XAxis
     {
-        get => _activeGroupModel?.XAxis;
+        get => _activeGroupModel?.XAxis ?? Enumerable.Empty<Axis>();
     }
 
-    public IEnumerable<Axis>? YAxis
+    public IEnumerable<Axis> YAxis
     {
-        get => _activeGroupModel?.YAxis;
+        get => _activeGroupModel?.YAxis ?? Enumerable.Empty<Axis>();
     }
 
     public bool? IsOneDayChecked

@@ -34,7 +34,8 @@
                                         MinWidth="{TemplateBinding MinWidth}"
                                         MinHeight="{TemplateBinding MinHeight}"/>
                                 <Grid x:Name="PART_ButtonContentGrid" 
-                                      ColumnDefinitions="78*,Auto,132*,Auto,78*">
+                                      ColumnDefinitions="78*,Auto,132*,Auto,78*"
+                                      Margin="11, 4, 11, 7">
                                     <TextBlock x:Name="PART_DayTextBlock" 
                                                Text="{DynamicResource StringDatePickerDayText}" 
                                                HorizontalAlignment="Center"

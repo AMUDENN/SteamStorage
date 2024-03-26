@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              xmlns:vm="using:SteamStorage.ViewModels"
              xmlns:converters="using:SteamStorage.Resources.Converters"
              xmlns:controls="using:SteamStorage.Resources.Controls"
@@ -80,12 +81,155 @@
                     
                 </Grid>
                 
-                <Grid RowDefinitions="50, 30, 220, 30, *"
+                <Grid RowDefinitions="50, 30, 50, 10, 50, 20, 90, 30, *"
+                      IsVisible="{Binding !IsNewGroup, Mode=OneWay}"
                       Grid.Row="1" Grid.Column="2">
                     
-                    <Border Classes="FirstAccentGradientBorder BigRoundedBorder"
-                            Grid.Row="4">
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="0">
                         
+                        <TextBlock Text="Дата создания: "
+                                   Classes="SmallTextBlock RightTextBlock"/>
+                        
+                        <TextBlock Text="{Binding DateCreationString, Mode=OneWay}"
+                                   Classes="SmallTextBlock RightTextBlock"/>
+                        
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="2">
+										
+                        <TextBlock Text="Изменение за период: "
+                                   Classes="SmallTextBlock LeftTextBlock"/>
+										
+                        <TextBlock Text="{Binding ChangePeriod, StringFormat=N0, Mode=OneWay,
+														  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
+                                   Classes="SmallTextBlock CenterTextBlock"
+                                   Classes.PositiveTextBlock="{Binding ChangePeriod, Mode=OneWay,
+																			   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
+                                   Classes.NegativeTextBlock="{Binding ChangePeriod, Mode=OneWay,
+																			   Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"/>
+										
+                    </StackPanel>
+									
+                    <StackPanel Orientation="Horizontal"
+                                IsVisible="{Binding !IsNewGroup, Mode=OneWay}"
+                                Grid.Row="4">
+										
+                        <TextBlock Text="Период: "
+                                   Classes="SmallTextBlock LeftTextBlock"/>
+										
+                        <TextBlock Text="{Binding DatePeriod, Mode=OneWay}"
+                                   Classes="SmallTextBlock CenterTextBlock"/>
+										
+                    </StackPanel>
+                    
+                    <Grid IsVisible="{Binding !IsNewGroup, Mode=OneWay}"
+                          Grid.Row="6">
+						
+						<Grid.RowDefinitions>
+							<RowDefinition Height="55" MinHeight="50"/>
+							<RowDefinition Height="5" MinHeight="5"/>
+							<RowDefinition Height="35" MinHeight="35"/>
+						</Grid.RowDefinitions>
+						
+						<Grid Grid.Row="0">
+							
+							<TextBlock Text="{Binding NotFoundText, Mode=OneWay}"
+							           IsVisible="{Binding NotFoundText, 
+												   Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}"
+							           Classes="SmallTextBlock CenterTextBlock"/>
+							
+							<controls:VectorImage IsVisible="{Binding IsLoading, Mode=OneWay}"
+							                      Classes="LoadingVectorImage ForegroundVectorImage"
+							                      Height="24" Width="24"
+							                      HorizontalAlignment="Center"
+							                      VerticalAlignment="Center"/>
+							
+							<lvc:CartesianChart Series="{Binding ChangeSeries, Mode=OneWay}"
+							                    XAxes="{Binding XAxis, Mode=OneWay}"
+							                    YAxes="{Binding YAxis, Mode=OneWay}"
+							                    TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
+							                    TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
+							                    ZoomMode="X"/>
+							
+						</Grid>
+						
+						<StackPanel Orientation="Horizontal"
+						            Spacing="5"
+						            HorizontalAlignment="Right"
+						            VerticalAlignment="Bottom"
+						            Grid.Row="2">
+							
+							<RadioButton Content="1 д"
+							             IsChecked="{Binding IsOneDayChecked}"
+							             GroupName="Period"
+							             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+							             ToolTip.Tip="1 день"/>
+							
+							<RadioButton Content="1 н"
+							             IsChecked="{Binding IsOneWeekChecked}"
+							             GroupName="Period"
+							             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+							             ToolTip.Tip="1 неделя"/>
+							
+							<RadioButton Content="1 м"
+							             IsChecked="{Binding IsOneMonthChecked}"
+							             GroupName="Period"
+							             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+							             ToolTip.Tip="1 месяц"/>
+							
+							<RadioButton Content="1 г"
+							             IsChecked="{Binding IsOneYearChecked}"
+							             GroupName="Period"
+							             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+							             ToolTip.Tip="1 год"/>
+							
+						</StackPanel>
+						
+					</Grid>
+                    
+                    <Border Classes="FirstAccentGradientBorder BigRoundedBorder"
+                            Grid.Row="8">
+                        
+	                    <Grid RowDefinitions="*, 40, 40, *, 40, 40, *"
+	                          ColumnDefinitions="3*, *, 3*"
+	                          Margin="20, 10">
+		                    
+		                    <TextBlock Text="Сумма вложений"
+		                               Classes="MiddleTextBlock CenterTextBlock"
+		                               Grid.Row="1" Grid.Column="0"/>
+                            
+		                    <TextBlock Text="{Binding BuySumString, Mode=OneWay}"
+		                               Classes="MiddleTextBlock CenterTextBlock"
+		                               Grid.Row="2" Grid.Column="0"/>
+		                    
+		                    <TextBlock Text="Количество"
+		                               Classes="MiddleTextBlock CenterTextBlock"
+		                               Grid.Row="1" Grid.Column="2"/>
+                            
+		                    <TextBlock Text="{Binding Count, Mode=OneWay}"
+		                               Classes="MiddleTextBlock CenterTextBlock"
+		                               Grid.Row="2" Grid.Column="2"/>
+		                    
+		                    <TextBlock Text="Текущая сумма"
+		                               Classes="MiddleTextBlock CenterTextBlock"
+		                               Grid.Row="4" Grid.Column="0"/>
+                            
+		                    <TextBlock Text="{Binding CurrentSumString, Mode=OneWay}"
+		                               Classes="MiddleTextBlock CenterTextBlock"
+		                               Grid.Row="5" Grid.Column="0"/>
+		                    
+		                    <TextBlock Text="Финансовая цель"
+		                               Classes="MiddleTextBlock CenterTextBlock"
+		                               Grid.Row="4" Grid.Column="2"/>
+                            
+		                    <TextBlock Text="{Binding GoalSumCompletion, Mode=OneWay}"
+		                               Classes="MiddleTextBlock CenterTextBlock"
+		                               Grid.Row="5" Grid.Column="2"/>
+		                    
+	                    </Grid>
+	                    
                     </Border>
                     
                 </Grid>

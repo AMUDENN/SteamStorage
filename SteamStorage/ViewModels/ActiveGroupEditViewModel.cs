@@ -68,37 +68,37 @@ public class ActiveGroupEditViewModel : BaseEditViewModel
         get => _activeGroupEditModel.IsNewGroup;
     }
 
-    public string? DateCreationString
+    public string DateCreationString
     {
         get => _activeGroupEditModel.DateCreationString;
     }
 
-    public string? BuySumString
+    public string BuySumString
     {
         get => _activeGroupEditModel.BuySumString;
     }
 
-    public int? Count
+    public string Count
     {
         get => _activeGroupEditModel.Count;
     }
 
-    public string? CurrentSumString
+    public string CurrentSumString
     {
         get => _activeGroupEditModel.CurrentSumString;
     }
 
-    public double? GoalSumCompletion
+    public string GoalSumCompletion
     {
         get => _activeGroupEditModel.GoalSumCompletion;
     }
 
-    public double? ChangePeriod
+    public double ChangePeriod
     {
         get => _activeGroupEditModel.ChangePeriod;
     }
 
-    public string? DatePeriod
+    public string DatePeriod
     {
         get => _activeGroupEditModel.DatePeriod;
     }
@@ -108,17 +108,17 @@ public class ActiveGroupEditViewModel : BaseEditViewModel
         get => _activeGroupEditModel.NotFoundText;
     }
 
-    public IEnumerable<ISeries>? ChangeSeries
+    public IEnumerable<ISeries> ChangeSeries
     {
         get => _activeGroupEditModel.ChangeSeries;
     }
 
-    public IEnumerable<Axis>? XAxis
+    public IEnumerable<Axis> XAxis
     {
         get => _activeGroupEditModel.XAxis;
     }
 
-    public IEnumerable<Axis>? YAxis
+    public IEnumerable<Axis> YAxis
     {
         get => _activeGroupEditModel.YAxis;
     }

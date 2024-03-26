@@ -78,27 +78,27 @@ public class ActiveSoldViewModel : BaseEditViewModel
         set => _activeSoldModel.Description = value;
     }
 
-    public string? BuyPrice
+    public string BuyPrice
     {
         get => _activeSoldModel.BuyPrice;
     }
 
-    public int? Count
+    public string Count
     {
         get => _activeSoldModel.Count;
     }
 
-    public string? CurrentPriceString
+    public string CurrentPriceString
     {
         get => _activeSoldModel.CurrentPriceString;
     }
 
-    public string? BuyDate
+    public string BuyDate
     {
         get => _activeSoldModel.BuyDate;
     }
 
-    public double? GoalPriceCompletion
+    public string GoalPriceCompletion
     {
         get => _activeSoldModel.GoalPriceCompletion;
     }

@@ -72,8 +72,48 @@
                 <Grid RowDefinitions="50, 30, *"
                       Grid.Row="1" Grid.Column="2">
                     
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="0">
+                        
+                        <TextBlock Text="Дата создания: "
+                                   Classes="SmallTextBlock RightTextBlock"/>
+                        
+                        <TextBlock Text="{Binding DateCreationString, Mode=OneWay}"
+                                   Classes="SmallTextBlock RightTextBlock"/>
+                        
+                    </StackPanel>
+                    
                     <Border Classes="SecondAccentGradientBorder BigRoundedBorder"
                             Grid.Row="2">
+                        
+                        <Grid RowDefinitions="*, 40, 40, *, 40, 40, *, 40, 40, *"
+                              Margin="20, 10">
+                            
+                            <TextBlock Text="Сумма вложений"
+                                       Classes="MiddleTextBlock CenterTextBlock"
+                                       Grid.Row="1"/>
+                            
+                            <TextBlock Text="{Binding BuySumString, Mode=OneWay}"
+                                       Classes="MiddleTextBlock CenterTextBlock"
+                                       Grid.Row="2"/>
+                            
+                            <TextBlock Text="Сумма продажи"
+                                       Classes="MiddleTextBlock CenterTextBlock"
+                                       Grid.Row="4"/>
+                            
+                            <TextBlock Text="{Binding SoldSumString, Mode=OneWay}"
+                                       Classes="MiddleTextBlock CenterTextBlock"
+                                       Grid.Row="5"/>
+                            
+                            <TextBlock Text="Количество"
+                                       Classes="MiddleTextBlock CenterTextBlock"
+                                       Grid.Row="7"/>
+                            
+                            <TextBlock Text="{Binding Count, Mode=OneWay}"
+                                       Classes="MiddleTextBlock CenterTextBlock"
+                                       Grid.Row="8"/>
+                            
+                        </Grid>
                         
                     </Border>
                     
