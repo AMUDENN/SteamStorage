@@ -42,6 +42,8 @@ public class ArchiveEditModel : BaseItemEditModel
     private DateTimeOffset _defaultSoldDate;
     private DateTimeOffset _soldDate;
 
+    private bool _isNewArchive;
+    
     #endregion Fields
 
     #region Properties
@@ -149,6 +151,12 @@ public class ArchiveEditModel : BaseItemEditModel
         get => _soldDate;
         set => SetProperty(ref _soldDate, value);
     }
+    
+    public bool IsNewArchive
+    {
+        get => _isNewArchive;
+        private set => SetProperty(ref _isNewArchive, value);
+    }
 
     #endregion Properties
 
@@ -234,6 +242,8 @@ public class ArchiveEditModel : BaseItemEditModel
         DefaultBuyDate = DateTime.SpecifyKind(model?.BuyDate ?? DateTime.Now, DateTimeKind.Local);
 
         DefaultSoldDate = DateTime.SpecifyKind(model?.SoldDate ?? DateTime.Now, DateTimeKind.Local);
+        
+        IsNewArchive = model is null;
 
         SetValuesFromDefault();
     }
@@ -256,6 +266,8 @@ public class ArchiveEditModel : BaseItemEditModel
 
         DefaultSoldDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
 
+        IsNewArchive = false;
+
         SetValuesFromDefault();
     }
 
@@ -276,6 +288,8 @@ public class ArchiveEditModel : BaseItemEditModel
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
 
         DefaultSoldDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
+        
+        IsNewArchive = false;
 
         SetValuesFromDefault();
     }

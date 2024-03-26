@@ -38,6 +38,8 @@ public class ActiveEditModel : BaseItemEditModel
 
     private DateTimeOffset _defaultBuyDate;
     private DateTimeOffset _buyDate;
+    
+    private bool _isNewActive;
 
     #endregion Fields
 
@@ -134,6 +136,12 @@ public class ActiveEditModel : BaseItemEditModel
         get => _buyDate;
         set => SetProperty(ref _buyDate, value);
     }
+    
+    public bool IsNewActive
+    {
+        get => _isNewActive;
+        private set => SetProperty(ref _isNewActive, value);
+    }
 
     #endregion Properties
 
@@ -214,6 +222,8 @@ public class ActiveEditModel : BaseItemEditModel
 
         DefaultBuyDate = DateTime.SpecifyKind(model?.BuyDate ?? DateTime.Now, DateTimeKind.Local);
 
+        IsNewActive = model is null;
+
         SetValuesFromDefault();
     }
 
@@ -232,6 +242,8 @@ public class ActiveEditModel : BaseItemEditModel
         DefaultDescription = string.Empty;
 
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
+        
+        IsNewActive = false;
 
         SetValuesFromDefault();
     }
@@ -251,6 +263,8 @@ public class ActiveEditModel : BaseItemEditModel
         DefaultDescription = string.Empty;
 
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
+        
+        IsNewActive = false;
 
         SetValuesFromDefault();
     }

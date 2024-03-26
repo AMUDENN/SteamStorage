@@ -303,8 +303,8 @@ public class ActiveGroupEditModel : BaseEditModel
         else
         {
             model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
-            IsNewGroup = false;
             IsOneMonthChecked = true;
+            IsNewGroup = false;
         }
 
         SetTitle(model);

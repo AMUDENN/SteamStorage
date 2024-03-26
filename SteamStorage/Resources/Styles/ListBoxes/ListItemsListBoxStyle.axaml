@@ -197,25 +197,25 @@
 										
 										<RadioButton Content="1 д"
 										             IsChecked="{Binding IsOneDayChecked}"
-										             GroupName="Period"
+										             GroupName="ListItemLBPeriod"
 										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
 										             ToolTip.Tip="1 день"/>
 										
 										<RadioButton Content="1 н"
 										             IsChecked="{Binding IsOneWeekChecked}"
-										             GroupName="Period"
+										             GroupName="ListItemLBPeriod"
 										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
 										             ToolTip.Tip="1 неделя"/>
 										
 										<RadioButton Content="1 м"
 										             IsChecked="{Binding IsOneMonthChecked}"
-										             GroupName="Period"
+										             GroupName="ListItemLBPeriod"
 										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
 										             ToolTip.Tip="1 месяц"/>
 										
 										<RadioButton Content="1 г"
 										             IsChecked="{Binding IsOneYearChecked}"
-										             GroupName="Period"
+										             GroupName="ListItemLBPeriod"
 										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
 										             ToolTip.Tip="1 год"/>
 										

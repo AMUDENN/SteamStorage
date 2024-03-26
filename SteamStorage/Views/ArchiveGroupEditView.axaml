@@ -135,6 +135,7 @@
                 
                 <Button Tag="Удалить"
                         Command="{Binding DeleteCommand, Mode=OneWay}"
+                        IsVisible="{Binding !IsNewGroup, Mode=OneWay}"
                         Classes="ImageTextButton UnderlineImageTextButton TransparentImageTextButton StretchButton"
                         Foreground="{DynamicResource NegativeBrush}"
                         HorizontalAlignment="Center"

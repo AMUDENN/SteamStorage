@@ -82,7 +82,6 @@
                 </Grid>
                 
                 <Grid RowDefinitions="50, 30, 50, 10, 50, 20, 90, 30, *"
-                      IsVisible="{Binding !IsNewGroup, Mode=OneWay}"
                       Grid.Row="1" Grid.Column="2">
                     
 	                <Grid HorizontalAlignment="Right"
@@ -116,7 +115,6 @@
                     </StackPanel>
 									
                     <StackPanel Orientation="Horizontal"
-                                IsVisible="{Binding !IsNewGroup, Mode=OneWay}"
                                 Grid.Row="4">
 										
                         <TextBlock Text="Период: "
@@ -126,6 +124,11 @@
                                    Classes="SmallTextBlock CenterTextBlock"/>
 										
                     </StackPanel>
+	                
+	                <TextBlock Text="График недоступен"
+	                           IsVisible="{Binding IsNewGroup, Mode=OneWay}"
+	                           Classes="SmallTextBlock CenterTextBlock"
+	                           Grid.Row="6"/>
                     
                     <Grid IsVisible="{Binding !IsNewGroup, Mode=OneWay}"
                           Grid.Row="6">
@@ -166,25 +169,25 @@
 							
 							<RadioButton Content="1 д"
 							             IsChecked="{Binding IsOneDayChecked}"
-							             GroupName="Period"
+							             GroupName="ActiveGroupEditPeriod"
 							             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
 							             ToolTip.Tip="1 день"/>
 							
 							<RadioButton Content="1 н"
 							             IsChecked="{Binding IsOneWeekChecked}"
-							             GroupName="Period"
+							             GroupName="ActiveGroupEditPeriod"
 							             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
 							             ToolTip.Tip="1 неделя"/>
 							
 							<RadioButton Content="1 м"
 							             IsChecked="{Binding IsOneMonthChecked}"
-							             GroupName="Period"
+							             GroupName="ActiveGroupEditPeriod"
 							             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
 							             ToolTip.Tip="1 месяц"/>
 							
 							<RadioButton Content="1 г"
 							             IsChecked="{Binding IsOneYearChecked}"
-							             GroupName="Period"
+							             GroupName="ActiveGroupEditPeriod"
 							             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
 							             ToolTip.Tip="1 год"/>
 							
@@ -250,6 +253,7 @@
                 
                 <Button Tag="Удалить"
                         Command="{Binding DeleteCommand, Mode=OneWay}"
+                        IsVisible="{Binding !IsNewGroup, Mode=OneWay}"
                         Classes="ImageTextButton UnderlineImageTextButton TransparentImageTextButton StretchButton"
                         Foreground="{DynamicResource NegativeBrush}"
                         HorizontalAlignment="Center"

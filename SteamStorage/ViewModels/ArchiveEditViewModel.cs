@@ -100,6 +100,10 @@ public class ArchiveEditViewModel : BaseItemEditViewModel
         set => _archiveEditModel.SoldDate = value;
     }
 
+    public bool IsNewArchive
+    {
+        get => _archiveEditModel.IsNewArchive;
+    }
 
     #endregion Properties
 
