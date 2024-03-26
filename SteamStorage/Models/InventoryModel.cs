@@ -405,7 +405,6 @@ public class InventoryModel : ModelBase
 
         Inventory.InventoriesResponse? inventoriesResponse =
             await _apiClient.GetAsync<Inventory.InventoriesResponse, Inventory.GetInventoryRequest>(
-                ApiConstants.ApiControllers.Inventory,
                 ApiConstants.ApiMethods.GetInventory,
                 new(SelectedGameModel?.Id, Filter, InventoryOrderName, IsAscending, CurrentPageNumber, PageSize),
                 token);
@@ -417,8 +416,17 @@ public class InventoryModel : ModelBase
 
         InventoryModels = inventoriesResponse.Inventories.Select(x =>
                 new InventoryItemViewModel(
-                    new(_apiClient, _themeService, x.Skin.Id, x.Skin.SkinIconUrl, x.Skin.MarketUrl, x.Skin.Title,
-                        x.Count, x.CurrentPrice, x.CurrentSum, _userModel.CurrencyMark), _chartTooltipModel))
+                    new(_apiClient,
+                        _themeService, 
+                        x.Skin.Id, 
+                        x.Skin.SkinIconUrl,
+                        x.Skin.MarketUrl,
+                        x.Skin.Title,
+                        x.Count, 
+                        x.CurrentPrice, 
+                        x.CurrentSum,
+                        _userModel.CurrencyMark), 
+                    _chartTooltipModel))
             .ToList();
 
         IsLoading = false;

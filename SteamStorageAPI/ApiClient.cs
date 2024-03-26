@@ -82,23 +82,25 @@ public class ApiClient
     }
 
     public async Task<TOut?> GetAsync<TOut>(
-        ApiConstants.ApiControllers apiController,
         ApiConstants.ApiMethods apiMethod,
         CancellationToken cancellationToken = default)
         where TOut : Response
     {
-        return await GetAsync<TOut>(CreateUri(apiController, apiMethod), cancellationToken);
+        return await GetAsync<TOut>(
+            CreateUri((ApiConstants.ApiControllers)((int)apiMethod / 100), apiMethod),
+            cancellationToken);
     }
 
     public async Task<TOut?> GetAsync<TOut, TIn>(
-        ApiConstants.ApiControllers apiController,
         ApiConstants.ApiMethods apiMethod,
         TIn? args = null,
         CancellationToken cancellationToken = default)
         where TOut : Response
         where TIn : Request
     {
-        return await GetAsync<TOut>(CreateUri(apiController, apiMethod, args), cancellationToken);
+        return await GetAsync<TOut>(
+            CreateUri((ApiConstants.ApiControllers)((int)apiMethod / 100), apiMethod, args),
+            cancellationToken);
     }
 
     #endregion GET
@@ -128,13 +130,15 @@ public class ApiClient
     }
 
     public async Task PostAsync<TIn>(
-        ApiConstants.ApiControllers apiController,
         ApiConstants.ApiMethods apiMethod,
         TIn? args = null,
         CancellationToken cancellationToken = default)
         where TIn : Request
     {
-        await PostAsync(CreateUri(apiController, apiMethod), args, cancellationToken);
+        await PostAsync(
+            CreateUri((ApiConstants.ApiControllers)((int)apiMethod / 100), apiMethod),
+            args,
+            cancellationToken);
     }
 
     #endregion POST
@@ -170,13 +174,15 @@ public class ApiClient
     }
 
     public async Task DeleteAsync<TIn>(
-        ApiConstants.ApiControllers apiController,
         ApiConstants.ApiMethods apiMethod,
         TIn? args = null,
         CancellationToken cancellationToken = default)
         where TIn : Request
     {
-        await DeleteAsync(CreateUri(apiController, apiMethod), args, cancellationToken);
+        await DeleteAsync(
+            CreateUri((ApiConstants.ApiControllers)((int)apiMethod / 100), apiMethod),
+            args,
+            cancellationToken);
     }
 
     #endregion DELETE

@@ -130,7 +130,6 @@ public abstract class BaseItemEditModel : BaseEditModel
 
         Skins.BaseSkinsResponse? skinsResponse =
             await _apiClient.GetAsync<Skins.BaseSkinsResponse, Skins.GetBaseSkinsRequest>(
-                ApiConstants.ApiControllers.Skins,
                 ApiConstants.ApiMethods.GetBaseSkins,
                 new(Filter),
                 token);

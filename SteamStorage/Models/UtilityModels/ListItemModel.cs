@@ -75,7 +75,6 @@ public class ListItemModel : BaseDynamicsSkinModel
     private async void PostIsMarked()
     {
         await _apiClient.PostAsync(
-            ApiConstants.ApiControllers.Skins,
             ApiConstants.ApiMethods.SetMarkedSkin,
             new Skins.SetMarkedSkinRequest(SkinId));
     }
@@ -83,7 +82,6 @@ public class ListItemModel : BaseDynamicsSkinModel
     private async void DeleteMarked()
     {
         await _apiClient.DeleteAsync(
-            ApiConstants.ApiControllers.Skins,
             ApiConstants.ApiMethods.DeleteMarkedSkin,
             new Skins.DeleteMarkedSkinRequest(SkinId));
     }

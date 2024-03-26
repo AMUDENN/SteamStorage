@@ -123,7 +123,6 @@ public class ActiveGroupsModel : ModelBase
     {
         ActiveGroups.ActiveGroupsResponse? groupsResponses =
             await _apiClient.GetAsync<ActiveGroups.ActiveGroupsResponse, ActiveGroups.GetActiveGroupsRequest>(
-                ApiConstants.ApiControllers.ActiveGroups,
                 ApiConstants.ApiMethods.GetActiveGroups,
                 new(null, null));
         if (groupsResponses is null) return;

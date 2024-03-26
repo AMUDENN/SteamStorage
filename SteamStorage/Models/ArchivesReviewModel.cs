@@ -328,7 +328,6 @@ public class ArchivesReviewModel : ModelBase
 
         ArchiveGroups.ArchiveGroupsResponse? groupsResponse =
             await _apiClient.GetAsync<ArchiveGroups.ArchiveGroupsResponse, ArchiveGroups.GetArchiveGroupsRequest>(
-                ApiConstants.ApiControllers.ArchiveGroups,
                 ApiConstants.ApiMethods.GetArchiveGroups,
                 new(ArchiveGroupOrderName, IsAscending),
                 token);

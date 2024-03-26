@@ -271,7 +271,6 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         ActiveGroups.ActiveGroupDynamicStatsResponse? activeGroupDynamicResponse =
             await _apiClient
                 .GetAsync<ActiveGroups.ActiveGroupDynamicStatsResponse, ActiveGroups.GetActiveGroupDynamicRequest>(
-                    ApiConstants.ApiControllers.ActiveGroups,
                     ApiConstants.ApiMethods.GetActiveGroupDynamics,
                     new(GroupId, dateStart, dateEnd));
 

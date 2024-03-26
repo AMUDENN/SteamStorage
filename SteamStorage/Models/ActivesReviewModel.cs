@@ -337,7 +337,6 @@ public class ActivesReviewModel : ModelBase
 
         ActiveGroups.ActiveGroupsResponse? groupsResponse =
             await _apiClient.GetAsync<ActiveGroups.ActiveGroupsResponse, ActiveGroups.GetActiveGroupsRequest>(
-                ApiConstants.ApiControllers.ActiveGroups,
                 ApiConstants.ApiMethods.GetActiveGroups,
                 new(ActiveGroupOrderName, IsAscending),
                 token);

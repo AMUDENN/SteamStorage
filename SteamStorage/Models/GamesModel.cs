@@ -50,7 +50,6 @@ public class GamesModel : ModelBase
     {
         Games.GamesResponse? gamesResponse =
             await _apiClient.GetAsync<Games.GamesResponse>(
-                ApiConstants.ApiControllers.Games,
                 ApiConstants.ApiMethods.GetGames);
         if (gamesResponse is null) return;
         GameModels = gamesResponse.Games.Select(x => new GameModel(x.Id, x.GameIconUrl, x.Title)).ToList();

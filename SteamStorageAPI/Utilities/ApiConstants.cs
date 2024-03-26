@@ -19,9 +19,9 @@ public static class ApiConstants
 
     #region Enums
 
-    public enum ApiControllers
+    internal enum ApiControllers
     {
-        ActiveGroups,
+        ActiveGroups = 1,
         Actives,
         ArchiveGroups,
         Archives,

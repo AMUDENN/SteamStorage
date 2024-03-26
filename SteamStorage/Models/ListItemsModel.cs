@@ -433,7 +433,6 @@ public class ListItemsModel : ModelBase
 
         Skins.SkinsResponse? skinsResponse =
             await _apiClient.GetAsync<Skins.SkinsResponse, Skins.GetSkinsRequest>(
-                ApiConstants.ApiControllers.Skins,
                 ApiConstants.ApiMethods.GetSkins,
                 new(SelectedGameModel?.Id, Filter, SkinOrderName, IsAscending, IsMarked ? IsMarked : null,
                     CurrentPageNumber, PageSize),

@@ -91,14 +91,12 @@ public class UserModel : ModelBase
         User = string.IsNullOrEmpty(_settingsService.UserSettings.Token)
             ? null
             : await _apiClient.GetAsync<Users.UserResponse>(
-                ApiConstants.ApiControllers.Users,
                 ApiConstants.ApiMethods.GetCurrentUserInfo);
     }
 
     private async void GetCurrency()
     {
         Currency = await _apiClient.GetAsync<Currencies.CurrencyResponse, Currencies.GetCurrencyRequest>(
-            ApiConstants.ApiControllers.Currencies,
             ApiConstants.ApiMethods.GetCurrency,
             new(User?.CurrencyId ?? ProgramConstants.BASE_CURRENCY_ID));
     }

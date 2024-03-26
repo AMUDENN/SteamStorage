@@ -370,7 +370,6 @@ public class StatisticsModel : ModelBase
     {
         Statistics.InvestmentSumResponse? investmentSumResponse =
             await _apiClient.GetAsync<Statistics.InvestmentSumResponse>(
-                ApiConstants.ApiControllers.Statistics,
                 ApiConstants.ApiMethods.GetInvestmentSum);
 
         InvestedSumString = $"{investmentSumResponse?.TotalSum ?? 0:N2} {_userModel.CurrencyMark}";
@@ -379,7 +378,6 @@ public class StatisticsModel : ModelBase
 
         Statistics.FinancialGoalResponse? financialGoalResponse =
             await _apiClient.GetAsync<Statistics.FinancialGoalResponse>(
-                ApiConstants.ApiControllers.Statistics,
                 ApiConstants.ApiMethods.GetFinancialGoal);
 
         FinancialGoalString = $"{financialGoalResponse?.FinancialGoal ?? 0:N0} {_userModel.CurrencyMark}";
@@ -388,7 +386,6 @@ public class StatisticsModel : ModelBase
 
         Statistics.ItemsCountResponse? itemsCountResponse =
             await _apiClient.GetAsync<Statistics.ItemsCountResponse>(
-                ApiConstants.ApiControllers.Statistics,
                 ApiConstants.ApiMethods.GetItemsCount);
 
         TotalCount = itemsCountResponse?.Count ?? 0;
@@ -396,7 +393,6 @@ public class StatisticsModel : ModelBase
 
         Statistics.ActiveStatisticResponse? activeStatisticResponse =
             await _apiClient.GetAsync<Statistics.ActiveStatisticResponse>(
-                ApiConstants.ApiControllers.Statistics,
                 ApiConstants.ApiMethods.GetActiveStatistic);
 
         ActivesCount = activeStatisticResponse?.Count ?? 0;
@@ -406,7 +402,6 @@ public class StatisticsModel : ModelBase
 
         Statistics.ArchiveStatisticResponse? archiveStatisticResponse =
             await _apiClient.GetAsync<Statistics.ArchiveStatisticResponse>(
-                ApiConstants.ApiControllers.Statistics,
                 ApiConstants.ApiMethods.GetArchiveStatistic);
 
         ArchivesCount = archiveStatisticResponse?.Count ?? 0;
@@ -416,7 +411,6 @@ public class StatisticsModel : ModelBase
 
         Statistics.InventoryStatisticResponse? inventoryStatisticResponse =
             await _apiClient.GetAsync<Statistics.InventoryStatisticResponse>(
-                ApiConstants.ApiControllers.Statistics,
                 ApiConstants.ApiMethods.GetInventoryStatistic);
 
         InventoryCount = inventoryStatisticResponse?.Count ?? 0;

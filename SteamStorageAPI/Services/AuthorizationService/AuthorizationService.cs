@@ -28,7 +28,6 @@ public class AuthorizationService : IAuthorizationService
     {
         Authorize.AuthUrlResponse? authUrlResponse =
             await _apiClient.GetAsync<Authorize.AuthUrlResponse>(
-                ApiConstants.ApiControllers.Authorize,
                 ApiConstants.ApiMethods.GetAuthUrl);
 
         if (authUrlResponse is null) return;

@@ -123,7 +123,6 @@ public class ArchiveGroupsModel : ModelBase
     {
         ArchiveGroups.ArchiveGroupsResponse? groupsResponses =
             await _apiClient.GetAsync<ArchiveGroups.ArchiveGroupsResponse, ArchiveGroups.GetArchiveGroupsRequest>(
-                ApiConstants.ApiControllers.ArchiveGroups,
                 ApiConstants.ApiMethods.GetArchiveGroups,
                 new(null, null));
         if (groupsResponses is null) return;
