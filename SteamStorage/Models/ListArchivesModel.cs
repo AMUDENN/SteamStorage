@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
@@ -368,7 +369,7 @@ public class ListArchivesModel : ModelBase
 
     public RelayCommand<ArchiveModel> EditCommand { get; }
 
-    public RelayCommand<ArchiveModel> DeleteCommand { get; }
+    public AsyncRelayCommand<ArchiveModel> DeleteCommand { get; }
 
     #endregion Commands
 
@@ -431,7 +432,7 @@ public class ListArchivesModel : ModelBase
         OnEditArchive(model);
     }
 
-    private void DoDeleteCommand(ArchiveModel? model)
+    private async Task DoDeleteCommand(ArchiveModel? model)
     {
         //TODO:
     }

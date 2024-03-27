@@ -70,7 +70,7 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
         get => _listActivesModel.SoldCommand;
     }
 
-    public RelayCommand<ActiveModel> DeleteCommand
+    public AsyncRelayCommand<ActiveModel> DeleteCommand
     {
         get => _listActivesModel.DeleteCommand;
     }

@@ -7,6 +7,7 @@ using SteamStorage.ViewModels;
 using SteamStorage.Views;
 using System;
 using SteamStorage.Models;
+using SteamStorage.Services.DialogService;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
@@ -27,13 +28,19 @@ namespace SteamStorage
 
         static App()
         {
+            Container = GetServiceCollection().BuildServiceProvider();
+        }
+
+        #endregion Constructor
+
+        #region Methods
+
+        private static ServiceCollection GetServiceCollection()
+        {
             ServiceCollection services = [];
 
             //SteamStorageApi
-            services.AddSteamStorageApi(options =>
-            {
-                options.ClientTimeout = ProgramConstants.API_CLIENT_TIMEOUT;
-            });
+            services.AddSteamStorageApi(options => { options.ClientTimeout = ProgramConstants.API_CLIENT_TIMEOUT; });
 
             //Custom SteamStorageApi Services
             services.AddSteamStorageAuthorizationService();
@@ -45,40 +52,27 @@ namespace SteamStorage
                 options.DateTimeFormat = ProgramConstants.LOG_DATETIME_FORMAT;
                 options.LogFilesLifetime = ProgramConstants.LOG_FILES_LIFETIME_DAYS;
             });
-            
+
 
             //Custom Services
             services.AddScoped<IThemeService, ThemeService>();
+            services.AddScoped<IDialogService, DialogService>();
             services.AddSingleton<ISettingsService, SettingsService>(x =>
                 new(ProgramConstants.PROGRAM_NAME,
                     x.GetRequiredService<ApiClient>(),
                     x.GetRequiredService<IThemeService>()));
+
 
             //MainWindow
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MainWindowModel>();
             services.AddSingleton<MainWindowViewModel>();
 
-            //ViewModels
-            services.AddSingleton<MainViewModel>();
 
-            services.AddSingleton<ActiveEditViewModel>();
-            services.AddSingleton<ActiveGroupEditViewModel>();
-            services.AddSingleton<ActiveSoldViewModel>();
-            services.AddSingleton<ActivesReviewViewModel>();
-            services.AddSingleton<ActivesViewModel>();
-            services.AddSingleton<ArchiveEditViewModel>();
-            services.AddSingleton<ArchiveGroupEditViewModel>();
-            services.AddSingleton<ArchivesReviewViewModel>();
-            services.AddSingleton<ArchivesViewModel>();
-            services.AddSingleton<HomeViewModel>();
-            services.AddSingleton<InventoryViewModel>();
-            services.AddSingleton<ListActivesViewModel>();
-            services.AddSingleton<ListArchivesViewModel>();
-            services.AddSingleton<ListItemsViewModel>();
-            services.AddSingleton<ProfileViewModel>();
-            services.AddSingleton<SettingsViewModel>();
-            services.AddSingleton<StatisticsViewModel>();
+            //DialogWindow
+            services.AddSingleton<DialogWindowModel>();
+            services.AddSingleton<DialogWindowViewModel>();
+
 
             //Models
             services.AddSingleton<MainModel>();
@@ -102,19 +96,38 @@ namespace SteamStorage
             services.AddSingleton<ListActivesModel>();
             services.AddSingleton<ListArchivesModel>();
             services.AddSingleton<ListItemsModel>();
+            services.AddSingleton<MessageDialogModel>();
             services.AddSingleton<PagesModel>();
             services.AddSingleton<ProfileModel>();
             services.AddSingleton<SettingsModel>();
             services.AddSingleton<StatisticsModel>();
             services.AddSingleton<UserModel>();
+            
+            
+            //ViewModels
+            services.AddSingleton<MainViewModel>();
 
+            services.AddSingleton<ActiveEditViewModel>();
+            services.AddSingleton<ActiveGroupEditViewModel>();
+            services.AddSingleton<ActiveSoldViewModel>();
+            services.AddSingleton<ActivesReviewViewModel>();
+            services.AddSingleton<ActivesViewModel>();
+            services.AddSingleton<ArchiveEditViewModel>();
+            services.AddSingleton<ArchiveGroupEditViewModel>();
+            services.AddSingleton<ArchivesReviewViewModel>();
+            services.AddSingleton<ArchivesViewModel>();
+            services.AddSingleton<HomeViewModel>();
+            services.AddSingleton<InventoryViewModel>();
+            services.AddSingleton<ListActivesViewModel>();
+            services.AddSingleton<ListArchivesViewModel>();
+            services.AddSingleton<ListItemsViewModel>();
+            services.AddSingleton<MessageDialogViewModel>();
+            services.AddSingleton<ProfileViewModel>();
+            services.AddSingleton<SettingsViewModel>();
+            services.AddSingleton<StatisticsViewModel>();
 
-            Container = services.BuildServiceProvider();
+            return services;
         }
-
-        #endregion Constructor
-
-        #region Methods
 
         public override void Initialize()
         {

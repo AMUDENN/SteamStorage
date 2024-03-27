@@ -65,7 +65,7 @@ public class ArchiveViewModel : BaseSkinViewModel
         get => _listArchivesModel.EditCommand;
     }
 
-    public RelayCommand<ArchiveModel> DeleteCommand
+    public AsyncRelayCommand<ArchiveModel> DeleteCommand
     {
         get => _listArchivesModel.DeleteCommand;
     }

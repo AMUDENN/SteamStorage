@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
@@ -57,7 +58,7 @@ public class ArchiveGroupsModel : ModelBase
 
     public RelayCommand<ArchiveGroupModel> EditArchiveGroupCommand { get; }
 
-    public RelayCommand<ArchiveGroupModel> DeleteArchiveGroupCommand { get; }
+    public AsyncRelayCommand<ArchiveGroupModel> DeleteArchiveGroupCommand { get; }
 
     #endregion Commands
 
@@ -109,7 +110,7 @@ public class ArchiveGroupsModel : ModelBase
         OnEditArchiveGroup(group);
     }
 
-    private void DoDeleteArchiveGroupCommand(ArchiveGroupModel? group)
+    private async Task DoDeleteArchiveGroupCommand(ArchiveGroupModel? group)
     {
         //TODO:
     }

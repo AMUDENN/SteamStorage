@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
+using SteamStorage.Services.DialogService;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Actives;
 using SteamStorage.ViewModels.UtilityViewModels;
@@ -40,6 +42,7 @@ public class ListActivesModel : ModelBase
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
     private readonly IThemeService _themeService;
+    private readonly IDialogService _dialogService;
 
     private BaseGroupModel? _selectedGroupModel;
 
@@ -381,7 +384,7 @@ public class ListActivesModel : ModelBase
 
     public RelayCommand<ActiveModel> SoldCommand { get; }
 
-    public RelayCommand<ActiveModel> DeleteCommand { get; }
+    public AsyncRelayCommand<ActiveModel> DeleteCommand { get; }
 
     #endregion Commands
 
@@ -391,12 +394,14 @@ public class ListActivesModel : ModelBase
         ApiClient apiClient,
         ChartTooltipModel chartTooltipModel,
         UserModel userModel,
-        IThemeService themeService)
+        IThemeService themeService,
+        IDialogService dialogService)
     {
         _apiClient = apiClient;
         _chartTooltipModel = chartTooltipModel;
         _userModel = userModel;
         _themeService = themeService;
+        _dialogService = dialogService;
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
@@ -454,7 +459,7 @@ public class ListActivesModel : ModelBase
         OnSoldActive(model);
     }
 
-    private void DoDeleteCommand(ActiveModel? model)
+    private async Task DoDeleteCommand(ActiveModel? model)
     {
         //TODO:
     }

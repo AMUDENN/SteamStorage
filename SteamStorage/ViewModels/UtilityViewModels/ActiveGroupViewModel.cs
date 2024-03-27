@@ -139,7 +139,7 @@ public class ActiveGroupViewModel : BaseGroupViewModel
         get => _activeGroupsModel.EditActiveGroupCommand;
     }
 
-    public RelayCommand<ActiveGroupModel> DeleteActiveGroupCommand
+    public AsyncRelayCommand<ActiveGroupModel> DeleteActiveGroupCommand
     {
         get => _activeGroupsModel.DeleteActiveGroupCommand;
     }

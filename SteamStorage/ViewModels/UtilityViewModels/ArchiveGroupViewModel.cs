@@ -60,7 +60,7 @@ public class ArchiveGroupViewModel : BaseGroupViewModel
         get => _archiveGroupsModel.EditArchiveGroupCommand;
     }
 
-    public RelayCommand<ArchiveGroupModel> DeleteArchiveGroupCommand
+    public AsyncRelayCommand<ArchiveGroupModel> DeleteArchiveGroupCommand
     {
         get => _archiveGroupsModel.DeleteArchiveGroupCommand;
     }
