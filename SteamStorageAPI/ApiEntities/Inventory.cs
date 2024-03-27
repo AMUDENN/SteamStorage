@@ -28,7 +28,7 @@ public static class Inventory
     public record InventoriesResponse(
         int Count,
         int PagesCount,
-        IEnumerable<InventoryResponse> Inventories) : Response;
+        IEnumerable<InventoryResponse>? Inventories) : Response;
 
     public record InventoryPagesCountResponse(
         int Count) : Response;

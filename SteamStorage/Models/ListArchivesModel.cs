@@ -479,6 +479,8 @@ public class ListArchivesModel : ModelBase
 
         SavedItemsCount = archivesResponse.Count;
         PagesCount = archivesResponse.PagesCount;
+        
+        if (archivesResponse?.Archives is null) return;
 
         ArchiveModels = archivesResponse.Archives.Select(x =>
                 new ArchiveViewModel(

@@ -502,6 +502,8 @@ public class ListActivesModel : ModelBase
 
         SavedItemsCount = activesResponse.Count;
         PagesCount = activesResponse.PagesCount;
+        
+        if (activesResponse.Actives is null) return;
 
         ActiveModels = activesResponse.Actives.Select(x =>
                 new ActiveViewModel(

@@ -433,6 +433,8 @@ public class InventoryModel : ModelBase
         SavedItemsCount = inventoriesResponse.Count;
         PagesCount = inventoriesResponse.PagesCount;
 
+        if (inventoriesResponse.Inventories is null) return;
+        
         InventoryModels = inventoriesResponse.Inventories.Select(x =>
                 new InventoryItemViewModel(
                     new(_apiClient,

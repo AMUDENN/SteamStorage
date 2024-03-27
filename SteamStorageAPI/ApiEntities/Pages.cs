@@ -12,7 +12,7 @@ public static class Pages
     
     public record PagesResponse(
         int Count,
-        IEnumerable<PageResponse> Pages) : Response;
+        IEnumerable<PageResponse>? Pages) : Response;
 
     public record SetPageRequest(
         int PageId) : Request;

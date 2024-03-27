@@ -176,7 +176,7 @@ public class ArchiveGroupEditModel : BaseEditModel
         DateCreationString = model?.DateCreationString ?? NO_DATA;
         BuySumString = model?.BuySumString ?? NO_DATA;
         SoldSumString = model?.SoldSumString ?? NO_DATA;
-        CountString = model?.Count is null ? NO_DATA : $"{model?.Count:N0}";
+        CountString = model?.Count is null ? NO_DATA : $"{model.Count:N0}";
 
         IsNewGroup = model is null;
 

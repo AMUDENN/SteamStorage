@@ -27,7 +27,7 @@ public static class Skins
     
     public record BaseSkinsResponse(
         int Count,
-        IEnumerable<BaseSkinResponse> Skins) : Response;
+        IEnumerable<BaseSkinResponse>? Skins) : Response;
 
     public record SkinResponse(
         BaseSkinResponse Skin,
@@ -39,7 +39,7 @@ public static class Skins
     public record SkinsResponse(
         int Count,
         int PagesCount,
-        IEnumerable<SkinResponse> Skins) : Response;
+        IEnumerable<SkinResponse>? Skins) : Response;
 
     public record SkinDynamicResponse(
         int Id,
@@ -48,7 +48,7 @@ public static class Skins
 
     public record SkinDynamicStatsResponse(
         double ChangePeriod,
-        IEnumerable<SkinDynamicResponse> Dynamic) : Response;
+        IEnumerable<SkinDynamicResponse>? Dynamic) : Response;
 
     public record SkinPagesCountResponse(
         int Count) : Response;

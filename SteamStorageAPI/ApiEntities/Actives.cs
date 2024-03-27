@@ -37,7 +37,7 @@ public static class Actives
     public record ActivesResponse(
         int Count,
         int PagesCount,
-        IEnumerable<ActiveResponse> Actives) : Response;
+        IEnumerable<ActiveResponse>? Actives) : Response;
 
     public record ActivesPagesCountResponse(
         int Count) : Response;

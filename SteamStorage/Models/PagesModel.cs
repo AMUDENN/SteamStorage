@@ -57,7 +57,7 @@ public class PagesModel : ModelBase
         Pages.PagesResponse? pageResponses =
             await _apiClient.GetAsync<Pages.PagesResponse>(
                 ApiConstants.ApiMethods.GetPages);
-        if (pageResponses is null) return;
+        if (pageResponses?.Pages is null) return;
         PageModels = pageResponses.Pages.Select(x => new PageModel(x.Id, x.Title)).ToList();
         OnPagesLoaded();
     }

@@ -16,7 +16,7 @@ public static class Currencies
     
     public record CurrenciesResponse(
         int Count,
-        IEnumerable<CurrencyResponse> Currencies) : Response;
+        IEnumerable<CurrencyResponse>? Currencies) : Response;
 
     public record GetCurrencyRequest(
         int Id) : Request;

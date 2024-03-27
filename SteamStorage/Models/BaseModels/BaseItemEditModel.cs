@@ -134,7 +134,7 @@ public abstract class BaseItemEditModel : BaseEditModel
                 new(Filter),
                 token);
 
-        if (skinsResponse is null) return;
+        if (skinsResponse?.Skins is null) return;
 
         SkinModels = skinsResponse.Skins.Select(x =>
                 new BaseSkinViewModel(new(x.Id,

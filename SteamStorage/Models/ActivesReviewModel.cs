@@ -341,7 +341,7 @@ public class ActivesReviewModel : ModelBase
                 new(ActiveGroupOrderName, IsAscending),
                 token);
 
-        if (groupsResponse is null) return;
+        if (groupsResponse?.ActiveGroups is null) return;
 
         ActiveGroupModels = groupsResponse.ActiveGroups.Select(x =>
                 new ActiveGroupViewModel(

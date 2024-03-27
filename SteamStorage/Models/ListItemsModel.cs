@@ -442,6 +442,8 @@ public class ListItemsModel : ModelBase
 
         SavedItemsCount = skinsResponse.Count;
         PagesCount = skinsResponse.PagesCount;
+        
+        if (skinsResponse.Skins is null) return;
 
         ListItemModels = skinsResponse.Skins.Select(x =>
                 new ListItemViewModel(

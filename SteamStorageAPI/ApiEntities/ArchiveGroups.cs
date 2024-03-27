@@ -32,7 +32,7 @@ public static class ArchiveGroups
 
     public record ArchiveGroupsResponse(
         int Count,
-        IEnumerable<ArchiveGroupResponse> ArchiveGroups) : Response;
+        IEnumerable<ArchiveGroupResponse>? ArchiveGroups) : Response;
 
     public record ArchiveGroupsCountResponse(
         int Count) : Response;

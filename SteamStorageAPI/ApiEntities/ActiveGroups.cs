@@ -34,7 +34,7 @@ public static class ActiveGroups
 
     public record ActiveGroupsResponse(
         int Count,
-        IEnumerable<ActiveGroupResponse> ActiveGroups) : Response;
+        IEnumerable<ActiveGroupResponse>? ActiveGroups) : Response;
 
     public record ActiveGroupDynamicResponse(
         int Id,

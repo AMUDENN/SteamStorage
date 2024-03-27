@@ -14,7 +14,7 @@ public static class Games
     
     public record GamesResponse(
         int Count,
-        IEnumerable<GameResponse> Games) : Response;
+        IEnumerable<GameResponse>? Games) : Response;
 
     #endregion Records
 }

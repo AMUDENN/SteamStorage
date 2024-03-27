@@ -332,7 +332,7 @@ public class ArchivesReviewModel : ModelBase
                 new(ArchiveGroupOrderName, IsAscending),
                 token);
 
-        if (groupsResponse is null) return;
+        if (groupsResponse?.ArchiveGroups is null) return;
 
         ArchiveGroupModels = groupsResponse.ArchiveGroups.Select(x =>
                 new ArchiveGroupViewModel(

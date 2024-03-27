@@ -125,7 +125,7 @@ public class ArchiveGroupsModel : ModelBase
             await _apiClient.GetAsync<ArchiveGroups.ArchiveGroupsResponse, ArchiveGroups.GetArchiveGroupsRequest>(
                 ApiConstants.ApiMethods.GetArchiveGroups,
                 new(null, null));
-        if (groupsResponses is null) return;
+        if (groupsResponses?.ArchiveGroups is null) return;
         ArchiveGroupModels = groupsResponses.ArchiveGroups.Select(x => new BaseGroupModel(x.Id, x.Title)).ToList();
     }
 
