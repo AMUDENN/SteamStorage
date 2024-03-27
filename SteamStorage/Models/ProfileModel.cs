@@ -71,7 +71,7 @@ public class ProfileModel : ModelBase
         set
         {
             if (value is not null && value != _selectedCurrency)
-                SetCurrency();
+                SetCurrency(value);
             SetProperty(ref _selectedCurrency, value);
         }
     }
@@ -87,8 +87,9 @@ public class ProfileModel : ModelBase
         get => _selectedPage;
         set
         {
+            if (value is not null && value != _selectedPage) 
+                SetPage(value);
             SetProperty(ref _selectedPage, value);
-            SetPage();
         }
     }
 
@@ -123,7 +124,7 @@ public class ProfileModel : ModelBase
         pagesModel.PagesLoaded += PagesLoadedHandler;
 
         _profileUrl = string.Empty;
-        
+
         OpenSteamProfileCommand = new(DoOpenSteamProfileCommand);
         DeleteProfileCommand = new(DoDeleteProfileCommand);
         AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
@@ -150,7 +151,7 @@ public class ProfileModel : ModelBase
         }
 
         _profileUrl = _userModel.User.ProfileUrl;
-        
+
         UserName = _userModel.User.Nickname;
         SteamId = $"SteamID: {_userModel.User.SteamId}";
         ImageUrl = _userModel.User.ImageUrlFull;
@@ -188,7 +189,7 @@ public class ProfileModel : ModelBase
 
     private void DoDeleteProfileCommand()
     {
-        //TODO:
+        _userModel.DeleteUser();
     }
 
     private void DoAttachedToVisualTreeCommand()
@@ -196,15 +197,14 @@ public class ProfileModel : ModelBase
         _userModel.UpdateCurrencyInfo();
     }
 
-    private void SetCurrency()
+    private void SetCurrency(CurrencyModel? currencyModel)
     {
-        //TODO: SetCurrency API
-        _userModel.UpdateCurrencyInfo();
+        _userModel.SetCurrency(currencyModel);
     }
 
-    private void SetPage()
+    private void SetPage(PageModel? pageModel)
     {
-        //TODO:
+        _userModel.SetPage(pageModel);
     }
 
     #endregion Methods

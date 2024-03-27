@@ -141,7 +141,65 @@ public class ApiClient
             cancellationToken);
     }
 
+    public async Task PostAsync(
+        ApiConstants.ApiMethods apiMethod,
+        CancellationToken cancellationToken = default)
+    {
+        await PostAsync<Request>(
+            CreateUri((ApiConstants.ApiControllers)((int)apiMethod / 100), apiMethod),
+            null,
+            cancellationToken);
+    }
+
     #endregion POST
+    
+    #region PUT
+    
+    private async Task PutAsync<TIn>(
+        Uri uri,
+        TIn? args = null,
+        CancellationToken cancellationToken = default)
+        where TIn : Request
+    {
+        try
+        {
+            HttpClient client = _httpClientFactory.CreateClient(ApiConstants.CLIENT_NAME);
+            await client.PutAsJsonAsync(uri, args, cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            Debug.WriteLine($"Task {uri.ToString()} was cancelled");
+        }
+        catch (Exception ex)
+        {
+            if (_logger is not null)
+                await _logger.LogAsync($"ApiException PUT \n{uri.ToString()}", ex);
+        }
+    }
+    
+    public async Task PutAsync<TIn>(
+        ApiConstants.ApiMethods apiMethod,
+        TIn? args = null,
+        CancellationToken cancellationToken = default)
+        where TIn : Request
+    {
+        await PutAsync(
+            CreateUri((ApiConstants.ApiControllers)((int)apiMethod / 100), apiMethod),
+            args,
+            cancellationToken);
+    }
+
+    public async Task PutAsync(
+        ApiConstants.ApiMethods apiMethod,
+        CancellationToken cancellationToken = default)
+    {
+        await PutAsync<Request>(
+            CreateUri((ApiConstants.ApiControllers)((int)apiMethod / 100), apiMethod),
+            null,
+            cancellationToken);
+    }
+    
+    #endregion PUT
 
     #region DELETE
 
@@ -182,6 +240,16 @@ public class ApiClient
         await DeleteAsync(
             CreateUri((ApiConstants.ApiControllers)((int)apiMethod / 100), apiMethod),
             args,
+            cancellationToken);
+    }
+
+    public async Task DeleteAsync(
+        ApiConstants.ApiMethods apiMethod,
+        CancellationToken cancellationToken = default)
+    {
+        await DeleteAsync<Request>(
+            CreateUri((ApiConstants.ApiControllers)((int)apiMethod / 100), apiMethod),
+            null,
             cancellationToken);
     }
 

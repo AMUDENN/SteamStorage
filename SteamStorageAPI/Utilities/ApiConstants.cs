@@ -69,6 +69,7 @@ public static class ApiConstants
 
         GetCurrencies = 600,
         GetCurrency,
+        GetCurrentCurrency,
         SetCurrency,
 
         GetGames = 700,

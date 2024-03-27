@@ -1,4 +1,5 @@
 ﻿using SteamStorage.Models.Tools;
+using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Events.Settings;
@@ -96,14 +97,39 @@ public class UserModel : ModelBase
 
     private async void GetCurrency()
     {
-        Currency = await _apiClient.GetAsync<Currencies.CurrencyResponse, Currencies.GetCurrencyRequest>(
-            ApiConstants.ApiMethods.GetCurrency,
-            new(User?.CurrencyId ?? ProgramConstants.BASE_CURRENCY_ID));
+        Currency = await _apiClient.GetAsync<Currencies.CurrencyResponse>(
+            ApiConstants.ApiMethods.GetCurrentCurrency);
     }
 
     public void UpdateCurrencyInfo()
     {
         GetCurrency();
+    }
+
+    public async void DeleteUser()
+    {
+        await _apiClient.DeleteAsync(ApiConstants.ApiMethods.DeleteUser);
+        SetUser();
+    }
+
+    public async void SetCurrency(CurrencyModel? currencyModel)
+    {
+        if (currencyModel is null) return;
+
+        await _apiClient.PutAsync(
+            ApiConstants.ApiMethods.SetCurrency,
+            new Currencies.SetCurrencyRequest(currencyModel.Id));
+
+        GetCurrency();
+    }
+    
+    public async void SetPage(PageModel? pageModel)
+    {
+        if (pageModel is null) return;
+        
+        await _apiClient.PutAsync(
+            ApiConstants.ApiMethods.SetStartPage,
+            new Pages.SetPageRequest(pageModel.Id));
     }
 
     private void OnUserChanged()
