@@ -147,7 +147,7 @@
 							           Classes="SmallTextBlock CenterTextBlock"/>
 							
 							<controls:VectorImage IsVisible="{Binding IsLoading, Mode=OneWay}"
-							                      Classes="LoadingVectorImage ForegroundVectorImage"
+							                      Classes="LoadingVectorImage AnimationWheelVectorImage ForegroundVectorImage"
 							                      Height="24" Width="24"
 							                      HorizontalAlignment="Center"
 							                      VerticalAlignment="Center"/>

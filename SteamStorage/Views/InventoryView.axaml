@@ -67,14 +67,19 @@
 				                      Height="40" Width="40"/>
 			</Button>
 			
-			<Button Command="{Binding RefreshInventoryCommand, Mode=OneWay}"
-			        Classes="ImageButton BackgroundButton"
-			        Height="60" Width="60"
-			        ToolTip.Tip="Обновить инвентарь"
-			        Grid.Column="8">
-				<controls:VectorImage Classes="RefreshVectorImage ForegroundVectorImage"
-				                      Height="40" Width="40"/>
-			</Button>
+			<Grid Height="60" Width="60"
+			      IsEnabled="{Binding !IsRefreshing, Mode=OneWay}"
+			      Grid.Column="8">
+				<Button Command="{Binding RefreshInventoryCommand, Mode=OneWay}"
+				        IsEnabled="{Binding SelectedGameModel,
+									Converter={x:Static ObjectConverters.IsNotNull}, Mode=OneWay}"
+				        Classes="ImageButton BackgroundButton"
+				        ToolTip.Tip="Обновить инвентарь">
+					<controls:VectorImage Classes="RefreshVectorImage ForegroundVectorImage"
+					                      Classes.AnimationWheelVectorImage="{Binding IsRefreshing, Mode=OneWay}"
+					                      Height="40" Width="40"/>
+				</Button>
+			</Grid>
             
 		</Grid>
 		
@@ -132,7 +137,7 @@
 			           Margin="0, 20"/>
             
 			<controls:VectorImage IsVisible="{Binding IsLoading, Mode=OneWay}"
-			                      Classes="LoadingVectorImage ForegroundVectorImage"
+			                      Classes="LoadingVectorImage AnimationWheelVectorImage ForegroundVectorImage"
 			                      Height="48" Width="48"
 			                      HorizontalAlignment="Center"
 			                      VerticalAlignment="Top"

@@ -64,6 +64,11 @@ public class InventoryViewModel : ViewModelBase
         get => _inventoryModel.IsSumOrdering;
         set => _inventoryModel.IsSumOrdering = value;
     }
+    
+    public bool IsRefreshing
+    {
+        get => _inventoryModel.IsRefreshing;
+    }
 
     public IEnumerable<InventoryItemViewModel> InventoryModels
     {
@@ -126,7 +131,7 @@ public class InventoryViewModel : ViewModelBase
         get => _inventoryModel.ClearFiltersCommand;
     }
 
-    public RelayCommand RefreshInventoryCommand
+    public AsyncRelayCommand RefreshInventoryCommand
     {
         get => _inventoryModel.RefreshInventoryCommand;
     }

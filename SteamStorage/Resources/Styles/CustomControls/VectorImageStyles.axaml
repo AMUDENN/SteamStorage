@@ -13,6 +13,19 @@
             </Transitions>
         </Setter>
     </Style>
+    
+    <Style Selector="controls|VectorImage.AnimationWheelVectorImage">
+        <Style.Animations>
+            <Animation Duration="0:0:0.5" IterationCount="INFINITE">
+                <KeyFrame Cue="0%" KeySpline="0.4,0,0.6,1">
+                    <Setter Property="(RotateTransform.Angle)" Value="0" />
+                </KeyFrame>
+                <KeyFrame Cue="100%" KeySpline="0.4,0,0.6,1">
+                    <Setter Property="(RotateTransform.Angle)" Value="360" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
 
     <Style Selector="controls|VectorImage.ForegroundVectorImage">
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>

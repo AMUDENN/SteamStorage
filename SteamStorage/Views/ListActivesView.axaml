@@ -158,7 +158,7 @@
                        Margin="0, 20"/>
             
             <controls:VectorImage IsVisible="{Binding IsLoading, Mode=OneWay}"
-                                  Classes="LoadingVectorImage ForegroundVectorImage"
+                                  Classes="LoadingVectorImage AnimationWheelVectorImage ForegroundVectorImage"
                                   Height="48" Width="48"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Top"

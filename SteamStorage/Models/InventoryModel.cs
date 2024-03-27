@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
@@ -36,6 +37,8 @@ public class InventoryModel : ModelBase
     private bool? _isCountOrdering;
     private bool? _isPriceOrdering;
     private bool? _isSumOrdering;
+
+    private bool _isRefreshing;
 
     private Inventory.InventoryOrderName? _inventoryOrderName;
     private bool? _isAscending;
@@ -181,6 +184,12 @@ public class InventoryModel : ModelBase
         }
     }
 
+    public bool IsRefreshing
+    {
+        get => _isRefreshing;
+        private set => SetProperty(ref _isRefreshing, value);
+    }
+
     public List<InventoryItemViewModel> InventoryModels
     {
         get => _inventoryModels;
@@ -305,7 +314,7 @@ public class InventoryModel : ModelBase
 
     public RelayCommand ClearFiltersCommand { get; }
 
-    public RelayCommand RefreshInventoryCommand { get; }
+    public AsyncRelayCommand RefreshInventoryCommand { get; }
 
     public RelayCommand AttachedToVisualTreeCommand { get; }
 
@@ -368,9 +377,19 @@ public class InventoryModel : ModelBase
         SetOrderingsNull();
     }
 
-    private void DoRefreshInventoryCommand()
+    private async Task DoRefreshInventoryCommand()
     {
-        //TODO:
+        if (SelectedGameModel is null) return;
+
+        IsRefreshing = true;
+
+        await _apiClient.PostAsync(
+            ApiConstants.ApiMethods.RefreshInventory,
+            new Inventory.RefreshInventoryRequest(SelectedGameModel.Id));
+
+        IsRefreshing = false;
+        
+        GetSkins();
     }
 
     private void DoAttachedToVisualTreeCommand()
