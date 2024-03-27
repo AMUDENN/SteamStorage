@@ -164,11 +164,6 @@ public class ActiveEditModel : BaseItemEditModel
 
     #region Methods
 
-    protected override void DoBackCommand()
-    {
-        
-    }
-
     protected override void DoDeleteCommand()
     {
 

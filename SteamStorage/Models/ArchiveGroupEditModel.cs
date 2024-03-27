@@ -135,11 +135,6 @@ public class ArchiveGroupEditModel : BaseEditModel
 
     #region Methods
 
-    protected override void DoBackCommand()
-    {
-
-    }
-
     protected override void DoDeleteCommand()
     {
 

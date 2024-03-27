@@ -18,6 +18,8 @@ public class ArchivesModel : ModelBase
 
     private SecondaryNavigationModel? _selectedSecondaryNavigationModel;
 
+    private SecondaryNavigationModel? _lastSecondaryNavigationModel;
+
     #endregion Fields
 
     #region Properties
@@ -52,7 +54,9 @@ public class ArchivesModel : ModelBase
         ArchiveEditViewModel archiveEditViewModel,
         ArchiveGroupsModel archiveGroupsModel,
         ListArchivesModel listArchivesModel,
-        ListItemsModel listItemsModel)
+        ListItemsModel listItemsModel,
+        ArchiveEditModel archiveEditModel,
+        ArchiveGroupEditModel archiveGroupEditModel)
     {
         SecondaryNavigationOptions =
         [
@@ -72,6 +76,9 @@ public class ArchivesModel : ModelBase
         listArchivesModel.EditArchive += EditArchiveHandler;
 
         listItemsModel.AddToArchive += AddToArchiveHandler;
+
+        archiveEditModel.GoingBack += GoingBackHandler;
+        archiveGroupEditModel.GoingBack += GoingBackHandler;
     }
 
     #endregion Constructor
@@ -82,6 +89,8 @@ public class ArchivesModel : ModelBase
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveEditViewModel));
 
+        _lastSecondaryNavigationModel = SelectedSecondaryNavigationModel;
+
         SelectedSecondaryNavigationModel = navigationModel;
 
         (navigationModel?.Page as ArchiveEditViewModel)?.SetAddArchive(args.Group);
@@ -90,6 +99,8 @@ public class ArchivesModel : ModelBase
     private void OpenArchivesHandler(object? sender, OpenArchivesEventArgs args)
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ListArchivesViewModel));
+
+        _lastSecondaryNavigationModel = SelectedSecondaryNavigationModel;
 
         SelectedSecondaryNavigationModel = navigationModel;
 
@@ -100,6 +111,8 @@ public class ArchivesModel : ModelBase
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveGroupEditViewModel));
 
+        _lastSecondaryNavigationModel = SelectedSecondaryNavigationModel;
+
         SelectedSecondaryNavigationModel = navigationModel;
 
         (navigationModel?.Page as ArchiveGroupEditViewModel)?.SetEditGroup(args.Group);
@@ -108,6 +121,8 @@ public class ArchivesModel : ModelBase
     private void EditArchiveHandler(object? sender, EditArchiveEventArgs args)
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveEditViewModel));
+
+        _lastSecondaryNavigationModel = SelectedSecondaryNavigationModel;
 
         SelectedSecondaryNavigationModel = navigationModel;
 
@@ -118,9 +133,17 @@ public class ArchivesModel : ModelBase
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ArchiveEditViewModel));
 
+        _lastSecondaryNavigationModel = SelectedSecondaryNavigationModel;
+
         SelectedSecondaryNavigationModel = navigationModel;
 
         (navigationModel?.Page as ArchiveEditViewModel)?.SetAddArchive(args.ListItem);
+    }
+
+    private void GoingBackHandler(object? sender)
+    {
+        if (SelectedSecondaryNavigationModel != _lastSecondaryNavigationModel)
+            SelectedSecondaryNavigationModel = _lastSecondaryNavigationModel;
     }
 
     private SecondaryNavigationModel? FindViewModel(Type type)

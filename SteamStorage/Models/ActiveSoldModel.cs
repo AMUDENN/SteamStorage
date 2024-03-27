@@ -172,11 +172,6 @@ public class ActiveSoldModel : BaseEditModel
 
     #region Methods
 
-    protected override void DoBackCommand()
-    {
-
-    }
-
     protected override void DoDeleteCommand()
     {
 

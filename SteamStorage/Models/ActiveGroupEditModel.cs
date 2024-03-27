@@ -243,11 +243,6 @@ public class ActiveGroupEditModel : BaseEditModel
 
     #region Methods
 
-    protected override void DoBackCommand()
-    {
-
-    }
-
     protected override void DoDeleteCommand()
     {
 

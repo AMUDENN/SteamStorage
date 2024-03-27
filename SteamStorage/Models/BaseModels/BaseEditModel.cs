@@ -1,7 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
-using SteamStorage.Models.UtilityModels;
-using SteamStorage.Utilities.Events.Edit;
 
 namespace SteamStorage.Models.BaseModels;
 
@@ -9,7 +7,7 @@ public abstract class BaseEditModel : ModelBase
 {
     #region Events
 
-    public delegate void GoingBackEventHandler(object? sender, GoingBackEventArgs args);
+    public delegate void GoingBackEventHandler(object? sender);
 
     public event GoingBackEventHandler? GoingBack;
 
@@ -18,9 +16,6 @@ public abstract class BaseEditModel : ModelBase
     #region Fields
 
     private string _title;
-
-    private NavigationModel? _navigationModel;
-    private SecondaryNavigationModel? _secondaryNavigationModel;
 
     #endregion Fields
 
@@ -49,7 +44,7 @@ public abstract class BaseEditModel : ModelBase
     protected BaseEditModel()
     {
         _title = string.Empty;
-
+        
         BackCommand = new(DoBackCommand);
         DeleteCommand = new(DoDeleteCommand);
         SaveCommand = new(DoSaveCommand, CanExecuteSaveCommand);
@@ -59,18 +54,9 @@ public abstract class BaseEditModel : ModelBase
 
     #region Methods
 
-    public void SetSourceNavigationModel(
-        NavigationModel navigationModel,
-        SecondaryNavigationModel secondaryNavigationModel)
+    private void DoBackCommand()
     {
-        _navigationModel = navigationModel;
-        _secondaryNavigationModel = secondaryNavigationModel;
-    }
-
-    protected virtual void DoBackCommand()
-    {
-        if (_navigationModel is not null && _secondaryNavigationModel is not null)
-            OnGoingBack(_navigationModel, _secondaryNavigationModel);
+        OnGoingBack();
     }
 
     protected abstract void DoDeleteCommand();
@@ -79,11 +65,9 @@ public abstract class BaseEditModel : ModelBase
 
     protected abstract bool CanExecuteSaveCommand();
 
-    private void OnGoingBack(
-        NavigationModel navigationModel,
-        SecondaryNavigationModel secondaryNavigationModel)
+    private void OnGoingBack()
     {
-        GoingBack?.Invoke(this, new(navigationModel, secondaryNavigationModel));
+        GoingBack?.Invoke(this);
     }
 
     #endregion Methods

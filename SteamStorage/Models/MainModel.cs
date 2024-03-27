@@ -36,6 +36,8 @@ public class MainModel : ModelBase
     private NavigationModel? _selectedNavigationModel;
     private bool _isSettingsChecked;
 
+    private NavigationModel? _lastNavigationModel;
+
     #endregion Fields
 
     #region Properties
@@ -117,7 +119,9 @@ public class MainModel : ModelBase
         InventoryViewModel inventoryViewModel,
         ProfileViewModel profileViewModel,
         SettingsViewModel settingsViewModel,
-        ListItemsModel listItemsModel)
+        ListItemsModel listItemsModel,
+        ActiveEditModel activeEditModel,
+        ArchiveEditModel archiveEditModel)
     {
         _userModel = userModel;
         _authorizationService = authorizationService;
@@ -148,6 +152,9 @@ public class MainModel : ModelBase
 
         listItemsModel.AddToActives += AddToActivesHandler;
         listItemsModel.AddToArchive += AddToArchivesHandler;
+
+        activeEditModel.GoingBack += GoingBackHandler;
+        archiveEditModel.GoingBack += GoingBackHandler;
     }
 
     #endregion Constructor
@@ -166,6 +173,8 @@ public class MainModel : ModelBase
     {
         NavigationModel? navigationModel = FindViewModel(typeof(ActivesViewModel));
 
+        _lastNavigationModel = SelectedNavigationModel;
+
         SelectedNavigationModel = navigationModel;
     }
 
@@ -173,7 +182,18 @@ public class MainModel : ModelBase
     {
         NavigationModel? navigationModel = FindViewModel(typeof(ArchivesViewModel));
 
+        _lastNavigationModel = SelectedNavigationModel;
+
         SelectedNavigationModel = navigationModel;
+    }
+
+    private void GoingBackHandler(object? sender)
+    {
+        if (_lastNavigationModel is not null 
+            && SelectedNavigationModel != _lastNavigationModel 
+            && _lastNavigationModel?.Page.GetType() == typeof(HomeViewModel))
+            SelectedNavigationModel = _lastNavigationModel;
+        _lastNavigationModel = null;
     }
 
     private void DoLogInCommand()

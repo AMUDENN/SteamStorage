@@ -18,6 +18,8 @@ public class ActivesModel : ModelBase
 
     private SecondaryNavigationModel? _selectedSecondaryNavigationModel;
 
+    private SecondaryNavigationModel? _lastSecondaryNavigationModel;
+
     #endregion Fields
 
     #region Properties
@@ -53,7 +55,10 @@ public class ActivesModel : ModelBase
         ActiveSoldViewModel activeSoldViewModel,
         ActiveGroupsModel activeGroupsModel,
         ListActivesModel listActivesModel,
-        ListItemsModel listItemsModel)
+        ListItemsModel listItemsModel,
+        ActiveEditModel activeEditModel,
+        ActiveSoldModel activeSoldModel,
+        ActiveGroupEditModel activeGroupEditModel)
     {
         SecondaryNavigationOptions =
         [
@@ -75,6 +80,10 @@ public class ActivesModel : ModelBase
         listActivesModel.SoldActive += SoldActiveHandler;
 
         listItemsModel.AddToActives += AddToActivesHandler;
+
+        activeEditModel.GoingBack += GoingBackHandler;
+        activeSoldModel.GoingBack += GoingBackHandler;
+        activeGroupEditModel.GoingBack += GoingBackHandler;
     }
 
     #endregion Constructor
@@ -84,6 +93,8 @@ public class ActivesModel : ModelBase
     private void AddActiveHandler(object? sender, AddActiveEventArgs args)
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveEditViewModel));
+
+        _lastSecondaryNavigationModel = SelectedSecondaryNavigationModel;
 
         SelectedSecondaryNavigationModel = navigationModel;
 
@@ -103,6 +114,8 @@ public class ActivesModel : ModelBase
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveGroupEditViewModel));
 
+        _lastSecondaryNavigationModel = SelectedSecondaryNavigationModel;
+
         SelectedSecondaryNavigationModel = navigationModel;
 
         (navigationModel?.Page as ActiveGroupEditViewModel)?.SetEditGroup(args.Group);
@@ -111,6 +124,8 @@ public class ActivesModel : ModelBase
     private void EditActiveHandler(object? sender, EditActiveEventArgs args)
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveEditViewModel));
+
+        _lastSecondaryNavigationModel = SelectedSecondaryNavigationModel;
 
         SelectedSecondaryNavigationModel = navigationModel;
 
@@ -121,6 +136,8 @@ public class ActivesModel : ModelBase
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveSoldViewModel));
 
+        _lastSecondaryNavigationModel = SelectedSecondaryNavigationModel;
+
         SelectedSecondaryNavigationModel = navigationModel;
 
         (navigationModel?.Page as ActiveSoldViewModel)?.SetSoldActive(args.ActiveModel);
@@ -130,9 +147,17 @@ public class ActivesModel : ModelBase
     {
         SecondaryNavigationModel? navigationModel = FindViewModel(typeof(ActiveEditViewModel));
 
+        _lastSecondaryNavigationModel = SelectedSecondaryNavigationModel;
+
         SelectedSecondaryNavigationModel = navigationModel;
 
         (navigationModel?.Page as ActiveEditViewModel)?.SetAddActive(args.ListItem);
+    }
+
+    private void GoingBackHandler(object? sender)
+    {
+        if (SelectedSecondaryNavigationModel != _lastSecondaryNavigationModel)
+            SelectedSecondaryNavigationModel = _lastSecondaryNavigationModel;
     }
 
     private SecondaryNavigationModel? FindViewModel(Type type)

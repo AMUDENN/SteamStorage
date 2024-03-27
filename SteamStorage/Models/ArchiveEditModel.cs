@@ -182,11 +182,6 @@ public class ArchiveEditModel : BaseItemEditModel
 
     #region Methods
 
-    protected override void DoBackCommand()
-    {
-
-    }
-
     protected override void DoDeleteCommand()
     {
 
