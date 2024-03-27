@@ -111,7 +111,7 @@ public class ActiveGroupsModel : ModelBase
 
     private void DoDeleteActiveGroupCommand(ActiveGroupModel? group)
     {
-
+        
     }
 
     public void UpdateGroups()

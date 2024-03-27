@@ -290,7 +290,7 @@ public class ArchivesReviewModel : ModelBase
 
     private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
     {
-        //RefreshSeries
+        //TODO:
     }
 
     private void SetOrderingsNull()
@@ -311,7 +311,7 @@ public class ArchivesReviewModel : ModelBase
 
     private void RefreshStatistics()
     {
-
+        //TODO:
     }
 
     private async void GetGroups()

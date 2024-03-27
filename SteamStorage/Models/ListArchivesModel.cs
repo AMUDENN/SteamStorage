@@ -433,7 +433,7 @@ public class ListArchivesModel : ModelBase
 
     private void DoDeleteCommand(ArchiveModel? model)
     {
-
+        //TODO:
     }
 
     public void OpenArchiveGroup(IEnumerable<BaseGroupModel> groupModels, ArchiveGroupModel? model)

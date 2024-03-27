@@ -370,7 +370,7 @@ public class InventoryModel : ModelBase
 
     private void DoRefreshInventoryCommand()
     {
-
+        //TODO:
     }
 
     private void DoAttachedToVisualTreeCommand()

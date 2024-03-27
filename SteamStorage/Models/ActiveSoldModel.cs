@@ -174,12 +174,12 @@ public class ActiveSoldModel : BaseEditModel
 
     protected override void DoDeleteCommand()
     {
-
+        //TODO:
     }
 
     protected override void DoSaveCommand()
     {
-
+        //TODO:
     }
 
     protected override bool CanExecuteSaveCommand()

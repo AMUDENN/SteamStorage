@@ -90,12 +90,12 @@ public class SettingsModel : ModelBase
 
     private void DoExportToExcelCommand()
     {
-
+        //TODO:
     }
 
     private void DoOpenReferenceInformationCommand()
     {
-
+        //TODO:
     }
 
     #endregion Methods

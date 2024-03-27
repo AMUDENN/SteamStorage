@@ -188,7 +188,7 @@ public class ProfileModel : ModelBase
 
     private void DoDeleteProfileCommand()
     {
-
+        //TODO:
     }
 
     private void DoAttachedToVisualTreeCommand()
@@ -204,7 +204,7 @@ public class ProfileModel : ModelBase
 
     private void SetPage()
     {
-
+        //TODO:
     }
 
     #endregion Methods

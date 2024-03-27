@@ -111,7 +111,7 @@ public class ArchiveGroupsModel : ModelBase
 
     private void DoDeleteArchiveGroupCommand(ArchiveGroupModel? group)
     {
-
+        //TODO:
     }
 
     public void UpdateGroups()

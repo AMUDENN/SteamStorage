@@ -456,7 +456,7 @@ public class ListActivesModel : ModelBase
 
     private void DoDeleteCommand(ActiveModel? model)
     {
-
+        //TODO:
     }
 
     public void OpenActiveGroup(IEnumerable<BaseGroupModel> groupModels, ActiveGroupModel? model)
