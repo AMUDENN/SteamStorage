@@ -14,11 +14,13 @@
                    Grid.ColumnSpan="2" Grid.Column="0"/>
         
         <Button Content="Ок"
-                Command="{Binding ReturnTrueCommand}"
+                Command="{Binding SetDialogResultCommand}"
+                CommandParameter="{x:True}"
                 Grid.Column="0"/>
         
         <Button Content="Отмена"
-                Command="{Binding ReturnFalseCommand}"
+                Command="{Binding SetDialogResultCommand}"
+                CommandParameter="{x:False}"
                 Grid.Column="1"/>
         
     </Grid>

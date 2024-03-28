@@ -14,14 +14,9 @@ public class BaseDialogViewModel : ViewModelBase
     
     #region Commands
 
-    public RelayCommand ReturnTrueCommand
+    public RelayCommand<object> SetDialogResultCommand
     {
-        get => _baseDialogModel.ReturnTrueCommand;
-    }
-
-    public RelayCommand ReturnFalseCommand
-    {
-        get => _baseDialogModel.ReturnFalseCommand;
+        get => _baseDialogModel.SetDialogResultCommand;
     }
     
     #endregion Commands

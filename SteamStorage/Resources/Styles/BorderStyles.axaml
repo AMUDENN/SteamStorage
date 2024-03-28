@@ -34,6 +34,10 @@
 		<Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
 	</Style>	
 		
+	<Style Selector="Border.TopLevelBackgroundBorderBrush">
+		<Setter Property="BorderBrush" Value="{DynamicResource TopLevelBackgroundBrush}"/>
+	</Style>	
+		
 	<Style Selector="Border.FirstAccentBorderBrush">
 		<Setter Property="BorderBrush" Value="{DynamicResource FirstAccentBrush}"/>
 	</Style>	

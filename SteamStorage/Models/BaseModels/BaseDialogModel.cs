@@ -26,9 +26,7 @@ public class BaseDialogModel : ModelBase
     
     #region Commands
     
-    public RelayCommand ReturnTrueCommand { get; }
-    
-    public RelayCommand ReturnFalseCommand { get; }
+    public RelayCommand<object> SetDialogResultCommand { get; }
     
     #endregion Commands
     
@@ -36,23 +34,16 @@ public class BaseDialogModel : ModelBase
 
     public BaseDialogModel()
     {
-        
-        ReturnTrueCommand = new(DoReturnTrueCommand);
-        ReturnFalseCommand = new(DoReturnFalseCommand);
+        SetDialogResultCommand = new(DoSetDialogResultCommand);
     }
     
     #endregion Constructor
     
     #region Methods
 
-    private void DoReturnTrueCommand()
+    private void DoSetDialogResultCommand(object? dialogResult)
     {
-        IDialogService.CurrentDialogWindow?.Close(true);
-    }
-    
-    private void DoReturnFalseCommand()
-    {
-        IDialogService.CurrentDialogWindow?.Close(false);
+        IDialogService.CurrentDialogWindow?.Close(dialogResult);
     }
     
     #endregion Methods

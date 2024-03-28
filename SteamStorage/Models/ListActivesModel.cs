@@ -507,28 +507,28 @@ public class ListActivesModel : ModelBase
 
         SavedItemsCount = activesResponse.Count;
         PagesCount = activesResponse.PagesCount;
-        
+
         if (activesResponse.Actives is null) return;
 
         ActiveModels = activesResponse.Actives.Select(x =>
                 new ActiveViewModel(
                     new(_apiClient,
                         _themeService,
-                        x.Skin.Id, 
-                        x.Skin.SkinIconUrl, 
-                        x.Skin.MarketUrl, 
-                        x.Skin.Title, 
+                        x.Skin.Id,
+                        x.Skin.SkinIconUrl,
+                        x.Skin.MarketUrl,
+                        x.Skin.Title,
                         x.Id,
                         x.GroupId,
-                        x.Count, 
-                        x.BuyPrice, 
+                        x.Count,
+                        x.BuyPrice,
                         x.CurrentPrice,
                         x.CurrentSum,
                         x.GoalPrice,
                         x.GoalPriceCompletion,
                         _userModel.CurrencyMark,
-                        x.Change, 
-                        x.BuyDate, 
+                        x.Change,
+                        x.BuyDate,
                         x.Description),
                     this,
                     _chartTooltipModel))

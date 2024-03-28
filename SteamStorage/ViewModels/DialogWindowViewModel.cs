@@ -1,4 +1,5 @@
-﻿using SteamStorage.Models;
+﻿using CommunityToolkit.Mvvm.Input;
+using SteamStorage.Models;
 using SteamStorage.ViewModels.Tools;
 
 namespace SteamStorage.ViewModels;
@@ -19,6 +20,15 @@ public class DialogWindowViewModel : ViewModelBase
     }
 
     #endregion Properties
+    
+    #region Commands
+
+    public RelayCommand CloseCommand
+    {
+        get => _dialogWindowModel.CloseCommand;
+    }
+    
+    #endregion Commands
 
     #region Constructor
 
