@@ -12,6 +12,9 @@
                 <DoubleTransition Property="Opacity" Duration="0:0:0.2" Easing="SineEaseOut"/>
             </Transitions>
         </Setter>
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="0.6"/>
+        </Style>
     </Style>
     
     <Style Selector="controls|VectorImage.AnimationWheelVectorImage">
