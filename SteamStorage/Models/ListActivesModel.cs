@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
@@ -461,6 +462,9 @@ public class ListActivesModel : ModelBase
 
     private async Task DoDeleteCommand(ActiveModel? model)
     {
+        if (model is null) return;
+        bool result = await _dialogService.ShowDialog($"Вы уверены, что хотите удалить актив: «{model.Title}»?",
+            BaseDialogModel.MessageType.Question, BaseDialogModel.MessageButtons.OkCancel);
         //TODO:
     }
 

@@ -39,7 +39,6 @@ public class DialogService : IDialogService
         {
             DataContext = _dialogWindowViewModel
         };
-        dialogWindow.InvalidateVisual();
         IDialogService.CurrentDialogWindow = dialogWindow;
         return await dialogWindow.ShowDialog<bool>(_mainWindow);
     }
@@ -62,10 +61,6 @@ public class DialogService : IDialogService
 
         IDialogService.CurrentDialogWindow = dialogWindow;
         await dialogWindow.ShowDialog(_mainWindow);
-        dialogWindow.InvalidateVisual();
-        dialogWindow.InvalidateArrange();
-        dialogWindow.InvalidateMeasure();
-        dialogWindow.Height += 1;
     }
 
     public async Task ShowMessage(string message = "",
