@@ -4,11 +4,13 @@ using SteamStorage.Services.DialogService;
 
 namespace SteamStorage.Models.BaseModels;
 
-public class BaseDialogModel : ModelBase
+public abstract class BaseDialogModel : ModelBase
 {
     #region Commands
 
-    public RelayCommand<object> SetDialogResultCommand { get; }
+    public RelayCommand SetDialogResultTrueCommand { get; }
+    
+    public RelayCommand SetDialogResultFalseCommand { get; }
 
     #endregion Commands
 
@@ -16,16 +18,32 @@ public class BaseDialogModel : ModelBase
 
     public BaseDialogModel()
     {
-        SetDialogResultCommand = new(DoSetDialogResultCommand);
+        SetDialogResultTrueCommand = new(DoSetDialogResultTrueCommand, CanExecuteSetDialogResultTrueCommand);
+        SetDialogResultFalseCommand = new(DoSetDialogResultFalseCommand, CanExecuteSetDialogResultFalseCommand);
     }
 
     #endregion Constructor
 
     #region Methods
 
-    private void DoSetDialogResultCommand(object? dialogResult)
+    private void DoSetDialogResultTrueCommand()
     {
-        IDialogService.CurrentDialogWindow?.Close(dialogResult);
+        IDialogService.CurrentDialogWindow?.Close(default);
+    }
+
+    protected virtual bool CanExecuteSetDialogResultTrueCommand()
+    {
+        return true;
+    }
+    
+    private void DoSetDialogResultFalseCommand()
+    {
+        IDialogService.CurrentDialogWindow?.Close(default);
+    }
+
+    protected virtual bool CanExecuteSetDialogResultFalseCommand()
+    {
+        return true;
     }
 
     #endregion Methods

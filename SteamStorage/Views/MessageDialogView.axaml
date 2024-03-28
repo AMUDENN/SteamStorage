@@ -39,22 +39,19 @@
                     Grid.Row="1">
             
             <Button Content="Ок"
-                    Command="{Binding SetDialogResultCommand, Mode=OneWay}"
-                    CommandParameter="{x:True}"
+                    Command="{Binding SetDialogResultTrueCommand, Mode=OneWay}"
                     IsVisible="{Binding IsOkVisible, Mode=OneWay}"
                     Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
                     Width="120"/>
             
             <Button Content="Сохранить"
-                    Command="{Binding SetDialogResultCommand, Mode=OneWay}"
-                    CommandParameter="{x:True}"
+                    Command="{Binding SetDialogResultTrueCommand, Mode=OneWay}"
                     IsVisible="{Binding IsSaveVisible, Mode=OneWay}"
                     Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
                     Width="120"/>
         
             <Button Content="Отмена"
-                    Command="{Binding SetDialogResultCommand, Mode=OneWay}"
-                    CommandParameter="{x:False}"
+                    Command="{Binding SetDialogResultFalseCommand, Mode=OneWay}"
                     IsVisible="{Binding IsCancelVisible, Mode=OneWay}"
                     Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
                     Width="120"/>

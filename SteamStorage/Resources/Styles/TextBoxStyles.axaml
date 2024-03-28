@@ -41,6 +41,10 @@
         <Setter Property="FontSize" Value="20"/>
     </Style>
     
+    <Style Selector="TextBox.CenterTextBox">
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+    
     <Style Selector="TextBox.BigWrappingTextBox">
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>

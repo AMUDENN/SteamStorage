@@ -104,6 +104,7 @@ namespace SteamStorage
             services.AddSingleton<ProfileModel>();
             services.AddSingleton<SettingsModel>();
             services.AddSingleton<StatisticsModel>();
+            services.AddSingleton<TextConfirmDialogModel>();
             services.AddSingleton<UserModel>();
             
             
@@ -128,6 +129,7 @@ namespace SteamStorage
             services.AddSingleton<ProfileViewModel>();
             services.AddSingleton<SettingsViewModel>();
             services.AddSingleton<StatisticsViewModel>();
+            services.AddSingleton<TextConfirmDialogViewModel>();
 
             return services;
         }

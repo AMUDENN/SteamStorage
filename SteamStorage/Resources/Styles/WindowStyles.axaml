@@ -87,6 +87,7 @@
 	</Style>
 	
 	<Style Selector="Window.DialogWindow">
+		<Setter Property="WindowStartupLocation" Value="CenterOwner"/>
 		<Setter Property="MinHeight" Value="180"/>
 		<Setter Property="MinWidth" Value="320"/>
 		<Setter Property="MaxHeight" Value="360"/>

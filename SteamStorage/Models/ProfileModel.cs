@@ -6,7 +6,7 @@ using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities;
-using SteamStorage.Utilities.Dialog;
+using SteamStorage.ViewModels;
 
 namespace SteamStorage.Models;
 
@@ -17,6 +17,7 @@ public class ProfileModel : ModelBase
     private readonly UserModel _userModel;
     private readonly CurrenciesModel _currenciesModel;
     private readonly PagesModel _pagesModel;
+    private readonly TextConfirmDialogViewModel _textConfirmDialogViewModel;
     private readonly IDialogService _dialogService;
 
     private string _profileUrl;
@@ -115,11 +116,13 @@ public class ProfileModel : ModelBase
         UserModel userModel,
         CurrenciesModel currenciesModel,
         PagesModel pagesModel,
+        TextConfirmDialogViewModel textConfirmDialogViewModel,
         IDialogService dialogService)
     {
         _userModel = userModel;
         _currenciesModel = currenciesModel;
         _pagesModel = pagesModel;
+        _textConfirmDialogViewModel = textConfirmDialogViewModel;
         _dialogService = dialogService;
 
         userModel.UserChanged += UserChangedHandler;
@@ -195,12 +198,11 @@ public class ProfileModel : ModelBase
 
     private async Task DoDeleteProfileCommand()
     {
-        //TODO: Нормальное подтверждение, а не кнопка ок))
+        _textConfirmDialogViewModel.SetConfirmData(
+            "Для подтверждения удаления аккаунта введите слово ПОДТВЕРДИТЬ",
+            "ПОДТВЕРДИТЬ");
 
-        bool result = await _dialogService.ShowDialogAsync(
-            "Вы уверены, что хотите удалить аккаунт?",
-            DialogUtility.MessageType.Question,
-            DialogUtility.MessageButtons.OkCancel);
+        bool result = await _dialogService.ShowDialogAsync(_textConfirmDialogViewModel);
 
         if (!result) return;
 
