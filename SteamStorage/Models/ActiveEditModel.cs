@@ -188,7 +188,7 @@ public class ActiveEditModel : BaseItemEditModel
             ApiConstants.ApiMethods.DeleteActive,
             new Actives.DeleteActiveRequest(_activeModel.ActiveId));
         
-        //TODO: UpdateSkins
+        OnItemDeleted();
         
         OnGoingBack();
     }
@@ -196,6 +196,9 @@ public class ActiveEditModel : BaseItemEditModel
     protected override void DoSaveCommand()
     {
         //TODO:
+
+        OnItemChanged();
+        
         OnGoingBack();
     }
 

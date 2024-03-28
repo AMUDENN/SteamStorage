@@ -206,7 +206,7 @@ public class ArchiveEditModel : BaseItemEditModel
             ApiConstants.ApiMethods.DeleteArchive,
             new Archives.DeleteArchiveRequest(_archiveModel.ArchiveId));
         
-        //TODO: UpdateSkins
+        OnItemDeleted();
         
         OnGoingBack();
     }
@@ -214,6 +214,9 @@ public class ArchiveEditModel : BaseItemEditModel
     protected override void DoSaveCommand()
     {
         //TODO:
+        
+        OnItemChanged();
+        
         OnGoingBack();
     }
 

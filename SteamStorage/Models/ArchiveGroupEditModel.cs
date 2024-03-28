@@ -163,7 +163,7 @@ public class ArchiveGroupEditModel : BaseEditModel
             ApiConstants.ApiMethods.DeleteArchiveGroup,
             new ArchiveGroups.DeleteArchiveGroupRequest(_archiveGroupModel.GroupId));
         
-        //TODO: UpdateGroups
+        OnItemDeleted();
         
         OnGoingBack();
     }
@@ -171,6 +171,9 @@ public class ArchiveGroupEditModel : BaseEditModel
     protected override void DoSaveCommand()
     {
         //TODO:
+        
+        OnItemChanged();
+        
         OnGoingBack();
     }
 

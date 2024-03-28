@@ -459,6 +459,11 @@ public class ListArchivesModel : ModelBase
     {
         SelectedGroupModel = groupModels.SingleOrDefault(x => x.GroupId == model?.GroupId);
     }
+    
+    public void UpdateSkins()
+    {
+        GetSkins();
+    }
 
     private void SetOrderingsNull()
     {

@@ -20,6 +20,9 @@ public class ActivesModel : ModelBase
 
     private SecondaryNavigationModel? _lastSecondaryNavigationModel;
 
+    private readonly ActiveGroupsModel _activeGroupsModel;
+    private readonly ListActivesModel _listActivesModel;
+
     #endregion Fields
 
     #region Properties
@@ -72,6 +75,9 @@ public class ActivesModel : ModelBase
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();
         _currentViewModel = _selectedSecondaryNavigationModel.Page;
 
+        _activeGroupsModel = activeGroupsModel;
+        _listActivesModel = listActivesModel;
+
         activeGroupsModel.AddActive += AddActiveHandler;
         activeGroupsModel.OpenActives += OpenActivesHandler;
         activeGroupsModel.EditActiveGroup += EditActiveGroupHandler;
@@ -84,6 +90,10 @@ public class ActivesModel : ModelBase
         activeEditModel.GoingBack += GoingBackHandler;
         activeSoldModel.GoingBack += GoingBackHandler;
         activeGroupEditModel.GoingBack += GoingBackHandler;
+
+        activeEditModel.ItemDeleted += ActiveItemDeletedHandler;
+        activeSoldModel.ItemDeleted += ActiveItemDeletedHandler;
+        activeGroupEditModel.ItemDeleted += ActiveGroupItemDeletedHandler;
     }
 
     #endregion Constructor
@@ -158,6 +168,16 @@ public class ActivesModel : ModelBase
     {
         if (SelectedSecondaryNavigationModel != _lastSecondaryNavigationModel)
             SelectedSecondaryNavigationModel = _lastSecondaryNavigationModel;
+    }
+
+    private void ActiveItemDeletedHandler(object? sender)
+    {
+        _listActivesModel.UpdateSkins();
+    }
+    
+    private void ActiveGroupItemDeletedHandler(object? sender)
+    {
+        _activeGroupsModel.UpdateGroups();
     }
 
     private SecondaryNavigationModel? FindViewModel(Type type)

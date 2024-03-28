@@ -19,6 +19,9 @@ public class ArchivesModel : ModelBase
     private SecondaryNavigationModel? _selectedSecondaryNavigationModel;
 
     private SecondaryNavigationModel? _lastSecondaryNavigationModel;
+    
+    private readonly ArchiveGroupsModel _archiveGroupsModel;
+    private readonly ListArchivesModel _listArchivesModel;
 
     #endregion Fields
 
@@ -69,6 +72,9 @@ public class ArchivesModel : ModelBase
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();
         _currentViewModel = _selectedSecondaryNavigationModel.Page;
 
+        _archiveGroupsModel = archiveGroupsModel;
+        _listArchivesModel = listArchivesModel;
+
         archiveGroupsModel.AddArchive += AddArchiveHandler;
         archiveGroupsModel.OpenArchives += OpenArchivesHandler;
         archiveGroupsModel.EditArchiveGroup += EditArchiveGroupHandler;
@@ -79,6 +85,9 @@ public class ArchivesModel : ModelBase
 
         archiveEditModel.GoingBack += GoingBackHandler;
         archiveGroupEditModel.GoingBack += GoingBackHandler;
+        
+        archiveEditModel.ItemDeleted += ArchiveItemDeletedHandler;
+        archiveGroupEditModel.ItemDeleted += ArchiveGroupItemDeletedHandler;
     }
 
     #endregion Constructor
@@ -144,6 +153,16 @@ public class ArchivesModel : ModelBase
     {
         if (SelectedSecondaryNavigationModel != _lastSecondaryNavigationModel)
             SelectedSecondaryNavigationModel = _lastSecondaryNavigationModel;
+    }
+    
+    private void ArchiveItemDeletedHandler(object? sender)
+    {
+        _listArchivesModel.UpdateSkins();
+    }
+    
+    private void ArchiveGroupItemDeletedHandler(object? sender)
+    {
+        _archiveGroupsModel.UpdateGroups();
     }
 
     private SecondaryNavigationModel? FindViewModel(Type type)

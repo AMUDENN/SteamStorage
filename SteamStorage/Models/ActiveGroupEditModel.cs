@@ -269,7 +269,7 @@ public class ActiveGroupEditModel : BaseEditModel
             ApiConstants.ApiMethods.DeleteActiveGroup,
             new ActiveGroups.DeleteActiveGroupRequest(_activeGroupModel.GroupId));
         
-        //TODO: UpdateGroups
+        OnItemDeleted();
         
         OnGoingBack();
     }
@@ -277,6 +277,9 @@ public class ActiveGroupEditModel : BaseEditModel
     protected override void DoSaveCommand()
     {
         //TODO:
+        
+        OnItemChanged();
+        
         OnGoingBack();
     }
 

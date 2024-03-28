@@ -12,6 +12,14 @@ public abstract class BaseEditModel : ModelBase
     public delegate void GoingBackEventHandler(object? sender);
 
     public event GoingBackEventHandler? GoingBack;
+    
+    public delegate void ItemDeletedEventHandler(object? sender);
+
+    public event ItemDeletedEventHandler? ItemDeleted;
+    
+    public delegate void ItemChangedEventHandler(object? sender);
+
+    public event ItemChangedEventHandler? ItemChanged;
 
     #endregion Events
 
@@ -75,6 +83,16 @@ public abstract class BaseEditModel : ModelBase
     protected void OnGoingBack()
     {
         GoingBack?.Invoke(this);
+    }
+    
+    protected void OnItemDeleted()
+    {
+        ItemDeleted?.Invoke(this);
+    }
+    
+    protected void OnItemChanged()
+    {
+        ItemChanged?.Invoke(this);
     }
 
     #endregion Methods
