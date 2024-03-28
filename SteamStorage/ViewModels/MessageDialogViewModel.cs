@@ -1,5 +1,5 @@
 ﻿using SteamStorage.Models;
-using SteamStorage.Models.BaseModels;
+using SteamStorage.Utilities.Dialog;
 using SteamStorage.ViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels;
@@ -19,14 +19,29 @@ public class MessageDialogViewModel : BaseDialogViewModel
         get => _messageDialogModel.Message;
     }
 
-    public BaseDialogModel.MessageType SelectedMessageType
+    public DialogUtility.MessageType SelectedMessageType
     {
         get => _messageDialogModel.SelectedMessageType;
     }
 
-    public BaseDialogModel.MessageButtons SelectedMessageButtons
+    public DialogUtility.MessageButtons SelectedMessageButtons
     {
         get => _messageDialogModel.SelectedMessageButtons;
+    }
+    
+    public bool IsInfoVisible
+    {
+        get => _messageDialogModel.IsInfoVisible;
+    }
+    
+    public bool IsErrorVisible
+    {
+        get => _messageDialogModel.IsErrorVisible;
+    }
+    
+    public bool IsQuestionVisible
+    {
+        get => _messageDialogModel.IsQuestionVisible;
     }
     
     public bool IsOkVisible
@@ -60,8 +75,8 @@ public class MessageDialogViewModel : BaseDialogViewModel
     #region Methods
 
     public void SetMessageBox(string message,
-        BaseDialogModel.MessageType messageType,
-        BaseDialogModel.MessageButtons messageButtons)
+        DialogUtility.MessageType messageType,
+        DialogUtility.MessageButtons messageButtons)
     {
         _messageDialogModel.SetMessageBox(message, messageType, messageButtons);
     }

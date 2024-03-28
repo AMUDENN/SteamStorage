@@ -5,6 +5,7 @@ using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities;
+using SteamStorage.Utilities.Dialog;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Utilities;
@@ -154,8 +155,8 @@ public class ArchiveGroupEditModel : BaseEditModel
         
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить группу: «{_archiveGroupModel.Title}»?",
-            BaseDialogModel.MessageType.Question,
-            BaseDialogModel.MessageButtons.OkCancel);
+            DialogUtility.MessageType.Question,
+            DialogUtility.MessageButtons.OkCancel);
         
         if (!result) return;
 
@@ -174,8 +175,8 @@ public class ArchiveGroupEditModel : BaseEditModel
         {
             bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите добавить группу: «{GroupTitle}»?",
-                BaseDialogModel.MessageType.Question,
-                BaseDialogModel.MessageButtons.SaveCancel);
+                DialogUtility.MessageType.Question,
+                DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
         }
@@ -183,8 +184,8 @@ public class ArchiveGroupEditModel : BaseEditModel
         {
             bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите изменить группу: «{_archiveGroupModel.Title}»?",
-                BaseDialogModel.MessageType.Question,
-                BaseDialogModel.MessageButtons.SaveCancel);
+                DialogUtility.MessageType.Question,
+                DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
         }
@@ -202,7 +203,7 @@ public class ArchiveGroupEditModel : BaseEditModel
 
     protected override bool CanExecuteSaveCommand()
     {
-        return Title.Length is >= 3 and <= 100
+        return GroupTitle.Length is >= 3 and <= 100
                && Description?.Length <= 300
                && (string.IsNullOrEmpty(Colour) || Regex.IsMatch(Colour, ProgramConstants.COLOUR_PATTERN));
     }

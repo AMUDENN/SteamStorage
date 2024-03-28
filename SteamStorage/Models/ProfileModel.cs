@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
-using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities;
+using SteamStorage.Utilities.Dialog;
 
 namespace SteamStorage.Models;
 
@@ -199,8 +199,8 @@ public class ProfileModel : ModelBase
 
         bool result = await _dialogService.ShowDialogAsync(
             "Вы уверены, что хотите удалить аккаунт?",
-            BaseDialogModel.MessageType.Question,
-            BaseDialogModel.MessageButtons.OkCancel);
+            DialogUtility.MessageType.Question,
+            DialogUtility.MessageButtons.OkCancel);
 
         if (!result) return;
 

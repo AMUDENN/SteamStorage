@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using SteamStorage.Models.BaseModels;
+using SteamStorage.Utilities.Dialog;
 using SteamStorage.ViewModels.Tools;
 using SteamStorage.Views;
 
@@ -13,13 +13,13 @@ public interface IDialogService
     
     public Task<bool> ShowDialogAsync(
         string message = "", 
-        BaseDialogModel.MessageType messageType = BaseDialogModel.MessageType.Info,
-        BaseDialogModel.MessageButtons messageButtons = BaseDialogModel.MessageButtons.Ok);
+        DialogUtility.MessageType messageType = DialogUtility.MessageType.Info,
+        DialogUtility.MessageButtons messageButtons = DialogUtility.MessageButtons.Ok);
 
     public Task ShowMessageAsync(ViewModelBase viewModel);
     
     public Task ShowMessageAsync(
         string message = "", 
-        BaseDialogModel.MessageType messageType = BaseDialogModel.MessageType.Info,
-        BaseDialogModel.MessageButtons messageButtons = BaseDialogModel.MessageButtons.Ok);
+        DialogUtility.MessageType messageType = DialogUtility.MessageType.Info,
+        DialogUtility.MessageButtons messageButtons = DialogUtility.MessageButtons.Ok);
 }

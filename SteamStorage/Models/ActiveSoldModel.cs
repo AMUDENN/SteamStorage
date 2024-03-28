@@ -5,6 +5,7 @@ using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities;
+using SteamStorage.Utilities.Dialog;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Utilities;
@@ -191,8 +192,8 @@ public class ActiveSoldModel : BaseEditModel
         
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить актив: «{_activeModel.Title}»?",
-            BaseDialogModel.MessageType.Question,
-            BaseDialogModel.MessageButtons.OkCancel);
+            DialogUtility.MessageType.Question,
+            DialogUtility.MessageButtons.OkCancel);
         
         if (!result) return;
 
@@ -211,8 +212,8 @@ public class ActiveSoldModel : BaseEditModel
         
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите продать актив: «{_activeModel.Title}»?",
-            BaseDialogModel.MessageType.Question,
-            BaseDialogModel.MessageButtons.SaveCancel);
+            DialogUtility.MessageType.Question,
+            DialogUtility.MessageButtons.SaveCancel);
 
         if (!result) return;
         

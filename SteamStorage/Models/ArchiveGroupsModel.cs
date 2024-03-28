@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
-using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Events.Archives;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
@@ -121,8 +121,8 @@ public class ArchiveGroupsModel : ModelBase
         
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить группу: «{group.Title}»?",
-            BaseDialogModel.MessageType.Question,
-            BaseDialogModel.MessageButtons.OkCancel);
+            DialogUtility.MessageType.Question,
+            DialogUtility.MessageButtons.OkCancel);
         
         if (!result) return;
 

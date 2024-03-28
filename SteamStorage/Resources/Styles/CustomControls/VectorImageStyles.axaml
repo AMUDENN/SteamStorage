@@ -29,6 +29,12 @@
             </Animation>
         </Style.Animations>
     </Style>
+    
+    <Style Selector="controls|VectorImage.UnDisabledVectorImage">
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="1"/>
+        </Style>
+    </Style>
 
     <Style Selector="controls|VectorImage.ForegroundVectorImage">
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>

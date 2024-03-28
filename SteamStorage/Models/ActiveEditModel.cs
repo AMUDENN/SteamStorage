@@ -6,6 +6,7 @@ using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities;
+using SteamStorage.Utilities.Dialog;
 using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
@@ -179,8 +180,8 @@ public class ActiveEditModel : BaseItemEditModel
         
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить актив: «{_activeModel.Title}»?",
-            BaseDialogModel.MessageType.Question,
-            BaseDialogModel.MessageButtons.OkCancel);
+            DialogUtility.MessageType.Question,
+            DialogUtility.MessageButtons.OkCancel);
         
         if (!result) return;
 
@@ -199,8 +200,8 @@ public class ActiveEditModel : BaseItemEditModel
         {
             bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите добавить актив: «{SelectedSkinModel.Title}»?",
-                BaseDialogModel.MessageType.Question,
-                BaseDialogModel.MessageButtons.SaveCancel);
+                DialogUtility.MessageType.Question,
+                DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
         }
@@ -208,8 +209,8 @@ public class ActiveEditModel : BaseItemEditModel
         {
             bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите изменить актив: «{_activeModel.Title}»?",
-                BaseDialogModel.MessageType.Question,
-                BaseDialogModel.MessageButtons.SaveCancel);
+                DialogUtility.MessageType.Question,
+                DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
         }
@@ -293,7 +294,7 @@ public class ActiveEditModel : BaseItemEditModel
 
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
         
-        IsNewActive = false;
+        IsNewActive = true;
 
         SetValuesFromDefault();
     }
@@ -316,7 +317,7 @@ public class ActiveEditModel : BaseItemEditModel
 
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
         
-        IsNewActive = false;
+        IsNewActive = true;
 
         SetValuesFromDefault();
     }

@@ -73,12 +73,14 @@
         <StyleInclude Source="/Resources/Images/Vectors/DoubleRightArrowVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/EmailVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/EmptyStarVectorImage.axaml"/>
+	    <StyleInclude Source="/Resources/Images/Vectors/ErrorVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/ExcellentConnectionVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/FilterDownVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/FilterUpVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/GithubVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/GoodConnectionVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/HomeVectorImage.axaml"/>
+	    <StyleInclude Source="/Resources/Images/Vectors/InformationVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/InventoryVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/LeftArrowVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/LoadingVectorImage.axaml"/>
@@ -90,6 +92,7 @@
 		<StyleInclude Source="/Resources/Images/Vectors/MaximizeVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/MinimizeVectorImage.axaml"/>
 		<StyleInclude Source="/Resources/Images/Vectors/ProfileVectorImage.axaml"/>
+	    <StyleInclude Source="/Resources/Images/Vectors/QuestionVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RadioButtonFalseVectorImage.axaml"/>
         <StyleInclude Source="/Resources/Images/Vectors/RadioButtonTrueVectorImage.axaml"/>
 	    <StyleInclude Source="/Resources/Images/Vectors/RecycleBinVectorImage.axaml"/>

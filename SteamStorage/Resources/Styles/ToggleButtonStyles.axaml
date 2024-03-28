@@ -90,27 +90,27 @@
                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                         
                         <controls:VectorImage x:Name="ExcellentConnectionVectorImage"
-                                              Classes="ExcellentConnectionVectorImage ForegroundVectorImage"
-                                              Opacity="0"/>
+                                              Classes="ExcellentConnectionVectorImage ForegroundVectorImage UnDisabledVectorImage"
+                                              IsVisible="False"/>
                         <controls:VectorImage x:Name="GoodConnectionVectorImage"
-                                              Classes="GoodConnectionVectorImage ForegroundVectorImage"
-                                              Opacity="0"/>
+                                              Classes="GoodConnectionVectorImage ForegroundVectorImage UnDisabledVectorImage"
+                                              IsVisible="False"/>
                         <controls:VectorImage x:Name="BadConnectionVectorImage"
-                                              Classes="BadConnectionVectorImage ForegroundVectorImage"
-                                              Opacity="0"/>
+                                              Classes="BadConnectionVectorImage ForegroundVectorImage UnDisabledVectorImage"
+                                              IsVisible="False"/>
                         
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style Selector="^:indeterminate /template/ controls|VectorImage#ExcellentConnectionVectorImage">
-            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="IsVisible" Value="True"/>
         </Style>
         <Style Selector="^:checked /template/ controls|VectorImage#GoodConnectionVectorImage">
-            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="IsVisible" Value="True"/>
         </Style>
         <Style Selector="^:unchecked /template/ controls|VectorImage#BadConnectionVectorImage">
-            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="IsVisible" Value="True"/>
         </Style>
     </Style>
         

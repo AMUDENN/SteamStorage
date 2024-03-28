@@ -1,0 +1,53 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:SteamStorage.Resources.Controls"
+        x:DataType="controls:VectorImage">
+
+	<Style Selector="controls|VectorImage.ErrorVectorImage">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+                    <Image OpacityMask="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
+					    <Image.Source>
+                            <DrawingImage>
+	                            <DrawingImage.Drawing>
+		                            <DrawingGroup ClipGeometry="M0,0 V512 H512 V0 H0 Z">
+			                            <DrawingGroup Opacity="1">
+				                            <DrawingGroup Opacity="1">
+					                            <GeometryDrawing>
+						                            <GeometryDrawing.Pen>
+							                            <Pen Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Thickness="20" LineCap="Round" LineJoin="Round" />
+						                            </GeometryDrawing.Pen>
+						                            <GeometryDrawing.Geometry>
+							                            <EllipseGeometry RadiusX="246" RadiusY="246" Center="256,256" />
+						                            </GeometryDrawing.Geometry>
+					                            </GeometryDrawing>
+					                            <GeometryDrawing>
+						                            <GeometryDrawing.Pen>
+							                            <Pen Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Thickness="20" LineCap="Round" LineJoin="Round" />
+						                            </GeometryDrawing.Pen>
+						                            <GeometryDrawing.Geometry>
+							                            <LineGeometry StartPoint="371.47,140.53" EndPoint="140.53,371.47" />
+						                            </GeometryDrawing.Geometry>
+					                            </GeometryDrawing>
+					                            <GeometryDrawing>
+						                            <GeometryDrawing.Pen>
+							                            <Pen Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Thickness="20" LineCap="Round" LineJoin="Round" />
+						                            </GeometryDrawing.Pen>
+						                            <GeometryDrawing.Geometry>
+							                            <LineGeometry StartPoint="371.47,371.47" EndPoint="140.53,140.53" />
+						                            </GeometryDrawing.Geometry>
+					                            </GeometryDrawing>
+				                            </DrawingGroup>
+			                            </DrawingGroup>
+		                            </DrawingGroup>
+	                            </DrawingImage.Drawing>
+                            </DrawingImage>
+                        </Image.Source>
+                    </Image>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+</Styles>

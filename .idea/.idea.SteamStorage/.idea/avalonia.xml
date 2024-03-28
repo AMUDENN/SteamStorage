@@ -28,6 +28,7 @@
         <entry key="SteamStorage/Resources/Images/Vectors/EmailVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/EmptyStarImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/EmptyStarVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/ErrorVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/ExcellentConnectionVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/FilterDownImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/FilterDownVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
@@ -38,6 +39,7 @@
         <entry key="SteamStorage/Resources/Images/Vectors/GoodConnectionVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/HomeImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/HomeVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/InformationVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/InventoryImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/InventoryVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/LeftArrowImage.axaml" value="SteamStorage/SteamStorage.csproj" />
@@ -60,6 +62,7 @@
         <entry key="SteamStorage/Resources/Images/Vectors/MinimizeVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/ProfileImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/ProfileVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Images/Vectors/QuestionVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/RadioButtonFalseImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/RadioButtonFalseVectorImage.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Images/Vectors/RadioButtonTrueImage.axaml" value="SteamStorage/SteamStorage.csproj" />
@@ -142,6 +145,7 @@
         <entry key="SteamStorage/Views/ArchiveGroupEditView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ArchiveView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ArchivesReviewView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/ArchivesView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/BaseDialogView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/BaseMessageBoxView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/DialogWindow.axaml" value="SteamStorage/SteamStorage.csproj" />

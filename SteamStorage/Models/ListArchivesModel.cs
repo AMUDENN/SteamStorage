@@ -3,11 +3,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
-using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Events.Archives;
 using SteamStorage.ViewModels.UtilityViewModels;
 using SteamStorageAPI;
@@ -443,8 +443,8 @@ public class ListArchivesModel : ModelBase
         
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить элемент архива: «{model.Title}»?",
-            BaseDialogModel.MessageType.Question,
-            BaseDialogModel.MessageButtons.OkCancel);
+            DialogUtility.MessageType.Question,
+            DialogUtility.MessageButtons.OkCancel);
         
         if (!result) return;
 
