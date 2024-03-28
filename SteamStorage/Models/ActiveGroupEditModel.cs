@@ -274,8 +274,31 @@ public class ActiveGroupEditModel : BaseEditModel
         OnGoingBack();
     }
 
-    protected override void DoSaveCommand()
+    protected override async Task DoSaveCommand()
     {
+        if (IsNewGroup)
+        {
+            bool result = await _dialogService.ShowDialog(
+                $"Вы уверены, что хотите добавить группу: «{GroupTitle}»?",
+                BaseDialogModel.MessageType.Question,
+                BaseDialogModel.MessageButtons.SaveCancel);
+
+            if (!result) return;
+        }
+        else if (_activeGroupModel is not null)
+        {
+            bool result = await _dialogService.ShowDialog(
+                $"Вы уверены, что хотите изменить группу: «{_activeGroupModel.Title}»?",
+                BaseDialogModel.MessageType.Question,
+                BaseDialogModel.MessageButtons.SaveCancel);
+
+            if (!result) return;
+        }
+        else
+        {
+            return;
+        }
+        
         //TODO:
         
         OnItemChanged();
@@ -324,7 +347,9 @@ public class ActiveGroupEditModel : BaseEditModel
         GoalSumCompletion = model?.GoalSumCompletion is null ? NO_DATA : $"{model.GoalSumCompletion:N0}%";
 
         if (model is null)
+        {
             IsNewGroup = true;
+        }
         else
         {
             model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);

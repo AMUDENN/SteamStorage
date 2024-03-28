@@ -29,6 +29,16 @@ public class MessageDialogViewModel : BaseDialogViewModel
         get => _messageDialogModel.SelectedMessageButtons;
     }
     
+    public bool IsOkVisible
+    {
+        get => _messageDialogModel.IsOkVisible;
+    }
+    
+    public bool IsSaveVisible
+    {
+        get => _messageDialogModel.IsSaveVisible;
+    }
+    
     public bool IsCancelVisible
     {
         get => _messageDialogModel.IsCancelVisible;

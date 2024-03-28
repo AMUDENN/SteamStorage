@@ -19,7 +19,9 @@ public class BaseDialogModel : ModelBase
     public enum MessageButtons
     {
         Ok,
-        OkCancel
+        Save,
+        OkCancel,
+        SaveCancel
     }
     
     #endregion Enums

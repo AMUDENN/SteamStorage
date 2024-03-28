@@ -168,8 +168,31 @@ public class ArchiveGroupEditModel : BaseEditModel
         OnGoingBack();
     }
 
-    protected override void DoSaveCommand()
+    protected override async Task DoSaveCommand()
     {
+        if (IsNewGroup)
+        {
+            bool result = await _dialogService.ShowDialog(
+                $"Вы уверены, что хотите добавить группу: «{GroupTitle}»?",
+                BaseDialogModel.MessageType.Question,
+                BaseDialogModel.MessageButtons.SaveCancel);
+
+            if (!result) return;
+        }
+        else if (_archiveGroupModel is not null)
+        {
+            bool result = await _dialogService.ShowDialog(
+                $"Вы уверены, что хотите изменить группу: «{_archiveGroupModel.Title}»?",
+                BaseDialogModel.MessageType.Question,
+                BaseDialogModel.MessageButtons.SaveCancel);
+
+            if (!result) return;
+        }
+        else
+        {
+            return;
+        }
+        
         //TODO:
         
         OnItemChanged();

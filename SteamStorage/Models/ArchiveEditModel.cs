@@ -211,8 +211,31 @@ public class ArchiveEditModel : BaseItemEditModel
         OnGoingBack();
     }
 
-    protected override void DoSaveCommand()
+    protected override async Task DoSaveCommand()
     {
+        if (IsNewArchive && SelectedSkinModel is not null)
+        {
+            bool result = await _dialogService.ShowDialog(
+                $"Вы уверены, что хотите добавить элемент архива: «{SelectedSkinModel.Title}»?",
+                BaseDialogModel.MessageType.Question,
+                BaseDialogModel.MessageButtons.SaveCancel);
+
+            if (!result) return;
+        }
+        else if (_archiveModel is not null)
+        {
+            bool result = await _dialogService.ShowDialog(
+                $"Вы уверены, что хотите изменить элемент архива: «{_archiveModel.Title}»?",
+                BaseDialogModel.MessageType.Question,
+                BaseDialogModel.MessageButtons.SaveCancel);
+
+            if (!result) return;
+        }
+        else
+        {
+            return;
+        }
+        
         //TODO:
         
         OnItemChanged();

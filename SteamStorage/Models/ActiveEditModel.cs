@@ -193,8 +193,31 @@ public class ActiveEditModel : BaseItemEditModel
         OnGoingBack();
     }
 
-    protected override void DoSaveCommand()
+    protected override async Task DoSaveCommand()
     {
+        if (IsNewActive && SelectedSkinModel is not null)
+        {
+            bool result = await _dialogService.ShowDialog(
+                $"Вы уверены, что хотите добавить актив: «{SelectedSkinModel.Title}»?",
+                BaseDialogModel.MessageType.Question,
+                BaseDialogModel.MessageButtons.SaveCancel);
+
+            if (!result) return;
+        }
+        else if (_activeModel is not null)
+        {
+            bool result = await _dialogService.ShowDialog(
+                $"Вы уверены, что хотите изменить актив: «{_activeModel.Title}»?",
+                BaseDialogModel.MessageType.Question,
+                BaseDialogModel.MessageButtons.SaveCancel);
+
+            if (!result) return;
+        }
+        else
+        {
+            return;
+        }
+        
         //TODO:
 
         OnItemChanged();

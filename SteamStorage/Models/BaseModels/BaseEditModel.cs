@@ -47,7 +47,7 @@ public abstract class BaseEditModel : ModelBase
 
     public AsyncRelayCommand DeleteCommand { get; }
 
-    public RelayCommand SaveCommand { get; }
+    public AsyncRelayCommand SaveCommand { get; }
 
     #endregion Commands
 
@@ -76,7 +76,7 @@ public abstract class BaseEditModel : ModelBase
 
     protected abstract Task DoDeleteCommand();
 
-    protected abstract void DoSaveCommand();
+    protected abstract Task DoSaveCommand();
 
     protected abstract bool CanExecuteSaveCommand();
 

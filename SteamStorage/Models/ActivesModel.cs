@@ -94,6 +94,10 @@ public class ActivesModel : ModelBase
         activeEditModel.ItemDeleted += ActiveItemDeletedHandler;
         activeSoldModel.ItemDeleted += ActiveItemDeletedHandler;
         activeGroupEditModel.ItemDeleted += ActiveGroupItemDeletedHandler;
+
+        activeEditModel.ItemChanged += ActiveItemChangedHandler;
+        activeSoldModel.ItemChanged += ActiveItemChangedHandler;
+        activeGroupEditModel.ItemChanged += ActiveGroupItemChangedHandler;
     }
 
     #endregion Constructor
@@ -176,6 +180,16 @@ public class ActivesModel : ModelBase
     }
     
     private void ActiveGroupItemDeletedHandler(object? sender)
+    {
+        _activeGroupsModel.UpdateGroups();
+    }
+    
+    private void ActiveItemChangedHandler(object? sender)
+    {
+        _listActivesModel.UpdateSkins();
+    }
+    
+    private void ActiveGroupItemChangedHandler(object? sender)
     {
         _activeGroupsModel.UpdateGroups();
     }

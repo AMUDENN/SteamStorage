@@ -33,7 +33,7 @@ public abstract class BaseEditViewModel : ViewModelBase
         get => _baseEditModel.DeleteCommand;
     }
 
-    public RelayCommand SaveCommand
+    public AsyncRelayCommand SaveCommand
     {
         get => _baseEditModel.SaveCommand;
     }

@@ -205,8 +205,17 @@ public class ActiveSoldModel : BaseEditModel
         OnGoingBack();
     }
 
-    protected override void DoSaveCommand()
+    protected override async Task DoSaveCommand()
     {
+        if (_activeModel is null) return;
+        
+        bool result = await _dialogService.ShowDialog(
+            $"Вы уверены, что хотите продать актив: «{_activeModel.Title}»?",
+            BaseDialogModel.MessageType.Question,
+            BaseDialogModel.MessageButtons.SaveCancel);
+
+        if (!result) return;
+        
         //TODO:
         
         OnItemChanged();

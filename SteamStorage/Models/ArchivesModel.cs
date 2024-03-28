@@ -88,6 +88,9 @@ public class ArchivesModel : ModelBase
         
         archiveEditModel.ItemDeleted += ArchiveItemDeletedHandler;
         archiveGroupEditModel.ItemDeleted += ArchiveGroupItemDeletedHandler;
+        
+        archiveEditModel.ItemChanged += ArchiveItemChangedHandler;
+        archiveGroupEditModel.ItemChanged += ArchiveGroupItemChangedHandler;
     }
 
     #endregion Constructor
@@ -161,6 +164,16 @@ public class ArchivesModel : ModelBase
     }
     
     private void ArchiveGroupItemDeletedHandler(object? sender)
+    {
+        _archiveGroupsModel.UpdateGroups();
+    }
+    
+    private void ArchiveItemChangedHandler(object? sender)
+    {
+        _listArchivesModel.UpdateSkins();
+    }
+    
+    private void ArchiveGroupItemChangedHandler(object? sender)
     {
         _archiveGroupsModel.UpdateGroups();
     }

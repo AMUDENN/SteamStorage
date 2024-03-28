@@ -33,15 +33,23 @@
             <Button Content="Ок"
                     Command="{Binding SetDialogResultCommand, Mode=OneWay}"
                     CommandParameter="{x:True}"
+                    IsVisible="{Binding IsOkVisible, Mode=OneWay}"
                     Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
-                    Width="90"/>
+                    Width="120"/>
+            
+            <Button Content="Сохранить"
+                    Command="{Binding SetDialogResultCommand, Mode=OneWay}"
+                    CommandParameter="{x:True}"
+                    IsVisible="{Binding IsSaveVisible, Mode=OneWay}"
+                    Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
+                    Width="120"/>
         
             <Button Content="Отмена"
                     Command="{Binding SetDialogResultCommand, Mode=OneWay}"
                     CommandParameter="{x:False}"
                     IsVisible="{Binding IsCancelVisible, Mode=OneWay}"
                     Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
-                    Width="90"/>
+                    Width="120"/>
             
         </StackPanel>
         

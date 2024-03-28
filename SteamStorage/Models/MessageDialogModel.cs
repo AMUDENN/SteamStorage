@@ -32,13 +32,25 @@ public class MessageDialogModel : BaseDialogModel
         private set
         {
             SetProperty(ref _selectedMessageButtons, value); 
+            OnPropertyChanged(nameof(IsOkVisible));
+            OnPropertyChanged(nameof(IsSaveVisible));
             OnPropertyChanged(nameof(IsCancelVisible));
         }
     }
 
+    public bool IsOkVisible
+    {
+        get => _selectedMessageButtons is MessageButtons.OkCancel or MessageButtons.Ok;
+    }
+    
+    public bool IsSaveVisible
+    {
+        get => _selectedMessageButtons is MessageButtons.SaveCancel or MessageButtons.Save;
+    }
+    
     public bool IsCancelVisible
     {
-        get => _selectedMessageButtons == MessageButtons.OkCancel;
+        get => _selectedMessageButtons is MessageButtons.OkCancel or MessageButtons.SaveCancel;
     }
     
     #endregion Properties
