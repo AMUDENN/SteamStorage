@@ -34,6 +34,10 @@
         <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
     </Style>
     
+    <Style Selector="Button.TopLevelBackgroundButton">
+        <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundBrush}"/>
+    </Style>
+    
     <Style Selector="Button.BigRoundedButton">
         <Setter Property="CornerRadius" Value="16"/>
     </Style>

@@ -28,6 +28,11 @@ public class MessageDialogViewModel : BaseDialogViewModel
     {
         get => _messageDialogModel.SelectedMessageButtons;
     }
+    
+    public bool IsCancelVisible
+    {
+        get => _messageDialogModel.IsCancelVisible;
+    }
 
     #endregion Properties
 

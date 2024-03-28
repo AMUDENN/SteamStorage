@@ -29,7 +29,16 @@ public class MessageDialogModel : BaseDialogModel
     public MessageButtons SelectedMessageButtons
     {
         get => _selectedMessageButtons;
-        private set => SetProperty(ref _selectedMessageButtons, value);
+        private set
+        {
+            SetProperty(ref _selectedMessageButtons, value); 
+            OnPropertyChanged(nameof(IsCancelVisible));
+        }
+    }
+
+    public bool IsCancelVisible
+    {
+        get => _selectedMessageButtons == MessageButtons.OkCancel;
     }
     
     #endregion Properties
