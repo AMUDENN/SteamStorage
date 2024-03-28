@@ -1,12 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
+using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities;
+using SteamStorageAPI;
+using SteamStorageAPI.ApiEntities;
+using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
 
@@ -21,7 +26,11 @@ public class ActiveGroupEditModel : BaseEditModel
     #endregion Constants
 
     #region Fields
-
+    
+    private readonly IDialogService _dialogService;
+    
+    private ActiveGroupModel? _activeGroupModel;
+    
     private string _defaultGroupTitle;
     private string _groupTitle;
 
@@ -41,8 +50,6 @@ public class ActiveGroupEditModel : BaseEditModel
     private string _countString;
     private string _currentSumString;
     private string _goalSumCompletion;
-
-    private ActiveGroupModel? _activeGroupModel;
 
     #endregion Fields
 
@@ -227,8 +234,12 @@ public class ActiveGroupEditModel : BaseEditModel
 
     #region Constructor
 
-    public ActiveGroupEditModel()
+    public ActiveGroupEditModel(
+        ApiClient apiClient,
+        IDialogService dialogService) : base(apiClient)
     {
+        _dialogService = dialogService;
+        
         _defaultGroupTitle = string.Empty;
         _groupTitle = string.Empty;
 
@@ -243,14 +254,30 @@ public class ActiveGroupEditModel : BaseEditModel
 
     #region Methods
 
-    protected override void DoDeleteCommand()
+    protected override async Task DoDeleteCommand()
     {
-        //TODO:
+        if (_activeGroupModel is null) return;
+        
+        bool result = await _dialogService.ShowDialog(
+            $"Вы уверены, что хотите удалить группу: «{_activeGroupModel.Title}»?",
+            BaseDialogModel.MessageType.Question,
+            BaseDialogModel.MessageButtons.OkCancel);
+        
+        if (!result) return;
+
+        await _apiClient.DeleteAsync(
+            ApiConstants.ApiMethods.DeleteActiveGroup,
+            new ActiveGroups.DeleteActiveGroupRequest(_activeGroupModel.GroupId));
+        
+        //TODO: UpdateGroups
+        
+        OnGoingBack();
     }
 
     protected override void DoSaveCommand()
     {
         //TODO:
+        OnGoingBack();
     }
 
     protected override bool CanExecuteSaveCommand()
@@ -277,6 +304,8 @@ public class ActiveGroupEditModel : BaseEditModel
 
     public void SetEditGroup(ActiveGroupModel? model)
     {
+        _activeGroupModel = model;
+        
         DefaultGroupTitle = model?.Title ?? string.Empty;
 
         DefaultDescription = model?.Description ?? string.Empty;
@@ -290,8 +319,6 @@ public class ActiveGroupEditModel : BaseEditModel
         CountString = model?.Count is null ? NO_DATA : $"{model.Count:N0}";
         CurrentSumString = model?.CurrentSumString ?? NO_DATA;
         GoalSumCompletion = model?.GoalSumCompletion is null ? NO_DATA : $"{model.GoalSumCompletion:N0}%";
-
-        _activeGroupModel = model;
 
         if (model is null)
             IsNewGroup = true;

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
+using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities;
 using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 using SteamStorageAPI;
+using SteamStorageAPI.ApiEntities;
+using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
 
@@ -19,7 +23,10 @@ public class ActiveEditModel : BaseItemEditModel
 
     #region Fields
 
+    private readonly IDialogService _dialogService;
     private readonly ActiveGroupsModel _activeGroupsModel;
+
+    private ActiveModel? _activeModel;
     
     private BaseGroupModel? _defaultActiveGroupModel;
     private BaseGroupModel? _selectedActiveGroupModel;
@@ -149,9 +156,11 @@ public class ActiveEditModel : BaseItemEditModel
 
     public ActiveEditModel(
         ApiClient apiClient,
-        ActiveGroupsModel activeGroupsModel) : base(apiClient)
+        ActiveGroupsModel activeGroupsModel,
+        IDialogService dialogService) : base(apiClient)
     {
         _activeGroupsModel = activeGroupsModel;
+        _dialogService = dialogService;
 
         _defaultCount = string.Empty;
         _count = string.Empty;
@@ -164,14 +173,30 @@ public class ActiveEditModel : BaseItemEditModel
 
     #region Methods
 
-    protected override void DoDeleteCommand()
+    protected override async Task DoDeleteCommand()
     {
-        //TODO:
+        if (_activeModel is null) return;
+        
+        bool result = await _dialogService.ShowDialog(
+            $"Вы уверены, что хотите удалить актив: «{_activeModel.Title}»?",
+            BaseDialogModel.MessageType.Question,
+            BaseDialogModel.MessageButtons.OkCancel);
+        
+        if (!result) return;
+
+        await _apiClient.DeleteAsync(
+            ApiConstants.ApiMethods.DeleteActive,
+            new Actives.DeleteActiveRequest(_activeModel.ActiveId));
+        
+        //TODO: UpdateSkins
+        
+        OnGoingBack();
     }
 
     protected override void DoSaveCommand()
     {
         //TODO:
+        OnGoingBack();
     }
 
     protected override bool CanExecuteSaveCommand()
@@ -203,6 +228,8 @@ public class ActiveEditModel : BaseItemEditModel
 
     public void SetEditActive(ActiveModel? model)
     {
+        _activeModel = model;
+        
         DefaultActiveGroupModel = _activeGroupsModel.ActiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = $"{model?.Count ?? 1:N0}";
@@ -224,6 +251,8 @@ public class ActiveEditModel : BaseItemEditModel
 
     public void SetAddActive(ActiveGroupModel? model)
     {
+        _activeModel = null;
+        
         DefaultActiveGroupModel = _activeGroupsModel.ActiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = "1";
@@ -245,6 +274,8 @@ public class ActiveEditModel : BaseItemEditModel
 
     public void SetAddActive(ListItemModel? model)
     {
+        _activeModel = null;
+        
         DefaultActiveGroupModel = null;
 
         DefaultCount = "1";

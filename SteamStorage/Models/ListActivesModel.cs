@@ -463,9 +463,19 @@ public class ListActivesModel : ModelBase
     private async Task DoDeleteCommand(ActiveModel? model)
     {
         if (model is null) return;
-        bool result = await _dialogService.ShowDialog($"Вы уверены, что хотите удалить актив: «{model.Title}»?",
-            BaseDialogModel.MessageType.Question, BaseDialogModel.MessageButtons.OkCancel);
-        //TODO:
+        
+        bool result = await _dialogService.ShowDialog(
+            $"Вы уверены, что хотите удалить актив: «{model.Title}»?",
+            BaseDialogModel.MessageType.Question,
+            BaseDialogModel.MessageButtons.OkCancel);
+        
+        if (!result) return;
+
+        await _apiClient.DeleteAsync(
+            ApiConstants.ApiMethods.DeleteActive,
+            new Actives.DeleteActiveRequest(model.ActiveId));
+
+        GetSkins();
     }
 
     public void OpenActiveGroup(IEnumerable<BaseGroupModel> groupModels, ActiveGroupModel? model)

@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Threading.Tasks;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
+using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities;
+using SteamStorageAPI;
+using SteamStorageAPI.ApiEntities;
+using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
 
@@ -18,6 +23,10 @@ public class ActiveSoldModel : BaseEditModel
 
     #region Fields
 
+    private readonly IDialogService _dialogService;
+    
+    private ActiveModel? _activeModel;
+    
     private BaseGroupModel? _defaultArchiveGroupModel;
     private BaseGroupModel? _selectedArchiveGroupModel;
 
@@ -153,8 +162,12 @@ public class ActiveSoldModel : BaseEditModel
 
     #region Constructor
 
-    public ActiveSoldModel()
+    public ActiveSoldModel(
+        ApiClient apiClient,
+        IDialogService dialogService) : base(apiClient)
     {
+        _dialogService = dialogService;
+        
         _defaultCount = string.Empty;
         _count = string.Empty;
 
@@ -172,14 +185,30 @@ public class ActiveSoldModel : BaseEditModel
 
     #region Methods
 
-    protected override void DoDeleteCommand()
+    protected override async Task DoDeleteCommand()
     {
-        //TODO:
+        if (_activeModel is null) return;
+        
+        bool result = await _dialogService.ShowDialog(
+            $"Вы уверены, что хотите удалить актив: «{_activeModel.Title}»?",
+            BaseDialogModel.MessageType.Question,
+            BaseDialogModel.MessageButtons.OkCancel);
+        
+        if (!result) return;
+
+        await _apiClient.DeleteAsync(
+            ApiConstants.ApiMethods.DeleteActive,
+            new Actives.DeleteActiveRequest(_activeModel.ActiveId));
+        
+        //TODO: UpdateSkins
+        
+        OnGoingBack();
     }
 
     protected override void DoSaveCommand()
     {
         //TODO:
+        OnGoingBack();
     }
 
     protected override bool CanExecuteSaveCommand()
@@ -207,6 +236,8 @@ public class ActiveSoldModel : BaseEditModel
 
     public void SetSoldActive(ActiveModel? model)
     {
+        _activeModel = model;
+        
         DefaultArchiveGroupModel = null;
 
         DefaultSoldCount = $"{model?.Count ?? 1:N0}";

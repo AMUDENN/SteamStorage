@@ -2,9 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
+using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities.Events.Archives;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
@@ -33,6 +35,7 @@ public class ArchiveGroupsModel : ModelBase
     #region Fields
 
     private readonly ApiClient _apiClient;
+    private readonly IDialogService _dialogService;
 
     private List<BaseGroupModel> _archiveGroupModels;
 
@@ -66,9 +69,11 @@ public class ArchiveGroupsModel : ModelBase
 
     public ArchiveGroupsModel(
         ApiClient apiClient,
-        UserModel userModel)
+        UserModel userModel,
+        IDialogService dialogService)
     {
         _apiClient = apiClient;
+        _dialogService = dialogService;
 
         _archiveGroupModels = [];
 
@@ -112,7 +117,20 @@ public class ArchiveGroupsModel : ModelBase
 
     private async Task DoDeleteArchiveGroupCommand(ArchiveGroupModel? group)
     {
-        //TODO:
+        if (group is null) return;
+        
+        bool result = await _dialogService.ShowDialog(
+            $"Вы уверены, что хотите удалить группу: «{group.Title}»?",
+            BaseDialogModel.MessageType.Question,
+            BaseDialogModel.MessageButtons.OkCancel);
+        
+        if (!result) return;
+
+        await _apiClient.DeleteAsync(
+            ApiConstants.ApiMethods.DeleteArchiveGroup,
+            new ArchiveGroups.DeleteArchiveGroupRequest(group.GroupId));
+
+        GetGroups();
     }
 
     public void UpdateGroups()

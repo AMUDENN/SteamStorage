@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
+using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities;
 using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 using SteamStorageAPI;
+using SteamStorageAPI.ApiEntities;
+using SteamStorageAPI.Utilities;
 
 namespace SteamStorage.Models;
 
@@ -19,7 +23,10 @@ public class ArchiveEditModel : BaseItemEditModel
 
     #region Fields
 
+    private readonly IDialogService _dialogService;
     private readonly ArchiveGroupsModel _archiveGroupsModel;
+
+    private ArchiveModel? _archiveModel;
 
     private BaseGroupModel? _defaultArchiveGroupModel;
     private BaseGroupModel? _selectedArchiveGroupModel;
@@ -164,9 +171,11 @@ public class ArchiveEditModel : BaseItemEditModel
 
     public ArchiveEditModel(
         ApiClient apiClient,
-        ArchiveGroupsModel archiveGroupsModel) : base(apiClient)
+        ArchiveGroupsModel archiveGroupsModel,
+        IDialogService dialogService) : base(apiClient)
     {
         _archiveGroupsModel = archiveGroupsModel;
+        _dialogService = dialogService;
 
         _defaultCount = string.Empty;
         _count = string.Empty;
@@ -182,14 +191,30 @@ public class ArchiveEditModel : BaseItemEditModel
 
     #region Methods
 
-    protected override void DoDeleteCommand()
+    protected override async Task DoDeleteCommand()
     {
-        //TODO:
+        if (_archiveModel is null) return;
+        
+        bool result = await _dialogService.ShowDialog(
+            $"Вы уверены, что хотите удалить удалить элемент архива: «{_archiveModel.Title}»?",
+            BaseDialogModel.MessageType.Question,
+            BaseDialogModel.MessageButtons.OkCancel);
+        
+        if (!result) return;
+
+        await _apiClient.DeleteAsync(
+            ApiConstants.ApiMethods.DeleteArchive,
+            new Archives.DeleteArchiveRequest(_archiveModel.ArchiveId));
+        
+        //TODO: UpdateSkins
+        
+        OnGoingBack();
     }
 
     protected override void DoSaveCommand()
     {
         //TODO:
+        OnGoingBack();
     }
 
     protected override bool CanExecuteSaveCommand()
@@ -222,6 +247,8 @@ public class ArchiveEditModel : BaseItemEditModel
 
     public void SetEditArchive(ArchiveModel? model)
     {
+        _archiveModel = model;
+        
         DefaultArchiveGroupModel = _archiveGroupsModel.ArchiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = $"{model?.Count ?? 1:N0}";
@@ -245,6 +272,8 @@ public class ArchiveEditModel : BaseItemEditModel
 
     public void SetAddArchive(ArchiveGroupModel? model)
     {
+        _archiveModel = null;
+        
         DefaultArchiveGroupModel = _archiveGroupsModel.ArchiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = "1";
@@ -268,6 +297,8 @@ public class ArchiveEditModel : BaseItemEditModel
 
     public void SetAddArchive(ListItemModel? model)
     {
+        _archiveModel = null;
+        
         DefaultArchiveGroupModel = null;
 
         DefaultCount = "1";

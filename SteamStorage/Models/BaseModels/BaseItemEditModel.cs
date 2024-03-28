@@ -15,8 +15,6 @@ public abstract class BaseItemEditModel : BaseEditModel
 {
     #region Fields
 
-    private readonly ApiClient _apiClient;
-
     private BaseSkinViewModel? _defaultSkinModel;
     private BaseSkinViewModel? _selectedSkinModel;
     private string? _filter;
@@ -86,10 +84,8 @@ public abstract class BaseItemEditModel : BaseEditModel
     #region Constructor
 
     protected BaseItemEditModel(
-        ApiClient apiClient)
+        ApiClient apiClient) : base(apiClient)
     {
-        _apiClient = apiClient;
-
         _skinModels = [];
         _cancellationTokenSource = new();
 

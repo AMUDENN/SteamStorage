@@ -3,9 +3,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
+using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities.Events.Archives;
 using SteamStorage.ViewModels.UtilityViewModels;
 using SteamStorageAPI;
@@ -34,6 +36,7 @@ public class ListArchivesModel : ModelBase
 
     private readonly ApiClient _apiClient;
     private readonly UserModel _userModel;
+    private readonly IDialogService _dialogService;
 
     private BaseGroupModel? _selectedGroupModel;
 
@@ -377,10 +380,12 @@ public class ListArchivesModel : ModelBase
 
     public ListArchivesModel(
         ApiClient apiClient,
-        UserModel userModel)
+        UserModel userModel,
+        IDialogService dialogService)
     {
         _apiClient = apiClient;
         _userModel = userModel;
+        _dialogService = dialogService;
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
@@ -434,7 +439,20 @@ public class ListArchivesModel : ModelBase
 
     private async Task DoDeleteCommand(ArchiveModel? model)
     {
-        //TODO:
+        if (model is null) return;
+        
+        bool result = await _dialogService.ShowDialog(
+            $"Вы уверены, что хотите удалить элемент архива: «{model.Title}»?",
+            BaseDialogModel.MessageType.Question,
+            BaseDialogModel.MessageButtons.OkCancel);
+        
+        if (!result) return;
+
+        await _apiClient.DeleteAsync(
+            ApiConstants.ApiMethods.DeleteArchive,
+            new Archives.DeleteArchiveRequest(model.ArchiveId));
+
+        GetSkins();
     }
 
     public void OpenArchiveGroup(IEnumerable<BaseGroupModel> groupModels, ArchiveGroupModel? model)

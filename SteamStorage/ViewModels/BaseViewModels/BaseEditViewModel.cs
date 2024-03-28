@@ -28,7 +28,7 @@ public abstract class BaseEditViewModel : ViewModelBase
         get => _baseEditModel.BackCommand;
     }
 
-    public RelayCommand DeleteCommand
+    public AsyncRelayCommand DeleteCommand
     {
         get => _baseEditModel.DeleteCommand;
     }

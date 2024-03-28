@@ -62,6 +62,9 @@ public static class ActiveGroups
         string? Description,
         string? Colour,
         decimal? GoalSum) : Request;
+    
+    public record DeleteActiveGroupRequest(
+        int GroupId) : Request;
 
     #endregion Records
 }

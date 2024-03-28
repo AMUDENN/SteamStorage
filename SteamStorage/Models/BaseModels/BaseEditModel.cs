@@ -1,5 +1,7 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
+using SteamStorageAPI;
 
 namespace SteamStorage.Models.BaseModels;
 
@@ -15,6 +17,8 @@ public abstract class BaseEditModel : ModelBase
 
     #region Fields
 
+    protected readonly ApiClient _apiClient;
+    
     private string _title;
 
     #endregion Fields
@@ -33,7 +37,7 @@ public abstract class BaseEditModel : ModelBase
 
     public RelayCommand BackCommand { get; }
 
-    public RelayCommand DeleteCommand { get; }
+    public AsyncRelayCommand DeleteCommand { get; }
 
     public RelayCommand SaveCommand { get; }
 
@@ -41,8 +45,11 @@ public abstract class BaseEditModel : ModelBase
 
     #region Constructor
 
-    protected BaseEditModel()
+    protected BaseEditModel(
+        ApiClient apiClient)
     {
+        _apiClient = apiClient;
+        
         _title = string.Empty;
         
         BackCommand = new(DoBackCommand);
@@ -59,13 +66,13 @@ public abstract class BaseEditModel : ModelBase
         OnGoingBack();
     }
 
-    protected abstract void DoDeleteCommand();
+    protected abstract Task DoDeleteCommand();
 
     protected abstract void DoSaveCommand();
 
     protected abstract bool CanExecuteSaveCommand();
 
-    private void OnGoingBack()
+    protected void OnGoingBack()
     {
         GoingBack?.Invoke(this);
     }
