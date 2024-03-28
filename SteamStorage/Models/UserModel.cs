@@ -1,4 +1,5 @@
-﻿using SteamStorage.Models.Tools;
+﻿using System.Threading.Tasks;
+using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Utilities;
@@ -42,7 +43,7 @@ public class UserModel : ModelBase
         {
             SetProperty(ref _user, value);
             OnUserChanged();
-            GetCurrency();
+            GetCurrencyAsync();
         }
     }
 
@@ -74,7 +75,7 @@ public class UserModel : ModelBase
 
         settingsService.SettingsPropertyChanged += SettingsPropertyChangedHandler;
 
-        SetUser();
+        GetUserAsync();
     }
 
     #endregion Constructor
@@ -84,10 +85,10 @@ public class UserModel : ModelBase
     private void SettingsPropertyChangedHandler(object? sender, SettingsPropertyChangedEventArgs e)
     {
         if (e.Property != nameof(_settingsService.UserSettings.Token)) return;
-        SetUser();
+        GetUserAsync();
     }
 
-    private async void SetUser()
+    private async void GetUserAsync()
     {
         User = string.IsNullOrEmpty(_settingsService.UserSettings.Token)
             ? null
@@ -95,7 +96,7 @@ public class UserModel : ModelBase
                 ApiConstants.ApiMethods.GetCurrentUserInfo);
     }
 
-    private async void GetCurrency()
+    private async void GetCurrencyAsync()
     {
         Currency = await _apiClient.GetAsync<Currencies.CurrencyResponse>(
             ApiConstants.ApiMethods.GetCurrentCurrency);
@@ -103,16 +104,16 @@ public class UserModel : ModelBase
 
     public void UpdateCurrencyInfo()
     {
-        GetCurrency();
+        GetCurrencyAsync();
     }
 
-    public async void DeleteUser()
+    public async Task DeleteUserAsync()
     {
         await _apiClient.DeleteAsync(ApiConstants.ApiMethods.DeleteUser);
-        SetUser();
+        GetUserAsync();
     }
 
-    public async void SetCurrency(CurrencyModel? currencyModel)
+    public async void SetCurrencyAsync(CurrencyModel? currencyModel)
     {
         if (currencyModel is null) return;
 
@@ -120,10 +121,10 @@ public class UserModel : ModelBase
             ApiConstants.ApiMethods.SetCurrency,
             new Currencies.SetCurrencyRequest(currencyModel.Id));
 
-        GetCurrency();
+        GetCurrencyAsync();
     }
     
-    public async void SetPage(PageModel? pageModel)
+    public async void SetPageAsync(PageModel? pageModel)
     {
         if (pageModel is null) return;
         

@@ -45,14 +45,14 @@ public class CurrenciesModel : ModelBase
 
         _currencyModels = [];
 
-        GetCurrencies();
+        GetCurrenciesAsync();
     }
 
     #endregion Constructor
 
     #region Methods
 
-    private async void GetCurrencies()
+    private async void GetCurrenciesAsync()
     {
         Currencies.CurrenciesResponse? currencyResponses =
             await _apiClient.GetAsync<Currencies.CurrenciesResponse>(

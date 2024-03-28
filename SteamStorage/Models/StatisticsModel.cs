@@ -274,7 +274,7 @@ public class StatisticsModel : ModelBase
 
         AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
 
-        RefreshPing();
+        RefreshPingAsync();
     }
 
     #endregion Constructor
@@ -283,13 +283,13 @@ public class StatisticsModel : ModelBase
 
     private void UserChangedHandler(object? sender)
     {
-        RefreshStatistics();
-        RefreshPing();
+        RefreshStatisticsAsync();
+        RefreshPingAsync();
     }
 
     private void CurrencyChangedHandler(object? sender)
     {
-        RefreshStatistics();
+        RefreshStatisticsAsync();
     }
 
     private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
@@ -301,8 +301,8 @@ public class StatisticsModel : ModelBase
 
     private void DoAttachedToVisualTreeCommand()
     {
-        RefreshStatistics();
-        RefreshPing();
+        RefreshStatisticsAsync();
+        RefreshPingAsync();
     }
 
     private void GetInvestedSumGrowthSeries()
@@ -355,7 +355,8 @@ public class StatisticsModel : ModelBase
         if (!InventoryGames.Any()) return;
 
         int i = 0;
-        InventoryGamesSeries = InventoryGames.OrderByDescending(x => x.Count).AsPieSeries((value, builder) =>
+        InventoryGamesSeries = InventoryGames.OrderByDescending(x => x.Count)
+            .AsPieSeries((value, builder) =>
         {
             builder.MaxRadialColumnWidth = 20;
             builder.HoverPushout = 0;
@@ -366,7 +367,7 @@ public class StatisticsModel : ModelBase
         });
     }
 
-    private async void RefreshStatistics()
+    private async void RefreshStatisticsAsync()
     {
         Statistics.InvestmentSumResponse? investmentSumResponse =
             await _apiClient.GetAsync<Statistics.InvestmentSumResponse>(
@@ -419,7 +420,7 @@ public class StatisticsModel : ModelBase
                          Enumerable.Empty<Statistics.InventoryGameStatisticResponse>();
     }
 
-    private async void RefreshPing()
+    private async void RefreshPingAsync()
     {
         PingResult pingResult = await _pingService.GetPing();
         Ping = pingResult.Ping;

@@ -32,7 +32,7 @@ public class DialogService : IDialogService
 
     #region Methods
 
-    public async Task<bool> ShowDialog(ViewModelBase viewModel)
+    public async Task<bool> ShowDialogAsync(ViewModelBase viewModel)
     {
         _dialogWindowViewModel.SetContent(viewModel);
         DialogWindow dialogWindow = new()
@@ -43,15 +43,15 @@ public class DialogService : IDialogService
         return await dialogWindow.ShowDialog<bool>(_mainWindow);
     }
 
-    public async Task<bool> ShowDialog(string message = "",
+    public async Task<bool> ShowDialogAsync(string message = "",
         BaseDialogModel.MessageType messageType = BaseDialogModel.MessageType.Info,
         BaseDialogModel.MessageButtons messageButtons = BaseDialogModel.MessageButtons.Ok)
     {
         _messageDialogViewModel.SetMessageBox(message, messageType, messageButtons);
-        return await ShowDialog(_messageDialogViewModel);
+        return await ShowDialogAsync(_messageDialogViewModel);
     }
 
-    public async Task ShowMessage(ViewModelBase viewModel)
+    public async Task ShowMessageAsync(ViewModelBase viewModel)
     {
         _dialogWindowViewModel.SetContent(viewModel);
         DialogWindow dialogWindow = new()
@@ -63,12 +63,12 @@ public class DialogService : IDialogService
         await dialogWindow.ShowDialog(_mainWindow);
     }
 
-    public async Task ShowMessage(string message = "",
+    public async Task ShowMessageAsync(string message = "",
         BaseDialogModel.MessageType messageType = BaseDialogModel.MessageType.Info,
         BaseDialogModel.MessageButtons messageButtons = BaseDialogModel.MessageButtons.Ok)
     {
         _messageDialogViewModel.SetMessageBox(message, messageType, messageButtons);
-        await ShowMessage(_messageDialogViewModel);
+        await ShowMessageAsync(_messageDialogViewModel);
     }
 
     #endregion Methods

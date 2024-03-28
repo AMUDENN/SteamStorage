@@ -189,7 +189,7 @@ public class ActiveSoldModel : BaseEditModel
     {
         if (_activeModel is null) return;
         
-        bool result = await _dialogService.ShowDialog(
+        bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить актив: «{_activeModel.Title}»?",
             BaseDialogModel.MessageType.Question,
             BaseDialogModel.MessageButtons.OkCancel);
@@ -209,7 +209,7 @@ public class ActiveSoldModel : BaseEditModel
     {
         if (_activeModel is null) return;
         
-        bool result = await _dialogService.ShowDialog(
+        bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите продать актив: «{_activeModel.Title}»?",
             BaseDialogModel.MessageType.Question,
             BaseDialogModel.MessageButtons.SaveCancel);

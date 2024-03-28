@@ -152,7 +152,7 @@ public class ArchiveGroupEditModel : BaseEditModel
     {
         if (_archiveGroupModel is null) return;
         
-        bool result = await _dialogService.ShowDialog(
+        bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить группу: «{_archiveGroupModel.Title}»?",
             BaseDialogModel.MessageType.Question,
             BaseDialogModel.MessageButtons.OkCancel);
@@ -172,7 +172,7 @@ public class ArchiveGroupEditModel : BaseEditModel
     {
         if (IsNewGroup)
         {
-            bool result = await _dialogService.ShowDialog(
+            bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите добавить группу: «{GroupTitle}»?",
                 BaseDialogModel.MessageType.Question,
                 BaseDialogModel.MessageButtons.SaveCancel);
@@ -181,7 +181,7 @@ public class ArchiveGroupEditModel : BaseEditModel
         }
         else if (_archiveGroupModel is not null)
         {
-            bool result = await _dialogService.ShowDialog(
+            bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите изменить группу: «{_archiveGroupModel.Title}»?",
                 BaseDialogModel.MessageType.Question,
                 BaseDialogModel.MessageButtons.SaveCancel);

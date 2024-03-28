@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities;
 
 namespace SteamStorage.Models;
@@ -14,6 +17,7 @@ public class ProfileModel : ModelBase
     private readonly UserModel _userModel;
     private readonly CurrenciesModel _currenciesModel;
     private readonly PagesModel _pagesModel;
+    private readonly IDialogService _dialogService;
 
     private string _profileUrl;
 
@@ -87,7 +91,7 @@ public class ProfileModel : ModelBase
         get => _selectedPage;
         set
         {
-            if (value is not null && value != _selectedPage) 
+            if (value is not null && value != _selectedPage)
                 SetPage(value);
             SetProperty(ref _selectedPage, value);
         }
@@ -99,7 +103,7 @@ public class ProfileModel : ModelBase
 
     public RelayCommand OpenSteamProfileCommand { get; }
 
-    public RelayCommand DeleteProfileCommand { get; }
+    public AsyncRelayCommand DeleteProfileCommand { get; }
 
     public RelayCommand AttachedToVisualTreeCommand { get; }
 
@@ -110,11 +114,13 @@ public class ProfileModel : ModelBase
     public ProfileModel(
         UserModel userModel,
         CurrenciesModel currenciesModel,
-        PagesModel pagesModel)
+        PagesModel pagesModel,
+        IDialogService dialogService)
     {
         _userModel = userModel;
         _currenciesModel = currenciesModel;
         _pagesModel = pagesModel;
+        _dialogService = dialogService;
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
@@ -187,9 +193,18 @@ public class ProfileModel : ModelBase
         UrlUtility.OpenUrl(_profileUrl);
     }
 
-    private void DoDeleteProfileCommand()
+    private async Task DoDeleteProfileCommand()
     {
-        _userModel.DeleteUser();
+        //TODO: Нормальное подтверждение, а не кнопка ок))
+
+        bool result = await _dialogService.ShowDialogAsync(
+            "Вы уверены, что хотите удалить аккаунт?",
+            BaseDialogModel.MessageType.Question,
+            BaseDialogModel.MessageButtons.OkCancel);
+
+        if (!result) return;
+
+        await _userModel.DeleteUserAsync();
     }
 
     private void DoAttachedToVisualTreeCommand()
@@ -199,12 +214,12 @@ public class ProfileModel : ModelBase
 
     private void SetCurrency(CurrencyModel? currencyModel)
     {
-        _userModel.SetCurrency(currencyModel);
+        _userModel.SetCurrencyAsync(currencyModel);
     }
 
     private void SetPage(PageModel? pageModel)
     {
-        _userModel.SetPage(pageModel);
+        _userModel.SetPageAsync(pageModel);
     }
 
     #endregion Methods

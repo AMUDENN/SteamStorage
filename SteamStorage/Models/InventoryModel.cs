@@ -70,7 +70,7 @@ public class InventoryModel : ModelBase
             SetProperty(ref _selectedGameModel, value);
             if (value is null) return;
             IsAllGamesChecked = false;
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -82,7 +82,7 @@ public class InventoryModel : ModelBase
             SetProperty(ref _isAllGamesChecked, value);
             if (!value) return;
             SelectedGameModel = null;
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -92,7 +92,7 @@ public class InventoryModel : ModelBase
         set
         {
             SetProperty(ref _filter, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -231,7 +231,7 @@ public class InventoryModel : ModelBase
         init
         {
             SetProperty(ref _pageSize, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -241,7 +241,7 @@ public class InventoryModel : ModelBase
         set
         {
             SetProperty(ref _pageNumber, value);
-            if (PageNumber is not null) GetSkins();
+            if (PageNumber is not null) GetSkinsAsync();
         }
     }
 
@@ -288,7 +288,7 @@ public class InventoryModel : ModelBase
         set
         {
             SetProperty(ref _inventoryOrderName, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -298,7 +298,7 @@ public class InventoryModel : ModelBase
         set
         {
             SetProperty(ref _isAscending, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -359,12 +359,12 @@ public class InventoryModel : ModelBase
 
     private void UserChangedHandler(object? sender)
     {
-        GetSkins();
+        GetSkinsAsync();
     }
 
     private void CurrencyChangedHandler(object? sender)
     {
-        GetSkins();
+        GetSkinsAsync();
     }
 
     private void DoClearFiltersCommand()
@@ -389,12 +389,12 @@ public class InventoryModel : ModelBase
 
         IsRefreshing = false;
         
-        GetSkins();
+        GetSkinsAsync();
     }
 
     private void DoAttachedToVisualTreeCommand()
     {
-        GetSkins();
+        GetSkinsAsync();
     }
 
     private void SetOrderingsNull()
@@ -405,7 +405,7 @@ public class InventoryModel : ModelBase
         IsSumOrdering = null;
     }
 
-    private async void GetSkins()
+    private async void GetSkinsAsync()
     {
         InventoryModels = [];
         if (_userModel.User is null) return;

@@ -195,7 +195,7 @@ public class ArchiveEditModel : BaseItemEditModel
     {
         if (_archiveModel is null) return;
         
-        bool result = await _dialogService.ShowDialog(
+        bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить удалить элемент архива: «{_archiveModel.Title}»?",
             BaseDialogModel.MessageType.Question,
             BaseDialogModel.MessageButtons.OkCancel);
@@ -215,7 +215,7 @@ public class ArchiveEditModel : BaseItemEditModel
     {
         if (IsNewArchive && SelectedSkinModel is not null)
         {
-            bool result = await _dialogService.ShowDialog(
+            bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите добавить элемент архива: «{SelectedSkinModel.Title}»?",
                 BaseDialogModel.MessageType.Question,
                 BaseDialogModel.MessageButtons.SaveCancel);
@@ -224,7 +224,7 @@ public class ArchiveEditModel : BaseItemEditModel
         }
         else if (_archiveModel is not null)
         {
-            bool result = await _dialogService.ShowDialog(
+            bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите изменить элемент архива: «{_archiveModel.Title}»?",
                 BaseDialogModel.MessageType.Question,
                 BaseDialogModel.MessageButtons.SaveCancel);

@@ -92,7 +92,7 @@ public class ActiveGroupsModel : ModelBase
 
     private void UserChangedHandler(object? sender)
     {
-        GetGroups();
+        GetGroupsAsync();
     }
 
     private void DoAddActiveCommand(ActiveGroupModel? group)
@@ -119,7 +119,7 @@ public class ActiveGroupsModel : ModelBase
     {
         if (group is null) return;
         
-        bool result = await _dialogService.ShowDialog(
+        bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить группу: «{group.Title}»?",
             BaseDialogModel.MessageType.Question,
             BaseDialogModel.MessageButtons.OkCancel);
@@ -130,15 +130,15 @@ public class ActiveGroupsModel : ModelBase
             ApiConstants.ApiMethods.DeleteActiveGroup,
             new ActiveGroups.DeleteActiveGroupRequest(group.GroupId));
 
-        GetGroups();
+        GetGroupsAsync();
     }
 
     public void UpdateGroups()
     {
-        GetGroups();
+        GetGroupsAsync();
     }
 
-    private async void GetGroups()
+    private async void GetGroupsAsync()
     {
         ActiveGroups.ActiveGroupsResponse? groupsResponses =
             await _apiClient.GetAsync<ActiveGroups.ActiveGroupsResponse, ActiveGroups.GetActiveGroupsRequest>(

@@ -177,7 +177,7 @@ public class ActiveEditModel : BaseItemEditModel
     {
         if (_activeModel is null) return;
         
-        bool result = await _dialogService.ShowDialog(
+        bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить актив: «{_activeModel.Title}»?",
             BaseDialogModel.MessageType.Question,
             BaseDialogModel.MessageButtons.OkCancel);
@@ -197,7 +197,7 @@ public class ActiveEditModel : BaseItemEditModel
     {
         if (IsNewActive && SelectedSkinModel is not null)
         {
-            bool result = await _dialogService.ShowDialog(
+            bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите добавить актив: «{SelectedSkinModel.Title}»?",
                 BaseDialogModel.MessageType.Question,
                 BaseDialogModel.MessageButtons.SaveCancel);
@@ -206,7 +206,7 @@ public class ActiveEditModel : BaseItemEditModel
         }
         else if (_activeModel is not null)
         {
-            bool result = await _dialogService.ShowDialog(
+            bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите изменить актив: «{_activeModel.Title}»?",
                 BaseDialogModel.MessageType.Question,
                 BaseDialogModel.MessageButtons.SaveCancel);

@@ -79,7 +79,7 @@ public class ProfileViewModel : ViewModelBase
         get => _profileModel.OpenSteamProfileCommand;
     }
 
-    public RelayCommand DeleteProfileCommand
+    public AsyncRelayCommand DeleteProfileCommand
     {
         get => _profileModel.DeleteProfileCommand;
     }

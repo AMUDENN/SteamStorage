@@ -258,7 +258,7 @@ public class ActiveGroupEditModel : BaseEditModel
     {
         if (_activeGroupModel is null) return;
         
-        bool result = await _dialogService.ShowDialog(
+        bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить группу: «{_activeGroupModel.Title}»?",
             BaseDialogModel.MessageType.Question,
             BaseDialogModel.MessageButtons.OkCancel);
@@ -278,7 +278,7 @@ public class ActiveGroupEditModel : BaseEditModel
     {
         if (IsNewGroup)
         {
-            bool result = await _dialogService.ShowDialog(
+            bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите добавить группу: «{GroupTitle}»?",
                 BaseDialogModel.MessageType.Question,
                 BaseDialogModel.MessageButtons.SaveCancel);
@@ -287,7 +287,7 @@ public class ActiveGroupEditModel : BaseEditModel
         }
         else if (_activeGroupModel is not null)
         {
-            bool result = await _dialogService.ShowDialog(
+            bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите изменить группу: «{_activeGroupModel.Title}»?",
                 BaseDialogModel.MessageType.Question,
                 BaseDialogModel.MessageButtons.SaveCancel);

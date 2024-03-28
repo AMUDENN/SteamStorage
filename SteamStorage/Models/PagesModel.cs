@@ -45,14 +45,14 @@ public class PagesModel : ModelBase
 
         _pageModels = [];
 
-        GetPages();
+        GetPagesAsync();
     }
 
     #endregion Constructor
 
     #region Methods
 
-    private async void GetPages()
+    private async void GetPagesAsync()
     {
         Pages.PagesResponse? pageResponses =
             await _apiClient.GetAsync<Pages.PagesResponse>(

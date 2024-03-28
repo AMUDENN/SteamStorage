@@ -82,7 +82,7 @@ public class ListItemsModel : ModelBase
             SetProperty(ref _selectedGameModel, value);
             if (value is null) return;
             IsAllGamesChecked = false;
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -94,7 +94,7 @@ public class ListItemsModel : ModelBase
             SetProperty(ref _isAllGamesChecked, value);
             if (!value) return;
             SelectedGameModel = null;
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -104,7 +104,7 @@ public class ListItemsModel : ModelBase
         set
         {
             SetProperty(ref _filter, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -202,7 +202,7 @@ public class ListItemsModel : ModelBase
         set
         {
             SetProperty(ref _isMarked, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -247,7 +247,7 @@ public class ListItemsModel : ModelBase
         init
         {
             SetProperty(ref _pageSize, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -257,7 +257,7 @@ public class ListItemsModel : ModelBase
         set
         {
             SetProperty(ref _pageNumber, value);
-            if (PageNumber is not null) GetSkins();
+            if (PageNumber is not null) GetSkinsAsync();
         }
     }
 
@@ -304,7 +304,7 @@ public class ListItemsModel : ModelBase
         set
         {
             SetProperty(ref _skinOrderName, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -314,7 +314,7 @@ public class ListItemsModel : ModelBase
         set
         {
             SetProperty(ref _isAscending, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -377,12 +377,12 @@ public class ListItemsModel : ModelBase
 
     private void UserChangedHandler(object? sender)
     {
-        GetSkins();
+        GetSkinsAsync();
     }
 
     private void CurrencyChangedHandler(object? sender)
     {
-        GetSkins();
+        GetSkinsAsync();
     }
 
     private void DoClearFiltersCommand()
@@ -414,7 +414,7 @@ public class ListItemsModel : ModelBase
         IsChange30Ordering = null;
     }
 
-    private async void GetSkins()
+    private async void GetSkinsAsync()
     {
         ListItemModels = [];
         if (_userModel.User is null) return;

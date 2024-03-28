@@ -43,10 +43,10 @@ public class GamesModel : ModelBase
 
     private void UserChangedHandler(object? sender)
     {
-        GetGames();
+        GetGamesAsync();
     }
 
-    private async void GetGames()
+    private async void GetGamesAsync()
     {
         Games.GamesResponse? gamesResponse =
             await _apiClient.GetAsync<Games.GamesResponse>(

@@ -98,7 +98,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         set
         {
             SetProperty(ref _isOneDayChecked, value);
-            if (value) GetDynamicStats(DateTime.Now.AddDays(-1), DateTime.Now);
+            if (value) GetDynamicStatsAsync(DateTime.Now.AddDays(-1), DateTime.Now);
         }
     }
 
@@ -108,7 +108,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         set
         {
             SetProperty(ref _isOneWeekChecked, value);
-            if (value) GetDynamicStats(DateTime.Now.AddDays(-7), DateTime.Now);
+            if (value) GetDynamicStatsAsync(DateTime.Now.AddDays(-7), DateTime.Now);
         }
     }
 
@@ -118,7 +118,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         set
         {
             SetProperty(ref _isOneMonthChecked, value);
-            if (value) GetDynamicStats(DateTime.Now.AddDays(-30), DateTime.Now);
+            if (value) GetDynamicStatsAsync(DateTime.Now.AddDays(-30), DateTime.Now);
         }
     }
 
@@ -128,7 +128,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         set
         {
             SetProperty(ref _isOneYearChecked, value);
-            if (value) GetDynamicStats(DateTime.Now.AddDays(-365), DateTime.Now);
+            if (value) GetDynamicStatsAsync(DateTime.Now.AddDays(-365), DateTime.Now);
         }
     }
 
@@ -231,7 +231,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         };
     }
 
-    private async void GetDynamicStats(DateTime dateStart, DateTime dateEnd)
+    private async void GetDynamicStatsAsync(DateTime dateStart, DateTime dateEnd)
     {
         IsLoading = true;
         DatePeriod =

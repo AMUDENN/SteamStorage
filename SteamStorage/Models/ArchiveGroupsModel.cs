@@ -92,7 +92,7 @@ public class ArchiveGroupsModel : ModelBase
 
     private void UserChangedHandler(object? sender)
     {
-        GetGroups();
+        GetGroupsAsync();
     }
 
     private void DoAddArchiveCommand(ArchiveGroupModel? group)
@@ -119,7 +119,7 @@ public class ArchiveGroupsModel : ModelBase
     {
         if (group is null) return;
         
-        bool result = await _dialogService.ShowDialog(
+        bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить группу: «{group.Title}»?",
             BaseDialogModel.MessageType.Question,
             BaseDialogModel.MessageButtons.OkCancel);
@@ -130,15 +130,15 @@ public class ArchiveGroupsModel : ModelBase
             ApiConstants.ApiMethods.DeleteArchiveGroup,
             new ArchiveGroups.DeleteArchiveGroupRequest(group.GroupId));
 
-        GetGroups();
+        GetGroupsAsync();
     }
 
     public void UpdateGroups()
     {
-        GetGroups();
+        GetGroupsAsync();
     }
 
-    private async void GetGroups()
+    private async void GetGroupsAsync()
     {
         ArchiveGroups.ArchiveGroupsResponse? groupsResponses =
             await _apiClient.GetAsync<ArchiveGroups.ArchiveGroupsResponse, ArchiveGroups.GetArchiveGroupsRequest>(

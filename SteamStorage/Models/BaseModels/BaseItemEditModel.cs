@@ -51,7 +51,7 @@ public abstract class BaseItemEditModel : BaseEditModel
         set
         {
             SetProperty(ref _filter, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -117,7 +117,7 @@ public abstract class BaseItemEditModel : BaseEditModel
                 .ToList();
     }
 
-    private async void GetSkins()
+    private async void GetSkinsAsync()
     {
         await CancellationTokenSource.CancelAsync();
 

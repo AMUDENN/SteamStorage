@@ -220,7 +220,7 @@ public class ActivesReviewModel : ModelBase
         set
         {
             SetProperty(ref _activeGroupOrderName, value);
-            GetGroups();
+            GetGroupsAsync();
         }
     }
 
@@ -230,7 +230,7 @@ public class ActivesReviewModel : ModelBase
         set
         {
             SetProperty(ref _isAscending, value);
-            GetGroups();
+            GetGroupsAsync();
         }
     }
 
@@ -287,14 +287,14 @@ public class ActivesReviewModel : ModelBase
 
     private void UserChangedHandler(object? sender)
     {
-        RefreshStatistics();
-        GetGroups();
+        RefreshStatisticsAsync();
+        GetGroupsAsync();
     }
 
     private void CurrencyChangedHandler(object? sender)
     {
-        RefreshStatistics();
-        GetGroups();
+        RefreshStatisticsAsync();
+        GetGroupsAsync();
     }
 
     private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
@@ -313,17 +313,17 @@ public class ActivesReviewModel : ModelBase
 
     private void DoAttachedToVisualTreeCommand()
     {
-        RefreshStatistics();
-        GetGroups();
+        RefreshStatisticsAsync();
+        GetGroupsAsync();
         _activeGroupsModel.UpdateGroups();
     }
 
-    private void RefreshStatistics()
+    private async void RefreshStatisticsAsync()
     {
         //TODO:
     }
 
-    private async void GetGroups()
+    private async void GetGroupsAsync()
     {
         ActiveGroupModels = [];
         if (_userModel.User is null) return;

@@ -9,16 +9,16 @@ public interface IDialogService
 {
     public static DialogWindow? CurrentDialogWindow { get; protected set; }
     
-    public Task<bool> ShowDialog(ViewModelBase viewModel);
+    public Task<bool> ShowDialogAsync(ViewModelBase viewModel);
     
-    public Task<bool> ShowDialog(
+    public Task<bool> ShowDialogAsync(
         string message = "", 
         BaseDialogModel.MessageType messageType = BaseDialogModel.MessageType.Info,
         BaseDialogModel.MessageButtons messageButtons = BaseDialogModel.MessageButtons.Ok);
 
-    public Task ShowMessage(ViewModelBase viewModel);
+    public Task ShowMessageAsync(ViewModelBase viewModel);
     
-    public Task ShowMessage(
+    public Task ShowMessageAsync(
         string message = "", 
         BaseDialogModel.MessageType messageType = BaseDialogModel.MessageType.Info,
         BaseDialogModel.MessageButtons messageButtons = BaseDialogModel.MessageButtons.Ok);

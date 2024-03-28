@@ -80,7 +80,7 @@ public class ListArchivesModel : ModelBase
         set
         {
             SetProperty(ref _selectedGroupModel, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -92,7 +92,7 @@ public class ListArchivesModel : ModelBase
             SetProperty(ref _selectedGameModel, value);
             if (value is null) return;
             IsAllGamesChecked = false;
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -104,7 +104,7 @@ public class ListArchivesModel : ModelBase
             SetProperty(ref _isAllGamesChecked, value);
             if (!value) return;
             SelectedGameModel = null;
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -114,7 +114,7 @@ public class ListArchivesModel : ModelBase
         set
         {
             SetProperty(ref _filter, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -287,7 +287,7 @@ public class ListArchivesModel : ModelBase
         init
         {
             SetProperty(ref _pageSize, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -297,7 +297,7 @@ public class ListArchivesModel : ModelBase
         set
         {
             SetProperty(ref _pageNumber, value);
-            if (PageNumber is not null) GetSkins();
+            if (PageNumber is not null) GetSkinsAsync();
         }
     }
 
@@ -344,7 +344,7 @@ public class ListArchivesModel : ModelBase
         set
         {
             SetProperty(ref _archiveOrderName, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -354,7 +354,7 @@ public class ListArchivesModel : ModelBase
         set
         {
             SetProperty(ref _isAscending, value);
-            GetSkins();
+            GetSkinsAsync();
         }
     }
 
@@ -413,12 +413,12 @@ public class ListArchivesModel : ModelBase
 
     private void UserChangedHandler(object? sender)
     {
-        GetSkins();
+        GetSkinsAsync();
     }
 
     private void CurrencyChangedHandler(object? sender)
     {
-        GetSkins();
+        GetSkinsAsync();
     }
 
     private void DoClearFiltersCommand()
@@ -441,7 +441,7 @@ public class ListArchivesModel : ModelBase
     {
         if (model is null) return;
         
-        bool result = await _dialogService.ShowDialog(
+        bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить элемент архива: «{model.Title}»?",
             BaseDialogModel.MessageType.Question,
             BaseDialogModel.MessageButtons.OkCancel);
@@ -452,7 +452,7 @@ public class ListArchivesModel : ModelBase
             ApiConstants.ApiMethods.DeleteArchive,
             new Archives.DeleteArchiveRequest(model.ArchiveId));
 
-        GetSkins();
+        GetSkinsAsync();
     }
 
     public void OpenArchiveGroup(IEnumerable<BaseGroupModel> groupModels, ArchiveGroupModel? model)
@@ -462,7 +462,7 @@ public class ListArchivesModel : ModelBase
     
     public void UpdateSkins()
     {
-        GetSkins();
+        GetSkinsAsync();
     }
 
     private void SetOrderingsNull()
@@ -475,7 +475,7 @@ public class ListArchivesModel : ModelBase
         IsChangeOrdering = null;
     }
 
-    private async void GetSkins()
+    private async void GetSkinsAsync()
     {
         ArchiveModels = [];
         if (_userModel.User is null) return;

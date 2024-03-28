@@ -214,7 +214,7 @@ public class ArchivesReviewModel : ModelBase
         set
         {
             SetProperty(ref _archiveGroupOrderName, value);
-            GetGroups();
+            GetGroupsAsync();
         }
     }
 
@@ -224,7 +224,7 @@ public class ArchivesReviewModel : ModelBase
         set
         {
             SetProperty(ref _isAscending, value);
-            GetGroups();
+            GetGroupsAsync();
         }
     }
 
@@ -278,14 +278,14 @@ public class ArchivesReviewModel : ModelBase
 
     private void UserChangedHandler(object? sender)
     {
-        RefreshStatistics();
-        GetGroups();
+        RefreshStatisticsAsync();
+        GetGroupsAsync();
     }
 
     private void CurrencyChangedHandler(object? sender)
     {
-        RefreshStatistics();
-        GetGroups();
+        RefreshStatisticsAsync();
+        GetGroupsAsync();
     }
 
     private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
@@ -304,17 +304,17 @@ public class ArchivesReviewModel : ModelBase
 
     private void DoAttachedToVisualTreeCommand()
     {
-        RefreshStatistics();
-        GetGroups();
+        RefreshStatisticsAsync();
+        GetGroupsAsync();
         _archiveGroupsModel.UpdateGroups();
     }
 
-    private void RefreshStatistics()
+    private async void RefreshStatisticsAsync()
     {
         //TODO:
     }
 
-    private async void GetGroups()
+    private async void GetGroupsAsync()
     {
         ArchiveGroupModels = [];
         if (_userModel.User is null) return;
