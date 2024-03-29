@@ -1,4 +1,5 @@
-﻿using SteamStorage.Models;
+﻿using Avalonia.Media;
+using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.ViewModels.BaseViewModels;
 
@@ -36,12 +37,12 @@ public class ArchiveGroupEditViewModel : BaseEditViewModel
         set => _archiveGroupEditModel.Description = value;
     }
 
-    public string? DefaultColour
+    public Color DefaultColour
     {
         get => _archiveGroupEditModel.DefaultColour;
     }
 
-    public string? Colour
+    public Color Colour
     {
         get => _archiveGroupEditModel.Colour;
         set => _archiveGroupEditModel.Colour = value;

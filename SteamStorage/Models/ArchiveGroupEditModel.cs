@@ -1,10 +1,9 @@
-﻿using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Avalonia.Media;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
-using SteamStorage.Utilities;
 using SteamStorage.Utilities.Dialog;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
@@ -34,8 +33,8 @@ public class ArchiveGroupEditModel : BaseEditModel
     private string? _defaultDescription;
     private string? _description;
 
-    private string? _defaultColour;
-    private string? _colour;
+    private Color _defaultColour;
+    private Color _colour;
 
     private bool _isNewGroup;
 
@@ -80,20 +79,16 @@ public class ArchiveGroupEditModel : BaseEditModel
         }
     }
 
-    public string? DefaultColour
+    public Color DefaultColour
     {
         get => _defaultColour;
         private set => SetProperty(ref _defaultColour, value);
     }
 
-    public string? Colour
+    public Color Colour
     {
         get => _colour;
-        set
-        {
-            SetProperty(ref _colour, value);
-            SaveCommand.NotifyCanExecuteChanged();
-        }
+        set => SetProperty(ref _colour, value);
     }
 
     public bool IsNewGroup
@@ -204,8 +199,7 @@ public class ArchiveGroupEditModel : BaseEditModel
     protected override bool CanExecuteSaveCommand()
     {
         return GroupTitle.Length is >= 3 and <= 100
-               && Description?.Length <= 300
-               && (string.IsNullOrEmpty(Colour) || Regex.IsMatch(Colour, ProgramConstants.COLOUR_PATTERN));
+               && Description?.Length <= 300;
     }
 
     private void SetTitle(BaseGroupModel? model)
@@ -229,7 +223,8 @@ public class ArchiveGroupEditModel : BaseEditModel
 
         DefaultDescription = model?.Description ?? string.Empty;
 
-        DefaultColour = model?.Colour ?? string.Empty;
+        bool isColor = Color.TryParse(model?.Colour, out Color color);
+        DefaultColour = isColor ? color : Colors.White;
 
         DateCreationString = model?.DateCreationString ?? NO_DATA;
         BuySumString = model?.BuySumString ?? NO_DATA;

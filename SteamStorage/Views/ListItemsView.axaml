@@ -104,7 +104,8 @@
             
         </Grid>
         
-        <Rectangle Height="2"
+        <Rectangle Classes="ForegroundRectangle"
+                   Height="2"
                    Margin="25, 0" 
                    Grid.Row="3"/>
             

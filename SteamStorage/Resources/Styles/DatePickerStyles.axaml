@@ -52,14 +52,16 @@
                                                Padding="{DynamicResource DatePickerHostPadding}"
                                                Grid.Column="4"/>
                                     <Rectangle x:Name="PART_FirstSpacer"
-                                               Fill="{DynamicResource DatePickerSpacerFill}"
+                                               Fill="{DynamicResource ForegroundBrush}"
                                                HorizontalAlignment="Center"
                                                Width="1"
+                                               Opacity="0"
                                                Grid.Column="1" />
                                     <Rectangle x:Name="PART_SecondSpacer"
-                                               Fill="{DynamicResource DatePickerSpacerFill}"
+                                               Fill="{DynamicResource ForegroundBrush}"
                                                HorizontalAlignment="Center"
                                                Width="1"
+                                               Opacity="0"
                                                Grid.Column="3" />
                                 </Grid>
                             </Grid>

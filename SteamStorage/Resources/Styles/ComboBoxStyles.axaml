@@ -4,7 +4,7 @@
         xmlns:controls="using:SteamStorage.Resources.Controls"
         xmlns:baseModels="clr-namespace:SteamStorage.Models.UtilityModels.BaseModels">
     
-    <Style Selector="ComboBox">
+    <Style Selector="ComboBox.BaseComboBox">
         <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
         <Setter Property="PlaceholderForeground" Value="{DynamicResource ForegroundBrush}"/>
@@ -16,7 +16,7 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <DataValidationErrors>
-                    <Grid ColumnDefinitions="*,40"
+                    <Grid ColumnDefinitions="*, 40"
                           Margin="{TemplateBinding Padding}">
                         
                         <Border x:Name="Background"
@@ -143,7 +143,7 @@
         </Style>
     </Style>
     
-    <Style Selector="ComboBoxItem">
+    <Style Selector="ComboBox.BaseComboBox ComboBoxItem">
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Padding" Value="11, 4, 11, 7"/>

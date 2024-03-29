@@ -48,11 +48,13 @@
                                    FontSize="6"
                                    Grid.Row="2"/>
                         
-                        <Rectangle Height="2"
+                        <Rectangle Classes="ForegroundRectangle"
+                                   Height="2"
                                    Margin="20, 0" 
                                    Grid.Row="3"/>
                         
-                        <Rectangle Height="2"
+                        <Rectangle Classes="ForegroundRectangle"
+                                   Height="2"
                                    Margin="20, 0" 
                                    Grid.Row="5"/>
                         

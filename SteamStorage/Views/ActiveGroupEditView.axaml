@@ -12,6 +12,7 @@
     
     <UserControl.Resources>
         <converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
+        <converters:DoubleMultiplicationConverter x:Key="DoubleMultiplicationConverter"/>
     </UserControl.Resources>
     
     <Border Classes="BackgroundAdditionalBorder BigRoundedBorder">
@@ -73,10 +74,10 @@
                                                     DefaultValue="{Binding DefaultColour, Mode=OneWay}" 
                                                     Classes="MiddleDefaultContentControl"
                                                     Grid.Row="6">
-                        <controls:AdvancedTextBox Text="{Binding Colour}"
-                                                  PreviewCharRegex="[#A-Fa-f0-9]"
-                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
-                                                  Height="50"/>
+	                    <ColorPicker Color="{Binding Colour}"
+	                                 Classes="DarkColorPicker"
+	                                 Height="50" Width="{Binding $parent.Bounds.Width, 
+														 Converter={StaticResource DoubleMultiplicationConverter}, ConverterParameter=0.75, Mode=OneWay}"/>
                     </controls:DefaultContentControl>
                     
                 </Grid>

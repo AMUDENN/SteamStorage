@@ -4,7 +4,7 @@
     <Style Selector="ToolTip">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="ShowDelay" Value="300"/>
-        <Setter Property="MaxWidth" Value="300"/>
+        <Setter Property="MaxWidth" Value="400"/>
         <Setter Property="Opacity" Value="0"/>
         <Setter Property="Transitions">
             <Transitions>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Avalonia.Media;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -52,12 +53,12 @@ public class ActiveGroupEditViewModel : BaseEditViewModel
         set => _activeGroupEditModel.GoalSum = value;
     }
 
-    public string? DefaultColour
+    public Color DefaultColour
     {
         get => _activeGroupEditModel.DefaultColour;
     }
 
-    public string? Colour
+    public Color Colour
     {
         get => _activeGroupEditModel.Colour;
         set => _activeGroupEditModel.Colour = value;

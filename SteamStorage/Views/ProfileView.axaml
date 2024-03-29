@@ -126,7 +126,7 @@
 				<ComboBox ItemsSource="{Binding CurrencyModels, Mode=OneWay}"
 				          SelectedItem="{Binding SelectedCurrency}" 
 				          PlaceholderText="Выберите валюту"
-				          Classes="CurrencyComboBox DarkComboBox"
+				          Classes="CurrencyComboBox BaseComboBox DarkComboBox"
 				          Grid.Column="1"/>
                 
             </Grid>
@@ -158,7 +158,7 @@
 				<ComboBox ItemsSource="{Binding PageModels, Mode=OneWay}"
 				          SelectedItem="{Binding SelectedPage}" 
 				          PlaceholderText="Выберите страницу"
-				          Classes="PageComboBox DarkComboBox"
+				          Classes="PageComboBox BaseComboBox DarkComboBox"
 				          Grid.Column="1"/>
                 
 			</Grid>

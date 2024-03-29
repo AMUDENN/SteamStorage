@@ -44,7 +44,7 @@
                         <ComboBox ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
                                   SelectedItem="{Binding SelectedActiveGroupModel}" 
                                   PlaceholderText="Выберите группу"
-                                  Classes="GroupComboBox DarkComboBox"
+                                  Classes="GroupComboBox BaseComboBox DarkComboBox"
                                   Height="50"/>
                     </controls:DefaultContentControl>
                     

@@ -13,18 +13,21 @@
 	    
 	    <!-- BaseTheme -->
 	    <FluentTheme/>
+	    
+	    <!-- ColorPicker base style -->
+	    <StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Fluent/Fluent.xaml"/>
         
         <!-- Styles -->
 	    <StyleInclude Source="/Resources/Styles/AutoCompleteBoxStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/BorderStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/ButtonStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/CheckBoxStyles.axaml"/>
+	    <StyleInclude Source="/Resources/Styles/ColorPickerStyles.axaml"/>
 	    <StyleInclude Source="/Resources/Styles/ComboBoxStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ContentPresenterStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/ContextMenuStyles.axaml"/>
 	    <StyleInclude Source="/Resources/Styles/DatePickerStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/GridStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/HyperlinkButtonStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/ImageStyles.axaml"/>
 		<StyleInclude Source="/Resources/Styles/ListBoxStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/NumericUpDownStyles.axaml"/>
@@ -45,6 +48,7 @@
         <StyleInclude Source="/Resources/Styles/CustomControls/AdvancedNumericUpDownStyles.axaml"/>
         <StyleInclude Source="/Resources/Styles/CustomControls/AdvancedTextBoxStyles.axaml"/>
 	    <StyleInclude Source="/Resources/Styles/CustomControls/DefaultContentControlStyles.axaml"/>
+	    <StyleInclude Source="/Resources/Styles/CustomControls/HyperlinkButtonStyles.axaml"/>
 	    <StyleInclude Source="/Resources/Styles/CustomControls/VectorImageStyles.axaml"/>
 	    
 	    

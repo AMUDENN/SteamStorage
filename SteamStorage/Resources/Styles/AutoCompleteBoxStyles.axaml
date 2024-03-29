@@ -3,10 +3,6 @@
         xmlns:asyncImageLoader="using:AsyncImageLoader"
         xmlns:baseViewModels="clr-namespace:SteamStorage.ViewModels.UtilityViewModels.BaseViewModels">
     
-    <Style Selector="AutoCompleteBox">
-        
-    </Style>
-    
     <Style Selector="AutoCompleteBox.SmallAutoCompleteBox">
         <Setter Property="FontSize" Value="20"/>
     </Style>

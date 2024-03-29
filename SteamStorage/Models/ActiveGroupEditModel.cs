@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Avalonia.Media;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
-using SteamStorage.Utilities;
 using SteamStorage.Utilities.Dialog;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
@@ -41,8 +40,8 @@ public class ActiveGroupEditModel : BaseEditModel
     private string? _defaultGoalSum;
     private string? _goalSum;
 
-    private string? _defaultColour;
-    private string? _colour;
+    private Color _defaultColour;
+    private Color _colour;
 
     private bool _isNewGroup;
 
@@ -104,20 +103,16 @@ public class ActiveGroupEditModel : BaseEditModel
         }
     }
 
-    public string? DefaultColour
+    public Color DefaultColour
     {
         get => _defaultColour;
         private set => SetProperty(ref _defaultColour, value);
     }
 
-    public string? Colour
+    public Color Colour
     {
         get => _colour;
-        set
-        {
-            SetProperty(ref _colour, value);
-            SaveCommand.NotifyCanExecuteChanged();
-        }
+        set => SetProperty(ref _colour, value);
     }
 
     public bool IsNewGroup
@@ -311,8 +306,7 @@ public class ActiveGroupEditModel : BaseEditModel
     {
         return GroupTitle.Length is >= 3 and <= 100
                && Description?.Length <= 300
-               && (string.IsNullOrEmpty(GoalSum) || decimal.TryParse(GoalSum, out decimal _))
-               && (string.IsNullOrEmpty(Colour) || Regex.IsMatch(Colour, ProgramConstants.COLOUR_PATTERN));
+               && (string.IsNullOrEmpty(GoalSum) || decimal.TryParse(GoalSum, out decimal _));
     }
 
     private void SetTitle(BaseGroupModel? model)
@@ -339,7 +333,8 @@ public class ActiveGroupEditModel : BaseEditModel
 
         DefaultGoalSum = $"{model?.GoalSum:N2}";
 
-        DefaultColour = model?.Colour ?? string.Empty;
+        bool isColor = Color.TryParse(model?.Colour, out Color color);
+        DefaultColour = isColor ? color : Colors.Black;
 
         DateCreationString = model?.DateCreationString ?? NO_DATA;
         BuySumString = model?.BuySumString ?? NO_DATA;

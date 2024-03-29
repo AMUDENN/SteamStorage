@@ -1,7 +1,7 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-	<Style Selector="Rectangle">
+	<Style Selector="Rectangle.ForegroundRectangle">
 		<Setter Property="Fill" Value="{DynamicResource ForegroundBrush}"/>
 		<Setter Property="VerticalAlignment" Value="Center"/>
 		<Setter Property="Opacity" Value="0.5"/>

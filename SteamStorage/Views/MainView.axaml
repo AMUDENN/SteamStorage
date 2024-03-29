@@ -84,9 +84,10 @@
 						   Classes="CenterTextBlock LittleTextBlock" 
 						   Grid.Row="2"/>
 
-				<Rectangle Height="2" MaxWidth="180" 
-						   Margin="20, 0" 
-						   Grid.Row="3"/>
+				<Rectangle Classes="ForegroundRectangle"
+				           Height="2" MaxWidth="180" 
+				           Margin="20, 0" 
+				           Grid.Row="3"/>
 				
 				<ListBox ItemsSource="{Binding NavigationOptions, Mode=OneWay}" 
 						 SelectedItem="{Binding SelectedNavigationModel}"
@@ -94,7 +95,8 @@
 						 Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
 						 Grid.Row="4"/>
 
-				<Rectangle Height="2" MaxWidth="180" 
+				<Rectangle Classes="ForegroundRectangle"
+				           Height="2" MaxWidth="180" 
 				           Margin="20, 0" 
 				           Grid.Row="5"/>
 				

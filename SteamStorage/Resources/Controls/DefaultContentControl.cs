@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Media;
 using CommunityToolkit.Mvvm.Input;
 
 namespace SteamStorage.Resources.Controls;
@@ -79,6 +80,9 @@ public class DefaultContentControl : ContentControl
                 break;
             case DatePicker dp:
                 dp.SelectedDate = DefaultValue is DateTimeOffset offset ? offset : DateTimeOffset.Now;
+                break;
+            case ColorPicker cp:
+                cp.Color = DefaultValue is Color color ? color : Colors.Transparent;
                 break;
         }
     }
