@@ -27,7 +27,7 @@ public static class Statistics
     public record InventoryStatisticResponse(
         int Count,
         double Sum,
-        IEnumerable<InventoryGameStatisticResponse> Games) : Response;
+        IEnumerable<InventoryGameStatisticResponse>? Games) : Response;
 
     public record InventoryGameStatisticResponse(
         string GameTitle,

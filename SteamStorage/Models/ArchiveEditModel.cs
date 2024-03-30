@@ -247,9 +247,9 @@ public class ArchiveEditModel : BaseItemEditModel
     protected override bool CanExecuteSaveCommand()
     {
         return SelectedArchiveGroupModel is not null
-               && int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int _)
-               && decimal.TryParse(BuyPrice, out decimal _)
-               && decimal.TryParse(SoldPrice, out decimal _)
+               && (int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
+               && (decimal.TryParse(BuyPrice, out decimal buyPrice) && buyPrice >= (decimal)0.01)
+               && (decimal.TryParse(SoldPrice, out decimal soldPrice) && soldPrice >= (decimal)0.01)
                && Description?.Length <= 300
                && SelectedSkinModel is not null;
     }

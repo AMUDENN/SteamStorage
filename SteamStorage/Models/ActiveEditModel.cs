@@ -229,9 +229,9 @@ public class ActiveEditModel : BaseItemEditModel
     protected override bool CanExecuteSaveCommand()
     {
         return SelectedActiveGroupModel is not null
-               && int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int _)
-               && decimal.TryParse(BuyPrice, out decimal _)
-               && (string.IsNullOrEmpty(GoalPrice) || decimal.TryParse(GoalPrice, out decimal _))
+               && (int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
+               && (decimal.TryParse(BuyPrice, out decimal price) && price >= (decimal)0.01)
+               && (string.IsNullOrEmpty(GoalPrice) || (decimal.TryParse(GoalPrice, out decimal goal) && goal >= (decimal)0.01))
                && Description?.Length <= 300
                && SelectedSkinModel is not null;
     }

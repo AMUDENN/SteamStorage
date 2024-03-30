@@ -227,8 +227,8 @@ public class ActiveSoldModel : BaseEditModel
     protected override bool CanExecuteSaveCommand()
     {
         return SelectedArchiveGroupModel is not null
-               && int.TryParse(SoldCount.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int _)
-               && decimal.TryParse(SoldPrice, out decimal _)
+               && (int.TryParse(SoldCount.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
+               && (decimal.TryParse(SoldPrice, out decimal price) && price >= (decimal)0.01)
                && Description?.Length <= 300;
     }
 

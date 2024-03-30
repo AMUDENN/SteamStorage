@@ -28,7 +28,7 @@
             <ComboBox ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
                       SelectedItem="{Binding SelectedGroupModel}" 
                       PlaceholderText="Выберите группу"
-                      Classes="GroupComboBox"
+                      Classes="BaseComboBox GroupComboBox"
                       Grid.Column="0"/>
             
             <Button Command="{Binding AddActiveGroupCommand, Mode=OneWay}"

@@ -112,7 +112,11 @@ public class ActiveGroupEditModel : BaseEditModel
     public Color Colour
     {
         get => _colour;
-        set => SetProperty(ref _colour, value);
+        set
+        {
+            SetProperty(ref _colour, value); 
+            SaveCommand.NotifyCanExecuteChanged();
+        }
     }
 
     public bool IsNewGroup
@@ -306,7 +310,8 @@ public class ActiveGroupEditModel : BaseEditModel
     {
         return GroupTitle.Length is >= 3 and <= 100
                && Description?.Length <= 300
-               && (string.IsNullOrEmpty(GoalSum) || decimal.TryParse(GoalSum, out decimal _));
+               && (string.IsNullOrEmpty(GoalSum) || (decimal.TryParse(GoalSum, out decimal sum) && sum >= (decimal)0.01))
+               && Colour != Colors.Transparent;
     }
 
     private void SetTitle(BaseGroupModel? model)
