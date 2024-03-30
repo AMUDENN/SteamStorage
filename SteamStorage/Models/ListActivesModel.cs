@@ -552,6 +552,10 @@ public class ListActivesModel : ModelBase
         SavedItemsCount = activesResponse.Count;
         PagesCount = activesResponse.PagesCount;
 
+        Count = activesResponse.ActivesCount;
+        InvestedSumString = $"{activesResponse.InvestmentSum:N2} {_userModel.CurrencyMark}";
+        CurrentSumString = $"{activesResponse.CurrentSum:N2} {_userModel.CurrencyMark}";
+
         if (activesResponse.Actives is null) return;
 
         ActiveModels = activesResponse.Actives.Select(x =>

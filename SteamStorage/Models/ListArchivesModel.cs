@@ -412,6 +412,9 @@ public class ListArchivesModel : ModelBase
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
 
+        _investedSumString = string.Empty;
+        _soldSumString = string.Empty;
+        
         _archiveModels = [];
         _cancellationTokenSource = new();
 
@@ -526,7 +529,11 @@ public class ListArchivesModel : ModelBase
         SavedItemsCount = archivesResponse.Count;
         PagesCount = archivesResponse.PagesCount;
         
-        if (archivesResponse?.Archives is null) return;
+        Count = archivesResponse.ArchivesCount;
+        InvestedSumString = $"{archivesResponse.InvestmentSum:N2} {_userModel.CurrencyMark}";
+        SoldSumString = $"{archivesResponse.SoldSum:N2} {_userModel.CurrencyMark}";
+        
+        if (archivesResponse.Archives is null) return;
 
         ArchiveModels = archivesResponse.Archives.Select(x =>
                 new ArchiveViewModel(

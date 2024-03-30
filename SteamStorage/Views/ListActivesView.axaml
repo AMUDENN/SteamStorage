@@ -14,7 +14,7 @@
                 Grid.Row="0">
             
             <Grid RowDefinitions="40, 40"
-                  ColumnDefinitions="*, 2*, *, 2*, *, 2*, *"
+                  ColumnDefinitions="2*, 5*, *, 5*, *, 5*, 2*"
                   Margin="20">
                 
                 <TextBlock Text="Количество"
