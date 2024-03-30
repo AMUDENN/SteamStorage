@@ -8,6 +8,8 @@ public abstract class BaseDialogModel : ModelBase
 {
     #region Commands
 
+    public RelayCommand<object> SetDialogResultCommand { get; }
+    
     public RelayCommand SetDialogResultTrueCommand { get; }
     
     public RelayCommand SetDialogResultFalseCommand { get; }
@@ -18,6 +20,7 @@ public abstract class BaseDialogModel : ModelBase
 
     public BaseDialogModel()
     {
+        SetDialogResultCommand = new(DoSetDialogResultCommand, CanExecuteSetDialogResultCommand);
         SetDialogResultTrueCommand = new(DoSetDialogResultTrueCommand, CanExecuteSetDialogResultTrueCommand);
         SetDialogResultFalseCommand = new(DoSetDialogResultFalseCommand, CanExecuteSetDialogResultFalseCommand);
     }
@@ -26,9 +29,19 @@ public abstract class BaseDialogModel : ModelBase
 
     #region Methods
 
+    private void DoSetDialogResultCommand(object? obj)
+    {
+        IDialogService.CurrentDialogWindow?.Close(obj);
+    }
+
+    protected virtual bool CanExecuteSetDialogResultCommand(object? obj)
+    {
+        return true;
+    }
+    
     private void DoSetDialogResultTrueCommand()
     {
-        IDialogService.CurrentDialogWindow?.Close(default);
+        IDialogService.CurrentDialogWindow?.Close(true);
     }
 
     protected virtual bool CanExecuteSetDialogResultTrueCommand()
@@ -38,7 +51,7 @@ public abstract class BaseDialogModel : ModelBase
     
     private void DoSetDialogResultFalseCommand()
     {
-        IDialogService.CurrentDialogWindow?.Close(default);
+        IDialogService.CurrentDialogWindow?.Close(false);
     }
 
     protected virtual bool CanExecuteSetDialogResultFalseCommand()

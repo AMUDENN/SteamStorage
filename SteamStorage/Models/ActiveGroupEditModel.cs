@@ -354,7 +354,7 @@ public class ActiveGroupEditModel : BaseEditModel
         else
         {
             model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
-            IsOneMonthChecked = true;
+            model.UpdateStats();
             IsNewGroup = false;
         }
 

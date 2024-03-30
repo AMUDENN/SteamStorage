@@ -38,8 +38,8 @@ public static class Actives
         int Count,
         int PagesCount,
         int ActivesCount,
-        double InvestmentSum,
-        double CurrentSum,
+        decimal InvestmentSum,
+        decimal CurrentSum,
         IEnumerable<ActiveResponse>? Actives) : Response;
 
     public record ActivesPagesCountResponse(

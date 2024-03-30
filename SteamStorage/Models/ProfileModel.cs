@@ -75,7 +75,7 @@ public class ProfileModel : ModelBase
         get => _selectedCurrency;
         set
         {
-            if (value is not null && value != _selectedCurrency)
+            if (value is not null && value.Id != _selectedCurrency?.Id)
                 SetCurrency(value);
             SetProperty(ref _selectedCurrency, value);
         }
@@ -92,7 +92,7 @@ public class ProfileModel : ModelBase
         get => _selectedPage;
         set
         {
-            if (value is not null && value != _selectedPage)
+            if (value is not null && value.Id != _selectedPage?.Id)
                 SetPage(value);
             SetProperty(ref _selectedPage, value);
         }

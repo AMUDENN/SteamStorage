@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.Settings.SettingsService;
@@ -52,8 +53,13 @@ public class UserModel : ModelBase
         get => _currency;
         private set
         {
+            int? id = _currency?.Id;
+            DateTime? dateUpdate = _currency?.DateUpdate;
+
             SetProperty(ref _currency, value);
-            OnCurrencyChanged();
+
+            if (id != value?.Id || dateUpdate != value?.DateUpdate)
+                OnCurrencyChanged();
         }
     }
 

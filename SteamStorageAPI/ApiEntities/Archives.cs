@@ -37,8 +37,8 @@ public static class Archives
         int Count,
         int PagesCount,
         int ArchivesCount,
-        double InvestmentSum,
-        double SoldSum,
+        decimal InvestmentSum,
+        decimal SoldSum,
         IEnumerable<ArchiveResponse>? Archives) : Response;
 
     public record ArchivesPagesCountResponse(

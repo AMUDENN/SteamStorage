@@ -114,7 +114,7 @@
                     				
                     <TextBlock Text="{Binding InvestedSumGrowth, StringFormat=N0, Mode=OneWay,
                     				  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=0}"
-                               Classes="LargeTextBlock CenterTextBlock"
+                               Classes="BigTextBlock CenterTextBlock"
                                HorizontalAlignment="Center"
                                Margin="10, 5, 10, 10"/>
 					
