@@ -10,8 +10,38 @@
     
     <Grid RowDefinitions="120, 20, 50, 20, 60, 20, 30, 40, *, 20, 30">
         
-        <Border Classes="BigRoundedBorder FirstAccentGradientBorder" 
+        <Border Classes="BigRoundedBorder FirstAccentGradientBorder"
                 Grid.Row="0">
+            
+            <Grid RowDefinitions="40, 40"
+                  ColumnDefinitions="*, 2*, *, 2*, *, 2*, *"
+                  Margin="20">
+                
+                <TextBlock Text="Количество"
+                           Classes="MiddleTextBlock CenterTextBlock"
+                           Grid.Row="0" Grid.Column="1"/>
+                
+                <TextBlock Text="{Binding Count, StringFormat=N0, Mode=OneWay}"
+                           Classes="BigTextBlock CenterTextBlock"
+                           Grid.Row="1" Grid.Column="1"/>
+                
+                <TextBlock Text="Сумма вложений"
+                           Classes="MiddleTextBlock CenterTextBlock"
+                           Grid.Row="0" Grid.Column="3"/>
+                
+                <TextBlock Text="{Binding InvestedSumString, Mode=OneWay}"
+                           Classes="BigTextBlock CenterTextBlock"
+                           Grid.Row="1" Grid.Column="3"/>
+                
+                <TextBlock Text="Текущая сумма"
+                           Classes="MiddleTextBlock CenterTextBlock"
+                           Grid.Row="0" Grid.Column="5"/>
+                
+                <TextBlock Text="{Binding CurrentSumString, Mode=OneWay}"
+                           Classes="BigTextBlock CenterTextBlock"
+                           Grid.Row="1" Grid.Column="5"/>
+                
+            </Grid>
             
         </Border>
         

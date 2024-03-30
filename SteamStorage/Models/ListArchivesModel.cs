@@ -38,6 +38,10 @@ public class ListArchivesModel : ModelBase
     private readonly UserModel _userModel;
     private readonly IDialogService _dialogService;
 
+    private int _count;
+    private string _investedSumString;
+    private string _soldSumString;
+    
     private BaseGroupModel? _selectedGroupModel;
 
     private GameModel? _selectedGameModel;
@@ -74,6 +78,24 @@ public class ListArchivesModel : ModelBase
 
     #region Properties
 
+    public int Count
+    {
+        get => _count;
+        private set => SetProperty(ref _count, value);
+    }
+
+    public string InvestedSumString
+    {
+        get => _investedSumString;
+        private set => SetProperty(ref _investedSumString, value);
+    }
+
+    public string SoldSumString
+    {
+        get => _soldSumString;
+        private set => SetProperty(ref _soldSumString, value);
+    }
+    
     public BaseGroupModel? SelectedGroupModel
     {
         get => _selectedGroupModel;

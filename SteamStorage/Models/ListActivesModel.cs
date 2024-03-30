@@ -45,6 +45,10 @@ public class ListActivesModel : ModelBase
     private readonly IThemeService _themeService;
     private readonly IDialogService _dialogService;
 
+    private int _count;
+    private string _investedSumString;
+    private string _currentSumString;
+    
     private BaseGroupModel? _selectedGroupModel;
 
     private GameModel? _selectedGameModel;
@@ -81,6 +85,24 @@ public class ListActivesModel : ModelBase
 
     #region Properties
 
+    public int Count
+    {
+        get => _count;
+        private set => SetProperty(ref _count, value);
+    }
+
+    public string InvestedSumString
+    {
+        get => _investedSumString;
+        private set => SetProperty(ref _investedSumString, value);
+    }
+
+    public string CurrentSumString
+    {
+        get => _currentSumString;
+        private set => SetProperty(ref _currentSumString, value);
+    }
+    
     public BaseGroupModel? SelectedGroupModel
     {
         get => _selectedGroupModel;
@@ -407,6 +429,9 @@ public class ListActivesModel : ModelBase
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
 
+        _investedSumString = string.Empty;
+        _currentSumString = string.Empty;
+        
         _activeModels = [];
         _cancellationTokenSource = new();
 

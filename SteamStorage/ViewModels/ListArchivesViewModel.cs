@@ -24,6 +24,21 @@ public class ListArchivesViewModel : ViewModelBase
     {
         get => _archiveGroupsModel.ArchiveGroupModels;
     }
+    
+    public int Count
+    {
+        get => _listArchivesModel.Count;
+    }
+
+    public string InvestedSumString
+    {
+        get => _listArchivesModel.InvestedSumString;
+    }
+
+    public string SoldSumString
+    {
+        get => _listArchivesModel.SoldSumString;
+    }
 
     public BaseGroupModel? SelectedGroupModel
     {

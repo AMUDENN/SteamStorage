@@ -24,6 +24,21 @@ public class ListActivesViewModel : ViewModelBase
     {
         get => _activeGroupsModel.ActiveGroupModels;
     }
+    
+    public int Count
+    {
+        get => _listActivesModel.Count;
+    }
+
+    public string InvestedSumString
+    {
+        get => _listActivesModel.InvestedSumString;
+    }
+
+    public string CurrentSumString
+    {
+        get => _listActivesModel.CurrentSumString;
+    }
 
     public BaseGroupModel? SelectedGroupModel
     {

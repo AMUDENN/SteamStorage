@@ -13,6 +13,36 @@
         <Border Classes="BigRoundedBorder SecondAccentGradientBorder" 
                 Grid.Row="0">
             
+            <Grid RowDefinitions="40, 40"
+                  ColumnDefinitions="*, 2*, *, 2*, *, 2*, *"
+                  Margin="20">
+                
+                <TextBlock Text="Количество"
+                           Classes="MiddleTextBlock CenterTextBlock"
+                           Grid.Row="0" Grid.Column="1"/>
+                
+                <TextBlock Text="{Binding Count, StringFormat=N0, Mode=OneWay}"
+                           Classes="BigTextBlock CenterTextBlock"
+                           Grid.Row="1" Grid.Column="1"/>
+                
+                <TextBlock Text="Сумма вложений"
+                           Classes="MiddleTextBlock CenterTextBlock"
+                           Grid.Row="0" Grid.Column="3"/>
+                
+                <TextBlock Text="{Binding InvestedSumString, Mode=OneWay}"
+                           Classes="BigTextBlock CenterTextBlock"
+                           Grid.Row="1" Grid.Column="3"/>
+                
+                <TextBlock Text="Сумма продажи"
+                           Classes="MiddleTextBlock CenterTextBlock"
+                           Grid.Row="0" Grid.Column="5"/>
+                
+                <TextBlock Text="{Binding SoldSumString, Mode=OneWay}"
+                           Classes="BigTextBlock CenterTextBlock"
+                           Grid.Row="1" Grid.Column="5"/>
+                
+            </Grid>
+            
         </Border>
         
         <Grid Grid.Row="2">
