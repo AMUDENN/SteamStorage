@@ -52,7 +52,7 @@ public class CurrenciesModel : ModelBase
 
     #region Methods
 
-    private async void GetCurrenciesAsync()
+    public async void GetCurrenciesAsync()
     {
         Currencies.CurrenciesResponse? currencyResponses =
             await _apiClient.GetAsync<Currencies.CurrenciesResponse>(

@@ -45,6 +45,7 @@ public static class ApiConstants
         DeleteActiveGroup,
 
         GetActives = 200,
+        GetActivesStatistic,
         GetActivesPagesCount,
         GetActivesCount,
         PostActive,
@@ -59,6 +60,7 @@ public static class ApiConstants
         DeleteArchiveGroup,
 
         GetArchives = 400,
+        GetArchivesStatistic,
         GetArchivesPagesCount,
         GetArchivesCount,
         PostArchive,
@@ -75,6 +77,7 @@ public static class ApiConstants
         GetGames = 700,
 
         GetInventory = 800,
+        GetInventoriesStatistic,
         GetInventoryPagesCount,
         GetSavedInventoriesCount,
         RefreshInventory,

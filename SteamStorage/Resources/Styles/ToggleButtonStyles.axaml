@@ -16,6 +16,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="20"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -28,8 +29,9 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock x:Name="ContentTextBlock"
                                    Text="{TemplateBinding Content}"
+                                   FontSize="{TemplateBinding FontSize}"
                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   Classes="SmallTextBlock CenterTextBlock FirstAccentTextBlock"
+                                   Classes="CenterTextBlock FirstAccentTextBlock"
                                    Grid.Column="0"/>
                         <Grid HorizontalAlignment="Center" 
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"

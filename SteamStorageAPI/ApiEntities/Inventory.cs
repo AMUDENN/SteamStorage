@@ -25,10 +25,26 @@ public static class Inventory
         decimal CurrentPrice,
         decimal CurrentSum) : Response;
 
+    public record InventoryGameCountResponse(
+        string GameTitle,
+        double Percentage,
+        int Count) : Response;
+
+    public record InventoryGameSumResponse(
+        string GameTitle,
+        double Percentage,
+        decimal Sum) : Response;
+    
     public record InventoriesResponse(
         int Count,
         int PagesCount,
         IEnumerable<InventoryResponse>? Inventories) : Response;
+    
+    public record InventoriesStatisticResponse(
+        int InventoriesCount,
+        decimal CurrentSum,
+        IEnumerable<InventoryGameCountResponse> GameCount,
+        IEnumerable<InventoryGameSumResponse> GameSum) : Response;
 
     public record InventoryPagesCountResponse(
         int Count) : Response;
@@ -43,6 +59,10 @@ public static class Inventory
         bool? IsAscending,
         int PageNumber,
         int PageSize) : Request;
+    
+    public record GetInventoriesStatisticRequest(
+        int? GameId,
+        string? Filter) : Request;
 
     public record GetInventoryPagesCountRequest(
         int? GameId,

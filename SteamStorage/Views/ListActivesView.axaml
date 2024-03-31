@@ -19,26 +19,38 @@
                 
                 <TextBlock Text="Количество"
                            Classes="MiddleTextBlock CenterTextBlock"
+                           Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                            Grid.Row="0" Grid.Column="1"/>
                 
                 <TextBlock Text="{Binding Count, StringFormat=N0, Mode=OneWay}"
                            Classes="BigTextBlock CenterTextBlock"
+                           Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                            Grid.Row="1" Grid.Column="1"/>
                 
                 <TextBlock Text="Сумма вложений"
                            Classes="MiddleTextBlock CenterTextBlock"
+                           Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                            Grid.Row="0" Grid.Column="3"/>
                 
                 <TextBlock Text="{Binding InvestedSumString, Mode=OneWay}"
                            Classes="BigTextBlock CenterTextBlock"
+                           Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                            Grid.Row="1" Grid.Column="3"/>
                 
                 <TextBlock Text="Текущая сумма"
                            Classes="MiddleTextBlock CenterTextBlock"
+                           Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                            Grid.Row="0" Grid.Column="5"/>
                 
                 <TextBlock Text="{Binding CurrentSumString, Mode=OneWay}"
                            Classes="BigTextBlock CenterTextBlock"
+                           Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                            Grid.Row="1" Grid.Column="5"/>
                 
             </Grid>
@@ -83,7 +95,7 @@
                 <ColumnDefinition Width="10" MinWidth="10"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*" MinWidth="30"/>
-                <ColumnDefinition Width="5*" MinWidth="200" MaxWidth="400"/>
+                <ColumnDefinition Width="2*" MinWidth="200" MaxWidth="400"/>
                 <ColumnDefinition Width="20" MinWidth="20"/>
                 <ColumnDefinition Width="60" MinWidth="60"/>
             </Grid.ColumnDefinitions>

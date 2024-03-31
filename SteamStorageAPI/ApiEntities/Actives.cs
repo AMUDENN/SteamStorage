@@ -37,10 +37,12 @@ public static class Actives
     public record ActivesResponse(
         int Count,
         int PagesCount,
+        IEnumerable<ActiveResponse>? Actives) : Response;
+    
+    public record ActivesStatisticResponse(
         int ActivesCount,
         decimal InvestmentSum,
-        decimal CurrentSum,
-        IEnumerable<ActiveResponse>? Actives) : Response;
+        decimal CurrentSum) : Response;
 
     public record ActivesPagesCountResponse(
         int Count) : Response;
@@ -56,6 +58,11 @@ public static class Actives
         bool? IsAscending,
         int PageNumber,
         int PageSize) : Request;
+    
+    public record GetActivesStatisticRequest(
+        int? GroupId,
+        int? GameId,
+        string? Filter) : Request;
 
     public record GetActivesPagesCountRequest(
         int? GroupId,

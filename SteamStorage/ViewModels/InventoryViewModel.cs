@@ -22,6 +22,16 @@ public class InventoryViewModel : ViewModelBase
     {
         get => _gamesModel.GameModels;
     }
+    
+    public int Count
+    {
+        get => _inventoryModel.Count;
+    }
+
+    public string CurrentSumString
+    {
+        get => _inventoryModel.CurrentSumString;
+    }
 
     public GameModel? SelectedGameModel
     {
@@ -134,11 +144,6 @@ public class InventoryViewModel : ViewModelBase
     public AsyncRelayCommand RefreshInventoryCommand
     {
         get => _inventoryModel.RefreshInventoryCommand;
-    }
-
-    public RelayCommand AttachedToVisualTreeCommand
-    {
-        get => _inventoryModel.AttachedToVisualTreeCommand;
     }
 
     #endregion Commands

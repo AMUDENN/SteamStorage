@@ -75,7 +75,7 @@ public class ProfileModel : ModelBase
         get => _selectedCurrency;
         set
         {
-            if (value is not null && value.Id != _selectedCurrency?.Id)
+            if (value is not null && value.Id != _userModel.Currency?.Id)
                 SetCurrency(value);
             SetProperty(ref _selectedCurrency, value);
         }
@@ -92,7 +92,7 @@ public class ProfileModel : ModelBase
         get => _selectedPage;
         set
         {
-            if (value is not null && value.Id != _selectedPage?.Id)
+            if (value is not null && value.Id != _userModel.User?.StartPageId)
                 SetPage(value);
             SetProperty(ref _selectedPage, value);
         }
@@ -212,6 +212,8 @@ public class ProfileModel : ModelBase
     private void DoAttachedToVisualTreeCommand()
     {
         _userModel.UpdateCurrencyInfo();
+        _pagesModel.GetPagesAsync();
+        _currenciesModel.GetCurrenciesAsync();
     }
 
     private void SetCurrency(CurrencyModel? currencyModel)

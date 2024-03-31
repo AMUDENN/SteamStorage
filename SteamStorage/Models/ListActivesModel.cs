@@ -70,7 +70,8 @@ public class ListActivesModel : ModelBase
     private ActiveViewModel? _selectedActiveModel;
 
     private bool _isLoading;
-    private CancellationTokenSource _cancellationTokenSource;
+    private CancellationTokenSource _itemsCancellationTokenSource;
+    private CancellationTokenSource _statisticsCancellationTokenSource;
 
     private readonly int _pageSize;
     private int? _pageNumber;
@@ -109,6 +110,7 @@ public class ListActivesModel : ModelBase
         set
         {
             SetProperty(ref _selectedGroupModel, value);
+            GetStatisticsAsync();
             GetSkinsAsync();
         }
     }
@@ -121,6 +123,7 @@ public class ListActivesModel : ModelBase
             SetProperty(ref _selectedGameModel, value);
             if (value is null) return;
             IsAllGamesChecked = false;
+            GetStatisticsAsync();
             GetSkinsAsync();
         }
     }
@@ -133,6 +136,7 @@ public class ListActivesModel : ModelBase
             SetProperty(ref _isAllGamesChecked, value);
             if (!value) return;
             SelectedGameModel = null;
+            GetStatisticsAsync();
             GetSkinsAsync();
         }
     }
@@ -143,6 +147,7 @@ public class ListActivesModel : ModelBase
         set
         {
             SetProperty(ref _filter, value);
+            GetStatisticsAsync();
             GetSkinsAsync();
         }
     }
@@ -391,10 +396,16 @@ public class ListActivesModel : ModelBase
         }
     }
 
-    private CancellationTokenSource CancellationTokenSource
+    private CancellationTokenSource ItemsCancellationTokenSource
     {
-        get => _cancellationTokenSource;
-        set => SetProperty(ref _cancellationTokenSource, value);
+        get => _itemsCancellationTokenSource;
+        set => SetProperty(ref _itemsCancellationTokenSource, value);
+    }
+    
+    private CancellationTokenSource StatisticsCancellationTokenSource
+    {
+        get => _statisticsCancellationTokenSource;
+        set => SetProperty(ref _statisticsCancellationTokenSource, value);
     }
 
     #endregion Properties
@@ -433,7 +444,8 @@ public class ListActivesModel : ModelBase
         _currentSumString = string.Empty;
         
         _activeModels = [];
-        _cancellationTokenSource = new();
+        _itemsCancellationTokenSource = new();
+        _statisticsCancellationTokenSource = new();
 
         IsAllGamesChecked = true;
 
@@ -457,11 +469,13 @@ public class ListActivesModel : ModelBase
     private void UserChangedHandler(object? sender)
     {
         GetSkinsAsync();
+        GetStatisticsAsync();
     }
 
     private void CurrencyChangedHandler(object? sender)
     {
         GetSkinsAsync();
+        GetStatisticsAsync();
     }
 
     private void DoClearFiltersCommand()
@@ -501,6 +515,7 @@ public class ListActivesModel : ModelBase
             new Actives.DeleteActiveRequest(model.ActiveId));
 
         GetSkinsAsync();
+        GetStatisticsAsync();
     }
 
     public void OpenActiveGroup(IEnumerable<BaseGroupModel> groupModels, ActiveGroupModel? model)
@@ -511,6 +526,7 @@ public class ListActivesModel : ModelBase
     public void UpdateSkins()
     {
         GetSkinsAsync();
+        GetStatisticsAsync();
     }
 
     private void SetOrderingsNull()
@@ -523,6 +539,26 @@ public class ListActivesModel : ModelBase
         IsChangeOrdering = null;
     }
 
+    private async void GetStatisticsAsync()
+    {
+        await StatisticsCancellationTokenSource.CancelAsync();
+
+        StatisticsCancellationTokenSource = new();
+        CancellationToken token = StatisticsCancellationTokenSource.Token;
+
+        Actives.ActivesStatisticResponse? activesStatisticResponse =
+            await _apiClient.GetAsync<Actives.ActivesStatisticResponse, Actives.GetActivesStatisticRequest>(
+                ApiConstants.ApiMethods.GetActivesStatistic,
+                new(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter),
+                token);
+
+        if (activesStatisticResponse is null) return;
+
+        Count = activesStatisticResponse.ActivesCount;
+        InvestedSumString = $"{activesStatisticResponse.InvestmentSum:N2} {_userModel.CurrencyMark}";
+        CurrentSumString = $"{activesStatisticResponse.CurrentSum:N2} {_userModel.CurrencyMark}";
+    }
+
     private async void GetSkinsAsync()
     {
         ActiveModels = [];
@@ -530,10 +566,10 @@ public class ListActivesModel : ModelBase
 
         IsLoading = true;
 
-        await CancellationTokenSource.CancelAsync();
+        await ItemsCancellationTokenSource.CancelAsync();
 
-        CancellationTokenSource = new();
-        CancellationToken token = CancellationTokenSource.Token;
+        ItemsCancellationTokenSource = new();
+        CancellationToken token = ItemsCancellationTokenSource.Token;
 
         CurrentPageNumber = PageNumber ?? 1;
 
@@ -551,10 +587,6 @@ public class ListActivesModel : ModelBase
 
         SavedItemsCount = activesResponse.Count;
         PagesCount = activesResponse.PagesCount;
-
-        Count = activesResponse.ActivesCount;
-        InvestedSumString = $"{activesResponse.InvestmentSum:N2} {_userModel.CurrencyMark}";
-        CurrentSumString = $"{activesResponse.CurrentSum:N2} {_userModel.CurrencyMark}";
 
         if (activesResponse.Actives is null) return;
 

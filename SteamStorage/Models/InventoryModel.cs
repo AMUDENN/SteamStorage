@@ -27,6 +27,9 @@ public class InventoryModel : ModelBase
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
     private readonly IThemeService _themeService;
+    
+    private int _count;
+    private string _currentSumString;
 
     private GameModel? _selectedGameModel;
     private bool _isAllGamesChecked;
@@ -47,7 +50,8 @@ public class InventoryModel : ModelBase
     private InventoryItemViewModel? _selectedInventoryModel;
 
     private bool _isLoading;
-    private CancellationTokenSource _cancellationTokenSource;
+    private CancellationTokenSource _itemsCancellationTokenSource;
+    private CancellationTokenSource _statisticsCancellationTokenSource;
 
     private readonly int _pageSize;
     private int? _pageNumber;
@@ -62,6 +66,18 @@ public class InventoryModel : ModelBase
 
     #region Properties
 
+    public int Count
+    {
+        get => _count;
+        private set => SetProperty(ref _count, value);
+    }
+
+    public string CurrentSumString
+    {
+        get => _currentSumString;
+        private set => SetProperty(ref _currentSumString, value);
+    }
+    
     public GameModel? SelectedGameModel
     {
         get => _selectedGameModel;
@@ -70,6 +86,7 @@ public class InventoryModel : ModelBase
             SetProperty(ref _selectedGameModel, value);
             if (value is null) return;
             IsAllGamesChecked = false;
+            GetStatisticsAsync();
             GetSkinsAsync();
         }
     }
@@ -82,6 +99,7 @@ public class InventoryModel : ModelBase
             SetProperty(ref _isAllGamesChecked, value);
             if (!value) return;
             SelectedGameModel = null;
+            GetStatisticsAsync();
             GetSkinsAsync();
         }
     }
@@ -92,6 +110,7 @@ public class InventoryModel : ModelBase
         set
         {
             SetProperty(ref _filter, value);
+            GetStatisticsAsync();
             GetSkinsAsync();
         }
     }
@@ -302,10 +321,16 @@ public class InventoryModel : ModelBase
         }
     }
 
-    private CancellationTokenSource CancellationTokenSource
+    private CancellationTokenSource ItemsCancellationTokenSource
     {
-        get => _cancellationTokenSource;
-        set => SetProperty(ref _cancellationTokenSource, value);
+        get => _itemsCancellationTokenSource;
+        set => SetProperty(ref _itemsCancellationTokenSource, value);
+    }
+    
+    private CancellationTokenSource StatisticsCancellationTokenSource
+    {
+        get => _statisticsCancellationTokenSource;
+        set => SetProperty(ref _statisticsCancellationTokenSource, value);
     }
 
     #endregion Properties
@@ -315,8 +340,6 @@ public class InventoryModel : ModelBase
     public RelayCommand ClearFiltersCommand { get; }
 
     public AsyncRelayCommand RefreshInventoryCommand { get; }
-
-    public RelayCommand AttachedToVisualTreeCommand { get; }
 
     #endregion Commands
 
@@ -335,9 +358,12 @@ public class InventoryModel : ModelBase
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
+        
+        _currentSumString = string.Empty;
 
         _inventoryModels = [];
-        _cancellationTokenSource = new();
+        _itemsCancellationTokenSource = new();
+        _statisticsCancellationTokenSource = new();
 
         IsAllGamesChecked = true;
 
@@ -350,7 +376,6 @@ public class InventoryModel : ModelBase
 
         ClearFiltersCommand = new(DoClearFiltersCommand);
         RefreshInventoryCommand = new(DoRefreshInventoryCommand);
-        AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
     }
 
     #endregion Constructor
@@ -360,11 +385,13 @@ public class InventoryModel : ModelBase
     private void UserChangedHandler(object? sender)
     {
         GetSkinsAsync();
+        GetStatisticsAsync();
     }
 
     private void CurrencyChangedHandler(object? sender)
     {
         GetSkinsAsync();
+        GetStatisticsAsync();
     }
 
     private void DoClearFiltersCommand()
@@ -390,11 +417,7 @@ public class InventoryModel : ModelBase
         IsRefreshing = false;
         
         GetSkinsAsync();
-    }
-
-    private void DoAttachedToVisualTreeCommand()
-    {
-        GetSkinsAsync();
+        GetStatisticsAsync();
     }
 
     private void SetOrderingsNull()
@@ -405,6 +428,25 @@ public class InventoryModel : ModelBase
         IsSumOrdering = null;
     }
 
+    private async void GetStatisticsAsync()
+    {
+        await StatisticsCancellationTokenSource.CancelAsync();
+
+        StatisticsCancellationTokenSource = new();
+        CancellationToken token = StatisticsCancellationTokenSource.Token;
+
+        Inventory.InventoriesStatisticResponse? inventoriesStatisticResponse =
+            await _apiClient.GetAsync<Inventory.InventoriesStatisticResponse, Inventory.GetInventoriesStatisticRequest>(
+                ApiConstants.ApiMethods.GetInventoriesStatistic,
+                new(SelectedGameModel?.Id, Filter),
+                token);
+
+        if (inventoriesStatisticResponse is null) return;
+
+        Count = inventoriesStatisticResponse.InventoriesCount;
+        CurrentSumString = $"{inventoriesStatisticResponse.CurrentSum:N2} {_userModel.CurrencyMark}";
+    }
+
     private async void GetSkinsAsync()
     {
         InventoryModels = [];
@@ -412,10 +454,10 @@ public class InventoryModel : ModelBase
 
         IsLoading = true;
 
-        await CancellationTokenSource.CancelAsync();
+        await ItemsCancellationTokenSource.CancelAsync();
 
-        CancellationTokenSource = new();
-        CancellationToken token = CancellationTokenSource.Token;
+        ItemsCancellationTokenSource = new();
+        CancellationToken token = ItemsCancellationTokenSource.Token;
 
         CurrentPageNumber = PageNumber ?? 1;
 

@@ -52,7 +52,7 @@ public class PagesModel : ModelBase
 
     #region Methods
 
-    private async void GetPagesAsync()
+    public async void GetPagesAsync()
     {
         Pages.PagesResponse? pageResponses =
             await _apiClient.GetAsync<Pages.PagesResponse>(

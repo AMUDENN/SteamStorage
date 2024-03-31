@@ -36,10 +36,12 @@ public static class Archives
     public record ArchivesResponse(
         int Count,
         int PagesCount,
+        IEnumerable<ArchiveResponse>? Archives) : Response;
+    
+    public record ArchivesStatisticResponse(
         int ArchivesCount,
         decimal InvestmentSum,
-        decimal SoldSum,
-        IEnumerable<ArchiveResponse>? Archives) : Response;
+        decimal SoldSum) : Response;
 
     public record ArchivesPagesCountResponse(
         int Count) : Response;
@@ -55,6 +57,11 @@ public static class Archives
         bool? IsAscending,
         int PageNumber,
         int PageSize) : Request;
+    
+    public record GetArchivesStatisticRequest(
+        int? GroupId,
+        int? GameId,
+        string? Filter) : Request;
 
     public record GetArchivesPagesCountRequest(
         int? GroupId,

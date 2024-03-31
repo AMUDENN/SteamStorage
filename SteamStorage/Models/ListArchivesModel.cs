@@ -63,7 +63,8 @@ public class ListArchivesModel : ModelBase
     private ArchiveViewModel? _selectedArchiveModel;
 
     private bool _isLoading;
-    private CancellationTokenSource _cancellationTokenSource;
+    private CancellationTokenSource _itemsCancellationTokenSource;
+    private CancellationTokenSource _statisticsCancellationTokenSource;
 
     private readonly int _pageSize;
     private int? _pageNumber;
@@ -102,6 +103,7 @@ public class ListArchivesModel : ModelBase
         set
         {
             SetProperty(ref _selectedGroupModel, value);
+            GetStatisticsAsync();
             GetSkinsAsync();
         }
     }
@@ -114,6 +116,7 @@ public class ListArchivesModel : ModelBase
             SetProperty(ref _selectedGameModel, value);
             if (value is null) return;
             IsAllGamesChecked = false;
+            GetStatisticsAsync();
             GetSkinsAsync();
         }
     }
@@ -126,6 +129,7 @@ public class ListArchivesModel : ModelBase
             SetProperty(ref _isAllGamesChecked, value);
             if (!value) return;
             SelectedGameModel = null;
+            GetStatisticsAsync();
             GetSkinsAsync();
         }
     }
@@ -136,6 +140,7 @@ public class ListArchivesModel : ModelBase
         set
         {
             SetProperty(ref _filter, value);
+            GetStatisticsAsync();
             GetSkinsAsync();
         }
     }
@@ -380,10 +385,16 @@ public class ListArchivesModel : ModelBase
         }
     }
 
-    private CancellationTokenSource CancellationTokenSource
+    private CancellationTokenSource ItemsCancellationTokenSource
     {
-        get => _cancellationTokenSource;
-        set => SetProperty(ref _cancellationTokenSource, value);
+        get => _itemsCancellationTokenSource;
+        set => SetProperty(ref _itemsCancellationTokenSource, value);
+    }
+    
+    private CancellationTokenSource StatisticsCancellationTokenSource
+    {
+        get => _statisticsCancellationTokenSource;
+        set => SetProperty(ref _statisticsCancellationTokenSource, value);
     }
 
     #endregion Properties
@@ -416,7 +427,8 @@ public class ListArchivesModel : ModelBase
         _soldSumString = string.Empty;
         
         _archiveModels = [];
-        _cancellationTokenSource = new();
+        _itemsCancellationTokenSource = new();
+        _statisticsCancellationTokenSource = new();
 
         IsAllGamesChecked = true;
 
@@ -439,11 +451,13 @@ public class ListArchivesModel : ModelBase
     private void UserChangedHandler(object? sender)
     {
         GetSkinsAsync();
+        GetStatisticsAsync();
     }
 
     private void CurrencyChangedHandler(object? sender)
     {
         GetSkinsAsync();
+        GetStatisticsAsync();
     }
 
     private void DoClearFiltersCommand()
@@ -478,6 +492,7 @@ public class ListArchivesModel : ModelBase
             new Archives.DeleteArchiveRequest(model.ArchiveId));
 
         GetSkinsAsync();
+        GetStatisticsAsync();
     }
 
     public void OpenArchiveGroup(IEnumerable<BaseGroupModel> groupModels, ArchiveGroupModel? model)
@@ -488,6 +503,7 @@ public class ListArchivesModel : ModelBase
     public void UpdateSkins()
     {
         GetSkinsAsync();
+        GetStatisticsAsync();
     }
 
     private void SetOrderingsNull()
@@ -499,6 +515,26 @@ public class ListArchivesModel : ModelBase
         IsSoldSumOrdering = null;
         IsChangeOrdering = null;
     }
+    
+    private async void GetStatisticsAsync()
+    {
+        await StatisticsCancellationTokenSource.CancelAsync();
+
+        StatisticsCancellationTokenSource = new();
+        CancellationToken token = StatisticsCancellationTokenSource.Token;
+
+        Archives.ArchivesStatisticResponse? archivesStatisticResponse =
+            await _apiClient.GetAsync<Archives.ArchivesStatisticResponse, Archives.GetArchivesStatisticRequest>(
+                ApiConstants.ApiMethods.GetArchivesStatistic,
+                new(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter),
+                token);
+
+        if (archivesStatisticResponse is null) return;
+        
+        Count = archivesStatisticResponse.ArchivesCount;
+        InvestedSumString = $"{archivesStatisticResponse.InvestmentSum:N2} {_userModel.CurrencyMark}";
+        SoldSumString = $"{archivesStatisticResponse.SoldSum:N2} {_userModel.CurrencyMark}";
+    }
 
     private async void GetSkinsAsync()
     {
@@ -507,10 +543,10 @@ public class ListArchivesModel : ModelBase
 
         IsLoading = true;
 
-        await CancellationTokenSource.CancelAsync();
+        await ItemsCancellationTokenSource.CancelAsync();
 
-        CancellationTokenSource = new();
-        CancellationToken token = CancellationTokenSource.Token;
+        ItemsCancellationTokenSource = new();
+        CancellationToken token = ItemsCancellationTokenSource.Token;
 
         CurrentPageNumber = PageNumber ?? 1;
 
@@ -528,10 +564,6 @@ public class ListArchivesModel : ModelBase
 
         SavedItemsCount = archivesResponse.Count;
         PagesCount = archivesResponse.PagesCount;
-        
-        Count = archivesResponse.ArchivesCount;
-        InvestedSumString = $"{archivesResponse.InvestmentSum:N2} {_userModel.CurrencyMark}";
-        SoldSumString = $"{archivesResponse.SoldSum:N2} {_userModel.CurrencyMark}";
         
         if (archivesResponse.Archives is null) return;
 
