@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using CommunityToolkit.Mvvm.Input;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.ViewModels.Tools;
@@ -13,6 +15,7 @@ public class InventoryViewModel : ViewModelBase
 
     private readonly InventoryModel _inventoryModel;
     private readonly GamesModel _gamesModel;
+    private readonly ChartTooltipModel _chartTooltipModel;
 
     #endregion Fields
 
@@ -22,7 +25,7 @@ public class InventoryViewModel : ViewModelBase
     {
         get => _gamesModel.GameModels;
     }
-    
+
     public int Count
     {
         get => _inventoryModel.Count;
@@ -31,6 +34,26 @@ public class InventoryViewModel : ViewModelBase
     public string CurrentSumString
     {
         get => _inventoryModel.CurrentSumString;
+    }
+
+    public IEnumerable<ISeries> InventoryGameCountSeries
+    {
+        get => _inventoryModel.InventoryGameCountSeries;
+    }
+
+    public IEnumerable<ISeries> InventoryGameSumSeries
+    {
+        get => _inventoryModel.InventoryGameSumSeries;
+    }
+    
+    public SolidColorPaint TooltipTextPaint
+    {
+        get => _chartTooltipModel.TooltipTextPaint;
+    }
+
+    public SolidColorPaint TooltipBackgroundPaint
+    {
+        get => _chartTooltipModel.TooltipBackgroundPaint;
     }
 
     public GameModel? SelectedGameModel
@@ -74,7 +97,7 @@ public class InventoryViewModel : ViewModelBase
         get => _inventoryModel.IsSumOrdering;
         set => _inventoryModel.IsSumOrdering = value;
     }
-    
+
     public bool IsRefreshing
     {
         get => _inventoryModel.IsRefreshing;
@@ -152,13 +175,16 @@ public class InventoryViewModel : ViewModelBase
 
     public InventoryViewModel(
         InventoryModel inventoryModel,
-        GamesModel gamesModel)
+        GamesModel gamesModel,
+        ChartTooltipModel chartTooltipModel)
     {
         _inventoryModel = inventoryModel;
         _gamesModel = gamesModel;
+        _chartTooltipModel = chartTooltipModel;
 
         inventoryModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         gamesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

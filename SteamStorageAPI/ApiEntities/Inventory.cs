@@ -43,8 +43,8 @@ public static class Inventory
     public record InventoriesStatisticResponse(
         int InventoriesCount,
         decimal CurrentSum,
-        IEnumerable<InventoryGameCountResponse> GameCount,
-        IEnumerable<InventoryGameSumResponse> GameSum) : Response;
+        IEnumerable<InventoryGameCountResponse>? GameCount,
+        IEnumerable<InventoryGameSumResponse>? GameSum) : Response;
 
     public record InventoryPagesCountResponse(
         int Count) : Response;

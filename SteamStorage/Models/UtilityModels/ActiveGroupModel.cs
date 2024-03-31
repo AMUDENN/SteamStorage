@@ -225,7 +225,7 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
                 Values = GroupDynamic,
                 Mapping = (dynamic, point) => new(point, Convert.ToDouble(dynamic.Sum)),
                 YToolTipLabelFormatter = index =>
-                    $"{index.Model?.DateUpdate.ToString(ProgramConstants.VIEW_DATE_FORMAT)}: {index.Model?.Sum}",
+                    $"{index.Model?.DateUpdate.ToString(ProgramConstants.VIEW_DATE_FORMAT)}: {index.Model?.Sum:N2}",
                 Stroke = new SolidColorPaint(chartColor) { StrokeThickness = 2 },
                 Fill = null,
                 LineSmoothness = 0,

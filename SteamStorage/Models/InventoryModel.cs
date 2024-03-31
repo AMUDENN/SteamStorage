@@ -3,6 +3,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView.Extensions;
+using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.ThemeService;
@@ -22,14 +25,18 @@ public class InventoryModel : ModelBase
     #endregion Constants
 
     #region Fields
-
+    
     private readonly ApiClient _apiClient;
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
     private readonly IThemeService _themeService;
-    
+
     private int _count;
     private string _currentSumString;
+    private IEnumerable<Inventory.InventoryGameCountResponse> _inventoryGameCount;
+    private IEnumerable<ISeries>  _inventoryGameCountSeries;
+    private IEnumerable<Inventory.InventoryGameSumResponse> _inventoryGameSum;
+    private IEnumerable<ISeries>  _inventoryGameSumSeries;
 
     private GameModel? _selectedGameModel;
     private bool _isAllGamesChecked;
@@ -77,7 +84,39 @@ public class InventoryModel : ModelBase
         get => _currentSumString;
         private set => SetProperty(ref _currentSumString, value);
     }
-    
+
+    private IEnumerable<Inventory.InventoryGameCountResponse> InventoryGameCount
+    {
+        get => _inventoryGameCount;
+        set
+        {
+            SetProperty(ref _inventoryGameCount, value);
+            GetInventoryGameCountSeries();
+        }
+    }
+
+    public IEnumerable<ISeries>  InventoryGameCountSeries
+    {
+        get => _inventoryGameCountSeries;
+        private set => SetProperty(ref _inventoryGameCountSeries, value);
+    }
+
+    private IEnumerable<Inventory.InventoryGameSumResponse> InventoryGameSum
+    {
+        get => _inventoryGameSum;
+        set
+        {
+            SetProperty(ref _inventoryGameSum, value);
+            GetInventoryGameSumSeries();
+        }
+    }
+
+    public IEnumerable<ISeries>  InventoryGameSumSeries
+    {
+        get => _inventoryGameSumSeries;
+        private set => SetProperty(ref _inventoryGameSumSeries, value);
+    }
+
     public GameModel? SelectedGameModel
     {
         get => _selectedGameModel;
@@ -326,7 +365,7 @@ public class InventoryModel : ModelBase
         get => _itemsCancellationTokenSource;
         set => SetProperty(ref _itemsCancellationTokenSource, value);
     }
-    
+
     private CancellationTokenSource StatisticsCancellationTokenSource
     {
         get => _statisticsCancellationTokenSource;
@@ -358,8 +397,13 @@ public class InventoryModel : ModelBase
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
-        
+
         _currentSumString = string.Empty;
+
+        _inventoryGameCount = Enumerable.Empty<Inventory.InventoryGameCountResponse>();
+        _inventoryGameCountSeries = [];
+        _inventoryGameSum = Enumerable.Empty<Inventory.InventoryGameSumResponse>();
+        _inventoryGameSumSeries = [];
 
         _inventoryModels = [];
         _itemsCancellationTokenSource = new();
@@ -415,7 +459,7 @@ public class InventoryModel : ModelBase
             new Inventory.RefreshInventoryRequest(SelectedGameModel.Id));
 
         IsRefreshing = false;
-        
+
         GetSkinsAsync();
         GetStatisticsAsync();
     }
@@ -426,6 +470,40 @@ public class InventoryModel : ModelBase
         IsCountOrdering = null;
         IsPriceOrdering = null;
         IsSumOrdering = null;
+    }
+
+    private void GetInventoryGameCountSeries()
+    {
+        if (!InventoryGameCount.Any()) return;
+
+        int i = 0;
+        InventoryGameCountSeries = InventoryGameCount.OrderByDescending(x => x.Count)
+            .AsPieSeries((value, builder) =>
+            {
+                builder.MaxRadialColumnWidth = 20;
+                builder.HoverPushout = 0;
+                builder.Mapping = (game, point) => new(point, game.Count);
+                builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
+                builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
+                i++;
+            });
+    }
+
+    private void GetInventoryGameSumSeries()
+    {
+        if (!InventoryGameSum.Any()) return;
+
+        int i = 0;
+        InventoryGameSumSeries = InventoryGameSum.OrderByDescending(x => x.Sum)
+            .AsPieSeries((value, builder) =>
+            {
+                builder.MaxRadialColumnWidth = 20;
+                builder.HoverPushout = 0;
+                builder.Mapping = (game, point) => new(point, (double)game.Sum);
+                builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Sum:N2}";
+                builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
+                i++;
+            });
     }
 
     private async void GetStatisticsAsync()
@@ -445,6 +523,12 @@ public class InventoryModel : ModelBase
 
         Count = inventoriesStatisticResponse.InventoriesCount;
         CurrentSumString = $"{inventoriesStatisticResponse.CurrentSum:N2} {_userModel.CurrencyMark}";
+
+        if (inventoriesStatisticResponse.GameCount is not null)
+            InventoryGameCount = inventoriesStatisticResponse.GameCount;
+
+        if (inventoriesStatisticResponse.GameSum is not null)
+            InventoryGameSum = inventoriesStatisticResponse.GameSum;
     }
 
     private async void GetSkinsAsync()
@@ -476,19 +560,19 @@ public class InventoryModel : ModelBase
         PagesCount = inventoriesResponse.PagesCount;
 
         if (inventoriesResponse.Inventories is null) return;
-        
+
         InventoryModels = inventoriesResponse.Inventories.Select(x =>
                 new InventoryItemViewModel(
                     new(_apiClient,
-                        _themeService, 
-                        x.Skin.Id, 
+                        _themeService,
+                        x.Skin.Id,
                         x.Skin.SkinIconUrl,
                         x.Skin.MarketUrl,
                         x.Skin.Title,
-                        x.Count, 
-                        x.CurrentPrice, 
+                        x.Count,
+                        x.CurrentPrice,
                         x.CurrentSum,
-                        _userModel.CurrencyMark), 
+                        _userModel.CurrencyMark),
                     _chartTooltipModel))
             .ToList();
 

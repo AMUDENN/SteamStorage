@@ -194,7 +194,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
                 Values = SkinDynamic,
                 Mapping = (dynamic, point) => new(point, Convert.ToDouble(dynamic.Price)),
                 YToolTipLabelFormatter = index =>
-                    $"{index.Model?.DateUpdate.ToString(ProgramConstants.VIEW_DATE_FORMAT)}: {index.Model?.Price}",
+                    $"{index.Model?.DateUpdate.ToString(ProgramConstants.VIEW_DATE_FORMAT)}: {index.Model?.Price:N2}",
                 Stroke = new SolidColorPaint(chartColor) { StrokeThickness = 2 },
                 Fill = null,
                 LineSmoothness = 0,

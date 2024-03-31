@@ -361,7 +361,7 @@ public class StatisticsModel : ModelBase
             builder.MaxRadialColumnWidth = 20;
             builder.HoverPushout = 0;
             builder.Mapping = (game, point) => new(point, game.Count);
-            builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count}";
+            builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
             builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
             i++;
         });
