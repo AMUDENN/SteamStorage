@@ -25,7 +25,7 @@ public class InventoryModel : ModelBase
     #endregion Constants
 
     #region Fields
-    
+
     private readonly ApiClient _apiClient;
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
@@ -34,9 +34,10 @@ public class InventoryModel : ModelBase
     private int _count;
     private string _currentSumString;
     private IEnumerable<Inventory.InventoryGameCountResponse> _inventoryGameCount;
-    private IEnumerable<ISeries>  _inventoryGameCountSeries;
+    private IEnumerable<ISeries> _inventoryGameCountSeries;
     private IEnumerable<Inventory.InventoryGameSumResponse> _inventoryGameSum;
-    private IEnumerable<ISeries>  _inventoryGameSumSeries;
+    private IEnumerable<ISeries> _inventoryGameSumSeries;
+    private double _graphWidth;
 
     private GameModel? _selectedGameModel;
     private bool _isAllGamesChecked;
@@ -95,7 +96,7 @@ public class InventoryModel : ModelBase
         }
     }
 
-    public IEnumerable<ISeries>  InventoryGameCountSeries
+    public IEnumerable<ISeries> InventoryGameCountSeries
     {
         get => _inventoryGameCountSeries;
         private set => SetProperty(ref _inventoryGameCountSeries, value);
@@ -111,10 +112,16 @@ public class InventoryModel : ModelBase
         }
     }
 
-    public IEnumerable<ISeries>  InventoryGameSumSeries
+    public IEnumerable<ISeries> InventoryGameSumSeries
     {
         get => _inventoryGameSumSeries;
         private set => SetProperty(ref _inventoryGameSumSeries, value);
+    }
+
+    public double GraphWidth
+    {
+        get => _graphWidth;
+        private set => SetProperty(ref _graphWidth, value);
     }
 
     public GameModel? SelectedGameModel
@@ -404,6 +411,7 @@ public class InventoryModel : ModelBase
         _inventoryGameCountSeries = [];
         _inventoryGameSum = Enumerable.Empty<Inventory.InventoryGameSumResponse>();
         _inventoryGameSumSeries = [];
+        _graphWidth = 300;
 
         _inventoryModels = [];
         _itemsCancellationTokenSource = new();
@@ -477,6 +485,7 @@ public class InventoryModel : ModelBase
         if (!InventoryGameCount.Any()) return;
 
         int i = 0;
+
         InventoryGameCountSeries = InventoryGameCount.OrderByDescending(x => x.Count)
             .AsPieSeries((value, builder) =>
             {
@@ -487,6 +496,8 @@ public class InventoryModel : ModelBase
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;
             });
+
+        GraphWidth = GraphWidth < 300 ? GraphWidth + 1 : GraphWidth - 1;
     }
 
     private void GetInventoryGameSumSeries()
@@ -494,6 +505,7 @@ public class InventoryModel : ModelBase
         if (!InventoryGameSum.Any()) return;
 
         int i = 0;
+
         InventoryGameSumSeries = InventoryGameSum.OrderByDescending(x => x.Sum)
             .AsPieSeries((value, builder) =>
             {
@@ -504,6 +516,8 @@ public class InventoryModel : ModelBase
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;
             });
+        
+        GraphWidth = GraphWidth < 300 ? GraphWidth + 1 : GraphWidth - 1;
     }
 
     private async void GetStatisticsAsync()

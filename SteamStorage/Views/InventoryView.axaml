@@ -67,29 +67,29 @@
 				<TextBlock Text="Количество"
 				           Classes="MiddleTextBlock CenterTextBlock"
 				           Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+													Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
 				           Grid.Row="0" Grid.Column="3"/>
 				
 				<lvc:PieChart Series="{Binding InventoryGameCountSeries, Mode=OneWay}"
 				              TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
 				              TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
 				              InitialRotation="-90"
-				              Width="200"
+				              Width="{Binding GraphWidth, Mode=OneWay}"
 				              Grid.Row="1" Grid.Column="3"/>
                 
 				<TextBlock Text="Сумма"
 				           Classes="MiddleTextBlock CenterTextBlock"
 				           Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+													Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
 				           Grid.Row="0" Grid.Column="5"/>
 				
 				<lvc:PieChart Series="{Binding InventoryGameSumSeries, Mode=OneWay}"
 				              TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
 				              TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
 				              InitialRotation="-90"
-				              Width="200"
+				              Width="{Binding GraphWidth, Mode=OneWay}"
 				              Grid.Row="1" Grid.Column="5"/>
-                
+				
 			</Grid>
 			
 		</Border>
