@@ -63,6 +63,13 @@ public static class ActiveGroups
         string? Colour,
         decimal? GoalSum) : Request;
     
+    public record PutActiveGroupRequest(
+        int GroupId,
+        string Title,
+        string? Description,
+        string? Colour,
+        decimal? GoalSum) : Request;
+    
     public record DeleteActiveGroupRequest(
         int GroupId) : Request;
 

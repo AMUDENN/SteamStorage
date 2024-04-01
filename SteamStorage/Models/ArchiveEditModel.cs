@@ -214,7 +214,15 @@ public class ArchiveEditModel : BaseItemEditModel
 
     protected override async Task DoSaveCommand()
     {
-        if (IsNewArchive && SelectedSkinModel is not null)
+        if (SelectedSkinModel is null || SelectedArchiveGroupModel is null) return;
+
+        if (!((int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
+              && (decimal.TryParse(BuyPrice, out decimal buyPrice) && buyPrice >= (decimal)0.01)
+              && (decimal.TryParse(SoldPrice, out decimal soldPrice) && soldPrice >= (decimal)0.01)
+              && Description?.Length <= 300))
+            return;
+
+        if (IsNewArchive)
         {
             bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите добавить элемент архива: «{SelectedSkinModel.Title}»?",
@@ -222,6 +230,17 @@ public class ArchiveEditModel : BaseItemEditModel
                 DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
+
+            await ApiClient.PostAsync(
+                ApiConstants.ApiMethods.PostArchive,
+                new Archives.PostArchiveRequest(SelectedArchiveGroupModel.GroupId,
+                    count,
+                    buyPrice,
+                    soldPrice,
+                    SelectedSkinModel.SkinId,
+                    Description,
+                    BuyDate.DateTime,
+                    SoldDate.DateTime));
         }
         else if (_archiveModel is not null)
         {
@@ -231,16 +250,26 @@ public class ArchiveEditModel : BaseItemEditModel
                 DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
+
+            await ApiClient.PutAsync(
+                ApiConstants.ApiMethods.PutArchive,
+                new Archives.PutArchiveRequest(_archiveModel.ArchiveId,
+                    SelectedArchiveGroupModel.GroupId,
+                    count,
+                    buyPrice,
+                    soldPrice,
+                    SelectedSkinModel.SkinId,
+                    Description,
+                    BuyDate.DateTime,
+                    SoldDate.DateTime));
         }
         else
         {
             return;
         }
-        
-        //TODO:
-        
+
         OnItemChanged();
-        
+
         OnGoingBack();
     }
 

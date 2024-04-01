@@ -170,6 +170,11 @@ public class ArchiveGroupEditModel : BaseEditModel
 
     protected override async Task DoSaveCommand()
     {
+        if (!(GroupTitle.Length is >= 3 and <= 100
+              && Description?.Length <= 300
+              && Colour != Colors.Transparent))
+            return;
+
         if (IsNewGroup)
         {
             bool result = await _dialogService.ShowDialogAsync(
@@ -178,6 +183,12 @@ public class ArchiveGroupEditModel : BaseEditModel
                 DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
+
+            await ApiClient.PostAsync(
+                ApiConstants.ApiMethods.PostArchiveGroup,
+                new ArchiveGroups.PostArchiveGroupRequest(GroupTitle,
+                    Description,
+                    Colour.ToString().Trim('#')));
         }
         else if (_archiveGroupModel is not null)
         {
@@ -187,16 +198,21 @@ public class ArchiveGroupEditModel : BaseEditModel
                 DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
+
+            await ApiClient.PutAsync(
+                ApiConstants.ApiMethods.PutArchiveGroup,
+                new ArchiveGroups.PutArchiveGroupRequest(_archiveGroupModel.GroupId,
+                    GroupTitle,
+                    Description,
+                    Colour.ToString().Trim('#')));
         }
         else
         {
             return;
         }
-        
-        //TODO:
-        
+
         OnItemChanged();
-        
+
         OnGoingBack();
     }
 

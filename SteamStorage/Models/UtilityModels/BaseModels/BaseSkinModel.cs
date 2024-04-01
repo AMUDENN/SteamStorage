@@ -8,7 +8,7 @@ public class BaseSkinModel : ModelBase
 {
     #region Properties
 
-    protected int SkinId { get; }
+    public int SkinId { get; }
 
     private string MarketUrl { get; }
 

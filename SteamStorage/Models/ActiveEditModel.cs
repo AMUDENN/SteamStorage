@@ -28,7 +28,7 @@ public class ActiveEditModel : BaseItemEditModel
     private readonly ActiveGroupsModel _activeGroupsModel;
 
     private ActiveModel? _activeModel;
-    
+
     private BaseGroupModel? _defaultActiveGroupModel;
     private BaseGroupModel? _selectedActiveGroupModel;
 
@@ -46,7 +46,7 @@ public class ActiveEditModel : BaseItemEditModel
 
     private DateTimeOffset _defaultBuyDate;
     private DateTimeOffset _buyDate;
-    
+
     private bool _isNewActive;
 
     #endregion Fields
@@ -68,7 +68,7 @@ public class ActiveEditModel : BaseItemEditModel
             SaveCommand.NotifyCanExecuteChanged();
         }
     }
-    
+
     public string DefaultCount
     {
         get => _defaultCount;
@@ -144,7 +144,7 @@ public class ActiveEditModel : BaseItemEditModel
         get => _buyDate;
         set => SetProperty(ref _buyDate, value);
     }
-    
+
     public bool IsNewActive
     {
         get => _isNewActive;
@@ -177,26 +177,35 @@ public class ActiveEditModel : BaseItemEditModel
     protected override async Task DoDeleteCommand()
     {
         if (_activeModel is null) return;
-        
+
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить актив: «{_activeModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
-        
+
         if (!result) return;
 
         await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteActive,
             new Actives.DeleteActiveRequest(_activeModel.ActiveId));
-        
+
         OnItemDeleted();
-        
+
         OnGoingBack();
     }
 
     protected override async Task DoSaveCommand()
     {
-        if (IsNewActive && SelectedSkinModel is not null)
+        if (SelectedSkinModel is null || SelectedActiveGroupModel is null) return;
+
+        if (!((int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
+              && (decimal.TryParse(BuyPrice, out decimal price) && price >= (decimal)0.01)
+              && ((decimal.TryParse(GoalPrice, out decimal goal) && goal >= (decimal)0.01) || string.IsNullOrWhiteSpace(GoalPrice))
+              && Description?.Length <= 300))
+            return;
+
+
+        if (IsNewActive)
         {
             bool result = await _dialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите добавить актив: «{SelectedSkinModel.Title}»?",
@@ -204,6 +213,16 @@ public class ActiveEditModel : BaseItemEditModel
                 DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
+
+            await ApiClient.PostAsync(
+                ApiConstants.ApiMethods.PostActive,
+                new Actives.PostActiveRequest(SelectedActiveGroupModel.GroupId,
+                    count,
+                    price,
+                    string.IsNullOrWhiteSpace(GoalPrice) ? null : goal,
+                    SelectedSkinModel.SkinId,
+                    Description,
+                    BuyDate.DateTime));
         }
         else if (_activeModel is not null)
         {
@@ -213,16 +232,25 @@ public class ActiveEditModel : BaseItemEditModel
                 DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
+
+            await ApiClient.PutAsync(
+                ApiConstants.ApiMethods.PutActive,
+                new Actives.PutActiveRequest(_activeModel.ActiveId,
+                    SelectedActiveGroupModel.GroupId,
+                    count,
+                    price,
+                    string.IsNullOrWhiteSpace(GoalPrice) ? null : goal,
+                    SelectedSkinModel.SkinId,
+                    Description,
+                    BuyDate.DateTime));
         }
         else
         {
             return;
         }
-        
-        //TODO:
 
         OnItemChanged();
-        
+
         OnGoingBack();
     }
 
@@ -231,7 +259,7 @@ public class ActiveEditModel : BaseItemEditModel
         return SelectedActiveGroupModel is not null
                && (int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
                && (decimal.TryParse(BuyPrice, out decimal price) && price >= (decimal)0.01)
-               && (string.IsNullOrEmpty(GoalPrice) || (decimal.TryParse(GoalPrice, out decimal goal) && goal >= (decimal)0.01))
+               && (string.IsNullOrWhiteSpace(GoalPrice) || (decimal.TryParse(GoalPrice, out decimal goal) && goal >= (decimal)0.01))
                && Description?.Length <= 300
                && SelectedSkinModel is not null;
     }
@@ -256,7 +284,7 @@ public class ActiveEditModel : BaseItemEditModel
     public void SetEditActive(ActiveModel? model)
     {
         _activeModel = model;
-        
+
         DefaultActiveGroupModel = _activeGroupsModel.ActiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = $"{model?.Count ?? 1:N0}";
@@ -279,7 +307,7 @@ public class ActiveEditModel : BaseItemEditModel
     public void SetAddActive(ActiveGroupModel? model)
     {
         _activeModel = null;
-        
+
         DefaultActiveGroupModel = _activeGroupsModel.ActiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = "1";
@@ -293,7 +321,7 @@ public class ActiveEditModel : BaseItemEditModel
         DefaultDescription = string.Empty;
 
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
-        
+
         IsNewActive = true;
 
         SetValuesFromDefault();
@@ -302,7 +330,7 @@ public class ActiveEditModel : BaseItemEditModel
     public void SetAddActive(ListItemModel? model)
     {
         _activeModel = null;
-        
+
         DefaultActiveGroupModel = null;
 
         DefaultCount = "1";
@@ -316,7 +344,7 @@ public class ActiveEditModel : BaseItemEditModel
         DefaultDescription = string.Empty;
 
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
-        
+
         IsNewActive = true;
 
         SetValuesFromDefault();

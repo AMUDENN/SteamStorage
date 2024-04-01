@@ -208,19 +208,32 @@ public class ActiveSoldModel : BaseEditModel
 
     protected override async Task DoSaveCommand()
     {
-        if (_activeModel is null) return;
-        
+        if (_activeModel is null || SelectedArchiveGroupModel is null) return;
+
+        if (!((int.TryParse(SoldCount.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
+              && _activeModel.Count >= count
+              && (decimal.TryParse(SoldPrice, out decimal price) && price >= (decimal)0.01)
+              && Description?.Length <= 300))
+            return;
+
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите продать актив: «{_activeModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.SaveCancel);
 
         if (!result) return;
-        
-        //TODO:
-        
+
+        await ApiClient.PutAsync(
+            ApiConstants.ApiMethods.SoldActive,
+            new Actives.SoldActiveRequest(_activeModel.ActiveId,
+                SelectedArchiveGroupModel.GroupId,
+                count,
+                price,
+                SoldDate.DateTime,
+                Description));
+
         OnItemChanged();
-        
+
         OnGoingBack();
     }
 
@@ -228,6 +241,7 @@ public class ActiveSoldModel : BaseEditModel
     {
         return SelectedArchiveGroupModel is not null
                && (int.TryParse(SoldCount.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
+               && (_activeModel is null || _activeModel.Count >= count)
                && (decimal.TryParse(SoldPrice, out decimal price) && price >= (decimal)0.01)
                && Description?.Length <= 300;
     }

@@ -100,7 +100,7 @@ public class UserModel : ModelBase
 
     private async void GetUserAsync()
     {
-        User = string.IsNullOrEmpty(_settingsService.UserSettings.Token)
+        User = string.IsNullOrWhiteSpace(_settingsService.UserSettings.Token)
             ? null
             : await _apiClient.GetAsync<Users.UserResponse>(
                 ApiConstants.ApiMethods.GetCurrentUserInfo);

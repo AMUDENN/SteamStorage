@@ -26,11 +26,11 @@ public class ActiveGroupEditModel : BaseEditModel
     #endregion Constants
 
     #region Fields
-    
+
     private readonly IDialogService _dialogService;
-    
+
     private ActiveGroupModel? _activeGroupModel;
-    
+
     private string _defaultGroupTitle;
     private string _groupTitle;
 
@@ -114,7 +114,7 @@ public class ActiveGroupEditModel : BaseEditModel
         get => _colour;
         set
         {
-            SetProperty(ref _colour, value); 
+            SetProperty(ref _colour, value);
             SaveCommand.NotifyCanExecuteChanged();
         }
     }
@@ -239,7 +239,7 @@ public class ActiveGroupEditModel : BaseEditModel
         IDialogService dialogService) : base(apiClient)
     {
         _dialogService = dialogService;
-        
+
         _defaultGroupTitle = string.Empty;
         _groupTitle = string.Empty;
 
@@ -257,25 +257,33 @@ public class ActiveGroupEditModel : BaseEditModel
     protected override async Task DoDeleteCommand()
     {
         if (_activeGroupModel is null) return;
-        
+
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить группу: «{_activeGroupModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
-        
+
         if (!result) return;
 
         await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteActiveGroup,
             new ActiveGroups.DeleteActiveGroupRequest(_activeGroupModel.GroupId));
-        
+
         OnItemDeleted();
-        
+
         OnGoingBack();
     }
 
     protected override async Task DoSaveCommand()
     {
+        if (!(GroupTitle.Length is >= 3 and <= 100
+              && Description?.Length <= 300
+              && ((decimal.TryParse(GoalSum, out decimal sum) && sum >= (decimal)0.01) || string.IsNullOrWhiteSpace(GoalSum))
+              && Colour != Colors.Transparent))
+            return;
+        
+        System.Diagnostics.Debug.WriteLine(Colour.ToString().Trim('#'));
+        
         if (IsNewGroup)
         {
             bool result = await _dialogService.ShowDialogAsync(
@@ -284,6 +292,13 @@ public class ActiveGroupEditModel : BaseEditModel
                 DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
+
+            await ApiClient.PostAsync(
+                ApiConstants.ApiMethods.PostActiveGroup,
+                new ActiveGroups.PostActiveGroupRequest(GroupTitle,
+                    Description,
+                    Colour.ToString().Trim('#'),
+                    string.IsNullOrWhiteSpace(GoalSum) ? null : sum));
         }
         else if (_activeGroupModel is not null)
         {
@@ -293,16 +308,22 @@ public class ActiveGroupEditModel : BaseEditModel
                 DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
+
+            await ApiClient.PutAsync(
+                ApiConstants.ApiMethods.PutActiveGroup,
+                new ActiveGroups.PutActiveGroupRequest(_activeGroupModel.GroupId,
+                    GroupTitle,
+                    Description,
+                    Colour.ToString().Trim('#'),
+                    string.IsNullOrWhiteSpace(GoalSum) ? null : sum));
         }
         else
         {
             return;
         }
-        
-        //TODO:
-        
+
         OnItemChanged();
-        
+
         OnGoingBack();
     }
 
@@ -310,7 +331,7 @@ public class ActiveGroupEditModel : BaseEditModel
     {
         return GroupTitle.Length is >= 3 and <= 100
                && Description?.Length <= 300
-               && (string.IsNullOrEmpty(GoalSum) || (decimal.TryParse(GoalSum, out decimal sum) && sum >= (decimal)0.01))
+               && (string.IsNullOrWhiteSpace(GoalSum) || (decimal.TryParse(GoalSum, out decimal sum) && sum >= (decimal)0.01))
                && Colour != Colors.Transparent;
     }
 
@@ -331,7 +352,7 @@ public class ActiveGroupEditModel : BaseEditModel
     public void SetEditGroup(ActiveGroupModel? model)
     {
         _activeGroupModel = model;
-        
+
         DefaultGroupTitle = model?.Title ?? string.Empty;
 
         DefaultDescription = model?.Description ?? string.Empty;

@@ -14,6 +14,11 @@ public class BaseSkinViewModel : ViewModelBase
 
     #region Properties
 
+    public int SkinId
+    {
+        get => _model.SkinId;
+    }
+    
     public string ImageUrl
     {
         get => _model.ImageUrl;
