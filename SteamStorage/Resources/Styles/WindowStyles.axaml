@@ -11,6 +11,7 @@
 	</Style>
 
 	<Style Selector="Window.MainWindow">
+		<Setter Property="WindowStartupLocation" Value="CenterScreen"/>
 		<Setter Property="MinHeight" Value="930"/>
 		<Setter Property="MinWidth" Value="980"/>
 		<Setter Property="Template">

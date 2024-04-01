@@ -174,9 +174,15 @@ public class MainModel : ModelBase
         IsSettingsChecked = false;
 
         if (_userModel.User is not null)
+        {
             SelectedNavigationModel = NavigationOptions.FirstOrDefault(x => x.Title == _userModel.User.StartPage);
+        }
         else
+        {
+            SelectedNavigationModel = null;
+            IsSettingsChecked = false;
             CurrentViewModel = _defaultViewModel;
+        }
     }
 
     private void AddToActivesHandler(object? sender, AddToActivesEventArgs args)
