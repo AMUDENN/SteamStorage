@@ -104,9 +104,30 @@
 		<Border Classes="BackgroundAdditionalBorder BigRoundedBorder"
 		        Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0">
 			
-			<TextBlock Text="Тут будет финансовая цель" 
-			           Classes="CenterTextBlock MiddleTextBlock"
-			           Margin="20"/>
+			<Grid ColumnDefinitions="6*, 230, Auto, 5*"
+			      Margin="50, 20">
+				
+				<TextBlock Text="Финансовая цель: "
+				           Classes="MiddleTextBlock RightTextBlock"
+				           Margin="0, 0, 10, 0"
+				           Grid.Column="0"/>
+				
+                <controls:AdvancedTextBox Text="{Binding FinancialGoal}"
+                                          StringFormat="N2"
+                                          PreviewCharRegex="[0-9.,]"
+                                          Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
+                                          Height="50"
+                                          Grid.Column="1"/>
+				
+				<Button Content="Сохранить"
+				        Command="{Binding SaveFinancialGoal}"
+				        Background="Transparent"
+				        Classes="TextButton UnderlineButton"
+				        HorizontalAlignment="Left"
+				        Margin="10, 0, 0, 0"
+				        Grid.Column="2"/>
+				
+			</Grid>
 			
 		</Border>
 		

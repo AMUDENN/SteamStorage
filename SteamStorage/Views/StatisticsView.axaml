@@ -36,7 +36,7 @@
 		    </Style>
 		    
 		    <Style Selector="TextBlock#InvestedSumTitle, TextBlock#InvestedSum">
-                <Setter Property="Margin" Value="0, 0, -20, 0"/>
+                <Setter Property="Margin" Value="0, 0, -10, 0"/>
                 <Style Selector="^.Max">
             	    <Setter Property="Margin" Value="0"/>
             	    <Setter Property="Grid.ColumnSpan" Value="2"/>

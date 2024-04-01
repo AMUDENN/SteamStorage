@@ -22,6 +22,10 @@ public class UserModel : ModelBase
     public delegate void CurrencyChangedEventHandler(object? sender);
 
     public event CurrencyChangedEventHandler? CurrencyChanged;
+    
+    public delegate void FinancialGoalChangedEventHandler(object? sender);
+
+    public event FinancialGoalChangedEventHandler? FinancialGoalChanged;
 
     #endregion Events
 
@@ -138,6 +142,15 @@ public class UserModel : ModelBase
             ApiConstants.ApiMethods.SetStartPage,
             new Pages.SetPageRequest(pageModel.Id));
     }
+    
+    public async void SetFinancialGoalAsync(decimal? goalSum)
+    {
+        await _apiClient.PutAsync(
+            ApiConstants.ApiMethods.PutGoalSum,
+            new Users.PutGoalSumRequest(goalSum));
+        
+        OnFinancialGoalChanged();
+    }
 
     private void OnUserChanged()
     {
@@ -147,6 +160,11 @@ public class UserModel : ModelBase
     private void OnCurrencyChanged()
     {
         CurrencyChanged?.Invoke(this);
+    }
+    
+    private void OnFinancialGoalChanged()
+    {
+        FinancialGoalChanged?.Invoke(this);
     }
 
     #endregion Methods

@@ -30,6 +30,9 @@ public class ProfileModel : ModelBase
 
     private string? _dateRegistration;
 
+    private string? _defaultFinancialGoal;
+    private string? _financialGoal;
+
     private CurrencyModel? _selectedCurrency;
 
     private string? _exchangeRate;
@@ -70,6 +73,22 @@ public class ProfileModel : ModelBase
         private set => SetProperty(ref _dateRegistration, value);
     }
 
+    private string? DefaultFinancialGoal
+    {
+        get => _defaultFinancialGoal;
+        set => SetProperty(ref _defaultFinancialGoal, value);
+    }
+    
+    public string? FinancialGoal
+    {
+        get => _financialGoal;
+        set
+        {
+            SetProperty(ref _financialGoal, value); 
+            SaveFinancialGoal.NotifyCanExecuteChanged();
+        }
+    }
+
     public CurrencyModel? SelectedCurrency
     {
         get => _selectedCurrency;
@@ -103,6 +122,8 @@ public class ProfileModel : ModelBase
     #region Commands
 
     public RelayCommand OpenSteamProfileCommand { get; }
+    
+    public RelayCommand SaveFinancialGoal { get; }
 
     public AsyncRelayCommand DeleteProfileCommand { get; }
 
@@ -135,6 +156,7 @@ public class ProfileModel : ModelBase
         _profileUrl = string.Empty;
 
         OpenSteamProfileCommand = new(DoOpenSteamProfileCommand);
+        SaveFinancialGoal = new(DoSaveFinancialGoal, CanExecuteSaveFinancialGoal);
         DeleteProfileCommand = new(DoDeleteProfileCommand);
         AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
     }
@@ -170,6 +192,9 @@ public class ProfileModel : ModelBase
         DateRegistration =
             $"Дата регистрации: {_userModel.User.DateRegistration.ToString(ProgramConstants.VIEW_DATE_FORMAT)}";
 
+        DefaultFinancialGoal = $"{_userModel.User.GoalSum:N2}";
+        FinancialGoal = DefaultFinancialGoal;
+
         SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.User.StartPageId);
     }
 
@@ -194,6 +219,23 @@ public class ProfileModel : ModelBase
     private void DoOpenSteamProfileCommand()
     {
         UrlUtility.OpenUrl(_profileUrl);
+    }
+
+    private void DoSaveFinancialGoal()
+    {
+        if (string.IsNullOrWhiteSpace(FinancialGoal))
+        {
+            _userModel.SetFinancialGoalAsync(null);
+        }
+        if (decimal.TryParse(FinancialGoal, out decimal financialGoal))
+        {
+            _userModel.SetFinancialGoalAsync(financialGoal);
+        }
+    }
+
+    private bool CanExecuteSaveFinancialGoal()
+    {
+        return FinancialGoal != DefaultFinancialGoal;
     }
 
     private async Task DoDeleteProfileCommand()

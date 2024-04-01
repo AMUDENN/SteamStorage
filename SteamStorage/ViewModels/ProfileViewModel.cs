@@ -42,6 +42,12 @@ public class ProfileViewModel : ViewModelBase
     {
         get => _profileModel.DateRegistration;
     }
+    
+    public string? FinancialGoal
+    {
+        get => _profileModel.FinancialGoal;
+        set => _profileModel.FinancialGoal = value;
+    }
 
     public IEnumerable<CurrencyModel> CurrencyModels
     {
@@ -74,6 +80,11 @@ public class ProfileViewModel : ViewModelBase
 
     #region Commands
 
+    public RelayCommand SaveFinancialGoal
+    {
+        get => _profileModel.SaveFinancialGoal;
+    }
+    
     public RelayCommand OpenSteamProfileCommand
     {
         get => _profileModel.OpenSteamProfileCommand;

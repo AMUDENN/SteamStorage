@@ -257,6 +257,7 @@ public class StatisticsModel : ModelBase
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
+        userModel.FinancialGoalChanged += FinancialGoalChangedHandler;
 
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
@@ -288,6 +289,11 @@ public class StatisticsModel : ModelBase
     }
 
     private void CurrencyChangedHandler(object? sender)
+    {
+        RefreshStatisticsAsync();
+    }
+    
+    private void FinancialGoalChangedHandler(object? sender)
     {
         RefreshStatisticsAsync();
     }
