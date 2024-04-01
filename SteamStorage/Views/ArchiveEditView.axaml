@@ -87,7 +87,7 @@
                                                     Grid.Row="0" Grid.Column="2">
                         <AutoCompleteBox SelectedItem="{Binding SelectedSkinModel}" 
                                          ItemsSource="{Binding SkinModels, Mode=OneWay}"
-                                         SearchText="{Binding Filter, Mode=OneWayToSource}"
+                                         Text="{Binding Filter}"
                                          ItemFilter="{Binding ItemFilter, Mode=OneWay}"
                                          AsyncPopulator="{Binding AsyncPopulator, Mode=OneWay}"
                                          Watermark="Выберите предмет из выпадающего списка"

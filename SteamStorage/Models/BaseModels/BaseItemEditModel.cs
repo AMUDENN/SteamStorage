@@ -51,7 +51,7 @@ public abstract class BaseItemEditModel : BaseEditModel
         set
         {
             SetProperty(ref _filter, value);
-            GetSkinsAsync();
+            if (!string.IsNullOrWhiteSpace(value)) GetSkinsAsync();
         }
     }
 
@@ -91,11 +91,18 @@ public abstract class BaseItemEditModel : BaseEditModel
 
         ItemFilter = ItemFilterPredicate;
         AsyncPopulator = PopulateAsync;
+
+        GoingBack += GoingBackHandler;
     }
 
     #endregion Constructor
 
     #region Methods
+
+    private void GoingBackHandler(object? sender)
+    {
+        Filter = null;
+    }
 
     protected abstract void SetTitle(BaseSkinViewModel? model);
 

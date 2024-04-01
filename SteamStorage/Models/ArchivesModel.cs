@@ -59,6 +59,7 @@ public class ArchivesModel : ModelBase
         ListArchivesModel listArchivesModel,
         ListItemsModel listItemsModel,
         ArchiveEditModel archiveEditModel,
+        ActiveSoldModel activeSoldModel,
         ArchiveGroupEditModel archiveGroupEditModel)
     {
         SecondaryNavigationOptions =
@@ -90,6 +91,7 @@ public class ArchivesModel : ModelBase
         archiveGroupEditModel.ItemDeleted += ArchiveGroupItemDeletedHandler;
         
         archiveEditModel.ItemChanged += ArchiveItemChangedHandler;
+        activeSoldModel.ItemChanged += ArchiveItemChangedHandler;
         archiveGroupEditModel.ItemChanged += ArchiveGroupItemChangedHandler;
     }
 
