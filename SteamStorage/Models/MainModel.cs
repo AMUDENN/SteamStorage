@@ -32,6 +32,7 @@ public class MainModel : ModelBase
 
     private ViewModelBase _currentViewModel;
     private readonly ViewModelBase _settingsViewModel;
+    private readonly ViewModelBase _defaultViewModel;
 
     private NavigationModel? _selectedNavigationModel;
     private bool _isSettingsChecked;
@@ -119,6 +120,7 @@ public class MainModel : ModelBase
         InventoryViewModel inventoryViewModel,
         ProfileViewModel profileViewModel,
         SettingsViewModel settingsViewModel,
+        DefaultViewModel defaultViewModel,
         ListItemsModel listItemsModel,
         ActiveEditModel activeEditModel,
         ArchiveEditModel archiveEditModel)
@@ -136,9 +138,9 @@ public class MainModel : ModelBase
         ];
 
         _settingsViewModel = settingsViewModel;
-
-        _selectedNavigationModel = NavigationOptions.First();
-        _currentViewModel = _selectedNavigationModel.Page;
+        _defaultViewModel = defaultViewModel;
+        
+        _currentViewModel = defaultViewModel;
         _isSettingsChecked = false;
 
         _userName = USERNAME;
@@ -167,6 +169,14 @@ public class MainModel : ModelBase
         UserName = _userModel.User?.Nickname ?? USERNAME;
         SteamId = _userModel.User is null ? STEAM_ID : $"{STEAM_ID}: {_userModel.User.SteamId}";
         ImageUrl = _userModel.User?.ImageUrlFull;
+
+        SelectedNavigationModel = null;
+        IsSettingsChecked = false;
+
+        if (_userModel.User is not null)
+            SelectedNavigationModel = NavigationOptions.FirstOrDefault(x => x.Title == _userModel.User.StartPage);
+        else
+            CurrentViewModel = _defaultViewModel;
     }
 
     private void AddToActivesHandler(object? sender, AddToActivesEventArgs args)

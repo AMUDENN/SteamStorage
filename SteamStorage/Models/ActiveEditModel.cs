@@ -185,7 +185,7 @@ public class ActiveEditModel : BaseItemEditModel
         
         if (!result) return;
 
-        await _apiClient.DeleteAsync(
+        await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteActive,
             new Actives.DeleteActiveRequest(_activeModel.ActiveId));
         

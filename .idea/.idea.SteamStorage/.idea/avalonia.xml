@@ -149,6 +149,7 @@
         <entry key="SteamStorage/Views/ArchivesView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/BaseDialogView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/BaseMessageBoxView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/DefaultView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/DialogWindow.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/HomeView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/InventoryView.axaml" value="SteamStorage/SteamStorage.csproj" />

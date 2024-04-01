@@ -4,7 +4,7 @@ using SteamStorage.ViewModels.Tools;
 
 namespace SteamStorage.ViewModels.BaseViewModels;
 
-public class BaseDialogViewModel : ViewModelBase
+public abstract class BaseDialogViewModel : ViewModelBase
 {
     #region Fields
 

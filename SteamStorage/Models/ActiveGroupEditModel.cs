@@ -265,7 +265,7 @@ public class ActiveGroupEditModel : BaseEditModel
         
         if (!result) return;
 
-        await _apiClient.DeleteAsync(
+        await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteActiveGroup,
             new ActiveGroups.DeleteActiveGroupRequest(_activeGroupModel.GroupId));
         

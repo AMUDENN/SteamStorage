@@ -125,7 +125,7 @@ public abstract class BaseItemEditModel : BaseEditModel
         CancellationToken token = CancellationTokenSource.Token;
 
         Skins.BaseSkinsResponse? skinsResponse =
-            await _apiClient.GetAsync<Skins.BaseSkinsResponse, Skins.GetBaseSkinsRequest>(
+            await ApiClient.GetAsync<Skins.BaseSkinsResponse, Skins.GetBaseSkinsRequest>(
                 ApiConstants.ApiMethods.GetBaseSkins,
                 new(Filter),
                 token);

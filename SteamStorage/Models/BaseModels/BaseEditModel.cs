@@ -25,7 +25,7 @@ public abstract class BaseEditModel : ModelBase
 
     #region Fields
 
-    protected readonly ApiClient _apiClient;
+    protected readonly ApiClient ApiClient;
     
     private string _title;
 
@@ -56,7 +56,7 @@ public abstract class BaseEditModel : ModelBase
     protected BaseEditModel(
         ApiClient apiClient)
     {
-        _apiClient = apiClient;
+        ApiClient = apiClient;
         
         _title = string.Empty;
         

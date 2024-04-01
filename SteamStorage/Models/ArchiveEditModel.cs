@@ -203,7 +203,7 @@ public class ArchiveEditModel : BaseItemEditModel
         
         if (!result) return;
 
-        await _apiClient.DeleteAsync(
+        await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteArchive,
             new Archives.DeleteArchiveRequest(_archiveModel.ArchiveId));
         

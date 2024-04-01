@@ -120,6 +120,7 @@ namespace SteamStorage
             services.AddSingleton<ArchiveGroupEditViewModel>();
             services.AddSingleton<ArchivesReviewViewModel>();
             services.AddSingleton<ArchivesViewModel>();
+            services.AddSingleton<DefaultViewModel>();
             services.AddSingleton<HomeViewModel>();
             services.AddSingleton<InventoryViewModel>();
             services.AddSingleton<ListActivesViewModel>();

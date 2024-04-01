@@ -16,6 +16,7 @@ public static class Users
         string? Nickname,
         string Role,
         int StartPageId,
+        string StartPage,
         int CurrencyId,
         DateTime DateRegistration,
         decimal? GoalSum) : Response;

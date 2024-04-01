@@ -159,7 +159,7 @@ public class ArchiveGroupEditModel : BaseEditModel
         
         if (!result) return;
 
-        await _apiClient.DeleteAsync(
+        await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteArchiveGroup,
             new ArchiveGroups.DeleteArchiveGroupRequest(_archiveGroupModel.GroupId));
         
