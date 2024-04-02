@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
              xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              xmlns:vm="using:SteamStorage.ViewModels"
              xmlns:controls="using:SteamStorage.Resources.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -16,21 +17,16 @@
         </ia:EventTriggerBehavior>
     </i:Interaction.Behaviors>
     
-    <Grid RowDefinitions="290, 30, 30, 40, *">
+    <Grid RowDefinitions="220, 30, 30, 40, *">
         
         <Border Classes="BigRoundedBorder FirstAccentGradientBorder" 
                 Grid.Row="0">
             
-            <Grid RowDefinitions="40, 30, 160"
-                  ColumnDefinitions="5*, 7*"
+            <Grid ColumnDefinitions="5*, 8*"
                   Margin="30">
                 
-                <TextBlock Text="Статистика" 
-                           Classes="BigTextBlock CenterTextBlock"
-                           Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0"/>
-                
                 <Grid RowDefinitions="40, 20, 40, 20, 40"
-                      Grid.Row="1" Grid.Column="0">
+                      Grid.Column="0">
                     
                     <Grid ColumnDefinitions="Auto, *"
                           Grid.Row="0">
@@ -40,6 +36,12 @@
                                    Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
 																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                    Grid.Column="0"/>
+                        
+                        <TextBlock Text="{Binding Count, StringFormat=N0, Mode=OneWay}" 
+                                   Classes="BigTextBlock LeftTextBlock"
+                                   Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                                   Grid.Column="1"/>
                         
                     </Grid>
                     
@@ -52,6 +54,12 @@
 																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                    Grid.Column="0"/>
                         
+                        <TextBlock Text="{Binding InvestedSumString, Mode=OneWay}" 
+                                   Classes="BigTextBlock LeftTextBlock"
+                                   Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                                   Grid.Column="1"/>
+                        
                     </Grid>
                     
                     <Grid ColumnDefinitions="Auto, *"
@@ -63,7 +71,43 @@
 																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                    Grid.Column="0"/>
                         
+                        <TextBlock Text="{Binding CurrentSumString, Mode=OneWay}" 
+                                   Classes="BigTextBlock LeftTextBlock"
+                                   Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                                   Grid.Column="1"/>
+                        
                     </Grid>
+                    
+                </Grid>
+                
+                <Grid RowDefinitions="40, *"
+                      ColumnDefinitions="*, *, *"
+                      Grid.Column="1">
+                    
+                    <TextBlock Text="Количество"
+                               Classes="MiddleTextBlock CenterTextBlock"
+                               Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                               Grid.Row="0" Grid.Column="0"/>
+                    
+                    <lvc:PieChart Grid.Row="1" Grid.Column="0"/>
+                    
+                    <TextBlock Text="Сумма инвестиций"
+                               Classes="MiddleTextBlock CenterTextBlock"
+                               Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                               Grid.Row="0" Grid.Column="1"/>
+                    
+                    <lvc:PieChart Grid.Row="1" Grid.Column="1"/>
+                    
+                    <TextBlock Text="Текущая сумма"
+                               Classes="MiddleTextBlock CenterTextBlock"
+                               Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                               Grid.Row="0" Grid.Column="2"/>
+                    
+                    <lvc:PieChart Grid.Row="1" Grid.Column="2"/>
                     
                 </Grid>
                 
