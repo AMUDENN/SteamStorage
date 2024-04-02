@@ -3,14 +3,7 @@
         xmlns:asyncImageLoader="using:AsyncImageLoader"
         xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
         xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels"
-        xmlns:converters="using:SteamStorage.Resources.Converters"
         xmlns:controls="using:SteamStorage.Resources.Controls">
-	
-	<Styles.Resources>
-		<converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
-		<converters:DoubleGreaterConverter x:Key="DoubleGreaterConverter"/>
-		<converters:MarkedPercentConverter x:Key="MarkedPercentConverter"/>
-	</Styles.Resources>
     
 	<Style Selector="ListBox.InventoryItemsListBox">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>

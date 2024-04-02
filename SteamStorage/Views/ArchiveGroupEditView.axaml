@@ -3,16 +3,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:SteamStorage.ViewModels"
-             xmlns:converters="using:SteamStorage.Resources.Converters"
              xmlns:controls="using:SteamStorage.Resources.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SteamStorage.Views.ArchiveGroupEditView"
              x:DataType="vm:ArchiveGroupEditViewModel">
-    
-    <UserControl.Resources>
-        <converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
-        <converters:DoubleMultiplicationConverter x:Key="DoubleMultiplicationConverter"/>
-    </UserControl.Resources>
     
     <Border Classes="BackgroundAdditionalBorder BigRoundedBorder">
         

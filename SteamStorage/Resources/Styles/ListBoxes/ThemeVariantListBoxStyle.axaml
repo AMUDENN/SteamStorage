@@ -1,12 +1,7 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:utilityModels="using:SteamStorage.Models.UtilityModels"
-        xmlns:converters="using:SteamStorage.Resources.Converters"
         xmlns:controls="using:SteamStorage.Resources.Controls">
-	
-	<Styles.Resources>
-		<converters:DoubleMultiplicationConverter x:Key="DoubleMultiplicationConverter"/>
-	</Styles.Resources>
 	
 	<Style Selector="ListBox.ThemeVariantsListBox">
 		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>

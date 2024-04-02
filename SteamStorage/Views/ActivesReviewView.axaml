@@ -21,6 +21,54 @@
         <Border Classes="BigRoundedBorder FirstAccentGradientBorder" 
                 Grid.Row="0">
             
+            <Grid RowDefinitions="40, 30, 160"
+                  ColumnDefinitions="5*, 7*"
+                  Margin="30">
+                
+                <TextBlock Text="Статистика" 
+                           Classes="BigTextBlock CenterTextBlock"
+                           Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0"/>
+                
+                <Grid RowDefinitions="40, 20, 40, 20, 40"
+                      Grid.Row="1" Grid.Column="0">
+                    
+                    <Grid ColumnDefinitions="Auto, *"
+                          Grid.Row="0">
+                        
+                        <TextBlock Text="Количество: " 
+                                   Classes="MiddleTextBlock LeftTextBlock"
+                                   Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                                   Grid.Column="0"/>
+                        
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="Auto, *"
+                          Grid.Row="2">
+                        
+                        <TextBlock Text="Сумма вложений: " 
+                                   Classes="MiddleTextBlock LeftTextBlock"
+                                   Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                                   Grid.Column="0"/>
+                        
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="Auto, *"
+                          Grid.Row="4">
+                        
+                        <TextBlock Text="Текущая сумма: " 
+                                   Classes="MiddleTextBlock LeftTextBlock"
+                                   Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                                   Grid.Column="0"/>
+                        
+                    </Grid>
+                    
+                </Grid>
+                
+            </Grid>
+            
         </Border>
         
         <Grid Margin="20, 0"

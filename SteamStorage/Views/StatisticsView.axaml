@@ -6,7 +6,6 @@
              xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
              xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              xmlns:vm="using:SteamStorage.ViewModels"
-             xmlns:converters="using:SteamStorage.Resources.Converters"
              xmlns:controls="using:SteamStorage.Resources.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SteamStorage.Views.StatisticsView"
@@ -17,13 +16,6 @@
 			<ia:InvokeCommandAction Command="{Binding AttachedToVisualTreeCommand, Mode=OneWay}"/>
 		</ia:EventTriggerBehavior>
 	</i:Interaction.Behaviors>
-	
-	<UserControl.Resources>
-        <converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
-        <converters:DoubleGreaterConverter x:Key="DoubleGreaterConverter"/>
-        <converters:MarkedPercentConverter x:Key="MarkedPercentConverter"/>
-        <converters:PercentConverter x:Key="PercentConverter"/>
-    </UserControl.Resources>
     
     <Grid>
 	    

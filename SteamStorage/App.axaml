@@ -1,5 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="using:SteamStorage.Resources.Converters"
 			 xmlns:utilities="using:SteamStorage.Utilities"
              xmlns:themeVariants="using:SteamStorage.Utilities.ThemeVariants"
              x:CompileBindings="True"
@@ -112,12 +113,25 @@
     </Application.Styles>
 
 	<Application.Resources>
+		
 		<ResourceDictionary>
+			
+			<!-- Converters -->
+			<converters:BrushConverter x:Key="BrushConverter"/>
+			<converters:DoubleGreaterConverter x:Key="DoubleGreaterConverter"/>
+			<converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
+			<converters:DoubleMultiplicationConverter x:Key="DoubleMultiplicationConverter"/>
+			<converters:MarkedPercentConverter x:Key="MarkedPercentConverter"/>
+			<converters:PercentConverter x:Key="PercentConverter"/>
+			
+			<!-- Themes -->
 			<ResourceDictionary.ThemeDictionaries>
 				<ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.Classic}" Source="avares://SteamStorage/Resources/Themes/ClassicTheme.axaml"/>
 				<ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.Lime}" Source="avares://SteamStorage/Resources/Themes/LimeTheme.axaml"/>
 			</ResourceDictionary.ThemeDictionaries>
+			
 		</ResourceDictionary>
+		
 	</Application.Resources>
 	
 </Application>

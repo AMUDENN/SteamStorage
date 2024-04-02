@@ -4,16 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:asyncImageLoader="using:AsyncImageLoader"
 			 xmlns:vm="using:SteamStorage.ViewModels"
-			 xmlns:converters="using:SteamStorage.Resources.Converters"
              xmlns:controls="using:SteamStorage.Resources.Controls"
              mc:Ignorable="d" 
 			 d:DesignWidth="1440" d:DesignHeight="1024"
              x:Class="SteamStorage.Views.MainView"
 			 x:DataType="vm:MainViewModel">
-
-	<UserControl.Resources>
-		<converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
-	</UserControl.Resources>
 
 	<Grid ColumnDefinitions="Auto, *" Margin="30">
 

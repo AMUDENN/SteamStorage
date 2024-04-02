@@ -4,15 +4,7 @@
         xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
         xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
         xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels"
-        xmlns:converters="using:SteamStorage.Resources.Converters"
         xmlns:controls="using:SteamStorage.Resources.Controls">
-	
-	<Styles.Resources>
-		<converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
-		<converters:DoubleGreaterConverter x:Key="DoubleGreaterConverter"/>
-		<converters:MarkedPercentConverter x:Key="MarkedPercentConverter"/>
-		<converters:BrushConverter x:Key="BrushConverter"/>
-	</Styles.Resources>
 	
 	<Style Selector="ListBox.ActiveGroupsListBox">
 		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
