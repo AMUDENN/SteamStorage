@@ -24,6 +24,11 @@ public static class Inventory
         int Count,
         decimal CurrentPrice,
         decimal CurrentSum) : Response;
+    
+    public record InventoriesResponse(
+        int Count,
+        int PagesCount,
+        IEnumerable<InventoryResponse>? Inventories) : Response;
 
     public record InventoryGameCountResponse(
         string GameTitle,
@@ -34,11 +39,6 @@ public static class Inventory
         string GameTitle,
         double Percentage,
         decimal Sum) : Response;
-    
-    public record InventoriesResponse(
-        int Count,
-        int PagesCount,
-        IEnumerable<InventoryResponse>? Inventories) : Response;
     
     public record InventoriesStatisticResponse(
         int InventoriesCount,

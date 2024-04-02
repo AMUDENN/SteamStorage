@@ -33,6 +33,29 @@ public static class ArchiveGroups
     public record ArchiveGroupsResponse(
         int Count,
         IEnumerable<ArchiveGroupResponse>? ArchiveGroups) : Response;
+    
+    public record ArchiveGroupsGameCountResponse(
+        string GameTitle,
+        double Percentage,
+        int Count) : Response;
+
+    public record ArchiveGroupsGameBuySumResponse(
+        string GameTitle,
+        double Percentage,
+        decimal BuySum) : Response;
+        
+    public record ArchiveGroupsGameSoldSumResponse(
+        string GameTitle,
+        double Percentage,
+        decimal SoldSum) : Response;
+
+    public record ArchiveGroupsStatisticResponse(
+        int ArchivesCount,
+        decimal BuySum,
+        decimal SoldSum,
+        IEnumerable<ArchiveGroupsGameCountResponse>? GameCount,
+        IEnumerable<ArchiveGroupsGameBuySumResponse>? GameBuySum,
+        IEnumerable<ArchiveGroupsGameSoldSumResponse>? GameSoldSum) : Response;
 
     public record ArchiveGroupsCountResponse(
         int Count) : Response;

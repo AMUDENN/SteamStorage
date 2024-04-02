@@ -408,10 +408,10 @@ public class InventoryModel : ModelBase
         _currentSumString = string.Empty;
 
         _inventoryGameCount = Enumerable.Empty<Inventory.InventoryGameCountResponse>();
-        _inventoryGameCountSeries = [];
+        _inventoryGameCountSeries = Enumerable.Empty<ISeries>();
         _inventoryGameSum = Enumerable.Empty<Inventory.InventoryGameSumResponse>();
-        _inventoryGameSumSeries = [];
-        _graphWidth = 300;
+        _inventoryGameSumSeries = Enumerable.Empty<ISeries>();
+        _graphWidth = 200;
 
         _inventoryModels = [];
         _itemsCancellationTokenSource = new();
@@ -497,7 +497,7 @@ public class InventoryModel : ModelBase
                 i++;
             });
 
-        GraphWidth = GraphWidth < 300 ? GraphWidth + 1 : GraphWidth - 1;
+        GraphWidth = GraphWidth < 200 ? GraphWidth + 1 : GraphWidth - 1;
     }
 
     private void GetInventoryGameSumSeries()
@@ -517,7 +517,7 @@ public class InventoryModel : ModelBase
                 i++;
             });
         
-        GraphWidth = GraphWidth < 300 ? GraphWidth + 1 : GraphWidth - 1;
+        GraphWidth = GraphWidth < 200 ? GraphWidth + 1 : GraphWidth - 1;
     }
 
     private async void GetStatisticsAsync()

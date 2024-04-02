@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using CommunityToolkit.Mvvm.Input;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models;
 using SteamStorage.ViewModels.Tools;
 using SteamStorage.ViewModels.UtilityViewModels;
@@ -11,6 +13,7 @@ public class ActivesReviewViewModel : ViewModelBase
     #region Fields
 
     private readonly ActivesReviewModel _activesReviewModel;
+    private readonly ChartTooltipModel _chartTooltipModel;
 
     #endregion Fields
 
@@ -29,6 +32,31 @@ public class ActivesReviewViewModel : ViewModelBase
     public string CurrentSumString
     {
         get => _activesReviewModel.CurrentSumString;
+    }
+    
+    public IEnumerable<ISeries> ActiveGroupsGameCountSeries
+    {
+        get => _activesReviewModel.ActiveGroupsGameCountSeries;
+    }
+
+    public IEnumerable<ISeries> ActiveGroupsGameInvestmentSumSeries
+    {
+        get => _activesReviewModel.ActiveGroupsGameInvestmentSumSeries;
+    }
+    
+    public IEnumerable<ISeries> ActiveGroupsGameCurrentSumSeries
+    {
+        get => _activesReviewModel.ActiveGroupsGameCurrentSumSeries;
+    }
+    
+    public SolidColorPaint TooltipTextPaint
+    {
+        get => _chartTooltipModel.TooltipTextPaint;
+    }
+
+    public SolidColorPaint TooltipBackgroundPaint
+    {
+        get => _chartTooltipModel.TooltipBackgroundPaint;
     }
 
     public bool? IsTitleOrdering
@@ -96,10 +124,14 @@ public class ActivesReviewViewModel : ViewModelBase
     #region Constructor
 
     public ActivesReviewViewModel(
-        ActivesReviewModel activesReviewModel)
+        ActivesReviewModel activesReviewModel,
+        ChartTooltipModel chartTooltipModel)
     {
         _activesReviewModel = activesReviewModel;
+        _chartTooltipModel = chartTooltipModel;
+        
         activesReviewModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

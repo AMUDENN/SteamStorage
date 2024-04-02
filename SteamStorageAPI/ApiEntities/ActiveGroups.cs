@@ -35,6 +35,29 @@ public static class ActiveGroups
     public record ActiveGroupsResponse(
         int Count,
         IEnumerable<ActiveGroupResponse>? ActiveGroups) : Response;
+    
+    public record ActiveGroupsGameCountResponse(
+        string GameTitle,
+        double Percentage,
+        int Count) : Response;
+
+    public record ActiveGroupsGameInvestmentSumResponse(
+        string GameTitle,
+        double Percentage,
+        decimal InvestmentSum) : Response;
+        
+    public record ActiveGroupsGameCurrentSumResponse(
+        string GameTitle,
+        double Percentage,
+        decimal CurrentSum) : Response;
+
+    public record ActiveGroupsStatisticResponse(
+        int ActivesCount,
+        decimal InvestmentSum,
+        decimal CurrentSum,
+        IEnumerable<ActiveGroupsGameCountResponse>? GameCount,
+        IEnumerable<ActiveGroupsGameInvestmentSumResponse>? GameInvestmentSum,
+        IEnumerable<ActiveGroupsGameCurrentSumResponse>? GameCurrentSum) : Response;
 
     public record ActiveGroupDynamicResponse(
         int Id,

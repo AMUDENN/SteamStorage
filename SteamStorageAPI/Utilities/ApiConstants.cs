@@ -40,6 +40,8 @@ public static class ApiConstants
         ///<summary>GET request</summary>
         GetActiveGroups = 100,
         ///<summary>GET request</summary>
+        GetActiveGroupsStatistic,
+        ///<summary>GET request</summary>
         GetActiveGroupDynamics,
         ///<summary>GET request</summary>
         GetActiveGroupsCount,
@@ -69,6 +71,8 @@ public static class ApiConstants
 
         ///<summary>GET request</summary>
         GetArchiveGroups = 300,
+        ///<summary>GET request</summary>
+        GetArchiveGroupsStatistic,
         ///<summary>GET request</summary>
         GetArchiveGroupsCount,
         ///<summary>POST request</summary>

@@ -91,7 +91,11 @@
 																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                Grid.Row="0" Grid.Column="0"/>
                     
-                    <lvc:PieChart Grid.Row="1" Grid.Column="0"/>
+                    <lvc:PieChart Series="{Binding ActiveGroupsGameCountSeries, Mode=OneWay}"
+                                  TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
+                                  TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
+                                  InitialRotation="-90"
+                                  Grid.Row="1" Grid.Column="0"/>
                     
                     <TextBlock Text="Сумма инвестиций"
                                Classes="MiddleTextBlock CenterTextBlock"
@@ -99,7 +103,11 @@
 																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                Grid.Row="0" Grid.Column="1"/>
                     
-                    <lvc:PieChart Grid.Row="1" Grid.Column="1"/>
+                    <lvc:PieChart Series="{Binding ActiveGroupsGameInvestmentSumSeries, Mode=OneWay}"
+                                  TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
+                                  TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
+                                  InitialRotation="-90"
+                                  Grid.Row="1" Grid.Column="1"/>
                     
                     <TextBlock Text="Текущая сумма"
                                Classes="MiddleTextBlock CenterTextBlock"
@@ -107,7 +115,11 @@
 																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                Grid.Row="0" Grid.Column="2"/>
                     
-                    <lvc:PieChart Grid.Row="1" Grid.Column="2"/>
+                    <lvc:PieChart Series="{Binding ActiveGroupsGameCurrentSumSeries, Mode=OneWay}"
+                                  TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
+                                  TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
+                                  InitialRotation="-90"
+                                  Grid.Row="1" Grid.Column="2"/>
                     
                 </Grid>
                 

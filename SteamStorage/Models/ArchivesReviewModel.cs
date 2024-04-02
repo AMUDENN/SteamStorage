@@ -2,6 +2,9 @@
 using System.Linq;
 using System.Threading;
 using CommunityToolkit.Mvvm.Input;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView.Extensions;
+using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models.Tools;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
@@ -25,10 +28,17 @@ public class ArchivesReviewModel : ModelBase
     private readonly ApiClient _apiClient;
     private readonly ArchiveGroupsModel _archiveGroupsModel;
     private readonly UserModel _userModel;
+    private readonly IThemeService _themeService;
 
     private int _count;
     private string _buySumString;
     private string _soldSumString;
+    private IEnumerable<ArchiveGroups.ArchiveGroupsGameCountResponse> _archiveGroupsGameCount;
+    private IEnumerable<ISeries> _archiveGroupsGameCountSeries;
+    private IEnumerable<ArchiveGroups.ArchiveGroupsGameBuySumResponse> _archiveGroupsGameBuySum;
+    private IEnumerable<ISeries> _archiveGroupsGameBuySumSeries;
+    private IEnumerable<ArchiveGroups.ArchiveGroupsGameSoldSumResponse> _archiveGroupsGameSoldSum;
+    private IEnumerable<ISeries> _archiveGroupsGameSoldSumSeries;
 
     private bool? _isTitleOrdering;
     private bool? _isCountOrdering;
@@ -43,7 +53,8 @@ public class ArchivesReviewModel : ModelBase
     private ArchiveGroupViewModel? _selectedArchiveGroupModel;
 
     private bool _isLoading;
-    private CancellationTokenSource _cancellationTokenSource;
+    private CancellationTokenSource _groupsCancellationTokenSource;
+    private CancellationTokenSource _statisticsCancellationTokenSource;
 
     #endregion Fields
 
@@ -65,6 +76,54 @@ public class ArchivesReviewModel : ModelBase
     {
         get => _soldSumString;
         private set => SetProperty(ref _soldSumString, value);
+    }
+    
+    private IEnumerable<ArchiveGroups.ArchiveGroupsGameCountResponse> ArchiveGroupsGameCount
+    {
+        get => _archiveGroupsGameCount;
+        set
+        {
+            SetProperty(ref _archiveGroupsGameCount, value);
+            GetActiveGroupsGameCountSeries();
+        }
+    }
+
+    public IEnumerable<ISeries> ArchiveGroupsGameCountSeries
+    {
+        get => _archiveGroupsGameCountSeries;
+        private set => SetProperty(ref _archiveGroupsGameCountSeries, value);
+    }
+
+    private IEnumerable<ArchiveGroups.ArchiveGroupsGameBuySumResponse> ArchiveGroupsGameBuySum
+    {
+        get => _archiveGroupsGameBuySum;
+        set
+        {
+            SetProperty(ref _archiveGroupsGameBuySum, value);
+            GetActiveGroupsGameInvestmentSumSeries();
+        }
+    }
+
+    public IEnumerable<ISeries> ArchiveGroupsGameBuySumSeries
+    {
+        get => _archiveGroupsGameBuySumSeries;
+        private set => SetProperty(ref _archiveGroupsGameBuySumSeries, value);
+    }
+
+    private IEnumerable<ArchiveGroups.ArchiveGroupsGameSoldSumResponse> ArchiveGroupsGameSoldSum
+    {
+        get => _archiveGroupsGameSoldSum;
+        set
+        {
+            SetProperty(ref _archiveGroupsGameSoldSum, value);
+            GetActiveGroupsGameCurrentSumSeries();
+        }
+    }
+
+    public IEnumerable<ISeries> ArchiveGroupsGameSoldSumSeries
+    {
+        get => _archiveGroupsGameSoldSumSeries;
+        private set => SetProperty(ref _archiveGroupsGameSoldSumSeries, value);
     }
 
     public bool? IsTitleOrdering
@@ -228,10 +287,16 @@ public class ArchivesReviewModel : ModelBase
         }
     }
 
-    private CancellationTokenSource CancellationTokenSource
+    private CancellationTokenSource GroupsCancellationTokenSource
     {
-        get => _cancellationTokenSource;
-        set => SetProperty(ref _cancellationTokenSource, value);
+        get => _groupsCancellationTokenSource;
+        set => SetProperty(ref _groupsCancellationTokenSource, value);
+    }
+    
+    private CancellationTokenSource StatisticsCancellationTokenSource
+    {
+        get => _statisticsCancellationTokenSource;
+        set => SetProperty(ref _statisticsCancellationTokenSource, value);
     }
 
     #endregion Properties
@@ -253,6 +318,7 @@ public class ArchivesReviewModel : ModelBase
         _apiClient = apiClient;
         _archiveGroupsModel = archiveGroupsModel;
         _userModel = userModel;
+        _themeService = themeService;
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
@@ -261,9 +327,17 @@ public class ArchivesReviewModel : ModelBase
 
         _buySumString = string.Empty;
         _soldSumString = string.Empty;
+        
+        _archiveGroupsGameCount = Enumerable.Empty<ArchiveGroups.ArchiveGroupsGameCountResponse>();
+        _archiveGroupsGameCountSeries = Enumerable.Empty<ISeries>();
+        _archiveGroupsGameBuySum = Enumerable.Empty<ArchiveGroups.ArchiveGroupsGameBuySumResponse>();
+        _archiveGroupsGameBuySumSeries = Enumerable.Empty<ISeries>();
+        _archiveGroupsGameSoldSum = Enumerable.Empty<ArchiveGroups.ArchiveGroupsGameSoldSumResponse>();
+        _archiveGroupsGameSoldSumSeries = Enumerable.Empty<ISeries>();
 
         _archiveGroupModels = [];
-        _cancellationTokenSource = new();
+        _groupsCancellationTokenSource = new();
+        _statisticsCancellationTokenSource = new();
 
         SetOrderingsNull();
 
@@ -290,7 +364,16 @@ public class ArchivesReviewModel : ModelBase
 
     private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
     {
-        //TODO:
+        GetActiveGroupsGameCountSeries();
+        GetActiveGroupsGameInvestmentSumSeries();
+        GetActiveGroupsGameCurrentSumSeries();
+    }
+
+    private void DoAttachedToVisualTreeCommand()
+    {
+        RefreshStatisticsAsync();
+        GetGroupsAsync();
+        _archiveGroupsModel.UpdateGroups();
     }
 
     private void SetOrderingsNull()
@@ -301,17 +384,87 @@ public class ArchivesReviewModel : ModelBase
         IsSoldSumOrdering = null;
         IsChangeOrdering = null;
     }
-
-    private void DoAttachedToVisualTreeCommand()
+    
+    private void GetActiveGroupsGameCountSeries()
     {
-        RefreshStatisticsAsync();
-        GetGroupsAsync();
-        _archiveGroupsModel.UpdateGroups();
+        if (!ArchiveGroupsGameCount.Any()) return;
+
+        int i = 0;
+
+        ArchiveGroupsGameCountSeries = ArchiveGroupsGameCount.OrderByDescending(x => x.Count)
+            .AsPieSeries((value, builder) =>
+            {
+                builder.MaxRadialColumnWidth = 20;
+                builder.HoverPushout = 0;
+                builder.Mapping = (game, point) => new(point, game.Count);
+                builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
+                builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
+                i++;
+            });
     }
 
+    private void GetActiveGroupsGameInvestmentSumSeries()
+    {
+        if (!ArchiveGroupsGameBuySum.Any()) return;
+
+        int i = 0;
+
+        ArchiveGroupsGameBuySumSeries = ArchiveGroupsGameBuySum.OrderByDescending(x => x.BuySum)
+            .AsPieSeries((value, builder) =>
+            {
+                builder.MaxRadialColumnWidth = 20;
+                builder.HoverPushout = 0;
+                builder.Mapping = (game, point) => new(point, (double)game.BuySum);
+                builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.BuySum:N2}";
+                builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
+                i++;
+            });
+    }
+
+    private void GetActiveGroupsGameCurrentSumSeries()
+    {
+        if (!ArchiveGroupsGameSoldSum.Any()) return;
+
+        int i = 0;
+
+        ArchiveGroupsGameSoldSumSeries = ArchiveGroupsGameSoldSum.OrderByDescending(x => x.SoldSum)
+            .AsPieSeries((value, builder) =>
+            {
+                builder.MaxRadialColumnWidth = 20;
+                builder.HoverPushout = 0;
+                builder.Mapping = (game, point) => new(point, (double)game.SoldSum);
+                builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.SoldSum:N2}";
+                builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
+                i++;
+            });
+    }
+    
     private async void RefreshStatisticsAsync()
     {
-        //TODO:
+        await StatisticsCancellationTokenSource.CancelAsync();
+
+        StatisticsCancellationTokenSource = new();
+        CancellationToken token = StatisticsCancellationTokenSource.Token;
+
+        ArchiveGroups.ArchiveGroupsStatisticResponse? archiveGroupsStatisticResponse =
+            await _apiClient.GetAsync<ArchiveGroups.ArchiveGroupsStatisticResponse>(
+                ApiConstants.ApiMethods.GetArchiveGroupsStatistic,
+                token);
+
+        if (archiveGroupsStatisticResponse is null) return;
+
+        Count = archiveGroupsStatisticResponse.ArchivesCount;
+        BuySumString = $"{archiveGroupsStatisticResponse.BuySum:N2} {_userModel.CurrencyMark}";
+        SoldSumString = $"{archiveGroupsStatisticResponse.SoldSum:N2} {_userModel.CurrencyMark}";
+
+        if (archiveGroupsStatisticResponse.GameCount is not null)
+            ArchiveGroupsGameCount = archiveGroupsStatisticResponse.GameCount;
+
+        if (archiveGroupsStatisticResponse.GameBuySum is not null)
+            ArchiveGroupsGameBuySum = archiveGroupsStatisticResponse.GameBuySum;
+
+        if (archiveGroupsStatisticResponse.GameSoldSum is not null)
+            ArchiveGroupsGameSoldSum = archiveGroupsStatisticResponse.GameSoldSum;
     }
 
     private async void GetGroupsAsync()
@@ -321,10 +474,10 @@ public class ArchivesReviewModel : ModelBase
 
         IsLoading = true;
 
-        await CancellationTokenSource.CancelAsync();
+        await GroupsCancellationTokenSource.CancelAsync();
 
-        CancellationTokenSource = new();
-        CancellationToken token = CancellationTokenSource.Token;
+        GroupsCancellationTokenSource = new();
+        CancellationToken token = GroupsCancellationTokenSource.Token;
 
         ArchiveGroups.ArchiveGroupsResponse? groupsResponse =
             await _apiClient.GetAsync<ArchiveGroups.ArchiveGroupsResponse, ArchiveGroups.GetArchiveGroupsRequest>(
