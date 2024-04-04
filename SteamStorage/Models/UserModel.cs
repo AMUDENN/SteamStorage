@@ -36,6 +36,7 @@ public class UserModel : ModelBase
 
     private Users.UserResponse? _user;
     private Currencies.CurrencyResponse? _currency;
+    private decimal? _goalSum;
 
     #endregion Fields
 
@@ -67,6 +68,16 @@ public class UserModel : ModelBase
         }
     }
 
+    public decimal? GoalSum
+    {
+        get => _goalSum;
+        private set
+        {
+            SetProperty(ref _goalSum, value);
+            OnFinancialGoalChanged();
+        }
+    }
+
     public string CurrencyMark
     {
         get => Currency?.Mark ?? ProgramConstants.BASE_CURRENCY_MARK;
@@ -86,6 +97,7 @@ public class UserModel : ModelBase
         settingsService.SettingsPropertyChanged += SettingsPropertyChangedHandler;
 
         GetUserAsync();
+        GetFinancialGoalAsync();
     }
 
     #endregion Constructor
@@ -111,6 +123,14 @@ public class UserModel : ModelBase
         Currency = await _apiClient.GetAsync<Currencies.CurrencyResponse>(
             ApiConstants.ApiMethods.GetCurrentCurrency);
     }
+    
+    private async void GetFinancialGoalAsync()
+    {
+        Users.GoalSumResponse? response = await _apiClient.GetAsync<Users.GoalSumResponse>(
+            ApiConstants.ApiMethods.GetCurrentUserGoalSum);
+
+        GoalSum = response?.GoalSum;
+    }
 
     public void UpdateCurrencyInfo()
     {
@@ -130,8 +150,6 @@ public class UserModel : ModelBase
         await _apiClient.PutAsync(
             ApiConstants.ApiMethods.SetCurrency,
             new Currencies.SetCurrencyRequest(currencyModel.Id));
-
-        GetCurrencyAsync();
     }
     
     public async void SetPageAsync(PageModel? pageModel)
@@ -149,7 +167,7 @@ public class UserModel : ModelBase
             ApiConstants.ApiMethods.PutGoalSum,
             new Users.PutGoalSumRequest(goalSum));
         
-        OnFinancialGoalChanged();
+        GetFinancialGoalAsync();
     }
 
     private void OnUserChanged()

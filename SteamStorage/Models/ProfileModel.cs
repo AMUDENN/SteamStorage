@@ -148,6 +148,7 @@ public class ProfileModel : ModelBase
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
+        userModel.FinancialGoalChanged += FinancialGoalChangedHandler;
 
         currenciesModel.CurrenciesLoaded += CurrenciesLoadedHandler;
 
@@ -192,9 +193,6 @@ public class ProfileModel : ModelBase
         DateRegistration =
             $"Дата регистрации: {_userModel.User.DateRegistration.ToString(ProgramConstants.VIEW_DATE_FORMAT)}";
 
-        DefaultFinancialGoal = $"{_userModel.User.GoalSum:N2}";
-        FinancialGoal = DefaultFinancialGoal;
-
         SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.User.StartPageId);
     }
 
@@ -204,6 +202,11 @@ public class ProfileModel : ModelBase
 
         ExchangeRate =
             $"1$ = {_userModel.Currency?.Price ?? 0:N2} {_userModel.CurrencyMark} ({(_userModel.Currency?.DateUpdate ?? DateTime.Now).ToString(ProgramConstants.VIEW_DATE_FORMAT)})";
+    }
+
+    private void FinancialGoalChangedHandler(object? sender)
+    {
+        SetFinancialGoal();
     }
 
     private void CurrenciesLoadedHandler(object? sender)
@@ -256,6 +259,12 @@ public class ProfileModel : ModelBase
         _userModel.UpdateCurrencyInfo();
         _pagesModel.GetPagesAsync();
         _currenciesModel.GetCurrenciesAsync();
+    }
+
+    private void SetFinancialGoal()
+    {
+        DefaultFinancialGoal = $"{_userModel.GoalSum:N2}";
+        FinancialGoal = DefaultFinancialGoal;
     }
 
     private void SetCurrency(CurrencyModel? currencyModel)

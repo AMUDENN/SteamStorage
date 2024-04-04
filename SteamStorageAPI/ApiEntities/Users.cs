@@ -20,6 +20,9 @@ public static class Users
         int CurrencyId,
         DateTime DateRegistration,
         decimal? GoalSum) : Response;
+    
+    public record GoalSumResponse(
+        decimal? GoalSum) : Response;
 
     public record PutGoalSumRequest(
         decimal? GoalSum) : Request;

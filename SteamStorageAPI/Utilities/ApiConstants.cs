@@ -162,6 +162,8 @@ public static class ApiConstants
 
         ///<summary>GET request</summary>
         GetCurrentUserInfo = 1200,
+        ///<summary>GET request</summary>
+        GetCurrentUserGoalSum,
         ///<summary>PUT request</summary>
         PutGoalSum,
         ///<summary>DELETE request</summary>
