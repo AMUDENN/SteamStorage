@@ -19,6 +19,15 @@
     
     <Grid RowDefinitions="220, 30, 30, 40, *">
         
+        <Grid.Styles>
+            <Style Selector="Grid.Min">
+                <Setter Property="IsVisible" Value="False"/>
+            </Style>
+            <Style Selector="Grid.Max">
+                <Setter Property="ColumnSpan" Value="2"/>
+            </Style>
+        </Grid.Styles>
+        
         <Border Classes="BigRoundedBorder SecondAccentGradientBorder" 
                 Grid.Row="0">
             
@@ -26,6 +35,8 @@
                   Margin="30">
                 
                 <Grid RowDefinitions="40, 20, 40, 20, 40"
+                      Classes.Max="{Binding $parent[Border].Bounds.Width, 
+                                                Converter={StaticResource DoubleLessConverter}, ConverterParameter=800}"
                       Grid.Column="0">
                     
                     <Grid ColumnDefinitions="Auto, *"
@@ -83,18 +94,22 @@
                 
                 <Grid RowDefinitions="40, *"
                       ColumnDefinitions="*, *, *"
+                      Classes.Min="{Binding $parent[Border].Bounds.Width, 
+																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=800}"
                       Grid.Column="1">
                     
                     <TextBlock Text="Количество"
                                Classes="MiddleTextBlock CenterTextBlock"
                                Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
 																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                               Margin="5, 0"
                                Grid.Row="0" Grid.Column="0"/>
                     
                     <lvc:PieChart Series="{Binding ArchiveGroupsGameCountSeries, Mode=OneWay}"
                                   TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
                                   TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
                                   InitialRotation="-90"
+                                  Margin="-25, 0"
                                   Grid.Row="1" Grid.Column="0"/>
                     
                     <TextBlock Text="Сумма покупки"
@@ -107,18 +122,21 @@
                                   TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
                                   TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
                                   InitialRotation="-90"
+                                  Margin="-25, 0"
                                   Grid.Row="1" Grid.Column="1"/>
                     
                     <TextBlock Text="Сумма продажи"
                                Classes="MiddleTextBlock CenterTextBlock"
                                Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
 																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                               Margin="5, 0"
                                Grid.Row="0" Grid.Column="2"/>
                     
                     <lvc:PieChart Series="{Binding ArchiveGroupsGameSoldSumSeries, Mode=OneWay}"
                                   TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
                                   TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
                                   InitialRotation="-90"
+                                  Margin="-25, 0"
                                   Grid.Row="1" Grid.Column="2"/>
                     
                 </Grid>
