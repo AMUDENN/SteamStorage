@@ -12,7 +12,6 @@ using SteamStorage.ViewModels.UtilityViewModels;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Utilities;
-using CancellationToken = System.Threading.CancellationToken;
 
 namespace SteamStorage.Models;
 
@@ -382,6 +381,12 @@ public class ActivesReviewModel : ModelBase
         RefreshStatisticsAsync();
         GetGroupsAsync();
         _activeGroupsModel.UpdateGroups();
+    }
+
+    public void UpdateGroups()
+    {
+        RefreshStatisticsAsync();
+        GetGroupsAsync();
     }
 
     private void SetOrderingsNull()
