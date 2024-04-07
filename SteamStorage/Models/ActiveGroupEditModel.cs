@@ -9,6 +9,7 @@ using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities.Dialog;
+using SteamStorage.Utilities.Extensions;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Utilities;
@@ -282,8 +283,6 @@ public class ActiveGroupEditModel : BaseEditModel
               && Colour != Colors.Transparent))
             return;
         
-        System.Diagnostics.Debug.WriteLine(Colour.ToString().Trim('#'));
-        
         if (IsNewGroup)
         {
             bool result = await _dialogService.ShowDialogAsync(
@@ -292,12 +291,12 @@ public class ActiveGroupEditModel : BaseEditModel
                 DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
-
+            
             await ApiClient.PostAsync(
                 ApiConstants.ApiMethods.PostActiveGroup,
                 new ActiveGroups.PostActiveGroupRequest(GroupTitle,
                     Description,
-                    Colour.ToString().Trim('#'),
+                    Colour.ToHexColor(),
                     string.IsNullOrWhiteSpace(GoalSum) ? null : sum));
         }
         else if (_activeGroupModel is not null)
@@ -314,7 +313,7 @@ public class ActiveGroupEditModel : BaseEditModel
                 new ActiveGroups.PutActiveGroupRequest(_activeGroupModel.GroupId,
                     GroupTitle,
                     Description,
-                    Colour.ToString().Trim('#'),
+                    Colour.ToHexColor(),
                     string.IsNullOrWhiteSpace(GoalSum) ? null : sum));
         }
         else

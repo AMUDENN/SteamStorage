@@ -29,6 +29,10 @@ public class ArchiveGroupsModel : ModelBase
     public delegate void EditArchiveGroupEventHandler(object? sender, EditArchiveGroupEventArgs args);
 
     public event EditArchiveGroupEventHandler? EditArchiveGroup;
+    
+    public delegate void DeleteArchiveGroupEventHandler(object? sender);
+
+    public event DeleteArchiveGroupEventHandler? DeleteArchiveGroup;
 
     #endregion Events
 
@@ -131,6 +135,8 @@ public class ArchiveGroupsModel : ModelBase
             new ArchiveGroups.DeleteArchiveGroupRequest(group.GroupId));
 
         GetGroupsAsync();
+
+        OnDeleteArchiveGroup();
     }
 
     public void UpdateGroups()
@@ -161,6 +167,11 @@ public class ArchiveGroupsModel : ModelBase
     private void OnEditArchiveGroup(ArchiveGroupModel? group)
     {
         EditArchiveGroup?.Invoke(this, new(group));
+    }
+    
+    private void OnDeleteArchiveGroup()
+    {
+        DeleteArchiveGroup?.Invoke(this);
     }
 
     #endregion Methods

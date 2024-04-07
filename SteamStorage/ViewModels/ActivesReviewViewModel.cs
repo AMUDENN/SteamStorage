@@ -135,4 +135,13 @@ public class ActivesReviewViewModel : ViewModelBase
     }
 
     #endregion Constructor
+    
+    #region Methods
+
+    public void UpdateGroups()
+    {
+        _activesReviewModel.UpdateGroups();
+    }
+    
+    #endregion Methods
 }

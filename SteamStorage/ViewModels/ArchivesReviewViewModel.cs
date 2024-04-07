@@ -135,4 +135,13 @@ public class ArchivesReviewViewModel : ViewModelBase
     }
 
     #endregion Constructor
+    
+    #region Methods
+
+    public void UpdateGroups()
+    {
+        _archivesReviewModel.UpdateGroups();
+    }
+    
+    #endregion Methods
 }

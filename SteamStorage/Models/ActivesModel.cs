@@ -20,6 +20,7 @@ public class ActivesModel : ModelBase
 
     private SecondaryNavigationModel? _lastSecondaryNavigationModel;
 
+    private readonly ActivesReviewViewModel _activesReviewViewModel;
     private readonly ActiveGroupsModel _activeGroupsModel;
     private readonly ListActivesModel _listActivesModel;
 
@@ -75,12 +76,14 @@ public class ActivesModel : ModelBase
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();
         _currentViewModel = _selectedSecondaryNavigationModel.Page;
 
+        _activesReviewViewModel = activesReviewViewModel;
         _activeGroupsModel = activeGroupsModel;
         _listActivesModel = listActivesModel;
 
         activeGroupsModel.AddActive += AddActiveHandler;
         activeGroupsModel.OpenActives += OpenActivesHandler;
         activeGroupsModel.EditActiveGroup += EditActiveGroupHandler;
+        activeGroupsModel.DeleteActiveGroup += DeleteActiveGroupHandler;
 
         listActivesModel.EditActive += EditActiveHandler;
         listActivesModel.SoldActive += SoldActiveHandler;
@@ -133,6 +136,11 @@ public class ActivesModel : ModelBase
         SelectedSecondaryNavigationModel = navigationModel;
 
         (navigationModel?.Page as ActiveGroupEditViewModel)?.SetEditGroup(args.Group);
+    }
+
+    private void DeleteActiveGroupHandler(object? sender)
+    {
+        _activesReviewViewModel.UpdateGroups();
     }
 
     private void EditActiveHandler(object? sender, EditActiveEventArgs args)

@@ -19,7 +19,8 @@ public class ArchivesModel : ModelBase
     private SecondaryNavigationModel? _selectedSecondaryNavigationModel;
 
     private SecondaryNavigationModel? _lastSecondaryNavigationModel;
-    
+
+    private readonly ArchivesReviewViewModel _archivesReviewViewModel;
     private readonly ArchiveGroupsModel _archiveGroupsModel;
     private readonly ListArchivesModel _listArchivesModel;
 
@@ -73,12 +74,14 @@ public class ArchivesModel : ModelBase
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();
         _currentViewModel = _selectedSecondaryNavigationModel.Page;
 
+        _archivesReviewViewModel = archivesReviewViewModel;
         _archiveGroupsModel = archiveGroupsModel;
         _listArchivesModel = listArchivesModel;
 
         archiveGroupsModel.AddArchive += AddArchiveHandler;
         archiveGroupsModel.OpenArchives += OpenArchivesHandler;
         archiveGroupsModel.EditArchiveGroup += EditArchiveGroupHandler;
+        archiveGroupsModel.DeleteArchiveGroup += DeleteArchiveGroupHandler;
 
         listArchivesModel.EditArchive += EditArchiveHandler;
 
@@ -130,6 +133,11 @@ public class ArchivesModel : ModelBase
         SelectedSecondaryNavigationModel = navigationModel;
 
         (navigationModel?.Page as ArchiveGroupEditViewModel)?.SetEditGroup(args.Group);
+    }
+
+    private void DeleteArchiveGroupHandler(object? sender)
+    {
+        _archivesReviewViewModel.UpdateGroups();
     }
 
     private void EditArchiveHandler(object? sender, EditArchiveEventArgs args)

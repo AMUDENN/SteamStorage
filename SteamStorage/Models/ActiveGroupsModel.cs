@@ -29,6 +29,10 @@ public class ActiveGroupsModel : ModelBase
     public delegate void EditActiveGroupEventHandler(object? sender, EditActiveGroupEventArgs args);
 
     public event EditActiveGroupEventHandler? EditActiveGroup;
+    
+    public delegate void DeleteActiveGroupEventHandler(object? sender);
+
+    public event DeleteActiveGroupEventHandler? DeleteActiveGroup;
 
     #endregion Events
 
@@ -131,6 +135,8 @@ public class ActiveGroupsModel : ModelBase
             new ActiveGroups.DeleteActiveGroupRequest(group.GroupId));
 
         GetGroupsAsync();
+
+        OnDeleteActiveGroup();
     }
 
     public void UpdateGroups()
@@ -161,6 +167,11 @@ public class ActiveGroupsModel : ModelBase
     private void OnEditActiveGroup(ActiveGroupModel? group)
     {
         EditActiveGroup?.Invoke(this, new(group));
+    }
+    
+    private void OnDeleteActiveGroup()
+    {
+        DeleteActiveGroup?.Invoke(this);
     }
 
     #endregion Methods

@@ -375,6 +375,12 @@ public class ArchivesReviewModel : ModelBase
         GetGroupsAsync();
         _archiveGroupsModel.UpdateGroups();
     }
+    
+    public void UpdateGroups()
+    {
+        RefreshStatisticsAsync();
+        GetGroupsAsync();
+    }
 
     private void SetOrderingsNull()
     {

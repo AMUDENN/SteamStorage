@@ -351,7 +351,11 @@ public class ListActivesModel : ModelBase
         private set
         {
             SetProperty(ref _pagesCount, value);
-            if (value < PageNumber)
+            if (value == 0)
+            {
+                PageNumber = 1;
+            }
+            else if (value < PageNumber)
             {
                 PageNumber = value;
             }

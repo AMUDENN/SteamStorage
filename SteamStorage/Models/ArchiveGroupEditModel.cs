@@ -5,6 +5,7 @@ using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities.Dialog;
+using SteamStorage.Utilities.Extensions;
 using SteamStorageAPI;
 using SteamStorageAPI.ApiEntities;
 using SteamStorageAPI.Utilities;
@@ -188,7 +189,7 @@ public class ArchiveGroupEditModel : BaseEditModel
                 ApiConstants.ApiMethods.PostArchiveGroup,
                 new ArchiveGroups.PostArchiveGroupRequest(GroupTitle,
                     Description,
-                    Colour.ToString().Trim('#')));
+                    Colour.ToHexColor()));
         }
         else if (_archiveGroupModel is not null)
         {
@@ -204,7 +205,7 @@ public class ArchiveGroupEditModel : BaseEditModel
                 new ArchiveGroups.PutArchiveGroupRequest(_archiveGroupModel.GroupId,
                     GroupTitle,
                     Description,
-                    Colour.ToString().Trim('#')));
+                    Colour.ToHexColor()));
         }
         else
         {
