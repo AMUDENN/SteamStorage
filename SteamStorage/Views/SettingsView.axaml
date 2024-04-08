@@ -54,7 +54,7 @@
                     Grid.Column="0">
                 <Button Content="Экспорт в Excel" 
                         Command="{Binding ExportToExcelCommand, Mode=OneWay}"
-                        Classes="TextButton UnderlineButton StretchButton"
+                        Classes="UnderlineButton StretchButton"
                         Margin="20, 0"/>
             </Border>
             
