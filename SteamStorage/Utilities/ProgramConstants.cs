@@ -10,7 +10,6 @@ public static class ProgramConstants
     public const string VIEW_DATE_FORMAT = "dd.MM.yy";
 
     public const string NUMBER_GROUP_SEPARATOR = "\u00a0";
-    public const string COLOUR_PATTERN = "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{4}|[A-Fa-f0-9]{3})$";
 
     public const int API_CLIENT_TIMEOUT = 15;
 

@@ -72,11 +72,13 @@
 				<TextBlock x:Name="UserName" 
 						   Text="{Binding UserName, Mode=OneWay}" 
 						   Classes="CenterTextBlock BigTextBlock" 
+						   Margin="10, 0"
 						   Grid.Row="1"/>
 
 				<TextBlock x:Name="SteamId" 
 						   Text="{Binding SteamId, Mode=OneWay}" 
 						   Classes="CenterTextBlock LittleTextBlock" 
+						   Margin="10, 0"
 						   Grid.Row="2"/>
 
 				<Rectangle Classes="ForegroundRectangle"
