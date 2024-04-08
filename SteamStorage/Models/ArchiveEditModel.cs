@@ -314,6 +314,7 @@ public class ArchiveEditModel : BaseItemEditModel
         DefaultSoldPrice = $"{model?.SoldPrice:N2}";
 
         DefaultSkinModel = model is not null ? new(model) : null;
+        Filter = model?.Title;
 
         DefaultDescription = model?.Description ?? string.Empty;
 
@@ -339,6 +340,7 @@ public class ArchiveEditModel : BaseItemEditModel
         DefaultSoldPrice = "1";
 
         DefaultSkinModel = null;
+        Filter = null;
 
         DefaultDescription = string.Empty;
 
@@ -364,6 +366,7 @@ public class ArchiveEditModel : BaseItemEditModel
         DefaultSoldPrice = $"{model?.CurrentPrice ?? 1:N2}";
 
         DefaultSkinModel = model is not null ? new(model) : null;
+        Filter = model?.Title;
 
         DefaultDescription = string.Empty;
 

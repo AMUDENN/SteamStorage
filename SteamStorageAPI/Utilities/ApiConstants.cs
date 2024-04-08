@@ -27,6 +27,7 @@ public static class ApiConstants
         Archives,
         Authorize,
         Currencies,
+        File,
         Games,
         Inventory,
         Pages,
@@ -108,12 +109,15 @@ public static class ApiConstants
         GetCurrentCurrency,
         ///<summary>PUT request</summary>
         SetCurrency,
+        
+        ///<summary>GET request</summary>
+        GetExcelFile = 700,
 
         ///<summary>GET request</summary>
-        GetGames = 700,
+        GetGames = 800,
 
         ///<summary>GET request</summary>
-        GetInventory = 800,
+        GetInventory = 900,
         ///<summary>GET request</summary>
         GetInventoriesStatistic,
         ///<summary>GET request</summary>
@@ -124,12 +128,12 @@ public static class ApiConstants
         RefreshInventory,
 
         ///<summary>GET request</summary>
-        GetPages = 900,
+        GetPages = 1000,
         ///<summary>PUT request</summary>
         SetStartPage,
 
         ///<summary>GET request</summary>
-        GetSkinInfo = 1000,
+        GetSkinInfo = 1100,
         ///<summary>GET request</summary>
         GetBaseSkins,
         ///<summary>GET request</summary>
@@ -148,7 +152,7 @@ public static class ApiConstants
         DeleteMarkedSkin,
 
         ///<summary>GET request</summary>
-        GetInvestmentSum = 1100,
+        GetInvestmentSum = 1200,
         ///<summary>GET request</summary>
         GetFinancialGoal,
         ///<summary>GET request</summary>
@@ -161,7 +165,7 @@ public static class ApiConstants
         GetItemsCount,
 
         ///<summary>GET request</summary>
-        GetCurrentUserInfo = 1200,
+        GetCurrentUserInfo = 1300,
         ///<summary>GET request</summary>
         GetCurrentUserGoalSum,
         ///<summary>PUT request</summary>

@@ -54,7 +54,7 @@
                     Grid.Column="0">
                 <Button Content="Экспорт в Excel" 
                         Command="{Binding ExportToExcelCommand, Mode=OneWay}"
-                        Classes="UnderlineButton HorizontalCenter"
+                        Classes="TextButton UnderlineButton StretchButton"
                         Margin="20, 0"/>
             </Border>
             
@@ -62,7 +62,7 @@
                     Grid.Column="2">
                 <Button Content="Справочная информация" 
                         Command="{Binding OpenReferenceInformationCommand, Mode=OneWay}"
-                        Classes="UnderlineButton HorizontalCenter"
+                        Classes="UnderlineButton StretchButton"
                         Margin="20, 0"/>
             </Border>
             

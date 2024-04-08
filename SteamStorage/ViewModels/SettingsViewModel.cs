@@ -31,7 +31,7 @@ public class SettingsViewModel : ViewModelBase
 
     #region Commands
 
-    public RelayCommand ExportToExcelCommand
+    public AsyncRelayCommand ExportToExcelCommand
     {
         get => _model.ExportToExcelCommand;
     }

@@ -103,6 +103,58 @@ public class ApiClient
             cancellationToken);
     }
 
+    public async Task<Stream?> GetFileStreamAsync(
+        ApiConstants.ApiMethods apiMethod,
+        CancellationToken cancellationToken = default)
+    {
+        Uri uri = CreateUri((ApiConstants.ApiControllers)((int)apiMethod / 100), apiMethod);
+        try
+        {
+            HttpClient client = _httpClientFactory.CreateClient(ApiConstants.CLIENT_NAME);
+            HttpResponseMessage response = await client.GetAsync(uri, cancellationToken);
+            Stream fileStream = await response.Content.ReadAsStreamAsync(cancellationToken);
+            return fileStream;
+        }
+        catch (OperationCanceledException)
+        {
+            Debug.WriteLine($"Task {uri.ToString()} was cancelled");
+            return default;
+        }
+        catch (Exception ex)
+        {
+            if (_logger is not null)
+                await _logger.LogAsync($"ApiException GET File \n{uri.ToString()}", ex);
+            return default;
+        }
+    }
+    
+    public async Task<(Stream stream, string fileName)> GetFileAsync(
+        ApiConstants.ApiMethods apiMethod,
+        CancellationToken cancellationToken = default)
+    {
+        Uri uri = CreateUri((ApiConstants.ApiControllers)((int)apiMethod / 100), apiMethod);
+        try
+        {
+            HttpClient client = _httpClientFactory.CreateClient(ApiConstants.CLIENT_NAME);
+            HttpResponseMessage response = await client.GetAsync(uri, cancellationToken);
+            string fileName = response.Content.Headers.ContentDisposition?.FileName ??
+                              throw new ArgumentNullException(nameof(fileName));
+            Stream fileStream = await response.Content.ReadAsStreamAsync(cancellationToken);
+            return (fileStream, fileName);
+        }
+        catch (OperationCanceledException)
+        {
+            Debug.WriteLine($"Task {uri.ToString()} was cancelled");
+            return default;
+        }
+        catch (Exception ex)
+        {
+            if (_logger is not null)
+                await _logger.LogAsync($"ApiException GET File \n{uri.ToString()}", ex);
+            return default;
+        }
+    }
+
     #endregion GET
 
     #region POST

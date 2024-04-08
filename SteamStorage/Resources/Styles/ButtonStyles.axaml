@@ -9,10 +9,6 @@
         <Setter Property="Opacity" Value="0.6"/>
     </Style>
     
-    <Style Selector="Button.HorizontalCenter">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-    </Style>
-    
     <Style Selector="Button.StretchButton">
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
