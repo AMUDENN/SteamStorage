@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Media;
 using LiveChartsCore;
@@ -255,7 +256,7 @@ public class ActiveGroupEditModel : BaseEditModel
 
     #region Methods
 
-    protected override async Task DoDeleteCommand()
+    protected override async Task DoDeleteCommand(CancellationToken cancellationToken)
     {
         if (_activeGroupModel is null) return;
 
@@ -268,14 +269,15 @@ public class ActiveGroupEditModel : BaseEditModel
 
         await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteActiveGroup,
-            new ActiveGroups.DeleteActiveGroupRequest(_activeGroupModel.GroupId));
+            new ActiveGroups.DeleteActiveGroupRequest(_activeGroupModel.GroupId),
+            cancellationToken);
 
         OnItemDeleted();
 
         OnGoingBack();
     }
 
-    protected override async Task DoSaveCommand()
+    protected override async Task DoSaveCommand(CancellationToken cancellationToken)
     {
         if (!(GroupTitle.Length is >= 3 and <= 100
               && Description?.Length <= 300
@@ -297,7 +299,8 @@ public class ActiveGroupEditModel : BaseEditModel
                 new ActiveGroups.PostActiveGroupRequest(GroupTitle,
                     Description,
                     Colour.ToHexColor(),
-                    string.IsNullOrWhiteSpace(GoalSum) ? null : sum));
+                    string.IsNullOrWhiteSpace(GoalSum) ? null : sum),
+                cancellationToken);
         }
         else if (_activeGroupModel is not null)
         {
@@ -314,7 +317,8 @@ public class ActiveGroupEditModel : BaseEditModel
                     GroupTitle,
                     Description,
                     Colour.ToHexColor(),
-                    string.IsNullOrWhiteSpace(GoalSum) ? null : sum));
+                    string.IsNullOrWhiteSpace(GoalSum) ? null : sum),
+                cancellationToken);
         }
         else
         {

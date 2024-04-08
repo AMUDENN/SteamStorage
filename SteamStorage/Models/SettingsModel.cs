@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
@@ -101,7 +102,7 @@ public class SettingsModel : ModelBase
             ThemeModels.First();
     }
 
-    private async Task DoExportToExcelCommand()
+    private async Task DoExportToExcelCommand(CancellationToken cancellationToken)
     {
         TopLevel? topLevel = TopLevel.GetTopLevel(_mainWindow);
 
@@ -121,13 +122,14 @@ public class SettingsModel : ModelBase
 
         if (file is null) return;
 
-        Stream? fileResult = await _apiClient.GetFileStreamAsync(ApiConstants.ApiMethods.GetExcelFile);
+        Stream? fileResult =
+            await _apiClient.GetFileStreamAsync(ApiConstants.ApiMethods.GetExcelFile, cancellationToken);
 
         if (fileResult is null) return;
 
         await using Stream stream = await file.OpenWriteAsync();
 
-        await fileResult.CopyToAsync(stream);
+        await fileResult.CopyToAsync(stream, cancellationToken);
     }
 
     private void DoOpenReferenceInformationCommand()

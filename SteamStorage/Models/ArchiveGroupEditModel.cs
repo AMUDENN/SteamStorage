@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Avalonia.Media;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
@@ -149,7 +150,7 @@ public class ArchiveGroupEditModel : BaseEditModel
 
     #region Methods
 
-    protected override async Task DoDeleteCommand()
+    protected override async Task DoDeleteCommand(CancellationToken cancellationToken)
     {
         if (_archiveGroupModel is null) return;
         
@@ -162,14 +163,15 @@ public class ArchiveGroupEditModel : BaseEditModel
 
         await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteArchiveGroup,
-            new ArchiveGroups.DeleteArchiveGroupRequest(_archiveGroupModel.GroupId));
+            new ArchiveGroups.DeleteArchiveGroupRequest(_archiveGroupModel.GroupId),
+            cancellationToken);
         
         OnItemDeleted();
         
         OnGoingBack();
     }
 
-    protected override async Task DoSaveCommand()
+    protected override async Task DoSaveCommand(CancellationToken cancellationToken)
     {
         if (!(GroupTitle.Length is >= 3 and <= 100
               && Description?.Length <= 300
@@ -189,7 +191,8 @@ public class ArchiveGroupEditModel : BaseEditModel
                 ApiConstants.ApiMethods.PostArchiveGroup,
                 new ArchiveGroups.PostArchiveGroupRequest(GroupTitle,
                     Description,
-                    Colour.ToHexColor()));
+                    Colour.ToHexColor()),
+                cancellationToken);
         }
         else if (_archiveGroupModel is not null)
         {
@@ -205,7 +208,8 @@ public class ArchiveGroupEditModel : BaseEditModel
                 new ArchiveGroups.PutArchiveGroupRequest(_archiveGroupModel.GroupId,
                     GroupTitle,
                     Description,
-                    Colour.ToHexColor()));
+                    Colour.ToHexColor()),
+                cancellationToken);
         }
         else
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
@@ -186,7 +187,7 @@ public class ActiveSoldModel : BaseEditModel
 
     #region Methods
 
-    protected override async Task DoDeleteCommand()
+    protected override async Task DoDeleteCommand(CancellationToken cancellationToken)
     {
         if (_activeModel is null) return;
         
@@ -199,14 +200,15 @@ public class ActiveSoldModel : BaseEditModel
 
         await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteActive,
-            new Actives.DeleteActiveRequest(_activeModel.ActiveId));
+            new Actives.DeleteActiveRequest(_activeModel.ActiveId),
+            cancellationToken);
         
         OnItemDeleted();
         
         OnGoingBack();
     }
 
-    protected override async Task DoSaveCommand()
+    protected override async Task DoSaveCommand(CancellationToken cancellationToken)
     {
         if (_activeModel is null || SelectedArchiveGroupModel is null) return;
 
@@ -230,7 +232,8 @@ public class ActiveSoldModel : BaseEditModel
                 count,
                 price,
                 SoldDate.DateTime,
-                Description));
+                Description),
+            cancellationToken);
 
         OnItemChanged();
 

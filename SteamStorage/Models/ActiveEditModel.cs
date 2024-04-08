@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
@@ -174,7 +175,7 @@ public class ActiveEditModel : BaseItemEditModel
 
     #region Methods
 
-    protected override async Task DoDeleteCommand()
+    protected override async Task DoDeleteCommand(CancellationToken cancellationToken)
     {
         if (_activeModel is null) return;
 
@@ -187,14 +188,15 @@ public class ActiveEditModel : BaseItemEditModel
 
         await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteActive,
-            new Actives.DeleteActiveRequest(_activeModel.ActiveId));
+            new Actives.DeleteActiveRequest(_activeModel.ActiveId),
+            cancellationToken);
 
         OnItemDeleted();
 
         OnGoingBack();
     }
 
-    protected override async Task DoSaveCommand()
+    protected override async Task DoSaveCommand(CancellationToken cancellationToken)
     {
         if (SelectedSkinModel is null || SelectedActiveGroupModel is null) return;
 
@@ -222,7 +224,8 @@ public class ActiveEditModel : BaseItemEditModel
                     string.IsNullOrWhiteSpace(GoalPrice) ? null : goal,
                     SelectedSkinModel.SkinId,
                     Description,
-                    BuyDate.DateTime));
+                    BuyDate.DateTime),
+                cancellationToken);
         }
         else if (_activeModel is not null)
         {
@@ -242,7 +245,8 @@ public class ActiveEditModel : BaseItemEditModel
                     string.IsNullOrWhiteSpace(GoalPrice) ? null : goal,
                     SelectedSkinModel.SkinId,
                     Description,
-                    BuyDate.DateTime));
+                    BuyDate.DateTime),
+                cancellationToken);
         }
         else
         {

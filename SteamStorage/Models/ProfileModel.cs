@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
@@ -241,7 +242,7 @@ public class ProfileModel : ModelBase
         return FinancialGoal != DefaultFinancialGoal;
     }
 
-    private async Task DoDeleteProfileCommand()
+    private async Task DoDeleteProfileCommand(CancellationToken cancellationToken)
     {
         _textConfirmDialogViewModel.SetConfirmData(
             "Для подтверждения удаления аккаунта введите слово ПОДТВЕРДИТЬ",

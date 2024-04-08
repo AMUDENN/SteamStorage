@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
@@ -119,7 +120,7 @@ public class ArchiveGroupsModel : ModelBase
         OnEditArchiveGroup(group);
     }
 
-    private async Task DoDeleteArchiveGroupCommand(ArchiveGroupModel? group)
+    private async Task DoDeleteArchiveGroupCommand(ArchiveGroupModel? group, CancellationToken cancellationToken)
     {
         if (group is null) return;
         
@@ -132,7 +133,8 @@ public class ArchiveGroupsModel : ModelBase
 
         await _apiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteArchiveGroup,
-            new ArchiveGroups.DeleteArchiveGroupRequest(group.GroupId));
+            new ArchiveGroups.DeleteArchiveGroupRequest(group.GroupId),
+            cancellationToken);
 
         GetGroupsAsync();
 

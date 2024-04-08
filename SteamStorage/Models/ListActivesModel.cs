@@ -503,7 +503,7 @@ public class ListActivesModel : ModelBase
         OnSoldActive(model);
     }
 
-    private async Task DoDeleteCommand(ActiveModel? model)
+    private async Task DoDeleteCommand(ActiveModel? model, CancellationToken cancellationToken)
     {
         if (model is null) return;
         
@@ -516,7 +516,8 @@ public class ListActivesModel : ModelBase
 
         await _apiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteActive,
-            new Actives.DeleteActiveRequest(model.ActiveId));
+            new Actives.DeleteActiveRequest(model.ActiveId),
+            cancellationToken);
 
         GetSkinsAsync();
         GetStatisticsAsync();

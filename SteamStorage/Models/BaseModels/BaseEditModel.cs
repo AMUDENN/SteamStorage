@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorageAPI;
@@ -74,9 +75,9 @@ public abstract class BaseEditModel : ModelBase
         OnGoingBack();
     }
 
-    protected abstract Task DoDeleteCommand();
+    protected abstract Task DoDeleteCommand(CancellationToken cancellationToken);
 
-    protected abstract Task DoSaveCommand();
+    protected abstract Task DoSaveCommand(CancellationToken cancellationToken);
 
     protected abstract bool CanExecuteSaveCommand();
 

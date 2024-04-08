@@ -460,7 +460,7 @@ public class InventoryModel : ModelBase
         SetOrderingsNull();
     }
 
-    private async Task DoRefreshInventoryCommand()
+    private async Task DoRefreshInventoryCommand(CancellationToken cancellationToken)
     {
         if (SelectedGameModel is null) return;
 
@@ -468,7 +468,8 @@ public class InventoryModel : ModelBase
 
         await _apiClient.PostAsync(
             ApiConstants.ApiMethods.RefreshInventory,
-            new Inventory.RefreshInventoryRequest(SelectedGameModel.Id));
+            new Inventory.RefreshInventoryRequest(SelectedGameModel.Id),
+            cancellationToken);
 
         IsRefreshing = false;
 

@@ -480,7 +480,7 @@ public class ListArchivesModel : ModelBase
         OnEditArchive(model);
     }
 
-    private async Task DoDeleteCommand(ArchiveModel? model)
+    private async Task DoDeleteCommand(ArchiveModel? model, CancellationToken cancellationToken)
     {
         if (model is null) return;
         
@@ -493,7 +493,8 @@ public class ListArchivesModel : ModelBase
 
         await _apiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteArchive,
-            new Archives.DeleteArchiveRequest(model.ArchiveId));
+            new Archives.DeleteArchiveRequest(model.ArchiveId),
+            cancellationToken);
 
         GetSkinsAsync();
         GetStatisticsAsync();

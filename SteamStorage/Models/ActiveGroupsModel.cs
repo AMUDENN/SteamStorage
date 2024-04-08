@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
@@ -119,7 +120,7 @@ public class ActiveGroupsModel : ModelBase
         OnEditActiveGroup(group);
     }
 
-    private async Task DoDeleteActiveGroupCommand(ActiveGroupModel? group)
+    private async Task DoDeleteActiveGroupCommand(ActiveGroupModel? group, CancellationToken cancellationToken)
     {
         if (group is null) return;
         
@@ -132,7 +133,8 @@ public class ActiveGroupsModel : ModelBase
 
         await _apiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteActiveGroup,
-            new ActiveGroups.DeleteActiveGroupRequest(group.GroupId));
+            new ActiveGroups.DeleteActiveGroupRequest(group.GroupId),
+            cancellationToken);
 
         GetGroupsAsync();
 
