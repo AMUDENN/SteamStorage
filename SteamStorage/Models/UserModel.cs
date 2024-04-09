@@ -23,6 +23,10 @@ public class UserModel : ModelBase
 
     public event CurrencyChangedEventHandler? CurrencyChanged;
     
+    public delegate void StartPageChangedEventHandler(object? sender);
+
+    public event StartPageChangedEventHandler? StartPageChanged;
+    
     public delegate void FinancialGoalChangedEventHandler(object? sender);
 
     public event FinancialGoalChangedEventHandler? FinancialGoalChanged;
@@ -36,6 +40,7 @@ public class UserModel : ModelBase
 
     private Users.UserResponse? _user;
     private Currencies.CurrencyResponse? _currency;
+    private Pages.PageResponse? _startPage;
     private decimal? _goalSum;
 
     #endregion Fields
@@ -50,6 +55,8 @@ public class UserModel : ModelBase
             SetProperty(ref _user, value);
             OnUserChanged();
             GetCurrencyAsync();
+            GetStartPageAsync();
+            GetFinancialGoalAsync();
         }
     }
 
@@ -65,6 +72,20 @@ public class UserModel : ModelBase
 
             if (id != value?.Id || dateUpdate != value?.DateUpdate)
                 OnCurrencyChanged();
+        }
+    }
+    
+    public Pages.PageResponse? StartPage
+    {
+        get => _startPage;
+        private set
+        {
+            int? id = _startPage?.Id;
+
+            SetProperty(ref _startPage, value);
+
+            if (id != value?.Id)
+                OnStartPageChanged();
         }
     }
 
@@ -97,7 +118,6 @@ public class UserModel : ModelBase
         settingsService.SettingsPropertyChanged += SettingsPropertyChangedHandler;
 
         GetUserAsync();
-        GetFinancialGoalAsync();
     }
 
     #endregion Constructor
@@ -122,6 +142,12 @@ public class UserModel : ModelBase
     {
         Currency = await _apiClient.GetAsync<Currencies.CurrencyResponse>(
             ApiConstants.ApiMethods.GetCurrentCurrency);
+    }
+    
+    private async void GetStartPageAsync()
+    {
+        StartPage = await _apiClient.GetAsync<Pages.PageResponse>(
+            ApiConstants.ApiMethods.GetCurrentStartPage);
     }
     
     private async void GetFinancialGoalAsync()
@@ -150,6 +176,8 @@ public class UserModel : ModelBase
         await _apiClient.PutAsync(
             ApiConstants.ApiMethods.SetCurrency,
             new Currencies.SetCurrencyRequest(currencyModel.Id));
+
+        GetCurrencyAsync();
     }
     
     public async void SetPageAsync(PageModel? pageModel)
@@ -159,6 +187,8 @@ public class UserModel : ModelBase
         await _apiClient.PutAsync(
             ApiConstants.ApiMethods.SetStartPage,
             new Pages.SetPageRequest(pageModel.Id));
+        
+        GetStartPageAsync();
     }
     
     public async void SetFinancialGoalAsync(decimal? goalSum)
@@ -178,6 +208,11 @@ public class UserModel : ModelBase
     private void OnCurrencyChanged()
     {
         CurrencyChanged?.Invoke(this);
+    }
+    
+    private void OnStartPageChanged()
+    {
+        StartPageChanged?.Invoke(this);
     }
     
     private void OnFinancialGoalChanged()

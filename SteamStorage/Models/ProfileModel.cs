@@ -112,7 +112,7 @@ public class ProfileModel : ModelBase
         get => _selectedPage;
         set
         {
-            if (value is not null && value.Id != _userModel.User?.StartPageId)
+            if (value is not null && value.Id != _userModel.StartPage?.Id)
                 SetPage(value);
             SetProperty(ref _selectedPage, value);
         }
@@ -149,6 +149,7 @@ public class ProfileModel : ModelBase
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
+        userModel.StartPageChanged += StartPageChangedHandler;
         userModel.FinancialGoalChanged += FinancialGoalChangedHandler;
 
         currenciesModel.CurrenciesLoaded += CurrenciesLoadedHandler;
@@ -193,8 +194,6 @@ public class ProfileModel : ModelBase
 
         DateRegistration =
             $"Дата регистрации: {_userModel.User.DateRegistration.ToString(ProgramConstants.VIEW_DATE_FORMAT)}";
-
-        SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.User.StartPageId);
     }
 
     private void CurrencyChangedHandler(object? sender)
@@ -203,6 +202,11 @@ public class ProfileModel : ModelBase
 
         ExchangeRate =
             $"1$ = {_userModel.Currency?.Price ?? 0:N2} {_userModel.CurrencyMark} ({(_userModel.Currency?.DateUpdate ?? DateTime.Now).ToString(ProgramConstants.VIEW_DATE_FORMAT)})";
+    }
+    
+    private void StartPageChangedHandler(object? sender)
+    {
+        SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.StartPage?.Id);
     }
 
     private void FinancialGoalChangedHandler(object? sender)
@@ -217,7 +221,7 @@ public class ProfileModel : ModelBase
 
     private void PagesLoadedHandler(object? sender)
     {
-        SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.User?.StartPageId);
+        SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.StartPage?.Id);
     }
 
     private void DoOpenSteamProfileCommand()

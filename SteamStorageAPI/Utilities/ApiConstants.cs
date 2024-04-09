@@ -129,6 +129,8 @@ public static class ApiConstants
 
         ///<summary>GET request</summary>
         GetPages = 1000,
+        ///<summary>GET request</summary>
+        GetCurrentStartPage,
         ///<summary>PUT request</summary>
         SetStartPage,
 
