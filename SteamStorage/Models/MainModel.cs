@@ -7,7 +7,7 @@ using SteamStorage.Models.UtilityModels;
 using SteamStorage.Utilities.Events.ListItems;
 using SteamStorage.ViewModels;
 using SteamStorage.ViewModels.Tools;
-using SteamStorageAPI.Services.AuthorizationService;
+using SteamStorageAPI.SDK.Services.AuthorizationService;
 
 namespace SteamStorage.Models;
 

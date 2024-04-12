@@ -13,8 +13,8 @@ using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
 using SteamStorage.Views;
-using SteamStorageAPI;
-using SteamStorageAPI.Utilities;
+using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.Utilities;
 
 namespace SteamStorage.Models;
 

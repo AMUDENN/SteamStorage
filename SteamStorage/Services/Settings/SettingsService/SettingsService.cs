@@ -2,8 +2,8 @@
 using System.ComponentModel;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
-using SteamStorageAPI;
-using SteamStorageAPI.Utilities.Events;
+using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.Utilities.Events;
 
 namespace SteamStorage.Services.Settings.SettingsService;
 

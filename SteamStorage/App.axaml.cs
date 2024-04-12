@@ -11,8 +11,8 @@ using SteamStorage.Services.DialogService;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
-using SteamStorageAPI;
-using SteamStorageAPI.Utilities.Extensions.ServiceCollection;
+using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.Utilities.Extensions.ServiceCollection;
 
 namespace SteamStorage
 {

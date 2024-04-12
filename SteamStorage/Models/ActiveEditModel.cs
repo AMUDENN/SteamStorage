@@ -9,9 +9,9 @@ using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
-using SteamStorageAPI;
-using SteamStorageAPI.ApiEntities;
-using SteamStorageAPI.Utilities;
+using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiEntities;
+using SteamStorageAPI.SDK.Utilities;
 
 namespace SteamStorage.Models;
 

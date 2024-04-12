@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
-using SteamStorageAPI;
+using SteamStorageAPI.SDK;
 
 namespace SteamStorage.Models.BaseModels;
 

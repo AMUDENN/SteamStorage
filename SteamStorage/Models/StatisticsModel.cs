@@ -8,11 +8,11 @@ using SteamStorage.Models.Tools;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
-using SteamStorageAPI;
-using SteamStorageAPI.ApiEntities;
-using SteamStorageAPI.Services.Ping.PingResult;
-using SteamStorageAPI.Services.Ping.PingService;
-using SteamStorageAPI.Utilities;
+using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiEntities;
+using SteamStorageAPI.SDK.Services.Ping.PingResult;
+using SteamStorageAPI.SDK.Services.Ping.PingService;
+using SteamStorageAPI.SDK.Utilities;
 
 namespace SteamStorage.Models;
 

@@ -11,9 +11,9 @@ using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Events.Actives;
 using SteamStorage.ViewModels.UtilityViewModels;
-using SteamStorageAPI;
-using SteamStorageAPI.ApiEntities;
-using SteamStorageAPI.Utilities;
+using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiEntities;
+using SteamStorageAPI.SDK.Utilities;
 
 namespace SteamStorage.Models;
 

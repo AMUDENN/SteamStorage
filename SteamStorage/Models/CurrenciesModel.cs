@@ -2,9 +2,9 @@
 using System.Linq;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
-using SteamStorageAPI;
-using SteamStorageAPI.ApiEntities;
-using SteamStorageAPI.Utilities;
+using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiEntities;
+using SteamStorageAPI.SDK.Utilities;
 
 namespace SteamStorage.Models;
 

@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamStorage", "SteamStorage\SteamStorage.csproj", "{4391EB49-B962-44FA-A5B4-E7655A4C6640}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamStorageAPI", "SteamStorageAPI\SteamStorageAPI.csproj", "{9B7342C0-2ABC-4289-851A-3FBDD84C5247}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{4391EB49-B962-44FA-A5B4-E7655A4C6640}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4391EB49-B962-44FA-A5B4-E7655A4C6640}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4391EB49-B962-44FA-A5B4-E7655A4C6640}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B7342C0-2ABC-4289-851A-3FBDD84C5247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B7342C0-2ABC-4289-851A-3FBDD84C5247}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B7342C0-2ABC-4289-851A-3FBDD84C5247}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B7342C0-2ABC-4289-851A-3FBDD84C5247}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

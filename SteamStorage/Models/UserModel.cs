@@ -5,9 +5,9 @@ using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Events.Settings;
-using SteamStorageAPI;
-using SteamStorageAPI.ApiEntities;
-using SteamStorageAPI.Utilities;
+using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiEntities;
+using SteamStorageAPI.SDK.Utilities;
 
 namespace SteamStorage.Models;
 

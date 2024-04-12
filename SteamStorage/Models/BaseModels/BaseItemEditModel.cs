@@ -5,9 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
-using SteamStorageAPI;
-using SteamStorageAPI.ApiEntities;
-using SteamStorageAPI.Utilities;
+using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiEntities;
+using SteamStorageAPI.SDK.Utilities;
 
 namespace SteamStorage.Models.BaseModels;
 

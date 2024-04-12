@@ -2,7 +2,7 @@
 using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
-using SteamStorageAPI;
+using SteamStorageAPI.SDK;
 
 namespace SteamStorage.Models.UtilityModels;
 
