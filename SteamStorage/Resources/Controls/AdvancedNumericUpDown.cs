@@ -81,7 +81,7 @@ public class AdvancedNumericUpDown : NumericUpDown
     {
         Initialized += InitializedHandler;
 
-        ValueChanged += ValueChangedHandler;
+        PropertyChanged += PropertyChangedHandler;
     }
 
     #endregion Constructor
@@ -96,8 +96,10 @@ public class AdvancedNumericUpDown : NumericUpDown
         IncrementCommand = new RelayCommand(DoIncrement);
     }
 
-    private void ValueChangedHandler(object? sender, NumericUpDownValueChangedEventArgs e)
+    private void PropertyChangedHandler(object? sender, AvaloniaPropertyChangedEventArgs e)
     {
+        if (e.Property != ValueProperty && e.Property != MinimumProperty && e.Property != MaximumProperty) return;
+
         IsStartEnabled = true;
         IsEndEnabled = true;
         if (Value <= Minimum)
