@@ -17,6 +17,11 @@ public abstract class BaseItemEditViewModel : BaseEditViewModel
     #endregion Fields
 
     #region Properties
+    
+    public bool IsNewItem
+    {
+        get => _baseItemEditModel.IsNewItem;
+    }
 
     public BaseSkinViewModel? DefaultSkinModel
     {

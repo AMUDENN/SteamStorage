@@ -7,7 +7,6 @@ using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
-using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Extensions;
@@ -17,19 +16,9 @@ using SteamStorageAPI.SDK.Utilities;
 
 namespace SteamStorage.Models;
 
-public class ActiveGroupEditModel : BaseEditModel
+public class ActiveGroupEditModel : BaseGroupEditModel
 {
-    #region Constants
-
-    private const string TITLE = "Изменение группы";
-
-    private const string NO_DATA = "(нет данных)";
-
-    #endregion Constants
-
     #region Fields
-
-    private readonly IDialogService _dialogService;
 
     private ActiveGroupModel? _activeGroupModel;
 
@@ -238,10 +227,8 @@ public class ActiveGroupEditModel : BaseEditModel
 
     public ActiveGroupEditModel(
         ApiClient apiClient,
-        IDialogService dialogService) : base(apiClient)
+        IDialogService dialogService) : base(apiClient, dialogService)
     {
-        _dialogService = dialogService;
-
         _defaultGroupTitle = string.Empty;
         _groupTitle = string.Empty;
 
@@ -260,7 +247,7 @@ public class ActiveGroupEditModel : BaseEditModel
     {
         if (_activeGroupModel is null) return;
 
-        bool result = await _dialogService.ShowDialogAsync(
+        bool result = await DialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить группу: «{_activeGroupModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
@@ -287,7 +274,7 @@ public class ActiveGroupEditModel : BaseEditModel
         
         if (IsNewGroup)
         {
-            bool result = await _dialogService.ShowDialogAsync(
+            bool result = await DialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите добавить группу: «{GroupTitle}»?",
                 DialogUtility.MessageType.Question,
                 DialogUtility.MessageButtons.SaveCancel);
@@ -304,7 +291,7 @@ public class ActiveGroupEditModel : BaseEditModel
         }
         else if (_activeGroupModel is not null)
         {
-            bool result = await _dialogService.ShowDialogAsync(
+            bool result = await DialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите изменить группу: «{_activeGroupModel.Title}»?",
                 DialogUtility.MessageType.Question,
                 DialogUtility.MessageButtons.SaveCancel);
@@ -336,12 +323,6 @@ public class ActiveGroupEditModel : BaseEditModel
                && Description?.Length <= 300
                && (string.IsNullOrWhiteSpace(GoalSum) || (decimal.TryParse(GoalSum, out decimal sum) && sum >= (decimal)0.01))
                && Colour != Colors.Transparent;
-    }
-
-    private void SetTitle(BaseGroupModel? model)
-    {
-        if (model is null) Title = TITLE;
-        Title = $"{TITLE}: «{model?.Title}»";
     }
 
     private void SetValuesFromDefault()

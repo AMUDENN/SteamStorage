@@ -19,13 +19,14 @@ public class ArchiveEditModel : BaseItemEditModel
 {
     #region Constants
 
-    private const string TITLE = "Изменение элемента архива";
+    private const string CHANGE_TITLE = "Изменение элемента архива";
+    
+    private const string ADD_TITLE = "Добавление элемента архива";
 
     #endregion Constants
 
     #region Fields
 
-    private readonly IDialogService _dialogService;
     private readonly ArchiveGroupsModel _archiveGroupsModel;
 
     private ArchiveModel? _archiveModel;
@@ -174,10 +175,9 @@ public class ArchiveEditModel : BaseItemEditModel
     public ArchiveEditModel(
         ApiClient apiClient,
         ArchiveGroupsModel archiveGroupsModel,
-        IDialogService dialogService) : base(apiClient)
+        IDialogService dialogService) : base(apiClient, dialogService)
     {
         _archiveGroupsModel = archiveGroupsModel;
-        _dialogService = dialogService;
 
         _defaultCount = string.Empty;
         _count = string.Empty;
@@ -197,7 +197,7 @@ public class ArchiveEditModel : BaseItemEditModel
     {
         if (_archiveModel is null) return;
         
-        bool result = await _dialogService.ShowDialogAsync(
+        bool result = await DialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить удалить элемент архива: «{_archiveModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
@@ -226,7 +226,7 @@ public class ArchiveEditModel : BaseItemEditModel
 
         if (IsNewArchive)
         {
-            bool result = await _dialogService.ShowDialogAsync(
+            bool result = await DialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите добавить элемент архива: «{SelectedSkinModel.Title}»?",
                 DialogUtility.MessageType.Question,
                 DialogUtility.MessageButtons.SaveCancel);
@@ -247,7 +247,7 @@ public class ArchiveEditModel : BaseItemEditModel
         }
         else if (_archiveModel is not null)
         {
-            bool result = await _dialogService.ShowDialogAsync(
+            bool result = await DialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите изменить элемент архива: «{_archiveModel.Title}»?",
                 DialogUtility.MessageType.Question,
                 DialogUtility.MessageButtons.SaveCancel);
@@ -287,10 +287,15 @@ public class ArchiveEditModel : BaseItemEditModel
                && SelectedSkinModel is not null;
     }
 
-    protected override void SetTitle(BaseSkinViewModel? model)
+    protected override void SetTitle(BaseSkinViewModel? model, bool isEdit)
     {
-        if (model is null) Title = TITLE;
-        Title = $"{TITLE}: «{model?.Title}»";
+        if (isEdit)
+        {
+            Title = ADD_TITLE;
+            return;
+        }
+        if (model is null) Title = ADD_TITLE;
+        Title = $"{CHANGE_TITLE}: «{model?.Title}»";
     }
 
     private void SetValuesFromDefault()

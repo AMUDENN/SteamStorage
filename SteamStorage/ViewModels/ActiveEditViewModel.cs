@@ -88,11 +88,6 @@ public class ActiveEditViewModel : BaseItemEditViewModel
         get => _activeEditModel.BuyDate;
         set => _activeEditModel.BuyDate = value;
     }
-    
-    public bool IsNewActive
-    {
-        get => _activeEditModel.IsNewActive;
-    }
 
     #endregion Properties
 

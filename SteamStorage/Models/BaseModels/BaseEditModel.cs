@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
+using SteamStorage.Services.DialogService;
 using SteamStorageAPI.SDK;
 
 namespace SteamStorage.Models.BaseModels;
@@ -25,8 +26,10 @@ public abstract class BaseEditModel : ModelBase
     #endregion Events
 
     #region Fields
-
+    
     protected readonly ApiClient ApiClient;
+    
+    protected readonly IDialogService DialogService;
     
     private string _title;
 
@@ -55,9 +58,11 @@ public abstract class BaseEditModel : ModelBase
     #region Constructor
 
     protected BaseEditModel(
-        ApiClient apiClient)
+        ApiClient apiClient,
+        IDialogService dialogService)
     {
         ApiClient = apiClient;
+        DialogService = dialogService;
         
         _title = string.Empty;
         

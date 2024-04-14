@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using SteamStorage.Services.DialogService;
 using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 using SteamStorageAPI.SDK;
 using SteamStorageAPI.SDK.ApiEntities;
@@ -14,6 +15,8 @@ namespace SteamStorage.Models.BaseModels;
 public abstract class BaseItemEditModel : BaseEditModel
 {
     #region Fields
+    
+    private bool _isNewItem;
 
     private BaseSkinViewModel? _defaultSkinModel;
     private BaseSkinViewModel? _selectedSkinModel;
@@ -27,6 +30,12 @@ public abstract class BaseItemEditModel : BaseEditModel
     #endregion Fields
 
     #region Properties
+    
+    public bool IsNewItem
+    {
+        get => _isNewItem;
+        protected set => SetProperty(ref _isNewItem, value);
+    }
 
     public BaseSkinViewModel? DefaultSkinModel
     {
@@ -41,7 +50,7 @@ public abstract class BaseItemEditModel : BaseEditModel
         {
             SetProperty(ref _selectedSkinModel, value);
             SaveCommand.NotifyCanExecuteChanged();
-            SetTitle(value);
+            SetTitle(value, IsNewItem);
         }
     }
 
@@ -84,7 +93,8 @@ public abstract class BaseItemEditModel : BaseEditModel
     #region Constructor
 
     protected BaseItemEditModel(
-        ApiClient apiClient) : base(apiClient)
+        ApiClient apiClient,
+        IDialogService dialogService) : base(apiClient, dialogService)
     {
         _skinModels = [];
         _cancellationTokenSource = new();
@@ -104,7 +114,7 @@ public abstract class BaseItemEditModel : BaseEditModel
         Filter = null;
     }
 
-    protected abstract void SetTitle(BaseSkinViewModel? model);
+    protected abstract void SetTitle(BaseSkinViewModel? model, bool isEdit);
 
     private bool ItemFilterPredicate(string? search, object? item)
     {

@@ -19,13 +19,14 @@ public class ActiveEditModel : BaseItemEditModel
 {
     #region Constants
 
-    private const string TITLE = "Изменение актива";
+    private const string CHANGE_TITLE = "Изменение актива";
+    
+    private const string ADD_TITLE = "Добавление актива";
 
     #endregion Constants
 
     #region Fields
 
-    private readonly IDialogService _dialogService;
     private readonly ActiveGroupsModel _activeGroupsModel;
 
     private ActiveModel? _activeModel;
@@ -47,8 +48,6 @@ public class ActiveEditModel : BaseItemEditModel
 
     private DateTimeOffset _defaultBuyDate;
     private DateTimeOffset _buyDate;
-
-    private bool _isNewActive;
 
     #endregion Fields
 
@@ -146,12 +145,6 @@ public class ActiveEditModel : BaseItemEditModel
         set => SetProperty(ref _buyDate, value);
     }
 
-    public bool IsNewActive
-    {
-        get => _isNewActive;
-        private set => SetProperty(ref _isNewActive, value);
-    }
-
     #endregion Properties
 
     #region Constructor
@@ -159,10 +152,9 @@ public class ActiveEditModel : BaseItemEditModel
     public ActiveEditModel(
         ApiClient apiClient,
         ActiveGroupsModel activeGroupsModel,
-        IDialogService dialogService) : base(apiClient)
+        IDialogService dialogService) : base(apiClient, dialogService)
     {
         _activeGroupsModel = activeGroupsModel;
-        _dialogService = dialogService;
 
         _defaultCount = string.Empty;
         _count = string.Empty;
@@ -179,7 +171,7 @@ public class ActiveEditModel : BaseItemEditModel
     {
         if (_activeModel is null) return;
 
-        bool result = await _dialogService.ShowDialogAsync(
+        bool result = await DialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить актив: «{_activeModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
@@ -207,9 +199,9 @@ public class ActiveEditModel : BaseItemEditModel
             return;
 
 
-        if (IsNewActive)
+        if (IsNewItem)
         {
-            bool result = await _dialogService.ShowDialogAsync(
+            bool result = await DialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите добавить актив: «{SelectedSkinModel.Title}»?",
                 DialogUtility.MessageType.Question,
                 DialogUtility.MessageButtons.SaveCancel);
@@ -229,7 +221,7 @@ public class ActiveEditModel : BaseItemEditModel
         }
         else if (_activeModel is not null)
         {
-            bool result = await _dialogService.ShowDialogAsync(
+            bool result = await DialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите изменить актив: «{_activeModel.Title}»?",
                 DialogUtility.MessageType.Question,
                 DialogUtility.MessageButtons.SaveCancel);
@@ -268,10 +260,15 @@ public class ActiveEditModel : BaseItemEditModel
                && SelectedSkinModel is not null;
     }
 
-    protected override void SetTitle(BaseSkinViewModel? model)
+    protected override void SetTitle(BaseSkinViewModel? model, bool isEdit)
     {
-        if (model is null) Title = TITLE;
-        Title = $"{TITLE}: «{model?.Title}»";
+        if (isEdit)
+        {
+            Title = ADD_TITLE;
+            return;
+        }
+        if (model is null) Title = CHANGE_TITLE;
+        Title = $"{CHANGE_TITLE}: «{model?.Title}»";
     }
 
     private void SetValuesFromDefault()
@@ -304,7 +301,7 @@ public class ActiveEditModel : BaseItemEditModel
 
         DefaultBuyDate = DateTime.SpecifyKind(model?.BuyDate ?? DateTime.Now, DateTimeKind.Local);
 
-        IsNewActive = model is null;
+        IsNewItem = model is null;
 
         SetValuesFromDefault();
     }
@@ -328,7 +325,7 @@ public class ActiveEditModel : BaseItemEditModel
 
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
 
-        IsNewActive = true;
+        IsNewItem = true;
 
         SetValuesFromDefault();
     }
@@ -352,7 +349,7 @@ public class ActiveEditModel : BaseItemEditModel
 
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
 
-        IsNewActive = true;
+        IsNewItem = true;
 
         SetValuesFromDefault();
     }

@@ -9,7 +9,7 @@ using SteamStorage.ViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels;
 
-public class ActiveGroupEditViewModel : BaseEditViewModel
+public class ActiveGroupEditViewModel : BaseGroupEditViewModel
 {
     #region Fields
 

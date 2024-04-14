@@ -25,8 +25,6 @@ public class ActiveSoldModel : BaseEditModel
 
     #region Fields
 
-    private readonly IDialogService _dialogService;
-    
     private ActiveModel? _activeModel;
     
     private BaseGroupModel? _defaultArchiveGroupModel;
@@ -166,10 +164,8 @@ public class ActiveSoldModel : BaseEditModel
 
     public ActiveSoldModel(
         ApiClient apiClient,
-        IDialogService dialogService) : base(apiClient)
+        IDialogService dialogService) : base(apiClient, dialogService)
     {
-        _dialogService = dialogService;
-        
         _defaultCount = string.Empty;
         _count = string.Empty;
 
@@ -191,7 +187,7 @@ public class ActiveSoldModel : BaseEditModel
     {
         if (_activeModel is null) return;
         
-        bool result = await _dialogService.ShowDialogAsync(
+        bool result = await DialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить актив: «{_activeModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
@@ -218,7 +214,7 @@ public class ActiveSoldModel : BaseEditModel
               && Description?.Length <= 300))
             return;
 
-        bool result = await _dialogService.ShowDialogAsync(
+        bool result = await DialogService.ShowDialogAsync(
             $"Вы уверены, что хотите продать актив: «{_activeModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.SaveCancel);
