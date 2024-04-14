@@ -3,12 +3,12 @@ using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
-using SteamStorage.ViewModels.Tools;
+using SteamStorage.ViewModels.BaseViewModels;
 using SteamStorage.ViewModels.UtilityViewModels;
 
 namespace SteamStorage.ViewModels;
 
-public class ListArchivesViewModel : ViewModelBase
+public class ListArchivesViewModel : BaseListViewModel
 {
     #region Fields
 
@@ -116,47 +116,6 @@ public class ListArchivesViewModel : ViewModelBase
         set => _listArchivesModel.SelectedArchiveModel = value;
     }
 
-    public string? NotFoundText
-    {
-        get => _listArchivesModel.NotFoundText;
-    }
-
-    public bool IsLoading
-    {
-        get => _listArchivesModel.IsLoading;
-    }
-
-    public int? PageNumber
-    {
-        get => _listArchivesModel.PageNumber;
-        set => _listArchivesModel.PageNumber = value;
-    }
-
-    public int CurrentPageNumber
-    {
-        get => _listArchivesModel.CurrentPageNumber;
-    }
-
-    public int PagesCount
-    {
-        get => _listArchivesModel.PagesCount;
-    }
-
-    public int DisplayItemsCountStart
-    {
-        get => _listArchivesModel.DisplayItemsCountStart;
-    }
-
-    public int DisplayItemsCountEnd
-    {
-        get => _listArchivesModel.DisplayItemsCountEnd;
-    }
-
-    public int SavedItemsCount
-    {
-        get => _listArchivesModel.SavedItemsCount;
-    }
-
     #endregion Properties
 
     #region Commands
@@ -183,7 +142,7 @@ public class ListArchivesViewModel : ViewModelBase
     public ListArchivesViewModel(
         ListArchivesModel listArchivesModel,
         ArchiveGroupsModel archiveGroupsModel,
-        GamesModel gamesModel)
+        GamesModel gamesModel) : base(listArchivesModel)
     {
         _listArchivesModel = listArchivesModel;
         _archiveGroupsModel = archiveGroupsModel;

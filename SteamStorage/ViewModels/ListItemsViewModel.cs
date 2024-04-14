@@ -2,12 +2,12 @@
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
-using SteamStorage.ViewModels.Tools;
+using SteamStorage.ViewModels.BaseViewModels;
 using SteamStorage.ViewModels.UtilityViewModels;
 
 namespace SteamStorage.ViewModels;
 
-public class ListItemsViewModel : ViewModelBase
+public class ListItemsViewModel : BaseListViewModel
 {
     #region Fields
 
@@ -82,47 +82,6 @@ public class ListItemsViewModel : ViewModelBase
         set => _listItemsModel.SelectedListItemModel = value;
     }
 
-    public string? NotFoundText
-    {
-        get => _listItemsModel.NotFoundText;
-    }
-
-    public bool IsLoading
-    {
-        get => _listItemsModel.IsLoading;
-    }
-
-    public int? PageNumber
-    {
-        get => _listItemsModel.PageNumber;
-        set => _listItemsModel.PageNumber = value;
-    }
-
-    public int CurrentPageNumber
-    {
-        get => _listItemsModel.CurrentPageNumber;
-    }
-
-    public int PagesCount
-    {
-        get => _listItemsModel.PagesCount;
-    }
-
-    public int DisplayItemsCountStart
-    {
-        get => _listItemsModel.DisplayItemsCountStart;
-    }
-
-    public int DisplayItemsCountEnd
-    {
-        get => _listItemsModel.DisplayItemsCountEnd;
-    }
-
-    public int SavedItemsCount
-    {
-        get => _listItemsModel.SavedItemsCount;
-    }
-
     #endregion Properties
 
     #region Commands
@@ -138,7 +97,7 @@ public class ListItemsViewModel : ViewModelBase
 
     public ListItemsViewModel(
         ListItemsModel listItemsModel,
-        GamesModel gamesModel)
+        GamesModel gamesModel) : base(listItemsModel)
     {
         _listItemsModel = listItemsModel;
         _gamesModel = gamesModel;

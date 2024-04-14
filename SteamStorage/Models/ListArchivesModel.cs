@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
-using SteamStorage.Models.Tools;
+using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
@@ -16,14 +16,8 @@ using SteamStorageAPI.SDK.Utilities;
 
 namespace SteamStorage.Models;
 
-public class ListArchivesModel : ModelBase
+public class ListArchivesModel : BaseListModel
 {
-    #region Constants
-
-    private const string EMPTY_LIST_TEXT = "Элементы не найдены";
-
-    #endregion Constants
-
     #region Events
 
     public delegate void EditArchiveEventHandler(object? sender, EditArchiveEventArgs args);
@@ -62,18 +56,8 @@ public class ListArchivesModel : ModelBase
     private List<ArchiveViewModel> _archiveModels;
     private ArchiveViewModel? _selectedArchiveModel;
 
-    private bool _isLoading;
     private CancellationTokenSource _itemsCancellationTokenSource;
     private CancellationTokenSource _statisticsCancellationTokenSource;
-
-    private readonly int _pageSize;
-    private int? _pageNumber;
-    private int _currentPageNumber;
-    private int _pagesCount;
-
-    private int _displayItemsCountStart;
-    private int _displayItemsCountEnd;
-    private int _savedItemsCount;
 
     #endregion Fields
 
@@ -293,80 +277,9 @@ public class ListArchivesModel : ModelBase
         set => SetProperty(ref _selectedArchiveModel, value);
     }
 
-    public string? NotFoundText
+    public override string? NotFoundText
     {
         get => ArchiveModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
-    }
-
-    public bool IsLoading
-    {
-        get => _isLoading;
-        private set
-        {
-            SetProperty(ref _isLoading, value);
-            OnPropertyChanged(nameof(NotFoundText));
-        }
-    }
-
-    private int PageSize
-    {
-        get => _pageSize;
-        init
-        {
-            SetProperty(ref _pageSize, value);
-            GetSkinsAsync();
-        }
-    }
-
-    public int? PageNumber
-    {
-        get => _pageNumber;
-        set
-        {
-            SetProperty(ref _pageNumber, value);
-            if (PageNumber is not null) GetSkinsAsync();
-        }
-    }
-
-    public int CurrentPageNumber
-    {
-        get => _currentPageNumber;
-        private set => SetProperty(ref _currentPageNumber, value);
-    }
-
-    public int PagesCount
-    {
-        get => _pagesCount;
-        private set
-        {
-            SetProperty(ref _pagesCount, value);
-            if (value == 0)
-            {
-                PageNumber = 1;
-            }
-            else if (value < PageNumber)
-            {
-                PageNumber = value;
-            }
-        }
-    }
-
-    public int DisplayItemsCountStart
-    {
-        get => _displayItemsCountStart;
-        private set => SetProperty(ref _displayItemsCountStart, value < 1 ? 1 : value);
-    }
-
-    public int DisplayItemsCountEnd
-    {
-        get => _displayItemsCountEnd;
-        private set => SetProperty(ref _displayItemsCountEnd, value < PageSize ? PageSize : value);
-    }
-
-    public int SavedItemsCount
-    {
-        get => _savedItemsCount;
-        private set => SetProperty(ref _savedItemsCount, value);
     }
 
     private Archives.ArchiveOrderName? ArchiveOrderName
@@ -541,7 +454,7 @@ public class ListArchivesModel : ModelBase
         SoldSumString = $"{archivesStatisticResponse.SoldSum:N2} {_userModel.CurrencyMark}";
     }
 
-    private async void GetSkinsAsync()
+    protected override async void GetSkinsAsync()
     {
         ArchiveModels = [];
         if (_userModel.User is null) return;
