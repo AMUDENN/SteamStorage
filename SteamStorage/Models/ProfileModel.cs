@@ -124,7 +124,7 @@ public class ProfileModel : ModelBase
 
     public RelayCommand OpenSteamProfileCommand { get; }
     
-    public RelayCommand SaveFinancialGoal { get; }
+    public AsyncRelayCommand SaveFinancialGoal { get; }
 
     public AsyncRelayCommand DeleteProfileCommand { get; }
 
@@ -229,15 +229,15 @@ public class ProfileModel : ModelBase
         UrlUtility.OpenUrl(_profileUrl);
     }
 
-    private void DoSaveFinancialGoal()
+    private async Task DoSaveFinancialGoal()
     {
         if (string.IsNullOrWhiteSpace(FinancialGoal))
         {
-            _userModel.SetFinancialGoalAsync(null);
+            await _userModel.SetFinancialGoalAsync(null);
         }
         if (decimal.TryParse(FinancialGoal, out decimal financialGoal))
         {
-            _userModel.SetFinancialGoalAsync(financialGoal);
+            await _userModel.SetFinancialGoalAsync(financialGoal);
         }
     }
 
@@ -272,14 +272,14 @@ public class ProfileModel : ModelBase
         FinancialGoal = DefaultFinancialGoal;
     }
 
-    private void SetCurrency(CurrencyModel? currencyModel)
+    private async void SetCurrency(CurrencyModel? currencyModel)
     {
-        _userModel.SetCurrencyAsync(currencyModel);
+        await _userModel.SetCurrencyAsync(currencyModel);
     }
 
-    private void SetPage(PageModel? pageModel)
+    private async void SetPage(PageModel? pageModel)
     {
-        _userModel.SetPageAsync(pageModel);
+        await _userModel.SetPageAsync(pageModel);
     }
 
     #endregion Methods

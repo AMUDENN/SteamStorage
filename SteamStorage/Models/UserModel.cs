@@ -169,7 +169,7 @@ public class UserModel : ModelBase
         GetUserAsync();
     }
 
-    public async void SetCurrencyAsync(CurrencyModel? currencyModel)
+    public async Task SetCurrencyAsync(CurrencyModel? currencyModel)
     {
         if (currencyModel is null) return;
 
@@ -180,7 +180,7 @@ public class UserModel : ModelBase
         GetCurrencyAsync();
     }
     
-    public async void SetPageAsync(PageModel? pageModel)
+    public async Task SetPageAsync(PageModel? pageModel)
     {
         if (pageModel is null) return;
         
@@ -191,7 +191,7 @@ public class UserModel : ModelBase
         GetStartPageAsync();
     }
     
-    public async void SetFinancialGoalAsync(decimal? goalSum)
+    public async Task SetFinancialGoalAsync(decimal? goalSum)
     {
         await _apiClient.PutAsync(
             ApiConstants.ApiMethods.PutGoalSum,
