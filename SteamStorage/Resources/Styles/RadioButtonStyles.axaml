@@ -90,6 +90,9 @@
         <Style Selector="^.ThirdAccentLinearGameRadioButton /template/ Border#MainBorder">
             <Setter Property="BorderBrush" Value="{DynamicResource ThirdAccentLinearBrush}" />
         </Style>
+        <Style Selector="^.FourthAccentLinearGameRadioButton /template/ Border#MainBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource FourthAccentLinearBrush}" />
+        </Style>
     </Style>
 
     <Style Selector="RadioButton.PeriodRadioButton">
@@ -118,6 +121,9 @@
         </Style>
         <Style Selector="^.ThirdAccentLinearPeriodRadioButton /template/ Border#MainBorder">
             <Setter Property="BorderBrush" Value="{DynamicResource ThirdAccentLinearBrush}" />
+        </Style>
+        <Style Selector="^.FourthAccentLinearPeriodRadioButton /template/ Border#MainBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource FourthAccentLinearBrush}" />
         </Style>
     </Style>
 

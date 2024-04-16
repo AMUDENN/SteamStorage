@@ -29,13 +29,13 @@
             </Grid.ColumnDefinitions>
 
             <RadioButton
-                Classes="GameRadioButton FirstAccentLinearGameRadioButton"
+                Classes="GameRadioButton FourthAccentLinearGameRadioButton"
                 Content="Все"
                 Grid.Column="0"
                 IsChecked="{Binding IsAllGamesChecked}" />
 
             <ListBox
-                Classes="GamesListBox FirstAccentLinearGameListBox"
+                Classes="GamesListBox FourthAccentLinearGameListBox"
                 Grid.Column="2"
                 ItemsSource="{Binding GameModels, Mode=OneWay}"
                 SelectedItem="{Binding SelectedGameModel}" />
@@ -96,25 +96,29 @@
                 Classes="OrderingToggleButton"
                 Content="Название"
                 Grid.Column="2"
-                IsChecked="{Binding IsTitleOrdering}" />
+                IsChecked="{Binding IsTitleOrdering}"
+                ToolTip.Tip="Название" />
 
             <ToggleButton
                 Classes="OrderingToggleButton"
                 Content="Текущая цена"
                 Grid.Column="4"
-                IsChecked="{Binding IsCurrentCostOrdering}" />
+                IsChecked="{Binding IsCurrentCostOrdering}"
+                ToolTip.Tip="Текущая цена" />
 
             <ToggleButton
                 Classes="OrderingToggleButton"
                 Content="Изменение (7дн)"
                 Grid.Column="6"
-                IsChecked="{Binding IsChange7Ordering}" />
+                IsChecked="{Binding IsChange7Ordering}"
+                ToolTip.Tip="Изменение (7дн)" />
 
             <ToggleButton
                 Classes="OrderingToggleButton"
                 Content="Изменение (30дн)"
                 Grid.Column="8"
-                IsChecked="{Binding IsChange30Ordering}" />
+                IsChecked="{Binding IsChange30Ordering}"
+                ToolTip.Tip="Изменение (30дн)" />
 
             <CheckBox
                 Classes="StarCheckBox"
@@ -124,6 +128,7 @@
                 IsChecked="{Binding IsMarked}"
                 MinHeight="24"
                 MinWidth="24"
+                ToolTip.Tip="Отмеченные предметы"
                 VerticalAlignment="Center"
                 Width="24" />
 

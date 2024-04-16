@@ -62,6 +62,8 @@ public static class ChartThemeVariants
             new(ChartColors.FirstAccent, new(157, 105, 242)),
             new(ChartColors.SecondAccent, new(199, 112, 245)),
             new(ChartColors.ThirdAccent, new(210, 218, 221)),
+            new(ChartColors.FourthAccent, new(110, 110, 100)),
+            new(ChartColors.FifthAccent, new(120, 120, 110)),
 
             new(ChartColors.Positive, new(30, 149, 56)),
             new(ChartColors.Negative, new(224, 55, 55)),
@@ -82,6 +84,8 @@ public static class ChartThemeVariants
             new(ChartColors.FirstAccent, new(23, 23, 23)),
             new(ChartColors.SecondAccent, new(60, 60, 60)),
             new(ChartColors.ThirdAccent, new(120, 120, 120)),
+            new(ChartColors.FourthAccent, new(110, 110, 100)),
+            new(ChartColors.FifthAccent, new(120, 120, 110)),
 
             new(ChartColors.Positive, new(180, 180, 180)),
             new(ChartColors.Negative, new(240, 240, 240)),

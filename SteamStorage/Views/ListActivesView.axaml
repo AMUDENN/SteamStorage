@@ -191,37 +191,43 @@
                 Classes="OrderingToggleButton"
                 Content="Название"
                 Grid.Column="2"
-                IsChecked="{Binding IsTitleOrdering}" />
+                IsChecked="{Binding IsTitleOrdering}"
+                ToolTip.Tip="Название" />
 
             <ToggleButton
                 Classes="OrderingToggleButton"
                 Content="Количество"
                 Grid.Column="4"
-                IsChecked="{Binding IsCountOrdering}" />
+                IsChecked="{Binding IsCountOrdering}"
+                ToolTip.Tip="Количество" />
 
             <ToggleButton
                 Classes="OrderingToggleButton"
                 Content="Цена покупки"
                 Grid.Column="6"
-                IsChecked="{Binding IsBuyPriceOrdering}" />
+                IsChecked="{Binding IsBuyPriceOrdering}"
+                ToolTip.Tip="Цена покупки" />
 
             <ToggleButton
                 Classes="OrderingToggleButton"
                 Content="Текущая цена"
                 Grid.Column="8"
-                IsChecked="{Binding IsCurrentPriceOrdering}" />
+                IsChecked="{Binding IsCurrentPriceOrdering}"
+                ToolTip.Tip="Текущая цена" />
 
             <ToggleButton
                 Classes="OrderingToggleButton"
                 Content="Сумма"
                 Grid.Column="10"
-                IsChecked="{Binding IsCurrentSumOrdering}" />
+                IsChecked="{Binding IsCurrentSumOrdering}"
+                ToolTip.Tip="Сумма" />
 
             <ToggleButton
                 Classes="OrderingToggleButton"
                 Content="Изменение"
                 Grid.Column="12"
-                IsChecked="{Binding IsChangeOrdering}" />
+                IsChecked="{Binding IsChangeOrdering}"
+                ToolTip.Tip="Изменение" />
 
         </Grid>
 

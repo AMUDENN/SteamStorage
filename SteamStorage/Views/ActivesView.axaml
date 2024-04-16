@@ -13,7 +13,7 @@
     <Grid RowDefinitions="Auto, *">
 
         <ListBox
-            Classes="SecondaryNavigationListBox"
+            Classes="SecondaryNavigationListBox FirstAccentSecondaryNavigationListBox"
             Grid.Row="0"
             ItemsSource="{Binding SecondaryNavigationOptions, Mode=OneWay}"
             SelectedItem="{Binding SelectedSecondaryNavigationModel}" />

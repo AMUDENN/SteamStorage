@@ -57,6 +57,9 @@
         <Style Selector="^.ThirdAccentLinearGameListBox ListBoxItem /template/ Border#MainBorder">
             <Setter Property="BorderBrush" Value="{DynamicResource ThirdAccentLinearBrush}" />
         </Style>
+        <Style Selector="^.FourthAccentLinearGameListBox ListBoxItem /template/ Border#MainBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource FourthAccentLinearBrush}" />
+        </Style>
     </Style>
 
 </Styles>

@@ -202,28 +202,28 @@
                                         VerticalAlignment="Bottom">
 
                                         <RadioButton
-                                            Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+                                            Classes="PeriodRadioButton FourthAccentLinearPeriodRadioButton"
                                             Content="1 д"
                                             GroupName="ListItemLBPeriod"
                                             IsChecked="{Binding IsOneDayChecked}"
                                             ToolTip.Tip="1 день" />
 
                                         <RadioButton
-                                            Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+                                            Classes="PeriodRadioButton FourthAccentLinearPeriodRadioButton"
                                             Content="1 н"
                                             GroupName="ListItemLBPeriod"
                                             IsChecked="{Binding IsOneWeekChecked}"
                                             ToolTip.Tip="1 неделя" />
 
                                         <RadioButton
-                                            Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+                                            Classes="PeriodRadioButton FourthAccentLinearPeriodRadioButton"
                                             Content="1 м"
                                             GroupName="ListItemLBPeriod"
                                             IsChecked="{Binding IsOneMonthChecked}"
                                             ToolTip.Tip="1 месяц" />
 
                                         <RadioButton
-                                            Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+                                            Classes="PeriodRadioButton FourthAccentLinearPeriodRadioButton"
                                             Content="1 г"
                                             GroupName="ListItemLBPeriod"
                                             IsChecked="{Binding IsOneYearChecked}"

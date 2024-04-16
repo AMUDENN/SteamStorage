@@ -21,7 +21,6 @@
 
                         <TextBlock
                             Classes="SmallTextBlock LightWeightTextBlock UnderlineTextBlock LeftTextBlock"
-                            Classes.FirstAccentTextBlock="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
                             IsEnabled="{Binding IsEnabled, Mode=OneWay}"
                             Margin="25,0,0,0"
                             Text="{Binding Title, Mode=OneWay}" />
@@ -32,6 +31,18 @@
             <Style Selector="^:pointerover /template/ TextBlock">
                 <Setter Property="Opacity" Value="0.8" />
             </Style>
+        </Style>
+        <Style Selector="^.FirstAccentSecondaryNavigationListBox ListBoxItem:selected /template/ TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource FirstAccentBrush}" />
+        </Style>
+        <Style Selector="^.SecondAccentSecondaryNavigationListBox ListBoxItem:selected /template/ TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource SecondAccentBrush}" />
+        </Style>
+        <Style Selector="^.ThirdAccentSecondaryNavigationListBox ListBoxItem:selected /template/ TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource ThirdAccentBrush}" />
+        </Style>
+        <Style Selector="^.FourthAccentSecondaryNavigationListBox ListBoxItem:selected /template/ TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource FourthAccentBrush}" />
         </Style>
     </Style>
 

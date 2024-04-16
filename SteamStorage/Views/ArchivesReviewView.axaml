@@ -177,31 +177,36 @@
                 Classes="OrderingToggleButton"
                 Content="Название"
                 Grid.Column="2"
-                IsChecked="{Binding IsTitleOrdering}" />
+                IsChecked="{Binding IsTitleOrdering}"
+                ToolTip.Tip="Название" />
 
             <ToggleButton
                 Classes="OrderingToggleButton"
                 Content="Количество"
                 Grid.Column="4"
-                IsChecked="{Binding IsCountOrdering}" />
+                IsChecked="{Binding IsCountOrdering}"
+                ToolTip.Tip="Количество" />
 
             <ToggleButton
                 Classes="OrderingToggleButton"
                 Content="Сумма покупки"
                 Grid.Column="6"
-                IsChecked="{Binding IsBuySumOrdering}" />
+                IsChecked="{Binding IsBuySumOrdering}"
+                ToolTip.Tip="Сумма покупки" />
 
             <ToggleButton
                 Classes="OrderingToggleButton"
                 Content="Сумма продажи"
                 Grid.Column="8"
-                IsChecked="{Binding IsSoldSumOrdering}" />
+                IsChecked="{Binding IsSoldSumOrdering}"
+                ToolTip.Tip="Сумма продажи" />
 
             <ToggleButton
                 Classes="OrderingToggleButton"
                 Content="Изменение"
                 Grid.Column="10"
-                IsChecked="{Binding IsChangeOrdering}" />
+                IsChecked="{Binding IsChangeOrdering}"
+                ToolTip.Tip="Изменение" />
 
         </Grid>
 
