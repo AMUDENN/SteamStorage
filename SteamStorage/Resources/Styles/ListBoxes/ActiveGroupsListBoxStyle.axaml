@@ -1,295 +1,310 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
-        xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
-        xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels"
-        xmlns:controls="using:SteamStorage.Resources.Controls">
-	
-	<Style Selector="ListBox.ActiveGroupsListBox">
-		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-		<Setter Property="ItemsPanel">
-			<Setter.Value>
-				<ItemsPanelTemplate>
-					<VirtualizingStackPanel Margin="0"/>
-				</ItemsPanelTemplate>
-			</Setter.Value>
-		</Setter>
-		<Style Selector="^ ListBoxItem">
-			<Setter Property="Margin" Value="0, 0, 0, 20"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate x:DataType="utilityViewModels:ActiveGroupViewModel">
-						
-						<Border x:Name="MainBorder"
-						        Classes="BackgroundAdditionalBorder BigRoundedBorder"
-						        Height="110">
-							
-							<i:Interaction.Behaviors>
-								<ia:EventTriggerBehavior EventName="DoubleTapped">
-									<ia:InvokeCommandAction Command="{Binding OpenActivesCommand, Mode=OneWay}"
-									                        CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"/>
-								</ia:EventTriggerBehavior>
-							</i:Interaction.Behaviors>
-							
-							<Border.ContextMenu>
-								<ContextMenu>
-									<MenuItem Header="Открыть список активов" 
-									          Command="{Binding OpenActivesCommand, Mode=OneWay}"
-									          CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"/>
-									<Separator/>
-									<MenuItem Header="Добавить актив" 
-									          Command="{Binding AddActiveCommand, Mode=OneWay}"
-									          CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"/>
-									<Separator/>
-									<MenuItem Header="Добавить группу" 
-									          Command="{Binding AddActiveGroupCommand, Mode=OneWay}"/>
-									<Separator/>
-									<MenuItem Header="Изменить группу" 
-									          Command="{Binding EditActiveGroupCommand, Mode=OneWay}"
-									          CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"/>
-									<Separator/>
-									<MenuItem Header="Удалить группу" 
-									          Command="{Binding DeleteActiveGroupCommand, Mode=OneWay}"
-									          CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"/>
-								</ContextMenu>
-							</Border.ContextMenu>
-							
-							<Grid Margin="20">
-								
-								<Grid.RowDefinitions>
-									<RowDefinition Height="70" MinHeight="70"/>
-									<RowDefinition Height="10" MinHeight="10"/>
-									<RowDefinition Height="Auto"/>
-									<RowDefinition Height="Auto"/>
-								</Grid.RowDefinitions>
-								
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="50"/>
-									<ColumnDefinition Width="10" MinWidth="10"/>
-									<ColumnDefinition Width="210*"/>
-									<ColumnDefinition Width="10" MinWidth="10"/>
-									<ColumnDefinition Width="150*"/>
-									<ColumnDefinition Width="10" MinWidth="10"/>
-									<ColumnDefinition Width="190*"/>
-									<ColumnDefinition Width="10" MinWidth="10"/>
-									<ColumnDefinition Width="190*"/>
-									<ColumnDefinition Width="10" MinWidth="10"/>
-									<ColumnDefinition Width="150*"/>
-								</Grid.ColumnDefinitions>
-								
-								<Border Classes="SmallRoundedBorder"
-								        Height="32" Width="32"
-								        Background="{Binding Colour, Converter={StaticResource BrushConverter}}"
-								        ToolTip.Tip="Цвет группы"
-								        Grid.Row="0" Grid.Column="0"/>
-								
-								<TextBlock Text="{Binding Title, Mode=OneWay}"
-								           Classes="MiddleTextBlock LeftTextBlock WrapTextBlock"
-								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-								           ToolTip.Tip="Название"
-								           Grid.Row="0" Grid.Column="2"/>
-								
-								<TextBlock Text="{Binding Count, StringFormat=N0, Mode=OneWay}"
-								           Classes="MiddleTextBlock CenterTextBlock"
-								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-								           ToolTip.Tip="Количество"
-								           Grid.Row="0" Grid.Column="4"/>
-								
-								<TextBlock Text="{Binding BuySumString, Mode=OneWay}"
-								           Classes="MiddleTextBlock CenterTextBlock"
-								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-								           ToolTip.Tip="Сумма покупки"
-								           Grid.Row="0" Grid.Column="6"/>
-								
-								<TextBlock Text="{Binding CurrentSumString, Mode=OneWay}"
-								           Classes="MiddleTextBlock CenterTextBlock"
-								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-								           ToolTip.Tip="Текущая сумма"
-								           Grid.Row="0" Grid.Column="8"/>
-								
-								<TextBlock Text="{Binding Change, StringFormat=N0, Mode=OneWay, 
-												  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
-								           Classes="MiddleTextBlock CenterTextBlock"
-								           Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-								           Classes.PositiveTextBlock="{Binding Change, Mode=OneWay,
-																	   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
-								           Classes.NegativeTextBlock="{Binding Change, Mode=OneWay,
-																	   Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
-								           ToolTip.Tip="Изменение"
-								           Grid.Row="0" Grid.Column="10"/>
-								
-								<DockPanel x:Name="TopDockPanel"
-								           Classes.Max="{Binding $parent[ListBoxItem].Bounds.Width, 
-																  Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
-								           Height="40" 
-								           HorizontalAlignment="Stretch"
-								           Margin="0, 0, 0, 10"
-								           Grid.Row="2" Grid.ColumnSpan="9" Grid.Column="2">
-									
-									<StackPanel Orientation="Horizontal" 
-									            HorizontalAlignment="Left"
-									            DockPanel.Dock="Left">
-										
-										<TextBlock Text="Финансовая цель: "
-										           Classes="SmallTextBlock LeftTextBlock"/>
-										
-										<TextBlock Text="{Binding GoalSumString}"
-										           Classes="SmallTextBlock LeftTextBlock"/>
-										
-									</StackPanel>
-									
-									<StackPanel Orientation="Horizontal" 
-									            HorizontalAlignment="Right"
-									            DockPanel.Dock="Right">
-										
-										<TextBlock Text="Дата создания: "
-										           Classes="SmallTextBlock LeftTextBlock"/>
-										
-										<TextBlock Text="{Binding DateCreationString}"
-										           Classes="SmallTextBlock LeftTextBlock"/>
-										
-									</StackPanel>
-									
-								</DockPanel>
-								
-								<StackPanel x:Name="ChangeStackPanel"
-								            Classes.Min="{Binding $parent[ListBoxItem].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
-								            Opacity="0"
-								            Spacing="10"
-								            Grid.Row="3" Grid.Column="2">
-									
-									<StackPanel Orientation="Horizontal">
-										
-										<TextBlock Text="Изменение за период: "
-										           Classes="SmallTextBlock LeftTextBlock"/>
-										
-										<TextBlock Text="{Binding ChangePeriod, StringFormat=N0, Mode=OneWay,
-														  Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
-										           Classes="SmallTextBlock CenterTextBlock"
-										           Classes.PositiveTextBlock="{Binding ChangePeriod, Mode=OneWay,
-																			   Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
-										           Classes.NegativeTextBlock="{Binding ChangePeriod, Mode=OneWay,
-																			   Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"/>
-										
-									</StackPanel>
-									
-									<StackPanel Orientation="Horizontal">
-										
-										<TextBlock Text="Период: "
-										           Classes="SmallTextBlock LeftTextBlock"/>
-										
-										<TextBlock Text="{Binding DatePeriod, Mode=OneWay}"
-										           Classes="SmallTextBlock CenterTextBlock"/>
-										
-									</StackPanel>
-									
-								</StackPanel>
-								
-								<Grid x:Name="ChangeChart"
-								      Classes.Max="{Binding $parent[ListBoxItem].Bounds.Width, 
-																  Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
-								      IsVisible="False"
-								      Grid.Row="3" Grid.ColumnSpan="6" Grid.Column="5">
-									
-									<Grid.RowDefinitions>
-										<RowDefinition Height="55" MinHeight="50"/>
-										<RowDefinition Height="5" MinHeight="5"/>
-										<RowDefinition Height="35" MinHeight="35"/>
-									</Grid.RowDefinitions>
-									
-									<Grid Grid.Row="0">
-										
-										<TextBlock Text="{Binding NotFoundText, Mode=OneWay}"
-										           IsVisible="{Binding NotFoundText, 
-															   Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}"
-										           Classes="SmallTextBlock CenterTextBlock"/>
-										
-										<controls:VectorImage IsVisible="{Binding IsLoading, Mode=OneWay}"
-										                      Classes="LoadingVectorImage AnimationWheelVectorImage ForegroundVectorImage"
-										                      Height="24" Width="24"
-										                      HorizontalAlignment="Center"
-										                      VerticalAlignment="Center"/>
-										
-										<lvc:CartesianChart Series="{Binding ChangeSeries, Mode=OneWay}"
-										                    XAxes="{Binding XAxis, Mode=OneWay}"
-										                    YAxes="{Binding YAxis, Mode=OneWay}"
-										                    TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
-										                    TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
-										                    ZoomMode="X"/>
-										
-									</Grid>
-									
-									<StackPanel Orientation="Horizontal"
-									            Spacing="5"
-									            HorizontalAlignment="Right"
-									            VerticalAlignment="Bottom"
-									            Grid.Row="2">
-										
-										<RadioButton Content="1 д"
-										             IsChecked="{Binding IsOneDayChecked}"
-										             GroupName="ActiveGroupLBPeriod"
-										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
-										             ToolTip.Tip="1 день"/>
-										
-										<RadioButton Content="1 н"
-										             IsChecked="{Binding IsOneWeekChecked}"
-										             GroupName="ActiveGroupLBPeriod"
-										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
-										             ToolTip.Tip="1 неделя"/>
-										
-										<RadioButton Content="1 м"
-										             IsChecked="{Binding IsOneMonthChecked}"
-										             GroupName="ActiveGroupLBPeriod"
-										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
-										             ToolTip.Tip="1 месяц"/>
-										
-										<RadioButton Content="1 г"
-										             IsChecked="{Binding IsOneYearChecked}"
-										             GroupName="ActiveGroupLBPeriod"
-										             Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
-										             ToolTip.Tip="1 год"/>
-										
-									</StackPanel>
-									
-								</Grid>
-								
-							</Grid>
-							
-						</Border>
-						
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-			<Style Selector="^:selected">
-				<Style Selector="^ /template/ Border#MainBorder">
-					<Setter Property="Height" Value="270"/>
-				</Style>
-				<Style Selector="^ /template/ StackPanel#ChangeStackPanel">
-					<Setter Property="Opacity" Value="1"/>
-				</Style>
-				<Style Selector="^ /template/ StackPanel.Min#ChangeStackPanel">
-					<Setter Property="Opacity" Value="0"/>
-				</Style>
-				<Style Selector="^ /template/ Grid#ChangeChart">
-					<Setter Property="IsVisible" Value="True"/>
-				</Style>
-				<Style Selector="^ /template/ DockPanel.Max#TopDockPanel">
-					<Setter Property="Grid.Column" Value="0"/>
-					<Setter Property="Grid.ColumnSpan" Value="11"/>
-				</Style>
-				<Style Selector="^ /template/ Grid.Max#ChangeChart">
-					<Setter Property="Column" Value="0"/>
-					<Setter Property="ColumnSpan" Value="11"/>
-				</Style>
-			</Style>
-		</Style>
-	</Style>
-	
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+    xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+    xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="ListBox.ActiveGroupsListBox">
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Margin="0" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style Selector="^ ListBoxItem">
+            <Setter Property="Margin" Value="0, 0, 0, 20" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate x:DataType="utilityViewModels:ActiveGroupViewModel">
+
+                        <Border
+                            Classes="BackgroundAdditionalBorder BigRoundedBorder"
+                            Height="110"
+                            x:Name="MainBorder">
+
+                            <i:Interaction.Behaviors>
+                                <ia:EventTriggerBehavior EventName="DoubleTapped">
+                                    <ia:InvokeCommandAction Command="{Binding OpenActivesCommand, Mode=OneWay}" CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}" />
+                                </ia:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+
+                            <Border.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem
+                                        Command="{Binding OpenActivesCommand, Mode=OneWay}"
+                                        CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"
+                                        Header="Открыть список активов" />
+                                    <Separator />
+                                    <MenuItem
+                                        Command="{Binding AddActiveCommand, Mode=OneWay}"
+                                        CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"
+                                        Header="Добавить актив" />
+                                    <Separator />
+                                    <MenuItem Command="{Binding AddActiveGroupCommand, Mode=OneWay}" Header="Добавить группу" />
+                                    <Separator />
+                                    <MenuItem
+                                        Command="{Binding EditActiveGroupCommand, Mode=OneWay}"
+                                        CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"
+                                        Header="Изменить группу" />
+                                    <Separator />
+                                    <MenuItem
+                                        Command="{Binding DeleteActiveGroupCommand, Mode=OneWay}"
+                                        CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"
+                                        Header="Удалить группу" />
+                                </ContextMenu>
+                            </Border.ContextMenu>
+
+                            <Grid Margin="20">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="70" MinHeight="70" />
+                                    <RowDefinition Height="10" MinHeight="10" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition MinWidth="10" Width="10" />
+                                    <ColumnDefinition Width="210*" />
+                                    <ColumnDefinition MinWidth="10" Width="10" />
+                                    <ColumnDefinition Width="150*" />
+                                    <ColumnDefinition MinWidth="10" Width="10" />
+                                    <ColumnDefinition Width="190*" />
+                                    <ColumnDefinition MinWidth="10" Width="10" />
+                                    <ColumnDefinition Width="190*" />
+                                    <ColumnDefinition MinWidth="10" Width="10" />
+                                    <ColumnDefinition Width="150*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border
+                                    Background="{Binding Colour, Converter={StaticResource BrushConverter}}"
+                                    Classes="SmallRoundedBorder"
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    Height="32"
+                                    ToolTip.Tip="Цвет группы"
+                                    Width="32" />
+
+                                <TextBlock
+                                    Classes="MiddleTextBlock LeftTextBlock WrapTextBlock"
+                                    Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                                    Grid.Column="2"
+                                    Grid.Row="0"
+                                    Text="{Binding Title, Mode=OneWay}"
+                                    ToolTip.Tip="Название" />
+
+                                <TextBlock
+                                    Classes="MiddleTextBlock CenterTextBlock"
+                                    Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                                    Grid.Column="4"
+                                    Grid.Row="0"
+                                    Text="{Binding Count, StringFormat=N0, Mode=OneWay}"
+                                    ToolTip.Tip="Количество" />
+
+                                <TextBlock
+                                    Classes="MiddleTextBlock CenterTextBlock"
+                                    Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                                    Grid.Column="6"
+                                    Grid.Row="0"
+                                    Text="{Binding BuySumString, Mode=OneWay}"
+                                    ToolTip.Tip="Сумма покупки" />
+
+                                <TextBlock
+                                    Classes="MiddleTextBlock CenterTextBlock"
+                                    Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                                    Grid.Column="8"
+                                    Grid.Row="0"
+                                    Text="{Binding CurrentSumString, Mode=OneWay}"
+                                    ToolTip.Tip="Текущая сумма" />
+
+                                <TextBlock
+                                    Classes="MiddleTextBlock CenterTextBlock"
+                                    Classes.NegativeTextBlock="{Binding Change, Mode=OneWay, Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
+                                    Classes.PositiveTextBlock="{Binding Change, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
+                                    Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                                    Grid.Column="10"
+                                    Grid.Row="0"
+                                    Text="{Binding Change, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
+                                    ToolTip.Tip="Изменение" />
+
+                                <DockPanel
+                                    Classes.Max="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="9"
+                                    Grid.Row="2"
+                                    Height="40"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="0,0,0,10"
+                                    x:Name="TopDockPanel">
+
+                                    <StackPanel
+                                        DockPanel.Dock="Left"
+                                        HorizontalAlignment="Left"
+                                        Orientation="Horizontal">
+
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Финансовая цель: " />
+
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="{Binding GoalSumString}" />
+
+                                    </StackPanel>
+
+                                    <StackPanel
+                                        DockPanel.Dock="Right"
+                                        HorizontalAlignment="Right"
+                                        Orientation="Horizontal">
+
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата создания: " />
+
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="{Binding DateCreationString}" />
+
+                                    </StackPanel>
+
+                                </DockPanel>
+
+                                <StackPanel
+                                    Classes.Min="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
+                                    Grid.Column="2"
+                                    Grid.Row="3"
+                                    Opacity="0"
+                                    Spacing="10"
+                                    x:Name="ChangeStackPanel">
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Изменение за период: " />
+
+                                        <TextBlock
+                                            Classes="SmallTextBlock CenterTextBlock"
+                                            Classes.NegativeTextBlock="{Binding ChangePeriod, Mode=OneWay, Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
+                                            Classes.PositiveTextBlock="{Binding ChangePeriod, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
+                                            Text="{Binding ChangePeriod, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}" />
+
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Период: " />
+
+                                        <TextBlock Classes="SmallTextBlock CenterTextBlock" Text="{Binding DatePeriod, Mode=OneWay}" />
+
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                                <Grid
+                                    Classes.Max="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
+                                    Grid.Column="5"
+                                    Grid.ColumnSpan="6"
+                                    Grid.Row="3"
+                                    IsVisible="False"
+                                    x:Name="ChangeChart">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="55" MinHeight="50" />
+                                        <RowDefinition Height="5" MinHeight="5" />
+                                        <RowDefinition Height="35" MinHeight="35" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0">
+
+                                        <TextBlock
+                                            Classes="SmallTextBlock CenterTextBlock"
+                                            IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}"
+                                            Text="{Binding NotFoundText, Mode=OneWay}" />
+
+                                        <controls:VectorImage
+                                            Classes="LoadingVectorImage AnimationWheelVectorImage ForegroundVectorImage"
+                                            Height="24"
+                                            HorizontalAlignment="Center"
+                                            IsVisible="{Binding IsLoading, Mode=OneWay}"
+                                            VerticalAlignment="Center"
+                                            Width="24" />
+
+                                        <lvc:CartesianChart
+                                            Series="{Binding ChangeSeries, Mode=OneWay}"
+                                            TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
+                                            TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
+                                            XAxes="{Binding XAxis, Mode=OneWay}"
+                                            YAxes="{Binding YAxis, Mode=OneWay}"
+                                            ZoomMode="X" />
+
+                                    </Grid>
+
+                                    <StackPanel
+                                        Grid.Row="2"
+                                        HorizontalAlignment="Right"
+                                        Orientation="Horizontal"
+                                        Spacing="5"
+                                        VerticalAlignment="Bottom">
+
+                                        <RadioButton
+                                            Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+                                            Content="1 д"
+                                            GroupName="ActiveGroupLBPeriod"
+                                            IsChecked="{Binding IsOneDayChecked}"
+                                            ToolTip.Tip="1 день" />
+
+                                        <RadioButton
+                                            Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+                                            Content="1 н"
+                                            GroupName="ActiveGroupLBPeriod"
+                                            IsChecked="{Binding IsOneWeekChecked}"
+                                            ToolTip.Tip="1 неделя" />
+
+                                        <RadioButton
+                                            Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+                                            Content="1 м"
+                                            GroupName="ActiveGroupLBPeriod"
+                                            IsChecked="{Binding IsOneMonthChecked}"
+                                            ToolTip.Tip="1 месяц" />
+
+                                        <RadioButton
+                                            Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
+                                            Content="1 г"
+                                            GroupName="ActiveGroupLBPeriod"
+                                            IsChecked="{Binding IsOneYearChecked}"
+                                            ToolTip.Tip="1 год" />
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Border>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style Selector="^:selected">
+                <Style Selector="^ /template/ Border#MainBorder">
+                    <Setter Property="Height" Value="270" />
+                </Style>
+                <Style Selector="^ /template/ StackPanel#ChangeStackPanel">
+                    <Setter Property="Opacity" Value="1" />
+                </Style>
+                <Style Selector="^ /template/ StackPanel.Min#ChangeStackPanel">
+                    <Setter Property="Opacity" Value="0" />
+                </Style>
+                <Style Selector="^ /template/ Grid#ChangeChart">
+                    <Setter Property="IsVisible" Value="True" />
+                </Style>
+                <Style Selector="^ /template/ DockPanel.Max#TopDockPanel">
+                    <Setter Property="Grid.Column" Value="0" />
+                    <Setter Property="Grid.ColumnSpan" Value="11" />
+                </Style>
+                <Style Selector="^ /template/ Grid.Max#ChangeChart">
+                    <Setter Property="Column" Value="0" />
+                    <Setter Property="ColumnSpan" Value="11" />
+                </Style>
+            </Style>
+        </Style>
+    </Style>
+
 </Styles>

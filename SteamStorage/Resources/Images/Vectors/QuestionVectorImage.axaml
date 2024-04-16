@@ -1,28 +1,29 @@
-<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:SteamStorage.Resources.Controls"
-        x:DataType="controls:VectorImage">
+<Styles
+    x:DataType="controls:VectorImage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-	<Style Selector="controls|VectorImage.QuestionVectorImage">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate>
+    <Style Selector="controls|VectorImage.QuestionVectorImage">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
                     <Image OpacityMask="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
-					    <Image.Source>
+                        <Image.Source>
                             <DrawingImage>
-	                            <DrawingImage.Drawing>
-		                            <DrawingGroup ClipGeometry="M0,0 V612.074 H612.074 V0 H0 Z">
-			                            <DrawingGroup Opacity="1">
-				                            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M612.074,612.074z M0,0z M306.037,0C136.997,0 0,136.997 0,306.037 0,475.077 136.997,612.074 306.037,612.074 475.077,612.074 612.074,475.077 612.074,306.037 612.074,136.997 474.261,0 306.037,0z M306.037,582.405C153.834,582.405 29.669,458.24 29.669,306.037 29.669,153.834 153.019,29.669 306.037,29.669 459.055,29.669 582.405,153.834 582.405,306.037 582.405,458.24 458.24,582.405 306.037,582.405z M318.869,454.234C318.869,463.061 311.674,470.255 302.848,470.255 294.021,470.255 286.827,463.06 286.827,454.234 286.827,445.407 294.022,438.213 302.848,438.213 311.6,438.213 318.869,445.408 318.869,454.234z M385.328,236.315C385.328,264.352 369.307,290.016 339.638,307.595 317.98,320.427 318.795,335.632 318.795,336.448 318.795,336.448 318.795,337.264 318.795,338.08L318.795,374.944C318.795,382.955 312.416,389.334 304.405,389.334 296.394,389.334 289.2,382.955 289.2,374.944L289.2,338.896C288.384,326.064 294.837,301.216 323.616,283.637 338.006,274.81 354.843,259.605 354.843,237.205 354.843,209.984 332.443,187.509 305.147,187.509 277.851,187.509 255.451,209.909 255.451,237.205 255.451,245.216 249.072,251.595 241.061,251.595 233.05,251.595 226.671,245.216 226.671,237.205 226.671,193.146 261.903,157.914 305.962,157.914 350.021,157.914 385.328,192.256 385.328,236.315z" />
-			                            </DrawingGroup>
-		                            </DrawingGroup>
-	                            </DrawingImage.Drawing>
+                                <DrawingImage.Drawing>
+                                    <DrawingGroup ClipGeometry="M0,0 V612.074 H612.074 V0 H0 Z">
+                                        <DrawingGroup Opacity="1">
+                                            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M612.074,612.074z M0,0z M306.037,0C136.997,0 0,136.997 0,306.037 0,475.077 136.997,612.074 306.037,612.074 475.077,612.074 612.074,475.077 612.074,306.037 612.074,136.997 474.261,0 306.037,0z M306.037,582.405C153.834,582.405 29.669,458.24 29.669,306.037 29.669,153.834 153.019,29.669 306.037,29.669 459.055,29.669 582.405,153.834 582.405,306.037 582.405,458.24 458.24,582.405 306.037,582.405z M318.869,454.234C318.869,463.061 311.674,470.255 302.848,470.255 294.021,470.255 286.827,463.06 286.827,454.234 286.827,445.407 294.022,438.213 302.848,438.213 311.6,438.213 318.869,445.408 318.869,454.234z M385.328,236.315C385.328,264.352 369.307,290.016 339.638,307.595 317.98,320.427 318.795,335.632 318.795,336.448 318.795,336.448 318.795,337.264 318.795,338.08L318.795,374.944C318.795,382.955 312.416,389.334 304.405,389.334 296.394,389.334 289.2,382.955 289.2,374.944L289.2,338.896C288.384,326.064 294.837,301.216 323.616,283.637 338.006,274.81 354.843,259.605 354.843,237.205 354.843,209.984 332.443,187.509 305.147,187.509 277.851,187.509 255.451,209.909 255.451,237.205 255.451,245.216 249.072,251.595 241.061,251.595 233.05,251.595 226.671,245.216 226.671,237.205 226.671,193.146 261.903,157.914 305.962,157.914 350.021,157.914 385.328,192.256 385.328,236.315z" />
+                                        </DrawingGroup>
+                                    </DrawingGroup>
+                                </DrawingImage.Drawing>
                             </DrawingImage>
                         </Image.Source>
                     </Image>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-	
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </Styles>

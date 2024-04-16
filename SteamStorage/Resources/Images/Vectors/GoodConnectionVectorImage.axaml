@@ -1,26 +1,27 @@
-<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:SteamStorage.Resources.Controls"
-        x:DataType="controls:VectorImage">
-	
-	<Style Selector="controls|VectorImage.GoodConnectionVectorImage">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate>
-					<Image OpacityMask="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
-						<Image.Source>
-							<DrawingImage>
-								<DrawingImage.Drawing>
-									<DrawingGroup ClipGeometry="M0,0 V95 H95 V0 H0 Z">
-										<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M95,95z M0,0z M47.5002,52.2984C55.4374,52.2984,62.6347,55.5271,67.8477,60.7401L61.0654,67.5227C57.59,64.0473 52.7915,61.8948 47.5004,61.8948 42.2088,61.8948 37.4106,64.0473 33.9353,67.5227L27.1528,60.7401C32.3654,55.5271,39.5628,52.2984,47.5002,52.2984z M13.5715,47.1592C22.6342,38.0965 34.6836,33.1055 47.5001,33.1055 60.3166,33.1055 72.366,38.0965 81.4286,47.1592L74.643,53.9448C67.3926,46.6945 57.7531,42.7019 47.5001,42.7019 37.2467,42.7019 27.6074,46.6946 20.3571,53.9448L13.5715,47.1592z M42.7018,76.2895C42.7018,78.9394 44.8501,81.0877 47.5001,81.0877 50.1499,81.0877 52.2983,78.9394 52.2983,76.2895 52.2983,73.6395 50.1499,71.4912 47.5001,71.4912 44.8501,71.4912 42.7018,73.6395 42.7018,76.2895z" />
-									</DrawingGroup>
-								</DrawingImage.Drawing>
-							</DrawingImage>
-						</Image.Source>
-					</Image>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-	
+<Styles
+    x:DataType="controls:VectorImage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="controls|VectorImage.GoodConnectionVectorImage">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Image OpacityMask="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
+                        <Image.Source>
+                            <DrawingImage>
+                                <DrawingImage.Drawing>
+                                    <DrawingGroup ClipGeometry="M0,0 V95 H95 V0 H0 Z">
+                                        <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M95,95z M0,0z M47.5002,52.2984C55.4374,52.2984,62.6347,55.5271,67.8477,60.7401L61.0654,67.5227C57.59,64.0473 52.7915,61.8948 47.5004,61.8948 42.2088,61.8948 37.4106,64.0473 33.9353,67.5227L27.1528,60.7401C32.3654,55.5271,39.5628,52.2984,47.5002,52.2984z M13.5715,47.1592C22.6342,38.0965 34.6836,33.1055 47.5001,33.1055 60.3166,33.1055 72.366,38.0965 81.4286,47.1592L74.643,53.9448C67.3926,46.6945 57.7531,42.7019 47.5001,42.7019 37.2467,42.7019 27.6074,46.6946 20.3571,53.9448L13.5715,47.1592z M42.7018,76.2895C42.7018,78.9394 44.8501,81.0877 47.5001,81.0877 50.1499,81.0877 52.2983,78.9394 52.2983,76.2895 52.2983,73.6395 50.1499,71.4912 47.5001,71.4912 44.8501,71.4912 42.7018,73.6395 42.7018,76.2895z" />
+                                    </DrawingGroup>
+                                </DrawingImage.Drawing>
+                            </DrawingImage>
+                        </Image.Source>
+                    </Image>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </Styles>

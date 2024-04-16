@@ -1,15 +1,19 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="using:SteamStorage.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="SteamStorage.Views.DialogWindow"
-        x:DataType="vm:DialogWindowViewModel"
-        Classes="DialogWindow"
-        Width="480" Height="270"
-        Title="SteamStorage">
-    
-    <TransitioningContentControl Content="{Binding Content, Mode=OneWay}"/>	
-        
+﻿<Window
+    Classes="DialogWindow"
+    Height="270"
+    Title="SteamStorage"
+    Width="480"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="SteamStorage.Views.DialogWindow"
+    x:DataType="vm:DialogWindowViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:SteamStorage.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <TransitioningContentControl Content="{Binding Content, Mode=OneWay}" />
+
 </Window>

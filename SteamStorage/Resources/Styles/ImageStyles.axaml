@@ -1,15 +1,20 @@
-<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-	<Style Selector="Image">
-		<Setter Property="HorizontalAlignment" Value="Center"/>
-		<Setter Property="VerticalAlignment" Value="Center"/>
-		<Setter Property="Transitions">
-			<Transitions>
-				<ThicknessTransition Property="Margin" Duration="0:0:0.2" Easing="SineEaseOut"/>
-				<DoubleTransition Property="Opacity" Duration="0:0:0.2" Easing="SineEaseOut"/>
-			</Transitions>
-		</Setter>
-	</Style>
-	
+    <Style Selector="Image">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <ThicknessTransition
+                    Duration="0:0:0.2"
+                    Easing="SineEaseOut"
+                    Property="Margin" />
+                <DoubleTransition
+                    Duration="0:0:0.2"
+                    Easing="SineEaseOut"
+                    Property="Opacity" />
+            </Transitions>
+        </Setter>
+    </Style>
+
 </Styles>

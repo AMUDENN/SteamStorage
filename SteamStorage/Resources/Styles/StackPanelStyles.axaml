@@ -1,12 +1,14 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Style Selector="StackPanel">
         <Setter Property="Transitions">
             <Transitions>
-                <DoubleTransition Property="Opacity" Duration="0:0:0.1" Easing="SineEaseOut"/>
+                <DoubleTransition
+                    Duration="0:0:0.1"
+                    Easing="SineEaseOut"
+                    Property="Opacity" />
             </Transitions>
         </Setter>
     </Style>
-    
+
 </Styles>

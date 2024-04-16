@@ -1,144 +1,143 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Style Selector="TextBox">
-        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-        <Setter Property="CaretBrush" Value="{DynamicResource ForegroundBrush}"/>
-        <Setter Property="SelectionBrush" Value="{DynamicResource ThirdAccentBrush}"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="ContextFlyout" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource ThirdAccentBrush}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="ContextFlyout" Value="{x:Null}" />
         <Style Selector="^:disabled">
-            <Setter Property="Opacity" Value="0.5"/>
-            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+            <Setter Property="Opacity" Value="0.5" />
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             <Style Selector="^ /template/ TextBlock#PART_Watermark, ^ /template/ TextBlock#PART_FloatingWatermark">
-                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
         </Style>
         <Style Selector="^:focused">
-            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             <Style Selector="^ /template/ TextBlock#PART_Watermark">
-                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-                <Setter Property="Opacity" Value="0.4"/>
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+                <Setter Property="Opacity" Value="0.4" />
             </Style>
         </Style>
         <Style Selector="^:focus">
-            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             <Style Selector="^ /template/ TextBlock#PART_Watermark">
-                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-                <Setter Property="Opacity" Value="0.4"/>
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+                <Setter Property="Opacity" Value="0.4" />
             </Style>
         </Style>
         <Style Selector="^:pointerover">
-            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             <Style Selector="^ /template/ TextBlock#PART_Watermark">
-                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-                <Setter Property="Opacity" Value="0.45"/>
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+                <Setter Property="Opacity" Value="0.45" />
             </Style>
         </Style>
     </Style>
-    
+
     <Style Selector="TextBox.SmallTextBox">
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="20" />
     </Style>
-    
+
     <Style Selector="TextBox.CenterTextBox">
-        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="TextAlignment" Value="Center" />
     </Style>
-    
+
     <Style Selector="TextBox.BigWrappingTextBox">
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="HorizontalContentAlignment" Value="Left"/>
-        <Setter Property="VerticalContentAlignment" Value="Top"/>
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
     </Style>
 
     <Style Selector="TextBox.FilteringTextBox">
-        <Setter Property="HorizontalContentAlignment" Value="Left"/>
-        <Setter Property="Padding" Value="15, 10"/>
-        <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="CornerRadius" Value="8"/>
-        
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Padding" Value="15, 10" />
+        <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="CornerRadius" Value="8" />
+
         <Style Selector="^:disabled /template/ Border#PART_BorderElement">
-            <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
         </Style>
-        
+
         <Style Selector="^:pointerover /template/ Border#PART_BorderElement">
-            <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
         </Style>
-        
+
         <Style Selector="^:focus /template/ Border#PART_BorderElement">
-            <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
         </Style>
 
         <Style Selector="^:error /template/ Border#PART_BorderElement">
-            <Setter Property="BorderBrush" Value="Transparent"/>
-        </Style>
-    </Style>    
-    
-    <Style Selector="TextBox.NumericUpDownTextBox">
-        <Setter Property="LetterSpacing" Value="1.2"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="5, 0"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0, 0, 0, 2"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
-        <Setter Property="CornerRadius" Value="0"/>
-        
-        <Style Selector="^:disabled /template/ Border#PART_BorderElement">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
-        </Style>
-        
-        <Style Selector="^:pointerover /template/ Border#PART_BorderElement">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
-        </Style>
-        
-        <Style Selector="^:focus /template/ Border#PART_BorderElement">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
-            <Setter Property="BorderThickness" Value="0, 0, 0, 2"/>
-        </Style>
-
-        <Style Selector="^:error /template/ Border#PART_BorderElement">
-            <Setter Property="Background" Value="Transparent"/>
-        </Style>
-    </Style>    
-    
-    <Style Selector="TextBox.DarkTextBox">
-        <Setter Property="Padding" Value="10, 5"/>
-        <Setter Property="CornerRadius" Value="8"/>
-        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Style Selector="^ /template/ Border#PART_BorderElement">
-            <Setter Property="Opacity" Value="0.5"/>
-        </Style>
-        <Style Selector="^ /template/ TextBlock#PART_Watermark">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-        </Style>
-        <Style Selector="^:disabled /template/ Border#PART_BorderElement">
-            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
-        </Style>
-        <Style Selector="^:pointerover /template/ Border#PART_BorderElement">
-            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
-            <Setter Property="Opacity" Value="0.6"/>
-        </Style>
-        <Style Selector="^:focus /template/ Border#PART_BorderElement">
-            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
-            <Setter Property="Opacity" Value="0.7"/>
-        </Style>
-        <Style Selector="^:error /template/ Border#PART_BorderElement">
-            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+            <Setter Property="BorderBrush" Value="Transparent" />
         </Style>
     </Style>
-        
+
+    <Style Selector="TextBox.NumericUpDownTextBox">
+        <Setter Property="LetterSpacing" Value="1.2" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="5, 0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0, 0, 0, 2" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="CornerRadius" Value="0" />
+
+        <Style Selector="^:disabled /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}" />
+        </Style>
+
+        <Style Selector="^:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}" />
+        </Style>
+
+        <Style Selector="^:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}" />
+            <Setter Property="BorderThickness" Value="0, 0, 0, 2" />
+        </Style>
+
+        <Style Selector="^:error /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+    </Style>
+
+    <Style Selector="TextBox.DarkTextBox">
+        <Setter Property="Padding" Value="10, 5" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Style Selector="^ /template/ Border#PART_BorderElement">
+            <Setter Property="Opacity" Value="0.5" />
+        </Style>
+        <Style Selector="^ /template/ TextBlock#PART_Watermark">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}" />
+        </Style>
+        <Style Selector="^:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}" />
+            <Setter Property="Opacity" Value="0.6" />
+        </Style>
+        <Style Selector="^:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}" />
+            <Setter Property="Opacity" Value="0.7" />
+        </Style>
+        <Style Selector="^:error /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+        </Style>
+    </Style>
+
 </Styles>

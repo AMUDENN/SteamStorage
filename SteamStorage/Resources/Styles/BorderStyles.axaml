@@ -1,97 +1,106 @@
-﻿	<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-	<Style Selector="Border">
-		<Setter Property="BorderThickness" Value="0"/>
-		<Setter Property="BorderBrush" Value="Transparent"/>
-		<Setter Property="ClipToBounds" Value="True"/>
-		<Setter Property="Transitions">
-			<Transitions>
-				<DoubleTransition Property="Width" Duration="0:0:0.2" Easing="SineEaseOut"/>
-				<DoubleTransition Property="Height" Duration="0:0:0.2" Easing="SineEaseOut"/>
-				<CornerRadiusTransition Property="CornerRadius" Duration="0:0:0.2" Easing="SineEaseOut"/>
-			</Transitions>
-		</Setter>
-	</Style>
-		
-	<Style Selector="Border.BoxShadowBorder">
-		<Setter Property="BoxShadow" Value="3 3 6 0 Black"/>
-	</Style>	
-		
-	<Style Selector="Border.UnderlineBorder">
-		<Setter Property="BorderThickness" Value="0, 0, 0, 2"/>
-	</Style>	
-		
-	<Style Selector="Border.SmallBorder">
-		<Setter Property="BorderThickness" Value="2"/>
-	</Style>
-		
-	<Style Selector="Border.LittleBorder">
-		<Setter Property="BorderThickness" Value="1"/>
-	</Style>	
-		
-	<Style Selector="Border.ForegroundBorderBrush">
-		<Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
-	</Style>	
-		
-	<Style Selector="Border.TopLevelBackgroundBorderBrush">
-		<Setter Property="BorderBrush" Value="{DynamicResource TopLevelBackgroundBrush}"/>
-	</Style>	
-		
-	<Style Selector="Border.FirstAccentBorderBrush">
-		<Setter Property="BorderBrush" Value="{DynamicResource FirstAccentBrush}"/>
-	</Style>	
-	
-	<Style Selector="Border.BigRoundedBorder">
-		<Setter Property="CornerRadius" Value="16"/>
-	</Style>
-
-	<Style Selector="Border.SmallRoundedBorder">
-		<Setter Property="CornerRadius" Value="8"/>
-	</Style>
-		
-	<Style Selector="Border.LittleRoundedBorder">
-		<Setter Property="CornerRadius" Value="4"/>
-	</Style>
-
-	<Style Selector="Border.WithoutRoundingBorder">
-		<Setter Property="CornerRadius" Value="0"/>
-	</Style>
-		
-	<Style Selector="Border.TransparentBorder">
-		<Setter Property="Background" Value="Transparent"/>
-	</Style>	
-		
-	<Style Selector="Border.ForegroundBorder">
-		<Setter Property="Background" Value="{DynamicResource ForegroundBrush}"/>
-	</Style>
-		
-	<Style Selector="Border.BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
-	</Style>
-		
-	<Style Selector="Border.BackgroundAdditionalBorder">
-        <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}"/>
+    <Style Selector="Border">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition
+                    Duration="0:0:0.2"
+                    Easing="SineEaseOut"
+                    Property="Width" />
+                <DoubleTransition
+                    Duration="0:0:0.2"
+                    Easing="SineEaseOut"
+                    Property="Height" />
+                <CornerRadiusTransition
+                    Duration="0:0:0.2"
+                    Easing="SineEaseOut"
+                    Property="CornerRadius" />
+            </Transitions>
+        </Setter>
     </Style>
-		
-	<Style Selector="Border.TopLevelBackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource TopLevelBackgroundBrush}"/>
-	</Style>
-		
-	<Style Selector="Border.FirstAccentBorder">
-		<Setter Property="Background" Value="{DynamicResource FirstAccentBrush}"/>
-	</Style>
-		
-	<Style Selector="Border.FirstAccentGradientBorder">
-		<Setter Property="Background" Value="{DynamicResource FirstAccentLinearBrush}"/>
-	</Style>
-		
-	<Style Selector="Border.SecondAccentGradientBorder">
-		<Setter Property="Background" Value="{DynamicResource SecondAccentLinearBrush}"/>
-	</Style>
-		
-	<Style Selector="Border.ThirdAccentGradientBorder">
-		<Setter Property="Background" Value="{DynamicResource ThirdAccentLinearBrush}"/>
-	</Style>
+
+    <Style Selector="Border.BoxShadowBorder">
+        <Setter Property="BoxShadow" Value="3 3 6 0 Black" />
+    </Style>
+
+    <Style Selector="Border.UnderlineBorder">
+        <Setter Property="BorderThickness" Value="0, 0, 0, 2" />
+    </Style>
+
+    <Style Selector="Border.SmallBorder">
+        <Setter Property="BorderThickness" Value="2" />
+    </Style>
+
+    <Style Selector="Border.LittleBorder">
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
+    <Style Selector="Border.ForegroundBorderBrush">
+        <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}" />
+    </Style>
+
+    <Style Selector="Border.TopLevelBackgroundBorderBrush">
+        <Setter Property="BorderBrush" Value="{DynamicResource TopLevelBackgroundBrush}" />
+    </Style>
+
+    <Style Selector="Border.FirstAccentBorderBrush">
+        <Setter Property="BorderBrush" Value="{DynamicResource FirstAccentBrush}" />
+    </Style>
+
+    <Style Selector="Border.BigRoundedBorder">
+        <Setter Property="CornerRadius" Value="16" />
+    </Style>
+
+    <Style Selector="Border.SmallRoundedBorder">
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
+    <Style Selector="Border.LittleRoundedBorder">
+        <Setter Property="CornerRadius" Value="4" />
+    </Style>
+
+    <Style Selector="Border.WithoutRoundingBorder">
+        <Setter Property="CornerRadius" Value="0" />
+    </Style>
+
+    <Style Selector="Border.TransparentBorder">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style Selector="Border.ForegroundBorder">
+        <Setter Property="Background" Value="{DynamicResource ForegroundBrush}" />
+    </Style>
+
+    <Style Selector="Border.BackgroundBorder">
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+    </Style>
+
+    <Style Selector="Border.BackgroundAdditionalBorder">
+        <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}" />
+    </Style>
+
+    <Style Selector="Border.TopLevelBackgroundBorder">
+        <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundBrush}" />
+    </Style>
+
+    <Style Selector="Border.FirstAccentBorder">
+        <Setter Property="Background" Value="{DynamicResource FirstAccentBrush}" />
+    </Style>
+
+    <Style Selector="Border.FirstAccentGradientBorder">
+        <Setter Property="Background" Value="{DynamicResource FirstAccentLinearBrush}" />
+    </Style>
+
+    <Style Selector="Border.SecondAccentGradientBorder">
+        <Setter Property="Background" Value="{DynamicResource SecondAccentLinearBrush}" />
+    </Style>
+
+    <Style Selector="Border.ThirdAccentGradientBorder">
+        <Setter Property="Background" Value="{DynamicResource ThirdAccentLinearBrush}" />
+    </Style>
 
 </Styles>

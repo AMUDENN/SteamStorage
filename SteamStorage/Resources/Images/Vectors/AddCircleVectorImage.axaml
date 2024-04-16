@@ -1,30 +1,31 @@
-<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:SteamStorage.Resources.Controls"
-        x:DataType="controls:VectorImage">
+<Styles
+    x:DataType="controls:VectorImage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-	<Style Selector="controls|VectorImage.AddCircleImage">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate>
+    <Style Selector="controls|VectorImage.AddCircleImage">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
                     <Image OpacityMask="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
-					    <Image.Source>
+                        <Image.Source>
                             <DrawingImage>
-	                            <DrawingImage.Drawing>
-								    <DrawingGroup ClipGeometry="M0,0 V32 H32 V0 H0 Z">
-										<DrawingGroup Opacity="1">
-											<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M32,32z M0,0z M16,29C13.4288,29 10.9154,28.2376 8.77759,26.8091 6.63975,25.3807 4.97351,23.3503 3.98957,20.9749 3.00563,18.5995 2.74819,15.9856 3.2498,13.4638 3.75141,10.9421 4.98953,8.6257 6.80762,6.80762 8.6257,4.98953 10.9421,3.75141 13.4638,3.2498 15.9856,2.74819 18.5995,3.00563 20.9749,3.98957 23.3503,4.97351 25.3807,6.63975 26.8091,8.77759 28.2376,10.9154 29,13.4288 29,16 29,19.4478 27.6304,22.7544 25.1924,25.1924 22.7544,27.6304 19.4478,29 16,29z M16,5.00001C13.8244,5.00001 11.6977,5.64514 9.88873,6.85384 8.07979,8.06254 6.66989,9.7805 5.83733,11.7905 5.00477,13.8005 4.78693,16.0122 5.21137,18.146 5.63581,20.2798 6.68345,22.2398 8.22183,23.7782 9.76021,25.3166 11.7202,26.3642 13.854,26.7886 15.9878,27.2131 18.1995,26.9952 20.2095,26.1627 22.2195,25.3301 23.9375,23.9202 25.1462,22.1113 26.3549,20.3023 27,18.1756 27,16 27,13.0826 25.8411,10.2847 23.7782,8.22183 21.7153,6.15893 18.9174,5.00001 16,5.00001z" />
-											<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M32,32z M0,0z M16,23C15.7348,23 15.4804,22.8946 15.2929,22.7071 15.1054,22.5196 15,22.2652 15,22L15,10C15,9.73478 15.1054,9.48043 15.2929,9.29289 15.4804,9.10536 15.7348,9 16,9 16.2652,9 16.5196,9.10536 16.7071,9.29289 16.8946,9.48043 17,9.73478 17,10L17,22C17,22.2652 16.8946,22.5196 16.7071,22.7071 16.5196,22.8946 16.2652,23 16,23z" />
-											<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M32,32z M0,0z M22,17L10,17C9.73478,17 9.48043,16.8946 9.29289,16.7071 9.10536,16.5196 9,16.2652 9,16 9,15.7348 9.10536,15.4804 9.29289,15.2929 9.48043,15.1054 9.73478,15 10,15L22,15C22.2652,15 22.5196,15.1054 22.7071,15.2929 22.8946,15.4804 23,15.7348 23,16 23,16.2652 22.8946,16.5196 22.7071,16.7071 22.5196,16.8946 22.2652,17 22,17z" />
-										</DrawingGroup>
-								    </DrawingGroup>
-								</DrawingImage.Drawing>
+                                <DrawingImage.Drawing>
+                                    <DrawingGroup ClipGeometry="M0,0 V32 H32 V0 H0 Z">
+                                        <DrawingGroup Opacity="1">
+                                            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M32,32z M0,0z M16,29C13.4288,29 10.9154,28.2376 8.77759,26.8091 6.63975,25.3807 4.97351,23.3503 3.98957,20.9749 3.00563,18.5995 2.74819,15.9856 3.2498,13.4638 3.75141,10.9421 4.98953,8.6257 6.80762,6.80762 8.6257,4.98953 10.9421,3.75141 13.4638,3.2498 15.9856,2.74819 18.5995,3.00563 20.9749,3.98957 23.3503,4.97351 25.3807,6.63975 26.8091,8.77759 28.2376,10.9154 29,13.4288 29,16 29,19.4478 27.6304,22.7544 25.1924,25.1924 22.7544,27.6304 19.4478,29 16,29z M16,5.00001C13.8244,5.00001 11.6977,5.64514 9.88873,6.85384 8.07979,8.06254 6.66989,9.7805 5.83733,11.7905 5.00477,13.8005 4.78693,16.0122 5.21137,18.146 5.63581,20.2798 6.68345,22.2398 8.22183,23.7782 9.76021,25.3166 11.7202,26.3642 13.854,26.7886 15.9878,27.2131 18.1995,26.9952 20.2095,26.1627 22.2195,25.3301 23.9375,23.9202 25.1462,22.1113 26.3549,20.3023 27,18.1756 27,16 27,13.0826 25.8411,10.2847 23.7782,8.22183 21.7153,6.15893 18.9174,5.00001 16,5.00001z" />
+                                            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M32,32z M0,0z M16,23C15.7348,23 15.4804,22.8946 15.2929,22.7071 15.1054,22.5196 15,22.2652 15,22L15,10C15,9.73478 15.1054,9.48043 15.2929,9.29289 15.4804,9.10536 15.7348,9 16,9 16.2652,9 16.5196,9.10536 16.7071,9.29289 16.8946,9.48043 17,9.73478 17,10L17,22C17,22.2652 16.8946,22.5196 16.7071,22.7071 16.5196,22.8946 16.2652,23 16,23z" />
+                                            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M32,32z M0,0z M22,17L10,17C9.73478,17 9.48043,16.8946 9.29289,16.7071 9.10536,16.5196 9,16.2652 9,16 9,15.7348 9.10536,15.4804 9.29289,15.2929 9.48043,15.1054 9.73478,15 10,15L22,15C22.2652,15 22.5196,15.1054 22.7071,15.2929 22.8946,15.4804 23,15.7348 23,16 23,16.2652 22.8946,16.5196 22.7071,16.7071 22.5196,16.8946 22.2652,17 22,17z" />
+                                        </DrawingGroup>
+                                    </DrawingGroup>
+                                </DrawingImage.Drawing>
                             </DrawingImage>
                         </Image.Source>
                     </Image>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-	
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </Styles>

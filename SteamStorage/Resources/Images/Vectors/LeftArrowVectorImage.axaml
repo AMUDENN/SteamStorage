@@ -1,26 +1,27 @@
-<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:SteamStorage.Resources.Controls"
-        x:DataType="controls:VectorImage">
-	
-	<Style Selector="controls|VectorImage.LeftArrowVectorImage">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate>
-					<Image OpacityMask="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
-						<Image.Source>
-							<DrawingImage>
-								<DrawingImage.Drawing>
-									<DrawingGroup ClipGeometry="M0,0 V64 H64 V0 H0 Z">
-										<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M64,64z M0,0z M49.1158,6.15914C49.8921,6.94098,49.8899,8.20346,49.1108,8.98256L27.506,30.5873C26.7256,31.3678,26.7249,32.6329,27.5045,33.4142L49.1089,55.0658C49.8885,55.8471,49.8878,57.1122,49.1073,57.8927L44.4142,62.5858C43.6332,63.3668,42.3669,63.3668,41.5858,62.5858L12.4142,33.4142C11.6332,32.6332,11.6332,31.3668,12.4142,30.5858L41.5808,1.41922C42.3638,0.636218,43.634,0.638463,44.4142,1.42423L49.1158,6.15914z" />
-									</DrawingGroup>
-								</DrawingImage.Drawing>
-							</DrawingImage>
-						</Image.Source>
-					</Image>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-	
+<Styles
+    x:DataType="controls:VectorImage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="controls|VectorImage.LeftArrowVectorImage">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Image OpacityMask="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
+                        <Image.Source>
+                            <DrawingImage>
+                                <DrawingImage.Drawing>
+                                    <DrawingGroup ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+                                        <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M64,64z M0,0z M49.1158,6.15914C49.8921,6.94098,49.8899,8.20346,49.1108,8.98256L27.506,30.5873C26.7256,31.3678,26.7249,32.6329,27.5045,33.4142L49.1089,55.0658C49.8885,55.8471,49.8878,57.1122,49.1073,57.8927L44.4142,62.5858C43.6332,63.3668,42.3669,63.3668,41.5858,62.5858L12.4142,33.4142C11.6332,32.6332,11.6332,31.3668,12.4142,30.5858L41.5808,1.41922C42.3638,0.636218,43.634,0.638463,44.4142,1.42423L49.1158,6.15914z" />
+                                    </DrawingGroup>
+                                </DrawingImage.Drawing>
+                            </DrawingImage>
+                        </Image.Source>
+                    </Image>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </Styles>

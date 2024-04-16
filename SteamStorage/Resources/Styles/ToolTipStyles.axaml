@@ -1,32 +1,37 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Style Selector="ToolTip">
-        <Setter Property="FontSize" Value="18"/>
-        <Setter Property="ShowDelay" Value="300"/>
-        <Setter Property="MaxWidth" Value="400"/>
-        <Setter Property="Opacity" Value="0"/>
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="ShowDelay" Value="300" />
+        <Setter Property="MaxWidth" Value="400" />
+        <Setter Property="Opacity" Value="0" />
         <Setter Property="Transitions">
             <Transitions>
-                <DoubleTransition Property="Opacity" Duration="0:0:0.2" Easing="SineEaseOut"/>
+                <DoubleTransition
+                    Duration="0:0:0.2"
+                    Easing="SineEaseOut"
+                    Property="Opacity" />
             </Transitions>
         </Setter>
         <Setter Property="Template">
             <ControlTemplate>
                 <Grid>
-                    <Border Classes="TransparentBorder LittleRoundedBorder BoxShadowBorder"
-                            BorderThickness="20"
-                            Margin="0"/>
-                    <Border x:Name="PART_LayoutRoot"
-                            Classes="TopLevelBackgroundBorder LittleRoundedBorder"
-                            Margin="10">
-                        <ContentPresenter x:Name="PART_ContentPresenter"
-                                          Margin="12, 4"
-                                          FontSize="{TemplateBinding FontSize}"
-                                          MaxWidth="{TemplateBinding MaxWidth}"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          TextBlock.TextWrapping="Wrap"/>
+                    <Border
+                        BorderThickness="20"
+                        Classes="TransparentBorder LittleRoundedBorder BoxShadowBorder"
+                        Margin="0" />
+                    <Border
+                        Classes="TopLevelBackgroundBorder LittleRoundedBorder"
+                        Margin="10"
+                        x:Name="PART_LayoutRoot">
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            FontSize="{TemplateBinding FontSize}"
+                            Margin="12,4"
+                            MaxWidth="{TemplateBinding MaxWidth}"
+                            TextBlock.TextWrapping="Wrap"
+                            x:Name="PART_ContentPresenter" />
                     </Border>
                 </Grid>
             </ControlTemplate>
@@ -35,5 +40,5 @@
             <Setter Property="Opacity" Value="1" />
         </Style>
     </Style>
-    
+
 </Styles>

@@ -1,15 +1,19 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:asyncImageLoader="using:AsyncImageLoader"
-        xmlns:utilityModels="using:SteamStorage.Models.UtilityModels">
-    
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:asyncImageLoader="using:AsyncImageLoader"
+    xmlns:utilityModels="using:SteamStorage.Models.UtilityModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Style Selector="ListBox.GamesListBox">
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" Spacing="10" Margin="0"/>
+                    <StackPanel
+                        Margin="0"
+                        Orientation="Horizontal"
+                        Spacing="10" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -17,37 +21,42 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate x:DataType="utilityModels:GameModel">
-                        
-                        <Border x:Name="MainBorder"
-                                Classes="BackgroundAdditionalBorder SmallRoundedBorder"
-                                Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
-                                Height="60" Width="60"
-                                ToolTip.Tip="{Binding Title, Mode=OneWay}">
-                            
-                            <Border Classes="LittleRoundedBorder"
-                                    Height="40" Width="40"
-                                    HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
+
+                        <Border
+                            Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                            Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
+                            Height="60"
+                            ToolTip.Tip="{Binding Title, Mode=OneWay}"
+                            Width="60"
+                            x:Name="MainBorder">
+
+                            <Border
+                                Classes="LittleRoundedBorder"
+                                Height="40"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Width="40">
+                                <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}" />
                             </Border>
-                            
+
                         </Border>
-                        
+
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
             <Style Selector="^:pointerover /template/ Border#MainBorder">
-                <Setter Property="Opacity" Value="0.8"/>
+                <Setter Property="Opacity" Value="0.8" />
             </Style>
         </Style>
         <Style Selector="^.FirstAccentLinearGameListBox ListBoxItem /template/ Border#MainBorder">
-            <Setter Property="BorderBrush" Value="{DynamicResource FirstAccentLinearBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource FirstAccentLinearBrush}" />
         </Style>
         <Style Selector="^.SecondAccentLinearGameListBox ListBoxItem /template/ Border#MainBorder">
-            <Setter Property="BorderBrush" Value="{DynamicResource SecondAccentLinearBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondAccentLinearBrush}" />
         </Style>
         <Style Selector="^.ThirdAccentLinearGameListBox ListBoxItem /template/ Border#MainBorder">
-            <Setter Property="BorderBrush" Value="{DynamicResource ThirdAccentLinearBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ThirdAccentLinearBrush}" />
         </Style>
     </Style>
-    
+
 </Styles>

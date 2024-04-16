@@ -1,8 +1,9 @@
-<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:SteamStorage.Resources.Controls"
-        x:DataType="controls:VectorImage">
-    
+<Styles
+    x:DataType="controls:VectorImage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Style Selector="controls|VectorImage.DoubleRightArrowVectorImage">
         <Setter Property="Template">
             <Setter.Value>
@@ -19,12 +20,12 @@
                                         </DrawingGroup>
                                     </DrawingGroup>
                                 </DrawingImage.Drawing>
-				            </DrawingImage>
+                            </DrawingImage>
                         </Image.Source>
                     </Image>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-	
+
 </Styles>

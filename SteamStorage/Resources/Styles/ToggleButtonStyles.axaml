@@ -1,119 +1,126 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:SteamStorage.Resources.Controls">
-    
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Style Selector="ToggleButton">
         <Setter Property="Transitions">
             <Transitions>
-                <DoubleTransition Property="Opacity" Duration="0:0:0.2" Easing="SineEaseOut"/>
+                <DoubleTransition
+                    Duration="0:0:0.2"
+                    Easing="SineEaseOut"
+                    Property="Opacity" />
             </Transitions>
         </Setter>
     </Style>
 
     <Style Selector="ToggleButton.OrderingToggleButton">
-        <Setter Property="IsThreeState" Value="True"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="IsThreeState" Value="True" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="20" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="4" MinWidth="4"/>
-                            <ColumnDefinition Width="20" MinWidth="20"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition MinWidth="4" Width="4" />
+                            <ColumnDefinition MinWidth="20" Width="20" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock x:Name="ContentTextBlock"
-                                   Text="{TemplateBinding Content}"
-                                   FontSize="{TemplateBinding FontSize}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   Classes="CenterTextBlock FirstAccentTextBlock"
-                                   Grid.Column="0"/>
-                        <Grid HorizontalAlignment="Center" 
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                              MaxHeight="20"
-                              Grid.Column="2">
+                        <TextBlock
+                            Classes="CenterTextBlock FirstAccentTextBlock"
+                            FontSize="{TemplateBinding FontSize}"
+                            Grid.Column="0"
+                            Text="{TemplateBinding Content}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            x:Name="ContentTextBlock" />
+                        <Grid
+                            Grid.Column="2"
+                            HorizontalAlignment="Center"
+                            MaxHeight="20"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="5*" MinHeight="5"/>
-                                <RowDefinition Height="3*" MinHeight="3"/>
-                                <RowDefinition Height="5*" MinHeight="5"/>
+                                <RowDefinition Height="5*" MinHeight="5" />
+                                <RowDefinition Height="3*" MinHeight="3" />
+                                <RowDefinition Height="5*" MinHeight="5" />
                             </Grid.RowDefinitions>
-                            <controls:VectorImage x:Name="UpVectorImage"
-                                                  Classes="FilterUpVectorImage"
-                                                  IsVisible="True"
-                                                  Grid.Row="0"/>
-                            <controls:VectorImage x:Name="DownVectorImage"
-                                                  Classes="FilterDownVectorImage"
-                                                  IsVisible="True"
-                                                  Grid.Row="2"/>
+                            <controls:VectorImage
+                                Classes="FilterUpVectorImage"
+                                Grid.Row="0"
+                                IsVisible="True"
+                                x:Name="UpVectorImage" />
+                            <controls:VectorImage
+                                Classes="FilterDownVectorImage"
+                                Grid.Row="2"
+                                IsVisible="True"
+                                x:Name="DownVectorImage" />
                         </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style Selector="^:indeterminate /template/ TextBlock#ContentTextBlock,
-                         ^:indeterminate /template/ controls|VectorImage#UpVectorImage,
-                         ^:indeterminate /template/ controls|VectorImage#DownVectorImage">
-            <Setter Property="TextElement.Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Style Selector="^:indeterminate /template/ TextBlock#ContentTextBlock,                          ^:indeterminate /template/ controls|VectorImage#UpVectorImage,                          ^:indeterminate /template/ controls|VectorImage#DownVectorImage">
+            <Setter Property="TextElement.Foreground" Value="{DynamicResource ForegroundBrush}" />
         </Style>
         <Style Selector="^:checked">
             <Style Selector="^ /template/ controls|VectorImage#DownVectorImage">
-                <Setter Property="IsVisible" Value="False"/>
+                <Setter Property="IsVisible" Value="False" />
             </Style>
             <Style Selector="^ /template/ controls|VectorImage#UpVectorImage">
-                <Setter Property="Foreground" Value="{DynamicResource FirstAccentLinearBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource FirstAccentLinearBrush}" />
             </Style>
         </Style>
         <Style Selector="^:unchecked">
             <Style Selector="^ /template/ controls|VectorImage#UpVectorImage">
-                <Setter Property="IsVisible" Value="False"/>
+                <Setter Property="IsVisible" Value="False" />
             </Style>
             <Style Selector="^ /template/ controls|VectorImage#DownVectorImage">
-                <Setter Property="Foreground" Value="{DynamicResource FirstAccentLinearBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource FirstAccentLinearBrush}" />
             </Style>
         </Style>
-    </Style> 
-    
+    </Style>
+
     <Style Selector="ToggleButton.ConnectionToggleButton">
-        <Setter Property="IsEnabled" Value="False"/>
-        <Setter Property="IsThreeState" Value="True"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="IsEnabled" Value="False" />
+        <Setter Property="IsThreeState" Value="True" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                        
-                        <controls:VectorImage x:Name="ExcellentConnectionVectorImage"
-                                              Classes="ExcellentConnectionVectorImage ForegroundVectorImage UnDisabledVectorImage"
-                                              IsVisible="False"/>
-                        <controls:VectorImage x:Name="GoodConnectionVectorImage"
-                                              Classes="GoodConnectionVectorImage ForegroundVectorImage UnDisabledVectorImage"
-                                              IsVisible="False"/>
-                        <controls:VectorImage x:Name="BadConnectionVectorImage"
-                                              Classes="BadConnectionVectorImage ForegroundVectorImage UnDisabledVectorImage"
-                                              IsVisible="False"/>
-                        
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+
+                        <controls:VectorImage
+                            Classes="ExcellentConnectionVectorImage ForegroundVectorImage UnDisabledVectorImage"
+                            IsVisible="False"
+                            x:Name="ExcellentConnectionVectorImage" />
+                        <controls:VectorImage
+                            Classes="GoodConnectionVectorImage ForegroundVectorImage UnDisabledVectorImage"
+                            IsVisible="False"
+                            x:Name="GoodConnectionVectorImage" />
+                        <controls:VectorImage
+                            Classes="BadConnectionVectorImage ForegroundVectorImage UnDisabledVectorImage"
+                            IsVisible="False"
+                            x:Name="BadConnectionVectorImage" />
+
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style Selector="^:indeterminate /template/ controls|VectorImage#ExcellentConnectionVectorImage">
-            <Setter Property="IsVisible" Value="True"/>
+            <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^:checked /template/ controls|VectorImage#GoodConnectionVectorImage">
-            <Setter Property="IsVisible" Value="True"/>
+            <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^:unchecked /template/ controls|VectorImage#BadConnectionVectorImage">
-            <Setter Property="IsVisible" Value="True"/>
+            <Setter Property="IsVisible" Value="True" />
         </Style>
     </Style>
-        
+
 </Styles>

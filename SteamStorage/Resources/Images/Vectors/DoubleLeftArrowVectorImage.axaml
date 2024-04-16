@@ -1,8 +1,9 @@
-<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:SteamStorage.Resources.Controls"
-        x:DataType="controls:VectorImage">
-    
+<Styles
+    x:DataType="controls:VectorImage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Style Selector="controls|VectorImage.DoubleLeftArrowVectorImage">
         <Setter Property="Template">
             <Setter.Value>
@@ -10,19 +11,19 @@
                     <Image OpacityMask="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
                         <Image.Source>
                             <DrawingImage>
-					            <DrawingImage.Drawing>
+                                <DrawingImage.Drawing>
                                     <DrawingGroup ClipGeometry="M0,0 V64 H64 V0 H0 Z">
                                         <DrawingGroup Opacity="1">
                                             <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M64,64z M0,0z M59.8919,51.9972C60.6715,52.7785,60.6708,54.0437,59.8904,54.8241L56.2716,58.4429C55.4905,59.224,54.2242,59.224,53.4431,58.4429L28.8428,33.8428C28.0618,33.0617,28.0618,31.7954,28.8428,31.0144L53.4431,6.4142C54.2242,5.63316,55.4905,5.63316,56.2716,6.41421L59.8904,10.033C60.6708,10.8135,60.6715,12.0786,59.8919,12.8599L41.7753,31.0159C40.9963,31.7966,40.9963,33.0606,41.7753,33.8412L59.8919,51.9972z M32.4632,51.9972C33.2428,52.7785,33.2421,54.0437,32.4616,54.8241L28.8428,58.4429C28.0618,59.224,26.7954,59.224,26.0144,58.4429L1.41421,33.8428C0.633164,33.0617,0.633166,31.7954,1.41422,31.0144L26.0144,6.41421C26.7954,5.63317,28.0618,5.63317,28.8428,6.41421L32.4616,10.033C33.2421,10.8135,33.2428,12.0786,32.4632,12.8599L14.3468,31.0159C13.5678,31.7966,13.5678,33.0605,14.3468,33.8412L32.4632,51.9972z" />
                                         </DrawingGroup>
                                     </DrawingGroup>
                                 </DrawingImage.Drawing>
-				            </DrawingImage>
+                            </DrawingImage>
                         </Image.Source>
                     </Image>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-	
+
 </Styles>

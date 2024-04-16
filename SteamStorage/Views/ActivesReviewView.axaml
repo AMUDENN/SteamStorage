@@ -1,226 +1,243 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
-             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
-             xmlns:vm="using:SteamStorage.ViewModels"
-             xmlns:controls="using:SteamStorage.Resources.Controls"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="SteamStorage.Views.ActivesReviewView"
-             x:DataType="vm:ActivesReviewViewModel">
-    
+﻿<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="SteamStorage.Views.ActivesReviewView"
+    x:DataType="vm:ActivesReviewViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+    xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:SteamStorage.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <i:Interaction.Behaviors>
         <ia:EventTriggerBehavior EventName="AttachedToVisualTree">
-            <ia:InvokeCommandAction Command="{Binding AttachedToVisualTreeCommand, Mode=OneWay}"/>
+            <ia:InvokeCommandAction Command="{Binding AttachedToVisualTreeCommand, Mode=OneWay}" />
         </ia:EventTriggerBehavior>
     </i:Interaction.Behaviors>
-    
+
     <Grid RowDefinitions="220, 30, 30, 40, *">
-        
+
         <Grid.Styles>
             <Style Selector="Grid.Min">
-                <Setter Property="IsVisible" Value="False"/>
+                <Setter Property="IsVisible" Value="False" />
             </Style>
             <Style Selector="Grid.Max">
-                <Setter Property="ColumnSpan" Value="2"/>
+                <Setter Property="ColumnSpan" Value="2" />
             </Style>
         </Grid.Styles>
-        
-        <Border Classes="BigRoundedBorder FirstAccentGradientBorder" 
-                Grid.Row="0">
-            
-            <Grid ColumnDefinitions="5*, 8*"
-                  Margin="30">
-                
-                <Grid RowDefinitions="40, 20, 40, 20, 40"
-                      Classes.Max="{Binding $parent[Border].Bounds.Width, 
-                                                Converter={StaticResource DoubleLessConverter}, ConverterParameter=800}"
-                      Grid.Column="0">
-                    
-                    <Grid ColumnDefinitions="Auto, *"
-                          Grid.Row="0">
-                        
-                        <TextBlock Text="Количество: " 
-                                   Classes="MiddleTextBlock LeftTextBlock"
-                                   Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                   Grid.Column="0"/>
-                        
-                        <TextBlock Text="{Binding Count, StringFormat=N0, Mode=OneWay}" 
-                                   Classes="BigTextBlock LeftTextBlock"
-                                   Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                   Grid.Column="1"/>
-                        
+
+        <Border Classes="BigRoundedBorder FirstAccentGradientBorder" Grid.Row="0">
+
+            <Grid ColumnDefinitions="5*, 8*" Margin="30">
+
+                <Grid
+                    Classes.Max="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=800}"
+                    Grid.Column="0"
+                    RowDefinitions="40, 20, 40, 20, 40">
+
+                    <Grid ColumnDefinitions="Auto, *" Grid.Row="0">
+
+                        <TextBlock
+                            Classes="MiddleTextBlock LeftTextBlock"
+                            Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                            Grid.Column="0"
+                            Text="Количество: " />
+
+                        <TextBlock
+                            Classes="BigTextBlock LeftTextBlock"
+                            Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                            Grid.Column="1"
+                            Text="{Binding Count, StringFormat=N0, Mode=OneWay}" />
+
                     </Grid>
-                    
-                    <Grid ColumnDefinitions="Auto, *"
-                          Grid.Row="2">
-                        
-                        <TextBlock Text="Сумма вложений: " 
-                                   Classes="MiddleTextBlock LeftTextBlock"
-                                   Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                   Grid.Column="0"/>
-                        
-                        <TextBlock Text="{Binding InvestedSumString, Mode=OneWay}" 
-                                   Classes="BigTextBlock LeftTextBlock"
-                                   Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                   Grid.Column="1"/>
-                        
+
+                    <Grid ColumnDefinitions="Auto, *" Grid.Row="2">
+
+                        <TextBlock
+                            Classes="MiddleTextBlock LeftTextBlock"
+                            Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                            Grid.Column="0"
+                            Text="Сумма вложений: " />
+
+                        <TextBlock
+                            Classes="BigTextBlock LeftTextBlock"
+                            Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                            Grid.Column="1"
+                            Text="{Binding InvestedSumString, Mode=OneWay}" />
+
                     </Grid>
-                    
-                    <Grid ColumnDefinitions="Auto, *"
-                          Grid.Row="4">
-                        
-                        <TextBlock Text="Текущая сумма: " 
-                                   Classes="MiddleTextBlock LeftTextBlock"
-                                   Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                   Grid.Column="0"/>
-                        
-                        <TextBlock Text="{Binding CurrentSumString, Mode=OneWay}" 
-                                   Classes="BigTextBlock LeftTextBlock"
-                                   Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                   Grid.Column="1"/>
-                        
+
+                    <Grid ColumnDefinitions="Auto, *" Grid.Row="4">
+
+                        <TextBlock
+                            Classes="MiddleTextBlock LeftTextBlock"
+                            Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                            Grid.Column="0"
+                            Text="Текущая сумма: " />
+
+                        <TextBlock
+                            Classes="BigTextBlock LeftTextBlock"
+                            Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                            Grid.Column="1"
+                            Text="{Binding CurrentSumString, Mode=OneWay}" />
+
                     </Grid>
-                    
+
                 </Grid>
-                
-                <Grid RowDefinitions="40, *"
-                      ColumnDefinitions="*, *, *"
-                      Classes.Min="{Binding $parent[Border].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=800}"
-                      Grid.Column="1">
-                    
-                    <TextBlock Text="Количество"
-                               Classes="MiddleTextBlock CenterTextBlock"
-                               Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                               Margin="5, 0"
-                               Grid.Row="0" Grid.Column="0"/>
-                    
-                    <lvc:PieChart Series="{Binding ActiveGroupsGameCountSeries, Mode=OneWay}"
-                                  TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
-                                  TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
-                                  InitialRotation="-90"
-                                  Margin="-25, 0"
-                                  Grid.Row="1" Grid.Column="0"/>
-                    
-                    <TextBlock Text="Сумма инвестиций"
-                               Classes="MiddleTextBlock CenterTextBlock"
-                               Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                               Margin="5, 0"
-                               Grid.Row="0" Grid.Column="1"/>
-                    
-                    <lvc:PieChart Series="{Binding ActiveGroupsGameInvestmentSumSeries, Mode=OneWay}"
-                                  TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
-                                  TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
-                                  InitialRotation="-90"
-                                  Margin="-25, 0"
-                                  Grid.Row="1" Grid.Column="1"/>
-                    
-                    <TextBlock Text="Текущая сумма"
-                               Classes="MiddleTextBlock CenterTextBlock"
-                               Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, 
-																	Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                               Margin="5, 0"
-                               Grid.Row="0" Grid.Column="2"/>
-                    
-                    <lvc:PieChart Series="{Binding ActiveGroupsGameCurrentSumSeries, Mode=OneWay}"
-                                  TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}"
-                                  TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
-                                  InitialRotation="-90"
-                                  Margin="-25, 0"
-                                  Grid.Row="1" Grid.Column="2"/>
-                    
+
+                <Grid
+                    Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=800}"
+                    ColumnDefinitions="*, *, *"
+                    Grid.Column="1"
+                    RowDefinitions="40, *">
+
+                    <TextBlock
+                        Classes="MiddleTextBlock CenterTextBlock"
+                        Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Margin="5,0"
+                        Text="Количество" />
+
+                    <lvc:PieChart
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        InitialRotation="-90"
+                        Margin="-25,0"
+                        Series="{Binding ActiveGroupsGameCountSeries, Mode=OneWay}"
+                        TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
+                        TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}" />
+
+                    <TextBlock
+                        Classes="MiddleTextBlock CenterTextBlock"
+                        Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Margin="5,0"
+                        Text="Сумма инвестиций" />
+
+                    <lvc:PieChart
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        InitialRotation="-90"
+                        Margin="-25,0"
+                        Series="{Binding ActiveGroupsGameInvestmentSumSeries, Mode=OneWay}"
+                        TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
+                        TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}" />
+
+                    <TextBlock
+                        Classes="MiddleTextBlock CenterTextBlock"
+                        Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Margin="5,0"
+                        Text="Текущая сумма" />
+
+                    <lvc:PieChart
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        InitialRotation="-90"
+                        Margin="-25,0"
+                        Series="{Binding ActiveGroupsGameCurrentSumSeries, Mode=OneWay}"
+                        TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
+                        TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}" />
+
                 </Grid>
-                
+
             </Grid>
-            
+
         </Border>
-        
-        <Grid Margin="20, 0"
-              Grid.Row="2">
-            
+
+        <Grid Grid.Row="2" Margin="20,0">
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="10" MinWidth="10"/>
-                <ColumnDefinition Width="210*"/>
-                <ColumnDefinition Width="10" MinWidth="10"/>
-                <ColumnDefinition Width="150*"/>
-                <ColumnDefinition Width="10" MinWidth="10"/>
-                <ColumnDefinition Width="190*"/>
-                <ColumnDefinition Width="10" MinWidth="10"/>
-                <ColumnDefinition Width="190*"/>
-                <ColumnDefinition Width="10" MinWidth="10"/>
-                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition MinWidth="10" Width="10" />
+                <ColumnDefinition Width="210*" />
+                <ColumnDefinition MinWidth="10" Width="10" />
+                <ColumnDefinition Width="150*" />
+                <ColumnDefinition MinWidth="10" Width="10" />
+                <ColumnDefinition Width="190*" />
+                <ColumnDefinition MinWidth="10" Width="10" />
+                <ColumnDefinition Width="190*" />
+                <ColumnDefinition MinWidth="10" Width="10" />
+                <ColumnDefinition Width="150*" />
             </Grid.ColumnDefinitions>
-            
-            <TextBlock Text="Цвет"  
-                       Classes="SmallTextBlock CenterTextBlock"
-                       Grid.Column="0"/>
-            
-            <ToggleButton Content="Название" 
-                          IsChecked="{Binding IsTitleOrdering}"
-                          Classes="OrderingToggleButton"
-                          Grid.Column="2"/>
-            
-            <ToggleButton Content="Количество" 
-                          IsChecked="{Binding IsCountOrdering}"
-                          Classes="OrderingToggleButton"
-                          Grid.Column="4"/>
-            
-            <ToggleButton Content="Сумма покупки" 
-                          IsChecked="{Binding IsBuySumOrdering}"
-                          Classes="OrderingToggleButton"
-                          Grid.Column="6"/>
-            
-            <ToggleButton Content="Текущая сумма" 
-                          IsChecked="{Binding IsCurrentSumOrdering}"
-                          Classes="OrderingToggleButton"
-                          Grid.Column="8"/>
-            
-            <ToggleButton Content="Изменение" 
-                          IsChecked="{Binding IsChangeOrdering}"
-                          Classes="OrderingToggleButton"
-                          Grid.Column="10"/>
-            
-        </Grid>
-        
-        <Rectangle Classes="ForegroundRectangle"
-                   Height="2"
-                   Margin="25, 0" 
-                   Grid.Row="3"/>
-        
-        <Grid Grid.Row="4">
-            
-            <TextBlock Text="{Binding NotFoundText, Mode=OneWay}"
-                       IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}"
-                       Classes="MiddleTextBlock CenterTextBlock"
-                       VerticalAlignment="Top"
-                       Margin="0, 20"/>
-            
-            <controls:VectorImage IsVisible="{Binding IsLoading, Mode=OneWay}"
-                                  Classes="LoadingVectorImage AnimationWheelVectorImage ForegroundVectorImage"
-                                  Height="48" Width="48"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Top"
-                                  Margin="0, 20"/>
-                       
-            <ListBox ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
-                     SelectedItem="{Binding SelectedActiveGroupModel}"
-                     Classes="ActiveGroupsListBox"/>
+
+            <TextBlock
+                Classes="SmallTextBlock CenterTextBlock"
+                Grid.Column="0"
+                Text="Цвет" />
+
+            <ToggleButton
+                Classes="OrderingToggleButton"
+                Content="Название"
+                Grid.Column="2"
+                IsChecked="{Binding IsTitleOrdering}" />
+
+            <ToggleButton
+                Classes="OrderingToggleButton"
+                Content="Количество"
+                Grid.Column="4"
+                IsChecked="{Binding IsCountOrdering}" />
+
+            <ToggleButton
+                Classes="OrderingToggleButton"
+                Content="Сумма покупки"
+                Grid.Column="6"
+                IsChecked="{Binding IsBuySumOrdering}" />
+
+            <ToggleButton
+                Classes="OrderingToggleButton"
+                Content="Текущая сумма"
+                Grid.Column="8"
+                IsChecked="{Binding IsCurrentSumOrdering}" />
+
+            <ToggleButton
+                Classes="OrderingToggleButton"
+                Content="Изменение"
+                Grid.Column="10"
+                IsChecked="{Binding IsChangeOrdering}" />
 
         </Grid>
-        
+
+        <Rectangle
+            Classes="ForegroundRectangle"
+            Grid.Row="3"
+            Height="2"
+            Margin="25,0" />
+
+        <Grid Grid.Row="4">
+
+            <TextBlock
+                Classes="MiddleTextBlock CenterTextBlock"
+                IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}"
+                Margin="0,20"
+                Text="{Binding NotFoundText, Mode=OneWay}"
+                VerticalAlignment="Top" />
+
+            <controls:VectorImage
+                Classes="LoadingVectorImage AnimationWheelVectorImage ForegroundVectorImage"
+                Height="48"
+                HorizontalAlignment="Center"
+                IsVisible="{Binding IsLoading, Mode=OneWay}"
+                Margin="0,20"
+                VerticalAlignment="Top"
+                Width="48" />
+
+            <ListBox
+                Classes="ActiveGroupsListBox"
+                ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
+                SelectedItem="{Binding SelectedActiveGroupModel}" />
+
+        </Grid>
+
     </Grid>
-    
-    
+
+
 </UserControl>

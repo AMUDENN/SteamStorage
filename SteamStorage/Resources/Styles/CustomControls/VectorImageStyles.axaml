@@ -1,22 +1,29 @@
-<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:SteamStorage.Resources.Controls"
-        x:DataType="controls:VectorImage">
-    
+<Styles
+    x:DataType="controls:VectorImage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Style Selector="controls|VectorImage">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Transitions">
             <Transitions>
-                <ThicknessTransition Property="Margin" Duration="0:0:0.2" Easing="SineEaseOut"/>
-                <DoubleTransition Property="Opacity" Duration="0:0:0.2" Easing="SineEaseOut"/>
+                <ThicknessTransition
+                    Duration="0:0:0.2"
+                    Easing="SineEaseOut"
+                    Property="Margin" />
+                <DoubleTransition
+                    Duration="0:0:0.2"
+                    Easing="SineEaseOut"
+                    Property="Opacity" />
             </Transitions>
         </Setter>
         <Style Selector="^:disabled">
-            <Setter Property="Opacity" Value="0.6"/>
+            <Setter Property="Opacity" Value="0.6" />
         </Style>
     </Style>
-    
+
     <Style Selector="controls|VectorImage.AnimationWheelVectorImage">
         <Style.Animations>
             <Animation Duration="0:0:0.5" IterationCount="INFINITE">
@@ -29,27 +36,27 @@
             </Animation>
         </Style.Animations>
     </Style>
-    
+
     <Style Selector="controls|VectorImage.UnDisabledVectorImage">
         <Style Selector="^:disabled">
-            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Opacity" Value="1" />
         </Style>
     </Style>
 
     <Style Selector="controls|VectorImage.ForegroundVectorImage">
-        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-    </Style>    
-    
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+    </Style>
+
     <Style Selector="controls|VectorImage.PositiveVectorImage">
-        <Setter Property="Foreground" Value="{DynamicResource PositiveBrush}"/>
-    </Style>    
-    
+        <Setter Property="Foreground" Value="{DynamicResource PositiveBrush}" />
+    </Style>
+
     <Style Selector="controls|VectorImage.NegativeVectorImage">
-        <Setter Property="Foreground" Value="{DynamicResource NegativeBrush}"/>
-    </Style>    
-    
+        <Setter Property="Foreground" Value="{DynamicResource NegativeBrush}" />
+    </Style>
+
     <Style Selector="controls|VectorImage.FirstAccentLinearVectorImage">
-        <Setter Property="Foreground" Value="{DynamicResource FirstAccentLinearBrush}"/>
-    </Style>  
-        
+        <Setter Property="Foreground" Value="{DynamicResource FirstAccentLinearBrush}" />
+    </Style>
+
 </Styles>

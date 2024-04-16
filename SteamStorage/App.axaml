@@ -1,137 +1,138 @@
-<Application xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="using:SteamStorage.Resources.Converters"
-			 xmlns:utilities="using:SteamStorage.Utilities"
-             xmlns:themeVariants="using:SteamStorage.Utilities.ThemeVariants"
-             x:CompileBindings="True"
-             x:Class="SteamStorage.App">
+<Application
+    x:Class="SteamStorage.App"
+    x:CompileBindings="True"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:converters="using:SteamStorage.Resources.Converters"
+    xmlns:themeVariants="using:SteamStorage.Utilities.ThemeVariants"
+    xmlns:utilities="using:SteamStorage.Utilities"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Application.DataTemplates>
-		<utilities:ViewLocator/>
+        <utilities:ViewLocator />
     </Application.DataTemplates>
-  
+
     <Application.Styles>
-	    
-	    <!-- BaseTheme -->
-	    <FluentTheme/>
-	    
-	    <!-- ColorPicker base style -->
-	    <StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Fluent/Fluent.xaml"/>
-        
-        <!-- Styles -->
-	    <StyleInclude Source="/Resources/Styles/AutoCompleteBoxStyles.axaml"/>
-		<StyleInclude Source="/Resources/Styles/BorderStyles.axaml"/>
-		<StyleInclude Source="/Resources/Styles/ButtonStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/CheckBoxStyles.axaml"/>
-	    <StyleInclude Source="/Resources/Styles/ColorPickerStyles.axaml"/>
-	    <StyleInclude Source="/Resources/Styles/ComboBoxStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/ContentPresenterStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/ContextMenuStyles.axaml"/>
-	    <StyleInclude Source="/Resources/Styles/DatePickerStyles.axaml"/>
-		<StyleInclude Source="/Resources/Styles/GridStyles.axaml"/>
-		<StyleInclude Source="/Resources/Styles/ImageStyles.axaml"/>
-		<StyleInclude Source="/Resources/Styles/ListBoxStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/NumericUpDownStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/RadioButtonStyles.axaml"/>
-		<StyleInclude Source="/Resources/Styles/RectangleStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/ScrollViewerStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/StackPanelStyles.axaml"/>
-		<StyleInclude Source="/Resources/Styles/TextBlockStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/TextBoxStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/ToggleButtonStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/ToolTipStyles.axaml"/>
-	    <StyleInclude Source="/Resources/Styles/TransitioningContentControlStyles.axaml"/>
-        
-		<StyleInclude Source="/Resources/Styles/WindowStyles.axaml"/>
-	    
-	    
-	    <!-- CustomControls -->
-        <StyleInclude Source="/Resources/Styles/CustomControls/AdvancedNumericUpDownStyles.axaml"/>
-        <StyleInclude Source="/Resources/Styles/CustomControls/AdvancedTextBoxStyles.axaml"/>
-	    <StyleInclude Source="/Resources/Styles/CustomControls/DefaultContentControlStyles.axaml"/>
-	    <StyleInclude Source="/Resources/Styles/CustomControls/HyperlinkButtonStyles.axaml"/>
-	    <StyleInclude Source="/Resources/Styles/CustomControls/VectorImageStyles.axaml"/>
-	    
-	    
-        <!-- ListBoxes -->
-	    <StyleInclude Source="/Resources/Styles/ListBoxes/ActiveGroupsListBoxStyle.axaml"/>
-	    <StyleInclude Source="/Resources/Styles/ListBoxes/ActivesListBoxStyle.axaml"/>
-	    <StyleInclude Source="/Resources/Styles/ListBoxes/ArchiveGroupsListBoxStyle.axaml"/>
-	    <StyleInclude Source="/Resources/Styles/ListBoxes/ArchivesListBoxStyle.axaml"/>
-        <StyleInclude Source="/Resources/Styles/ListBoxes/GamesListBoxStyle.axaml"/>
-	    <StyleInclude Source="/Resources/Styles/ListBoxes/InventoryItemsListBoxStyle.axaml"/>
-        <StyleInclude Source="/Resources/Styles/ListBoxes/ListItemsListBoxStyle.axaml"/>
-        <StyleInclude Source="/Resources/Styles/ListBoxes/NavigationListBoxStyle.axaml"/>
-	    <StyleInclude Source="/Resources/Styles/ListBoxes/SecondaryNavigationListBoxStyle.axaml"/>
-        <StyleInclude Source="/Resources/Styles/ListBoxes/ThemeVariantListBoxStyle.axaml"/>
-        
-	    
-        <!-- Images -->
-		<StyleInclude Source="/Resources/Images/Vectors/AccountVectorImage.axaml"/>
-		<StyleInclude Source="/Resources/Images/Vectors/ActivesVectorImage.axaml"/>
-	    <StyleInclude Source="/Resources/Images/Vectors/AddCircleVectorImage.axaml"/>
-		<StyleInclude Source="/Resources/Images/Vectors/ArchiveVectorImage.axaml"/>
-	    <StyleInclude Source="/Resources/Images/Vectors/ArrowDownVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/BadConnectionVectorImage.axaml"/>
-		<StyleInclude Source="/Resources/Images/Vectors/CloseVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/DoubleLeftArrowVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/DoubleRightArrowVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/EmailVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/EmptyStarVectorImage.axaml"/>
-	    <StyleInclude Source="/Resources/Images/Vectors/ErrorVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/ExcellentConnectionVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/FilterDownVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/FilterUpVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/GithubVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/GoodConnectionVectorImage.axaml"/>
-		<StyleInclude Source="/Resources/Images/Vectors/HomeVectorImage.axaml"/>
-	    <StyleInclude Source="/Resources/Images/Vectors/InformationVectorImage.axaml"/>
-		<StyleInclude Source="/Resources/Images/Vectors/InventoryVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/LeftArrowVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/LoadingVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/LockVectorImage.axaml"/>
-		<StyleInclude Source="/Resources/Images/Vectors/LogInVectorImage.axaml"/>
-		<StyleInclude Source="/Resources/Images/Vectors/LogoVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/LogOutVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/MagnifierVectorImage.axaml"/>
-		<StyleInclude Source="/Resources/Images/Vectors/MaximizeVectorImage.axaml"/>
-		<StyleInclude Source="/Resources/Images/Vectors/MinimizeVectorImage.axaml"/>
-		<StyleInclude Source="/Resources/Images/Vectors/ProfileVectorImage.axaml"/>
-	    <StyleInclude Source="/Resources/Images/Vectors/QuestionVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/RadioButtonFalseVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/RadioButtonTrueVectorImage.axaml"/>
-	    <StyleInclude Source="/Resources/Images/Vectors/RecycleBinVectorImage.axaml"/>
-	    <StyleInclude Source="/Resources/Images/Vectors/RefreshVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/RemoveFiltersVectorImage.axaml"/>
-		<StyleInclude Source="/Resources/Images/Vectors/RestoreVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/RightArrowVectorImage.axaml"/>
-		<StyleInclude Source="/Resources/Images/Vectors/SettingsVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/StarVectorImage.axaml"/>
-	    <StyleInclude Source="/Resources/Images/Vectors/SteamVectorImage.axaml"/>
-        <StyleInclude Source="/Resources/Images/Vectors/TelegramVectorImage.axaml"/>
-	    
+
+        <!--  BaseTheme  -->
+        <FluentTheme />
+
+        <!--  ColorPicker base style  -->
+        <StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Fluent/Fluent.xaml" />
+
+        <!--  Styles  -->
+        <StyleInclude Source="/Resources/Styles/AutoCompleteBoxStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/BorderStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/ButtonStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/CheckBoxStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/ColorPickerStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/ComboBoxStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/ContentPresenterStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/ContextMenuStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/DatePickerStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/GridStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/ImageStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/ListBoxStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/NumericUpDownStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/RadioButtonStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/RectangleStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/ScrollViewerStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/StackPanelStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/TextBlockStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/TextBoxStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/ToggleButtonStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/ToolTipStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/TransitioningContentControlStyles.axaml" />
+
+        <StyleInclude Source="/Resources/Styles/WindowStyles.axaml" />
+
+
+        <!--  CustomControls  -->
+        <StyleInclude Source="/Resources/Styles/CustomControls/AdvancedNumericUpDownStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/CustomControls/AdvancedTextBoxStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/CustomControls/DefaultContentControlStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/CustomControls/HyperlinkButtonStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/CustomControls/VectorImageStyles.axaml" />
+
+
+        <!--  ListBoxes  -->
+        <StyleInclude Source="/Resources/Styles/ListBoxes/ActiveGroupsListBoxStyle.axaml" />
+        <StyleInclude Source="/Resources/Styles/ListBoxes/ActivesListBoxStyle.axaml" />
+        <StyleInclude Source="/Resources/Styles/ListBoxes/ArchiveGroupsListBoxStyle.axaml" />
+        <StyleInclude Source="/Resources/Styles/ListBoxes/ArchivesListBoxStyle.axaml" />
+        <StyleInclude Source="/Resources/Styles/ListBoxes/GamesListBoxStyle.axaml" />
+        <StyleInclude Source="/Resources/Styles/ListBoxes/InventoryItemsListBoxStyle.axaml" />
+        <StyleInclude Source="/Resources/Styles/ListBoxes/ListItemsListBoxStyle.axaml" />
+        <StyleInclude Source="/Resources/Styles/ListBoxes/NavigationListBoxStyle.axaml" />
+        <StyleInclude Source="/Resources/Styles/ListBoxes/SecondaryNavigationListBoxStyle.axaml" />
+        <StyleInclude Source="/Resources/Styles/ListBoxes/ThemeVariantListBoxStyle.axaml" />
+
+
+        <!--  Images  -->
+        <StyleInclude Source="/Resources/Images/Vectors/AccountVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/ActivesVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/AddCircleVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/ArchiveVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/ArrowDownVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/BadConnectionVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/CloseVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/DoubleLeftArrowVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/DoubleRightArrowVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/EmailVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/EmptyStarVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/ErrorVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/ExcellentConnectionVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/FilterDownVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/FilterUpVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/GithubVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/GoodConnectionVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/HomeVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/InformationVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/InventoryVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/LeftArrowVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/LoadingVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/LockVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/LogInVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/LogoVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/LogOutVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/MagnifierVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/MaximizeVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/MinimizeVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/ProfileVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/QuestionVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/RadioButtonFalseVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/RadioButtonTrueVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/RecycleBinVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/RefreshVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/RemoveFiltersVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/RestoreVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/RightArrowVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/SettingsVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/StarVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/SteamVectorImage.axaml" />
+        <StyleInclude Source="/Resources/Images/Vectors/TelegramVectorImage.axaml" />
+
     </Application.Styles>
 
-	<Application.Resources>
-		
-		<ResourceDictionary>
-			
-			<!-- Converters -->
-			<converters:BrushConverter x:Key="BrushConverter"/>
-			<converters:DoubleGreaterConverter x:Key="DoubleGreaterConverter"/>
-			<converters:DoubleLessConverter x:Key="DoubleLessConverter"/>
-			<converters:DoubleMultiplicationConverter x:Key="DoubleMultiplicationConverter"/>
-			<converters:MarkedPercentConverter x:Key="MarkedPercentConverter"/>
-			<converters:PercentConverter x:Key="PercentConverter"/>
-			
-			<!-- Themes -->
-			<ResourceDictionary.ThemeDictionaries>
-				<ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.Classic}" Source="avares://SteamStorage/Resources/Themes/ClassicTheme.axaml"/>
-				<ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.Lime}" Source="avares://SteamStorage/Resources/Themes/LimeTheme.axaml"/>
-			</ResourceDictionary.ThemeDictionaries>
-			
-		</ResourceDictionary>
-		
-	</Application.Resources>
-	
+    <Application.Resources>
+
+        <ResourceDictionary>
+
+            <!--  Converters  -->
+            <converters:BrushConverter x:Key="BrushConverter" />
+            <converters:DoubleGreaterConverter x:Key="DoubleGreaterConverter" />
+            <converters:DoubleLessConverter x:Key="DoubleLessConverter" />
+            <converters:DoubleMultiplicationConverter x:Key="DoubleMultiplicationConverter" />
+            <converters:MarkedPercentConverter x:Key="MarkedPercentConverter" />
+            <converters:PercentConverter x:Key="PercentConverter" />
+
+            <!--  Themes  -->
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceInclude Source="avares://SteamStorage/Resources/Themes/ClassicTheme.axaml" x:Key="{x:Static themeVariants:ThemeVariants.Classic}" />
+                <ResourceInclude Source="avares://SteamStorage/Resources/Themes/LimeTheme.axaml" x:Key="{x:Static themeVariants:ThemeVariants.Lime}" />
+            </ResourceDictionary.ThemeDictionaries>
+
+        </ResourceDictionary>
+
+    </Application.Resources>
+
 </Application>

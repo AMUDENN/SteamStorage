@@ -1,91 +1,99 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	
-	<Style Selector="TextBlock">
-		<Setter Property="FontFamily" Value="Inter, sans-serif"/>
-		<Setter Property="FontWeight" Value="600"/>
-		<Setter Property="FontStyle" Value="Normal"/>
-	</Style>
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-	<Style Selector="TextBlock">
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-		<Setter Property="VerticalAlignment" Value="Center"/>
-		<Setter Property="TextWrapping" Value="NoWrap"/>
-		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
-		<Setter Property="Transitions">
-			<Transitions>
-				<DoubleTransition Property="FontSize" Duration="0:0:0.2" Easing="LinearEasing"/>
-				<DoubleTransition Property="Opacity" Duration="0:0:0.1" Easing="SineEaseOut"/>
-				<BrushTransition Property="Foreground" Duration="0:0:0.1" Easing="SineEaseOut"/>
-			</Transitions>
-		</Setter>
-		<Style Selector="^:disabled">
-			<Setter Property="Opacity" Value="0.5"/>
-		</Style>
-	</Style>
-	
-	<Style Selector="TextBlock.LightWeightTextBlock">
-		<Setter Property="FontWeight" Value="400"/>
-	</Style>
-	
-	<Style Selector="TextBlock.WrapTextBlock">
-		<Setter Property="TextWrapping" Value="Wrap"/>
-	</Style>
-	
-	<Style Selector="TextBlock.FirstAccentTextBlock">
-		<Setter Property="Foreground" Value="{DynamicResource FirstAccentBrush}"/>
-	</Style>
-	
-	<Style Selector="TextBlock.PositiveTextBlock">
-		<Setter Property="Foreground" Value="{DynamicResource PositiveBrush}"/>
-	</Style>
-	
-	<Style Selector="TextBlock.NegativeTextBlock">
-		<Setter Property="Foreground" Value="{DynamicResource NegativeBrush}"/>
-	</Style>
+    <Style Selector="TextBlock">
+        <Setter Property="FontFamily" Value="Inter, sans-serif" />
+        <Setter Property="FontWeight" Value="600" />
+        <Setter Property="FontStyle" Value="Normal" />
+    </Style>
 
-	<Style Selector="TextBlock.LightTextBlock">
-		<Setter Property="Opacity" Value="0.5"/>
-	</Style>
+    <Style Selector="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="TextWrapping" Value="NoWrap" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition
+                    Duration="0:0:0.2"
+                    Easing="LinearEasing"
+                    Property="FontSize" />
+                <DoubleTransition
+                    Duration="0:0:0.1"
+                    Easing="SineEaseOut"
+                    Property="Opacity" />
+                <BrushTransition
+                    Duration="0:0:0.1"
+                    Easing="SineEaseOut"
+                    Property="Foreground" />
+            </Transitions>
+        </Setter>
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="0.5" />
+        </Style>
+    </Style>
 
-	<Style Selector="TextBlock.CenterTextBlock">
-		<Setter Property="TextAlignment" Value="Center"/>
-	</Style>
-	
-	<Style Selector="TextBlock.LeftTextBlock">
-		<Setter Property="TextAlignment" Value="Left"/>
-	</Style>
-	
-	<Style Selector="TextBlock.RightTextBlock">
-		<Setter Property="TextAlignment" Value="Right"/>
-	</Style>
-	
-	<Style Selector="TextBlock.LargeTextBlock">
-		<Setter Property="FontSize" Value="40"/>
-	</Style>
+    <Style Selector="TextBlock.LightWeightTextBlock">
+        <Setter Property="FontWeight" Value="400" />
+    </Style>
 
-	<Style Selector="TextBlock.BigTextBlock">
-		<Setter Property="FontSize" Value="32"/>
-	</Style>
+    <Style Selector="TextBlock.WrapTextBlock">
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
 
-	<Style Selector="TextBlock.MiddleTextBlock">
-		<Setter Property="FontSize" Value="24"/>
-	</Style>
-	
-	<Style Selector="TextBlock.SmallTextBlock">
-		<Setter Property="FontSize" Value="20"/>
-	</Style>
+    <Style Selector="TextBlock.FirstAccentTextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource FirstAccentBrush}" />
+    </Style>
 
-	<Style Selector="TextBlock.LittleTextBlock">
-		<Setter Property="FontSize" Value="16"/>
-	</Style>
-	
-	<Style Selector="TextBlock.TinyTextBlock">
-		<Setter Property="FontSize" Value="14"/>
-	</Style>
-	
-	<Style Selector="TextBlock.UnderlineTextBlock">
-		<Setter Property="TextDecorations" Value="Underline"/>
-	</Style>
-	
+    <Style Selector="TextBlock.PositiveTextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource PositiveBrush}" />
+    </Style>
+
+    <Style Selector="TextBlock.NegativeTextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource NegativeBrush}" />
+    </Style>
+
+    <Style Selector="TextBlock.LightTextBlock">
+        <Setter Property="Opacity" Value="0.5" />
+    </Style>
+
+    <Style Selector="TextBlock.CenterTextBlock">
+        <Setter Property="TextAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="TextBlock.LeftTextBlock">
+        <Setter Property="TextAlignment" Value="Left" />
+    </Style>
+
+    <Style Selector="TextBlock.RightTextBlock">
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
+
+    <Style Selector="TextBlock.LargeTextBlock">
+        <Setter Property="FontSize" Value="40" />
+    </Style>
+
+    <Style Selector="TextBlock.BigTextBlock">
+        <Setter Property="FontSize" Value="32" />
+    </Style>
+
+    <Style Selector="TextBlock.MiddleTextBlock">
+        <Setter Property="FontSize" Value="24" />
+    </Style>
+
+    <Style Selector="TextBlock.SmallTextBlock">
+        <Setter Property="FontSize" Value="20" />
+    </Style>
+
+    <Style Selector="TextBlock.LittleTextBlock">
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
+    <Style Selector="TextBlock.TinyTextBlock">
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
+    <Style Selector="TextBlock.UnderlineTextBlock">
+        <Setter Property="TextDecorations" Value="Underline" />
+    </Style>
+
 </Styles>

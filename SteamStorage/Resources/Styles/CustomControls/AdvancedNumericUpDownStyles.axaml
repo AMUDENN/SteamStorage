@@ -1,57 +1,65 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:SteamStorage.Resources.Controls"
-        x:DataType="controls:AdvancedNumericUpDown">
+﻿<Styles
+    x:DataType="controls:AdvancedNumericUpDown"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style Selector="controls|AdvancedNumericUpDown">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
                     <StackPanel Orientation="Horizontal">
-                        
-                        <Button Command="{TemplateBinding GoToStartCommand}"
-                                Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
-                                IsEnabled="{TemplateBinding IsStartEnabled}"
-                                Width="35">
-                            <controls:VectorImage Classes="DoubleLeftArrowVectorImage ForegroundVectorImage"/>
+
+                        <Button
+                            Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
+                            Command="{TemplateBinding GoToStartCommand}"
+                            IsEnabled="{TemplateBinding IsStartEnabled}"
+                            Width="35">
+                            <controls:VectorImage Classes="DoubleLeftArrowVectorImage ForegroundVectorImage" />
                         </Button>
-                        
-                        <Button Command="{TemplateBinding DecrementCommand}" 
-                                Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
-                                IsEnabled="{TemplateBinding IsStartEnabled}"
-                                Width="35" Margin="6, 0">
-                            <controls:VectorImage Classes="LeftArrowVectorImage ForegroundVectorImage"/>
+
+                        <Button
+                            Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
+                            Command="{TemplateBinding DecrementCommand}"
+                            IsEnabled="{TemplateBinding IsStartEnabled}"
+                            Margin="6,0"
+                            Width="35">
+                            <controls:VectorImage Classes="LeftArrowVectorImage ForegroundVectorImage" />
                         </Button>
-                        
-                        <NumericUpDown Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                       Increment="{TemplateBinding Increment}"
-                                       Minimum="{TemplateBinding Minimum}"
-                                       Maximum="{TemplateBinding Maximum}"
-                                       FormatString="{TemplateBinding FormatString}"
-                                       ParsingNumberStyle="{TemplateBinding ParsingNumberStyle}"
-                                       ShowButtonSpinner="False"
-                                       Watermark="{TemplateBinding Watermark}"
-                                       Classes="AdvancedNumericUpDown"
-                                       Width="70"/>
-                        
-                        <Button Command="{TemplateBinding IncrementCommand}" 
-                                Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
-                                IsEnabled="{TemplateBinding IsEndEnabled}"
-                                Width="35" Margin="6, 0">
-                            <controls:VectorImage Classes="RightArrowVectorImage ForegroundVectorImage"/>
+
+                        <NumericUpDown
+                            Classes="AdvancedNumericUpDown"
+                            FormatString="{TemplateBinding FormatString}"
+                            Increment="{TemplateBinding Increment}"
+                            Maximum="{TemplateBinding Maximum}"
+                            Minimum="{TemplateBinding Minimum}"
+                            ParsingNumberStyle="{TemplateBinding ParsingNumberStyle}"
+                            ShowButtonSpinner="False"
+                            Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                            Watermark="{TemplateBinding Watermark}"
+                            Width="70" />
+
+                        <Button
+                            Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
+                            Command="{TemplateBinding IncrementCommand}"
+                            IsEnabled="{TemplateBinding IsEndEnabled}"
+                            Margin="6,0"
+                            Width="35">
+                            <controls:VectorImage Classes="RightArrowVectorImage ForegroundVectorImage" />
                         </Button>
-                        
-                        <Button Command="{TemplateBinding GoToEndCommand}" 
-                                Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
-                                IsEnabled="{TemplateBinding IsEndEnabled}"
-                                Width="35">
-                            <controls:VectorImage Classes="DoubleRightArrowVectorImage ForegroundVectorImage"/>
+
+                        <Button
+                            Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
+                            Command="{TemplateBinding GoToEndCommand}"
+                            IsEnabled="{TemplateBinding IsEndEnabled}"
+                            Width="35">
+                            <controls:VectorImage Classes="DoubleRightArrowVectorImage ForegroundVectorImage" />
                         </Button>
-                        
+
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
-        </Setter>            
+        </Setter>
     </Style>
-        
+
 </Styles>

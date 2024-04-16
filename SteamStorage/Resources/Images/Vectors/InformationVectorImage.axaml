@@ -1,30 +1,31 @@
-<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:SteamStorage.Resources.Controls"
-        x:DataType="controls:VectorImage">
+<Styles
+    x:DataType="controls:VectorImage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-	<Style Selector="controls|VectorImage.InformationVectorImage">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate>
+    <Style Selector="controls|VectorImage.InformationVectorImage">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
                     <Image OpacityMask="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
-					    <Image.Source>
+                        <Image.Source>
                             <DrawingImage>
-	                            <DrawingImage.Drawing>
-		                            <DrawingGroup ClipGeometry="M0,0 V48 H48 V0 H0 Z">
-			                            <DrawingGroup Opacity="1">
-				                            <DrawingGroup Opacity="1">
-					                            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M48,48z M0,0z M23,37L25,37 25,18 23,18 23,37z M24,0C10.745,0 0,10.745 0,24 0,37.255 10.745,48 24,48 37.255,48 48,37.255 48,24 48,10.745 37.255,0 24,0z M24,46C11.869,46 2,36.131 2,24 2,11.869 11.869,2 24,2 36.131,2 46,11.869 46,24 46,36.131 36.131,46 24,46z M24,10C23.143,10 22,11.209 22,12 22,12.792 23.143,14 24,14 24.857,14 26,12.854 26,12 26,11.146 24.857,10 24,10z" />
-				                            </DrawingGroup>
-			                            </DrawingGroup>
-		                            </DrawingGroup>
-	                            </DrawingImage.Drawing>
+                                <DrawingImage.Drawing>
+                                    <DrawingGroup ClipGeometry="M0,0 V48 H48 V0 H0 Z">
+                                        <DrawingGroup Opacity="1">
+                                            <DrawingGroup Opacity="1">
+                                                <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F1 M48,48z M0,0z M23,37L25,37 25,18 23,18 23,37z M24,0C10.745,0 0,10.745 0,24 0,37.255 10.745,48 24,48 37.255,48 48,37.255 48,24 48,10.745 37.255,0 24,0z M24,46C11.869,46 2,36.131 2,24 2,11.869 11.869,2 24,2 36.131,2 46,11.869 46,24 46,36.131 36.131,46 24,46z M24,10C23.143,10 22,11.209 22,12 22,12.792 23.143,14 24,14 24.857,14 26,12.854 26,12 26,11.146 24.857,10 24,10z" />
+                                            </DrawingGroup>
+                                        </DrawingGroup>
+                                    </DrawingGroup>
+                                </DrawingImage.Drawing>
                             </DrawingImage>
                         </Image.Source>
                     </Image>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-	
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </Styles>

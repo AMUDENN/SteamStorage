@@ -1,90 +1,96 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:asyncImageLoader="using:AsyncImageLoader"
-        xmlns:baseViewModels="clr-namespace:SteamStorage.ViewModels.UtilityViewModels.BaseViewModels">
-    
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:asyncImageLoader="using:AsyncImageLoader"
+    xmlns:baseViewModels="clr-namespace:SteamStorage.ViewModels.UtilityViewModels.BaseViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Style Selector="AutoCompleteBox.SmallAutoCompleteBox">
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="20" />
     </Style>
-    
+
     <Style Selector="AutoCompleteBox.DarkAutoCompleteBox">
-        <Setter Property="CornerRadius" Value="8"/>
-        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="Padding" Value="0"/>
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Padding" Value="0" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Grid x:Name="PART_LayoutRoot">
-                    <TextBox x:Name="PART_TextBox"
-                             Watermark="{TemplateBinding Watermark}"
-                             Width="{TemplateBinding Width}"
-                             Padding="{TemplateBinding Padding}"
-                             FontSize="{TemplateBinding FontSize}"
-                             BorderThickness="0"
-                             Classes="DarkTextBox SmallTextBox"
-                             DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"/>
-                    <Popup x:Name="PART_Popup" 
-                           WindowManagerAddShadowHint="False"
-                           MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}" 
-                           MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                           IsLightDismissEnabled="True"
-                           PlacementTarget="{TemplateBinding}">
-                        <Border x:Name="PART_SuggestionsContainer"
-                                Padding="{DynamicResource AutoCompleteListMargin}"
+                    <TextBox
+                        BorderThickness="0"
+                        Classes="DarkTextBox SmallTextBox"
+                        DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
+                        FontSize="{TemplateBinding FontSize}"
+                        Padding="{TemplateBinding Padding}"
+                        Watermark="{TemplateBinding Watermark}"
+                        Width="{TemplateBinding Width}"
+                        x:Name="PART_TextBox" />
+                    <Popup
+                        IsLightDismissEnabled="True"
+                        MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                        MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                        PlacementTarget="{TemplateBinding}"
+                        WindowManagerAddShadowHint="False"
+                        x:Name="PART_Popup">
+                        <Border
+                            Background="{DynamicResource TopLevelBackgroundBrush}"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Classes="SmallRoundedBorder"
+                            Padding="{DynamicResource AutoCompleteListMargin}"
+                            x:Name="PART_SuggestionsContainer">
+                            <ListBox
+                                Background="Transparent"
                                 BorderThickness="0"
-                                BorderBrush="Transparent"
-                                Background="{DynamicResource TopLevelBackgroundBrush}"
-                                Classes="SmallRoundedBorder">
-                            <ListBox x:Name="PART_SelectingItemsControl"
-                                     BorderThickness="0"
-                                     Background="Transparent"
-                                     ItemTemplate="{TemplateBinding ItemTemplate}"
-                                     Margin="{DynamicResource AutoCompleteListPadding}"/>
+                                ItemTemplate="{TemplateBinding ItemTemplate}"
+                                Margin="{DynamicResource AutoCompleteListPadding}"
+                                x:Name="PART_SelectingItemsControl" />
                         </Border>
                     </Popup>
                 </Grid>
             </ControlTemplate>
         </Setter>
     </Style>
-    
+
     <Style Selector="AutoCompleteBox.BaseSkinsAutoCompleteBox">
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate x:DataType="baseViewModels:BaseSkinViewModel">
-                    <Grid ColumnDefinitions="40, *"
-                          Height="30"
-                          Margin="11, 4, 11, 7">
-                        <Border Classes="LittleRoundedBorder TransparentBorder"
-                                Grid.Column="0">
-                            <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}"/>
+                    <Grid
+                        ColumnDefinitions="40, *"
+                        Height="30"
+                        Margin="11,4,11,7">
+                        <Border Classes="LittleRoundedBorder TransparentBorder" Grid.Column="0">
+                            <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}" />
                         </Border>
-                        <TextBlock Text="{Binding Title, Mode=OneWay}"
-                                   Classes="LittleTextBlock LeftTextBlock LightWeightTextBlock"
-                                   Margin="10, 0, 0, 0"
-                                   Grid.Column="1"/>
+                        <TextBlock
+                            Classes="LittleTextBlock LeftTextBlock LightWeightTextBlock"
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            Text="{Binding Title, Mode=OneWay}" />
                     </Grid>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
         <Style Selector="^ ListBox#PART_SelectingItemsControl ListBoxItem">
-            <Setter Property="Opacity" Value="0.9"/>
+            <Setter Property="Opacity" Value="0.9" />
             <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
             <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="Opacity" Value="1" />
                 <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
             <Style Selector="^:selected /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="Opacity" Value="1" />
                 <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundLightBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
         </Style>
     </Style>
-        
+
 </Styles>

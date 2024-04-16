@@ -1,31 +1,32 @@
-<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:SteamStorage.Resources.Controls"
-        x:DataType="controls:VectorImage">
-	
-	<Style Selector="controls|VectorImage.LogOutVectorImage">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate>
-					<Image OpacityMask="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
-						<Image.Source>
-							<DrawingImage>
-								<DrawingImage.Drawing>
-									<DrawingGroup ClipGeometry="M0,0 V512 H512 V0 H0 Z">
-										<DrawingGroup Opacity="1">
-											<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F0 M512,512z M0,0z M70.5,7.5C142.501,7.33334 214.501,7.5 286.5,8 324.543,15.7126 348.709,38.2126 359,75.5 359.667,95.1667 359.667,114.833 359,134.5 352.644,149.758 341.477,154.925 325.5,150 318.851,146.686 314.351,141.519 312,134.5 311.667,118.5 311.333,102.5 311,86.5 307.343,71.1741 297.843,61.3407 282.5,57 215.197,55.3539 147.864,55.0206 80.5,56 65.426,59.9284 57.2594,69.7617 56,85.5 55.3333,198.833 55.3333,312.167 56,425.5 57.2594,441.238 65.426,451.072 80.5,455 150.869,455.984 221.203,455.65 291.5,454 301.27,449.974 307.437,442.807 310,432.5 311.238,413.867 311.904,395.2 312,376.5 317.457,362.518 327.624,357.018 342.5,360 350.667,362.833 356.167,368.333 359,376.5 359.667,396.5 359.667,416.5 359,436.5 352.543,472.288 331.71,494.454 296.5,503 221.167,503.667 145.833,503.667 70.5,503 35.2865,494.45 14.4532,472.284 8,436.5 7.33333,315.833 7.33333,195.167 8,74.5 14.6423,38.6978 35.4756,16.3644 70.5,7.5z"/>
-										</DrawingGroup>
-										<DrawingGroup Opacity="1">
-											<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F0 M512,512z M0,0z M392.5,151.5C400.45,150.414 407.783,151.914 414.5,156 442.667,184.167 470.833,212.333 499,240.5 505,250.5 505,260.5 499,270.5 470.833,298.667 442.667,326.833 414.5,355 404.5,361 394.5,361 384.5,355 376.271,347.977 373.437,339.144 376,328.5 376.806,325.554 378.139,322.888 380,320.5 393.5,307 407,293.5 420.5,280 331.167,279.667 241.833,279.333 152.5,279 137.242,272.644 132.075,261.477 137,245.5 140.314,238.851 145.481,234.351 152.5,232 241.833,231.667 331.167,231.333 420.5,231 405.271,216.439 390.771,201.273 377,185.5 372.208,169.427 377.375,158.094 392.5,151.5z"/>
-										</DrawingGroup>
-									</DrawingGroup>
-								</DrawingImage.Drawing>
-							</DrawingImage>
-						</Image.Source>
-					</Image>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-	
+<Styles
+    x:DataType="controls:VectorImage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="controls|VectorImage.LogOutVectorImage">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Image OpacityMask="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
+                        <Image.Source>
+                            <DrawingImage>
+                                <DrawingImage.Drawing>
+                                    <DrawingGroup ClipGeometry="M0,0 V512 H512 V0 H0 Z">
+                                        <DrawingGroup Opacity="1">
+                                            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F0 M512,512z M0,0z M70.5,7.5C142.501,7.33334 214.501,7.5 286.5,8 324.543,15.7126 348.709,38.2126 359,75.5 359.667,95.1667 359.667,114.833 359,134.5 352.644,149.758 341.477,154.925 325.5,150 318.851,146.686 314.351,141.519 312,134.5 311.667,118.5 311.333,102.5 311,86.5 307.343,71.1741 297.843,61.3407 282.5,57 215.197,55.3539 147.864,55.0206 80.5,56 65.426,59.9284 57.2594,69.7617 56,85.5 55.3333,198.833 55.3333,312.167 56,425.5 57.2594,441.238 65.426,451.072 80.5,455 150.869,455.984 221.203,455.65 291.5,454 301.27,449.974 307.437,442.807 310,432.5 311.238,413.867 311.904,395.2 312,376.5 317.457,362.518 327.624,357.018 342.5,360 350.667,362.833 356.167,368.333 359,376.5 359.667,396.5 359.667,416.5 359,436.5 352.543,472.288 331.71,494.454 296.5,503 221.167,503.667 145.833,503.667 70.5,503 35.2865,494.45 14.4532,472.284 8,436.5 7.33333,315.833 7.33333,195.167 8,74.5 14.6423,38.6978 35.4756,16.3644 70.5,7.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1">
+                                            <GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Geometry="F0 M512,512z M0,0z M392.5,151.5C400.45,150.414 407.783,151.914 414.5,156 442.667,184.167 470.833,212.333 499,240.5 505,250.5 505,260.5 499,270.5 470.833,298.667 442.667,326.833 414.5,355 404.5,361 394.5,361 384.5,355 376.271,347.977 373.437,339.144 376,328.5 376.806,325.554 378.139,322.888 380,320.5 393.5,307 407,293.5 420.5,280 331.167,279.667 241.833,279.333 152.5,279 137.242,272.644 132.075,261.477 137,245.5 140.314,238.851 145.481,234.351 152.5,232 241.833,231.667 331.167,231.333 420.5,231 405.271,216.439 390.771,201.273 377,185.5 372.208,169.427 377.375,158.094 392.5,151.5z" />
+                                        </DrawingGroup>
+                                    </DrawingGroup>
+                                </DrawingImage.Drawing>
+                            </DrawingImage>
+                        </Image.Source>
+                    </Image>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </Styles>

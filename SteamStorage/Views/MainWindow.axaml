@@ -1,17 +1,20 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:vm="using:SteamStorage.ViewModels"
-        mc:Ignorable="d" 
-		d:DesignWidth="1440" d:DesignHeight="1024"
-        x:Class="SteamStorage.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Classes="MainWindow"
-		Width="1440" Height="1024"
-        Icon="\Resources\Images\Bitmaps\BlackIcon24.ico"
-        Title="SteamStorage">
-	
-	<TransitioningContentControl Content="{Binding MainViewModel, Mode=OneWay}"/>		
+<Window
+    Classes="MainWindow"
+    Height="1024"
+    Icon="\Resources\Images\Bitmaps\BlackIcon24.ico"
+    Title="SteamStorage"
+    Width="1440"
+    d:DesignHeight="1024"
+    d:DesignWidth="1440"
+    mc:Ignorable="d"
+    x:Class="SteamStorage.Views.MainWindow"
+    x:DataType="vm:MainWindowViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:SteamStorage.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <TransitioningContentControl Content="{Binding MainViewModel, Mode=OneWay}" />
 
 </Window>

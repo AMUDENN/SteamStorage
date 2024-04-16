@@ -1,117 +1,124 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-        
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Style Selector="RadioButton.NavigationRadioButton">
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                	<Border Background="Transparent">
-                		<Grid>
-                			<Border x:Name="Selected"
-                					Height="40" Width="10"
-                					CornerRadius="0, 16, 16, 0"
-                					HorizontalAlignment="Left"
-                					VerticalAlignment="Center"
-                					IsVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
-                					Classes="FirstAccentBorder"/>
-                			<Grid x:Name="ContentGrid"
-                					Height="60"
-                					Margin="20, 0">
-                				<Border x:Name="ItemBorder"
-                						Classes="BigRoundedBorder"
-                						Classes.BackgroundBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
-                						Opacity="0.5"/>
-                				<Border x:Name="PointerOverBorder"
-                						Classes="BackgroundBorder BigRoundedBorder"
-                						Opacity="0"/>
-                				<Grid x:Name="GridTitle"
-                				      ColumnDefinitions="60, *">
-					                <ContentPresenter Content="{TemplateBinding Content}"
-					                                  Grid.Column="0"
-					                                  Margin="14"/>
-                					<TextBlock x:Name="TitleTextBlock"
-                					           Text="{TemplateBinding Tag}"
-                					           Classes="MiddleTextBlock"
-                					           IsVisible="True"
-                					           Grid.Column="1"/>
-                				</Grid>
-                			</Grid>
-                		</Grid>
-                	</Border>
+                    <Border Background="Transparent">
+                        <Grid>
+                            <Border
+                                Classes="FirstAccentBorder"
+                                CornerRadius="0, 16, 16, 0"
+                                Height="40"
+                                HorizontalAlignment="Left"
+                                IsVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
+                                VerticalAlignment="Center"
+                                Width="10"
+                                x:Name="Selected" />
+                            <Grid
+                                Height="60"
+                                Margin="20,0"
+                                x:Name="ContentGrid">
+                                <Border
+                                    Classes="BigRoundedBorder"
+                                    Classes.BackgroundBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
+                                    Opacity="0.5"
+                                    x:Name="ItemBorder" />
+                                <Border
+                                    Classes="BackgroundBorder BigRoundedBorder"
+                                    Opacity="0"
+                                    x:Name="PointerOverBorder" />
+                                <Grid ColumnDefinitions="60, *" x:Name="GridTitle">
+                                    <ContentPresenter
+                                        Content="{TemplateBinding Content}"
+                                        Grid.Column="0"
+                                        Margin="14" />
+                                    <TextBlock
+                                        Classes="MiddleTextBlock"
+                                        Grid.Column="1"
+                                        IsVisible="True"
+                                        Text="{TemplateBinding Tag}"
+                                        x:Name="TitleTextBlock" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style Selector="^:pointerover /template/ Border#PointerOverBorder">
-            <Setter Property="Opacity" Value="0.3"/>
+            <Setter Property="Opacity" Value="0.3" />
         </Style>
         <Style Selector="^.Min">
-	        <Style Selector="^ /template/ Grid#ContentGrid">
-            	<Setter Property="Margin" Value="20, 0"/>
+            <Style Selector="^ /template/ Grid#ContentGrid">
+                <Setter Property="Margin" Value="20, 0" />
             </Style>
             <Style Selector="^ /template/ Border#ItemBorder">
-                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="CornerRadius" Value="8" />
             </Style>
             <Style Selector="^ /template/ TextBlock#TitleTextBlock">
-                <Setter Property="IsVisible" Value="False"/>
+                <Setter Property="IsVisible" Value="False" />
             </Style>
         </Style>
     </Style>
-	
-	<Style Selector="RadioButton.GameRadioButton">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate>
-					<Border x:Name="MainBorder"
-					        Classes="BackgroundAdditionalBorder SmallRoundedBorder"
-					        Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
-					        Height="60" Width="60">
-						<TextBlock Text="{TemplateBinding Content}"
-						           Classes="SmallTextBlock CenterTextBlock"/>
-					</Border>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-		<Style Selector="^:pointerover /template/ Border#MainBorder">
-			<Setter Property="Opacity" Value="0.8"/>
-		</Style>
-		<Style Selector="^.FirstAccentLinearGameRadioButton /template/ Border#MainBorder">
-			<Setter Property="BorderBrush" Value="{DynamicResource FirstAccentLinearBrush}"/>
-		</Style>
-		<Style Selector="^.SecondAccentLinearGameRadioButton /template/ Border#MainBorder">
-			<Setter Property="BorderBrush" Value="{DynamicResource SecondAccentLinearBrush}"/>
-		</Style>
-		<Style Selector="^.ThirdAccentLinearGameRadioButton /template/ Border#MainBorder">
-			<Setter Property="BorderBrush" Value="{DynamicResource ThirdAccentLinearBrush}"/>
-		</Style>
-	</Style>
-	
-	<Style Selector="RadioButton.PeriodRadioButton">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate>
-					<Border x:Name="MainBorder"
-					        Classes="BackgroundBorder SmallRoundedBorder"
-					        Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
-					        Height="35" Width="35">
-						<TextBlock Text="{TemplateBinding Content}"
-						           Classes="TinyTextBlock CenterTextBlock"/>
-					</Border>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-		<Style Selector="^:pointerover /template/ Border#MainBorder">
-			<Setter Property="Opacity" Value="0.8"/>
-		</Style>
-		<Style Selector="^.FirstAccentLinearPeriodRadioButton /template/ Border#MainBorder">
-			<Setter Property="BorderBrush" Value="{DynamicResource FirstAccentLinearBrush}"/>
-		</Style>
-		<Style Selector="^.SecondAccentLinearPeriodRadioButton /template/ Border#MainBorder">
-			<Setter Property="BorderBrush" Value="{DynamicResource SecondAccentLinearBrush}"/>
-		</Style>
-		<Style Selector="^.ThirdAccentLinearPeriodRadioButton /template/ Border#MainBorder">
-			<Setter Property="BorderBrush" Value="{DynamicResource ThirdAccentLinearBrush}"/>
-		</Style>
-	</Style>
-        
+
+    <Style Selector="RadioButton.GameRadioButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border
+                        Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                        Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
+                        Height="60"
+                        Width="60"
+                        x:Name="MainBorder">
+                        <TextBlock Classes="SmallTextBlock CenterTextBlock" Text="{TemplateBinding Content}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style Selector="^:pointerover /template/ Border#MainBorder">
+            <Setter Property="Opacity" Value="0.8" />
+        </Style>
+        <Style Selector="^.FirstAccentLinearGameRadioButton /template/ Border#MainBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource FirstAccentLinearBrush}" />
+        </Style>
+        <Style Selector="^.SecondAccentLinearGameRadioButton /template/ Border#MainBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondAccentLinearBrush}" />
+        </Style>
+        <Style Selector="^.ThirdAccentLinearGameRadioButton /template/ Border#MainBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource ThirdAccentLinearBrush}" />
+        </Style>
+    </Style>
+
+    <Style Selector="RadioButton.PeriodRadioButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border
+                        Classes="BackgroundBorder SmallRoundedBorder"
+                        Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
+                        Height="35"
+                        Width="35"
+                        x:Name="MainBorder">
+                        <TextBlock Classes="TinyTextBlock CenterTextBlock" Text="{TemplateBinding Content}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style Selector="^:pointerover /template/ Border#MainBorder">
+            <Setter Property="Opacity" Value="0.8" />
+        </Style>
+        <Style Selector="^.FirstAccentLinearPeriodRadioButton /template/ Border#MainBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource FirstAccentLinearBrush}" />
+        </Style>
+        <Style Selector="^.SecondAccentLinearPeriodRadioButton /template/ Border#MainBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondAccentLinearBrush}" />
+        </Style>
+        <Style Selector="^.ThirdAccentLinearPeriodRadioButton /template/ Border#MainBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource ThirdAccentLinearBrush}" />
+        </Style>
+    </Style>
+
 </Styles>

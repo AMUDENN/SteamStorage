@@ -1,86 +1,96 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:utilityModels="using:SteamStorage.Models.UtilityModels">
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:utilityModels="using:SteamStorage.Models.UtilityModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-	<Style Selector="ListBox.NavigationListBox">
-		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
-		<Setter Property="ItemsPanel">
-			<Setter.Value>
-				<ItemsPanelTemplate>
-					<StackPanel Orientation="Vertical" Spacing="20" Margin="0"/>
-				</ItemsPanelTemplate>
-			</Setter.Value>
-		</Setter>
-		<Style Selector="^ ListBoxItem">
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate x:DataType="utilityModels:NavigationModel">
-						
-						<Border Background="Transparent">
-							
-							<Grid>
-								
-								<Border x:Name="Selected"
-								        Height="40" Width="10"
-								        CornerRadius="0, 16, 16, 0"
-								        HorizontalAlignment="Left"
-								        VerticalAlignment="Center"
-								        IsVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
-								        Classes="FirstAccentBorder"/>
-								
-								<Grid x:Name="ContentGrid"
-								      Height="60"
-								      Margin="20, 0">
-									
-									<Border x:Name="ItemBorder"
-									        Classes="BigRoundedBorder"
-									        Classes.BackgroundBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
-									        Opacity="0.5"/>
-									
-									<Border x:Name="PointerOverBorder"
-									        Classes="BackgroundBorder BigRoundedBorder"
-									        Opacity="0"/>
-									
-									<Grid x:Name="GridTitle"
-									      ColumnDefinitions="60, *">
-										
-										<ContentControl Content="{Binding VectorImage, Mode=OneWay}"
-										                Margin="14"
-										                Grid.Column="0"/>
-										
-										<TextBlock x:Name="TitleTextBlock"
-										           Text="{Binding Title, Mode=OneWay}"
-										           Classes="MiddleTextBlock"
-										           IsVisible="True"
-										           Grid.Column="1"/>
-										
-									</Grid>
-									
-								</Grid>	
-								
-							</Grid>
-							
-						</Border>
-						
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-			<Style Selector="^:pointerover /template/ Border#PointerOverBorder">
-				<Setter Property="Opacity" Value="0.3"/>
-			</Style>
-		</Style>
-		<Style Selector="^.Min ListBoxItem">
-			<Style Selector="^ /template/ Grid#ContentGrid">
-            	<Setter Property="Margin" Value="20, 0"/>
+    <Style Selector="ListBox.NavigationListBox">
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel
+                        Margin="0"
+                        Orientation="Vertical"
+                        Spacing="20" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style Selector="^ ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate x:DataType="utilityModels:NavigationModel">
+
+                        <Border Background="Transparent">
+
+                            <Grid>
+
+                                <Border
+                                    Classes="FirstAccentBorder"
+                                    CornerRadius="0, 16, 16, 0"
+                                    Height="40"
+                                    HorizontalAlignment="Left"
+                                    IsVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
+                                    VerticalAlignment="Center"
+                                    Width="10"
+                                    x:Name="Selected" />
+
+                                <Grid
+                                    Height="60"
+                                    Margin="20,0"
+                                    x:Name="ContentGrid">
+
+                                    <Border
+                                        Classes="BigRoundedBorder"
+                                        Classes.BackgroundBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
+                                        Opacity="0.5"
+                                        x:Name="ItemBorder" />
+
+                                    <Border
+                                        Classes="BackgroundBorder BigRoundedBorder"
+                                        Opacity="0"
+                                        x:Name="PointerOverBorder" />
+
+                                    <Grid ColumnDefinitions="60, *" x:Name="GridTitle">
+
+                                        <ContentControl
+                                            Content="{Binding VectorImage, Mode=OneWay}"
+                                            Grid.Column="0"
+                                            Margin="14" />
+
+                                        <TextBlock
+                                            Classes="MiddleTextBlock"
+                                            Grid.Column="1"
+                                            IsVisible="True"
+                                            Text="{Binding Title, Mode=OneWay}"
+                                            x:Name="TitleTextBlock" />
+
+                                    </Grid>
+
+                                </Grid>
+
+                            </Grid>
+
+                        </Border>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style Selector="^:pointerover /template/ Border#PointerOverBorder">
+                <Setter Property="Opacity" Value="0.3" />
+            </Style>
+        </Style>
+        <Style Selector="^.Min ListBoxItem">
+            <Style Selector="^ /template/ Grid#ContentGrid">
+                <Setter Property="Margin" Value="20, 0" />
             </Style>
             <Style Selector="^ /template/ Border#ItemBorder">
-                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="CornerRadius" Value="8" />
             </Style>
             <Style Selector="^ /template/ TextBlock#TitleTextBlock">
-                <Setter Property="IsVisible" Value="False"/>
+                <Setter Property="IsVisible" Value="False" />
             </Style>
-		</Style>
-	</Style>
-        
+        </Style>
+    </Style>
+
 </Styles>

@@ -1,147 +1,180 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:SteamStorage.ViewModels"
-             xmlns:controls="using:SteamStorage.Resources.Controls"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="SteamStorage.Views.ActiveEditView"
-             x:DataType="vm:ActiveEditViewModel">
-    
+﻿<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="SteamStorage.Views.ActiveEditView"
+    x:DataType="vm:ActiveEditViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:SteamStorage.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Border Classes="BackgroundAdditionalBorder BigRoundedBorder">
-        
-        <Grid RowDefinitions="Auto,*,60" 
-              Margin="30">
-            
-            <TextBlock Text="{Binding Title, Mode=OneWay}"
-                       Classes="BigTextBlock WrapTextBlock CenterTextBlock"
-                       Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, 
-                                                 Converter={StaticResource DoubleLessConverter}, ConverterParameter=790}"
-                       Grid.Row="0"/>
 
-            <Grid RowDefinitions="*, Auto, *" 
-                  Margin="30"
-                  Grid.Row="1">
-                
-                <Grid RowDefinitions="Auto, 30, Auto, 30, Auto, 30, Auto" 
-                      Grid.Row="1">
-                    
+        <Grid Margin="30" RowDefinitions="Auto,*,60">
+
+            <TextBlock
+                Classes="BigTextBlock WrapTextBlock CenterTextBlock"
+                Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=790}"
+                Grid.Row="0"
+                Text="{Binding Title, Mode=OneWay}" />
+
+            <Grid
+                Grid.Row="1"
+                Margin="30"
+                RowDefinitions="*, Auto, *">
+
+                <Grid Grid.Row="1" RowDefinitions="Auto, 30, Auto, 30, Auto, 30, Auto">
+
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="35*"/>
-                        <ColumnDefinition Width="7*" MinWidth="30" MaxWidth="100"/>
-                        <ColumnDefinition Width="51*"/>
+                        <ColumnDefinition Width="35*" />
+                        <ColumnDefinition
+                            MaxWidth="100"
+                            MinWidth="30"
+                            Width="7*" />
+                        <ColumnDefinition Width="51*" />
                     </Grid.ColumnDefinitions>
-                    
-                    <controls:DefaultContentControl Header="Группа: "
-                                                    DefaultValue="{Binding DefaultActiveGroupModel, Mode=OneWay}" 
-                                                    Classes="MiddleDefaultContentControl"
-                                                    Grid.Row="0" Grid.Column="0">
-                        <ComboBox ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
-                                  SelectedItem="{Binding SelectedActiveGroupModel}" 
-                                  PlaceholderText="Выберите группу"
-                                  Classes="GroupComboBox BaseComboBox DarkComboBox"
-                                  Height="50"/>
-                    </controls:DefaultContentControl>
-                    
-                    <controls:DefaultContentControl Header="Количество: "
-                                                    DefaultValue="{Binding DefaultCount, Mode=OneWay}" 
-                                                    Classes="MiddleDefaultContentControl"
-                                                    Grid.Row="2" Grid.Column="0">
-                        <controls:AdvancedTextBox Text="{Binding Count}"
-                                                  StringFormat="N0"
-                                                  PreviewCharRegex="[0-9]"
-                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
-                                                  Height="50"/>
-                    </controls:DefaultContentControl>
-                    
-                    <controls:DefaultContentControl Header="Цена покупки: "
-                                                    DefaultValue="{Binding DefaultBuyPrice, Mode=OneWay}" 
-                                                    Classes="MiddleDefaultContentControl"
-                                                    Grid.Row="4" Grid.Column="0">
-                        <controls:AdvancedTextBox Text="{Binding BuyPrice}"
-                                                  StringFormat="N2"
-                                                  PreviewCharRegex="[0-9.,]"
-                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
-                                                  Height="50"/>
-                    </controls:DefaultContentControl>
-                    
-                    <controls:DefaultContentControl Header="Финансовая цель: "
-                                                    DefaultValue="{Binding DefaultGoalPrice, Mode=OneWay}" 
-                                                    Classes="MiddleDefaultContentControl"
-                                                    Grid.Row="6" Grid.Column="0">
-                        <controls:AdvancedTextBox Text="{Binding GoalPrice}"
-                                                  StringFormat="N2"
-                                                  PreviewCharRegex="[0-9.,]"
-                                                  Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
-                                                  Height="50"/>
-                    </controls:DefaultContentControl>
-                    
-                    <controls:DefaultContentControl Header="Предмет: "
-                                                    DefaultValue="{Binding DefaultSkinModel, Mode=OneWay}"
-                                                    Classes="MiddleDefaultContentControl"
-                                                    Grid.Row="0" Grid.Column="2">
-                        <AutoCompleteBox SelectedItem="{Binding SelectedSkinModel}" 
-                                         ItemsSource="{Binding SkinModels, Mode=OneWay}"
-                                         Text="{Binding Filter}"
-                                         ItemFilter="{Binding ItemFilter, Mode=OneWay}"
-                                         AsyncPopulator="{Binding AsyncPopulator, Mode=OneWay}"
-                                         Watermark="Выберите предмет из выпадающего списка"
-                                         Classes="BaseSkinsAutoCompleteBox DarkAutoCompleteBox SmallAutoCompleteBox"
-                                         Height="50"/>
-                    </controls:DefaultContentControl>
-                    
-                    <controls:DefaultContentControl Header="Описание: "
-                                                    DefaultValue="{Binding DefaultDescription, Mode=OneWay}" 
-                                                    Classes="MiddleDefaultContentControl"
-                                                    Grid.RowSpan="3" Grid.Row="2" Grid.Column="2">
-                        <TextBox Text="{Binding Description}"
-                                 MaxLength="300"
-                                 Classes="DarkTextBox BigWrappingTextBox SmallTextBox"
-                                 Height="190"/>
-                    </controls:DefaultContentControl>
-                    
-                    <controls:DefaultContentControl Header="Дата покупки: "
-                                                    DefaultValue="{Binding DefaultBuyDate, Mode=OneWay}" 
-                                                    Classes="MiddleDefaultContentControl"
-                                                    Grid.Row="6" Grid.Column="2">
-                        <DatePicker SelectedDate="{Binding BuyDate}"
-                                    Height="50"
-                                    Classes="DarkDatePicker SmallDatePicker"/>
-                    </controls:DefaultContentControl>
-                    
-                </Grid>
-                
-            </Grid>
-            
-            <Grid ColumnDefinitions="Auto,*,Auto,30,Auto" 
-                  Margin="30, 0"
-                  Grid.Row="2">
 
-                <Button Content="Назад"
-                        Command="{Binding BackCommand, Mode=OneWay}"
-                        Classes="UnderlineButton StretchButton"
-                        Grid.Column="0"/>
-                
-                <Button Tag="Удалить"
-                        Command="{Binding DeleteCommand, Mode=OneWay}"
-                        IsVisible="{Binding !IsNewItem, Mode=OneWay}"
-                        Classes="ImageTextButton UnderlineImageTextButton TransparentImageTextButton StretchButton"
-                        Foreground="{DynamicResource NegativeBrush}"
-                        HorizontalAlignment="Center"
-                        Grid.Column="2">
-                    <controls:VectorImage Classes="RecycleBinVectorImage NegativeVectorImage" 
-                                          Height="32" Width="32"/>
-                </Button>
-                
-                <Button Content="Сохранить"
-                        Command="{Binding SaveCommand, Mode=OneWay}"
-                        Classes="UnderlineButton StretchButton"
-                        Grid.Column="4"/>
-                
+                    <controls:DefaultContentControl
+                        Classes="MiddleDefaultContentControl"
+                        DefaultValue="{Binding DefaultActiveGroupModel, Mode=OneWay}"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Header="Группа: ">
+                        <ComboBox
+                            Classes="GroupComboBox BaseComboBox DarkComboBox"
+                            Height="50"
+                            ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
+                            PlaceholderText="Выберите группу"
+                            SelectedItem="{Binding SelectedActiveGroupModel}" />
+                    </controls:DefaultContentControl>
+
+                    <controls:DefaultContentControl
+                        Classes="MiddleDefaultContentControl"
+                        DefaultValue="{Binding DefaultCount, Mode=OneWay}"
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Header="Количество: ">
+                        <controls:AdvancedTextBox
+                            Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
+                            Height="50"
+                            PreviewCharRegex="[0-9]"
+                            StringFormat="N0"
+                            Text="{Binding Count}" />
+                    </controls:DefaultContentControl>
+
+                    <controls:DefaultContentControl
+                        Classes="MiddleDefaultContentControl"
+                        DefaultValue="{Binding DefaultBuyPrice, Mode=OneWay}"
+                        Grid.Column="0"
+                        Grid.Row="4"
+                        Header="Цена покупки: ">
+                        <controls:AdvancedTextBox
+                            Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
+                            Height="50"
+                            PreviewCharRegex="[0-9.,]"
+                            StringFormat="N2"
+                            Text="{Binding BuyPrice}" />
+                    </controls:DefaultContentControl>
+
+                    <controls:DefaultContentControl
+                        Classes="MiddleDefaultContentControl"
+                        DefaultValue="{Binding DefaultGoalPrice, Mode=OneWay}"
+                        Grid.Column="0"
+                        Grid.Row="6"
+                        Header="Финансовая цель: ">
+                        <controls:AdvancedTextBox
+                            Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
+                            Height="50"
+                            PreviewCharRegex="[0-9.,]"
+                            StringFormat="N2"
+                            Text="{Binding GoalPrice}" />
+                    </controls:DefaultContentControl>
+
+                    <controls:DefaultContentControl
+                        Classes="MiddleDefaultContentControl"
+                        DefaultValue="{Binding DefaultSkinModel, Mode=OneWay}"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Header="Предмет: ">
+                        <AutoCompleteBox
+                            AsyncPopulator="{Binding AsyncPopulator, Mode=OneWay}"
+                            Classes="BaseSkinsAutoCompleteBox DarkAutoCompleteBox SmallAutoCompleteBox"
+                            Height="50"
+                            ItemFilter="{Binding ItemFilter, Mode=OneWay}"
+                            ItemsSource="{Binding SkinModels, Mode=OneWay}"
+                            SelectedItem="{Binding SelectedSkinModel}"
+                            Text="{Binding Filter}"
+                            Watermark="Выберите предмет из выпадающего списка" />
+                    </controls:DefaultContentControl>
+
+                    <controls:DefaultContentControl
+                        Classes="MiddleDefaultContentControl"
+                        DefaultValue="{Binding DefaultDescription, Mode=OneWay}"
+                        Grid.Column="2"
+                        Grid.Row="2"
+                        Grid.RowSpan="3"
+                        Header="Описание: ">
+                        <TextBox
+                            Classes="DarkTextBox BigWrappingTextBox SmallTextBox"
+                            Height="190"
+                            MaxLength="300"
+                            Text="{Binding Description}" />
+                    </controls:DefaultContentControl>
+
+                    <controls:DefaultContentControl
+                        Classes="MiddleDefaultContentControl"
+                        DefaultValue="{Binding DefaultBuyDate, Mode=OneWay}"
+                        Grid.Column="2"
+                        Grid.Row="6"
+                        Header="Дата покупки: ">
+                        <DatePicker
+                            Classes="DarkDatePicker SmallDatePicker"
+                            Height="50"
+                            SelectedDate="{Binding BuyDate}" />
+                    </controls:DefaultContentControl>
+
+                </Grid>
+
             </Grid>
-            
+
+            <Grid
+                ColumnDefinitions="Auto,*,Auto,30,Auto"
+                Grid.Row="2"
+                Margin="30,0">
+
+                <Button
+                    Classes="UnderlineButton StretchButton"
+                    Command="{Binding BackCommand, Mode=OneWay}"
+                    Content="Назад"
+                    Grid.Column="0" />
+
+                <Button
+                    Classes="ImageTextButton UnderlineImageTextButton TransparentImageTextButton StretchButton"
+                    Command="{Binding DeleteCommand, Mode=OneWay}"
+                    Foreground="{DynamicResource NegativeBrush}"
+                    Grid.Column="2"
+                    HorizontalAlignment="Center"
+                    IsVisible="{Binding !IsNewItem, Mode=OneWay}"
+                    Tag="Удалить">
+                    <controls:VectorImage
+                        Classes="RecycleBinVectorImage NegativeVectorImage"
+                        Height="32"
+                        Width="32" />
+                </Button>
+
+                <Button
+                    Classes="UnderlineButton StretchButton"
+                    Command="{Binding SaveCommand, Mode=OneWay}"
+                    Content="Сохранить"
+                    Grid.Column="4" />
+
+            </Grid>
+
         </Grid>
-        
+
     </Border>
-    
+
 </UserControl>

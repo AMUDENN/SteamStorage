@@ -1,116 +1,121 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:SteamStorage.ViewModels"
-             xmlns:controls="using:SteamStorage.Resources.Controls"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="SteamStorage.Views.ThemeView"
-             x:DataType="vm:ThemeViewModel">
-    
-    <ThemeVariantScope RequestedThemeVariant="{Binding ThemeVariant, Mode=OneWay}">
-        
-        <Border Classes="BackgroundBorder">
-            
-            <Grid RowDefinitions="7*,10,6*,10,4*" 
-                  ColumnDefinitions="30*,3*,50*,3*,50*"
-                  Margin="10" >
+﻿<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="SteamStorage.Views.ThemeView"
+    x:DataType="vm:ThemeViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:SteamStorage.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-                <Border Classes="BackgroundAdditionalBorder SmallRoundedBorder"
-                        Grid.RowSpan="5" Grid.Row="0" Grid.Column="0">
-                    
-                    <Grid RowDefinitions="55, 15, 10, 6*, 26*, 6*, 10*" Margin="0, 7">
-                        
-                        <Border Classes="LittleRoundedBorder"
-                                VerticalAlignment="Top"
-                                Height="50" Width="50"
-                                Grid.Row="0">
-                            
+    <ThemeVariantScope RequestedThemeVariant="{Binding ThemeVariant, Mode=OneWay}">
+
+        <Border Classes="BackgroundBorder">
+
+            <Grid
+                ColumnDefinitions="30*,3*,50*,3*,50*"
+                Margin="10"
+                RowDefinitions="7*,10,6*,10,4*">
+
+                <Border
+                    Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Grid.RowSpan="5">
+
+                    <Grid Margin="0,7" RowDefinitions="55, 15, 10, 6*, 26*, 6*, 10*">
+
+                        <Border
+                            Classes="LittleRoundedBorder"
+                            Grid.Row="0"
+                            Height="50"
+                            VerticalAlignment="Top"
+                            Width="50">
+
                             <Grid>
-                                
-                                <Border Classes="BackgroundBorder"
-                                        Opacity="0.5"/>
-                                
-                                <controls:VectorImage Classes="AccountVectorImage ForegroundVectorImage"
-                                                      Margin="5"/>
-                                
+
+                                <Border Classes="BackgroundBorder" Opacity="0.5" />
+
+                                <controls:VectorImage Classes="AccountVectorImage ForegroundVectorImage" Margin="5" />
+
                             </Grid>
-                            
+
                         </Border>
-                        
-                        <TextBlock Text="Username" 
-                                   Classes="CenterTextBlock"
-                                   FontSize="12"
-                                   Grid.Row="1"/>
-                        
-                        <TextBlock Text="SteamID" 
-                                   Classes="CenterTextBlock LightTextBlock" 
-                                   FontSize="6"
-                                   Grid.Row="2"/>
-                        
-                        <Rectangle Classes="ForegroundRectangle"
-                                   Height="2"
-                                   Margin="20, 0" 
-                                   Grid.Row="3"/>
-                        
-                        <Rectangle Classes="ForegroundRectangle"
-                                   Height="2"
-                                   Margin="20, 0" 
-                                   Grid.Row="5"/>
-                        
+
+                        <TextBlock
+                            Classes="CenterTextBlock"
+                            FontSize="12"
+                            Grid.Row="1"
+                            Text="Username" />
+
+                        <TextBlock
+                            Classes="CenterTextBlock LightTextBlock"
+                            FontSize="6"
+                            Grid.Row="2"
+                            Text="SteamID" />
+
+                        <Rectangle
+                            Classes="ForegroundRectangle"
+                            Grid.Row="3"
+                            Height="2"
+                            Margin="20,0" />
+
+                        <Rectangle
+                            Classes="ForegroundRectangle"
+                            Grid.Row="5"
+                            Height="2"
+                            Margin="20,0" />
+
                     </Grid>
-                    
+
                 </Border>
-                
-                <Border Classes="FirstAccentGradientBorder SmallRoundedBorder"
-                        Grid.Row="0" Grid.Column="2">
-                    
-                </Border>
-                
-                <Grid Grid.Row="0" Grid.Column="4">
-                    
+
+                <Border
+                    Classes="FirstAccentGradientBorder SmallRoundedBorder"
+                    Grid.Column="2"
+                    Grid.Row="0" />
+
+                <Grid Grid.Column="4" Grid.Row="0">
+
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="10" MinHeight="10"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="10" MinHeight="10" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    
-                    <Border Classes="SecondAccentGradientBorder SmallRoundedBorder"
-                            Grid.Row="0">
-                    
-                    </Border>
-                    
-                    <Border Classes="ThirdAccentGradientBorder SmallRoundedBorder"
-                            Grid.Row="2">
-                    
-                    </Border>
-                    
+
+                    <Border Classes="SecondAccentGradientBorder SmallRoundedBorder" Grid.Row="0" />
+
+                    <Border Classes="ThirdAccentGradientBorder SmallRoundedBorder" Grid.Row="2" />
+
                 </Grid>
-                
-                <Border Classes="BackgroundAdditionalBorder SmallRoundedBorder"
-                        Grid.Row="2" Grid.Column="2">
-                    
-                </Border>
-                
-                <Border Classes="BackgroundAdditionalBorder SmallRoundedBorder"
-                        Grid.Row="2" Grid.Column="4">
-                    
-                </Border>
-                
-                <Border Classes="BackgroundAdditionalBorder SmallRoundedBorder"
-                        Grid.Row="4" Grid.Column="2">
-                    
-                </Border>
-                
-                <Border Classes="BackgroundAdditionalBorder SmallRoundedBorder"
-                        Grid.Row="4" Grid.Column="4">
-                    
-                </Border>
-                
+
+                <Border
+                    Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                    Grid.Column="2"
+                    Grid.Row="2" />
+
+                <Border
+                    Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                    Grid.Column="4"
+                    Grid.Row="2" />
+
+                <Border
+                    Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                    Grid.Column="2"
+                    Grid.Row="4" />
+
+                <Border
+                    Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                    Grid.Column="4"
+                    Grid.Row="4" />
+
             </Grid>
-            
+
         </Border>
-        
+
     </ThemeVariantScope>
-    
+
 </UserControl>

@@ -1,88 +1,94 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:utilityModels="using:SteamStorage.Models.UtilityModels"
-        xmlns:controls="using:SteamStorage.Resources.Controls">
-	
-	<Style Selector="ListBox.ThemeVariantsListBox">
-		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
-		<Setter Property="ItemsPanel">
-			<Setter.Value>
-				<ItemsPanelTemplate>
-					<VirtualizingStackPanel Orientation="Horizontal" Margin="0"/>
-				</ItemsPanelTemplate>
-			</Setter.Value>
-		</Setter>
-		<Style Selector="^ ListBoxItem">
-			<Setter Property="Margin" Value="0, 0, 30, 30"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate x:DataType="utilityModels:ThemeModel">
-						
-						<Grid VerticalAlignment="Stretch"
-						      Width="{Binding $self.Bounds.Height, Converter={StaticResource DoubleMultiplicationConverter}, ConverterParameter=1.25}">
-							
-							<Grid.RowDefinitions>
-								<RowDefinition Height="*"/>
-								<RowDefinition Height="30" MinHeight="30"/>
-								<RowDefinition Height="30" MinHeight="30"/>
-							</Grid.RowDefinitions>
-							
-							<Border Classes="BigRoundedBorder ForegroundBorderBrush SmallBorder"
-							        Grid.Row="0">
-								
-								<Border Classes="BigRoundedBorder">
-									
-									<ContentControl Content="{Binding Page, Mode=OneWay}"/>
-									
-								</Border>
-								
-							</Border>
-							
-							<Grid HorizontalAlignment="Center" VerticalAlignment="Stretch"
-							      Grid.Row="2">
-								
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="24" MinWidth="24"/>
-									<ColumnDefinition Width="10" MinWidth="10"/>
-									<ColumnDefinition Width="Auto"/>
-								</Grid.ColumnDefinitions>
-								
-								<controls:VectorImage x:Name="RadioButtonFalseVectorImage"
-								                      Classes="RadioButtonFalseVectorImage ForegroundVectorImage"
-								                      Opacity="1"
-								                      Height="24" Width="24"
-								                      VerticalAlignment="Center"
-								                      Grid.Column="0"/>
-								
-								<controls:VectorImage x:Name="RadioButtonTrueVectorImage"
-								                      Classes="RadioButtonTrueVectorImage ForegroundVectorImage"
-								                      Opacity="0"
-								                      Height="24" Width="24"
-								                      VerticalAlignment="Center"
-								                      Grid.Column="0"/>
-								
-								<TextBlock Text="{Binding Title, Mode=OneWay}"
-                                           Classes="MiddleTextBlock CenterTextBlock"
-                                           Height="30"
-                                           VerticalAlignment="Center"
-                                           Grid.Column="2"/>
-								
-							</Grid>
-							
-						</Grid>
-						
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-			<Style Selector="^:selected">
-				<Style Selector="^ /template/ controls|VectorImage#RadioButtonFalseVectorImage">
-					<Setter Property="Opacity" Value="0"/>
-				</Style>
-				<Style Selector="^ /template/ controls|VectorImage#RadioButtonTrueVectorImage">
-					<Setter Property="Opacity" Value="1"/>
-				</Style>
-			</Style>
-		</Style>
-	</Style>
-	
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:utilityModels="using:SteamStorage.Models.UtilityModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="ListBox.ThemeVariantsListBox">
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Margin="0" Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style Selector="^ ListBoxItem">
+            <Setter Property="Margin" Value="0, 0, 30, 30" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate x:DataType="utilityModels:ThemeModel">
+
+                        <Grid VerticalAlignment="Stretch" Width="{Binding $self.Bounds.Height, Converter={StaticResource DoubleMultiplicationConverter}, ConverterParameter=1.25}">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="30" MinHeight="30" />
+                                <RowDefinition Height="30" MinHeight="30" />
+                            </Grid.RowDefinitions>
+
+                            <Border Classes="BigRoundedBorder ForegroundBorderBrush SmallBorder" Grid.Row="0">
+
+                                <Border Classes="BigRoundedBorder">
+
+                                    <ContentControl Content="{Binding Page, Mode=OneWay}" />
+
+                                </Border>
+
+                            </Border>
+
+                            <Grid
+                                Grid.Row="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Stretch">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition MinWidth="24" Width="24" />
+                                    <ColumnDefinition MinWidth="10" Width="10" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <controls:VectorImage
+                                    Classes="RadioButtonFalseVectorImage ForegroundVectorImage"
+                                    Grid.Column="0"
+                                    Height="24"
+                                    Opacity="1"
+                                    VerticalAlignment="Center"
+                                    Width="24"
+                                    x:Name="RadioButtonFalseVectorImage" />
+
+                                <controls:VectorImage
+                                    Classes="RadioButtonTrueVectorImage ForegroundVectorImage"
+                                    Grid.Column="0"
+                                    Height="24"
+                                    Opacity="0"
+                                    VerticalAlignment="Center"
+                                    Width="24"
+                                    x:Name="RadioButtonTrueVectorImage" />
+
+                                <TextBlock
+                                    Classes="MiddleTextBlock CenterTextBlock"
+                                    Grid.Column="2"
+                                    Height="30"
+                                    Text="{Binding Title, Mode=OneWay}"
+                                    VerticalAlignment="Center" />
+
+                            </Grid>
+
+                        </Grid>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style Selector="^:selected">
+                <Style Selector="^ /template/ controls|VectorImage#RadioButtonFalseVectorImage">
+                    <Setter Property="Opacity" Value="0" />
+                </Style>
+                <Style Selector="^ /template/ controls|VectorImage#RadioButtonTrueVectorImage">
+                    <Setter Property="Opacity" Value="1" />
+                </Style>
+            </Style>
+        </Style>
+    </Style>
+
 </Styles>
