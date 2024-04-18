@@ -27,7 +27,7 @@
                     <Setter Property="Width" Value="300" />
                 </Style>
 
-                <Style Selector="Border#MenuBorder TextBlock#UserName,           Border#MenuBorder TextBlock#SteamId">
+                <Style Selector="Border#MenuBorder TextBlock#UserName, Border#MenuBorder TextBlock#SteamId">
                     <Setter Property="Opacity" Value="0" />
                 </Style>
 
@@ -145,6 +145,7 @@
         </Border>
 
         <TransitioningContentControl
+            Classes="CrossFadeTransitioningContentControl"
             Content="{Binding CurrentViewModel, Mode=OneWay}"
             Grid.Column="1"
             Margin="40,5,10,0" />

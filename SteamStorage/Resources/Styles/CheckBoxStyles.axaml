@@ -8,11 +8,13 @@
             <ControlTemplate>
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
                     <controls:VectorImage
-                        Classes="EmptyStarVectorImage ForegroundVectorImage"
+                        Classes="EmptyStarVectorImage"
+                        Foreground="{DynamicResource ForegroundBrush}"
                         Opacity="1"
                         x:Name="EmptyVectorImage" />
                     <controls:VectorImage
-                        Classes="StarVectorImage ForegroundVectorImage"
+                        Classes="StarVectorImage"
+                        Foreground="{DynamicResource ForegroundBrush}"
                         Opacity="0"
                         x:Name="FillVectorImage" />
                 </Grid>
@@ -24,6 +26,14 @@
             </Style>
             <Style Selector="^ /template/ controls|VectorImage#FillVectorImage">
                 <Setter Property="Opacity" Value="1" />
+            </Style>
+        </Style>
+        <Style Selector="^.FourthAccentStarCheckBox:checked">
+            <Style Selector="^ /template/ controls|VectorImage#EmptyVectorImage">
+                <Setter Property="Foreground" Value="{DynamicResource FourthAccentLinearBrush}" />
+            </Style>
+            <Style Selector="^ /template/ controls|VectorImage#FillVectorImage">
+                <Setter Property="Foreground" Value="{DynamicResource FourthAccentLinearBrush}" />
             </Style>
         </Style>
     </Style>

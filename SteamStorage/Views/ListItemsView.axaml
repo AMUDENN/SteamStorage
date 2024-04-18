@@ -93,35 +93,35 @@
                 Text="Изображение" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton FourthAccentToggleButton"
                 Content="Название"
                 Grid.Column="2"
                 IsChecked="{Binding IsTitleOrdering}"
                 ToolTip.Tip="Название" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton FourthAccentToggleButton"
                 Content="Текущая цена"
                 Grid.Column="4"
                 IsChecked="{Binding IsCurrentCostOrdering}"
                 ToolTip.Tip="Текущая цена" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton FourthAccentToggleButton"
                 Content="Изменение (7дн)"
                 Grid.Column="6"
                 IsChecked="{Binding IsChange7Ordering}"
                 ToolTip.Tip="Изменение (7дн)" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton FourthAccentToggleButton"
                 Content="Изменение (30дн)"
                 Grid.Column="8"
                 IsChecked="{Binding IsChange30Ordering}"
                 ToolTip.Tip="Изменение (30дн)" />
 
             <CheckBox
-                Classes="StarCheckBox"
+                Classes="StarCheckBox FourthAccentStarCheckBox"
                 Grid.Column="10"
                 Height="24"
                 HorizontalAlignment="Center"

@@ -174,35 +174,35 @@
                 Text="Цвет" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton SecondAccentToggleButton"
                 Content="Название"
                 Grid.Column="2"
                 IsChecked="{Binding IsTitleOrdering}"
                 ToolTip.Tip="Название" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton SecondAccentToggleButton"
                 Content="Количество"
                 Grid.Column="4"
                 IsChecked="{Binding IsCountOrdering}"
                 ToolTip.Tip="Количество" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton SecondAccentToggleButton"
                 Content="Сумма покупки"
                 Grid.Column="6"
                 IsChecked="{Binding IsBuySumOrdering}"
                 ToolTip.Tip="Сумма покупки" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton SecondAccentToggleButton"
                 Content="Сумма продажи"
                 Grid.Column="8"
                 IsChecked="{Binding IsSoldSumOrdering}"
                 ToolTip.Tip="Сумма продажи" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton SecondAccentToggleButton"
                 Content="Изменение"
                 Grid.Column="10"
                 IsChecked="{Binding IsChangeOrdering}"

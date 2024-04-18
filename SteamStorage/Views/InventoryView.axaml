@@ -202,28 +202,28 @@
                 Text="Изображение" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton ThirdAccentToggleButton"
                 Content="Название"
                 Grid.Column="2"
                 IsChecked="{Binding IsTitleOrdering}"
                 ToolTip.Tip="Название" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton ThirdAccentToggleButton"
                 Content="Количество"
                 Grid.Column="4"
                 IsChecked="{Binding IsCountOrdering}"
                 ToolTip.Tip="Количество" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton ThirdAccentToggleButton"
                 Content="Текущая цена"
                 Grid.Column="6"
                 IsChecked="{Binding IsPriceOrdering}"
                 ToolTip.Tip="Текущая цена" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton ThirdAccentToggleButton"
                 Content="Сумма"
                 Grid.Column="8"
                 IsChecked="{Binding IsSumOrdering}"

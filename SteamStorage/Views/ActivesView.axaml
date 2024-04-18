@@ -18,7 +18,10 @@
             ItemsSource="{Binding SecondaryNavigationOptions, Mode=OneWay}"
             SelectedItem="{Binding SelectedSecondaryNavigationModel}" />
 
-        <TransitioningContentControl Content="{Binding CurrentViewModel, Mode=OneWay}" Grid.Row="1" />
+        <TransitioningContentControl
+            Classes="CrossFadeTransitioningContentControl"
+            Content="{Binding CurrentViewModel, Mode=OneWay}"
+            Grid.Row="1" />
 
     </Grid>
 

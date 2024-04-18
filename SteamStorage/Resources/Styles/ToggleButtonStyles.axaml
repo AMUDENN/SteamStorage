@@ -31,7 +31,7 @@
                             <ColumnDefinition MinWidth="20" Width="20" />
                         </Grid.ColumnDefinitions>
                         <TextBlock
-                            Classes="CenterTextBlock FirstAccentTextBlock"
+                            Classes="CenterTextBlock"
                             FontSize="{TemplateBinding FontSize}"
                             Grid.Column="0"
                             Text="{TemplateBinding Content}"
@@ -62,23 +62,89 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style Selector="^:indeterminate /template/ TextBlock#ContentTextBlock,                          ^:indeterminate /template/ controls|VectorImage#UpVectorImage,                          ^:indeterminate /template/ controls|VectorImage#DownVectorImage">
-            <Setter Property="TextElement.Foreground" Value="{DynamicResource ForegroundBrush}" />
+        <Style Selector="^:indeterminate /template/ controls|VectorImage#UpVectorImage, ^:indeterminate /template/ controls|VectorImage#DownVectorImage">
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
         </Style>
         <Style Selector="^:checked">
             <Style Selector="^ /template/ controls|VectorImage#DownVectorImage">
                 <Setter Property="IsVisible" Value="False" />
-            </Style>
-            <Style Selector="^ /template/ controls|VectorImage#UpVectorImage">
-                <Setter Property="Foreground" Value="{DynamicResource FirstAccentLinearBrush}" />
             </Style>
         </Style>
         <Style Selector="^:unchecked">
             <Style Selector="^ /template/ controls|VectorImage#UpVectorImage">
                 <Setter Property="IsVisible" Value="False" />
             </Style>
-            <Style Selector="^ /template/ controls|VectorImage#DownVectorImage">
-                <Setter Property="Foreground" Value="{DynamicResource FirstAccentLinearBrush}" />
+        </Style>
+        <Style Selector="^.FirstAccentToggleButton">
+            <Style Selector="^:checked">
+                <Style Selector="^ /template/ TextBlock#ContentTextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource FirstAccentBrush}" />
+                </Style>
+                <Style Selector="^ /template/ controls|VectorImage#UpVectorImage">
+                    <Setter Property="Foreground" Value="{DynamicResource FirstAccentLinearBrush}" />
+                </Style>
+            </Style>
+            <Style Selector="^:unchecked">
+                <Style Selector="^ /template/ TextBlock#ContentTextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource FirstAccentBrush}" />
+                </Style>
+                <Style Selector="^ /template/ controls|VectorImage#DownVectorImage">
+                    <Setter Property="Foreground" Value="{DynamicResource FirstAccentLinearBrush}" />
+                </Style>
+            </Style>
+        </Style>
+        <Style Selector="^.SecondAccentToggleButton">
+            <Style Selector="^:checked">
+                <Style Selector="^ /template/ TextBlock#ContentTextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource SecondAccentBrush}" />
+                </Style>
+                <Style Selector="^ /template/ controls|VectorImage#UpVectorImage">
+                    <Setter Property="Foreground" Value="{DynamicResource SecondAccentLinearBrush}" />
+                </Style>
+            </Style>
+            <Style Selector="^:unchecked">
+                <Style Selector="^ /template/ TextBlock#ContentTextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource SecondAccentBrush}" />
+                </Style>
+                <Style Selector="^ /template/ controls|VectorImage#DownVectorImage">
+                    <Setter Property="Foreground" Value="{DynamicResource SecondAccentLinearBrush}" />
+                </Style>
+            </Style>
+        </Style>
+        <Style Selector="^.ThirdAccentToggleButton">
+            <Style Selector="^:checked">
+                <Style Selector="^ /template/ TextBlock#ContentTextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource ThirdAccentBrush}" />
+                </Style>
+                <Style Selector="^ /template/ controls|VectorImage#UpVectorImage">
+                    <Setter Property="Foreground" Value="{DynamicResource ThirdAccentLinearBrush}" />
+                </Style>
+            </Style>
+            <Style Selector="^:unchecked">
+                <Style Selector="^ /template/ TextBlock#ContentTextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource ThirdAccentBrush}" />
+                </Style>
+                <Style Selector="^ /template/ controls|VectorImage#DownVectorImage">
+                    <Setter Property="Foreground" Value="{DynamicResource ThirdAccentLinearBrush}" />
+                </Style>
+            </Style>
+        </Style>
+        <Style Selector="^.FourthAccentToggleButton">
+            <Style Selector="^:checked">
+                <Style Selector="^ /template/ TextBlock#ContentTextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource FourthAccentBrush}" />
+                </Style>
+                <Style Selector="^ /template/ controls|VectorImage#UpVectorImage">
+                    <Setter Property="Foreground" Value="{DynamicResource FourthAccentLinearBrush}" />
+                </Style>
+            </Style>
+            <Style Selector="^:unchecked">
+                <Style Selector="^ /template/ TextBlock#ContentTextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource FourthAccentBrush}" />
+                </Style>
+                <Style Selector="^ /template/ controls|VectorImage#DownVectorImage">
+                    <Setter Property="Foreground" Value="{DynamicResource FourthAccentLinearBrush}" />
+                </Style>
             </Style>
         </Style>
     </Style>

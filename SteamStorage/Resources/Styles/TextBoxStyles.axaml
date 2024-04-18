@@ -6,6 +6,22 @@
         <Setter Property="SelectionBrush" Value="{DynamicResource ThirdAccentBrush}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="ContextFlyout" Value="{x:Null}" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition
+                    Duration="0:0:0.2"
+                    Easing="LinearEasing"
+                    Property="FontSize" />
+                <DoubleTransition
+                    Duration="0:0:0.1"
+                    Easing="SineEaseOut"
+                    Property="Opacity" />
+                <BrushTransition
+                    Duration="0:0:0.1"
+                    Easing="SineEaseOut"
+                    Property="Foreground" />
+            </Transitions>
+        </Setter>
         <Style Selector="^:disabled">
             <Setter Property="Opacity" Value="0.5" />
             <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />

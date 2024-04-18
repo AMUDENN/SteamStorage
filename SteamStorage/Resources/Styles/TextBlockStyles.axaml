@@ -22,7 +22,7 @@
                     Easing="SineEaseOut"
                     Property="Opacity" />
                 <BrushTransition
-                    Duration="0:0:0.1"
+                    Duration="0:0:0.25"
                     Easing="SineEaseOut"
                     Property="Foreground" />
             </Transitions>

@@ -188,42 +188,42 @@
                 Text="Изображение " />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton SecondAccentToggleButton"
                 Content="Название"
                 Grid.Column="2"
                 IsChecked="{Binding IsTitleOrdering}"
                 ToolTip.Tip="Название" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton SecondAccentToggleButton"
                 Content="Количество"
                 Grid.Column="4"
                 IsChecked="{Binding IsCountOrdering}"
                 ToolTip.Tip="Количество" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton SecondAccentToggleButton"
                 Content="Цена покупки"
                 Grid.Column="6"
                 IsChecked="{Binding IsBuyPriceOrdering}"
                 ToolTip.Tip="Цена покупки" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton SecondAccentToggleButton"
                 Content="Цена продажи"
                 Grid.Column="8"
                 IsChecked="{Binding IsSoldPriceOrdering}"
                 ToolTip.Tip="Цена продажи" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton SecondAccentToggleButton"
                 Content="Сумма продажи"
                 Grid.Column="10"
                 IsChecked="{Binding IsSoldSumOrdering}"
                 ToolTip.Tip="Сумма продажи" />
 
             <ToggleButton
-                Classes="OrderingToggleButton"
+                Classes="OrderingToggleButton SecondAccentToggleButton"
                 Content="Изменение"
                 Grid.Column="12"
                 IsChecked="{Binding IsChangeOrdering}"

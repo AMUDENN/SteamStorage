@@ -1,6 +1,6 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style Selector="TransitioningContentControl">
+    <Style Selector="TransitioningContentControl.CrossFadeTransitioningContentControl">
         <Setter Property="PageTransition">
             <Setter.Value>
                 <CrossFade Duration="0:00:00.200" />
