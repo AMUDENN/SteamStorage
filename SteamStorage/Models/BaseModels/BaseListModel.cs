@@ -54,8 +54,10 @@ public abstract class BaseListModel : ModelBase
         get => _pageNumber;
         set
         {
+            int? number = _pageNumber;
             SetProperty(ref _pageNumber, value);
-            if (PageNumber is not null) GetSkinsAsync();
+            if (PageNumber is null || value == number) return;
+            GetSkinsAsync();
         }
     }
 
@@ -73,6 +75,7 @@ public abstract class BaseListModel : ModelBase
             SetProperty(ref _pagesCount, value);
             if (value == 0)
             {
+                System.Diagnostics.Debug.WriteLine("SSS");
                 PageNumber = 1;
             }
             else if (value < PageNumber)

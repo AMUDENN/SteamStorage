@@ -1,5 +1,4 @@
-﻿
-<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style Selector="Border">
         <Setter Property="BorderThickness" Value="0" />
@@ -16,7 +15,7 @@
                     Easing="SineEaseOut"
                     Property="Height" />
                 <DoubleTransition
-                    Duration="0:0:0.1"
+                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
                     Property="Opacity" />
                 <ThicknessTransition
@@ -31,6 +30,10 @@
                     Duration="0:0:0.2"
                     Easing="SineEaseOut"
                     Property="BorderBrush" />
+                <BrushTransition
+                    Duration="0:0:0.2"
+                    Easing="SineEaseOut"
+                    Property="Background" />
             </Transitions>
         </Setter>
     </Style>
