@@ -39,15 +39,18 @@ namespace SteamStorage
         {
             ServiceCollection services = [];
 
+            
             //SteamStorageApi
             services.AddSteamStorageApi(options =>
             {
                 options.ClientTimeout = ProgramConstants.API_CLIENT_TIMEOUT;
             });
 
+            
             //Custom SteamStorageApi Services
             services.AddSteamStorageAuthorizationService();
             services.AddSteamStoragePingService();
+            services.AddSteamStorageReferenceInformationService();
             services.AddSteamStorageLoggerService(options =>
             {
                 options.ProgramName = ProgramConstants.LOG_PROGRAM_NAME;

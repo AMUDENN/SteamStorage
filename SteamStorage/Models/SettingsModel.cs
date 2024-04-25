@@ -14,6 +14,7 @@ using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
 using SteamStorage.Views;
 using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.Services.ReferenceInformationService;
 using SteamStorageAPI.SDK.Utilities;
 
 namespace SteamStorage.Models;
@@ -26,6 +27,7 @@ public class SettingsModel : ModelBase
     private readonly MainWindow _mainWindow;
     private readonly IThemeService _themeService;
     private readonly ISettingsService _settingsService;
+    private readonly IReferenceInformationService _referenceInformationService;
 
     private ThemeModel _selectedThemeModel;
 
@@ -61,12 +63,14 @@ public class SettingsModel : ModelBase
         ApiClient apiClient,
         MainWindow mainWindow,
         IThemeService themeService,
-        ISettingsService settingsService)
+        ISettingsService settingsService,
+        IReferenceInformationService referenceInformationService)
     {
         _apiClient = apiClient;
         _mainWindow = mainWindow;
         _themeService = themeService;
         _settingsService = settingsService;
+        _referenceInformationService = referenceInformationService;
 
         ThemeModels =
         [
@@ -134,7 +138,7 @@ public class SettingsModel : ModelBase
 
     private void DoOpenReferenceInformationCommand()
     {
-        //TODO:
+        _referenceInformationService.OpenReferenceInformation();
     }
 
     #endregion Methods
