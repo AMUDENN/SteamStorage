@@ -47,7 +47,7 @@ namespace SteamStorage
             });
 
             
-            //Custom SteamStorageApi Services
+            //SteamStorageApi Services
             services.AddSteamStorageAuthorizationService();
             services.AddSteamStoragePingService();
             services.AddSteamStorageReferenceInformationService();

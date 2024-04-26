@@ -18,7 +18,7 @@ public abstract class BaseDialogModel : ModelBase
 
     #region Constructor
 
-    public BaseDialogModel()
+    protected BaseDialogModel()
     {
         SetDialogResultCommand = new(DoSetDialogResultCommand, CanExecuteSetDialogResultCommand);
         SetDialogResultTrueCommand = new(DoSetDialogResultTrueCommand, CanExecuteSetDialogResultTrueCommand);
