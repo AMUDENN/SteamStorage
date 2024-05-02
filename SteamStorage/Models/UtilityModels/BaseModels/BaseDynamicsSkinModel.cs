@@ -146,7 +146,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
 
     #region Constructor
 
-    public BaseDynamicsSkinModel(
+    protected BaseDynamicsSkinModel(
         ApiClient apiClient,
         IThemeService themeService,
         int skinId,

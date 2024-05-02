@@ -1,8 +1,10 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Input;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.ViewModels;
 using SteamStorage.Views;
+using SteamStorageAPI.SDK.Services.ReferenceInformationService;
 
 namespace SteamStorage.Models;
 
@@ -10,6 +12,7 @@ public class MainWindowModel : ModelBase
 {
     #region Fields
 
+    private readonly IReferenceInformationService _referenceInformationService;
     private readonly MainWindow _mainWindow;
 
     #endregion Fields
@@ -21,6 +24,8 @@ public class MainWindowModel : ModelBase
     #endregion Properties
 
     #region Commands
+
+    public RelayCommand<KeyEventArgs> KeyDownCommand { get; }
 
     public RelayCommand MinimizeCommand { get; }
 
@@ -35,12 +40,15 @@ public class MainWindowModel : ModelBase
     #region Constructor
 
     public MainWindowModel(
+        IReferenceInformationService referenceInformationService,
         MainWindow mainWindow,
         MainViewModel mainViewModel)
     {
-        MainViewModel = mainViewModel;
+        _referenceInformationService = referenceInformationService;
         _mainWindow = mainWindow;
+        MainViewModel = mainViewModel;
 
+        KeyDownCommand = new(DoKeyDownCommand);
         MinimizeCommand = new(() => ChangeWindowState(WindowState.Minimized));
         MaximizeCommand = new(() => ChangeWindowState(WindowState.Maximized));
         RestoreCommand = new(() => ChangeWindowState(WindowState.Normal));
@@ -50,6 +58,12 @@ public class MainWindowModel : ModelBase
     #endregion Constructor
 
     #region Methods
+
+    private void DoKeyDownCommand(KeyEventArgs? eventArgs)
+    {
+        if (eventArgs?.Key == Key.F1)
+            _referenceInformationService.OpenReferenceInformation();
+    }
 
     private void ChangeWindowState(WindowState windowState)
     {

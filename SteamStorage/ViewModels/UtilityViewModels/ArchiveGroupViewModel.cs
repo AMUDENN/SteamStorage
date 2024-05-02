@@ -5,7 +5,7 @@ using SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels.UtilityViewModels;
 
-public class ArchiveGroupViewModel : BaseGroupViewModel
+public class ArchiveGroupViewModel : BaseExtendedGroupViewModel
 {
     #region Fields
 

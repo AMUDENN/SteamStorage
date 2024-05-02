@@ -91,7 +91,7 @@ public class BaseDynamicsSkinViewModel : BaseSkinViewModel
 
     #region Constructor
 
-    public BaseDynamicsSkinViewModel(
+    protected BaseDynamicsSkinViewModel(
         BaseDynamicsSkinModel model,
         ChartTooltipModel chartTooltipModel) : base(model)
     {

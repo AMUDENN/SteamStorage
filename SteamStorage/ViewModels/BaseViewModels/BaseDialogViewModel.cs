@@ -33,7 +33,7 @@ public abstract class BaseDialogViewModel : ViewModelBase
     
     #region Constructor
 
-    public BaseDialogViewModel(
+    protected BaseDialogViewModel(
         BaseDialogModel baseDialogModel)
     {
         _baseDialogModel = baseDialogModel;

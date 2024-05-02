@@ -10,6 +10,8 @@ public class ExtendedBaseGroupModel : BaseGroupModel
     public string Colour { get; }
 
     public int Count { get; }
+    
+    public DateTime DateCreation { get; }
 
     public string DateCreationString { get; }
     
@@ -29,6 +31,7 @@ public class ExtendedBaseGroupModel : BaseGroupModel
     {
         Colour = colour;
         Count = count;
+        DateCreation = dateCreation;
         DateCreationString = dateCreation.ToString(ProgramConstants.VIEW_DATE_FORMAT);
         Description = description;
     }

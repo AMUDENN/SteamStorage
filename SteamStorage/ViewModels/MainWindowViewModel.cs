@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using Avalonia.Input;
+using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models;
 using SteamStorage.ViewModels.Tools;
 
@@ -23,6 +24,11 @@ public class MainWindowViewModel : ViewModelBase
 
     #region Commands
 
+    public RelayCommand<KeyEventArgs> KeyDownCommand
+    {
+        get => _model.KeyDownCommand;
+    }
+    
     public RelayCommand MinimizeCommand
     {
         get => _model.MinimizeCommand;

@@ -11,9 +11,17 @@
     x:DataType="vm:MainWindowViewModel"
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:SteamStorage.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <i:Interaction.Behaviors>
+        <ia:EventTriggerBehavior EventName="KeyDown">
+            <ia:InvokeCommandAction Command="{Binding KeyDownCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
+        </ia:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
 
     <TransitioningContentControl Classes="CrossFadeTransitioningContentControl" Content="{Binding MainViewModel, Mode=OneWay}" />
 

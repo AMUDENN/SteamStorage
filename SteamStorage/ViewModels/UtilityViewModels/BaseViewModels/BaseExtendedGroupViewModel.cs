@@ -1,9 +1,10 @@
-﻿using SteamStorage.Models.UtilityModels.BaseModels;
+﻿using System;
+using SteamStorage.Models.UtilityModels.BaseModels;
 using SteamStorage.ViewModels.Tools;
 
 namespace SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
 
-public class BaseGroupViewModel : ViewModelBase
+public class BaseExtendedGroupViewModel : ViewModelBase
 {
     #region Fields
 
@@ -27,6 +28,11 @@ public class BaseGroupViewModel : ViewModelBase
     {
         get => _model.Count;
     }
+    
+    public DateTime DateCreation
+    {
+        get => _model.DateCreation;
+    }
 
     public string DateCreationString
     {
@@ -37,7 +43,7 @@ public class BaseGroupViewModel : ViewModelBase
 
     #region Constructor
 
-    public BaseGroupViewModel(
+    protected BaseExtendedGroupViewModel(
         ExtendedBaseGroupModel model)
     {
         _model = model;
