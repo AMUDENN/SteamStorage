@@ -6,20 +6,24 @@
 
     <Style Selector="ListBox.ThemeVariantsListBox">
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="AutoScrollToSelectedItem" Value="True" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Margin="0" Orientation="Horizontal" />
+                    <StackPanel
+                        Margin="0"
+                        Orientation="Horizontal"
+                        Spacing="30" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
         <Style Selector="^ ListBoxItem">
-            <Setter Property="Margin" Value="0, 0, 30, 30" />
+            <Setter Property="Margin" Value="0, 0, 0, 30" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate x:DataType="utilityModels:ThemeModel">
 
-                        <Grid VerticalAlignment="Stretch" Width="{Binding $self.Bounds.Height, Converter={StaticResource DoubleMultiplicationConverter}, ConverterParameter=1.25}">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
