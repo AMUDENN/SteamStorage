@@ -23,7 +23,10 @@
                 <Setter.Value>
                     <ControlTemplate x:DataType="utilityModels:ThemeModel">
 
-                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Width="{Binding $self.Bounds.Height, Converter={StaticResource DoubleMultiplicationConverter}, ConverterParameter=1.25}">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
