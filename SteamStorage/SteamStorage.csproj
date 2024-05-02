@@ -65,7 +65,7 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="SteamStorageAPI.SDK" Version="1.0.13" />
+    <PackageReference Include="SteamStorageAPI.SDK" Version="1.1.2" />
   </ItemGroup>
 
 

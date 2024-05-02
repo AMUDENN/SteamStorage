@@ -8,9 +8,9 @@
     <SolidColorBrush Color="#6493C6" x:Key="ThirdAccentBrush" />
     <SolidColorBrush Color="#729665" x:Key="FourthAccentBrush" />
 
-    <SolidColorBrush Color="#222629" x:Key="TopLevelBackgroundBrush" />
+    <SolidColorBrush Color="#BFBFBF" x:Key="TopLevelBackgroundBrush" />
     <SolidColorBrush
-        Color="#6A6E73"
+        Color="#9DD2E2"
         Opacity="0.25"
         x:Key="TopLevelBackgroundLightBrush" />
 
