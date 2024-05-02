@@ -75,7 +75,9 @@ public class SettingsModel : ModelBase
         ThemeModels =
         [
             new("Классический", ThemeVariants.Classic),
-            new("Лаймовый", ThemeVariants.Lime)
+            new("Лаймовый", ThemeVariants.Lime),
+            new("Тёмный", ThemeVariants.VeryDark),
+            new("Светлый", ThemeVariants.VeryLight)
         ];
 
         _selectedThemeModel = ThemeModels.First();

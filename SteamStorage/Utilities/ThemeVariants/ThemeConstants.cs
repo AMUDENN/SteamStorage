@@ -8,7 +8,9 @@ public static class ThemeConstants
     {
         Default,
         Classic,
-        Lime
+        Lime,
+        VeryDark,
+        VeryLight
     }
 
     #endregion Enums

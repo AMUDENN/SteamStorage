@@ -70,6 +70,10 @@
         <Setter Property="CornerRadius" Value="16" />
     </Style>
 
+    <Style Selector="Border.BigRoundedIncludedBorder">
+        <Setter Property="CornerRadius" Value="14" />
+    </Style>
+
     <Style Selector="Border.SmallRoundedBorder">
         <Setter Property="CornerRadius" Value="8" />
     </Style>

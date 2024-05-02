@@ -129,6 +129,8 @@
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceInclude Source="avares://SteamStorage/Resources/Themes/ClassicTheme.axaml" x:Key="{x:Static themeVariants:ThemeVariants.Classic}" />
                 <ResourceInclude Source="avares://SteamStorage/Resources/Themes/LimeTheme.axaml" x:Key="{x:Static themeVariants:ThemeVariants.Lime}" />
+                <ResourceInclude Source="avares://SteamStorage/Resources/Themes/VeryDarkTheme.axaml" x:Key="{x:Static themeVariants:ThemeVariants.VeryDark}" />
+                <ResourceInclude Source="avares://SteamStorage/Resources/Themes/VeryLightTheme.axaml" x:Key="{x:Static themeVariants:ThemeVariants.VeryLight}" />
             </ResourceDictionary.ThemeDictionaries>
 
         </ResourceDictionary>

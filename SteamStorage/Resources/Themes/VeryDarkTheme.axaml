@@ -1,0 +1,40 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush Color="#000000" x:Key="BackgroundBrush" />
+    <SolidColorBrush Color="#191D21" x:Key="BackgroundAdditionalBrush" />
+    <SolidColorBrush Color="#E7EFF2" x:Key="ForegroundBrush" />
+    <SolidColorBrush Color="#5F47C3" x:Key="FirstAccentBrush" />
+    <SolidColorBrush Color="#AB36E7" x:Key="SecondAccentBrush" />
+    <SolidColorBrush Color="#2676CB" x:Key="ThirdAccentBrush" />
+    <SolidColorBrush Color="#348B15" x:Key="FourthAccentBrush" />
+
+    <SolidColorBrush Color="#222629" x:Key="TopLevelBackgroundBrush" />
+    <SolidColorBrush
+        Color="#6A6E73"
+        Opacity="0.25"
+        x:Key="TopLevelBackgroundLightBrush" />
+
+    <SolidColorBrush Color="#1E9538" x:Key="PositiveBrush" />
+    <SolidColorBrush Color="#E03737" x:Key="NegativeBrush" />
+
+    <LinearGradientBrush x:Key="FirstAccentLinearBrush">
+        <GradientStop Color="#5F47C3" Offset="0" />
+        <GradientStop Color="#6606E7" Offset="0.75" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="SecondAccentLinearBrush">
+        <GradientStop Color="#AB36E7" Offset="0" />
+        <GradientStop Color="#A400DF" Offset="0.75" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ThirdAccentLinearBrush">
+        <GradientStop Color="#2676CB" Offset="0" />
+        <GradientStop Color="#026BDC" Offset="0.75" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="FourthAccentLinearBrush">
+        <GradientStop Color="#348B15" Offset="0" />
+        <GradientStop Color="#309700" Offset="0.75" />
+    </LinearGradientBrush>
+
+</ResourceDictionary>

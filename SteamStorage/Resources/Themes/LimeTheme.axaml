@@ -2,15 +2,15 @@
 
     <SolidColorBrush Color="#0F141A" x:Key="BackgroundBrush" />
     <SolidColorBrush Color="#252C32" x:Key="BackgroundAdditionalBrush" />
-    <SolidColorBrush Color="#089137" x:Key="ForegroundBrush" />
+    <SolidColorBrush Color="#D2DADD" x:Key="ForegroundBrush" />
     <SolidColorBrush Color="#089137" x:Key="FirstAccentBrush" />
     <SolidColorBrush Color="#2D8553" x:Key="SecondAccentBrush" />
-    <SolidColorBrush Color="#4DB991" x:Key="ThirdAccentBrush" />
+    <SolidColorBrush Color="#55A889" x:Key="ThirdAccentBrush" />
     <SolidColorBrush Color="#4E9036" x:Key="FourthAccentBrush" />
 
-    <SolidColorBrush Color="#232323" x:Key="TopLevelBackgroundBrush" />
+    <SolidColorBrush Color="#363E44" x:Key="TopLevelBackgroundBrush" />
     <SolidColorBrush
-        Color="#FF1F1F"
+        Color="#898C8F"
         Opacity="0.25"
         x:Key="TopLevelBackgroundLightBrush" />
 
@@ -28,7 +28,7 @@
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="ThirdAccentLinearBrush">
-        <GradientStop Color="#4DB991" Offset="0" />
+        <GradientStop Color="#55A889" Offset="0" />
         <GradientStop Color="#03A569" Offset="0.75" />
     </LinearGradientBrush>
 

@@ -9,6 +9,7 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models.BaseModels;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.ThemeService;
+using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.ViewModels.UtilityViewModels;
 using SteamStorageAPI.SDK;
 using SteamStorageAPI.SDK.ApiEntities;
@@ -321,6 +322,8 @@ public class InventoryModel : BaseListModel
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
+        
+        themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
         _currentSumString = string.Empty;
 
@@ -361,6 +364,12 @@ public class InventoryModel : BaseListModel
     {
         GetSkinsAsync();
         GetStatisticsAsync();
+    }
+
+    private void ChartThemeChangedHandler(object? sender, ChartThemeChangedEventArgs args)
+    {
+        GetInventoryGameCountSeries();
+        GetInventoryGameSumSeries();
     }
 
     private void DoClearFiltersCommand()

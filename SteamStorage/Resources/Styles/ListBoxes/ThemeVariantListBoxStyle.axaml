@@ -29,7 +29,7 @@
 
                             <Border Classes="BigRoundedBorder ForegroundBorderBrush SmallBorder" Grid.Row="0">
 
-                                <Border Classes="BigRoundedBorder">
+                                <Border Classes="BigRoundedIncludedBorder">
 
                                     <ContentControl Content="{Binding Page, Mode=OneWay}" />
 

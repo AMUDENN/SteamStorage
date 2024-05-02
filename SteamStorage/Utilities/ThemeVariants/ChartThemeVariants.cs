@@ -62,8 +62,8 @@ public static class ChartThemeVariants
             new(ChartColors.FirstAccent, new(157, 105, 242)),
             new(ChartColors.SecondAccent, new(199, 112, 245)),
             new(ChartColors.ThirdAccent, new(210, 218, 221)),
-            new(ChartColors.FourthAccent, new(110, 110, 100)),
-            new(ChartColors.FifthAccent, new(120, 120, 110)),
+            new(ChartColors.FourthAccent, new(50, 83, 192)),
+            new(ChartColors.FifthAccent, new(156, 53, 173)),
 
             new(ChartColors.Positive, new(30, 149, 56)),
             new(ChartColors.Negative, new(224, 55, 55)),
@@ -81,17 +81,61 @@ public static class ChartThemeVariants
             SKFontStyleSlant.Upright),
         new List<ChartColor>
         {
-            new(ChartColors.FirstAccent, new(23, 23, 23)),
-            new(ChartColors.SecondAccent, new(60, 60, 60)),
-            new(ChartColors.ThirdAccent, new(120, 120, 120)),
-            new(ChartColors.FourthAccent, new(110, 110, 100)),
-            new(ChartColors.FifthAccent, new(120, 120, 110)),
+            new(ChartColors.FirstAccent, new(157, 105, 242)),
+            new(ChartColors.SecondAccent, new(199, 112, 245)),
+            new(ChartColors.ThirdAccent, new(210, 218, 221)),
+            new(ChartColors.FourthAccent, new(50, 83, 192)),
+            new(ChartColors.FifthAccent, new(156, 53, 173)),
 
-            new(ChartColors.Positive, new(180, 180, 180)),
-            new(ChartColors.Negative, new(240, 240, 240)),
+            new(ChartColors.Positive, new(30, 149, 56)),
+            new(ChartColors.Negative, new(224, 55, 55)),
+
+            new(ChartColors.Background, new(15, 20, 26)),
+            new(ChartColors.Foreground, new(210, 218, 221))
+        });
+    
+    private static ChartThemeVariant VeryDark { get; } = new(
+        nameof(ThemeConstants.Themes.VeryDark),
+        SKTypeface.FromFamilyName(
+            "Inter, sans-serif",
+            SKFontStyleWeight.SemiBold,
+            SKFontStyleWidth.Normal,
+            SKFontStyleSlant.Upright),
+        new List<ChartColor>
+        {
+            new(ChartColors.FirstAccent, new(157, 105, 242)),
+            new(ChartColors.SecondAccent, new(199, 112, 245)),
+            new(ChartColors.ThirdAccent, new(210, 218, 221)),
+            new(ChartColors.FourthAccent, new(50, 83, 192)),
+            new(ChartColors.FifthAccent, new(156, 53, 173)),
+
+            new(ChartColors.Positive, new(30, 149, 56)),
+            new(ChartColors.Negative, new(224, 55, 55)),
 
             new(ChartColors.Background, new(0, 0, 0)),
-            new(ChartColors.Foreground, new(45, 45, 45))
+            new(ChartColors.Foreground, new(231, 239, 242))
+        });
+    
+    private static ChartThemeVariant VeryLight { get; } = new(
+        nameof(ThemeConstants.Themes.VeryLight),
+        SKTypeface.FromFamilyName(
+            "Inter, sans-serif",
+            SKFontStyleWeight.SemiBold,
+            SKFontStyleWidth.Normal,
+            SKFontStyleSlant.Upright),
+        new List<ChartColor>
+        {
+            new(ChartColors.FirstAccent, new(157, 105, 242)),
+            new(ChartColors.SecondAccent, new(199, 112, 245)),
+            new(ChartColors.ThirdAccent, new(210, 218, 221)),
+            new(ChartColors.FourthAccent, new(50, 83, 192)),
+            new(ChartColors.FifthAccent, new(156, 53, 173)),
+
+            new(ChartColors.Positive, new(30, 149, 56)),
+            new(ChartColors.Negative, new(224, 55, 55)),
+
+            new(ChartColors.Background, new(223, 223, 223)),
+            new(ChartColors.Foreground, new(21, 24, 24))
         });
 
     #endregion Properties
@@ -102,7 +146,7 @@ public static class ChartThemeVariants
     {
         ChartThemes = new List<ChartThemeVariant>
         {
-            Default, Classic, Lime
+            Default, Classic, Lime, VeryDark, VeryLight
         };
     }
 
