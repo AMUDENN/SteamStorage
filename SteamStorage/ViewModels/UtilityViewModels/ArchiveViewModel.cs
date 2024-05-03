@@ -81,7 +81,6 @@ public class ArchiveViewModel : BaseSkinViewModel
         _model = model;
         _listArchivesModel = listArchivesModel;
 
-        model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         listArchivesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

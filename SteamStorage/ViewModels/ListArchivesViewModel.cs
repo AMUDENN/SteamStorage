@@ -148,7 +148,6 @@ public class ListArchivesViewModel : BaseListViewModel
         _archiveGroupsModel = archiveGroupsModel;
         _gamesModel = gamesModel;
 
-        listArchivesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         archiveGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         gamesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }

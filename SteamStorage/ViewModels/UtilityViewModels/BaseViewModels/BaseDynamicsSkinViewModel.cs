@@ -98,7 +98,6 @@ public class BaseDynamicsSkinViewModel : BaseSkinViewModel
         _model = model;
         _chartTooltipModel = chartTooltipModel;
 
-        model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

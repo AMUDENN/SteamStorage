@@ -47,7 +47,6 @@ public class BaseExtendedGroupViewModel : ViewModelBase
         ExtendedBaseGroupModel model)
     {
         _model = model;
-
         model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

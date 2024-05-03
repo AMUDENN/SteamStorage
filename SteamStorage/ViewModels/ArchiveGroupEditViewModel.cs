@@ -5,7 +5,7 @@ using SteamStorage.ViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels;
 
-public class ArchiveGroupEditViewModel : BaseGroupEditViewModel
+public class ArchiveGroupEditViewModel : BaseEditViewModel
 {
     #region Fields
 
@@ -81,7 +81,6 @@ public class ArchiveGroupEditViewModel : BaseGroupEditViewModel
         ArchiveGroupEditModel archiveGroupEditModel) : base(archiveGroupEditModel)
     {
         _archiveGroupEditModel = archiveGroupEditModel;
-        archiveGroupEditModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

@@ -148,7 +148,6 @@ public class ListActivesViewModel : BaseListViewModel
         _activeGroupsModel = activeGroupsModel;
         _gamesModel = gamesModel;
 
-        listActivesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         activeGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         gamesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }

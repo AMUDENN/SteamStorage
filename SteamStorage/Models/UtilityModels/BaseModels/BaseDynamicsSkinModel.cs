@@ -177,8 +177,13 @@ public class BaseDynamicsSkinModel : BaseSkinModel
 
     public void UpdateStats()
     {
-        if (!(IsOneDayChecked || IsOneWeekChecked || IsOneYearChecked))
-            IsOneMonthChecked = true;
+        if (IsOneDayChecked || IsOneWeekChecked || IsOneYearChecked) return;
+        
+        IsOneDayChecked = false;
+        IsOneWeekChecked = false;
+        IsOneYearChecked = false;
+        
+        IsOneMonthChecked = true;
     }
 
     private void GetDynamicChart()

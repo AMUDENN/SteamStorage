@@ -38,9 +38,6 @@ public class InventoryItemViewModel : BaseDynamicsSkinViewModel
         ChartTooltipModel chartTooltipModel) : base(model, chartTooltipModel)
     {
         _model = model;
-
-        model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
-        chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

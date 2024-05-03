@@ -287,9 +287,9 @@ public class ArchiveEditModel : BaseItemEditModel
                && SelectedSkinModel is not null;
     }
 
-    protected override void SetTitle(BaseSkinViewModel? model, bool isEdit)
+    protected override void SetTitle(BaseSkinViewModel? model, bool isNewItem)
     {
-        if (isEdit)
+        if (isNewItem)
         {
             Title = ADD_TITLE;
             return;

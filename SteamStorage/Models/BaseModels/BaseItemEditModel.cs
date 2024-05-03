@@ -114,7 +114,7 @@ public abstract class BaseItemEditModel : BaseEditModel
         Filter = null;
     }
 
-    protected abstract void SetTitle(BaseSkinViewModel? model, bool isEdit);
+    protected abstract void SetTitle(BaseSkinViewModel? model, bool isNewItem);
 
     private bool ItemFilterPredicate(string? search, object? item)
     {

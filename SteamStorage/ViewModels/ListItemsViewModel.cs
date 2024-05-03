@@ -102,7 +102,6 @@ public class ListItemsViewModel : BaseListViewModel
         _listItemsModel = listItemsModel;
         _gamesModel = gamesModel;
 
-        listItemsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         gamesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

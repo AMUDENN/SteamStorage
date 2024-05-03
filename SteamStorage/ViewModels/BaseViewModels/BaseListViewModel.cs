@@ -62,7 +62,6 @@ public abstract class BaseListViewModel : ViewModelBase
         BaseListModel baseListModel)
     {
         _baseListModel = baseListModel;
-
         baseListModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

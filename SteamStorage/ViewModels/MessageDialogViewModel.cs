@@ -67,7 +67,6 @@ public class MessageDialogViewModel : BaseDialogViewModel
         MessageDialogModel messageDialogModel) : base(messageDialogModel)
     {
         _messageDialogModel = messageDialogModel;
-        messageDialogModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

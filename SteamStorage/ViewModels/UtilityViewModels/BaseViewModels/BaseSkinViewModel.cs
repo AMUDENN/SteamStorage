@@ -46,8 +46,14 @@ public class BaseSkinViewModel : ViewModelBase
         BaseSkinModel model)
     {
         _model = model;
-
-        model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        model.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName?.Contains("Checked") == true)
+            {
+                System.Diagnostics.Debug.WriteLine($"Prop: {e.PropertyName}");
+            }
+            OnPropertyChanged(e.PropertyName);
+        };
     }
 
     #endregion Constructor

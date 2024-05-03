@@ -46,7 +46,6 @@ public abstract class BaseEditViewModel : ViewModelBase
         BaseEditModel baseEditModel)
     {
         _baseEditModel = baseEditModel;
-
         baseEditModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

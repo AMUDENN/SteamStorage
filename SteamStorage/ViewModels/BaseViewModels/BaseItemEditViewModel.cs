@@ -63,8 +63,6 @@ public abstract class BaseItemEditViewModel : BaseEditViewModel
         BaseItemEditModel baseItemEditModel) : base(baseItemEditModel)
     {
         _baseItemEditModel = baseItemEditModel;
-
-        baseItemEditModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

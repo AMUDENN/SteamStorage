@@ -100,7 +100,6 @@ public class ActiveEditViewModel : BaseItemEditViewModel
         _activeEditModel = activeEditModel;
         _activeGroupsModel = activeGroupsModel;
 
-        activeEditModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         activeGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

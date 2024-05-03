@@ -9,7 +9,7 @@ using SteamStorage.ViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels;
 
-public class ActiveGroupEditViewModel : BaseGroupEditViewModel
+public class ActiveGroupEditViewModel : BaseEditViewModel
 {
     #region Fields
 
@@ -174,7 +174,6 @@ public class ActiveGroupEditViewModel : BaseGroupEditViewModel
         _activeGroupEditModel = activeGroupEditModel;
         _chartTooltipModel = chartTooltipModel;
 
-        activeGroupEditModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

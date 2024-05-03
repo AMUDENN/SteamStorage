@@ -68,9 +68,7 @@ public class ListItemViewModel : BaseDynamicsSkinViewModel
         _model = model;
         _listItemsModel = listItemsModel;
 
-        model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         listItemsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
-        chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

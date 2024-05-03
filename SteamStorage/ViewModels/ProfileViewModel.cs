@@ -112,6 +112,7 @@ public class ProfileViewModel : ViewModelBase
         _profileModel = profileModel;
         _currenciesModel = currenciesModel;
         _pagesModel = pagesModel;
+        
         profileModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         currenciesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         pagesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);

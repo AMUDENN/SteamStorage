@@ -114,7 +114,6 @@ public class ActiveSoldViewModel : BaseEditViewModel
         _activeSoldModel = activeSoldModel;
         _archiveGroupsModel = archiveGroupsModel;
 
-        activeSoldModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         archiveGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

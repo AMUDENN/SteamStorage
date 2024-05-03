@@ -49,7 +49,6 @@ public class SettingsViewModel : ViewModelBase
         SettingsModel model)
     {
         _model = model;
-
         model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

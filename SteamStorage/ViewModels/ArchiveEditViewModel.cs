@@ -116,7 +116,6 @@ public class ArchiveEditViewModel : BaseItemEditViewModel
         _archiveEditModel = archiveEditModel;
         _archiveGroupsModel = archiveGroupsModel;
 
-        archiveEditModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         archiveGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
