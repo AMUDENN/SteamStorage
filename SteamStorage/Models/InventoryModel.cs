@@ -19,6 +19,12 @@ namespace SteamStorage.Models;
 
 public class InventoryModel : BaseListModel
 {
+    #region Constants
+    
+    private const double CHART_WIDTH_DEFAULT = 200;
+    
+    #endregion Constants
+    
     #region Fields
 
     private readonly ApiClient _apiClient;
@@ -33,7 +39,7 @@ public class InventoryModel : BaseListModel
     private IEnumerable<ISeries> _inventoryGameCountSeries;
     private IEnumerable<Inventory.InventoryGameSumResponse> _inventoryGameSum;
     private IEnumerable<ISeries> _inventoryGameSumSeries;
-    private double _graphWidth;
+    private double _chartWidth;
 
     private GameModel? _selectedGameModel;
     private bool _isAllGamesChecked;
@@ -104,10 +110,10 @@ public class InventoryModel : BaseListModel
         private set => SetProperty(ref _inventoryGameSumSeries, value);
     }
 
-    public double GraphWidth
+    public double ChartWidth
     {
-        get => _graphWidth;
-        private set => SetProperty(ref _graphWidth, value);
+        get => _chartWidth;
+        private set => SetProperty(ref _chartWidth, value);
     }
 
     public GameModel? SelectedGameModel
@@ -334,7 +340,7 @@ public class InventoryModel : BaseListModel
         _inventoryGameCountSeries = Enumerable.Empty<ISeries>();
         _inventoryGameSum = Enumerable.Empty<Inventory.InventoryGameSumResponse>();
         _inventoryGameSumSeries = Enumerable.Empty<ISeries>();
-        _graphWidth = 200;
+        _chartWidth = CHART_WIDTH_DEFAULT;
 
         _inventoryModels = [];
         _itemsCancellationTokenSource = new();
@@ -427,7 +433,7 @@ public class InventoryModel : BaseListModel
                 i++;
             });
 
-        GraphWidth = GraphWidth < 200 ? GraphWidth + 1 : GraphWidth - 1;
+        ChartWidth = ChartWidth < CHART_WIDTH_DEFAULT ? ChartWidth + 1 : ChartWidth - 1;
     }
 
     private void GetInventoryGameSumSeries()
@@ -447,7 +453,7 @@ public class InventoryModel : BaseListModel
                 i++;
             });
         
-        GraphWidth = GraphWidth < 200 ? GraphWidth + 1 : GraphWidth - 1;
+        ChartWidth = ChartWidth < CHART_WIDTH_DEFAULT ? ChartWidth + 1 : ChartWidth - 1;
     }
 
     private async void GetStatisticsAsync()

@@ -106,7 +106,7 @@
                     Grid.Row="1"
                     Grid.RowSpan="2"
                     Grid.Column="3"
-                    Width="160"
+                    Width="{Binding InvestedSumWidth, Mode=OneWay}"
                     Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}">
 
                     <lvc:PieChart
@@ -179,7 +179,7 @@
                         Grid.Row="1"
                         Grid.RowSpan="2"
                         Grid.Column="3"
-                        Width="120"
+                        Width="{Binding FinancialGoalWidth, Mode=OneWay}"
                         Margin="30,5,-10,5"
                         Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}">
 
@@ -485,7 +485,7 @@
                         Grid.Row="2"
                         Grid.RowSpan="3"
                         Grid.Column="1"
-                        Width="200"
+                        Width="{Binding InventoryGamesWidth, Mode=OneWay}"
                         Margin="0,-5,-140,-5"
                         Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}"
                         InitialRotation="-90"

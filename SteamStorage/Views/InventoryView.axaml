@@ -78,7 +78,7 @@
                 <lvc:PieChart
                     Grid.Row="1"
                     Grid.Column="3"
-                    Width="{Binding GraphWidth, Mode=OneWay}"
+                    Width="{Binding ChartWidth, Mode=OneWay}"
                     InitialRotation="-90"
                     Series="{Binding InventoryGameCountSeries, Mode=OneWay}"
                     TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
@@ -94,7 +94,7 @@
                 <lvc:PieChart
                     Grid.Row="1"
                     Grid.Column="5"
-                    Width="{Binding GraphWidth, Mode=OneWay}"
+                    Width="{Binding ChartWidth, Mode=OneWay}"
                     InitialRotation="-90"
                     Series="{Binding InventoryGameSumSeries, Mode=OneWay}"
                     TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"

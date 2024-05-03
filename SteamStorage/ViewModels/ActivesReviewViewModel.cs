@@ -49,6 +49,11 @@ public class ActivesReviewViewModel : ViewModelBase
         get => _activesReviewModel.ActiveGroupsGameCurrentSumSeries;
     }
     
+    public double ChartMinWidth
+    {
+        get => _activesReviewModel.ChartMinWidth;
+    }
+    
     public SolidColorPaint TooltipTextPaint
     {
         get => _chartTooltipModel.TooltipTextPaint;

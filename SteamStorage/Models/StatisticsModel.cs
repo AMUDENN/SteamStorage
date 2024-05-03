@@ -18,22 +18,30 @@ namespace SteamStorage.Models;
 
 public class StatisticsModel : ModelBase
 {
+    #region Constnats
+
+    private const double INVESTED_SUM_WIDTH_DEFAULT = 160;
+    private const double FINANCIAL_GOAL_WIDTH_DEFAULT = 120;
+    private const double INVENTORY_GAMES_WIDTH_DEFAULT = 200;
+
+    #endregion Constants
+
     #region Fields
 
     private readonly ApiClient _apiClient;
     private readonly IPingService _pingService;
-
-
     private readonly UserModel _userModel;
     private readonly IThemeService _themeService;
 
     private string _investedSumString;
     private double _investedSumGrowth;
     private IEnumerable<ISeries> _investedSumGrowthSeries;
+    private double _investedSumWidth;
 
     private string _financialGoalString;
     private double _financialGoalPercentageCompletion;
     private IEnumerable<ISeries> _financialGoalPercentageCompletionSeries;
+    private double _financialGoalWidth;
 
     private int _totalCount;
 
@@ -49,6 +57,7 @@ public class StatisticsModel : ModelBase
     private string _inventorySumString;
     private IEnumerable<Statistics.InventoryGameStatisticResponse> _inventoryGames;
     private IEnumerable<ISeries> _inventoryGamesSeries;
+    private double _inventoryGamesWidth;
 
     private long _ping;
     private PingResult.ServerStatus _status;
@@ -79,6 +88,12 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _investedSumGrowthSeries, value);
     }
 
+    public double InvestedSumWidth
+    {
+        get => _investedSumWidth;
+        private set => SetProperty(ref _investedSumWidth, value);
+    }
+
     public string FinancialGoalString
     {
         get => _financialGoalString;
@@ -99,6 +114,12 @@ public class StatisticsModel : ModelBase
     {
         get => _financialGoalPercentageCompletionSeries;
         private set => SetProperty(ref _financialGoalPercentageCompletionSeries, value);
+    }
+
+    public double FinancialGoalWidth
+    {
+        get => _financialGoalWidth;
+        private set => SetProperty(ref _financialGoalWidth, value);
     }
 
     public int TotalCount
@@ -169,6 +190,12 @@ public class StatisticsModel : ModelBase
     {
         get => _inventoryGamesSeries;
         private set => SetProperty(ref _inventoryGamesSeries, value);
+    }
+
+    public double InventoryGamesWidth
+    {
+        get => _inventoryGamesWidth;
+        private set => SetProperty(ref _inventoryGamesWidth, value);
     }
 
     public long Ping
@@ -268,10 +295,13 @@ public class StatisticsModel : ModelBase
         _inventorySumString = string.Empty;
 
         _investedSumGrowthSeries = Enumerable.Empty<ISeries>();
+        _investedSumWidth = INVESTED_SUM_WIDTH_DEFAULT;
         _financialGoalPercentageCompletionSeries = Enumerable.Empty<ISeries>();
+        _financialGoalWidth = FINANCIAL_GOAL_WIDTH_DEFAULT;
 
         _inventoryGames = Enumerable.Empty<Statistics.InventoryGameStatisticResponse>();
         _inventoryGamesSeries = Enumerable.Empty<ISeries>();
+        _inventoryGamesWidth = INVENTORY_GAMES_WIDTH_DEFAULT;
 
         AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
 
@@ -292,7 +322,7 @@ public class StatisticsModel : ModelBase
     {
         RefreshStatisticsAsync();
     }
-    
+
     private void FinancialGoalChangedHandler(object? sender)
     {
         RefreshStatisticsAsync();
@@ -331,6 +361,10 @@ public class StatisticsModel : ModelBase
                 series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
                     .GetChartColor(ChartThemeVariants.ChartColors.ThirdAccent).Color);
             }));
+
+        InvestedSumWidth = InvestedSumWidth < INVESTED_SUM_WIDTH_DEFAULT 
+            ? InvestedSumWidth + 1 
+            : InvestedSumWidth - 1;
     }
 
     private void GetFinancialGoalPercentageCompletion()
@@ -354,6 +388,10 @@ public class StatisticsModel : ModelBase
                 series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
                     .GetChartColor(ChartThemeVariants.ChartColors.ThirdAccent).Color);
             }));
+
+        FinancialGoalWidth = FinancialGoalWidth < FINANCIAL_GOAL_WIDTH_DEFAULT
+            ? FinancialGoalWidth + 1
+            : FinancialGoalWidth - 1;
     }
 
     private void GetInventoryGamesSeries()
@@ -363,14 +401,18 @@ public class StatisticsModel : ModelBase
         int i = 0;
         InventoryGamesSeries = InventoryGames.OrderByDescending(x => x.Count)
             .AsPieSeries((value, builder) =>
-        {
-            builder.MaxRadialColumnWidth = 20;
-            builder.HoverPushout = 0;
-            builder.Mapping = (game, point) => new(point, game.Count);
-            builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
-            builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
-            i++;
-        });
+            {
+                builder.MaxRadialColumnWidth = 20;
+                builder.HoverPushout = 0;
+                builder.Mapping = (game, point) => new(point, game.Count);
+                builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
+                builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
+                i++;
+            });
+
+        InventoryGamesWidth = InventoryGamesWidth < INVENTORY_GAMES_WIDTH_DEFAULT
+            ? InventoryGamesWidth + 1
+            : InventoryGamesWidth - 1;
     }
 
     private async void RefreshStatisticsAsync()

@@ -32,6 +32,11 @@ public class StatisticsViewModel : ViewModelBase
     {
         get => _statisticsModel.InvestedSumGrowthSeries;
     }
+    
+    public double InvestedSumWidth
+    {
+        get => _statisticsModel.InvestedSumWidth;
+    }
 
     public string FinancialGoalString
     {
@@ -46,6 +51,11 @@ public class StatisticsViewModel : ViewModelBase
     public IEnumerable<ISeries> FinancialGoalPercentageCompletionSeries
     {
         get => _statisticsModel.FinancialGoalPercentageCompletionSeries;
+    }
+    
+    public double FinancialGoalWidth
+    {
+        get => _statisticsModel.FinancialGoalWidth;
     }
 
     public int TotalCount
@@ -96,6 +106,11 @@ public class StatisticsViewModel : ViewModelBase
     public IEnumerable<ISeries> InventoryGamesSeries
     {
         get => _statisticsModel.InventoryGamesSeries;
+    }
+    
+    public double InventoryGamesWidth
+    {
+        get => _statisticsModel.InventoryGamesWidth;
     }
 
     public SolidColorPaint TooltipTextPaint

@@ -107,6 +107,7 @@
                     <lvc:PieChart
                         Grid.Row="1"
                         Grid.Column="0"
+                        MinWidth="{Binding ChartMinWidth, Mode=OneWay}"
                         Margin="-25,0"
                         InitialRotation="-90"
                         Series="{Binding ActiveGroupsGameCountSeries, Mode=OneWay}"
@@ -124,6 +125,7 @@
                     <lvc:PieChart
                         Grid.Row="1"
                         Grid.Column="1"
+                        MinWidth="{Binding ChartMinWidth, Mode=OneWay}"
                         Margin="-25,0"
                         InitialRotation="-90"
                         Series="{Binding ActiveGroupsGameInvestmentSumSeries, Mode=OneWay}"
@@ -141,6 +143,7 @@
                     <lvc:PieChart
                         Grid.Row="1"
                         Grid.Column="2"
+                        MinWidth="{Binding ChartMinWidth, Mode=OneWay}"
                         Margin="-25,0"
                         InitialRotation="-90"
                         Series="{Binding ActiveGroupsGameCurrentSumSeries, Mode=OneWay}"

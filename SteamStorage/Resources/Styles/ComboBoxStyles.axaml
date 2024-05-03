@@ -61,7 +61,8 @@
                             Grid.Column="1"
                             Width="16"
                             Height="16"
-                            Classes="ArrowDownImage ForegroundVectorImage" />
+                            Classes="ArrowDownImage"
+                            Foreground="{TemplateBinding Foreground}" />
 
                         <Popup
                             x:Name="PART_Popup"
@@ -120,18 +121,12 @@
             <Style Selector="^ /template/ TextBlock#PlaceholderTextBlock">
                 <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
-            <Style Selector="^ /template/ PathIcon#DropDownGlyph">
-                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
-            </Style>
         </Style>
         <Style Selector="^:focus-visible">
             <Style Selector="^ /template/ ContentControl#ContentPresenter">
                 <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
             <Style Selector="^ /template/ TextBlock#PlaceholderTextBlock">
-                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
-            </Style>
-            <Style Selector="^ /template/ PathIcon#DropDownGlyph">
                 <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
         </Style>
@@ -143,9 +138,6 @@
                 <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
             <Style Selector="^ /template/ TextBlock#PlaceholderTextBlock">
-                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
-            </Style>
-            <Style Selector="^ /template/ PathIcon#DropDownGlyph">
                 <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             </Style>
         </Style>

@@ -20,6 +20,7 @@ public class ArchivesReviewModel : ModelBase
     #region Constants
 
     private const string EMPTY_LIST_TEXT = "Элементы не найдены";
+    private const double CHART_MIN_WIDTH = 1;
 
     #endregion Constants
 
@@ -39,6 +40,7 @@ public class ArchivesReviewModel : ModelBase
     private IEnumerable<ISeries> _archiveGroupsGameBuySumSeries;
     private IEnumerable<ArchiveGroups.ArchiveGroupsGameSoldSumResponse> _archiveGroupsGameSoldSum;
     private IEnumerable<ISeries> _archiveGroupsGameSoldSumSeries;
+    private double _chartMinWidth;
 
     private bool? _isTitleOrdering;
     private bool? _isCountOrdering;
@@ -124,6 +126,12 @@ public class ArchivesReviewModel : ModelBase
     {
         get => _archiveGroupsGameSoldSumSeries;
         private set => SetProperty(ref _archiveGroupsGameSoldSumSeries, value);
+    }
+    
+    public double ChartMinWidth
+    {
+        get => _chartMinWidth;
+        private set => SetProperty(ref _chartMinWidth, value);
     }
 
     public bool? IsTitleOrdering
@@ -334,6 +342,7 @@ public class ArchivesReviewModel : ModelBase
         _archiveGroupsGameBuySumSeries = Enumerable.Empty<ISeries>();
         _archiveGroupsGameSoldSum = Enumerable.Empty<ArchiveGroups.ArchiveGroupsGameSoldSumResponse>();
         _archiveGroupsGameSoldSumSeries = Enumerable.Empty<ISeries>();
+        _chartMinWidth = CHART_MIN_WIDTH;
 
         _archiveGroupModels = [];
         _groupsCancellationTokenSource = new();
@@ -407,6 +416,10 @@ public class ArchivesReviewModel : ModelBase
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;
             });
+        
+        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH 
+            ? ChartMinWidth + 1 
+            : ChartMinWidth - 1;
     }
 
     private void GetActiveGroupsGameInvestmentSumSeries()
@@ -425,6 +438,10 @@ public class ArchivesReviewModel : ModelBase
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;
             });
+        
+        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH 
+            ? ChartMinWidth + 1 
+            : ChartMinWidth - 1;
     }
 
     private void GetActiveGroupsGameCurrentSumSeries()
@@ -443,6 +460,10 @@ public class ArchivesReviewModel : ModelBase
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;
             });
+        
+        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH 
+            ? ChartMinWidth + 1 
+            : ChartMinWidth - 1;
     }
     
     private async void RefreshStatisticsAsync()

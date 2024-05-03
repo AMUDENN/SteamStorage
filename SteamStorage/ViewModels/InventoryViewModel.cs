@@ -46,9 +46,9 @@ public class InventoryViewModel : ViewModelBase
         get => _inventoryModel.InventoryGameSumSeries;
     }
     
-    public double GraphWidth
+    public double ChartWidth
     {
-        get => _inventoryModel.GraphWidth;
+        get => _inventoryModel.ChartWidth;
     }
     
     public SolidColorPaint TooltipTextPaint

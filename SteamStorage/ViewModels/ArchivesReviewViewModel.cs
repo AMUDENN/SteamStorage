@@ -48,6 +48,11 @@ public class ArchivesReviewViewModel : ViewModelBase
     {
         get => _archivesReviewModel.ArchiveGroupsGameSoldSumSeries;
     }
+    
+    public double ChartMinWidth
+    {
+        get => _archivesReviewModel.ChartMinWidth;
+    }
 
     public SolidColorPaint TooltipTextPaint
     {
