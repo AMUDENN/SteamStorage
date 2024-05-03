@@ -1,8 +1,8 @@
 <Styles
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:vm="using:SteamStorage.ViewModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:vm="using:SteamStorage.ViewModels">
 
     <Style Selector="Window">
         <Setter Property="ExtendClientAreaChromeHints" Value="NoChrome" />
@@ -19,64 +19,64 @@
             <ControlTemplate x:DataType="vm:MainWindowViewModel">
                 <Grid Margin="{TemplateBinding OffScreenMargin}">
                     <Border
+                        x:Name="WindowBorder"
                         Classes="SmallRoundedBorder BackgroundBorder"
-                        IsHitTestVisible="False"
-                        x:Name="WindowBorder" />
-                    <Border IsHitTestVisible="False" x:Name="PART_TransparencyFallback" />
+                        IsHitTestVisible="False" />
+                    <Border x:Name="PART_TransparencyFallback" IsHitTestVisible="False" />
                     <VisualLayerManager>
                         <Grid RowDefinitions="36, *">
                             <TextBlock
-                                Classes="CenterTextBlock LittleTextBlock"
                                 Grid.Row="0"
+                                Classes="CenterTextBlock LittleTextBlock"
                                 Text="{TemplateBinding Title}" />
                             <Grid
-                                ColumnDefinitions="36, *, Auto"
                                 Grid.Row="0"
-                                Margin="10,5">
+                                Margin="10,5"
+                                ColumnDefinitions="36, *, Auto">
                                 <controls:VectorImage
-                                    Classes="LogoVectorImage ForegroundVectorImage"
                                     Grid.Column="0"
-                                    Margin="4" />
+                                    Margin="4"
+                                    Classes="LogoVectorImage ForegroundVectorImage" />
                                 <StackPanel
                                     Grid.Column="2"
                                     HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
                                     Orientation="Horizontal"
-                                    Spacing="5"
-                                    VerticalAlignment="Center">
+                                    Spacing="5">
                                     <Button
+                                        x:Name="MinimizeButton"
                                         Classes="WindowButton"
-                                        Command="{Binding MinimizeCommand, Mode=OneWay}"
-                                        x:Name="MinimizeButton">
+                                        Command="{Binding MinimizeCommand, Mode=OneWay}">
                                         <controls:VectorImage Classes="MinimizeVectorImage ForegroundVectorImage" />
                                     </Button>
                                     <Button
+                                        x:Name="MaximizeButton"
                                         Classes="WindowButton"
-                                        Command="{Binding MaximizeCommand, Mode=OneWay}"
-                                        x:Name="MaximizeButton">
+                                        Command="{Binding MaximizeCommand, Mode=OneWay}">
                                         <controls:VectorImage Classes="MaximizeVectorImage ForegroundVectorImage" />
                                     </Button>
                                     <Button
+                                        x:Name="RestoreButton"
                                         Classes="WindowButton"
-                                        Command="{Binding RestoreCommand, Mode=OneWay}"
-                                        x:Name="RestoreButton">
+                                        Command="{Binding RestoreCommand, Mode=OneWay}">
                                         <controls:VectorImage Classes="RestoreVectorImage ForegroundVectorImage" />
                                     </Button>
                                     <Button
+                                        x:Name="CloseButton"
                                         Classes="WindowButton"
-                                        Command="{Binding CloseCommand, Mode=OneWay}"
-                                        x:Name="CloseButton">
+                                        Command="{Binding CloseCommand, Mode=OneWay}">
                                         <controls:VectorImage Classes="CloseVectorImage ForegroundVectorImage" />
                                     </Button>
                                 </StackPanel>
                             </Grid>
                             <ContentPresenter
-                                Content="{TemplateBinding Content}"
-                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                x:Name="PART_ContentPresenter"
                                 Grid.Row="1"
-                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 Margin="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                x:Name="PART_ContentPresenter" />
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
                         </Grid>
                     </VisualLayerManager>
                 </Grid>
@@ -111,50 +111,50 @@
                         Classes="TransparentBorder SmallRoundedBorder BoxShadowBorder"
                         IsHitTestVisible="False" />
                     <Border
+                        x:Name="WindowBorder"
+                        Margin="7"
                         Classes="SmallRoundedBorder BackgroundAdditionalBorder SmallBorder TopLevelBackgroundBorderBrush"
-                        IsHitTestVisible="False"
-                        Margin="7"
-                        x:Name="WindowBorder" />
+                        IsHitTestVisible="False" />
                     <Border
-                        IsHitTestVisible="False"
+                        x:Name="PART_TransparencyFallback"
                         Margin="7"
-                        x:Name="PART_TransparencyFallback" />
+                        IsHitTestVisible="False" />
                     <VisualLayerManager Margin="7">
                         <Grid RowDefinitions="36, *">
                             <TextBlock
-                                Classes="CenterTextBlock LittleTextBlock"
                                 Grid.Row="0"
+                                Classes="CenterTextBlock LittleTextBlock"
                                 Text="{TemplateBinding Title}" />
                             <Grid
-                                ColumnDefinitions="36, *, Auto"
                                 Grid.Row="0"
-                                Margin="10,5">
+                                Margin="10,5"
+                                ColumnDefinitions="36, *, Auto">
                                 <controls:VectorImage
-                                    Classes="LogoVectorImage ForegroundVectorImage"
                                     Grid.Column="0"
-                                    Margin="4" />
+                                    Margin="4"
+                                    Classes="LogoVectorImage ForegroundVectorImage" />
                                 <StackPanel
                                     Grid.Column="2"
                                     HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
                                     Orientation="Horizontal"
-                                    Spacing="5"
-                                    VerticalAlignment="Center">
+                                    Spacing="5">
                                     <Button
+                                        x:Name="CloseButton"
                                         Classes="WindowButton"
-                                        Command="{Binding CloseCommand, Mode=OneWay}"
-                                        x:Name="CloseButton">
+                                        Command="{Binding CloseCommand, Mode=OneWay}">
                                         <controls:VectorImage Classes="CloseVectorImage ForegroundVectorImage" />
                                     </Button>
                                 </StackPanel>
                             </Grid>
                             <ContentPresenter
-                                Content="{TemplateBinding Content}"
-                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                x:Name="PART_ContentPresenter"
                                 Grid.Row="1"
-                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 Margin="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                x:Name="PART_ContentPresenter" />
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
                         </Grid>
                     </VisualLayerManager>
                 </Grid>
@@ -191,10 +191,10 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <ContentPresenter
-                        Content="{TemplateBinding Content}"
-                        HorizontalAlignment="Center"
                         Margin="{TemplateBinding Padding}"
-                        VerticalAlignment="Center" />
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="{TemplateBinding Content}" />
                 </Border>
             </ControlTemplate>
         </Setter>

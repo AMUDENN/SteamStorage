@@ -29,6 +29,7 @@ public class ActivesReviewModel : ModelBase
     private readonly ActiveGroupsModel _activeGroupsModel;
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
+    private readonly PeriodsModel _periodsModel;
     private readonly IThemeService _themeService;
 
     private int _count;
@@ -319,12 +320,14 @@ public class ActivesReviewModel : ModelBase
         ActiveGroupsModel activeGroupsModel,
         ChartTooltipModel chartTooltipModel,
         UserModel userModel,
+        PeriodsModel periodsModel,
         IThemeService themeService)
     {
         _apiClient = apiClient;
         _activeGroupsModel = activeGroupsModel;
         _chartTooltipModel = chartTooltipModel;
         _userModel = userModel;
+        _periodsModel = periodsModel;
         _themeService = themeService;
 
         userModel.UserChanged += UserChangedHandler;
@@ -503,6 +506,7 @@ public class ActivesReviewModel : ModelBase
         ActiveGroupModels = groupsResponse.ActiveGroups.Select(x =>
                 new ActiveGroupViewModel(
                     new(_apiClient,
+                        _periodsModel,
                         _themeService,
                         x.Id,
                         x.Colour,

@@ -46,6 +46,7 @@ public class ActiveModel : BaseDynamicsSkinModel
 
     public ActiveModel(
         ApiClient apiClient,
+        PeriodsModel periodsModel,
         IThemeService themeService,
         int skinId,
         string imageUrl,
@@ -62,7 +63,7 @@ public class ActiveModel : BaseDynamicsSkinModel
         string currencyMark,
         double change,
         DateTime buyDate,
-        string? description) : base(apiClient, themeService, skinId, imageUrl, marketUrl, title)
+        string? description) : base(apiClient, periodsModel, themeService, skinId, imageUrl, marketUrl, title)
     {
         ActiveId = activeId;
         GroupId = groupId;

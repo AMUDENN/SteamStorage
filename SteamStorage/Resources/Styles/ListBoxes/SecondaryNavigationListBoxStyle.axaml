@@ -1,7 +1,7 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
-    xmlns:utilityModels="using:SteamStorage.Models.UtilityModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:utilityModels="using:SteamStorage.Models.UtilityModels">
 
     <Style Selector="ListBox.SecondaryNavigationListBox">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
@@ -14,15 +14,15 @@
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-        <Style Selector="^ ListBoxItem">
+        <Style Selector="^ &gt; ListBoxItem">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate x:DataType="utilityModels:SecondaryNavigationModel">
 
                         <TextBlock
+                            Margin="25,0,0,0"
                             Classes="SmallTextBlock LightWeightTextBlock UnderlineTextBlock LeftTextBlock"
                             IsEnabled="{Binding IsEnabled, Mode=OneWay}"
-                            Margin="25,0,0,0"
                             Text="{Binding Title, Mode=OneWay}" />
 
                     </ControlTemplate>

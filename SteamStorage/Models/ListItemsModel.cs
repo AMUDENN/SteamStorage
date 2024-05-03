@@ -32,6 +32,7 @@ public class ListItemsModel : BaseListModel
     private readonly ApiClient _apiClient;
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
+    private readonly PeriodsModel _periodsModel;
     private readonly IThemeService _themeService;
 
     private GameModel? _selectedGameModel;
@@ -259,11 +260,13 @@ public class ListItemsModel : BaseListModel
         ApiClient apiClient,
         ChartTooltipModel chartTooltipModel,
         UserModel userModel,
+        PeriodsModel periodsModel,
         IThemeService themeService)
     {
         _apiClient = apiClient;
         _chartTooltipModel = chartTooltipModel;
         _userModel = userModel;
+        _periodsModel = periodsModel;
         _themeService = themeService;
 
         userModel.UserChanged += UserChangedHandler;
@@ -365,6 +368,7 @@ public class ListItemsModel : BaseListModel
         ListItemModels = skinsResponse.Skins.Select(x =>
                 new ListItemViewModel(
                     new(_apiClient,
+                        _periodsModel,
                         _themeService,
                         x.Skin.Id,
                         x.Skin.SkinIconUrl,

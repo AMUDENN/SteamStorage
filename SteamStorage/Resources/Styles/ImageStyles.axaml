@@ -6,13 +6,13 @@
         <Setter Property="Transitions">
             <Transitions>
                 <ThicknessTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="Margin" />
+                    Property="Margin"
+                    Duration="0:0:0.2" />
                 <DoubleTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="Opacity" />
+                    Property="Opacity"
+                    Duration="0:0:0.2" />
             </Transitions>
         </Setter>
     </Style>

@@ -24,6 +24,7 @@ public class InventoryModel : BaseListModel
     private readonly ApiClient _apiClient;
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
+    private readonly PeriodsModel _periodsModel;
     private readonly IThemeService _themeService;
 
     private int _count;
@@ -313,11 +314,13 @@ public class InventoryModel : BaseListModel
         ApiClient apiClient,
         ChartTooltipModel chartTooltipModel,
         UserModel userModel,
+        PeriodsModel periodsModel,
         IThemeService themeService)
     {
         _apiClient = apiClient;
         _chartTooltipModel = chartTooltipModel;
         _userModel = userModel;
+        _periodsModel = periodsModel;
         _themeService = themeService;
 
         userModel.UserChanged += UserChangedHandler;
@@ -505,6 +508,7 @@ public class InventoryModel : BaseListModel
         InventoryModels = inventoriesResponse.Inventories.Select(x =>
                 new InventoryItemViewModel(
                     new(_apiClient,
+                        _periodsModel,
                         _themeService,
                         x.Skin.Id,
                         x.Skin.SkinIconUrl,

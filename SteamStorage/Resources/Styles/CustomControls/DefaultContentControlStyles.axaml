@@ -1,47 +1,47 @@
 ﻿<Styles
-    x:DataType="controls:DefaultContentControl"
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    x:DataType="controls:DefaultContentControl">
 
     <Style Selector="controls|DefaultContentControl">
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
+                    Padding="{TemplateBinding Padding}"
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="{TemplateBinding CornerRadius}"
-                    Padding="{TemplateBinding Padding}">
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <Grid RowDefinitions="auto *">
                         <Grid
-                            ColumnDefinitions="*, Auto"
                             Grid.Row="0"
                             Height="50"
+                            Margin="0,0,0,10"
                             HorizontalAlignment="Stretch"
-                            Margin="0,0,0,10">
+                            ColumnDefinitions="*, Auto">
                             <TextBlock
+                                x:Name="PART_Header"
                                 Grid.Column="0"
-                                HorizontalAlignment="Left"
                                 Margin="0,0,10,0"
-                                Text="{TemplateBinding Header}"
-                                x:Name="PART_Header" />
+                                HorizontalAlignment="Left"
+                                Text="{TemplateBinding Header}" />
                             <Button
+                                x:Name="PART_ResetButton"
+                                Grid.Column="1"
                                 Background="Transparent"
                                 Classes="TextButton UnderlineButton"
                                 Command="{TemplateBinding ResetCommand}"
-                                Content="Сбросить"
-                                Grid.Column="1"
-                                x:Name="PART_ResetButton" />
+                                Content="Сбросить" />
                         </Grid>
                         <ContentPresenter
-                            Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            x:Name="PART_ContentPresenter"
                             Grid.Row="1"
                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            RecognizesAccessKey="True"
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                            x:Name="PART_ContentPresenter" />
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            RecognizesAccessKey="True" />
                     </Grid>
                 </Border>
             </ControlTemplate>

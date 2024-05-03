@@ -8,30 +8,30 @@
         <Setter Property="Transitions">
             <Transitions>
                 <DoubleTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="Opacity" />
+                    Property="Opacity"
+                    Duration="0:0:0.2" />
             </Transitions>
         </Setter>
         <Setter Property="Template">
             <ControlTemplate>
                 <Grid>
                     <Border
+                        Margin="0"
                         BorderThickness="20"
-                        Classes="TransparentBorder LittleRoundedBorder BoxShadowBorder"
-                        Margin="0" />
+                        Classes="TransparentBorder LittleRoundedBorder BoxShadowBorder" />
                     <Border
-                        Classes="TopLevelBackgroundBorder LittleRoundedBorder"
+                        x:Name="PART_LayoutRoot"
                         Margin="10"
-                        x:Name="PART_LayoutRoot">
+                        Classes="TopLevelBackgroundBorder LittleRoundedBorder">
                         <ContentPresenter
+                            x:Name="PART_ContentPresenter"
+                            MaxWidth="{TemplateBinding MaxWidth}"
+                            Margin="12,4"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
                             FontSize="{TemplateBinding FontSize}"
-                            Margin="12,4"
-                            MaxWidth="{TemplateBinding MaxWidth}"
-                            TextBlock.TextWrapping="Wrap"
-                            x:Name="PART_ContentPresenter" />
+                            TextBlock.TextWrapping="Wrap" />
                     </Border>
                 </Grid>
             </ControlTemplate>

@@ -1,9 +1,9 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:baseModels="clr-namespace:SteamStorage.Models.UtilityModels.BaseModels"
     xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:utilityModels="using:SteamStorage.Models.UtilityModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:utilityModels="using:SteamStorage.Models.UtilityModels">
 
     <Style Selector="ComboBox.BaseComboBox">
         <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}" />
@@ -17,83 +17,83 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <DataValidationErrors>
-                    <Grid ColumnDefinitions="*, 40" Margin="{TemplateBinding Padding}">
+                    <Grid Margin="{TemplateBinding Padding}" ColumnDefinitions="*, 40">
 
                         <Border
-                            Background="{TemplateBinding Background}"
-                            Classes="SmallRoundedBorder"
+                            x:Name="Background"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
-                            x:Name="Background" />
+                            Background="{TemplateBinding Background}"
+                            Classes="SmallRoundedBorder" />
 
                         <TextBlock
+                            x:Name="PlaceholderTextBlock"
+                            Grid.Column="0"
+                            Margin="10,0,0,3"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Classes="SmallTextBlock LightTextBlock"
                             Foreground="{TemplateBinding PlaceholderForeground}"
-                            Grid.Column="0"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             IsVisible="{TemplateBinding SelectionBoxItem,
                                                         Converter={x:Static ObjectConverters.IsNull}}"
-                            Margin="10,0,0,3"
-                            Text="{TemplateBinding PlaceholderText}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            x:Name="PlaceholderTextBlock" />
+                            Text="{TemplateBinding PlaceholderText}" />
 
                         <ContentControl
-                            Content="{TemplateBinding SelectionBoxItem}"
-                            ContentTemplate="{TemplateBinding ItemTemplate}"
+                            x:Name="ContentPresenter"
                             Grid.Column="0"
-                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                             Margin="10,0,0,3"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                            x:Name="ContentPresenter" />
+                            Content="{TemplateBinding SelectionBoxItem}"
+                            ContentTemplate="{TemplateBinding ItemTemplate}" />
 
                         <Border
-                            Background="Transparent"
+                            x:Name="DropDownOverlay"
                             Grid.Column="1"
-                            HorizontalAlignment="Right"
-                            IsVisible="False"
-                            Margin="0,1,1,1"
                             Width="40"
-                            x:Name="DropDownOverlay" />
+                            Margin="0,1,1,1"
+                            HorizontalAlignment="Right"
+                            Background="Transparent"
+                            IsVisible="False" />
 
                         <controls:VectorImage
-                            Classes="ArrowDownImage ForegroundVectorImage"
+                            x:Name="DropDownGlyph"
                             Grid.Column="1"
-                            Height="16"
                             Width="16"
-                            x:Name="DropDownGlyph" />
+                            Height="16"
+                            Classes="ArrowDownImage ForegroundVectorImage" />
 
                         <Popup
+                            x:Name="PART_Popup"
                             Grid.Column="0"
+                            MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                            MaxHeight="{TemplateBinding MaxDropDownHeight}"
                             InheritsTransform="True"
                             IsLightDismissEnabled="True"
                             IsOpen="{TemplateBinding IsDropDownOpen,
                                                      Mode=TwoWay}"
-                            MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                            MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
                             PlacementTarget="Background"
-                            WindowManagerAddShadowHint="False"
-                            x:Name="PART_Popup">
+                            WindowManagerAddShadowHint="False">
 
                             <Grid Margin="0,5,0,0">
 
                                 <Border BorderThickness="20" Classes="TransparentBorder SmallRoundedBorder BoxShadowBorder" />
 
                                 <Border
-                                    Classes="TopLevelBackgroundBorder SmallRoundedBorder"
+                                    x:Name="PopupBorder"
                                     Margin="10,0,10,10"
-                                    x:Name="PopupBorder">
+                                    Classes="TopLevelBackgroundBorder SmallRoundedBorder">
 
                                     <ScrollViewer
+                                        Margin="0,7"
                                         HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                                         IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
-                                        Margin="0,7"
                                         VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
 
                                         <ItemsPresenter
-                                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                                            x:Name="PART_ItemsPresenter"
                                             Margin="{DynamicResource ComboBoxDropdownContentMargin}"
-                                            x:Name="PART_ItemsPresenter" />
+                                            ItemsPanel="{TemplateBinding ItemsPanel}" />
 
                                     </ScrollViewer>
 
@@ -163,15 +163,15 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <ContentPresenter
+                    x:Name="PART_ContentPresenter"
+                    Padding="{TemplateBinding Padding}"
+                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                     Background="{TemplateBinding Background}"
                     Content="{TemplateBinding Content}"
                     ContentTemplate="{TemplateBinding ContentTemplate}"
                     Foreground="{TemplateBinding Foreground}"
-                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                    Opacity="{TemplateBinding Opacity}"
-                    Padding="{TemplateBinding Padding}"
-                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                    x:Name="PART_ContentPresenter" />
+                    Opacity="{TemplateBinding Opacity}" />
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ ContentPresenter">

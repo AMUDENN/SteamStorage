@@ -124,28 +124,15 @@ public class ActiveGroupEditViewModel : BaseEditViewModel
         get => _activeGroupEditModel.YAxis;
     }
 
-    public bool IsOneDayChecked
+    public IEnumerable<PeriodModel> PeriodModels
     {
-        get => _activeGroupEditModel.IsOneDayChecked;
-        set => _activeGroupEditModel.IsOneDayChecked = value;
+        get => _activeGroupEditModel.PeriodModels;
     }
 
-    public bool IsOneWeekChecked
+    public PeriodModel? SelectedPeriodModel
     {
-        get => _activeGroupEditModel.IsOneWeekChecked;
-        set => _activeGroupEditModel.IsOneWeekChecked = value;
-    }
-
-    public bool IsOneMonthChecked
-    {
-        get => _activeGroupEditModel.IsOneMonthChecked;
-        set => _activeGroupEditModel.IsOneMonthChecked = value;
-    }
-
-    public bool IsOneYearChecked
-    {
-        get => _activeGroupEditModel.IsOneYearChecked;
-        set => _activeGroupEditModel.IsOneYearChecked = value;
+        get => _activeGroupEditModel.SelectedPeriodModel;
+        set => _activeGroupEditModel.SelectedPeriodModel = value;
     }
 
     public bool? IsLoading

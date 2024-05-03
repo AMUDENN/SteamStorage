@@ -20,6 +20,7 @@ public class InventoryItemModel : BaseDynamicsSkinModel
 
     public InventoryItemModel(
         ApiClient apiClient,
+        PeriodsModel periodsModel,
         IThemeService themeService,
         int skinId,
         string imageUrl,
@@ -28,7 +29,7 @@ public class InventoryItemModel : BaseDynamicsSkinModel
         int count,
         decimal currentPrice,
         decimal currentSum,
-        string currencyMark) : base(apiClient, themeService, skinId, imageUrl, marketUrl, title)
+        string currencyMark) : base(apiClient, periodsModel, themeService, skinId, imageUrl, marketUrl, title)
     {
         Count = count;
 

@@ -9,17 +9,17 @@
         <Setter Property="Transitions">
             <Transitions>
                 <DoubleTransition
-                    Duration="0:0:0.2"
                     Easing="LinearEasing"
-                    Property="FontSize" />
+                    Property="FontSize"
+                    Duration="0:0:0.2" />
                 <DoubleTransition
-                    Duration="0:0:0.1"
                     Easing="SineEaseOut"
-                    Property="Opacity" />
+                    Property="Opacity"
+                    Duration="0:0:0.1" />
                 <BrushTransition
-                    Duration="0:0:0.1"
                     Easing="SineEaseOut"
-                    Property="Foreground" />
+                    Property="Foreground"
+                    Duration="0:0:0.1" />
             </Transitions>
         </Setter>
         <Style Selector="^:disabled">

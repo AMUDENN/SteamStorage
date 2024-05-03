@@ -1,9 +1,9 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
     xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
-    xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels">
 
     <Style Selector="ListBox.ArchiveGroupsListBox">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
@@ -14,16 +14,16 @@
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-        <Style Selector="^ ListBoxItem">
+        <Style Selector="^ &gt; ListBoxItem">
             <Setter Property="Margin" Value="0, 0, 0, 20" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate x:DataType="utilityViewModels:ArchiveGroupViewModel">
 
                         <Border
-                            Classes="BackgroundAdditionalBorder BigRoundedBorder"
+                            x:Name="MainBorder"
                             Height="110"
-                            x:Name="MainBorder">
+                            Classes="BackgroundAdditionalBorder BigRoundedBorder">
 
                             <i:Interaction.Behaviors>
                                 <ia:EventTriggerBehavior EventName="DoubleTapped">
@@ -67,81 +67,81 @@
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50" />
-                                    <ColumnDefinition MinWidth="10" Width="10" />
+                                    <ColumnDefinition Width="10" MinWidth="10" />
                                     <ColumnDefinition Width="210*" />
-                                    <ColumnDefinition MinWidth="10" Width="10" />
+                                    <ColumnDefinition Width="10" MinWidth="10" />
                                     <ColumnDefinition Width="150*" />
-                                    <ColumnDefinition MinWidth="10" Width="10" />
+                                    <ColumnDefinition Width="10" MinWidth="10" />
                                     <ColumnDefinition Width="190*" />
-                                    <ColumnDefinition MinWidth="10" Width="10" />
+                                    <ColumnDefinition Width="10" MinWidth="10" />
                                     <ColumnDefinition Width="190*" />
-                                    <ColumnDefinition MinWidth="10" Width="10" />
+                                    <ColumnDefinition Width="10" MinWidth="10" />
                                     <ColumnDefinition Width="150*" />
                                 </Grid.ColumnDefinitions>
 
                                 <Border
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Width="32"
+                                    Height="32"
                                     Background="{Binding Colour, Converter={StaticResource BrushConverter}}"
                                     Classes="SmallRoundedBorder"
-                                    Grid.Column="0"
-                                    Grid.Row="0"
-                                    Height="32"
-                                    ToolTip.Tip="Цвет группы"
-                                    Width="32" />
+                                    ToolTip.Tip="Цвет группы" />
 
                                 <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="2"
                                     Classes="MiddleTextBlock LeftTextBlock WrapTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                    Grid.Column="2"
-                                    Grid.Row="0"
                                     Text="{Binding Title, Mode=OneWay}"
                                     ToolTip.Tip="Название" />
 
                                 <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="4"
                                     Classes="MiddleTextBlock CenterTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                    Grid.Column="4"
-                                    Grid.Row="0"
                                     Text="{Binding Count, StringFormat=N0, Mode=OneWay}"
                                     ToolTip.Tip="Количество" />
 
                                 <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="6"
                                     Classes="MiddleTextBlock CenterTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                    Grid.Column="6"
-                                    Grid.Row="0"
                                     Text="{Binding BuySumString, Mode=OneWay}"
                                     ToolTip.Tip="Сумма покупки" />
 
                                 <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="8"
                                     Classes="MiddleTextBlock CenterTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                    Grid.Column="8"
-                                    Grid.Row="0"
                                     Text="{Binding SoldSumString, Mode=OneWay}"
                                     ToolTip.Tip="Сумма продажи" />
 
                                 <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="10"
                                     Classes="MiddleTextBlock CenterTextBlock"
                                     Classes.NegativeTextBlock="{Binding Change, Mode=OneWay, Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
                                     Classes.PositiveTextBlock="{Binding Change, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                    Grid.Column="10"
-                                    Grid.Row="0"
                                     Text="{Binding Change, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
                                     ToolTip.Tip="Изменение" />
 
                                 <DockPanel
-                                    Classes.Max="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
+                                    x:Name="TopDockPanel"
+                                    Grid.Row="2"
                                     Grid.Column="2"
                                     Grid.ColumnSpan="9"
-                                    Grid.Row="2"
                                     Height="40"
                                     HorizontalAlignment="Stretch"
-                                    x:Name="TopDockPanel">
+                                    Classes.Max="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}">
 
                                     <StackPanel
-                                        DockPanel.Dock="Right"
                                         HorizontalAlignment="Right"
+                                        DockPanel.Dock="Right"
                                         Orientation="Horizontal">
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата создания: " />

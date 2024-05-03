@@ -3,6 +3,7 @@ using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models;
+using SteamStorage.Models.UtilityModels;
 using SteamStorage.Models.UtilityModels.BaseModels;
 
 namespace SteamStorage.ViewModels.UtilityViewModels.BaseViewModels;
@@ -57,31 +58,18 @@ public class BaseDynamicsSkinViewModel : BaseSkinViewModel
     {
         get => _chartTooltipModel.TooltipBackgroundPaint;
     }
-
-    public bool IsOneDayChecked
+    
+    public IEnumerable<PeriodModel> PeriodModels
     {
-        get => _model.IsOneDayChecked;
-        set => _model.IsOneDayChecked = value;
+        get => _model.PeriodModels;
     }
 
-    public bool IsOneWeekChecked
+    public PeriodModel? SelectedPeriodModel
     {
-        get => _model.IsOneWeekChecked;
-        set => _model.IsOneWeekChecked = value;
+        get => _model.SelectedPeriodModel;
+        set => _model.SelectedPeriodModel = value;
     }
-
-    public bool IsOneMonthChecked
-    {
-        get => _model.IsOneMonthChecked;
-        set => _model.IsOneMonthChecked = value;
-    }
-
-    public bool IsOneYearChecked
-    {
-        get => _model.IsOneYearChecked;
-        set => _model.IsOneYearChecked = value;
-    }
-
+    
     public bool IsLoading
     {
         get => _model.IsLoading;

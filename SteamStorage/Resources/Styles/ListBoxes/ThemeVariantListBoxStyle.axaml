@@ -1,8 +1,8 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:utilityModels="using:SteamStorage.Models.UtilityModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:utilityModels="using:SteamStorage.Models.UtilityModels">
 
     <Style Selector="ListBox.ThemeVariantsListBox">
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
@@ -17,16 +17,16 @@
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-        <Style Selector="^ ListBoxItem">
+        <Style Selector="^ &gt; ListBoxItem">
             <Setter Property="Margin" Value="0, 0, 0, 30" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate x:DataType="utilityModels:ThemeModel">
 
                         <Grid
+                            Width="{Binding $self.Bounds.Height, Converter={StaticResource DoubleMultiplicationConverter}, ConverterParameter=1.25}"
                             HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Width="{Binding $self.Bounds.Height, Converter={StaticResource DoubleMultiplicationConverter}, ConverterParameter=1.25}">
+                            VerticalAlignment="Stretch">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -34,7 +34,7 @@
                                 <RowDefinition Height="30" MinHeight="30" />
                             </Grid.RowDefinitions>
 
-                            <Border Classes="BigRoundedBorder ForegroundBorderBrush SmallBorder" Grid.Row="0">
+                            <Border Grid.Row="0" Classes="BigRoundedBorder ForegroundBorderBrush SmallBorder">
 
                                 <Border Classes="BigRoundedIncludedBorder">
 
@@ -50,35 +50,35 @@
                                 VerticalAlignment="Stretch">
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition MinWidth="24" Width="24" />
-                                    <ColumnDefinition MinWidth="10" Width="10" />
+                                    <ColumnDefinition Width="24" MinWidth="24" />
+                                    <ColumnDefinition Width="10" MinWidth="10" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
                                 <controls:VectorImage
-                                    Classes="RadioButtonFalseVectorImage ForegroundVectorImage"
+                                    x:Name="RadioButtonFalseVectorImage"
                                     Grid.Column="0"
-                                    Height="24"
-                                    Opacity="1"
-                                    VerticalAlignment="Center"
                                     Width="24"
-                                    x:Name="RadioButtonFalseVectorImage" />
+                                    Height="24"
+                                    VerticalAlignment="Center"
+                                    Classes="RadioButtonFalseVectorImage ForegroundVectorImage"
+                                    Opacity="1" />
 
                                 <controls:VectorImage
-                                    Classes="RadioButtonTrueVectorImage ForegroundVectorImage"
+                                    x:Name="RadioButtonTrueVectorImage"
                                     Grid.Column="0"
-                                    Height="24"
-                                    Opacity="0"
-                                    VerticalAlignment="Center"
                                     Width="24"
-                                    x:Name="RadioButtonTrueVectorImage" />
+                                    Height="24"
+                                    VerticalAlignment="Center"
+                                    Classes="RadioButtonTrueVectorImage ForegroundVectorImage"
+                                    Opacity="0" />
 
                                 <TextBlock
-                                    Classes="MiddleTextBlock CenterTextBlock"
                                     Grid.Column="2"
                                     Height="30"
-                                    Text="{Binding Title, Mode=OneWay}"
-                                    VerticalAlignment="Center" />
+                                    VerticalAlignment="Center"
+                                    Classes="MiddleTextBlock CenterTextBlock"
+                                    Text="{Binding Title, Mode=OneWay}" />
 
                             </Grid>
 

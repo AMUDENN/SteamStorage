@@ -1,15 +1,15 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
-    xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SteamStorage.Resources.Controls">
 
     <Style Selector="ToggleButton">
         <Setter Property="Transitions">
             <Transitions>
                 <DoubleTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="Opacity" />
+                    Property="Opacity"
+                    Duration="0:0:0.2" />
             </Transitions>
         </Setter>
     </Style>
@@ -27,20 +27,20 @@
                     <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition MinWidth="4" Width="4" />
-                            <ColumnDefinition MinWidth="20" Width="20" />
+                            <ColumnDefinition Width="4" MinWidth="4" />
+                            <ColumnDefinition Width="20" MinWidth="20" />
                         </Grid.ColumnDefinitions>
                         <TextBlock
+                            x:Name="ContentTextBlock"
+                            Grid.Column="0"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Classes="CenterTextBlock"
                             FontSize="{TemplateBinding FontSize}"
-                            Grid.Column="0"
-                            Text="{TemplateBinding Content}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            x:Name="ContentTextBlock" />
+                            Text="{TemplateBinding Content}" />
                         <Grid
                             Grid.Column="2"
-                            HorizontalAlignment="Center"
                             MaxHeight="20"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="5*" MinHeight="5" />
@@ -48,15 +48,15 @@
                                 <RowDefinition Height="5*" MinHeight="5" />
                             </Grid.RowDefinitions>
                             <controls:VectorImage
-                                Classes="FilterUpVectorImage"
+                                x:Name="UpVectorImage"
                                 Grid.Row="0"
-                                IsVisible="True"
-                                x:Name="UpVectorImage" />
+                                Classes="FilterUpVectorImage"
+                                IsVisible="True" />
                             <controls:VectorImage
-                                Classes="FilterDownVectorImage"
+                                x:Name="DownVectorImage"
                                 Grid.Row="2"
-                                IsVisible="True"
-                                x:Name="DownVectorImage" />
+                                Classes="FilterDownVectorImage"
+                                IsVisible="True" />
                         </Grid>
                     </Grid>
                 </ControlTemplate>
@@ -162,17 +162,17 @@
                     <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
 
                         <controls:VectorImage
+                            x:Name="ExcellentConnectionVectorImage"
                             Classes="ExcellentConnectionVectorImage ForegroundVectorImage UnDisabledVectorImage"
-                            IsVisible="False"
-                            x:Name="ExcellentConnectionVectorImage" />
+                            IsVisible="False" />
                         <controls:VectorImage
+                            x:Name="GoodConnectionVectorImage"
                             Classes="GoodConnectionVectorImage ForegroundVectorImage UnDisabledVectorImage"
-                            IsVisible="False"
-                            x:Name="GoodConnectionVectorImage" />
+                            IsVisible="False" />
                         <controls:VectorImage
+                            x:Name="BadConnectionVectorImage"
                             Classes="BadConnectionVectorImage ForegroundVectorImage UnDisabledVectorImage"
-                            IsVisible="False"
-                            x:Name="BadConnectionVectorImage" />
+                            IsVisible="False" />
 
                     </Grid>
                 </ControlTemplate>

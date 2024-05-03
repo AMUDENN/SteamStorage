@@ -1,11 +1,11 @@
 <Application
     x:Class="SteamStorage.App"
-    x:CompileBindings="True"
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="using:SteamStorage.Resources.Converters"
     xmlns:themeVariants="using:SteamStorage.Utilities.ThemeVariants"
     xmlns:utilities="using:SteamStorage.Utilities"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    x:CompileBindings="True">
 
     <Application.DataTemplates>
         <utilities:ViewLocator />
@@ -63,6 +63,7 @@
         <StyleInclude Source="/Resources/Styles/ListBoxes/InventoryItemsListBoxStyle.axaml" />
         <StyleInclude Source="/Resources/Styles/ListBoxes/ListItemsListBoxStyle.axaml" />
         <StyleInclude Source="/Resources/Styles/ListBoxes/NavigationListBoxStyle.axaml" />
+        <StyleInclude Source="/Resources/Styles/ListBoxes/PeriodListBoxStyle.axaml" />
         <StyleInclude Source="/Resources/Styles/ListBoxes/SecondaryNavigationListBoxStyle.axaml" />
         <StyleInclude Source="/Resources/Styles/ListBoxes/ThemeVariantListBoxStyle.axaml" />
 
@@ -127,10 +128,10 @@
 
             <!--  Themes  -->
             <ResourceDictionary.ThemeDictionaries>
-                <ResourceInclude Source="avares://SteamStorage/Resources/Themes/ClassicTheme.axaml" x:Key="{x:Static themeVariants:ThemeVariants.Classic}" />
-                <ResourceInclude Source="avares://SteamStorage/Resources/Themes/LimeTheme.axaml" x:Key="{x:Static themeVariants:ThemeVariants.Lime}" />
-                <ResourceInclude Source="avares://SteamStorage/Resources/Themes/VeryDarkTheme.axaml" x:Key="{x:Static themeVariants:ThemeVariants.VeryDark}" />
-                <ResourceInclude Source="avares://SteamStorage/Resources/Themes/VeryLightTheme.axaml" x:Key="{x:Static themeVariants:ThemeVariants.VeryLight}" />
+                <ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.Classic}" Source="avares://SteamStorage/Resources/Themes/ClassicTheme.axaml" />
+                <ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.Lime}" Source="avares://SteamStorage/Resources/Themes/LimeTheme.axaml" />
+                <ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.VeryDark}" Source="avares://SteamStorage/Resources/Themes/VeryDarkTheme.axaml" />
+                <ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.VeryLight}" Source="avares://SteamStorage/Resources/Themes/VeryLightTheme.axaml" />
             </ResourceDictionary.ThemeDictionaries>
 
         </ResourceDictionary>

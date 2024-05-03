@@ -1,8 +1,8 @@
 <Styles
-    x:DataType="controls:VectorImage"
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    x:DataType="controls:VectorImage">
 
     <Style Selector="controls|VectorImage">
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -10,13 +10,13 @@
         <Setter Property="Transitions">
             <Transitions>
                 <ThicknessTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="Margin" />
+                    Property="Margin"
+                    Duration="0:0:0.2" />
                 <DoubleTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="Opacity" />
+                    Property="Opacity"
+                    Duration="0:0:0.2" />
             </Transitions>
         </Setter>
         <Style Selector="^:disabled">
@@ -26,7 +26,7 @@
 
     <Style Selector="controls|VectorImage.AnimationWheelVectorImage">
         <Style.Animations>
-            <Animation Duration="0:0:0.5" IterationCount="INFINITE">
+            <Animation IterationCount="INFINITE" Duration="0:0:0.5">
                 <KeyFrame Cue="0%" KeySpline="0.4,0,0.6,1">
                     <Setter Property="(RotateTransform.Angle)" Value="0" />
                 </KeyFrame>

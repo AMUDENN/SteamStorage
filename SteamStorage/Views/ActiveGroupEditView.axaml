@@ -1,25 +1,25 @@
 ﻿<UserControl
-    d:DesignHeight="450"
-    d:DesignWidth="800"
-    mc:Ignorable="d"
     x:Class="SteamStorage.Views.ActiveGroupEditView"
-    x:DataType="vm:ActiveGroupEditViewModel"
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SteamStorage.Resources.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:SteamStorage.ViewModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:ActiveGroupEditViewModel"
+    mc:Ignorable="d">
 
     <Border Classes="BackgroundAdditionalBorder BigRoundedBorder">
 
         <Grid Margin="30" RowDefinitions="Auto,*,60">
 
             <TextBlock
+                Grid.Row="0"
                 Classes="BigTextBlock WrapTextBlock CenterTextBlock"
                 Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=790}"
-                Grid.Row="0"
                 Text="{Binding Title, Mode=OneWay}" />
 
             <Grid
@@ -30,86 +30,86 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="35*" />
                     <ColumnDefinition
-                        MaxWidth="100"
+                        Width="7*"
                         MinWidth="30"
-                        Width="7*" />
+                        MaxWidth="100" />
                     <ColumnDefinition Width="51*" />
                 </Grid.ColumnDefinitions>
 
                 <Grid
-                    Grid.Column="0"
                     Grid.Row="1"
+                    Grid.Column="0"
                     RowDefinitions="Auto, 30, Auto, 30, Auto, 30, Auto">
 
                     <controls:DefaultContentControl
+                        Grid.Row="0"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultGroupTitle, Mode=OneWay}"
-                        Grid.Row="0"
                         Header="Название: ">
                         <TextBox
-                            Classes="DarkTextBox SmallTextBox"
                             Height="50"
+                            Classes="DarkTextBox SmallTextBox"
                             MaxLength="100"
                             Text="{Binding GroupTitle}" />
                     </controls:DefaultContentControl>
 
                     <controls:DefaultContentControl
+                        Grid.Row="2"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultDescription, Mode=OneWay}"
-                        Grid.Row="2"
                         Header="Описание: ">
                         <TextBox
-                            Classes="DarkTextBox BigWrappingTextBox SmallTextBox"
                             Height="130"
+                            Classes="DarkTextBox BigWrappingTextBox SmallTextBox"
                             MaxLength="300"
                             Text="{Binding Description}" />
                     </controls:DefaultContentControl>
 
                     <controls:DefaultContentControl
+                        Grid.Row="4"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultGoalSum, Mode=OneWay}"
-                        Grid.Row="4"
                         Header="Финансовая цель: ">
                         <controls:AdvancedTextBox
-                            Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
                             Height="50"
+                            Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
                             PreviewCharRegex="[0-9.,]"
                             StringFormat="N2"
                             Text="{Binding GoalSum}" />
                     </controls:DefaultContentControl>
 
                     <controls:DefaultContentControl
+                        Grid.Row="6"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultColour, Mode=OneWay}"
-                        Grid.Row="6"
                         Header="Цвет: ">
                         <ColorPicker
-                            Classes="DarkColorPicker"
-                            Color="{Binding Colour}"
+                            Width="{Binding $parent.Bounds.Width, Converter={StaticResource DoubleMultiplicationConverter}, ConverterParameter=0.75, Mode=OneWay}"
                             Height="50"
-                            Width="{Binding $parent.Bounds.Width, Converter={StaticResource DoubleMultiplicationConverter}, ConverterParameter=0.75, Mode=OneWay}" />
+                            Classes="DarkColorPicker"
+                            Color="{Binding Colour}" />
                     </controls:DefaultContentControl>
 
                 </Grid>
 
                 <Grid
-                    Grid.Column="2"
                     Grid.Row="1"
+                    Grid.Column="2"
                     RowDefinitions="50, 30, 50, 10, 50, 20, 90, 30, *">
 
                     <Grid
-                        ColumnDefinitions="Auto, *"
                         Grid.Row="0"
-                        HorizontalAlignment="Right">
+                        HorizontalAlignment="Right"
+                        ColumnDefinitions="Auto, *">
 
                         <TextBlock
-                            Classes="SmallTextBlock RightTextBlock"
                             Grid.Column="0"
+                            Classes="SmallTextBlock RightTextBlock"
                             Text="Дата создания: " />
 
                         <TextBlock
-                            Classes="SmallTextBlock RightTextBlock"
                             Grid.Column="1"
+                            Classes="SmallTextBlock RightTextBlock"
                             Text="{Binding DateCreationString, Mode=OneWay}" />
 
                     </Grid>
@@ -135,8 +135,8 @@
                     </StackPanel>
 
                     <TextBlock
-                        Classes="SmallTextBlock CenterTextBlock"
                         Grid.Row="6"
+                        Classes="SmallTextBlock CenterTextBlock"
                         IsVisible="{Binding IsNewGroup, Mode=OneWay}"
                         Text="График недоступен" />
 
@@ -156,12 +156,12 @@
                                 Text="{Binding NotFoundText, Mode=OneWay}" />
 
                             <controls:VectorImage
-                                Classes="LoadingVectorImage AnimationWheelVectorImage ForegroundVectorImage"
+                                Width="24"
                                 Height="24"
                                 HorizontalAlignment="Center"
-                                IsVisible="{Binding IsLoading, Mode=OneWay}"
                                 VerticalAlignment="Center"
-                                Width="24" />
+                                Classes="LoadingVectorImage AnimationWheelVectorImage ForegroundVectorImage"
+                                IsVisible="{Binding IsLoading, Mode=OneWay}" />
 
                             <lvc:CartesianChart
                                 Series="{Binding ChangeSeries, Mode=OneWay}"
@@ -173,98 +173,69 @@
 
                         </Grid>
 
-                        <StackPanel
+                        <ListBox
                             Grid.Row="2"
                             HorizontalAlignment="Right"
-                            Orientation="Horizontal"
-                            Spacing="5"
-                            VerticalAlignment="Bottom">
-
-                            <RadioButton
-                                Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
-                                Content="1 д"
-                                GroupName="ActiveGroupEditPeriod"
-                                IsChecked="{Binding IsOneDayChecked}"
-                                ToolTip.Tip="1 день" />
-
-                            <RadioButton
-                                Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
-                                Content="1 н"
-                                GroupName="ActiveGroupEditPeriod"
-                                IsChecked="{Binding IsOneWeekChecked}"
-                                ToolTip.Tip="1 неделя" />
-
-                            <RadioButton
-                                Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
-                                Content="1 м"
-                                GroupName="ActiveGroupEditPeriod"
-                                IsChecked="{Binding IsOneMonthChecked}"
-                                ToolTip.Tip="1 месяц" />
-
-                            <RadioButton
-                                Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
-                                Content="1 г"
-                                GroupName="ActiveGroupEditPeriod"
-                                IsChecked="{Binding IsOneYearChecked}"
-                                ToolTip.Tip="1 год" />
-
-                        </StackPanel>
+                            VerticalAlignment="Bottom"
+                            Classes="PeriodListBox FirstAccentLinearPeriodListBox"
+                            ItemsSource="{Binding PeriodModels, Mode=OneWay}"
+                            SelectedItem="{Binding SelectedPeriodModel}" />
 
                     </Grid>
 
-                    <Border Classes="FirstAccentGradientBorder BigRoundedBorder" Grid.Row="8">
+                    <Border Grid.Row="8" Classes="FirstAccentGradientBorder BigRoundedBorder">
 
                         <Grid
-                            ColumnDefinitions="3*, *, 3*"
                             Margin="20,10"
+                            ColumnDefinitions="3*, *, 3*"
                             RowDefinitions="*, 40, 40, *, 40, 40, *">
 
                             <TextBlock
-                                Classes="MiddleTextBlock CenterTextBlock"
-                                Grid.Column="0"
                                 Grid.Row="1"
+                                Grid.Column="0"
+                                Classes="MiddleTextBlock CenterTextBlock"
                                 Text="Сумма вложений" />
 
                             <TextBlock
-                                Classes="BigTextBlock CenterTextBlock"
-                                Grid.Column="0"
                                 Grid.Row="2"
+                                Grid.Column="0"
+                                Classes="BigTextBlock CenterTextBlock"
                                 Text="{Binding BuySumString, Mode=OneWay}" />
 
                             <TextBlock
-                                Classes="MiddleTextBlock CenterTextBlock"
-                                Grid.Column="2"
                                 Grid.Row="1"
+                                Grid.Column="2"
+                                Classes="MiddleTextBlock CenterTextBlock"
                                 Text="Количество" />
 
                             <TextBlock
-                                Classes="BigTextBlock CenterTextBlock"
-                                Grid.Column="2"
                                 Grid.Row="2"
+                                Grid.Column="2"
+                                Classes="BigTextBlock CenterTextBlock"
                                 Text="{Binding CountString, Mode=OneWay}" />
 
                             <TextBlock
-                                Classes="MiddleTextBlock CenterTextBlock"
-                                Grid.Column="0"
                                 Grid.Row="4"
+                                Grid.Column="0"
+                                Classes="MiddleTextBlock CenterTextBlock"
                                 Text="Текущая сумма" />
 
                             <TextBlock
-                                Classes="BigTextBlock CenterTextBlock"
-                                Grid.Column="0"
                                 Grid.Row="5"
+                                Grid.Column="0"
+                                Classes="BigTextBlock CenterTextBlock"
                                 Text="{Binding CurrentSumString, Mode=OneWay}" />
 
                             <TextBlock
-                                Classes="MiddleTextBlock CenterTextBlock"
-                                Grid.Column="2"
                                 Grid.Row="4"
+                                Grid.Column="2"
+                                Classes="MiddleTextBlock CenterTextBlock"
                                 Text="Финансовая цель" />
 
                             <TextBlock
-                                Classes="BigTextBlock CenterTextBlock"
-                                Grid.Column="2"
                                 Grid.Row="5"
+                                Grid.Column="2"
+                                Classes="BigTextBlock CenterTextBlock"
                                 Text="{Binding GoalSumCompletion, Mode=OneWay}" />
 
                         </Grid>
@@ -276,35 +247,35 @@
             </Grid>
 
             <Grid
-                ColumnDefinitions="Auto,*,Auto,30,Auto"
                 Grid.Row="2"
-                Margin="30,0">
+                Margin="30,0"
+                ColumnDefinitions="Auto,*,Auto,30,Auto">
 
                 <Button
+                    Grid.Column="0"
                     Classes="UnderlineButton StretchButton"
                     Command="{Binding BackCommand, Mode=OneWay}"
-                    Content="Назад"
-                    Grid.Column="0" />
+                    Content="Назад" />
 
                 <Button
+                    Grid.Column="2"
+                    HorizontalAlignment="Center"
                     Classes="ImageTextButton UnderlineImageTextButton TransparentImageTextButton StretchButton"
                     Command="{Binding DeleteCommand, Mode=OneWay}"
                     Foreground="{DynamicResource NegativeBrush}"
-                    Grid.Column="2"
-                    HorizontalAlignment="Center"
                     IsVisible="{Binding !IsNewGroup, Mode=OneWay}"
                     Tag="Удалить">
                     <controls:VectorImage
-                        Classes="RecycleBinVectorImage NegativeVectorImage"
+                        Width="32"
                         Height="32"
-                        Width="32" />
+                        Classes="RecycleBinVectorImage NegativeVectorImage" />
                 </Button>
 
                 <Button
+                    Grid.Column="4"
                     Classes="UnderlineButton StretchButton"
                     Command="{Binding SaveCommand, Mode=OneWay}"
-                    Content="Сохранить"
-                    Grid.Column="4" />
+                    Content="Сохранить" />
 
             </Grid>
 

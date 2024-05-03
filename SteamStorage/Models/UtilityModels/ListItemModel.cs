@@ -45,6 +45,7 @@ public class ListItemModel : BaseDynamicsSkinModel
 
     public ListItemModel(
         ApiClient apiClient,
+        PeriodsModel periodsModel,
         IThemeService themeService,
         int skinId,
         string imageUrl,
@@ -54,7 +55,7 @@ public class ListItemModel : BaseDynamicsSkinModel
         string currencyMark,
         double change7D,
         double change30D,
-        bool isMarked) : base(apiClient, themeService, skinId, imageUrl, marketUrl, title)
+        bool isMarked) : base(apiClient, periodsModel, themeService, skinId, imageUrl, marketUrl, title)
     {
         _apiClient = apiClient;
 

@@ -8,6 +8,11 @@
             <Setter.Value>
                 <ControlTemplate>
                     <ButtonSpinner
+                        x:Name="PART_Spinner"
+                        MinWidth="0"
+                        Padding="0"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
                         AllowSpin="{TemplateBinding AllowSpin}"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
@@ -15,19 +20,14 @@
                         ButtonSpinnerLocation="{TemplateBinding ButtonSpinnerLocation}"
                         CornerRadius="{TemplateBinding CornerRadius}"
                         DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
-                        HorizontalContentAlignment="Stretch"
-                        MinWidth="0"
-                        Padding="0"
-                        ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}"
-                        VerticalContentAlignment="Stretch"
-                        x:Name="PART_Spinner">
+                        ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}">
                         <TextBox
+                            x:Name="PART_TextBox"
                             AcceptsReturn="False"
                             Classes="NumericUpDownTextBox SmallTextBox"
                             Text="{TemplateBinding Text}"
                             TextWrapping="NoWrap"
-                            Watermark="{TemplateBinding Watermark}"
-                            x:Name="PART_TextBox" />
+                            Watermark="{TemplateBinding Watermark}" />
                     </ButtonSpinner>
                 </ControlTemplate>
             </Setter.Value>

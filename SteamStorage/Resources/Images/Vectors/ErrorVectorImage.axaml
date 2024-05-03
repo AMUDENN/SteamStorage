@@ -1,8 +1,8 @@
 <Styles
-    x:DataType="controls:VectorImage"
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    x:DataType="controls:VectorImage">
 
     <Style Selector="controls|VectorImage.ErrorVectorImage">
         <Setter Property="Template">
@@ -39,7 +39,7 @@
                                                             Thickness="20" />
                                                     </GeometryDrawing.Pen>
                                                     <GeometryDrawing.Geometry>
-                                                        <LineGeometry EndPoint="140.53,371.47" StartPoint="371.47,140.53" />
+                                                        <LineGeometry StartPoint="371.47,140.53" EndPoint="140.53,371.47" />
                                                     </GeometryDrawing.Geometry>
                                                 </GeometryDrawing>
                                                 <GeometryDrawing>
@@ -51,7 +51,7 @@
                                                             Thickness="20" />
                                                     </GeometryDrawing.Pen>
                                                     <GeometryDrawing.Geometry>
-                                                        <LineGeometry EndPoint="140.53,140.53" StartPoint="371.47,371.47" />
+                                                        <LineGeometry StartPoint="371.47,371.47" EndPoint="140.53,140.53" />
                                                     </GeometryDrawing.Geometry>
                                                 </GeometryDrawing>
                                             </DrawingGroup>

@@ -1,8 +1,8 @@
 ﻿<Styles
-    x:DataType="controls:AdvancedNumericUpDown"
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    x:DataType="controls:AdvancedNumericUpDown">
 
     <Style Selector="controls|AdvancedNumericUpDown">
         <Setter Property="Template">
@@ -11,23 +11,24 @@
                     <StackPanel Orientation="Horizontal">
 
                         <Button
+                            Width="35"
                             Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
                             Command="{TemplateBinding GoToStartCommand}"
-                            IsEnabled="{TemplateBinding IsStartEnabled}"
-                            Width="35">
+                            IsEnabled="{TemplateBinding IsStartEnabled}">
                             <controls:VectorImage Classes="DoubleLeftArrowVectorImage ForegroundVectorImage" />
                         </Button>
 
                         <Button
+                            Width="35"
+                            Margin="6,0"
                             Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
                             Command="{TemplateBinding DecrementCommand}"
-                            IsEnabled="{TemplateBinding IsStartEnabled}"
-                            Margin="6,0"
-                            Width="35">
+                            IsEnabled="{TemplateBinding IsStartEnabled}">
                             <controls:VectorImage Classes="LeftArrowVectorImage ForegroundVectorImage" />
                         </Button>
 
                         <NumericUpDown
+                            Width="70"
                             Classes="AdvancedNumericUpDown"
                             FormatString="{TemplateBinding FormatString}"
                             Increment="{TemplateBinding Increment}"
@@ -35,24 +36,23 @@
                             Minimum="{TemplateBinding Minimum}"
                             ParsingNumberStyle="{TemplateBinding ParsingNumberStyle}"
                             ShowButtonSpinner="False"
-                            Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                             Watermark="{TemplateBinding Watermark}"
-                            Width="70" />
+                            Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
 
                         <Button
+                            Width="35"
+                            Margin="6,0"
                             Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
                             Command="{TemplateBinding IncrementCommand}"
-                            IsEnabled="{TemplateBinding IsEndEnabled}"
-                            Margin="6,0"
-                            Width="35">
+                            IsEnabled="{TemplateBinding IsEndEnabled}">
                             <controls:VectorImage Classes="RightArrowVectorImage ForegroundVectorImage" />
                         </Button>
 
                         <Button
+                            Width="35"
                             Classes="ImageButton AdvancedNumericUpDownButton LittleRoundedButton BackgroundAdditionalButton StretchButton"
                             Command="{TemplateBinding GoToEndCommand}"
-                            IsEnabled="{TemplateBinding IsEndEnabled}"
-                            Width="35">
+                            IsEnabled="{TemplateBinding IsEndEnabled}">
                             <controls:VectorImage Classes="DoubleRightArrowVectorImage ForegroundVectorImage" />
                         </Button>
 

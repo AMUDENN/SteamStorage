@@ -1,7 +1,7 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
-    xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SteamStorage.Resources.Controls">
 
     <Style Selector="ColorPicker.DarkColorPicker">
         <Setter Property="CornerRadius" Value="5" />
@@ -20,31 +20,31 @@
                 <ControlTemplate>
                     <Grid>
                         <Border
+                            x:Name="RootBorder"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             ClipToBounds="True"
                             CornerRadius="{TemplateBinding CornerRadius}"
-                            Opacity="0.5"
-                            x:Name="RootBorder" />
-                        <Grid ColumnDefinitions="*, 32" x:Name="InnerGrid">
+                            Opacity="0.5" />
+                        <Grid x:Name="InnerGrid" ColumnDefinitions="*, 32">
 
                             <ContentPresenter
+                                x:Name="PART_ContentPresenter"
+                                Grid.Column="0"
+                                Padding="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Content="{TemplateBinding Content}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
-                                Grid.Column="0"
-                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                Padding="{TemplateBinding Padding}"
-                                RecognizesAccessKey="True"
-                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                x:Name="PART_ContentPresenter" />
+                                RecognizesAccessKey="True" />
 
                             <controls:VectorImage
-                                Classes="ArrowDownImage ForegroundVectorImage"
+                                x:Name="DropDownGlyph"
                                 Grid.Column="1"
-                                Height="16"
                                 Width="16"
-                                x:Name="DropDownGlyph" />
+                                Height="16"
+                                Classes="ArrowDownImage ForegroundVectorImage" />
 
                         </Grid>
                     </Grid>

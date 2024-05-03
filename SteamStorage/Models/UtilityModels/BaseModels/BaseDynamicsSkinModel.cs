@@ -26,6 +26,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
     #region Fields
 
     private readonly ApiClient _apiClient;
+    private readonly PeriodsModel _periodsModel;
     private readonly IThemeService _themeService;
 
     private double? _changePeriod;
@@ -35,10 +36,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
     private IEnumerable<Axis> _xAxis;
     private IEnumerable<Axis> _yAxis;
 
-    private bool _isOneDayChecked;
-    private bool _isOneWeekChecked;
-    private bool _isOneMonthChecked;
-    private bool _isOneYearChecked;
+    private PeriodModel? _selectedPeriodModel;
 
     private bool _isLoading;
 
@@ -92,43 +90,19 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         private set => SetProperty(ref _yAxis, value);
     }
 
-    public bool IsOneDayChecked
+    public IEnumerable<PeriodModel> PeriodModels
     {
-        get => _isOneDayChecked;
-        set
-        {
-            SetProperty(ref _isOneDayChecked, value);
-            if (value) GetDynamicStatsAsync(DateTime.Now.AddDays(-1), DateTime.Now);
-        }
+        get => _periodsModel.PeriodModels;
     }
-
-    public bool IsOneWeekChecked
+    
+    public PeriodModel? SelectedPeriodModel
     {
-        get => _isOneWeekChecked;
+        get => _selectedPeriodModel;
         set
         {
-            SetProperty(ref _isOneWeekChecked, value);
-            if (value) GetDynamicStatsAsync(DateTime.Now.AddDays(-7), DateTime.Now);
-        }
-    }
-
-    public bool IsOneMonthChecked
-    {
-        get => _isOneMonthChecked;
-        set
-        {
-            SetProperty(ref _isOneMonthChecked, value);
-            if (value) GetDynamicStatsAsync(DateTime.Now.AddDays(-30), DateTime.Now);
-        }
-    }
-
-    public bool IsOneYearChecked
-    {
-        get => _isOneYearChecked;
-        set
-        {
-            SetProperty(ref _isOneYearChecked, value);
-            if (value) GetDynamicStatsAsync(DateTime.Now.AddDays(-365), DateTime.Now);
+            SetProperty(ref _selectedPeriodModel, value);
+            if (_selectedPeriodModel is not null)
+                GetDynamicStatsAsync(DateTime.Now.AddDays(-_selectedPeriodModel.Days), DateTime.Now);
         }
     }
 
@@ -148,6 +122,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
 
     protected BaseDynamicsSkinModel(
         ApiClient apiClient,
+        PeriodsModel periodsModel,
         IThemeService themeService,
         int skinId,
         string imageUrl,
@@ -155,10 +130,12 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         string title) : base(skinId, imageUrl, marketUrl, title)
     {
         _apiClient = apiClient;
+        _periodsModel = periodsModel;
         _themeService = themeService;
-
+        
+        periodsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
-
+        
         IsLoading = false;
 
         _changeSeries = Enumerable.Empty<ISeries>();
@@ -174,16 +151,10 @@ public class BaseDynamicsSkinModel : BaseSkinModel
     {
         GetDynamicChart();
     }
-
+    
     public void UpdateStats()
     {
-        if (IsOneDayChecked || IsOneWeekChecked || IsOneYearChecked) return;
-        
-        IsOneDayChecked = false;
-        IsOneWeekChecked = false;
-        IsOneYearChecked = false;
-        
-        IsOneMonthChecked = true;
+        SelectedPeriodModel = _periodsModel.GetDefault();
     }
 
     private void GetDynamicChart()

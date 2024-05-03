@@ -86,28 +86,15 @@ public class ActiveGroupViewModel : BaseExtendedGroupViewModel
         get => _chartTooltipModel.TooltipBackgroundPaint;
     }
 
-    public bool IsOneDayChecked
+    public IEnumerable<PeriodModel> PeriodModels
     {
-        get => _model.IsOneDayChecked;
-        set => _model.IsOneDayChecked = value;
+        get => _model.PeriodModels;
     }
 
-    public bool IsOneWeekChecked
+    public PeriodModel? SelectedPeriodModel
     {
-        get => _model.IsOneWeekChecked;
-        set => _model.IsOneWeekChecked = value;
-    }
-
-    public bool IsOneMonthChecked
-    {
-        get => _model.IsOneMonthChecked;
-        set => _model.IsOneMonthChecked = value;
-    }
-
-    public bool IsOneYearChecked
-    {
-        get => _model.IsOneYearChecked;
-        set => _model.IsOneYearChecked = value;
+        get => _model.SelectedPeriodModel;
+        set => _model.SelectedPeriodModel = value;
     }
 
     public bool IsLoading

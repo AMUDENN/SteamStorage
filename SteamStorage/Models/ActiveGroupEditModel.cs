@@ -19,7 +19,8 @@ namespace SteamStorage.Models;
 public class ActiveGroupEditModel : BaseGroupEditModel
 {
     #region Fields
-
+    
+    private readonly PeriodsModel _periodsModel;
     private ActiveGroupModel? _activeGroupModel;
 
     private string _defaultGroupTitle;
@@ -175,44 +176,19 @@ public class ActiveGroupEditModel : BaseGroupEditModel
     {
         get => _activeGroupModel?.YAxis ?? Enumerable.Empty<Axis>();
     }
-
-    public bool IsOneDayChecked
+    
+    public IEnumerable<PeriodModel> PeriodModels
     {
-        get => _activeGroupModel?.IsOneDayChecked ?? false;
-        set
-        {
-            if (_activeGroupModel is not null)
-                _activeGroupModel.IsOneDayChecked = value;
-        }
+        get => _periodsModel.PeriodModels;
     }
-
-    public bool IsOneWeekChecked
+    
+    public PeriodModel? SelectedPeriodModel
     {
-        get => _activeGroupModel?.IsOneWeekChecked ?? false;
+        get => _activeGroupModel?.SelectedPeriodModel;
         set
         {
             if (_activeGroupModel is not null)
-                _activeGroupModel.IsOneWeekChecked = value;
-        }
-    }
-
-    public bool IsOneMonthChecked
-    {
-        get => _activeGroupModel?.IsOneMonthChecked ?? false;
-        set
-        {
-            if (_activeGroupModel is not null)
-                _activeGroupModel.IsOneMonthChecked = value;
-        }
-    }
-
-    public bool IsOneYearChecked
-    {
-        get => _activeGroupModel?.IsOneYearChecked ?? false;
-        set
-        {
-            if (_activeGroupModel is not null)
-                _activeGroupModel.IsOneYearChecked = value;
+                _activeGroupModel.SelectedPeriodModel = value;
         }
     }
 
@@ -227,8 +203,11 @@ public class ActiveGroupEditModel : BaseGroupEditModel
 
     public ActiveGroupEditModel(
         ApiClient apiClient,
+        PeriodsModel periodsModel,
         IDialogService dialogService) : base(apiClient, dialogService)
     {
+        _periodsModel = periodsModel;
+        
         _defaultGroupTitle = string.Empty;
         _groupTitle = string.Empty;
 

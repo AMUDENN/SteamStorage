@@ -36,6 +36,7 @@ public class ListActivesModel : BaseListModel
     private readonly ApiClient _apiClient;
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
+    private readonly PeriodsModel _periodsModel;
     private readonly IThemeService _themeService;
     private readonly IDialogService _dialogService;
 
@@ -345,12 +346,14 @@ public class ListActivesModel : BaseListModel
         ApiClient apiClient,
         ChartTooltipModel chartTooltipModel,
         UserModel userModel,
+        PeriodsModel periodsModel,
         IThemeService themeService,
         IDialogService dialogService)
     {
         _apiClient = apiClient;
         _chartTooltipModel = chartTooltipModel;
         _userModel = userModel;
+        _periodsModel = periodsModel;
         _themeService = themeService;
         _dialogService = dialogService;
 
@@ -511,6 +514,7 @@ public class ListActivesModel : BaseListModel
         ActiveModels = activesResponse.Actives.Select(x =>
                 new ActiveViewModel(
                     new(_apiClient,
+                        _periodsModel,
                         _themeService,
                         x.Skin.Id,
                         x.Skin.SkinIconUrl,

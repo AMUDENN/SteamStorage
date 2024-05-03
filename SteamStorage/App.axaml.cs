@@ -104,6 +104,7 @@ namespace SteamStorage
             services.AddSingleton<ListItemsModel>();
             services.AddSingleton<MessageDialogModel>();
             services.AddSingleton<PagesModel>();
+            services.AddSingleton<PeriodsModel>();
             services.AddSingleton<ProfileModel>();
             services.AddSingleton<SettingsModel>();
             services.AddSingleton<StatisticsModel>();

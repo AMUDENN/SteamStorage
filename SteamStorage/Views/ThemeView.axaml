@@ -1,84 +1,84 @@
 ﻿<UserControl
-    d:DesignHeight="450"
-    d:DesignWidth="800"
-    mc:Ignorable="d"
     x:Class="SteamStorage.Views.ThemeView"
-    x:DataType="vm:ThemeViewModel"
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SteamStorage.Resources.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:SteamStorage.ViewModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:ThemeViewModel"
+    mc:Ignorable="d">
 
     <ThemeVariantScope RequestedThemeVariant="{Binding ThemeVariant, Mode=OneWay}">
 
         <Border Classes="BackgroundBorder">
 
             <Grid
-                ColumnDefinitions="30*,3*,50*,3*,50*"
                 Margin="10"
+                ColumnDefinitions="30*,3*,50*,3*,50*"
                 RowDefinitions="7*,10,6*,10,4*">
 
                 <Border
-                    Classes="BackgroundAdditionalBorder SmallRoundedBorder"
-                    Grid.Column="0"
                     Grid.Row="0"
-                    Grid.RowSpan="5">
+                    Grid.RowSpan="5"
+                    Grid.Column="0"
+                    Classes="BackgroundAdditionalBorder SmallRoundedBorder">
 
                     <Grid Margin="0,7" RowDefinitions="55, 15, 10, 6*, 26*, 6*, 10*">
 
                         <Border
-                            Classes="LittleRoundedBorder"
                             Grid.Row="0"
+                            Width="50"
                             Height="50"
                             VerticalAlignment="Top"
-                            Width="50">
+                            Classes="LittleRoundedBorder">
 
                             <Grid>
 
                                 <Border Classes="BackgroundBorder" Opacity="0.5" />
 
-                                <controls:VectorImage Classes="AccountVectorImage ForegroundVectorImage" Margin="5" />
+                                <controls:VectorImage Margin="5" Classes="AccountVectorImage ForegroundVectorImage" />
 
                             </Grid>
 
                         </Border>
 
                         <TextBlock
+                            Grid.Row="1"
                             Classes="CenterTextBlock"
                             FontSize="12"
-                            Grid.Row="1"
                             Text="Username" />
 
                         <TextBlock
+                            Grid.Row="2"
                             Classes="CenterTextBlock LightTextBlock"
                             FontSize="6"
-                            Grid.Row="2"
                             Text="SteamID" />
 
                         <Rectangle
-                            Classes="ForegroundRectangle"
                             Grid.Row="3"
                             Height="2"
-                            Margin="20,0" />
+                            Margin="20,0"
+                            Classes="ForegroundRectangle" />
 
                         <Rectangle
-                            Classes="ForegroundRectangle"
                             Grid.Row="5"
                             Height="2"
-                            Margin="20,0" />
+                            Margin="20,0"
+                            Classes="ForegroundRectangle" />
 
                     </Grid>
 
                 </Border>
 
                 <Border
-                    Classes="FirstAccentGradientBorder SmallRoundedBorder"
+                    Grid.Row="0"
                     Grid.Column="2"
-                    Grid.Row="0" />
+                    Classes="FirstAccentGradientBorder SmallRoundedBorder" />
 
-                <Grid Grid.Column="4" Grid.Row="0">
+                <Grid Grid.Row="0" Grid.Column="4">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -86,31 +86,31 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Border Classes="SecondAccentGradientBorder SmallRoundedBorder" Grid.Row="0" />
+                    <Border Grid.Row="0" Classes="SecondAccentGradientBorder SmallRoundedBorder" />
 
-                    <Border Classes="ThirdAccentGradientBorder SmallRoundedBorder" Grid.Row="2" />
+                    <Border Grid.Row="2" Classes="ThirdAccentGradientBorder SmallRoundedBorder" />
 
                 </Grid>
 
                 <Border
-                    Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                    Grid.Row="2"
                     Grid.Column="2"
-                    Grid.Row="2" />
+                    Classes="BackgroundAdditionalBorder SmallRoundedBorder" />
 
                 <Border
-                    Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                    Grid.Row="2"
                     Grid.Column="4"
-                    Grid.Row="2" />
+                    Classes="BackgroundAdditionalBorder SmallRoundedBorder" />
 
                 <Border
-                    Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                    Grid.Row="4"
                     Grid.Column="2"
-                    Grid.Row="4" />
+                    Classes="BackgroundAdditionalBorder SmallRoundedBorder" />
 
                 <Border
-                    Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                    Grid.Row="4"
                     Grid.Column="4"
-                    Grid.Row="4" />
+                    Classes="BackgroundAdditionalBorder SmallRoundedBorder" />
 
             </Grid>
 

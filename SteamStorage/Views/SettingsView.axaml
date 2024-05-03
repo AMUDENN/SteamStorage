@@ -1,27 +1,27 @@
 ﻿<UserControl
-    d:DesignHeight="450"
-    d:DesignWidth="800"
-    mc:Ignorable="d"
     x:Class="SteamStorage.Views.SettingsView"
-    x:DataType="vm:SettingsViewModel"
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SteamStorage.Resources.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:SteamStorage.ViewModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:SettingsViewModel"
+    mc:Ignorable="d">
 
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="6*" />
-            <RowDefinition MaxHeight="30" MinHeight="30" />
+            <RowDefinition MinHeight="30" MaxHeight="30" />
             <RowDefinition Height="*" MinHeight="90" />
-            <RowDefinition MaxHeight="30" MinHeight="30" />
+            <RowDefinition MinHeight="30" MaxHeight="30" />
             <RowDefinition Height="2*" MinHeight="220" />
         </Grid.RowDefinitions>
 
-        <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" Grid.Row="0">
+        <Border Grid.Row="0" Classes="BigRoundedBorder BackgroundAdditionalBorder">
 
             <Grid Margin="30">
 
@@ -32,13 +32,13 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock
-                    Classes="MiddleTextBlock"
                     Grid.Row="0"
+                    Classes="MiddleTextBlock"
                     Text="Внешний вид приложения" />
 
                 <ListBox
-                    Classes="ThemeVariantsListBox"
                     Grid.Row="2"
+                    Classes="ThemeVariantsListBox"
                     ItemsSource="{Binding ThemeModels, Mode=OneWay}"
                     SelectedItem="{Binding SelectedThemeModel}" />
 
@@ -50,24 +50,24 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition MaxWidth="30" MinWidth="30" />
+                <ColumnDefinition MinWidth="30" MaxWidth="30" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" Grid.Column="0">
+            <Border Grid.Column="0" Classes="BigRoundedBorder BackgroundAdditionalBorder">
                 <Button
+                    Margin="20,0"
                     Classes="UnderlineButton StretchButton"
                     Command="{Binding ExportToExcelCommand, Mode=OneWay}"
-                    Content="Экспорт в Excel"
-                    Margin="20,0" />
+                    Content="Экспорт в Excel" />
             </Border>
 
-            <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" Grid.Column="2">
+            <Border Grid.Column="2" Classes="BigRoundedBorder BackgroundAdditionalBorder">
                 <Button
+                    Margin="20,0"
                     Classes="UnderlineButton StretchButton"
                     Command="{Binding OpenReferenceInformationCommand, Mode=OneWay}"
-                    Content="Справочная информация"
-                    Margin="20,0" />
+                    Content="Справочная информация" />
             </Border>
 
         </Grid>
@@ -76,117 +76,117 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition MaxWidth="30" MinWidth="30" />
+                <ColumnDefinition MinWidth="30" MaxWidth="30" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition MaxWidth="30" MinWidth="30" />
+                <ColumnDefinition MinWidth="30" MaxWidth="30" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" Grid.Column="0">
+            <Border Grid.Column="0" Classes="BigRoundedBorder BackgroundAdditionalBorder">
 
                 <Grid Margin="30">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="72" />
-                        <RowDefinition MaxHeight="10" MinHeight="10" />
+                        <RowDefinition MinHeight="10" MaxHeight="10" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition MaxWidth="72" MinWidth="72" />
-                            <ColumnDefinition MaxWidth="20" MinWidth="20" />
+                            <ColumnDefinition MinWidth="72" MaxWidth="72" />
+                            <ColumnDefinition MinWidth="20" MaxWidth="20" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <controls:VectorImage Classes="GithubVectorImage ForegroundVectorImage" Grid.Column="0" />
+                        <controls:VectorImage Grid.Column="0" Classes="GithubVectorImage ForegroundVectorImage" />
 
                         <TextBlock
-                            Classes="MiddleTextBlock"
                             Grid.Column="2"
+                            Classes="MiddleTextBlock"
                             Text="GitHub" />
 
                     </Grid>
 
                     <controls:HyperlinkButton
+                        Grid.Row="2"
                         Classes="UnderlineHyperlinkButton"
                         Content="github.com/SteamStorage"
-                        Grid.Row="2"
                         NavigateUrl="https://github.com/AMUDENN/SteamStorage" />
 
                 </Grid>
 
             </Border>
 
-            <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" Grid.Column="2">
+            <Border Grid.Column="2" Classes="BigRoundedBorder BackgroundAdditionalBorder">
 
                 <Grid Margin="30">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="72" />
-                        <RowDefinition MaxHeight="10" MinHeight="10" />
+                        <RowDefinition MinHeight="10" MaxHeight="10" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition MaxWidth="72" MinWidth="72" />
-                            <ColumnDefinition MaxWidth="20" MinWidth="20" />
+                            <ColumnDefinition MinWidth="72" MaxWidth="72" />
+                            <ColumnDefinition MinWidth="20" MaxWidth="20" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <controls:VectorImage Classes="TelegramVectorImage ForegroundVectorImage" Grid.Column="0" />
+                        <controls:VectorImage Grid.Column="0" Classes="TelegramVectorImage ForegroundVectorImage" />
 
                         <TextBlock
-                            Classes="MiddleTextBlock"
                             Grid.Column="2"
+                            Classes="MiddleTextBlock"
                             Text="Telegram" />
 
                     </Grid>
 
                     <controls:HyperlinkButton
+                        Grid.Row="2"
                         Classes="UnderlineHyperlinkButton"
                         Content="@amudenn"
-                        Grid.Row="2"
                         NavigateUrl="https://t.me/amudenn" />
 
                 </Grid>
 
             </Border>
 
-            <Border Classes="BigRoundedBorder BackgroundAdditionalBorder" Grid.Column="4">
+            <Border Grid.Column="4" Classes="BigRoundedBorder BackgroundAdditionalBorder">
 
                 <Grid Margin="30">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="72" />
-                        <RowDefinition MaxHeight="10" MinHeight="10" />
+                        <RowDefinition MinHeight="10" MaxHeight="10" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition MaxWidth="72" MinWidth="72" />
-                            <ColumnDefinition MaxWidth="20" MinWidth="20" />
+                            <ColumnDefinition MinWidth="72" MaxWidth="72" />
+                            <ColumnDefinition MinWidth="20" MaxWidth="20" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <controls:VectorImage Classes="EmailVectorImage ForegroundVectorImage" Grid.Column="0" />
+                        <controls:VectorImage Grid.Column="0" Classes="EmailVectorImage ForegroundVectorImage" />
 
                         <TextBlock
-                            Classes="MiddleTextBlock"
                             Grid.Column="2"
+                            Classes="MiddleTextBlock"
                             Text="Email" />
 
                     </Grid>
 
                     <controls:HyperlinkButton
+                        Grid.Row="2"
                         Classes="UnderlineHyperlinkButton"
                         Content="SteamStorage@gmail.com"
-                        Grid.Row="2"
                         NavigateUrl="mailto:SteamStorage@gmail.com" />
 
                 </Grid>

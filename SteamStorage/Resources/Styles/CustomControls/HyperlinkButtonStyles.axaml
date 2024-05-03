@@ -1,8 +1,8 @@
 ﻿<Styles
-    x:DataType="controls:HyperlinkButton"
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    x:DataType="controls:HyperlinkButton">
 
     <Style Selector="controls|HyperlinkButton">
         <Setter Property="Template">

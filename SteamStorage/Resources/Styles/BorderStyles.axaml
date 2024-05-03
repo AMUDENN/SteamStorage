@@ -7,33 +7,33 @@
         <Setter Property="Transitions">
             <Transitions>
                 <DoubleTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="Width" />
+                    Property="Width"
+                    Duration="0:0:0.2" />
                 <DoubleTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="Height" />
+                    Property="Height"
+                    Duration="0:0:0.2" />
                 <DoubleTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="Opacity" />
+                    Property="Opacity"
+                    Duration="0:0:0.2" />
                 <ThicknessTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="BorderThickness" />
+                    Property="BorderThickness"
+                    Duration="0:0:0.2" />
                 <CornerRadiusTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="CornerRadius" />
+                    Property="CornerRadius"
+                    Duration="0:0:0.2" />
                 <BrushTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="BorderBrush" />
+                    Property="BorderBrush"
+                    Duration="0:0:0.2" />
                 <BrushTransition
-                    Duration="0:0:0.2"
                     Easing="SineEaseOut"
-                    Property="Background" />
+                    Property="Background"
+                    Duration="0:0:0.2" />
             </Transitions>
         </Setter>
     </Style>

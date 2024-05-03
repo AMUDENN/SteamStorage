@@ -1,10 +1,9 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:asyncImageLoader="using:AsyncImageLoader"
     xmlns:utilityModels="using:SteamStorage.Models.UtilityModels">
 
-    <Style Selector="ListBox.GamesListBox">
+    <Style Selector="ListBox.PeriodListBox">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
         <Setter Property="ItemsPanel">
@@ -13,31 +12,24 @@
                     <StackPanel
                         Margin="0"
                         Orientation="Horizontal"
-                        Spacing="10" />
+                        Spacing="5" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
         <Style Selector="^ &gt; ListBoxItem">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate x:DataType="utilityModels:GameModel">
+                    <ControlTemplate x:DataType="utilityModels:PeriodModel">
 
                         <Border
                             x:Name="MainBorder"
-                            Width="60"
-                            Height="60"
-                            Classes="BackgroundAdditionalBorder SmallRoundedBorder"
+                            Width="35"
+                            Height="35"
+                            Classes="BackgroundBorder SmallRoundedBorder"
                             Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
-                            ToolTip.Tip="{Binding Title, Mode=OneWay}">
+                            ToolTip.Tip="{Binding FullTitle, Mode=OneWay}">
 
-                            <Border
-                                Width="40"
-                                Height="40"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Classes="LittleRoundedBorder">
-                                <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}" />
-                            </Border>
+                            <TextBlock Classes="TinyTextBlock CenterTextBlock" Text="{Binding SmallTitle, Mode=OneWay}" />
 
                         </Border>
 
@@ -48,16 +40,16 @@
                 <Setter Property="Opacity" Value="0.8" />
             </Style>
         </Style>
-        <Style Selector="^.FirstAccentLinearGameListBox ListBoxItem /template/ Border#MainBorder">
+        <Style Selector="^.FirstAccentLinearPeriodListBox ListBoxItem /template/ Border#MainBorder">
             <Setter Property="BorderBrush" Value="{DynamicResource FirstAccentLinearBrush}" />
         </Style>
-        <Style Selector="^.SecondAccentLinearGameListBox ListBoxItem /template/ Border#MainBorder">
+        <Style Selector="^.SecondAccentLinearPeriodListBox ListBoxItem /template/ Border#MainBorder">
             <Setter Property="BorderBrush" Value="{DynamicResource SecondAccentLinearBrush}" />
         </Style>
-        <Style Selector="^.ThirdAccentLinearGameListBox ListBoxItem /template/ Border#MainBorder">
+        <Style Selector="^.ThirdAccentLinearPeriodListBox ListBoxItem /template/ Border#MainBorder">
             <Setter Property="BorderBrush" Value="{DynamicResource ThirdAccentLinearBrush}" />
         </Style>
-        <Style Selector="^.FourthAccentLinearGameListBox ListBoxItem /template/ Border#MainBorder">
+        <Style Selector="^.FourthAccentLinearPeriodListBox ListBoxItem /template/ Border#MainBorder">
             <Setter Property="BorderBrush" Value="{DynamicResource FourthAccentLinearBrush}" />
         </Style>
     </Style>

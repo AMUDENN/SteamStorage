@@ -1,27 +1,27 @@
 <UserControl
-    d:DesignHeight="450"
-    d:DesignWidth="800"
-    mc:Ignorable="d"
     x:Class="SteamStorage.Views.HomeView"
-    x:DataType="vm:HomeViewModel"
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:SteamStorage.ViewModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:HomeViewModel"
+    mc:Ignorable="d">
 
     <Grid RowDefinitions="Auto, *">
 
         <ListBox
-            Classes="SecondaryNavigationListBox FourthAccentSecondaryNavigationListBox"
             Grid.Row="0"
+            Classes="SecondaryNavigationListBox FourthAccentSecondaryNavigationListBox"
             ItemsSource="{Binding SecondaryNavigationOptions, Mode=OneWay}"
             SelectedItem="{Binding SelectedSecondaryNavigationModel}" />
 
         <TransitioningContentControl
+            Grid.Row="1"
             Classes="CrossFadeTransitioningContentControl"
-            Content="{Binding CurrentViewModel, Mode=OneWay}"
-            Grid.Row="1" />
+            Content="{Binding CurrentViewModel, Mode=OneWay}" />
 
     </Grid>
 

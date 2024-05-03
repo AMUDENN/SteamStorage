@@ -55,14 +55,14 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Border
-                        Background="{TemplateBinding Background}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
                         HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
+                        VerticalAlignment="Stretch"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                         <TextBlock
+                            Margin="0,0,0,3"
                             Classes="SmallTextBlock CenterTextBlock"
                             Foreground="{TemplateBinding Foreground}"
-                            Margin="0,0,0,3"
                             Text="{TemplateBinding Content}" />
                     </Border>
                 </ControlTemplate>
@@ -84,25 +84,25 @@
                 <ControlTemplate>
                     <Border Background="{TemplateBinding Background}">
                         <Grid
+                            x:Name="ContentGrid"
                             Height="60"
-                            Margin="20,0"
-                            x:Name="ContentGrid">
+                            Margin="20,0">
                             <Border
+                                x:Name="PointerOverBorder"
                                 Classes="BackgroundBorder BigRoundedBorder"
-                                Opacity="0"
-                                x:Name="PointerOverBorder" />
-                            <Grid ColumnDefinitions="60, Auto" x:Name="GridTitle">
+                                Opacity="0" />
+                            <Grid x:Name="GridTitle" ColumnDefinitions="60, Auto">
                                 <ContentPresenter
-                                    Content="{TemplateBinding Content}"
                                     Grid.Column="0"
-                                    Margin="14" />
+                                    Margin="14"
+                                    Content="{TemplateBinding Content}" />
                                 <TextBlock
+                                    x:Name="TitleTextBlock"
+                                    Grid.Column="1"
                                     Classes="MiddleTextBlock CenterTextBlock"
                                     Foreground="{TemplateBinding Foreground}"
-                                    Grid.Column="1"
                                     IsVisible="True"
-                                    Text="{TemplateBinding Tag}"
-                                    x:Name="TitleTextBlock" />
+                                    Text="{TemplateBinding Tag}" />
                             </Grid>
                         </Grid>
                     </Border>
@@ -140,18 +140,18 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Border
-                        Background="{TemplateBinding Background}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
+                        x:Name="Border"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
-                        x:Name="Border">
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                         <ContentPresenter
-                            Content="{TemplateBinding Content}"
-                            HorizontalAlignment="Stretch"
-                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                             Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

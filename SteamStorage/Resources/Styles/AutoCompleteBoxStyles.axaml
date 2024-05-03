@@ -1,8 +1,8 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:asyncImageLoader="using:AsyncImageLoader"
-    xmlns:baseViewModels="clr-namespace:SteamStorage.ViewModels.UtilityViewModels.BaseViewModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:baseViewModels="clr-namespace:SteamStorage.ViewModels.UtilityViewModels.BaseViewModels">
 
     <Style Selector="AutoCompleteBox.SmallAutoCompleteBox">
         <Setter Property="FontSize" Value="20" />
@@ -19,34 +19,34 @@
             <ControlTemplate>
                 <Grid x:Name="PART_LayoutRoot">
                     <TextBox
+                        x:Name="PART_TextBox"
+                        Width="{TemplateBinding Width}"
+                        Padding="{TemplateBinding Padding}"
                         BorderThickness="0"
                         Classes="DarkTextBox SmallTextBox"
                         DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
                         FontSize="{TemplateBinding FontSize}"
-                        Padding="{TemplateBinding Padding}"
-                        Watermark="{TemplateBinding Watermark}"
-                        Width="{TemplateBinding Width}"
-                        x:Name="PART_TextBox" />
+                        Watermark="{TemplateBinding Watermark}" />
                     <Popup
-                        IsLightDismissEnabled="True"
-                        MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                        x:Name="PART_Popup"
                         MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                        MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                        IsLightDismissEnabled="True"
                         PlacementTarget="{TemplateBinding}"
-                        WindowManagerAddShadowHint="False"
-                        x:Name="PART_Popup">
+                        WindowManagerAddShadowHint="False">
                         <Border
+                            x:Name="PART_SuggestionsContainer"
+                            Padding="{DynamicResource AutoCompleteListMargin}"
                             Background="{DynamicResource TopLevelBackgroundBrush}"
                             BorderBrush="Transparent"
                             BorderThickness="0"
-                            Classes="SmallRoundedBorder"
-                            Padding="{DynamicResource AutoCompleteListMargin}"
-                            x:Name="PART_SuggestionsContainer">
+                            Classes="SmallRoundedBorder">
                             <ListBox
+                                x:Name="PART_SelectingItemsControl"
+                                Margin="{DynamicResource AutoCompleteListPadding}"
                                 Background="Transparent"
                                 BorderThickness="0"
-                                ItemTemplate="{TemplateBinding ItemTemplate}"
-                                Margin="{DynamicResource AutoCompleteListPadding}"
-                                x:Name="PART_SelectingItemsControl" />
+                                ItemTemplate="{TemplateBinding ItemTemplate}" />
                         </Border>
                     </Popup>
                 </Grid>
@@ -59,16 +59,16 @@
             <Setter.Value>
                 <DataTemplate x:DataType="baseViewModels:BaseSkinViewModel">
                     <Grid
-                        ColumnDefinitions="40, *"
                         Height="30"
-                        Margin="11,4,11,7">
-                        <Border Classes="LittleRoundedBorder TransparentBorder" Grid.Column="0">
+                        Margin="11,4,11,7"
+                        ColumnDefinitions="40, *">
+                        <Border Grid.Column="0" Classes="LittleRoundedBorder TransparentBorder">
                             <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}" />
                         </Border>
                         <TextBlock
-                            Classes="LittleTextBlock LeftTextBlock LightWeightTextBlock"
                             Grid.Column="1"
                             Margin="10,0,0,0"
+                            Classes="LittleTextBlock LeftTextBlock LightWeightTextBlock"
                             Text="{Binding Title, Mode=OneWay}" />
                     </Grid>
                 </DataTemplate>

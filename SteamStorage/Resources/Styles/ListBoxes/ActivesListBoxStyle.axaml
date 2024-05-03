@@ -1,10 +1,10 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:asyncImageLoader="using:AsyncImageLoader"
     xmlns:controls="using:SteamStorage.Resources.Controls"
     xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
-    xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels">
 
     <Style Selector="ListBox.ActivesListBox">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
@@ -15,16 +15,16 @@
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-        <Style Selector="^ ListBoxItem">
+        <Style Selector="^ &gt; ListBoxItem">
             <Setter Property="Margin" Value="0, 0, 0, 20" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate x:DataType="utilityViewModels:ActiveViewModel">
 
                         <Border
-                            Classes="BackgroundAdditionalBorder BigRoundedBorder"
+                            x:Name="MainBorder"
                             Height="130"
-                            x:Name="MainBorder">
+                            Classes="BackgroundAdditionalBorder BigRoundedBorder">
 
                             <Border.ContextMenu>
                                 <ContextMenu>
@@ -58,27 +58,27 @@
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition
-                                        MaxWidth="140"
+                                        Width="140*"
                                         MinWidth="100"
-                                        Width="140*" />
-                                    <ColumnDefinition MinWidth="20" Width="20" />
+                                        MaxWidth="140" />
+                                    <ColumnDefinition Width="20" MinWidth="20" />
                                     <ColumnDefinition Width="260*" />
-                                    <ColumnDefinition MinWidth="20" Width="20" />
+                                    <ColumnDefinition Width="20" MinWidth="20" />
                                     <ColumnDefinition Width="80*" />
-                                    <ColumnDefinition MinWidth="20" Width="20" />
+                                    <ColumnDefinition Width="20" MinWidth="20" />
                                     <ColumnDefinition Width="120*" />
-                                    <ColumnDefinition MinWidth="20" Width="20" />
+                                    <ColumnDefinition Width="20" MinWidth="20" />
                                     <ColumnDefinition Width="120*" />
-                                    <ColumnDefinition MinWidth="20" Width="20" />
+                                    <ColumnDefinition Width="20" MinWidth="20" />
                                     <ColumnDefinition Width="120*" />
-                                    <ColumnDefinition MinWidth="20" Width="20" />
+                                    <ColumnDefinition Width="20" MinWidth="20" />
                                     <ColumnDefinition Width="70*" />
                                 </Grid.ColumnDefinitions>
 
                                 <Border
-                                    Classes="SmallRoundedBorder BackgroundAdditionalBorder"
-                                    Grid.Column="0"
                                     Grid.Row="0"
+                                    Grid.Column="0"
+                                    Classes="SmallRoundedBorder BackgroundAdditionalBorder"
                                     ToolTip.Tip="Изображение">
 
                                     <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}" />
@@ -86,68 +86,68 @@
                                 </Border>
 
                                 <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="2"
                                     Classes="MiddleTextBlock LeftTextBlock WrapTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                    Grid.Column="2"
-                                    Grid.Row="0"
                                     Text="{Binding Title, Mode=OneWay}"
                                     ToolTip.Tip="Название" />
 
                                 <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="4"
                                     Classes="MiddleTextBlock CenterTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                    Grid.Column="4"
-                                    Grid.Row="0"
                                     Text="{Binding Count, StringFormat=N0, Mode=OneWay}"
                                     ToolTip.Tip="Количество" />
 
                                 <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="6"
                                     Classes="MiddleTextBlock CenterTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                    Grid.Column="6"
-                                    Grid.Row="0"
                                     Text="{Binding BuyPriceString, Mode=OneWay}"
                                     ToolTip.Tip="Цена покупки" />
 
                                 <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="8"
                                     Classes="MiddleTextBlock CenterTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                    Grid.Column="8"
-                                    Grid.Row="0"
                                     Text="{Binding CurrentPriceString, Mode=OneWay}"
                                     ToolTip.Tip="Текущая цена" />
 
                                 <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="10"
                                     Classes="MiddleTextBlock CenterTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                    Grid.Column="10"
-                                    Grid.Row="0"
                                     Text="{Binding CurrentSumString, Mode=OneWay}"
                                     ToolTip.Tip="Сумма" />
 
                                 <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="12"
                                     Classes="MiddleTextBlock CenterTextBlock"
                                     Classes.NegativeTextBlock="{Binding Change, Mode=OneWay, Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
                                     Classes.PositiveTextBlock="{Binding Change, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                                    Grid.Column="12"
-                                    Grid.Row="0"
                                     Text="{Binding Change, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
                                     ToolTip.Tip="Изменение" />
 
                                 <DockPanel
-                                    Classes.Max="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
+                                    x:Name="TopDockPanel"
+                                    Grid.Row="2"
                                     Grid.Column="2"
                                     Grid.ColumnSpan="11"
-                                    Grid.Row="2"
                                     Height="40"
-                                    HorizontalAlignment="Stretch"
                                     Margin="0,0,0,10"
-                                    x:Name="TopDockPanel">
+                                    HorizontalAlignment="Stretch"
+                                    Classes.Max="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}">
 
                                     <StackPanel
-                                        DockPanel.Dock="Left"
                                         HorizontalAlignment="Left"
+                                        DockPanel.Dock="Left"
                                         Orientation="Horizontal">
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Финансовая цель: " />
@@ -157,8 +157,8 @@
                                     </StackPanel>
 
                                     <StackPanel
-                                        DockPanel.Dock="Right"
                                         HorizontalAlignment="Right"
+                                        DockPanel.Dock="Right"
                                         Orientation="Horizontal">
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата покупки: " />
@@ -170,12 +170,12 @@
                                 </DockPanel>
 
                                 <StackPanel
-                                    Classes.Min="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
-                                    Grid.Column="2"
+                                    x:Name="ChangeStackPanel"
                                     Grid.Row="3"
+                                    Grid.Column="2"
+                                    Classes.Min="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
                                     Opacity="0"
-                                    Spacing="10"
-                                    x:Name="ChangeStackPanel">
+                                    Spacing="10">
 
                                     <StackPanel Orientation="Horizontal">
 
@@ -200,12 +200,12 @@
                                 </StackPanel>
 
                                 <Grid
-                                    Classes.Max="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
+                                    x:Name="ChangeChart"
+                                    Grid.Row="3"
                                     Grid.Column="5"
                                     Grid.ColumnSpan="8"
-                                    Grid.Row="3"
-                                    IsVisible="False"
-                                    x:Name="ChangeChart">
+                                    Classes.Max="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=980}"
+                                    IsVisible="False">
 
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="55" MinHeight="50" />
@@ -221,12 +221,12 @@
                                             Text="{Binding NotFoundText, Mode=OneWay}" />
 
                                         <controls:VectorImage
-                                            Classes="LoadingVectorImage AnimationWheelVectorImage ForegroundVectorImage"
+                                            Width="24"
                                             Height="24"
                                             HorizontalAlignment="Center"
-                                            IsVisible="{Binding IsLoading, Mode=OneWay}"
                                             VerticalAlignment="Center"
-                                            Width="24" />
+                                            Classes="LoadingVectorImage AnimationWheelVectorImage ForegroundVectorImage"
+                                            IsVisible="{Binding IsLoading, Mode=OneWay}" />
 
                                         <lvc:CartesianChart
                                             Series="{Binding ChangeSeries, Mode=OneWay}"
@@ -238,42 +238,13 @@
 
                                     </Grid>
 
-                                    <StackPanel
+                                    <ListBox
                                         Grid.Row="2"
                                         HorizontalAlignment="Right"
-                                        Orientation="Horizontal"
-                                        Spacing="5"
-                                        VerticalAlignment="Bottom">
-
-                                        <RadioButton
-                                            Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
-                                            Content="1 д"
-                                            GroupName="ActiveLBPeriod"
-                                            IsChecked="{Binding IsOneDayChecked}"
-                                            ToolTip.Tip="1 день" />
-
-                                        <RadioButton
-                                            Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
-                                            Content="1 н"
-                                            GroupName="ActiveLBPeriod"
-                                            IsChecked="{Binding IsOneWeekChecked}"
-                                            ToolTip.Tip="1 неделя" />
-
-                                        <RadioButton
-                                            Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
-                                            Content="1 м"
-                                            GroupName="ActiveLBPeriod"
-                                            IsChecked="{Binding IsOneMonthChecked}"
-                                            ToolTip.Tip="1 месяц" />
-
-                                        <RadioButton
-                                            Classes="PeriodRadioButton FirstAccentLinearPeriodRadioButton"
-                                            Content="1 г"
-                                            GroupName="ActiveLBPeriod"
-                                            IsChecked="{Binding IsOneYearChecked}"
-                                            ToolTip.Tip="1 год" />
-
-                                    </StackPanel>
+                                        VerticalAlignment="Bottom"
+                                        Classes="PeriodListBox FirstAccentLinearPeriodListBox"
+                                        ItemsSource="{Binding PeriodModels, Mode=OneWay}"
+                                        SelectedItem="{Binding SelectedPeriodModel}" />
 
                                 </Grid>
 

@@ -5,12 +5,12 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Border
-                        Classes="ForegroundBorder LittleRoundedBorder"
-                        HorizontalAlignment="Stretch"
-                        Opacity="0.5"
-                        VerticalAlignment="Stretch"
+                        x:Name="MainBorder"
                         Width="6"
-                        x:Name="MainBorder" />
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Classes="ForegroundBorder LittleRoundedBorder"
+                        Opacity="0.5" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -24,12 +24,12 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Border
-                        Classes="ForegroundBorder LittleRoundedBorder"
+                        x:Name="MainBorder"
                         Height="6"
                         HorizontalAlignment="Stretch"
-                        Opacity="0.5"
                         VerticalAlignment="Stretch"
-                        x:Name="MainBorder" />
+                        Classes="ForegroundBorder LittleRoundedBorder"
+                        Opacity="0.5" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -44,21 +44,21 @@
                 <ControlTemplate>
                     <Grid x:Name="Root">
                         <Border
+                            x:Name="VerticalRoot"
                             Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            x:Name="VerticalRoot">
+                            BorderBrush="{TemplateBinding BorderBrush}">
                             <Grid RowDefinitions="Auto,*,Auto">
                                 <Track
-                                    DeferThumbDrag="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
                                     Grid.Row="1"
+                                    DeferThumbDrag="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
                                     IsDirectionReversed="True"
                                     Maximum="{TemplateBinding Maximum}"
                                     Minimum="{TemplateBinding Minimum}"
                                     Orientation="{TemplateBinding Orientation}"
+                                    ViewportSize="{TemplateBinding ViewportSize}"
                                     Value="{TemplateBinding Value,
-                                                            Mode=TwoWay}"
-                                    ViewportSize="{TemplateBinding ViewportSize}">
-                                    <Thumb Classes="VerticalThumb" HorizontalAlignment="Right" />
+                                                            Mode=TwoWay}">
+                                    <Thumb HorizontalAlignment="Right" Classes="VerticalThumb" />
                                 </Track>
                             </Grid>
                         </Border>
@@ -71,20 +71,20 @@
                 <ControlTemplate>
                     <Grid x:Name="Root">
                         <Border
+                            x:Name="HorizontalRoot"
                             Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            x:Name="HorizontalRoot">
+                            BorderBrush="{TemplateBinding BorderBrush}">
                             <Grid ColumnDefinitions="Auto,*,Auto">
                                 <Track
-                                    DeferThumbDrag="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
                                     Grid.Column="1"
+                                    DeferThumbDrag="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
                                     Maximum="{TemplateBinding Maximum}"
                                     Minimum="{TemplateBinding Minimum}"
                                     Orientation="{TemplateBinding Orientation}"
+                                    ViewportSize="{TemplateBinding ViewportSize}"
                                     Value="{TemplateBinding Value,
-                                                            Mode=TwoWay}"
-                                    ViewportSize="{TemplateBinding ViewportSize}">
-                                    <Thumb Classes="HorizontalThumb" VerticalAlignment="Bottom" />
+                                                            Mode=TwoWay}">
+                                    <Thumb VerticalAlignment="Bottom" Classes="HorizontalThumb" />
                                 </Track>
                             </Grid>
                         </Border>
