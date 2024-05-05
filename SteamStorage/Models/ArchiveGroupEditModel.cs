@@ -17,17 +17,6 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
     #region Fields
 
     private ArchiveGroupModel? _archiveGroupModel;
-    
-    private string _defaultGroupTitle;
-    private string _groupTitle;
-
-    private string? _defaultDescription;
-    private string? _description;
-
-    private Color _defaultColour;
-    private Color _colour;
-
-    private bool _isNewGroup;
 
     private string _dateCreationString;
     private string _buySumString;
@@ -37,61 +26,7 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
     #endregion Fields
 
     #region Properties
-
-    public string DefaultGroupTitle
-    {
-        get => _defaultGroupTitle;
-        private set => SetProperty(ref _defaultGroupTitle, value);
-    }
-
-    public string GroupTitle
-    {
-        get => _groupTitle;
-        set
-        {
-            SetProperty(ref _groupTitle, value);
-            SaveCommand.NotifyCanExecuteChanged();
-        }
-    }
-
-    public string? DefaultDescription
-    {
-        get => _defaultDescription;
-        private set => SetProperty(ref _defaultDescription, value);
-    }
-
-    public string? Description
-    {
-        get => _description;
-        set
-        {
-            SetProperty(ref _description, value);
-            SaveCommand.NotifyCanExecuteChanged();
-        }
-    }
-
-    public Color DefaultColour
-    {
-        get => _defaultColour;
-        private set => SetProperty(ref _defaultColour, value);
-    }
-
-    public Color Colour
-    {
-        get => _colour;
-        set
-        {
-            SetProperty(ref _colour, value); 
-            SaveCommand.NotifyCanExecuteChanged();
-        }
-    }
-
-    public bool IsNewGroup
-    {
-        get => _isNewGroup;
-        private set => SetProperty(ref _isNewGroup, value);
-    }
-
+    
     public string DateCreationString
     {
         get => _dateCreationString;
@@ -124,9 +59,6 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
         ApiClient apiClient,
         IDialogService dialogService) : base(apiClient, dialogService)
     {
-        _defaultGroupTitle = string.Empty;
-        _groupTitle = string.Empty;
-
         _dateCreationString = string.Empty;
         _buySumString = string.Empty;
         _soldSumString = string.Empty;

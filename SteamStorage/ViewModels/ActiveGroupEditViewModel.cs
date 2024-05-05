@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Avalonia.Media;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -9,7 +8,7 @@ using SteamStorage.ViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels;
 
-public class ActiveGroupEditViewModel : BaseEditViewModel
+public class ActiveGroupEditViewModel : BaseGroupEditViewModel
 {
     #region Fields
 
@@ -20,28 +19,6 @@ public class ActiveGroupEditViewModel : BaseEditViewModel
 
     #region Properties
 
-    public string DefaultGroupTitle
-    {
-        get => _activeGroupEditModel.DefaultGroupTitle;
-    }
-
-    public string GroupTitle
-    {
-        get => _activeGroupEditModel.GroupTitle;
-        set => _activeGroupEditModel.GroupTitle = value;
-    }
-
-    public string? DefaultDescription
-    {
-        get => _activeGroupEditModel.DefaultDescription;
-    }
-
-    public string? Description
-    {
-        get => _activeGroupEditModel.Description;
-        set => _activeGroupEditModel.Description = value;
-    }
-
     public string? DefaultGoalSum
     {
         get => _activeGroupEditModel.DefaultGoalSum;
@@ -51,22 +28,6 @@ public class ActiveGroupEditViewModel : BaseEditViewModel
     {
         get => _activeGroupEditModel.GoalSum;
         set => _activeGroupEditModel.GoalSum = value;
-    }
-
-    public Color DefaultColour
-    {
-        get => _activeGroupEditModel.DefaultColour;
-    }
-
-    public Color Colour
-    {
-        get => _activeGroupEditModel.Colour;
-        set => _activeGroupEditModel.Colour = value;
-    }
-
-    public bool IsNewGroup
-    {
-        get => _activeGroupEditModel.IsNewGroup;
     }
 
     public string DateCreationString

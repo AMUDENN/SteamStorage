@@ -1,11 +1,10 @@
-﻿using Avalonia.Media;
-using SteamStorage.Models;
+﻿using SteamStorage.Models;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.ViewModels.BaseViewModels;
 
 namespace SteamStorage.ViewModels;
 
-public class ArchiveGroupEditViewModel : BaseEditViewModel
+public class ArchiveGroupEditViewModel : BaseGroupEditViewModel
 {
     #region Fields
 
@@ -14,44 +13,6 @@ public class ArchiveGroupEditViewModel : BaseEditViewModel
     #endregion Fields
 
     #region Properties
-
-    public string DefaultGroupTitle
-    {
-        get => _archiveGroupEditModel.DefaultGroupTitle;
-    }
-
-    public string GroupTitle
-    {
-        get => _archiveGroupEditModel.GroupTitle;
-        set => _archiveGroupEditModel.GroupTitle = value;
-    }
-
-    public string? DefaultDescription
-    {
-        get => _archiveGroupEditModel.DefaultDescription;
-    }
-
-    public string? Description
-    {
-        get => _archiveGroupEditModel.Description;
-        set => _archiveGroupEditModel.Description = value;
-    }
-
-    public Color DefaultColour
-    {
-        get => _archiveGroupEditModel.DefaultColour;
-    }
-
-    public Color Colour
-    {
-        get => _archiveGroupEditModel.Colour;
-        set => _archiveGroupEditModel.Colour = value;
-    }
-
-    public bool IsNewGroup
-    {
-        get => _archiveGroupEditModel.IsNewGroup;
-    }
 
     public string DateCreationString
     {
