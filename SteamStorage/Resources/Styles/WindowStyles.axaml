@@ -9,6 +9,7 @@
         <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="36" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
         <Setter Property="TransparencyBackgroundFallback" Value="Transparent" />
+        <Setter Property="SystemDecorations" Value="None" />
     </Style>
 
     <Style Selector="Window.MainWindow">
@@ -17,7 +18,7 @@
         <Setter Property="MinWidth" Value="980" />
         <Setter Property="Template">
             <ControlTemplate x:DataType="vm:MainWindowViewModel">
-                <Grid Margin="{TemplateBinding OffScreenMargin}">
+                <Grid>
                     <Border
                         x:Name="WindowBorder"
                         Classes="SmallRoundedBorder BackgroundBorder"
@@ -105,7 +106,7 @@
         <Setter Property="MaxWidth" Value="640" />
         <Setter Property="Template">
             <ControlTemplate x:DataType="vm:DialogWindowViewModel">
-                <Grid Margin="{TemplateBinding OffScreenMargin}">
+                <Grid>
                     <Border
                         BorderThickness="14"
                         Classes="TransparentBorder SmallRoundedBorder BoxShadowBorder"
