@@ -8,6 +8,7 @@ using SteamStorage.Views;
 using System;
 using SteamStorage.Models;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
@@ -63,6 +64,7 @@ namespace SteamStorage
             //Custom Services
             services.AddScoped<IThemeService, ThemeService>();
             services.AddScoped<IDialogService, DialogService>();
+            services.AddTransient<INotificationService, NotificationService>();
             services.AddSingleton<ISettingsService, SettingsService>(x =>
                 new(ProgramConstants.PROGRAM_NAME,
                     x.GetRequiredService<ApiClient>(),

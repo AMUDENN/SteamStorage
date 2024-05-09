@@ -4,6 +4,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Events.ListItems;
 using SteamStorage.ViewModels;
 using SteamStorage.ViewModels.Tools;
@@ -24,6 +25,7 @@ public class MainModel : ModelBase
 
     private readonly UserModel _userModel;
     private readonly IAuthorizationService _authorizationService;
+    private readonly INotificationService _notificationService;
 
     private string? _imageUrl;
     private string _userName;
@@ -114,6 +116,7 @@ public class MainModel : ModelBase
     public MainModel(
         UserModel userModel,
         IAuthorizationService authorizationService,
+        INotificationService notificationService,
         HomeViewModel homeViewModel,
         ActivesViewModel activesViewModel,
         ArchivesViewModel archivesViewModel,
@@ -127,6 +130,7 @@ public class MainModel : ModelBase
     {
         _userModel = userModel;
         _authorizationService = authorizationService;
+        _notificationService = notificationService;
 
         NavigationOptions =
         [
@@ -151,6 +155,9 @@ public class MainModel : ModelBase
         LogOutCommand = new(DoLogOutCommand);
 
         userModel.UserChanged += UserChangedHandler;
+
+        authorizationService.AuthorizationCompleted += AuthorizationCompletedHandler;
+        authorizationService.LogOutCompleted += LogOutCompletedHandler;
 
         listItemsModel.AddToActives += AddToActivesHandler;
         listItemsModel.AddToArchive += AddToArchivesHandler;
@@ -183,6 +190,16 @@ public class MainModel : ModelBase
             IsSettingsChecked = false;
             CurrentViewModel = _defaultViewModel;
         }
+    }
+
+    private async void AuthorizationCompletedHandler(object? sender)
+    {
+        await _notificationService.ShowAsync("Авторизация", "Авторизация прошла успешно");
+    }
+    
+    private async void LogOutCompletedHandler(object? sender)
+    {
+        await _notificationService.ShowAsync("Выход", "Вы вышли из аккаунта");
     }
 
     private void AddToActivesHandler(object? sender, AddToActivesEventArgs args)

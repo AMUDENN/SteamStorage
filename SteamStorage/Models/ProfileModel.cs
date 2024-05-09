@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.UtilityModels;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities;
 using SteamStorage.ViewModels;
 
@@ -134,18 +135,21 @@ public class ProfileModel : ModelBase
 
     #region Constructor
 
+    private readonly INotificationService _notificationService;
     public ProfileModel(
         UserModel userModel,
         CurrenciesModel currenciesModel,
         PagesModel pagesModel,
         TextConfirmDialogViewModel textConfirmDialogViewModel,
-        IDialogService dialogService)
+        IDialogService dialogService,
+        INotificationService notificationService)
     {
         _userModel = userModel;
         _currenciesModel = currenciesModel;
         _pagesModel = pagesModel;
         _textConfirmDialogViewModel = textConfirmDialogViewModel;
         _dialogService = dialogService;
+        _notificationService = notificationService;
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
@@ -248,15 +252,16 @@ public class ProfileModel : ModelBase
 
     private async Task DoDeleteProfileCommand(CancellationToken cancellationToken)
     {
-        _textConfirmDialogViewModel.SetConfirmData(
-            "Для подтверждения удаления аккаунта введите слово ПОДТВЕРДИТЬ",
-            "ПОДТВЕРДИТЬ");
-
-        bool result = await _dialogService.ShowDialogAsync(_textConfirmDialogViewModel);
-
-        if (!result) return;
-
-        await _userModel.DeleteUserAsync();
+        await _notificationService.ShowAsync("sdf", "slkfgjhsldkjflksdjflksd");
+        // _textConfirmDialogViewModel.SetConfirmData(
+        //     "Для подтверждения удаления аккаунта введите слово ПОДТВЕРДИТЬ",
+        //     "ПОДТВЕРДИТЬ");
+        //
+        // bool result = await _dialogService.ShowDialogAsync(_textConfirmDialogViewModel);
+        //
+        // if (!result) return;
+        //
+        // await _userModel.DeleteUserAsync();
     }
 
     private void DoAttachedToVisualTreeCommand()

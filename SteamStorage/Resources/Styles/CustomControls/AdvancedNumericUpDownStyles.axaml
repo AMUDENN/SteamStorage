@@ -38,7 +38,7 @@
                             ShowButtonSpinner="False"
                             Watermark="{TemplateBinding Watermark}"
                             Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
-
+ 
                         <Button
                             Width="35"
                             Margin="6,0"
