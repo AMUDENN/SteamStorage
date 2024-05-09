@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SteamStorage.ViewModels;
 using SteamStorage.Views;
 using System;
+using Avalonia.Threading;
 using SteamStorage.Models;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
@@ -29,12 +30,19 @@ namespace SteamStorage
 
         static App()
         {
+            Dispatcher.UIThread.UnhandledException += UnhandledExceptionHandler;
             Container = GetServiceCollection().BuildServiceProvider();
         }
 
         #endregion Constructor
 
         #region Methods
+        
+        private static void UnhandledExceptionHandler(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine(e.Exception);
+            e.Handled = true;
+        }
 
         private static ServiceCollection GetServiceCollection()
         {

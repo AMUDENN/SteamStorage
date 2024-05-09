@@ -15,7 +15,7 @@
                                 VerticalAlignment="Center"
                                 Classes="FirstAccentBorder"
                                 CornerRadius="0, 16, 16, 0"
-                                IsVisible="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}" />
+                                IsVisible="False" />
                             <Grid
                                 x:Name="ContentGrid"
                                 Height="60"
@@ -23,7 +23,6 @@
                                 <Border
                                     x:Name="ItemBorder"
                                     Classes="BigRoundedBorder"
-                                    Classes.BackgroundBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}"
                                     Opacity="0.5" />
                                 <Border
                                     x:Name="PointerOverBorder"
@@ -47,6 +46,14 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style Selector="^:checked">
+            <Style Selector="^ /template/ Border#Selected">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+            <Style Selector="^ /template/ Border#ItemBorder">
+                <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+            </Style>
+        </Style>
         <Style Selector="^:pointerover /template/ Border#PointerOverBorder">
             <Setter Property="Opacity" Value="0.3" />
         </Style>
@@ -71,13 +78,15 @@
                         x:Name="MainBorder"
                         Width="60"
                         Height="60"
-                        Classes="BackgroundAdditionalBorder SmallRoundedBorder"
-                        Classes.SmallBorder="{Binding RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}, Path=IsChecked}">
+                        Classes="BackgroundAdditionalBorder SmallRoundedBorder">
                         <TextBlock Classes="SmallTextBlock CenterTextBlock" Text="{TemplateBinding Content}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style Selector="^:checked /template/ Border#MainBorder">
+            <Setter Property="BorderThickness" Value="2" />
+        </Style>
         <Style Selector="^:pointerover /template/ Border#MainBorder">
             <Setter Property="Opacity" Value="0.8" />
         </Style>

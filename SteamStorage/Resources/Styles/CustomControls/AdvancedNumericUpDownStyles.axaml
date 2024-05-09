@@ -5,9 +5,14 @@
     x:DataType="controls:AdvancedNumericUpDown">
 
     <Style Selector="controls|AdvancedNumericUpDown">
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="ShowButtonSpinner" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
+
                     <StackPanel Orientation="Horizontal">
 
                         <Button
@@ -27,18 +32,29 @@
                             <controls:VectorImage Classes="LeftArrowVectorImage ForegroundVectorImage" />
                         </Button>
 
-                        <NumericUpDown
-                            Width="70"
-                            Classes="AdvancedNumericUpDown"
-                            FormatString="{TemplateBinding FormatString}"
-                            Increment="{TemplateBinding Increment}"
-                            Maximum="{TemplateBinding Maximum}"
-                            Minimum="{TemplateBinding Minimum}"
-                            ParsingNumberStyle="{TemplateBinding ParsingNumberStyle}"
-                            ShowButtonSpinner="False"
-                            Watermark="{TemplateBinding Watermark}"
-                            Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
- 
+                        <ButtonSpinner
+                            x:Name="PART_Spinner"
+                            MinWidth="0"
+                            Padding="0"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            AllowSpin="{TemplateBinding AllowSpin}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            ButtonSpinnerLocation="{TemplateBinding ButtonSpinnerLocation}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
+                            ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}">
+                            <TextBox
+                                x:Name="PART_TextBox"
+                                AcceptsReturn="False"
+                                Classes="NumericUpDownTextBox SmallTextBox"
+                                Text="{TemplateBinding Text}"
+                                TextWrapping="NoWrap"
+                                Watermark="{TemplateBinding Watermark}" />
+                        </ButtonSpinner>
+
                         <Button
                             Width="35"
                             Margin="6,0"
@@ -57,9 +73,24 @@
                         </Button>
 
                     </StackPanel>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style Selector="^:pointerover">
+            <Style Selector="^ /template/ TextBox#PART_TextBox">
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+            </Style>
+        </Style>
+        <Style Selector="^:focused">
+            <Setter Property="Opacity" Value="0.95" />
+            <Style Selector="^ /template/ TextBox#PART_TextBox">
+                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+            </Style>
+        </Style>
+        <Style Selector="^:focus-within /template/ TextBox#PART_TextBox">
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        </Style>
     </Style>
 
 </Styles>

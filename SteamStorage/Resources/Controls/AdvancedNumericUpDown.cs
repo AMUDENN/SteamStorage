@@ -2,8 +2,8 @@
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Utilities;
 using CommunityToolkit.Mvvm.Input;
+using SteamStorage.Utilities;
 
 namespace SteamStorage.Resources.Controls;
 
@@ -110,12 +110,12 @@ public class AdvancedNumericUpDown : NumericUpDown
 
     private void DoGoToEnd()
     {
-        SetCurrentValue(ValueProperty, MathUtilities.Clamp(Maximum, Minimum, Maximum));
+        SetCurrentValue(ValueProperty, MathUtility.Clamp(Maximum, Minimum, Maximum));
     }
 
     private void DoGoToStart()
     {
-        SetCurrentValue(ValueProperty, MathUtilities.Clamp(Minimum, Minimum, Maximum));
+        SetCurrentValue(ValueProperty, MathUtility.Clamp(Minimum, Minimum, Maximum));
     }
 
     private void DoIncrement()
@@ -126,7 +126,7 @@ public class AdvancedNumericUpDown : NumericUpDown
         else
             result = IsSet(MinimumProperty) ? Minimum : 0;
 
-        SetCurrentValue(ValueProperty, MathUtilities.Clamp(result, Minimum, Maximum));
+        SetCurrentValue(ValueProperty, MathUtility.Clamp(result, Minimum, Maximum));
     }
 
     private void DoDecrement()
@@ -137,7 +137,7 @@ public class AdvancedNumericUpDown : NumericUpDown
         else
             result = IsSet(MaximumProperty) ? Maximum : 0;
 
-        SetCurrentValue(ValueProperty, MathUtilities.Clamp(result, Minimum, Maximum));
+        SetCurrentValue(ValueProperty, MathUtility.Clamp(result, Minimum, Maximum));
     }
 
     #endregion Methods

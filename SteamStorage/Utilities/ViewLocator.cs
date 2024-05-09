@@ -15,7 +15,9 @@ public class ViewLocator : IDataTemplate
         string name = data.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
         Type? type = Type.GetType(name);
 
-        if (type is null) return new TextBlock { Text = "Not Found: " + name };
+        if (type is null)
+            return new TextBlock { Text = "Not Found: " + name };
+        
         Control control = (Control)Activator.CreateInstance(type)!;
         control.DataContext = data;
         return control;
