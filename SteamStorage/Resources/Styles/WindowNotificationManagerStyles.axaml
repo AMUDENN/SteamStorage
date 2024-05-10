@@ -1,0 +1,46 @@
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="WindowNotificationManager">
+        <Setter Property="Margin" Value="0, 40, 8, 4" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ReversibleStackPanel Name="PART_Items">
+                    <ReversibleStackPanel.DataTemplates>
+                        <DataTemplate DataType="INotification">
+                            <StackPanel Margin="12" Spacing="8">
+                                <TextBlock Classes="SmallTextBlock" Text="{Binding Title}" />
+                                <TextBlock
+                                    MaxHeight="80"
+                                    Margin="0,0,12,0"
+                                    Classes="WrapTextBlock LittleTextBlock"
+                                    Text="{Binding Message}" />
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate DataType="x:String">
+                            <TextBlock
+                                Margin="12"
+                                Classes="WrapTextBlock LittleTextBlock"
+                                Text="{Binding}" />
+                        </DataTemplate>
+                    </ReversibleStackPanel.DataTemplates>
+                </ReversibleStackPanel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^ NotificationCard">
+            <Setter Property="Background" Value="{DynamicResource TopLevelBackgroundBrush}" />
+            <Style Selector="^:success /template/ Panel#PART_HeaderBar">
+                <Setter Property="Background" Value="{DynamicResource PositiveBrush}" />
+            </Style>
+            <Style Selector="^:error /template/ Panel#PART_HeaderBar">
+                <Setter Property="Background" Value="{DynamicResource NegativeBrush}" />
+            </Style>
+            <Style Selector="^:information /template/ Panel#PART_HeaderBar">
+                <Setter Property="Background" Value="{DynamicResource InformationBrush}" />
+            </Style>
+            <Style Selector="^:warning /template/ Panel#PART_HeaderBar">
+                <Setter Property="Background" Value="{DynamicResource WarningBrush}" />
+            </Style>
+        </Style>
+    </Style>
+
+</Styles>

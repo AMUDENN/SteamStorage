@@ -3,8 +3,7 @@ using SteamStorage.Utilities.Dialog;
 using SteamStorage.ViewModels.Dialog;
 using SteamStorage.ViewModels.Tools;
 using SteamStorage.ViewModels.Windows;
-using DialogWindow = SteamStorage.Views.Windows.DialogWindow;
-using MainWindow = SteamStorage.Views.Windows.MainWindow;
+using SteamStorage.Views.Windows;
 
 namespace SteamStorage.Services.DialogService;
 

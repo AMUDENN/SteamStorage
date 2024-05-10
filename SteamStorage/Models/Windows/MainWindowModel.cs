@@ -3,8 +3,8 @@ using Avalonia.Input;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.ViewModels;
+using SteamStorage.Views.Windows;
 using SteamStorageAPI.SDK.Services.ReferenceInformationService;
-using MainWindow = SteamStorage.Views.Windows.MainWindow;
 
 namespace SteamStorage.Models.Windows;
 

@@ -12,10 +12,10 @@ using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
+using SteamStorage.Views.Windows;
 using SteamStorageAPI.SDK;
 using SteamStorageAPI.SDK.Services.ReferenceInformationService;
 using SteamStorageAPI.SDK.Utilities;
-using MainWindow = SteamStorage.Views.Windows.MainWindow;
 
 namespace SteamStorage.Models.Settings;
 

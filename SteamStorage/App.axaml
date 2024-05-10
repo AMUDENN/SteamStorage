@@ -42,6 +42,7 @@
         <StyleInclude Source="/Resources/Styles/ToggleButtonStyles.axaml" />
         <StyleInclude Source="/Resources/Styles/ToolTipStyles.axaml" />
         <StyleInclude Source="/Resources/Styles/TransitioningContentControlStyles.axaml" />
+        <StyleInclude Source="/Resources/Styles/WindowNotificationManagerStyles.axaml" />
 
         <StyleInclude Source="/Resources/Styles/WindowStyles.axaml" />
 

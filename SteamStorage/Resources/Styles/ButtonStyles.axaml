@@ -2,10 +2,15 @@
 
     <Style Selector="Button">
         <Setter Property="Padding" Value="0" />
-    </Style>
-
-    <Style Selector="Button[IsEnabled=False]">
-        <Setter Property="Opacity" Value="0.6" />
+        <Style Selector="^:pointerover">
+            <Setter Property="RenderTransform" Value="scale(0.98)" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.97)" />
+        </Style>
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="0.6" />
+        </Style>
     </Style>
 
     <Style Selector="Button.StretchButton">
@@ -68,12 +73,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style Selector="^:pointerover">
-            <Setter Property="Opacity" Value="0.9" />
-        </Style>
-        <Style Selector="^:pressed">
-            <Setter Property="Padding" Value="1" />
-        </Style>
     </Style>
 
     <Style Selector="Button.ImageTextButton">
@@ -156,12 +155,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style Selector="^:pointerover">
-            <Setter Property="Opacity" Value="0.9" />
-        </Style>
-        <Style Selector="^:pressed">
-            <Setter Property="Padding" Value="1" />
-        </Style>
         <Style Selector="^.AdvancedNumericUpDownButton">
             <Setter Property="Padding" Value="3, 8" />
             <Style Selector="^:pressed">

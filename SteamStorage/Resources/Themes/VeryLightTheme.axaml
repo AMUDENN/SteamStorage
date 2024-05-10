@@ -16,6 +16,8 @@
 
     <SolidColorBrush x:Key="PositiveBrush" Color="#1E9538" />
     <SolidColorBrush x:Key="NegativeBrush" Color="#E03737" />
+    <SolidColorBrush x:Key="InformationBrush" Color="#007ACC" />
+    <SolidColorBrush x:Key="WarningBrush" Color="#FDB328" />
 
     <LinearGradientBrush x:Key="FirstAccentLinearBrush">
         <GradientStop Offset="0" Color="#A093D4" />

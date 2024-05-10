@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 using Avalonia.Threading;
-using MainWindow = SteamStorage.Views.Windows.MainWindow;
+using SteamStorage.Views.Windows;
 
 namespace SteamStorage.Services.NotificationService;
 
