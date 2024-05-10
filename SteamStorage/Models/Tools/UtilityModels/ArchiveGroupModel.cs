@@ -19,15 +19,15 @@ public class ArchiveGroupModel : ExtendedBaseGroupModel
 
     public ArchiveGroupModel(
         int groupId,
-        string colour,
         string title,
+        string colour,
         int count,
         decimal buySum,
         decimal soldSum,
         string currencyMark,
         double change,
         DateTime dateCreation,
-        string? description) : base(groupId, colour, title, count, dateCreation, description)
+        string? description) : base(groupId, title, colour, count, dateCreation, description)
     {
         BuySumString = $"{buySum:N2} {currencyMark}";
         SoldSumString = $"{soldSum:N2} {currencyMark}";

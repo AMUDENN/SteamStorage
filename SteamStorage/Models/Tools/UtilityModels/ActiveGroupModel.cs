@@ -138,8 +138,8 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         PeriodsModel periodsModel,
         IThemeService themeService,
         int groupId,
-        string colour,
         string title,
+        string colour,
         int count,
         decimal? goalSum,
         double? goalSumCompletion,
@@ -148,7 +148,7 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         string currencyMark,
         double change,
         DateTime dateCreation,
-        string? description) : base(groupId, colour, title, count, dateCreation, description)
+        string? description) : base(groupId, title, colour, count, dateCreation, description)
     {
         _apiClient = apiClient;
         _periodsModel = periodsModel;

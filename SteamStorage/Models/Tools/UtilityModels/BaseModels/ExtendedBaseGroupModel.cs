@@ -7,8 +7,6 @@ public class ExtendedBaseGroupModel : BaseGroupModel
 {
     #region Properties
 
-    public string Colour { get; }
-
     public int Count { get; }
     
     public DateTime DateCreation { get; }
@@ -23,13 +21,12 @@ public class ExtendedBaseGroupModel : BaseGroupModel
 
     protected ExtendedBaseGroupModel(
         int groupId,
-        string colour,
         string title,
+        string colour,
         int count,
         DateTime dateCreation,
-        string? description) : base(groupId, title)
+        string? description) : base(groupId, title, colour)
     {
-        Colour = colour;
         Count = count;
         DateCreation = dateCreation;
         DateCreationString = dateCreation.ToString(ProgramConstants.VIEW_DATE_FORMAT);

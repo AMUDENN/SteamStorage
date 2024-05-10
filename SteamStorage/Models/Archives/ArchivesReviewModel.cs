@@ -517,8 +517,8 @@ public class ArchivesReviewModel : ModelBase
         ArchiveGroupModels = groupsResponse.ArchiveGroups.Select(x =>
                 new ArchiveGroupViewModel(
                     new(x.Id, 
-                        x.Colour, 
                         x.Title, 
+                        x.Colour, 
                         x.Count, 
                         x.BuySum, 
                         x.SoldSum, 

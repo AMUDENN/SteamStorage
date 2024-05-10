@@ -222,7 +222,18 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate x:DataType="baseModels:BaseGroupModel">
-                    <TextBlock Classes="SmallTextBlock" Text="{Binding Title}" />
+                    <Grid ColumnDefinitions="Auto, 10 *">
+                        <Border
+                            Grid.Column="0"
+                            Width="20"
+                            Height="20"
+                            Background="{Binding Colour, Converter={StaticResource BrushConverter}}"
+                            Classes="LittleRoundedBorder" />
+                        <TextBlock
+                            Grid.Column="2"
+                            Classes="SmallTextBlock"
+                            Text="{Binding Title}" />
+                    </Grid>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

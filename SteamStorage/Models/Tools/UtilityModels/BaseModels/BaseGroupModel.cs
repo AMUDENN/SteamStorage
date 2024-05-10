@@ -7,6 +7,8 @@ public class BaseGroupModel : ModelBase
     public int GroupId { get; }
 
     public string Title { get; }
+    
+    public string Colour { get; }
 
     #endregion Properties
 
@@ -14,10 +16,12 @@ public class BaseGroupModel : ModelBase
 
     public BaseGroupModel(
         int groupId,
-        string title)
+        string title,
+        string colour)
     {
         GroupId = groupId;
         Title = title;
+        Colour = colour;
     }
 
     #endregion Constructor

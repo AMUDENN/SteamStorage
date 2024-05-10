@@ -153,7 +153,9 @@ public class ActiveGroupsModel : ModelBase
                 ApiConstants.ApiMethods.GetActiveGroups,
                 new(null, null));
         if (groupsResponses?.ActiveGroups is null) return;
-        ActiveGroupModels = groupsResponses.ActiveGroups.Select(x => new BaseGroupModel(x.Id, x.Title)).ToList();
+        ActiveGroupModels = groupsResponses.ActiveGroups
+            .Select(x => new BaseGroupModel(x.Id, x.Title, x.Colour))
+            .ToList();
     }
 
     private void OnAddActive(ActiveGroupModel? group)

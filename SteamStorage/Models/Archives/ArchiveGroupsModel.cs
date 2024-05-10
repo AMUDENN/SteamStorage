@@ -30,7 +30,7 @@ public class ArchiveGroupsModel : ModelBase
     public delegate void EditArchiveGroupEventHandler(object? sender, EditArchiveGroupEventArgs args);
 
     public event EditArchiveGroupEventHandler? EditArchiveGroup;
-    
+
     public delegate void DeleteArchiveGroupEventHandler(object? sender);
 
     public event DeleteArchiveGroupEventHandler? DeleteArchiveGroup;
@@ -123,12 +123,12 @@ public class ArchiveGroupsModel : ModelBase
     private async Task DoDeleteArchiveGroupCommand(ArchiveGroupModel? group, CancellationToken cancellationToken)
     {
         if (group is null) return;
-        
+
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить группу: «{group.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
-        
+
         if (!result) return;
 
         await _apiClient.DeleteAsync(
@@ -153,7 +153,9 @@ public class ArchiveGroupsModel : ModelBase
                 ApiConstants.ApiMethods.GetArchiveGroups,
                 new(null, null));
         if (groupsResponses?.ArchiveGroups is null) return;
-        ArchiveGroupModels = groupsResponses.ArchiveGroups.Select(x => new BaseGroupModel(x.Id, x.Title)).ToList();
+        ArchiveGroupModels = groupsResponses.ArchiveGroups
+            .Select(x => new BaseGroupModel(x.Id, x.Title, x.Colour))
+            .ToList();
     }
 
     private void OnAddArchive(ArchiveGroupModel? group)
@@ -170,7 +172,7 @@ public class ArchiveGroupsModel : ModelBase
     {
         EditArchiveGroup?.Invoke(this, new(group));
     }
-    
+
     private void OnDeleteArchiveGroup()
     {
         DeleteArchiveGroup?.Invoke(this);
