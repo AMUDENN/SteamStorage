@@ -1,9 +1,9 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:baseModels="clr-namespace:SteamStorage.Models.UtilityModels.BaseModels"
+    xmlns:baseModels="clr-namespace:SteamStorage.Models.Tools.UtilityModels.BaseModels"
     xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:utilityModels="using:SteamStorage.Models.UtilityModels">
+    xmlns:utilityModels="clr-namespace:SteamStorage.Models.Tools.UtilityModels">
 
     <Style Selector="ComboBox.BaseComboBox">
         <Setter Property="Background" Value="{DynamicResource BackgroundAdditionalBrush}" />

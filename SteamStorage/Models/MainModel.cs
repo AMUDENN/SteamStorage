@@ -2,11 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
+using SteamStorage.Models.Actives;
+using SteamStorage.Models.Archives;
+using SteamStorage.Models.Home;
 using SteamStorage.Models.Tools;
-using SteamStorage.Models.UtilityModels;
+using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Events.ListItems;
 using SteamStorage.ViewModels;
+using SteamStorage.ViewModels.Actives;
+using SteamStorage.ViewModels.Archives;
+using SteamStorage.ViewModels.Home;
+using SteamStorage.ViewModels.Inventory;
+using SteamStorage.ViewModels.Profile;
+using SteamStorage.ViewModels.Settings;
 using SteamStorage.ViewModels.Tools;
 using SteamStorageAPI.SDK.Services.AuthorizationService;
 

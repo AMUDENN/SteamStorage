@@ -4,7 +4,7 @@
     xmlns:asyncImageLoader="using:AsyncImageLoader"
     xmlns:controls="using:SteamStorage.Resources.Controls"
     xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
-    xmlns:utilityViewModels="using:SteamStorage.ViewModels.UtilityViewModels">
+    xmlns:utilityViewModels="clr-namespace:SteamStorage.ViewModels.Tools.UtilityViewModels">
 
     <Style Selector="ListBox.InventoryItemsListBox">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />

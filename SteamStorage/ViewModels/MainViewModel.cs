@@ -1,7 +1,7 @@
 ﻿using SteamStorage.Models;
 using System.Collections.Generic;
 using CommunityToolkit.Mvvm.Input;
-using SteamStorage.Models.UtilityModels;
+using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.ViewModels.Tools;
 
 namespace SteamStorage.ViewModels;

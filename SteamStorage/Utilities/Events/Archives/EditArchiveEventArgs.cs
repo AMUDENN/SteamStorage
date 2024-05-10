@@ -1,5 +1,5 @@
 ﻿using System;
-using SteamStorage.Models.UtilityModels;
+using SteamStorage.Models.Tools.UtilityModels;
 
 namespace SteamStorage.Utilities.Events.Archives;
 

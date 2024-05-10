@@ -2,7 +2,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:utilityModels="using:SteamStorage.Models.UtilityModels">
+    xmlns:utilityModels="clr-namespace:SteamStorage.Models.Tools.UtilityModels">
 
     <Style Selector="ListBox.ThemeVariantsListBox">
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />

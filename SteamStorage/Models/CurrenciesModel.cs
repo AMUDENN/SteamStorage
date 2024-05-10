@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SteamStorage.Models.Tools;
-using SteamStorage.Models.UtilityModels;
+using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorageAPI.SDK;
 using SteamStorageAPI.SDK.ApiEntities;
 using SteamStorageAPI.SDK.Utilities;

@@ -1,0 +1,67 @@
+﻿<UserControl
+    x:Class="SteamStorage.Views.Dialog.MessageDialogView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SteamStorage.Resources.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dialog="clr-namespace:SteamStorage.ViewModels.Dialog"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="dialog:MessageDialogViewModel"
+    mc:Ignorable="d">
+
+    <Grid Margin="15,10,15,15" RowDefinitions="*, 60">
+
+        <Grid Grid.Row="0" ColumnDefinitions="120, *">
+
+            <controls:VectorImage
+                Grid.Column="0"
+                Margin="20"
+                Classes="ForegroundVectorImage"
+                Classes.ErrorVectorImage="{Binding IsErrorVisible, Mode=OneWay}"
+                Classes.InformationVectorImage="{Binding IsInfoVisible, Mode=OneWay}"
+                Classes.QuestionVectorImage="{Binding IsQuestionVisible, Mode=OneWay}" />
+
+            <ScrollViewer Grid.Column="1" Margin="5,10">
+
+                <TextBlock Classes="SmallTextBlock LeftTextBlock WrapTextBlock" Text="{Binding Message, Mode=OneWay}" />
+
+            </ScrollViewer>
+
+        </Grid>
+
+        <StackPanel
+            Grid.Row="1"
+            Margin="0,15,0,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Stretch"
+            Orientation="Horizontal"
+            Spacing="10">
+
+            <Button
+                Width="120"
+                Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
+                Command="{Binding SetDialogResultTrueCommand, Mode=OneWay}"
+                Content="Ок"
+                IsVisible="{Binding IsOkVisible, Mode=OneWay}" />
+
+            <Button
+                Width="120"
+                Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
+                Command="{Binding SetDialogResultTrueCommand, Mode=OneWay}"
+                Content="Сохранить"
+                IsVisible="{Binding IsSaveVisible, Mode=OneWay}" />
+
+            <Button
+                Width="120"
+                Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
+                Command="{Binding SetDialogResultFalseCommand, Mode=OneWay}"
+                Content="Отмена"
+                IsVisible="{Binding IsCancelVisible, Mode=OneWay}" />
+
+        </StackPanel>
+
+    </Grid>
+
+</UserControl>

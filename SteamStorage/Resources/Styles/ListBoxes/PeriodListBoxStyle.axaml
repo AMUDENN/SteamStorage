@@ -1,7 +1,7 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:utilityModels="using:SteamStorage.Models.UtilityModels">
+    xmlns:utilityModels="clr-namespace:SteamStorage.Models.Tools.UtilityModels">
 
     <Style Selector="ListBox.PeriodListBox">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />

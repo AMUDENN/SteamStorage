@@ -1,0 +1,52 @@
+﻿<UserControl
+    x:Class="SteamStorage.Views.Dialog.TextConfirmDialogView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dialog="clr-namespace:SteamStorage.ViewModels.Dialog"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="dialog:TextConfirmDialogViewModel"
+    mc:Ignorable="d">
+
+    <Grid Margin="15,10,15,15" RowDefinitions="*, 45, 10, 60">
+
+        <ScrollViewer Grid.Row="0" Margin="5,10,5,15">
+
+            <TextBlock Classes="SmallTextBlock LeftTextBlock WrapTextBlock" Text="{Binding Message, Mode=OneWay}" />
+
+        </ScrollViewer>
+
+        <TextBox
+            Grid.Row="1"
+            Classes="DarkTextBox SmallTextBox CenterTextBox"
+            ContextFlyout="{x:Null}"
+            Text="{Binding InputText}"
+            Watermark="Подтверждающее слово" />
+
+        <StackPanel
+            Grid.Row="3"
+            Margin="0,15,0,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Stretch"
+            Orientation="Horizontal"
+            Spacing="10">
+
+            <Button
+                Width="120"
+                Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
+                Command="{Binding SetDialogResultTrueCommand, Mode=OneWay}"
+                Content="Ок" />
+
+            <Button
+                Width="120"
+                Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
+                Command="{Binding SetDialogResultFalseCommand, Mode=OneWay}"
+                Content="Отмена" />
+
+        </StackPanel>
+
+    </Grid>
+
+</UserControl>

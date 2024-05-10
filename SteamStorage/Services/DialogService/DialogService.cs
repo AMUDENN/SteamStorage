@@ -1,8 +1,10 @@
 ﻿using System.Threading.Tasks;
 using SteamStorage.Utilities.Dialog;
-using SteamStorage.ViewModels;
+using SteamStorage.ViewModels.Dialog;
 using SteamStorage.ViewModels.Tools;
-using SteamStorage.Views;
+using SteamStorage.ViewModels.Windows;
+using DialogWindow = SteamStorage.Views.Windows.DialogWindow;
+using MainWindow = SteamStorage.Views.Windows.MainWindow;
 
 namespace SteamStorage.Services.DialogService;
 

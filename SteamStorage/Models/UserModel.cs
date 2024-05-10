@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using SteamStorage.Models.Tools;
-using SteamStorage.Models.UtilityModels;
+using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Events.Settings;

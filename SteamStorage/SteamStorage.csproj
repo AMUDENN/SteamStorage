@@ -72,24 +72,88 @@
 
 
   <ItemGroup>
-    <Compile Update="Views\ArchivesReviewView.axaml.cs">
-      <DependentUpon>ArchivesReviewView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\ArchiveGroupEditView.axaml.cs">
-      <DependentUpon>ArchiveGroupEditView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\ActiveEditView.axaml.cs">
+    <Compile Update="Views\Actives\ActiveEditView.axaml.cs">
       <DependentUpon>ActiveEditView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\ActiveSoldView.axaml.cs">
+    <Compile Update="Views\Actives\ActiveGroupEditView.axaml.cs">
+      <DependentUpon>ActiveGroupEditView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Actives\ActiveSoldView.axaml.cs">
       <DependentUpon>ActiveSoldView.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\ArchiveEditView.axaml.cs">
+    <Compile Update="Views\Actives\ActivesReviewView.axaml.cs">
+      <DependentUpon>ActivesReviewView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Actives\ActivesView.axaml.cs">
+      <DependentUpon>ActivesView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Archives\ArchiveEditView.axaml.cs">
       <DependentUpon>ArchiveEditView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Archives\ArchiveGroupEditView.axaml.cs">
+      <DependentUpon>ArchiveGroupEditView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Archives\ArchivesReviewView.axaml.cs">
+      <DependentUpon>ArchivesReviewView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Archives\ArchivesView.axaml.cs">
+      <DependentUpon>ArchivesView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Home\HomeView.axaml.cs">
+      <DependentUpon>HomeView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Inventory\InventoryView.axaml.cs">
+      <DependentUpon>InventoryView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Actives\ListActivesView.axaml.cs">
+      <DependentUpon>ListActivesView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Archives\ListArchivesView.axaml.cs">
+      <DependentUpon>ListArchivesView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Home\ListItemsView.axaml.cs">
+      <DependentUpon>ListItemsView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Profile\ProfileView.axaml.cs">
+      <DependentUpon>ProfileView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Settings\SettingsView.axaml.cs">
+      <DependentUpon>SettingsView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Home\StatisticsView.axaml.cs">
+      <DependentUpon>StatisticsView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\MessageDialogView.axaml.cs">
+      <DependentUpon>MessageDialogView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialog\TextConfirmDialogView.axaml.cs">
+      <DependentUpon>TextConfirmDialogView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\DialogWindow.axaml.cs">
+      <DependentUpon>DialogWindow.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\MainWindow.axaml.cs">
+      <DependentUpon>MainWindow.axaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

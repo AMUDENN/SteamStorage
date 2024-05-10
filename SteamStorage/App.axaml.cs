@@ -4,17 +4,33 @@ using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 using SteamStorage.ViewModels;
-using SteamStorage.Views;
 using System;
 using Avalonia.Threading;
 using SteamStorage.Models;
+using SteamStorage.Models.Actives;
+using SteamStorage.Models.Archives;
+using SteamStorage.Models.Dialog;
+using SteamStorage.Models.Home;
+using SteamStorage.Models.Inventory;
+using SteamStorage.Models.Profile;
+using SteamStorage.Models.Settings;
+using SteamStorage.Models.Windows;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
+using SteamStorage.ViewModels.Actives;
+using SteamStorage.ViewModels.Archives;
+using SteamStorage.ViewModels.Dialog;
+using SteamStorage.ViewModels.Home;
+using SteamStorage.ViewModels.Inventory;
+using SteamStorage.ViewModels.Profile;
+using SteamStorage.ViewModels.Settings;
+using SteamStorage.ViewModels.Windows;
 using SteamStorageAPI.SDK;
 using SteamStorageAPI.SDK.Utilities.Extensions.ServiceCollection;
+using MainWindow = SteamStorage.Views.Windows.MainWindow;
 
 namespace SteamStorage
 {
