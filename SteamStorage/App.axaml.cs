@@ -28,9 +28,9 @@ using SteamStorage.ViewModels.Inventory;
 using SteamStorage.ViewModels.Profile;
 using SteamStorage.ViewModels.Settings;
 using SteamStorage.ViewModels.Windows;
+using SteamStorage.Views.Windows;
 using SteamStorageAPI.SDK;
 using SteamStorageAPI.SDK.Utilities.Extensions.ServiceCollection;
-using MainWindow = SteamStorage.Views.Windows.MainWindow;
 
 namespace SteamStorage
 {
