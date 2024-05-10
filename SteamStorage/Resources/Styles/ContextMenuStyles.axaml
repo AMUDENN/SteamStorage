@@ -34,7 +34,6 @@
         <Setter Property="Opacity" Value="0.9" />
         <Style Selector="^ Border">
             <Setter Property="Transitions" Value="" />
-
         </Style>
         <Style Selector="^:selected">
             <Setter Property="Opacity" Value="1" />

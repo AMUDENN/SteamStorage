@@ -57,6 +57,8 @@ namespace SteamStorage
         private static void UnhandledExceptionHandler(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(e.Exception);
+            Container.GetService<INotificationService>()?
+                .ShowAsync("Ошибка во время выполнения", e.Exception.Message);
             e.Handled = true;
         }
 

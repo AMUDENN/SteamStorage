@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -8,6 +9,7 @@ using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.Tools.UtilityModels;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
@@ -27,6 +29,7 @@ public class SettingsModel : ModelBase
     private readonly MainWindow _mainWindow;
     private readonly IThemeService _themeService;
     private readonly ISettingsService _settingsService;
+    private readonly INotificationService _notificationService;
     private readonly IReferenceInformationService _referenceInformationService;
 
     private ThemeModel _selectedThemeModel;
@@ -64,12 +67,14 @@ public class SettingsModel : ModelBase
         MainWindow mainWindow,
         IThemeService themeService,
         ISettingsService settingsService,
+        INotificationService notificationService,
         IReferenceInformationService referenceInformationService)
     {
         _apiClient = apiClient;
         _mainWindow = mainWindow;
         _themeService = themeService;
         _settingsService = settingsService;
+        _notificationService = notificationService;
         _referenceInformationService = referenceInformationService;
 
         ThemeModels =
@@ -136,6 +141,10 @@ public class SettingsModel : ModelBase
         await using Stream stream = await file.OpenWriteAsync();
 
         await fileResult.CopyToAsync(stream, cancellationToken);
+
+        await _notificationService.ShowAsync("Файл сохранён",
+            $"Файл {file.Name} успешно сохранён",
+            cancellationToken: cancellationToken);
     }
 
     private void DoOpenReferenceInformationCommand()
