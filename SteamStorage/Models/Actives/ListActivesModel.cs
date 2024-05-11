@@ -7,6 +7,7 @@ using SteamStorage.Models.Tools.BaseModels;
 using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Events.Actives;
@@ -38,6 +39,7 @@ public class ListActivesModel : BaseListModel
     private readonly PeriodsModel _periodsModel;
     private readonly IThemeService _themeService;
     private readonly IDialogService _dialogService;
+    private readonly INotificationService _notificationService;
 
     private int _count;
     private string _investedSumString;
@@ -347,7 +349,8 @@ public class ListActivesModel : BaseListModel
         UserModel userModel,
         PeriodsModel periodsModel,
         IThemeService themeService,
-        IDialogService dialogService)
+        IDialogService dialogService,
+        INotificationService notificationService)
     {
         _apiClient = apiClient;
         _chartTooltipModel = chartTooltipModel;
@@ -355,6 +358,7 @@ public class ListActivesModel : BaseListModel
         _periodsModel = periodsModel;
         _themeService = themeService;
         _dialogService = dialogService;
+        _notificationService = notificationService;
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
@@ -433,6 +437,10 @@ public class ListActivesModel : BaseListModel
             ApiConstants.ApiMethods.DeleteActive,
             new SteamStorageAPI.SDK.ApiEntities.Actives.DeleteActiveRequest(model.ActiveId),
             cancellationToken);
+        
+        await _notificationService.ShowAsync("Удаление актива",
+            $"Вы отправили запрос на удаление актива: {model.Title}", 
+            cancellationToken: cancellationToken);
 
         GetSkinsAsync();
         GetStatisticsAsync();

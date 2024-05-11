@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.ViewModels.Tools.UtilityViewModels.BaseViewModels;
 using SteamStorageAPI.SDK;
 using SteamStorageAPI.SDK.ApiEntities;
@@ -15,6 +16,8 @@ namespace SteamStorage.Models.Tools.BaseModels;
 public abstract class BaseItemEditModel : BaseEditModel
 {
     #region Fields
+    
+    private static readonly char[] _separator = [' '];
     
     private bool _isNewItem;
 
@@ -94,7 +97,8 @@ public abstract class BaseItemEditModel : BaseEditModel
 
     protected BaseItemEditModel(
         ApiClient apiClient,
-        IDialogService dialogService) : base(apiClient, dialogService)
+        IDialogService dialogService,
+        INotificationService notificationService) : base(apiClient, dialogService, notificationService)
     {
         _skinModels = [];
         _cancellationTokenSource = new();
@@ -118,9 +122,7 @@ public abstract class BaseItemEditModel : BaseEditModel
 
     private bool ItemFilterPredicate(string? search, object? item)
     {
-        return item is not null &&
-               (string.IsNullOrEmpty(search) ||
-                ((BaseSkinViewModel)item).Title.Contains(search, StringComparison.CurrentCultureIgnoreCase));
+        return item is not null && MatchFilter((BaseSkinViewModel)item, search);
     }
 
     private async Task<IEnumerable<object>> PopulateAsync(string? searchText, CancellationToken cancellationToken)
@@ -128,9 +130,7 @@ public abstract class BaseItemEditModel : BaseEditModel
         await Task.Delay(TimeSpan.FromSeconds(0.4), cancellationToken);
 
         return
-            SkinModels.Where(data =>
-                    string.IsNullOrEmpty(searchText) ||
-                    data.Title.Contains(searchText, StringComparison.CurrentCultureIgnoreCase))
+            SkinModels.Where(data => MatchFilter(data, searchText))
                 .ToList();
     }
 
@@ -155,6 +155,15 @@ public abstract class BaseItemEditModel : BaseEditModel
                     x.MarketUrl,
                     x.Title)))
             .ToList();
+    }
+
+    private static bool MatchFilter(BaseSkinViewModel model, string? filter)
+    {
+        if (filter is null)
+            return true;
+        string[] filterWords = filter.ToLower().Split(_separator, StringSplitOptions.RemoveEmptyEntries);
+
+        return filterWords.All(word => model.Title.Contains(word, StringComparison.CurrentCultureIgnoreCase));
     }
 
     #endregion Methods

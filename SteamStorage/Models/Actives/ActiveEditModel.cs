@@ -6,6 +6,7 @@ using SteamStorage.Models.Tools.BaseModels;
 using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.ViewModels.Tools.UtilityViewModels.BaseViewModels;
@@ -25,7 +26,7 @@ public class ActiveEditModel : BaseItemEditModel
     #endregion Constants
 
     #region Fields
-
+    
     private readonly ActiveGroupsModel _activeGroupsModel;
 
     private ActiveModel? _activeModel;
@@ -151,7 +152,8 @@ public class ActiveEditModel : BaseItemEditModel
     public ActiveEditModel(
         ApiClient apiClient,
         ActiveGroupsModel activeGroupsModel,
-        IDialogService dialogService) : base(apiClient, dialogService)
+        IDialogService dialogService,
+        INotificationService notificationService) : base(apiClient, dialogService, notificationService)
     {
         _activeGroupsModel = activeGroupsModel;
 
@@ -181,6 +183,10 @@ public class ActiveEditModel : BaseItemEditModel
             ApiConstants.ApiMethods.DeleteActive,
             new SteamStorageAPI.SDK.ApiEntities.Actives.DeleteActiveRequest(_activeModel.ActiveId),
             cancellationToken);
+
+        await NotificationService.ShowAsync("Удаление актива",
+            $"Вы отправили запрос на удаление актива: {_activeModel.Title}", 
+            cancellationToken: cancellationToken);
 
         OnItemDeleted();
 
@@ -217,6 +223,10 @@ public class ActiveEditModel : BaseItemEditModel
                     Description,
                     BuyDate.DateTime),
                 cancellationToken);
+            
+            await NotificationService.ShowAsync("Добавление актива",
+                $"Вы отправили запрос на добавление актива: {SelectedSkinModel.Title}", 
+                cancellationToken: cancellationToken);
         }
         else if (_activeModel is not null)
         {
@@ -238,6 +248,10 @@ public class ActiveEditModel : BaseItemEditModel
                     Description,
                     BuyDate.DateTime),
                 cancellationToken);
+            
+            await NotificationService.ShowAsync("Изменение актива",
+                $"Вы отправили запрос на изменение актива: {_activeModel.Title}", 
+                cancellationToken: cancellationToken);
         }
         else
         {

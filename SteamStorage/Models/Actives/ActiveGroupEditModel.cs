@@ -8,6 +8,7 @@ using LiveChartsCore.SkiaSharpView;
 using SteamStorage.Models.Tools.BaseModels;
 using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Extensions;
 using SteamStorageAPI.SDK;
@@ -139,7 +140,8 @@ public class ActiveGroupEditModel : BaseGroupEditModel
     public ActiveGroupEditModel(
         ApiClient apiClient,
         PeriodsModel periodsModel,
-        IDialogService dialogService) : base(apiClient, dialogService)
+        IDialogService dialogService,
+        INotificationService notificationService) : base(apiClient, dialogService, notificationService)
     {
         _periodsModel = periodsModel;
 
@@ -169,6 +171,10 @@ public class ActiveGroupEditModel : BaseGroupEditModel
             ApiConstants.ApiMethods.DeleteActiveGroup,
             new ActiveGroups.DeleteActiveGroupRequest(_activeGroupModel.GroupId),
             cancellationToken);
+        
+        await NotificationService.ShowAsync("Удаление группы",
+            $"Вы отправили запрос на удаление группы: {_activeGroupModel.Title}", 
+            cancellationToken: cancellationToken);
 
         OnItemDeleted();
 
@@ -199,6 +205,10 @@ public class ActiveGroupEditModel : BaseGroupEditModel
                     Colour.ToHexColor(),
                     string.IsNullOrWhiteSpace(GoalSum) ? null : sum),
                 cancellationToken);
+            
+            await NotificationService.ShowAsync("Добавление группы",
+                $"Вы отправили запрос на добавление группы: {GroupTitle}", 
+                cancellationToken: cancellationToken);
         }
         else if (_activeGroupModel is not null)
         {
@@ -217,6 +227,10 @@ public class ActiveGroupEditModel : BaseGroupEditModel
                     Colour.ToHexColor(),
                     string.IsNullOrWhiteSpace(GoalSum) ? null : sum),
                 cancellationToken);
+            
+            await NotificationService.ShowAsync("Изменение группы",
+                $"Вы отправили запрос на изменение группы: {_activeGroupModel.Title}", 
+                cancellationToken: cancellationToken);
         }
         else
         {

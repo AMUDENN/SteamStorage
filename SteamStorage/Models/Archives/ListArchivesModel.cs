@@ -7,6 +7,7 @@ using SteamStorage.Models.Tools.BaseModels;
 using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Events.Archives;
 using SteamStorage.ViewModels.Tools.UtilityViewModels;
@@ -30,6 +31,7 @@ public class ListArchivesModel : BaseListModel
     private readonly ApiClient _apiClient;
     private readonly UserModel _userModel;
     private readonly IDialogService _dialogService;
+    private readonly INotificationService _notificationService;
 
     private int _count;
     private string _investedSumString;
@@ -330,11 +332,13 @@ public class ListArchivesModel : BaseListModel
     public ListArchivesModel(
         ApiClient apiClient,
         UserModel userModel,
-        IDialogService dialogService)
+        IDialogService dialogService,
+        INotificationService notificationService)
     {
         _apiClient = apiClient;
         _userModel = userModel;
         _dialogService = dialogService;
+        _notificationService = notificationService;
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
@@ -407,6 +411,10 @@ public class ListArchivesModel : BaseListModel
             ApiConstants.ApiMethods.DeleteArchive,
             new SteamStorageAPI.SDK.ApiEntities.Archives.DeleteArchiveRequest(model.ArchiveId),
             cancellationToken);
+        
+        await _notificationService.ShowAsync("Удаление элемента архива",
+            $"Вы отправили запрос на удаление элемента архива: {model.Title}", 
+            cancellationToken: cancellationToken);
 
         GetSkinsAsync();
         GetStatisticsAsync();

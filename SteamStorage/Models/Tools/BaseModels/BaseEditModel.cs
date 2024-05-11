@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorageAPI.SDK;
 
 namespace SteamStorage.Models.Tools.BaseModels;
@@ -29,6 +30,8 @@ public abstract class BaseEditModel : ModelBase
     protected readonly ApiClient ApiClient;
     
     protected readonly IDialogService DialogService;
+
+    protected readonly INotificationService NotificationService;
     
     private string _title;
 
@@ -58,10 +61,12 @@ public abstract class BaseEditModel : ModelBase
 
     protected BaseEditModel(
         ApiClient apiClient,
-        IDialogService dialogService)
+        IDialogService dialogService,
+        INotificationService notificationService)
     {
         ApiClient = apiClient;
         DialogService = dialogService;
+        NotificationService = notificationService;
         
         _title = string.Empty;
         

@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities;
 using SteamStorage.ViewModels.Dialog;
 
@@ -20,6 +21,7 @@ public class ProfileModel : ModelBase
     private readonly PagesModel _pagesModel;
     private readonly TextConfirmDialogViewModel _textConfirmDialogViewModel;
     private readonly IDialogService _dialogService;
+    private readonly INotificationService _notificationService;
 
     private string _profileUrl;
 
@@ -79,13 +81,13 @@ public class ProfileModel : ModelBase
         get => _defaultFinancialGoal;
         set => SetProperty(ref _defaultFinancialGoal, value);
     }
-    
+
     public string? FinancialGoal
     {
         get => _financialGoal;
         set
         {
-            SetProperty(ref _financialGoal, value); 
+            SetProperty(ref _financialGoal, value);
             SaveFinancialGoal.NotifyCanExecuteChanged();
         }
     }
@@ -123,7 +125,7 @@ public class ProfileModel : ModelBase
     #region Commands
 
     public RelayCommand OpenSteamProfileCommand { get; }
-    
+
     public AsyncRelayCommand SaveFinancialGoal { get; }
 
     public AsyncRelayCommand DeleteProfileCommand { get; }
@@ -139,13 +141,15 @@ public class ProfileModel : ModelBase
         CurrenciesModel currenciesModel,
         PagesModel pagesModel,
         TextConfirmDialogViewModel textConfirmDialogViewModel,
-        IDialogService dialogService)
+        IDialogService dialogService,
+        INotificationService notificationService)
     {
         _userModel = userModel;
         _currenciesModel = currenciesModel;
         _pagesModel = pagesModel;
         _textConfirmDialogViewModel = textConfirmDialogViewModel;
         _dialogService = dialogService;
+        _notificationService = notificationService;
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
@@ -203,7 +207,7 @@ public class ProfileModel : ModelBase
         ExchangeRate =
             $"1$ = {_userModel.Currency?.Price ?? 0:N2} {_userModel.CurrencyMark} ({(_userModel.Currency?.DateUpdate ?? DateTime.Now).ToString(ProgramConstants.VIEW_DATE_FORMAT)})";
     }
-    
+
     private void StartPageChangedHandler(object? sender)
     {
         SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.StartPage?.Id);
@@ -234,10 +238,15 @@ public class ProfileModel : ModelBase
         if (string.IsNullOrWhiteSpace(FinancialGoal))
         {
             await _userModel.SetFinancialGoalAsync(null);
+            await _notificationService.ShowAsync("Финансовая цель", 
+                "Вы удалили финансовую цель");
         }
+
         if (decimal.TryParse(FinancialGoal, out decimal financialGoal))
         {
             await _userModel.SetFinancialGoalAsync(financialGoal);
+            await _notificationService.ShowAsync("Финансовая цель", 
+                $"Вы установили финансовую цель: {financialGoal:N2} {SelectedCurrency?.Mark}");
         }
     }
 
@@ -251,11 +260,11 @@ public class ProfileModel : ModelBase
         _textConfirmDialogViewModel.SetConfirmData(
             "Для подтверждения удаления аккаунта введите слово ПОДТВЕРДИТЬ",
             "ПОДТВЕРДИТЬ");
-        
+
         bool result = await _dialogService.ShowDialogAsync(_textConfirmDialogViewModel);
-        
+
         if (!result) return;
-        
+
         await _userModel.DeleteUserAsync();
     }
 
@@ -272,14 +281,18 @@ public class ProfileModel : ModelBase
         FinancialGoal = DefaultFinancialGoal;
     }
 
-    private async void SetCurrency(CurrencyModel? currencyModel)
+    private async void SetCurrency(CurrencyModel currencyModel)
     {
         await _userModel.SetCurrencyAsync(currencyModel);
+        await _notificationService.ShowAsync("Смена валюты", 
+            $"Вы сменили валюту на {currencyModel.Title}");
     }
 
-    private async void SetPage(PageModel? pageModel)
+    private async void SetPage(PageModel pageModel)
     {
         await _userModel.SetPageAsync(pageModel);
+        await _notificationService.ShowAsync("Смена стартовой страницы",
+            $"Вы сменили стартовую страницу на {pageModel.Title}");
     }
 
     #endregion Methods

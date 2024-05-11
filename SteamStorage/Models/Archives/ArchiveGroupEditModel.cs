@@ -4,6 +4,7 @@ using Avalonia.Media;
 using SteamStorage.Models.Tools.BaseModels;
 using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Extensions;
 using SteamStorageAPI.SDK;
@@ -57,7 +58,8 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
 
     public ArchiveGroupEditModel(
         ApiClient apiClient,
-        IDialogService dialogService) : base(apiClient, dialogService)
+        IDialogService dialogService,
+        INotificationService notificationService) : base(apiClient, dialogService, notificationService)
     {
         _dateCreationString = string.Empty;
         _buySumString = string.Empty;
@@ -84,6 +86,10 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
             ApiConstants.ApiMethods.DeleteArchiveGroup,
             new ArchiveGroups.DeleteArchiveGroupRequest(_archiveGroupModel.GroupId),
             cancellationToken);
+        
+        await NotificationService.ShowAsync("Удаление группы",
+            $"Вы отправили запрос на удаление группы: {_archiveGroupModel.Title}", 
+            cancellationToken: cancellationToken);
         
         OnItemDeleted();
         
@@ -112,6 +118,10 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
                     Description,
                     Colour.ToHexColor()),
                 cancellationToken);
+            
+            await NotificationService.ShowAsync("Добавление группы",
+                $"Вы отправили запрос на добавление группы: {GroupTitle}", 
+                cancellationToken: cancellationToken);
         }
         else if (_archiveGroupModel is not null)
         {
@@ -129,6 +139,10 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
                     Description,
                     Colour.ToHexColor()),
                 cancellationToken);
+            
+            await NotificationService.ShowAsync("Изменение группы",
+                $"Вы отправили запрос на изменение группы: {_archiveGroupModel.Title}", 
+                cancellationToken: cancellationToken);
         }
         else
         {

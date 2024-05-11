@@ -5,6 +5,7 @@ using SteamStorage.Models.Tools.BaseModels;
 using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Dialog;
 using SteamStorageAPI.SDK;
@@ -163,7 +164,8 @@ public class ActiveSoldModel : BaseEditModel
 
     public ActiveSoldModel(
         ApiClient apiClient,
-        IDialogService dialogService) : base(apiClient, dialogService)
+        IDialogService dialogService,
+        INotificationService notificationService) : base(apiClient, dialogService, notificationService)
     {
         _defaultCount = string.Empty;
         _count = string.Empty;
@@ -198,6 +200,10 @@ public class ActiveSoldModel : BaseEditModel
             new SteamStorageAPI.SDK.ApiEntities.Actives.DeleteActiveRequest(_activeModel.ActiveId),
             cancellationToken);
         
+        await NotificationService.ShowAsync("Удаление актива",
+            $"Вы отправили запрос на удаление актива: {_activeModel.Title}", 
+            cancellationToken: cancellationToken);
+        
         OnItemDeleted();
         
         OnGoingBack();
@@ -229,6 +235,10 @@ public class ActiveSoldModel : BaseEditModel
                 SoldDate.DateTime,
                 Description),
             cancellationToken);
+        
+        await NotificationService.ShowAsync("Продажа актива",
+            $"Вы отправили запрос на продажу актива: {_activeModel.Title}", 
+            cancellationToken: cancellationToken);
 
         OnItemChanged();
 

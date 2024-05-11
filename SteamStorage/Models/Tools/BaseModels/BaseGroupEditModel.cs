@@ -1,6 +1,7 @@
 ﻿using Avalonia.Media;
 using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorageAPI.SDK;
 
 namespace SteamStorage.Models.Tools.BaseModels;
@@ -94,7 +95,8 @@ public abstract class BaseGroupEditModel : BaseEditModel
 
     protected BaseGroupEditModel(
         ApiClient apiClient,
-        IDialogService dialogService) : base(apiClient, dialogService)
+        IDialogService dialogService,
+        INotificationService notificationService) : base(apiClient, dialogService, notificationService)
     {
         _defaultGroupTitle = string.Empty;
         _groupTitle = string.Empty;

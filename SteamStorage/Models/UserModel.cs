@@ -169,10 +169,8 @@ public class UserModel : ModelBase
         GetUserAsync();
     }
 
-    public async Task SetCurrencyAsync(CurrencyModel? currencyModel)
+    public async Task SetCurrencyAsync(CurrencyModel currencyModel)
     {
-        if (currencyModel is null) return;
-
         await _apiClient.PutAsync(
             ApiConstants.ApiMethods.SetCurrency,
             new Currencies.SetCurrencyRequest(currencyModel.Id));
@@ -180,10 +178,8 @@ public class UserModel : ModelBase
         GetCurrencyAsync();
     }
     
-    public async Task SetPageAsync(PageModel? pageModel)
+    public async Task SetPageAsync(PageModel pageModel)
     {
-        if (pageModel is null) return;
-        
         await _apiClient.PutAsync(
             ApiConstants.ApiMethods.SetStartPage,
             new Pages.SetPageRequest(pageModel.Id));

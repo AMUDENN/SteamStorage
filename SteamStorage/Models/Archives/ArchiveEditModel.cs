@@ -6,6 +6,7 @@ using SteamStorage.Models.Tools.BaseModels;
 using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
+using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.ViewModels.Tools.UtilityViewModels.BaseViewModels;
@@ -174,7 +175,8 @@ public class ArchiveEditModel : BaseItemEditModel
     public ArchiveEditModel(
         ApiClient apiClient,
         ArchiveGroupsModel archiveGroupsModel,
-        IDialogService dialogService) : base(apiClient, dialogService)
+        IDialogService dialogService,
+        INotificationService notificationService) : base(apiClient, dialogService, notificationService)
     {
         _archiveGroupsModel = archiveGroupsModel;
 
@@ -207,6 +209,10 @@ public class ArchiveEditModel : BaseItemEditModel
             ApiConstants.ApiMethods.DeleteArchive,
             new SteamStorageAPI.SDK.ApiEntities.Archives.DeleteArchiveRequest(_archiveModel.ArchiveId),
             cancellationToken);
+        
+        await NotificationService.ShowAsync("Удаление элемента архива",
+            $"Вы отправили запрос на удаление элемента архива: {_archiveModel.Title}", 
+            cancellationToken: cancellationToken);
         
         OnItemDeleted();
         
@@ -243,6 +249,10 @@ public class ArchiveEditModel : BaseItemEditModel
                     BuyDate.DateTime,
                     SoldDate.DateTime),
                 cancellationToken);
+            
+            await NotificationService.ShowAsync("Добавление элемента архива",
+                $"Вы отправили запрос на добавление элемента архива: {SelectedSkinModel.Title}", 
+                cancellationToken: cancellationToken);
         }
         else if (_archiveModel is not null)
         {
@@ -265,6 +275,10 @@ public class ArchiveEditModel : BaseItemEditModel
                     BuyDate.DateTime,
                     SoldDate.DateTime),
                 cancellationToken);
+            
+            await NotificationService.ShowAsync("Изменение элемента архива",
+                $"Вы отправили запрос на изменение элемента архива: {SelectedSkinModel.Title}", 
+                cancellationToken: cancellationToken);
         }
         else
         {
