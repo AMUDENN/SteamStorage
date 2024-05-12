@@ -14,135 +14,140 @@
 
     <Grid Margin="30" ColumnDefinitions="Auto, *">
 
-        <Border
-            x:Name="MenuBorder"
-            Grid.Column="0"
-            Classes="BackgroundAdditionalBorder BigRoundedBorder">
+        <Viewbox Grid.Column="0">
 
-            <Border.Styles>
-                <Style Selector="Border#MenuBorder">
-                    <Setter Property="Width" Value="100" />
-                </Style>
-                <Style Selector="Border#MenuBorder:pointerover">
-                    <Setter Property="Width" Value="300" />
-                </Style>
+            <Border
+                x:Name="MenuBorder"
+                Height="940"
+                Classes="BackgroundAdditionalBorder BigRoundedBorder">
 
-                <Style Selector="Border#MenuBorder TextBlock#UserName, Border#MenuBorder TextBlock#SteamId">
-                    <Setter Property="Opacity" Value="0" />
-                </Style>
+                <Border.Styles>
+                    <Style Selector="Border#MenuBorder">
+                        <Setter Property="Width" Value="100" />
+                    </Style>
+                    <Style Selector="Border#MenuBorder:pointerover">
+                        <Setter Property="Width" Value="300" />
+                    </Style>
 
-                <Style Selector="Border#MenuBorder:pointerover TextBlock#UserName">
-                    <Setter Property="Opacity" Value="1" />
-                </Style>
-                <Style Selector="Border#MenuBorder:pointerover TextBlock#SteamId">
-                    <Setter Property="Opacity" Value="0.5" />
-                </Style>
+                    <Style Selector="Border#MenuBorder TextBlock#UserName, Border#MenuBorder TextBlock#SteamId">
+                        <Setter Property="Opacity" Value="0" />
+                    </Style>
 
-                <Style Selector="Border#MenuBorder Border#Profile">
-                    <Setter Property="Height" Value="64" />
-                    <Setter Property="Width" Value="64" />
-                    <Setter Property="CornerRadius" Value="8" />
-                </Style>
-                <Style Selector="Border#MenuBorder:pointerover Border#Profile">
-                    <Setter Property="Height" Value="128" />
-                    <Setter Property="Width" Value="128" />
-                    <Setter Property="CornerRadius" Value="16" />
-                </Style>
+                    <Style Selector="Border#MenuBorder:pointerover TextBlock#UserName">
+                        <Setter Property="Opacity" Value="1" />
+                    </Style>
+                    <Style Selector="Border#MenuBorder:pointerover TextBlock#SteamId">
+                        <Setter Property="Opacity" Value="0.5" />
+                    </Style>
 
-                <Style Selector="Border#MenuBorder controls|VectorImage#AccountVectorImage">
-                    <Setter Property="Margin" Value="8" />
-                </Style>
-                <Style Selector="Border#MenuBorder:pointerover controls|VectorImage#AccountVectorImage">
-                    <Setter Property="Margin" Value="16" />
-                </Style>
-            </Border.Styles>
+                    <Style Selector="Border#MenuBorder Border#Profile">
+                        <Setter Property="Height" Value="64" />
+                        <Setter Property="Width" Value="64" />
+                        <Setter Property="CornerRadius" Value="8" />
+                    </Style>
+                    <Style Selector="Border#MenuBorder:pointerover Border#Profile">
+                        <Setter Property="Height" Value="128" />
+                        <Setter Property="Width" Value="128" />
+                        <Setter Property="CornerRadius" Value="16" />
+                    </Style>
 
-            <Grid Margin="0,20" RowDefinitions="128, 50, 25, *, 380, *, 140">
+                    <Style Selector="Border#MenuBorder controls|VectorImage#AccountVectorImage">
+                        <Setter Property="Margin" Value="8" />
+                    </Style>
+                    <Style Selector="Border#MenuBorder:pointerover controls|VectorImage#AccountVectorImage">
+                        <Setter Property="Margin" Value="16" />
+                    </Style>
+                </Border.Styles>
 
-                <Border
-                    x:Name="Profile"
-                    Grid.Row="0"
-                    VerticalAlignment="Top">
-                    <Grid>
-                        <Border Classes="BackgroundBorder" Opacity="0.5" />
-                        <controls:VectorImage x:Name="AccountVectorImage" Classes="AccountVectorImage ForegroundVectorImage" />
-                        <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}" />
-                    </Grid>
-                </Border>
+                <Grid Margin="0,20" RowDefinitions="128, 50, 25, *, 380, *, 140">
 
-                <TextBlock
-                    x:Name="UserName"
-                    Grid.Row="1"
-                    Margin="10,0"
-                    Classes="CenterTextBlock BigTextBlock"
-                    Text="{Binding UserName, Mode=OneWay}" />
-
-                <TextBlock
-                    x:Name="SteamId"
-                    Grid.Row="2"
-                    Margin="10,0"
-                    Classes="CenterTextBlock LittleTextBlock"
-                    Text="{Binding SteamId, Mode=OneWay}" />
-
-                <Rectangle
-                    Grid.Row="3"
-                    Height="2"
-                    MaxWidth="180"
-                    Margin="20,0"
-                    Classes="ForegroundRectangle" />
-
-                <ListBox
-                    Grid.Row="4"
-                    Classes="NavigationListBox"
-                    Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
-                    ItemsSource="{Binding NavigationOptions, Mode=OneWay}"
-                    SelectedItem="{Binding SelectedNavigationModel}" />
-
-                <Rectangle
-                    Grid.Row="5"
-                    Height="2"
-                    MaxWidth="180"
-                    Margin="20,0"
-                    Classes="ForegroundRectangle" />
-
-                <Grid Grid.Row="6" RowDefinitions="60, 20, 60">
-
-                    <RadioButton
+                    <Border
+                        x:Name="Profile"
                         Grid.Row="0"
-                        Classes="NavigationRadioButton"
-                        Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
-                        IsChecked="{Binding IsSettingsChecked}"
-                        Tag="Настройки">
-                        <controls:VectorImage Classes="SettingsVectorImage ForegroundVectorImage" />
-                    </RadioButton>
+                        VerticalAlignment="Top">
+                        <Grid>
+                            <Border Classes="BackgroundBorder" Opacity="0.5" />
+                            <controls:VectorImage x:Name="AccountVectorImage" Classes="AccountVectorImage ForegroundVectorImage" />
+                            <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}" />
+                        </Grid>
+                    </Border>
 
-                    <Button
-                        Grid.Row="2"
-                        Classes="ImageTextButton"
-                        Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
-                        Command="{Binding LogInCommand, Mode=OneWay}"
-                        Foreground="{DynamicResource PositiveBrush}"
-                        IsVisible="{Binding !IsUserLogin, Mode=OneWay}"
-                        Tag="Войти">
-                        <controls:VectorImage Classes="LogInVectorImage PositiveVectorImage" />
-                    </Button>
+                    <TextBlock
+                        x:Name="UserName"
+                        Grid.Row="1"
+                        Margin="10,0"
+                        Classes="CenterTextBlock BigTextBlock"
+                        Text="{Binding UserName, Mode=OneWay}" />
 
-                    <Button
+                    <TextBlock
+                        x:Name="SteamId"
                         Grid.Row="2"
-                        Classes="ImageTextButton"
-                        Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}"
-                        Command="{Binding LogOutCommand, Mode=OneWay}"
-                        Foreground="{DynamicResource NegativeBrush}"
-                        IsVisible="{Binding IsUserLogin, Mode=OneWay}"
-                        Tag="Выйти">
-                        <controls:VectorImage Classes="LogOutVectorImage NegativeVectorImage" />
-                    </Button>
+                        Margin="10,0"
+                        Classes="CenterTextBlock LittleTextBlock"
+                        Text="{Binding SteamId, Mode=OneWay}" />
+
+                    <Rectangle
+                        Grid.Row="3"
+                        Height="2"
+                        MaxWidth="180"
+                        Margin="20,0"
+                        Classes="ForegroundRectangle" />
+
+                    <ListBox
+                        Grid.Row="4"
+                        Classes="NavigationListBox"
+                        Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
+                        ItemsSource="{Binding NavigationOptions, Mode=OneWay}"
+                        SelectedItem="{Binding SelectedNavigationModel}" />
+
+                    <Rectangle
+                        Grid.Row="5"
+                        Height="2"
+                        MaxWidth="180"
+                        Margin="20,0"
+                        Classes="ForegroundRectangle" />
+
+                    <Grid Grid.Row="6" RowDefinitions="60, 20, 60">
+
+                        <RadioButton
+                            Grid.Row="0"
+                            Classes="NavigationRadioButton"
+                            Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
+                            IsChecked="{Binding IsSettingsChecked}"
+                            Tag="Настройки">
+                            <controls:VectorImage Classes="SettingsVectorImage ForegroundVectorImage" />
+                        </RadioButton>
+
+                        <Button
+                            Grid.Row="2"
+                            Classes="ImageTextButton"
+                            Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
+                            Command="{Binding LogInCommand, Mode=OneWay}"
+                            Foreground="{DynamicResource PositiveBrush}"
+                            IsVisible="{Binding !IsUserLogin, Mode=OneWay}"
+                            Tag="Войти">
+                            <controls:VectorImage Classes="LogInVectorImage PositiveVectorImage" />
+                        </Button>
+
+                        <Button
+                            Grid.Row="2"
+                            Classes="ImageTextButton"
+                            Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=160}"
+                            Command="{Binding LogOutCommand, Mode=OneWay}"
+                            Foreground="{DynamicResource NegativeBrush}"
+                            IsVisible="{Binding IsUserLogin, Mode=OneWay}"
+                            Tag="Выйти">
+                            <controls:VectorImage Classes="LogOutVectorImage NegativeVectorImage" />
+                        </Button>
+
+                    </Grid>
 
                 </Grid>
 
-            </Grid>
+            </Border>
 
-        </Border>
+        </Viewbox>
+
 
         <TransitioningContentControl
             Grid.Column="1"

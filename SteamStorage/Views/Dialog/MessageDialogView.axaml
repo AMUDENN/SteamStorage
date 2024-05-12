@@ -13,10 +13,11 @@
 
     <Grid Margin="15,10,15,15" RowDefinitions="*, 60">
 
-        <Grid Grid.Row="0" ColumnDefinitions="120, *">
+        <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
 
             <controls:VectorImage
                 Grid.Column="0"
+                MaxWidth="90"
                 Margin="20"
                 Classes="ForegroundVectorImage"
                 Classes.ErrorVectorImage="{Binding IsErrorVisible, Mode=OneWay}"

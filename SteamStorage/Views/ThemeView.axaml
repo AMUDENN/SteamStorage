@@ -13,25 +13,28 @@
 
     <ThemeVariantScope RequestedThemeVariant="{Binding ThemeVariant, Mode=OneWay}">
 
-        <Border Classes="BackgroundBorder">
+        <Border
+            Width="1440"
+            Height="1024"
+            Classes="BackgroundBorder BigRoundedBorder">
 
             <Grid
-                Margin="10"
-                ColumnDefinitions="30*,3*,50*,3*,50*"
-                RowDefinitions="7*,10,6*,10,4*">
+                Margin="30"
+                ColumnDefinitions="10*,*,17*,*,17*"
+                RowDefinitions="12*,*,12*,*,8*">
 
                 <Border
                     Grid.Row="0"
                     Grid.RowSpan="5"
                     Grid.Column="0"
-                    Classes="BackgroundAdditionalBorder SmallRoundedBorder">
+                    Classes="BackgroundAdditionalBorder BigRoundedBorder">
 
-                    <Grid Margin="0,7" RowDefinitions="55, 15, 10, 6*, 26*, 6*, 10*">
+                    <Grid Margin="0,20" RowDefinitions="128, 50, 25, *, 380, *, 140">
 
                         <Border
                             Grid.Row="0"
-                            Width="50"
-                            Height="50"
+                            Width="128"
+                            Height="128"
                             VerticalAlignment="Top"
                             Classes="LittleRoundedBorder">
 
@@ -47,25 +50,25 @@
 
                         <TextBlock
                             Grid.Row="1"
-                            Classes="CenterTextBlock"
-                            FontSize="12"
+                            Classes="CenterTextBlock BigTextBlock"
                             Text="Username" />
 
                         <TextBlock
                             Grid.Row="2"
-                            Classes="CenterTextBlock LightTextBlock"
-                            FontSize="6"
+                            Classes="CenterTextBlock LightTextBlock LittleTextBlock"
                             Text="SteamID" />
 
                         <Rectangle
                             Grid.Row="3"
                             Height="2"
+                            MaxWidth="180"
                             Margin="20,0"
                             Classes="ForegroundRectangle" />
 
                         <Rectangle
                             Grid.Row="5"
                             Height="2"
+                            MaxWidth="180"
                             Margin="20,0"
                             Classes="ForegroundRectangle" />
 
@@ -76,41 +79,38 @@
                 <Border
                     Grid.Row="0"
                     Grid.Column="2"
-                    Classes="FirstAccentGradientBorder SmallRoundedBorder" />
+                    Classes="FirstAccentGradientBorder BigRoundedBorder" />
 
-                <Grid Grid.Row="0" Grid.Column="4">
+                <Grid
+                    Grid.Row="0"
+                    Grid.Column="4"
+                    RowDefinitions="*,30,*">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="10" MinHeight="10" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Classes="SecondAccentGradientBorder BigRoundedBorder" />
 
-                    <Border Grid.Row="0" Classes="SecondAccentGradientBorder SmallRoundedBorder" />
-
-                    <Border Grid.Row="2" Classes="ThirdAccentGradientBorder SmallRoundedBorder" />
+                    <Border Grid.Row="2" Classes="ThirdAccentGradientBorder BigRoundedBorder" />
 
                 </Grid>
 
                 <Border
                     Grid.Row="2"
                     Grid.Column="2"
-                    Classes="BackgroundAdditionalBorder SmallRoundedBorder" />
+                    Classes="BackgroundAdditionalBorder BigRoundedBorder" />
 
                 <Border
                     Grid.Row="2"
                     Grid.Column="4"
-                    Classes="BackgroundAdditionalBorder SmallRoundedBorder" />
+                    Classes="BackgroundAdditionalBorder BigRoundedBorder" />
 
                 <Border
                     Grid.Row="4"
                     Grid.Column="2"
-                    Classes="BackgroundAdditionalBorder SmallRoundedBorder" />
+                    Classes="BackgroundAdditionalBorder BigRoundedBorder" />
 
                 <Border
                     Grid.Row="4"
                     Grid.Column="4"
-                    Classes="BackgroundAdditionalBorder SmallRoundedBorder" />
+                    Classes="BackgroundAdditionalBorder BigRoundedBorder" />
 
             </Grid>
 

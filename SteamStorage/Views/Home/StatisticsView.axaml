@@ -20,7 +20,7 @@
         </ia:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
-    <Grid>
+    <Grid ColumnDefinitions="*,30,*" RowDefinitions="3*,30,3*,30,2*">
 
         <Grid.Styles>
             <Style Selector="Grid.Min, lvc|PieChart.Min">
@@ -46,20 +46,6 @@
                 </Style>
             </Style>
         </Grid.Styles>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="3*" MinHeight="240" />
-            <RowDefinition Height="30" MinHeight="30" />
-            <RowDefinition Height="3*" MinHeight="270" />
-            <RowDefinition Height="30" MinHeight="30" />
-            <RowDefinition Height="2*" MinHeight="170" />
-        </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="260" />
-            <ColumnDefinition Width="30" MinWidth="30" />
-            <ColumnDefinition Width="*" MinWidth="260" />
-        </Grid.ColumnDefinitions>
 
         <Border
             Grid.Row="0"

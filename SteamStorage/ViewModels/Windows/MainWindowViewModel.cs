@@ -57,6 +57,7 @@ public class MainWindowViewModel : ViewModelBase
         MainWindowModel model)
     {
         _model = model;
+        model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

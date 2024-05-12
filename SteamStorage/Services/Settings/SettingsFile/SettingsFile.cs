@@ -18,7 +18,7 @@ public class SettingsFile
     public SettingsFile(
         string programName)
     {
-        _filePath = @$"{Environment.SpecialFolder.ApplicationData}\{programName}\appSettings.json";
+        _filePath = @$"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\{programName}\appSettings.json";
     }
 
     #endregion Constructor
@@ -30,6 +30,7 @@ public class SettingsFile
         try
         {
             DeleteFile();
+            CreateFile();
             using FileStream fs = new(_filePath, FileMode.OpenOrCreate, FileAccess.Write);
             JsonSerializer.Serialize(fs, value);
         }
@@ -52,6 +53,16 @@ public class SettingsFile
         }
 
         return default;
+    }
+    
+    private void CreateFile()
+    {
+        if (File.Exists(_filePath)) return;
+        string? directoryName = Path.GetDirectoryName(_filePath);
+        if (directoryName is null) return;
+        Directory.CreateDirectory(directoryName);
+        File.Create(_filePath).Close();
+        Debug.WriteLine($"Created file: {_filePath}");
     }
 
     private void DeleteFile()

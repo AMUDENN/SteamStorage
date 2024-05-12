@@ -141,6 +141,7 @@
                     Grid.Column="1"
                     Height="50"
                     Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
+                    MaxLength="10"
                     PreviewCharRegex="[0-9.,]"
                     StringFormat="N2"
                     Text="{Binding FinancialGoal}" />

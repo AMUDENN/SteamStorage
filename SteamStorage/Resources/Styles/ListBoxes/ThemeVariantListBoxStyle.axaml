@@ -23,10 +23,7 @@
                 <Setter.Value>
                     <ControlTemplate x:DataType="utilityModels:ThemeModel">
 
-                        <Grid
-                            Width="{Binding $self.Bounds.Height, Converter={StaticResource DoubleMultiplicationConverter}, ConverterParameter=1.25}"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -38,7 +35,11 @@
 
                                 <Border Classes="BigRoundedIncludedBorder">
 
-                                    <ContentControl Content="{Binding Page, Mode=OneWay}" />
+                                    <Viewbox>
+
+                                        <ContentControl Content="{Binding Page, Mode=OneWay}" />
+
+                                    </Viewbox>
 
                                 </Border>
 

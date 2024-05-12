@@ -16,9 +16,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="6*" />
             <RowDefinition MinHeight="30" MaxHeight="30" />
-            <RowDefinition Height="*" MinHeight="90" />
+            <RowDefinition Height="*" MinHeight="70" />
             <RowDefinition MinHeight="30" MaxHeight="30" />
-            <RowDefinition Height="2*" MinHeight="220" />
+            <RowDefinition Height="2*" MinHeight="180" />
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" Classes="BigRoundedBorder BackgroundAdditionalBorder">
