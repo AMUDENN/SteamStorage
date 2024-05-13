@@ -27,7 +27,7 @@
                 <Setter Property="IsVisible" Value="False" />
             </Style>
             <Style Selector="ToggleButton.Min, controls|VectorImage.Min">
-                <Setter Property="Opacity" Value="0" />
+                <Setter Property="IsVisible" Value="False" />
             </Style>
 
             <Style Selector="TextBlock#InvestedSumTitle, TextBlock#InvestedSum">
@@ -52,66 +52,72 @@
             Grid.Column="0"
             Classes="BigRoundedBorder FirstAccentGradientBorder">
 
-            <Grid Margin="30">
+            <Viewbox MaxHeight="240" Margin="30">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" MinHeight="40" />
-                    <RowDefinition Height="*" MinHeight="50" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+                <Grid Height="160">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="50*" MaxWidth="350" />
-                    <ColumnDefinition Width="2*" MinWidth="20" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="3*" />
-                </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" MinHeight="40" />
+                        <RowDefinition Height="*" MinHeight="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                <TextBlock
-                    x:Name="InvestedSumTitle"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Classes="MiddleTextBlock"
-                    Classes.Max="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}"
-                    Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                    Text="Сумма инвестиций" />
-
-                <TextBlock
-                    x:Name="InvestedSum"
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Classes="LargeTextBlock"
-                    Classes.BigTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                    Classes.Max="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}"
-                    Text="{Binding InvestedSumString, Mode=OneWay}" />
-
-                <Grid
-                    x:Name="InvestedSumGrowthChartGrid"
-                    Grid.Row="1"
-                    Grid.RowSpan="2"
-                    Grid.Column="3"
-                    Width="{Binding InvestedSumWidth, Mode=OneWay}"
-                    Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}">
-
-                    <lvc:PieChart
-                        Margin="-30,-50"
-                        InitialRotation="-90"
-                        MaxValue="100"
-                        MinValue="0"
-                        Series="{Binding InvestedSumGrowthSeries, Mode=OneWay}"
-                        TooltipPosition="Hidden" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="50*" MaxWidth="350" />
+                        <ColumnDefinition Width="2*" MinWidth="20" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
 
                     <TextBlock
-                        Margin="10,5,10,10"
-                        HorizontalAlignment="Center"
-                        Classes="BigTextBlock CenterTextBlock"
-                        Text="{Binding InvestedSumGrowth, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=0}" />
+                        x:Name="InvestedSumTitle"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Classes="MiddleTextBlock"
+                        Classes.Max="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}"
+                        Text="Сумма инвестиций" />
+
+                    <TextBlock
+                        x:Name="InvestedSum"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Classes="LargeTextBlock"
+                        Classes.Max="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}"
+                        Text="{Binding InvestedSumString, Mode=OneWay}" />
+
+                    <Grid
+                        x:Name="InvestedSumGrowthChartGrid"
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        Grid.Column="3"
+                        Width="{Binding InvestedSumWidth, Mode=OneWay}"
+                        Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}">
+
+                        <lvc:PieChart
+                            Margin="-30,-50"
+                            InitialRotation="-90"
+                            MaxValue="100"
+                            MinValue="0"
+                            Series="{Binding InvestedSumGrowthSeries, Mode=OneWay}"
+                            TooltipPosition="Hidden" />
+
+                        <Viewbox MaxWidth="120">
+
+                            <TextBlock
+                                Margin="10,5,10,10"
+                                HorizontalAlignment="Center"
+                                Classes="BigTextBlock CenterTextBlock"
+                                Text="{Binding InvestedSumGrowth, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=0}" />
+
+                        </Viewbox>
+
+                    </Grid>
 
                 </Grid>
 
-            </Grid>
+            </Viewbox>
 
         </Border>
 
@@ -125,94 +131,102 @@
 
             <Border Grid.Row="0" Classes="BigRoundedBorder SecondAccentGradientBorder">
 
-                <Grid Margin="30,0">
+                <Viewbox MaxHeight="180" Margin="30,0">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" MinHeight="40" />
-                        <RowDefinition Height="*" MinHeight="50" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                    <Grid Height="120">
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="30*" MaxWidth="350" />
-                        <ColumnDefinition Width="*" MinWidth="10" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="2*" />
-                    </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" MinHeight="40" />
+                            <RowDefinition Height="*" MinHeight="50" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                    <TextBlock
-                        x:Name="FinancialGoalTitle"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Classes="MiddleTextBlock"
-                        Classes.Max="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}"
-                        Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="Финансовая цель" />
-
-                    <TextBlock
-                        x:Name="FinancialGoalSum"
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Classes="LargeTextBlock"
-                        Classes.BigTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Classes.Max="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}"
-                        Text="{Binding FinancialGoalString, Mode=OneWay}" />
-
-                    <Grid
-                        x:Name="FinancialGoalChartGrid"
-                        Grid.Row="1"
-                        Grid.RowSpan="2"
-                        Grid.Column="3"
-                        Width="{Binding FinancialGoalWidth, Mode=OneWay}"
-                        Margin="30,5,-10,5"
-                        Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}">
-
-                        <lvc:PieChart
-                            Margin="-20,-35"
-                            InitialRotation="-90"
-                            MaxValue="100"
-                            MinValue="0"
-                            Series="{Binding FinancialGoalPercentageCompletionSeries, Mode=OneWay}"
-                            TooltipPosition="Hidden" />
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" MinWidth="10" />
+                            <ColumnDefinition Width="30*" MaxWidth="350" />
+                            <ColumnDefinition Width="*" MinWidth="30" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="2*" MinWidth="10" />
+                        </Grid.ColumnDefinitions>
 
                         <TextBlock
-                            Margin="3,0,3,3"
-                            HorizontalAlignment="Center"
-                            Classes="MiddleTextBlock CenterTextBlock"
-                            Text="{Binding FinancialGoalPercentageCompletion, StringFormat=N0, Mode=OneWay, Converter={StaticResource PercentConverter}, ConverterParameter=0}" />
+                            x:Name="FinancialGoalTitle"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Classes="MiddleTextBlock"
+                            Classes.Max="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}"
+                            Text="Финансовая цель" />
+
+                        <TextBlock
+                            x:Name="FinancialGoalSum"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Classes="LargeTextBlock"
+                            Classes.Max="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}"
+                            Text="{Binding FinancialGoalString, Mode=OneWay}" />
+
+                        <Grid
+                            x:Name="FinancialGoalChartGrid"
+                            Grid.Row="1"
+                            Grid.RowSpan="2"
+                            Grid.Column="3"
+                            Width="{Binding FinancialGoalWidth, Mode=OneWay}"
+                            Margin="30,5,0,5"
+                            Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}">
+
+                            <lvc:PieChart
+                                Margin="-20,-35"
+                                InitialRotation="-90"
+                                MaxValue="100"
+                                MinValue="0"
+                                Series="{Binding FinancialGoalPercentageCompletionSeries, Mode=OneWay}"
+                                TooltipPosition="Hidden" />
+
+                            <Viewbox MaxWidth="70">
+
+                                <TextBlock
+                                    Margin="3,0,3,3"
+                                    HorizontalAlignment="Center"
+                                    Classes="MiddleTextBlock CenterTextBlock"
+                                    Text="{Binding FinancialGoalPercentageCompletion, StringFormat=N0, Mode=OneWay, Converter={StaticResource PercentConverter}, ConverterParameter=0}" />
+
+                            </Viewbox>
+
+                        </Grid>
 
                     </Grid>
 
-                </Grid>
+                </Viewbox>
 
             </Border>
 
             <Border Grid.Row="2" Classes="BigRoundedBorder ThirdAccentGradientBorder">
 
-                <Grid Margin="30,0">
+                <Viewbox MaxHeight="180" Margin="30,0">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" MinHeight="40" />
-                        <RowDefinition Height="*" MinHeight="50" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                    <Grid Height="120">
 
-                    <TextBlock
-                        Grid.Row="1"
-                        Classes="MiddleTextBlock CenterTextBlock"
-                        Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="Количество предметов" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" MinHeight="40" />
+                            <RowDefinition Height="*" MinHeight="50" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                    <TextBlock
-                        Grid.Row="2"
-                        Classes="LargeTextBlock CenterTextBlock"
-                        Classes.BigTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="{Binding TotalCount, StringFormat=N0, Mode=OneWay}" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Classes="MiddleTextBlock CenterTextBlock"
+                            Text="Количество предметов" />
 
-                </Grid>
+                        <TextBlock
+                            Grid.Row="2"
+                            Classes="LargeTextBlock CenterTextBlock"
+                            Text="{Binding TotalCount, StringFormat=N0, Mode=OneWay}" />
+
+                    </Grid>
+
+                </Viewbox>
 
             </Border>
 
@@ -223,16 +237,15 @@
             Grid.Column="0"
             Classes="BigRoundedBorder BackgroundAdditionalBorder">
 
-            <Grid Margin="30" ColumnDefinitions="*,10*,*">
+            <Grid Margin="20" ColumnDefinitions="*,10*,*">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" MinHeight="40" />
-                    <RowDefinition Height="4*" MinHeight="20" />
-                    <RowDefinition Height="40" MinHeight="40" />
-                    <RowDefinition Height="3*" MinHeight="10" />
-                    <RowDefinition Height="40" MinHeight="40" />
-                    <RowDefinition Height="3*" MinHeight="10" />
-                    <RowDefinition Height="40" MinHeight="40" />
+                    <RowDefinition
+                        Height="*"
+                        MinHeight="10"
+                        MaxHeight="20" />
+                    <RowDefinition Height="5*" />
                 </Grid.RowDefinitions>
 
                 <TextBlock
@@ -242,64 +255,72 @@
                     Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
                     Text="Активы" />
 
-                <Grid
+                <Viewbox
                     Grid.Row="2"
                     Grid.Column="1"
-                    ColumnDefinitions="Auto, *">
+                    MaxHeight="240"
+                    HorizontalAlignment="Left">
 
-                    <TextBlock
-                        Grid.Column="0"
-                        Classes="MiddleTextBlock"
-                        Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="Количество: " />
+                    <Grid
+                        x:Name="ActivesGrid"
+                        Height="180"
+                        MinWidth="{Binding ElementName=ArchiveGrid, Path=Bounds.Width}">
 
-                    <TextBlock
-                        Grid.Column="1"
-                        Classes="BigTextBlock"
-                        Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="{Binding ActivesCount, StringFormat=N0, Mode=OneWay}" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" MinHeight="40" />
+                            <RowDefinition Height="3*" MinHeight="10" />
+                            <RowDefinition Height="40" MinHeight="40" />
+                            <RowDefinition Height="3*" MinHeight="10" />
+                            <RowDefinition Height="40" MinHeight="40" />
+                        </Grid.RowDefinitions>
 
-                </Grid>
+                        <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto">
 
-                <Grid
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    ColumnDefinitions="Auto, *">
+                            <TextBlock
+                                Grid.Column="0"
+                                Classes="MiddleTextBlock"
+                                Text="Количество: " />
 
-                    <TextBlock
-                        Grid.Column="0"
-                        Classes="MiddleTextBlock"
-                        Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="Сумма: " />
+                            <TextBlock
+                                Grid.Column="1"
+                                Classes="BigTextBlock"
+                                Text="{Binding ActivesCount, StringFormat=N0, Mode=OneWay}" />
 
-                    <TextBlock
-                        Grid.Column="1"
-                        Classes="BigTextBlock"
-                        Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="{Binding ActivesCurrentSumString, Mode=OneWay}" />
+                        </Grid>
 
-                </Grid>
+                        <Grid Grid.Row="2" ColumnDefinitions="Auto, Auto">
 
-                <Grid
-                    Grid.Row="6"
-                    Grid.Column="1"
-                    ColumnDefinitions="Auto, *">
+                            <TextBlock
+                                Grid.Column="0"
+                                Classes="MiddleTextBlock"
+                                Text="Сумма: " />
 
-                    <TextBlock
-                        Grid.Column="0"
-                        Classes="MiddleTextBlock"
-                        Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="Изменение: " />
+                            <TextBlock
+                                Grid.Column="1"
+                                Classes="BigTextBlock"
+                                Text="{Binding ActivesCurrentSumString, Mode=OneWay}" />
 
-                    <TextBlock
-                        Grid.Column="1"
-                        Classes="BigTextBlock"
-                        Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Classes.NegativeTextBlock="{Binding ActivesPercentageGrowth, Mode=OneWay, Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
-                        Classes.PositiveTextBlock="{Binding ActivesPercentageGrowth, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
-                        Text="{Binding ActivesPercentageGrowth, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}" />
+                        </Grid>
 
-                </Grid>
+                        <Grid Grid.Row="4" ColumnDefinitions="Auto, Auto">
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Classes="MiddleTextBlock"
+                                Text="Изменение: " />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Classes="BigTextBlock"
+                                Classes.NegativeTextBlock="{Binding ActivesPercentageGrowth, Mode=OneWay, Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
+                                Classes.PositiveTextBlock="{Binding ActivesPercentageGrowth, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
+                                Text="{Binding ActivesPercentageGrowth, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}" />
+
+                        </Grid>
+
+                    </Grid>
+
+                </Viewbox>
 
             </Grid>
 
@@ -310,16 +331,15 @@
             Grid.Column="2"
             Classes="BigRoundedBorder BackgroundAdditionalBorder">
 
-            <Grid Margin="30" ColumnDefinitions="*,10*,*">
+            <Grid Margin="20" ColumnDefinitions="*,10*,*">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" MinHeight="40" />
-                    <RowDefinition Height="4*" MinHeight="20" />
-                    <RowDefinition Height="40" MinHeight="40" />
-                    <RowDefinition Height="3*" MinHeight="10" />
-                    <RowDefinition Height="40" MinHeight="40" />
-                    <RowDefinition Height="3*" MinHeight="10" />
-                    <RowDefinition Height="40" MinHeight="40" />
+                    <RowDefinition
+                        Height="*"
+                        MinHeight="10"
+                        MaxHeight="20" />
+                    <RowDefinition Height="5*" />
                 </Grid.RowDefinitions>
 
                 <TextBlock
@@ -329,64 +349,72 @@
                     Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
                     Text="Архив" />
 
-                <Grid
+                <Viewbox
                     Grid.Row="2"
                     Grid.Column="1"
-                    ColumnDefinitions="Auto, *">
+                    MaxHeight="240"
+                    HorizontalAlignment="Left">
 
-                    <TextBlock
-                        Grid.Column="0"
-                        Classes="MiddleTextBlock"
-                        Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="Количество: " />
+                    <Grid
+                        x:Name="ArchiveGrid"
+                        Height="180"
+                        MinWidth="{Binding ElementName=ActivesGrid, Path=Bounds.Width}">
 
-                    <TextBlock
-                        Grid.Column="1"
-                        Classes="BigTextBlock"
-                        Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="{Binding ArchivesCount, StringFormat=N0, Mode=OneWay}" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" MinHeight="40" />
+                            <RowDefinition Height="3*" MinHeight="10" />
+                            <RowDefinition Height="40" MinHeight="40" />
+                            <RowDefinition Height="3*" MinHeight="10" />
+                            <RowDefinition Height="40" MinHeight="40" />
+                        </Grid.RowDefinitions>
 
-                </Grid>
+                        <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto">
 
-                <Grid
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    ColumnDefinitions="Auto, *">
+                            <TextBlock
+                                Grid.Column="0"
+                                Classes="MiddleTextBlock"
+                                Text="Количество: " />
 
-                    <TextBlock
-                        Grid.Column="0"
-                        Classes="MiddleTextBlock"
-                        Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="Сумма: " />
+                            <TextBlock
+                                Grid.Column="1"
+                                Classes="BigTextBlock"
+                                Text="{Binding ArchivesCount, StringFormat=N0, Mode=OneWay}" />
 
-                    <TextBlock
-                        Grid.Column="1"
-                        Classes="BigTextBlock"
-                        Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="{Binding ArchivesSoldSumString, StringFormat=N2, Mode=OneWay}" />
+                        </Grid>
 
-                </Grid>
+                        <Grid Grid.Row="2" ColumnDefinitions="Auto, Auto">
 
-                <Grid
-                    Grid.Row="6"
-                    Grid.Column="1"
-                    ColumnDefinitions="Auto, *">
+                            <TextBlock
+                                Grid.Column="0"
+                                Classes="MiddleTextBlock"
+                                Text="Сумма: " />
 
-                    <TextBlock
-                        Grid.Column="0"
-                        Classes="MiddleTextBlock"
-                        Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="Изменение: " />
+                            <TextBlock
+                                Grid.Column="1"
+                                Classes="BigTextBlock"
+                                Text="{Binding ArchivesSoldSumString, StringFormat=N2, Mode=OneWay}" />
 
-                    <TextBlock
-                        Grid.Column="1"
-                        Classes="BigTextBlock"
-                        Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Classes.NegativeTextBlock="{Binding ArchivesPercentageGrowth, Mode=OneWay, Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
-                        Classes.PositiveTextBlock="{Binding ArchivesPercentageGrowth, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
-                        Text="{Binding ArchivesPercentageGrowth, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}" />
+                        </Grid>
 
-                </Grid>
+                        <Grid Grid.Row="4" ColumnDefinitions="Auto, Auto">
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Classes="MiddleTextBlock"
+                                Text="Изменение: " />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Classes="BigTextBlock"
+                                Classes.NegativeTextBlock="{Binding ArchivesPercentageGrowth, Mode=OneWay, Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
+                                Classes.PositiveTextBlock="{Binding ArchivesPercentageGrowth, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
+                                Text="{Binding ArchivesPercentageGrowth, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}" />
+
+                        </Grid>
+
+                    </Grid>
+
+                </Viewbox>
 
             </Grid>
 
@@ -397,89 +425,88 @@
             Grid.Column="0"
             Classes="BigRoundedBorder BackgroundAdditionalBorder">
 
-            <Grid Margin="30" ColumnDefinitions="*,10*,*">
+            <Grid Margin="20" ColumnDefinitions="*,10*,*">
 
-                <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" MinHeight="40" />
+                    <RowDefinition
+                        Height="*"
+                        MinHeight="10"
+                        MaxHeight="20" />
+                    <RowDefinition Height="5*" />
+                </Grid.RowDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" MinHeight="40" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="40" MinHeight="40" />
-                        <RowDefinition Height="2*" />
-                        <RowDefinition Height="40" MinHeight="40" />
-                    </Grid.RowDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Classes="BigTextBlock CenterTextBlock"
+                    Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
+                    Text="Инвентарь" />
 
-                    <TextBlock
-                        Grid.Row="0"
-                        Classes="BigTextBlock CenterTextBlock"
-                        Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="Инвентарь" />
-
-                </Grid>
-
-                <Grid Grid.Column="1" ColumnDefinitions="3*,Auto, *">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" MinHeight="40" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="40" MinHeight="40" />
-                        <RowDefinition Height="2*" />
-                        <RowDefinition Height="40" MinHeight="40" />
-                    </Grid.RowDefinitions>
+                <Viewbox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalAlignment="Left">
 
                     <Grid
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        Margin="0,0,-40,0"
-                        ColumnDefinitions="Auto, *">
+                        x:Name="InventoryGrid"
+                        MinWidth="{Binding ElementName=ServerGrid, Path=Bounds.Width}"
+                        ColumnDefinitions="3*, *, Auto, *">
 
-                        <TextBlock
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" MinHeight="40" />
+                            <RowDefinition Height="2*" MinHeight="20" />
+                            <RowDefinition Height="40" MinHeight="40" />
+                        </Grid.RowDefinitions>
+
+                        <Grid
+                            Grid.Row="0"
                             Grid.Column="0"
-                            Classes="MiddleTextBlock"
-                            Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                            Text="Количество: " />
+                            ColumnDefinitions="Auto, Auto">
 
-                        <TextBlock
-                            Grid.Column="1"
-                            Classes="BigTextBlock"
-                            Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                            Text="{Binding InventoryCount, StringFormat=N0, Mode=OneWay}" />
+                            <TextBlock
+                                Grid.Column="0"
+                                Classes="MiddleTextBlock"
+                                Text="Количество: " />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Classes="BigTextBlock"
+                                Text="{Binding InventoryCount, StringFormat=N0, Mode=OneWay}" />
+
+                        </Grid>
+
+                        <Grid
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            ColumnDefinitions="Auto, Auto">
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Classes="MiddleTextBlock"
+                                Text="Сумма: " />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Classes="BigTextBlock"
+                                Text="{Binding InventorySumString, StringFormat=N2, Mode=OneWay}" />
+
+                        </Grid>
+
+                        <lvc:PieChart
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
+                            Grid.Column="2"
+                            Width="{Binding InventoryGamesWidth, Mode=OneWay}"
+                            Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}"
+                            InitialRotation="-90"
+                            Series="{Binding InventoryGamesSeries, Mode=OneWay}"
+                            TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
+                            TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}" />
 
                     </Grid>
 
-                    <Grid
-                        Grid.Row="4"
-                        Grid.Column="0"
-                        Margin="0,0,-40,0"
-                        ColumnDefinitions="Auto, *">
-
-                        <TextBlock
-                            Grid.Column="0"
-                            Classes="MiddleTextBlock"
-                            Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                            Text="Сумма: " />
-
-                        <TextBlock
-                            Grid.Column="1"
-                            Classes="BigTextBlock"
-                            Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                            Text="{Binding InventorySumString, StringFormat=N2, Mode=OneWay}" />
-
-                    </Grid>
-
-                    <lvc:PieChart
-                        Grid.Row="2"
-                        Grid.RowSpan="3"
-                        Grid.Column="1"
-                        Width="{Binding InventoryGamesWidth, Mode=OneWay}"
-                        Margin="0,-5,-140,-5"
-                        Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=460}"
-                        InitialRotation="-90"
-                        Series="{Binding InventoryGamesSeries, Mode=OneWay}"
-                        TooltipBackgroundPaint="{Binding TooltipBackgroundPaint, Mode=OneWay}"
-                        TooltipTextPaint="{Binding TooltipTextPaint, Mode=OneWay}" />
-
-                </Grid>
+                </Viewbox>
 
             </Grid>
 
@@ -490,98 +517,91 @@
             Grid.Column="2"
             Classes="BigRoundedBorder BackgroundAdditionalBorder">
 
-            <Grid Margin="30" ColumnDefinitions="*,10*,*">
+            <Grid Margin="20" ColumnDefinitions="*,10*,*">
 
-                <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" MinHeight="40" />
+                    <RowDefinition
+                        Height="*"
+                        MinHeight="10"
+                        MaxHeight="20" />
+                    <RowDefinition Height="5*" />
+                </Grid.RowDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" MinHeight="40" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="40" MinHeight="40" />
-                        <RowDefinition Height="2*" />
-                        <RowDefinition Height="40" MinHeight="40" />
-                    </Grid.RowDefinitions>
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Classes="BigTextBlock CenterTextBlock"
+                    Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
+                    Text="Состояние сервера" />
 
-                    <TextBlock
-                        Grid.Row="0"
-                        Classes="BigTextBlock CenterTextBlock"
-                        Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="Состояние сервера" />
+                <Viewbox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalAlignment="Left">
 
-                </Grid>
+                    <Grid x:Name="ServerGrid" MinWidth="{Binding ElementName=InventoryGrid, Path=Bounds.Width}">
 
-                <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" MinHeight="40" />
+                            <RowDefinition Height="2*" MinHeight="20" />
+                            <RowDefinition Height="40" MinHeight="40" />
+                        </Grid.RowDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" MinHeight="40" />
-                        <RowDefinition Height="3*" />
-                        <RowDefinition Height="40" MinHeight="40" />
-                        <RowDefinition Height="2*" />
-                        <RowDefinition Height="40" MinHeight="40" />
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition
-                            Width="*"
-                            MinWidth="10"
-                            MaxWidth="70" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        Classes="MiddleTextBlock"
-                        Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="{Binding ServerStatusString, Mode=OneWay}" />
-
-                    <StackPanel
-                        Grid.Row="4"
-                        Grid.Column="0"
-                        Orientation="Horizontal">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition
+                                Width="*"
+                                MinWidth="10"
+                                MaxWidth="70" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
                         <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
                             Classes="MiddleTextBlock"
-                            Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                            Text="Ping: " />
+                            Text="{Binding ServerStatusString, Mode=OneWay}" />
 
-                        <TextBlock
-                            Classes="MiddleTextBlock"
-                            Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                            Text="{Binding Ping, StringFormat=N0, Mode=OneWay}" />
+                        <StackPanel
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Orientation="Horizontal">
 
-                        <TextBlock
-                            Classes="MiddleTextBlock"
-                            Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                            Text=" ms" />
+                            <TextBlock Classes="MiddleTextBlock" Text="Ping: " />
 
-                    </StackPanel>
+                            <TextBlock Classes="MiddleTextBlock" Text="{Binding Ping, StringFormat=N0, Mode=OneWay}" />
 
-                    <ToggleButton
-                        Grid.Row="2"
-                        Grid.RowSpan="3"
-                        Grid.Column="2"
-                        Margin="5"
-                        HorizontalAlignment="Left"
-                        Classes="ConnectionToggleButton"
-                        Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=350}"
-                        IsChecked="{Binding ServerStatusBool, Mode=OneWay}"
-                        IsVisible="{Binding IsServerActive, Mode=OneWay}" />
+                            <TextBlock Classes="MiddleTextBlock" Text=" ms" />
 
-                    <controls:VectorImage
-                        Grid.Row="2"
-                        Grid.RowSpan="3"
-                        Grid.Column="2"
-                        Margin="5"
-                        Padding="8"
-                        HorizontalAlignment="Left"
-                        Classes="CloseVectorImage ForegroundVectorImage"
-                        Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=350}"
-                        IsVisible="{Binding !IsServerActive, Mode=OneWay}" />
+                        </StackPanel>
 
-                </Grid>
+                        <ToggleButton
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
+                            Grid.Column="2"
+                            Margin="5"
+                            HorizontalAlignment="Left"
+                            Classes="ConnectionToggleButton"
+                            Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=350}"
+                            IsChecked="{Binding ServerStatusBool, Mode=OneWay}"
+                            IsVisible="{Binding IsServerActive, Mode=OneWay}" />
+
+                        <controls:VectorImage
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
+                            Grid.Column="2"
+                            Margin="5"
+                            Padding="8"
+                            HorizontalAlignment="Left"
+                            Classes="CloseVectorImage ForegroundVectorImage"
+                            Classes.Min="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=350}"
+                            IsVisible="{Binding !IsServerActive, Mode=OneWay}" />
+
+                    </Grid>
+
+                </Viewbox>
 
             </Grid>
 
