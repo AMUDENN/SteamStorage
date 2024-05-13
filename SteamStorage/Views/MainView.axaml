@@ -18,7 +18,7 @@
 
             <Border
                 x:Name="MenuBorder"
-                Height="940"
+                Height="960"
                 Classes="BackgroundAdditionalBorder BigRoundedBorder">
 
                 <Border.Styles>
