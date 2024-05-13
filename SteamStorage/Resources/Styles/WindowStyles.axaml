@@ -9,6 +9,7 @@
         <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="36" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
         <Setter Property="TransparencyBackgroundFallback" Value="Transparent" />
+        <Setter Property="SystemDecorations" Value="BorderOnly"/>
     </Style>
 
     <Style Selector="Window.MainWindow">
@@ -22,7 +23,7 @@
                         x:Name="WindowBorder"
                         Classes="SmallRoundedBorder BackgroundBorder"
                         IsHitTestVisible="False" />
-                    <Border x:Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+                    <Border x:Name="PART_TransparencyFallback" Background="Transparent" IsHitTestVisible="False" />
                     <VisualLayerManager>
                         <Grid RowDefinitions="36, *">
                             <TextBlock
@@ -98,6 +99,7 @@
     </Style>
 
     <Style Selector="Window.DialogWindow">
+        <Setter Property="ShowInTaskbar" Value="False"/>
         <Setter Property="WindowStartupLocation" Value="CenterOwner" />
         <Setter Property="MinHeight" Value="180" />
         <Setter Property="MinWidth" Value="320" />
