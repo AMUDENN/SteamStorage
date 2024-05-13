@@ -17,8 +17,9 @@
 
             <controls:VectorImage
                 Grid.Column="0"
+                MinWidth="32"
                 MaxWidth="90"
-                Margin="20"
+                Margin="10,10,20,10"
                 Classes="ForegroundVectorImage"
                 Classes.ErrorVectorImage="{Binding IsErrorVisible, Mode=OneWay}"
                 Classes.InformationVectorImage="{Binding IsInfoVisible, Mode=OneWay}"

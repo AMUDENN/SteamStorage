@@ -63,7 +63,7 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="50*" MaxWidth="350" />
+                    <ColumnDefinition Width="50*" MaxWidth="420" />
                     <ColumnDefinition Width="2*" MinWidth="20" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="3*" />
@@ -103,11 +103,15 @@
                         Series="{Binding InvestedSumGrowthSeries, Mode=OneWay}"
                         TooltipPosition="Hidden" />
 
-                    <TextBlock
-                        Margin="10,5,10,10"
-                        HorizontalAlignment="Center"
-                        Classes="BigTextBlock CenterTextBlock"
-                        Text="{Binding InvestedSumGrowth, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=0}" />
+                    <Viewbox MaxWidth="130" MaxHeight="50">
+
+                        <TextBlock
+                            Margin="3,0,3,3"
+                            HorizontalAlignment="Center"
+                            Classes="BigTextBlock CenterTextBlock"
+                            Text="{Binding InvestedSumGrowth, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=0}" />
+
+                    </Viewbox>
 
                 </Grid>
 
@@ -177,11 +181,15 @@
                             Series="{Binding FinancialGoalPercentageCompletionSeries, Mode=OneWay}"
                             TooltipPosition="Hidden" />
 
-                        <TextBlock
-                            Margin="3,0,3,3"
-                            HorizontalAlignment="Center"
-                            Classes="MiddleTextBlock CenterTextBlock"
-                            Text="{Binding FinancialGoalPercentageCompletion, StringFormat=N0, Mode=OneWay, Converter={StaticResource PercentConverter}, ConverterParameter=0}" />
+                        <Viewbox MaxWidth="60" MaxHeight="50">
+
+                            <TextBlock
+                                Margin="3,0,3,3"
+                                HorizontalAlignment="Center"
+                                Classes="MiddleTextBlock CenterTextBlock"
+                                Text="{Binding FinancialGoalPercentageCompletion, StringFormat=N0, Mode=OneWay, Converter={StaticResource PercentConverter}, ConverterParameter=0}" />
+
+                        </Viewbox>
 
                     </Grid>
 
