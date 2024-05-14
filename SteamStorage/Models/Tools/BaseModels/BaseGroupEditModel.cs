@@ -108,7 +108,7 @@ public abstract class BaseGroupEditModel : BaseEditModel
 
     protected void SetTitle(BaseGroupModel? model)
     {
-        Title = model is not null ? $"{CHANGE_TITLE}: «{model.Title}»" : ADD_TITLE;
+        Title = IsNewGroup ? ADD_TITLE : $"{CHANGE_TITLE}: «{model?.Title}»";
     }
 
     #endregion Methods

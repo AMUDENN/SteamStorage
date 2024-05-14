@@ -51,8 +51,6 @@ public class ArchiveEditModel : BaseItemEditModel
 
     private DateTimeOffset _defaultSoldDate;
     private DateTimeOffset _soldDate;
-
-    private bool _isNewArchive;
     
     #endregion Fields
 
@@ -161,12 +159,6 @@ public class ArchiveEditModel : BaseItemEditModel
         get => _soldDate;
         set => SetProperty(ref _soldDate, value);
     }
-    
-    public bool IsNewArchive
-    {
-        get => _isNewArchive;
-        private set => SetProperty(ref _isNewArchive, value);
-    }
 
     #endregion Properties
 
@@ -229,7 +221,7 @@ public class ArchiveEditModel : BaseItemEditModel
               && Description?.Length <= 300))
             return;
 
-        if (IsNewArchive)
+        if (IsNewItem)
         {
             bool result = await DialogService.ShowDialogAsync(
                 $"Вы уверены, что хотите добавить элемент архива: «{SelectedSkinModel.Title}»?",
@@ -300,15 +292,9 @@ public class ArchiveEditModel : BaseItemEditModel
                && SelectedSkinModel is not null;
     }
 
-    protected override void SetTitle(BaseSkinViewModel? model, bool isNewItem)
+    protected override void SetTitle(BaseSkinViewModel? model)
     {
-        if (isNewItem)
-        {
-            Title = ADD_TITLE;
-            return;
-        }
-        if (model is null) Title = ADD_TITLE;
-        Title = $"{CHANGE_TITLE}: «{model?.Title}»";
+        Title = IsNewItem ? ADD_TITLE : $"{CHANGE_TITLE}: «{model?.Title}»";
     }
 
     private void SetValuesFromDefault()
@@ -344,7 +330,7 @@ public class ArchiveEditModel : BaseItemEditModel
 
         DefaultSoldDate = DateTime.SpecifyKind(model?.SoldDate ?? DateTime.Now, DateTimeKind.Local);
         
-        IsNewArchive = model is null;
+        IsNewItem = model is null;
 
         SetValuesFromDefault();
     }
@@ -370,7 +356,7 @@ public class ArchiveEditModel : BaseItemEditModel
 
         DefaultSoldDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
 
-        IsNewArchive = true;
+        IsNewItem = true;
 
         SetValuesFromDefault();
     }
@@ -396,7 +382,7 @@ public class ArchiveEditModel : BaseItemEditModel
 
         DefaultSoldDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
         
-        IsNewArchive = true;
+        IsNewItem = true;
 
         SetValuesFromDefault();
     }

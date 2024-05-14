@@ -53,7 +53,7 @@ public abstract class BaseItemEditModel : BaseEditModel
         {
             SetProperty(ref _selectedSkinModel, value);
             SaveCommand.NotifyCanExecuteChanged();
-            SetTitle(value, IsNewItem);
+            SetTitle(value);
         }
     }
 
@@ -118,7 +118,7 @@ public abstract class BaseItemEditModel : BaseEditModel
         Filter = null;
     }
 
-    protected abstract void SetTitle(BaseSkinViewModel? model, bool isNewItem);
+    protected abstract void SetTitle(BaseSkinViewModel? model);
 
     private bool ItemFilterPredicate(string? search, object? item)
     {

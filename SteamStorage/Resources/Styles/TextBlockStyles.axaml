@@ -44,6 +44,9 @@
                 </i:BehaviorCollection>
             </i:BehaviorCollectionTemplate>
         </Setter>
+        <Style Selector="^:pointerover">
+            <Setter Property="Opacity" Value="0.9" />
+        </Style>
     </Style>
     
     <Style Selector="TextBlock.PressedCopyTextBlock">
@@ -72,6 +75,9 @@
 
     <Style Selector="TextBlock.LightTextBlock">
         <Setter Property="Opacity" Value="0.5" />
+        <Style Selector="^.CopyTextBlock:pointerover">
+            <Setter Property="Opacity" Value="0.45" />
+        </Style>
         <Style Selector="^.PressedCopyTextBlock">
             <Setter Property="Opacity" Value="0.4"/>
         </Style>

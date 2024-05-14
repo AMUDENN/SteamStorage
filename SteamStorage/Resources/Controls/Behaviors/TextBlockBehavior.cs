@@ -14,7 +14,11 @@ public class TextBlockBehavior : Behavior<TextBlock>
     #region PropertiesDeclaration
 
     public static readonly AttachedProperty<string> PressedClassProperty =
-        AvaloniaProperty.RegisterAttached<TextBlockBehavior, Interactive, string>(nameof(PressedClass), string.Empty, false, BindingMode.OneTime);
+        AvaloniaProperty.RegisterAttached<TextBlockBehavior, Interactive, string>(
+            nameof(PressedClass),
+            string.Empty,
+            false,
+            BindingMode.OneTime);
 
     #endregion PropertiesDeclaration
 
@@ -25,10 +29,11 @@ public class TextBlockBehavior : Behavior<TextBlock>
         get => GetValue(PressedClassProperty);
         set => SetValue(PressedClassProperty, value);
     }
-    
+
     #endregion Properties
-    
+
     #region Methods
+
     protected override void OnAttached()
     {
         base.OnAttached();
@@ -49,7 +54,8 @@ public class TextBlockBehavior : Behavior<TextBlock>
 
     private async void PointerPressedHandler(object? sender, PointerPressedEventArgs e)
     {
-        if (AssociatedObject?.Text is null)
+        PointerPoint point = e.GetCurrentPoint(sender as Control);
+        if (point.Properties.IsRightButtonPressed || AssociatedObject?.Text is null)
             return;
         AssociatedObject.Classes.Add(PressedClass);
         IClipboardService? clipboardService = App.GetService<IClipboardService>();
@@ -61,7 +67,7 @@ public class TextBlockBehavior : Behavior<TextBlock>
             return;
         await notificationService.ShowAsync("Текст скопирован!", AssociatedObject.Text);
     }
-    
+
     private void PointerReleasedHandler(object? sender, PointerReleasedEventArgs e)
     {
         if (AssociatedObject?.Text is null)

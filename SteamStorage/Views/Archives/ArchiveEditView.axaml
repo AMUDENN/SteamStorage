@@ -169,7 +169,7 @@
                     Classes="ImageTextButton UnderlineImageTextButton TransparentImageTextButton StretchButton"
                     Command="{Binding DeleteCommand, Mode=OneWay}"
                     Foreground="{DynamicResource NegativeBrush}"
-                    IsVisible="{Binding !IsNewArchive, Mode=OneWay}"
+                    IsVisible="{Binding !IsNewItem, Mode=OneWay}"
                     Tag="Удалить">
                     <controls:VectorImage
                         Width="32"

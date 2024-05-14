@@ -273,15 +273,9 @@ public class ActiveEditModel : BaseItemEditModel
                && SelectedSkinModel is not null;
     }
 
-    protected override void SetTitle(BaseSkinViewModel? model, bool isNewItem)
+    protected override void SetTitle(BaseSkinViewModel? model)
     {
-        if (isNewItem)
-        {
-            Title = ADD_TITLE;
-            return;
-        }
-        if (model is null) Title = CHANGE_TITLE;
-        Title = $"{CHANGE_TITLE}: «{model?.Title}»";
+        Title = IsNewItem ? ADD_TITLE : $"{CHANGE_TITLE}: «{model?.Title}»";
     }
 
     private void SetValuesFromDefault()
