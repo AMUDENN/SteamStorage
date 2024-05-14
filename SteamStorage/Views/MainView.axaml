@@ -27,14 +27,14 @@
                     <Setter Property="Width" Value="300" />
                 </Style>
 
-                <Style Selector="Border#MenuBorder SelectableTextBlock#UserName, Border#MenuBorder SelectableTextBlock#SteamId">
+                <Style Selector="Border#MenuBorder TextBlock#UserName, Border#MenuBorder TextBlock#SteamId">
                     <Setter Property="Opacity" Value="0" />
                 </Style>
 
-                <Style Selector="Border#MenuBorder:pointerover SelectableTextBlock#UserName">
+                <Style Selector="Border#MenuBorder:pointerover TextBlock#UserName">
                     <Setter Property="Opacity" Value="1" />
                 </Style>
-                <Style Selector="Border#MenuBorder:pointerover SelectableTextBlock#SteamId">
+                <Style Selector="Border#MenuBorder:pointerover TextBlock#SteamId">
                     <Setter Property="Opacity" Value="0.5" />
                 </Style>
 
@@ -70,18 +70,18 @@
                     </Grid>
                 </Border>
 
-                <SelectableTextBlock
+                <TextBlock
                     x:Name="UserName"
                     Grid.Row="1"
                     Margin="10,0"
-                    Classes="CenterSelectableTextBlock BigSelectableTextBlock"
+                    Classes="CenterTextBlock BigTextBlock"
                     Text="{Binding UserName, Mode=OneWay}" />
 
-                <SelectableTextBlock
+                <TextBlock
                     x:Name="SteamId"
                     Grid.Row="2"
                     Margin="10,0"
-                    Classes="CenterSelectableTextBlock LittleSelectableTextBlock"
+                    Classes="CenterTextBlock LittleTextBlock"
                     Text="{Binding SteamId, Mode=OneWay}" />
 
                 <Rectangle

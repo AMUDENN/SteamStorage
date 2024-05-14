@@ -159,9 +159,6 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style Selector="^:pressed TextBlock.CopyTextBlock:pointerover">
-                <Setter Property="Opacity" Value="0.8" />
-            </Style>
             <Style Selector="^:selected">
                 <Style Selector="^ /template/ Border#MainBorder">
                     <Setter Property="Height" Value="160" />

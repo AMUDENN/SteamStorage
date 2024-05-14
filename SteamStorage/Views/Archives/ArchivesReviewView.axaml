@@ -50,7 +50,7 @@
 
                         <TextBlock
                             Grid.Column="1"
-                            Classes="BigTextBlock LeftTextBlock"
+                            Classes="BigTextBlock LeftTextBlock CopyTextBlock"
                             Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                             Text="{Binding Count, StringFormat=N0, Mode=OneWay}" />
 
@@ -66,7 +66,7 @@
 
                         <TextBlock
                             Grid.Column="1"
-                            Classes="BigTextBlock LeftTextBlock"
+                            Classes="BigTextBlock LeftTextBlock CopyTextBlock"
                             Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                             Text="{Binding BuySumString, Mode=OneWay}" />
 
@@ -82,7 +82,7 @@
 
                         <TextBlock
                             Grid.Column="1"
-                            Classes="BigTextBlock LeftTextBlock"
+                            Classes="BigTextBlock LeftTextBlock CopyTextBlock"
                             Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                             Text="{Binding SoldSumString, Mode=OneWay}" />
 

@@ -2,8 +2,6 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:asyncImageLoader="using:AsyncImageLoader"
-    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
     xmlns:utilityViewModels="clr-namespace:SteamStorage.ViewModels.Tools.UtilityViewModels">
 
     <Style Selector="ListBox.ArchivesListBox">
@@ -169,9 +167,6 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style Selector="^:pressed TextBlock.CopyTextBlock:pointerover">
-                <Setter Property="Opacity" Value="0.8" />
-            </Style>
             <Style Selector="^:selected">
                 <Style Selector="^ /template/ Border#MainBorder">
                     <Setter Property="Height" Value="180" />

@@ -68,9 +68,9 @@
 
                     <Grid Grid.Row="0" ColumnDefinitions="Auto, 10, 36, *">
 
-                        <SelectableTextBlock
+                        <TextBlock
                             Grid.Column="0"
-                            Classes="LeftSelectableTextBlock BigSelectableTextBlock"
+                            Classes="LeftTextBlock BigTextBlock CopyTextBlock"
                             Text="{Binding UserName, Mode=OneWay}" />
 
                         <Button
@@ -88,9 +88,9 @@
 
                     </Grid>
 
-                    <SelectableTextBlock
+                    <TextBlock
                         Grid.Row="2"
-                        Classes="LeftSelectableTextBlock LittleSelectableTextBlock LightSelectableTextBlock"
+                        Classes="LeftTextBlock LittleTextBlock LightTextBlock CopyTextBlock"
                         Text="{Binding SteamId, Mode=OneWay}" />
 
                 </Grid>
@@ -106,7 +106,7 @@
 
             <TextBlock
                 Margin="20"
-                Classes="CenterTextBlock MiddleTextBlock"
+                Classes="CenterTextBlock MiddleTextBlock CopyTextBlock"
                 Text="{Binding Role, Mode=OneWay}" />
 
         </Border>
@@ -118,7 +118,7 @@
 
             <TextBlock
                 Margin="20"
-                Classes="CenterTextBlock MiddleTextBlock"
+                Classes="CenterTextBlock MiddleTextBlock CopyTextBlock"
                 Text="{Binding DateRegistration, Mode=OneWay}" />
 
         </Border>
@@ -194,7 +194,7 @@
 
             <TextBlock
                 Margin="20"
-                Classes="CenterTextBlock MiddleTextBlock"
+                Classes="CenterTextBlock MiddleTextBlock CopyTextBlock"
                 Text="{Binding ExchangeRate, Mode=OneWay}" />
 
         </Border>

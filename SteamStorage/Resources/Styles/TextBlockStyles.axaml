@@ -40,10 +40,14 @@
         <Setter Property="(i:Interaction.Behaviors)">
             <i:BehaviorCollectionTemplate>
                 <i:BehaviorCollection>
-                    <behaviors:TextBlockBehavior />
+                    <behaviors:TextBlockBehavior PressedClass="PressedCopyTextBlock"/>
                 </i:BehaviorCollection>
             </i:BehaviorCollectionTemplate>
         </Setter>
+    </Style>
+    
+    <Style Selector="TextBlock.PressedCopyTextBlock">
+        <Setter Property="Opacity" Value="0.8" />
     </Style>
 
     <Style Selector="TextBlock.LightWeightTextBlock">
@@ -68,6 +72,9 @@
 
     <Style Selector="TextBlock.LightTextBlock">
         <Setter Property="Opacity" Value="0.5" />
+        <Style Selector="^.PressedCopyTextBlock">
+            <Setter Property="Opacity" Value="0.4"/>
+        </Style>
     </Style>
 
     <Style Selector="TextBlock.CenterTextBlock">
