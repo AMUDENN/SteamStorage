@@ -1,16 +1,13 @@
-﻿<Styles
-    xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:behaviors="clr-namespace:SteamStorage.Resources.Controls.Behaviors"
-    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity">
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style Selector="TextBlock">
+    <Style Selector="SelectableTextBlock">
         <Setter Property="FontFamily" Value="Inter, sans-serif" />
         <Setter Property="FontWeight" Value="600" />
         <Setter Property="FontStyle" Value="Normal" />
     </Style>
 
-    <Style Selector="TextBlock">
+    <Style Selector="SelectableTextBlock">
+        <Setter Property="SelectionBrush" Value="{DynamicResource ThirdAccentBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="TextWrapping" Value="NoWrap" />
@@ -36,77 +33,67 @@
         </Style>
     </Style>
 
-    <Style Selector="TextBlock.CopyTextBlock">
-        <Setter Property="(i:Interaction.Behaviors)">
-            <i:BehaviorCollectionTemplate>
-                <i:BehaviorCollection>
-                    <behaviors:TextBlockBehavior />
-                </i:BehaviorCollection>
-            </i:BehaviorCollectionTemplate>
-        </Setter>
-    </Style>
-
-    <Style Selector="TextBlock.LightWeightTextBlock">
+    <Style Selector="SelectableTextBlock.LightWeightSelectableTextBlock">
         <Setter Property="FontWeight" Value="400" />
     </Style>
 
-    <Style Selector="TextBlock.WrapTextBlock">
+    <Style Selector="SelectableTextBlock.WrapSelectableTextBlock">
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
-    <Style Selector="TextBlock.FirstAccentTextBlock">
+    <Style Selector="SelectableTextBlock.FirstAccentSelectableTextBlock">
         <Setter Property="Foreground" Value="{DynamicResource FirstAccentBrush}" />
     </Style>
 
-    <Style Selector="TextBlock.PositiveTextBlock">
+    <Style Selector="SelectableTextBlock.PositiveSelectableTextBlock">
         <Setter Property="Foreground" Value="{DynamicResource PositiveBrush}" />
     </Style>
 
-    <Style Selector="TextBlock.NegativeTextBlock">
+    <Style Selector="SelectableTextBlock.NegativeSelectableTextBlock">
         <Setter Property="Foreground" Value="{DynamicResource NegativeBrush}" />
     </Style>
 
-    <Style Selector="TextBlock.LightTextBlock">
+    <Style Selector="SelectableTextBlock.LightSelectableTextBlock">
         <Setter Property="Opacity" Value="0.5" />
     </Style>
 
-    <Style Selector="TextBlock.CenterTextBlock">
+    <Style Selector="SelectableTextBlock.CenterSelectableTextBlock">
         <Setter Property="TextAlignment" Value="Center" />
     </Style>
 
-    <Style Selector="TextBlock.LeftTextBlock">
+    <Style Selector="SelectableTextBlock.LeftSelectableTextBlock">
         <Setter Property="TextAlignment" Value="Left" />
     </Style>
 
-    <Style Selector="TextBlock.RightTextBlock">
+    <Style Selector="SelectableTextBlock.RightSelectableTextBlock">
         <Setter Property="TextAlignment" Value="Right" />
     </Style>
 
-    <Style Selector="TextBlock.LargeTextBlock">
+    <Style Selector="SelectableTextBlock.LargeSelectableTextBlock">
         <Setter Property="FontSize" Value="40" />
     </Style>
 
-    <Style Selector="TextBlock.BigTextBlock">
+    <Style Selector="SelectableTextBlock.BigSelectableTextBlock">
         <Setter Property="FontSize" Value="32" />
     </Style>
 
-    <Style Selector="TextBlock.MiddleTextBlock">
+    <Style Selector="SelectableTextBlock.MiddleSelectableTextBlock">
         <Setter Property="FontSize" Value="24" />
     </Style>
 
-    <Style Selector="TextBlock.SmallTextBlock">
+    <Style Selector="SelectableTextBlock.SmallSelectableTextBlock">
         <Setter Property="FontSize" Value="20" />
     </Style>
 
-    <Style Selector="TextBlock.LittleTextBlock">
+    <Style Selector="SelectableTextBlock.LittleSelectableTextBlock">
         <Setter Property="FontSize" Value="16" />
     </Style>
 
-    <Style Selector="TextBlock.TinyTextBlock">
+    <Style Selector="SelectableTextBlock.TinySelectableTextBlock">
         <Setter Property="FontSize" Value="14" />
     </Style>
 
-    <Style Selector="TextBlock.UnderlineTextBlock">
+    <Style Selector="SelectableTextBlock.UnderlineSelectableTextBlock">
         <Setter Property="TextDecorations" Value="Underline" />
     </Style>
 

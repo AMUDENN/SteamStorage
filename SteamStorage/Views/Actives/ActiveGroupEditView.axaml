@@ -20,6 +20,7 @@
                 Grid.Row="0"
                 Classes="BigTextBlock WrapTextBlock CenterTextBlock"
                 Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=790}"
+                MaxLines="2"
                 Text="{Binding Title, Mode=OneWay}" />
 
             <Grid
@@ -59,7 +60,7 @@
                         DefaultValue="{Binding DefaultDescription, Mode=OneWay}"
                         Header="Описание: ">
                         <TextBox
-                            Height="130"
+                            Height="100"
                             Classes="DarkTextBox BigWrappingTextBox SmallTextBox"
                             MaxLength="300"
                             Text="{Binding Description}" />

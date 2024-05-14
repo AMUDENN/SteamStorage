@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using CommunityToolkit.Mvvm.Input;
@@ -37,11 +38,11 @@ public class ActivesReviewModel : ModelBase
     private string _investedSumString;
     private string _currentSumString;
     private IEnumerable<ActiveGroups.ActiveGroupsGameCountResponse> _activeGroupsGameCount;
-    private IEnumerable<ISeries> _activeGroupsGameCountSeries;
+    private ObservableCollection<ISeries> _activeGroupsGameCountSeries;
     private IEnumerable<ActiveGroups.ActiveGroupsGameInvestmentSumResponse> _activeGroupsGameInvestmentSum;
-    private IEnumerable<ISeries> _activeGroupsGameInvestmentSumSeries;
+    private ObservableCollection<ISeries> _activeGroupsGameInvestmentSumSeries;
     private IEnumerable<ActiveGroups.ActiveGroupsGameCurrentSumResponse> _activeGroupsGameCurrentSum;
-    private IEnumerable<ISeries> _activeGroupsGameCurrentSumSeries;
+    private ObservableCollection<ISeries> _activeGroupsGameCurrentSumSeries;
     private double _chartMinWidth;
 
     private bool? _isTitleOrdering;
@@ -92,7 +93,7 @@ public class ActivesReviewModel : ModelBase
         }
     }
 
-    public IEnumerable<ISeries> ActiveGroupsGameCountSeries
+    public ObservableCollection<ISeries> ActiveGroupsGameCountSeries
     {
         get => _activeGroupsGameCountSeries;
         private set => SetProperty(ref _activeGroupsGameCountSeries, value);
@@ -108,7 +109,7 @@ public class ActivesReviewModel : ModelBase
         }
     }
 
-    public IEnumerable<ISeries> ActiveGroupsGameInvestmentSumSeries
+    public ObservableCollection<ISeries> ActiveGroupsGameInvestmentSumSeries
     {
         get => _activeGroupsGameInvestmentSumSeries;
         private set => SetProperty(ref _activeGroupsGameInvestmentSumSeries, value);
@@ -124,7 +125,7 @@ public class ActivesReviewModel : ModelBase
         }
     }
 
-    public IEnumerable<ISeries> ActiveGroupsGameCurrentSumSeries
+    public ObservableCollection<ISeries> ActiveGroupsGameCurrentSumSeries
     {
         get => _activeGroupsGameCurrentSumSeries;
         private set => SetProperty(ref _activeGroupsGameCurrentSumSeries, value);
@@ -347,11 +348,11 @@ public class ActivesReviewModel : ModelBase
         _currentSumString = string.Empty;
 
         _activeGroupsGameCount = Enumerable.Empty<ActiveGroups.ActiveGroupsGameCountResponse>();
-        _activeGroupsGameCountSeries = Enumerable.Empty<ISeries>();
+        _activeGroupsGameCountSeries = [];
         _activeGroupsGameInvestmentSum = Enumerable.Empty<ActiveGroups.ActiveGroupsGameInvestmentSumResponse>();
-        _activeGroupsGameInvestmentSumSeries = Enumerable.Empty<ISeries>();
+        _activeGroupsGameInvestmentSumSeries = [];
         _activeGroupsGameCurrentSum = Enumerable.Empty<ActiveGroups.ActiveGroupsGameCurrentSumResponse>();
-        _activeGroupsGameCurrentSumSeries = Enumerable.Empty<ISeries>();
+        _activeGroupsGameCurrentSumSeries = [];
         _chartMinWidth = CHART_MIN_WIDTH;
 
         _activeGroupModels = [];
@@ -416,7 +417,7 @@ public class ActivesReviewModel : ModelBase
 
         int i = 0;
 
-        ActiveGroupsGameCountSeries = ActiveGroupsGameCount.OrderByDescending(x => x.Count)
+        ActiveGroupsGameCountSeries = new(ActiveGroupsGameCount.OrderByDescending(x => x.Count)
             .AsPieSeries((value, builder) =>
             {
                 builder.MaxRadialColumnWidth = 20;
@@ -425,10 +426,10 @@ public class ActivesReviewModel : ModelBase
                 builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;
-            });
-        
-        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH 
-            ? ChartMinWidth + 1 
+            }));
+
+        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH
+            ? ChartMinWidth + 1
             : ChartMinWidth - 1;
     }
 
@@ -438,7 +439,7 @@ public class ActivesReviewModel : ModelBase
 
         int i = 0;
 
-        ActiveGroupsGameInvestmentSumSeries = ActiveGroupsGameInvestmentSum.OrderByDescending(x => x.InvestmentSum)
+        ActiveGroupsGameInvestmentSumSeries = new(ActiveGroupsGameInvestmentSum.OrderByDescending(x => x.InvestmentSum)
             .AsPieSeries((value, builder) =>
             {
                 builder.MaxRadialColumnWidth = 20;
@@ -447,10 +448,10 @@ public class ActivesReviewModel : ModelBase
                 builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.InvestmentSum:N2}";
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;
-            });
-        
-        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH 
-            ? ChartMinWidth + 1 
+            }));
+
+        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH
+            ? ChartMinWidth + 1
             : ChartMinWidth - 1;
     }
 
@@ -460,7 +461,7 @@ public class ActivesReviewModel : ModelBase
 
         int i = 0;
 
-        ActiveGroupsGameCurrentSumSeries = ActiveGroupsGameCurrentSum.OrderByDescending(x => x.CurrentSum)
+        ActiveGroupsGameCurrentSumSeries = new(ActiveGroupsGameCurrentSum.OrderByDescending(x => x.CurrentSum)
             .AsPieSeries((value, builder) =>
             {
                 builder.MaxRadialColumnWidth = 20;
@@ -469,10 +470,10 @@ public class ActivesReviewModel : ModelBase
                 builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.CurrentSum:N2}";
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;
-            });
-        
-        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH 
-            ? ChartMinWidth + 1 
+            }));
+
+        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH
+            ? ChartMinWidth + 1
             : ChartMinWidth - 1;
     }
 

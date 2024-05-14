@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -14,6 +15,7 @@ public class ArchivesReviewViewModel : ViewModelBase
     #region Fields
 
     private readonly ArchivesReviewModel _archivesReviewModel;
+    private readonly ArchiveGroupsModel _archiveGroupsModel;
     private readonly ChartTooltipModel _chartTooltipModel;
 
     #endregion Fields
@@ -35,17 +37,17 @@ public class ArchivesReviewViewModel : ViewModelBase
         get => _archivesReviewModel.SoldSumString;
     }
 
-    public IEnumerable<ISeries> ArchiveGroupsGameCountSeries
+    public ObservableCollection<ISeries> ArchiveGroupsGameCountSeries
     {
         get => _archivesReviewModel.ArchiveGroupsGameCountSeries;
     }
 
-    public IEnumerable<ISeries> ArchiveGroupsGameBuySumSeries
+    public ObservableCollection<ISeries> ArchiveGroupsGameBuySumSeries
     {
         get => _archivesReviewModel.ArchiveGroupsGameBuySumSeries;
     }
 
-    public IEnumerable<ISeries> ArchiveGroupsGameSoldSumSeries
+    public ObservableCollection<ISeries> ArchiveGroupsGameSoldSumSeries
     {
         get => _archivesReviewModel.ArchiveGroupsGameSoldSumSeries;
     }
@@ -124,6 +126,11 @@ public class ArchivesReviewViewModel : ViewModelBase
     {
         get => _archivesReviewModel.AttachedToVisualTreeCommand;
     }
+    
+    public RelayCommand AddArchiveGroupCommand
+    {
+        get => _archiveGroupsModel.AddArchiveGroupCommand;
+    }
 
     #endregion Commands
 
@@ -131,12 +138,15 @@ public class ArchivesReviewViewModel : ViewModelBase
 
     public ArchivesReviewViewModel(
         ArchivesReviewModel archivesReviewModel,
+        ArchiveGroupsModel archiveGroupsModel,
         ChartTooltipModel chartTooltipModel)
     {
         _archivesReviewModel = archivesReviewModel;
+        _archiveGroupsModel = archiveGroupsModel;
         _chartTooltipModel = chartTooltipModel;
 
         archivesReviewModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        archiveGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

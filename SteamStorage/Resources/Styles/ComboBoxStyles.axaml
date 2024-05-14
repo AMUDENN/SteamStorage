@@ -231,6 +231,7 @@
                             Classes="LittleRoundedBorder" />
                         <TextBlock
                             Grid.Column="2"
+                            MaxWidth="400"
                             Classes="SmallTextBlock"
                             Text="{Binding Title}" />
                     </Grid>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -37,12 +38,12 @@ public class InventoryViewModel : ViewModelBase
         get => _inventoryModel.CurrentSumString;
     }
 
-    public IEnumerable<ISeries> InventoryGameCountSeries
+    public ObservableCollection<ISeries> InventoryGameCountSeries
     {
         get => _inventoryModel.InventoryGameCountSeries;
     }
 
-    public IEnumerable<ISeries> InventoryGameSumSeries
+    public ObservableCollection<ISeries> InventoryGameSumSeries
     {
         get => _inventoryModel.InventoryGameSumSeries;
     }

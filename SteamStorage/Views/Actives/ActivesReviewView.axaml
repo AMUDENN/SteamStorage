@@ -104,6 +104,7 @@
                         Margin="5,0"
                         Classes="MiddleTextBlock CenterTextBlock"
                         Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                        IsVisible="{Binding ActiveGroupsGameCountSeries.Count, Mode=OneWay}"
                         Text="Количество" />
 
                     <lvc:PieChart
@@ -122,6 +123,7 @@
                         Margin="5,0"
                         Classes="MiddleTextBlock CenterTextBlock"
                         Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                        IsVisible="{Binding ActiveGroupsGameInvestmentSumSeries.Count, Mode=OneWay}"
                         Text="Сумма инвестиций" />
 
                     <lvc:PieChart
@@ -140,6 +142,7 @@
                         Margin="5,0"
                         Classes="MiddleTextBlock CenterTextBlock"
                         Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                        IsVisible="{Binding ActiveGroupsGameCurrentSumSeries.Count, Mode=OneWay}"
                         Text="Текущая сумма" />
 
                     <lvc:PieChart
@@ -222,9 +225,10 @@
             Margin="25,0"
             Classes="ForegroundRectangle" />
 
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="4" RowDefinitions="Auto,*">
 
             <TextBlock
+                Grid.Row="0"
                 Margin="0,20"
                 VerticalAlignment="Top"
                 Classes="MiddleTextBlock CenterTextBlock"
@@ -232,6 +236,7 @@
                 Text="{Binding NotFoundText, Mode=OneWay}" />
 
             <controls:VectorImage
+                Grid.Row="0"
                 Width="48"
                 Height="48"
                 Margin="0,20"
@@ -241,13 +246,25 @@
                 IsVisible="{Binding IsLoading, Mode=OneWay}" />
 
             <ListBox
+                Grid.Row="0"
+                Grid.RowSpan="2"
                 Classes="ActiveGroupsListBox"
                 ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
                 SelectedItem="{Binding SelectedActiveGroupModel}" />
 
+            <Button
+                Grid.Row="1"
+                Height="60"
+                MaxWidth="500"
+                Margin="10"
+                VerticalAlignment="Top"
+                Classes="BackgroundAdditionalButton StretchButton SmallRoundedButton TextButton"
+                Command="{Binding AddActiveGroupCommand}"
+                Content="Добавить группу"
+                IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}" />
+
         </Grid>
 
     </Grid>
-
 
 </UserControl>

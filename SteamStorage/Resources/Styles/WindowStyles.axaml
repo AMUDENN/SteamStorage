@@ -14,7 +14,7 @@
 
     <Style Selector="Window.MainWindow">
         <Setter Property="WindowStartupLocation" Value="CenterScreen" />
-        <Setter Property="MinHeight" Value="930" />
+        <Setter Property="MinHeight" Value="980" />
         <Setter Property="MinWidth" Value="980" />
         <Setter Property="Template">
             <ControlTemplate x:DataType="windows:MainWindowViewModel">
@@ -32,6 +32,7 @@
                             <TextBlock
                                 Grid.Row="0"
                                 Classes="CenterTextBlock LittleTextBlock"
+                                IsHitTestVisible="False"
                                 Text="{TemplateBinding Title}" />
                             <Grid
                                 Grid.Row="0"
@@ -129,6 +130,7 @@
                             <TextBlock
                                 Grid.Row="0"
                                 Classes="CenterTextBlock LittleTextBlock"
+                                IsHitTestVisible="False"
                                 Text="{TemplateBinding Title}" />
                             <Grid
                                 Grid.Row="0"

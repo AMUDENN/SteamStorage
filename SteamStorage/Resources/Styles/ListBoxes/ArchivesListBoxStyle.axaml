@@ -2,6 +2,8 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:asyncImageLoader="using:AsyncImageLoader"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
     xmlns:utilityViewModels="clr-namespace:SteamStorage.ViewModels.Tools.UtilityViewModels">
 
     <Style Selector="ListBox.ArchivesListBox">
@@ -80,7 +82,7 @@
                                 <TextBlock
                                     Grid.Row="0"
                                     Grid.Column="2"
-                                    Classes="MiddleTextBlock LeftTextBlock WrapTextBlock"
+                                    Classes="MiddleTextBlock LeftTextBlock WrapTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding Title, Mode=OneWay}"
                                     ToolTip.Tip="Название" />
@@ -88,7 +90,7 @@
                                 <TextBlock
                                     Grid.Row="0"
                                     Grid.Column="4"
-                                    Classes="MiddleTextBlock CenterTextBlock"
+                                    Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding Count, StringFormat=N0, Mode=OneWay}"
                                     ToolTip.Tip="Количество" />
@@ -96,7 +98,7 @@
                                 <TextBlock
                                     Grid.Row="0"
                                     Grid.Column="6"
-                                    Classes="MiddleTextBlock CenterTextBlock"
+                                    Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding BuyPriceString, Mode=OneWay}"
                                     ToolTip.Tip="Цена покупки" />
@@ -104,7 +106,7 @@
                                 <TextBlock
                                     Grid.Row="0"
                                     Grid.Column="8"
-                                    Classes="MiddleTextBlock CenterTextBlock"
+                                    Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding SoldPriceString, Mode=OneWay}"
                                     ToolTip.Tip="Цена продажи" />
@@ -112,7 +114,7 @@
                                 <TextBlock
                                     Grid.Row="0"
                                     Grid.Column="10"
-                                    Classes="MiddleTextBlock CenterTextBlock"
+                                    Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding SoldSumString, Mode=OneWay}"
                                     ToolTip.Tip="Сумма продажи" />
@@ -120,7 +122,7 @@
                                 <TextBlock
                                     Grid.Row="0"
                                     Grid.Column="12"
-                                    Classes="MiddleTextBlock CenterTextBlock"
+                                    Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.NegativeTextBlock="{Binding Change, Mode=OneWay, Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
                                     Classes.PositiveTextBlock="{Binding Change, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
@@ -143,7 +145,7 @@
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата покупки: " />
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="{Binding BuyDateString}" />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock" Text="{Binding BuyDateString}" />
 
                                     </StackPanel>
 
@@ -154,7 +156,7 @@
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата продажи: " />
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="{Binding SoldDateString}" />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock" Text="{Binding SoldDateString}" />
 
                                     </StackPanel>
 
@@ -167,6 +169,9 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style Selector="^:pressed TextBlock.CopyTextBlock:pointerover">
+                <Setter Property="Opacity" Value="0.8" />
+            </Style>
             <Style Selector="^:selected">
                 <Style Selector="^ /template/ Border#MainBorder">
                     <Setter Property="Height" Value="180" />

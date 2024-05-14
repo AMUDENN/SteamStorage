@@ -15,6 +15,7 @@ using SteamStorage.Models.Inventory;
 using SteamStorage.Models.Profile;
 using SteamStorage.Models.Settings;
 using SteamStorage.Models.Windows;
+using SteamStorage.Services.ClipboardService;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
 using SteamStorage.Services.Settings.SettingsService;
@@ -89,8 +90,9 @@ namespace SteamStorage
 
             //Custom Services
             services.AddScoped<IThemeService, ThemeService>();
+            services.AddScoped<IClipboardService, ClipboardService>();
             services.AddScoped<IDialogService, DialogService>();
-            services.AddTransient<INotificationService, NotificationService>();
+            services.AddSingleton<INotificationService, NotificationService>();
             services.AddSingleton<ISettingsService, SettingsService>(x =>
                 new(ProgramConstants.PROGRAM_NAME,
                     x.GetRequiredService<ApiClient>(),
@@ -117,26 +119,33 @@ namespace SteamStorage
             services.AddSingleton<ActivesModel>();
             services.AddSingleton<ActiveSoldModel>();
             services.AddSingleton<ActivesReviewModel>();
+            services.AddSingleton<ListActivesModel>();
+            
             services.AddSingleton<ArchiveGroupEditModel>();
             services.AddSingleton<ArchiveGroupsModel>();
             services.AddSingleton<ArchiveEditModel>();
             services.AddSingleton<ArchivesModel>();
             services.AddSingleton<ArchivesReviewModel>();
+            services.AddSingleton<ListArchivesModel>();
+            
+            services.AddSingleton<MessageDialogModel>();
+            services.AddSingleton<TextConfirmDialogModel>();
+            
+            services.AddSingleton<HomeModel>();
+            services.AddSingleton<ListItemsModel>();
+            services.AddSingleton<StatisticsModel>();
+            
+            services.AddSingleton<InventoryModel>();
+            
+            services.AddSingleton<ProfileModel>();
+            
+            services.AddSingleton<SettingsModel>();
+            
             services.AddSingleton<ChartTooltipModel>();
             services.AddSingleton<CurrenciesModel>();
             services.AddSingleton<GamesModel>();
-            services.AddSingleton<HomeModel>();
-            services.AddSingleton<InventoryModel>();
-            services.AddSingleton<ListActivesModel>();
-            services.AddSingleton<ListArchivesModel>();
-            services.AddSingleton<ListItemsModel>();
-            services.AddSingleton<MessageDialogModel>();
             services.AddSingleton<PagesModel>();
             services.AddSingleton<PeriodsModel>();
-            services.AddSingleton<ProfileModel>();
-            services.AddSingleton<SettingsModel>();
-            services.AddSingleton<StatisticsModel>();
-            services.AddSingleton<TextConfirmDialogModel>();
             services.AddSingleton<UserModel>();
             
             
@@ -148,23 +157,36 @@ namespace SteamStorage
             services.AddSingleton<ActiveSoldViewModel>();
             services.AddSingleton<ActivesReviewViewModel>();
             services.AddSingleton<ActivesViewModel>();
+            services.AddSingleton<ListActivesViewModel>();
+            
             services.AddSingleton<ArchiveEditViewModel>();
             services.AddSingleton<ArchiveGroupEditViewModel>();
             services.AddSingleton<ArchivesReviewViewModel>();
             services.AddSingleton<ArchivesViewModel>();
-            services.AddSingleton<DefaultViewModel>();
-            services.AddSingleton<HomeViewModel>();
-            services.AddSingleton<InventoryViewModel>();
-            services.AddSingleton<ListActivesViewModel>();
             services.AddSingleton<ListArchivesViewModel>();
-            services.AddSingleton<ListItemsViewModel>();
+            
             services.AddSingleton<MessageDialogViewModel>();
-            services.AddSingleton<ProfileViewModel>();
-            services.AddSingleton<SettingsViewModel>();
-            services.AddSingleton<StatisticsViewModel>();
             services.AddSingleton<TextConfirmDialogViewModel>();
+            
+            services.AddSingleton<HomeViewModel>();
+            services.AddSingleton<ListItemsViewModel>();
+            services.AddSingleton<StatisticsViewModel>();
+            
+            services.AddSingleton<InventoryViewModel>();
+            
+            services.AddSingleton<ProfileViewModel>();
+            
+            services.AddSingleton<SettingsViewModel>();
+            
+            services.AddSingleton<DefaultViewModel>();
+            
 
             return services;
+        }
+        
+        public static T? GetService<T>()
+        {
+            return Container.GetService<T>();
         }
 
         public override void Initialize()

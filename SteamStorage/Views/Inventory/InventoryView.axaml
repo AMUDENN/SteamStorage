@@ -73,6 +73,7 @@
                     Grid.Column="3"
                     Classes="MiddleTextBlock CenterTextBlock"
                     Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                    IsVisible="{Binding InventoryGameCountSeries.Count, Mode=OneWay}"
                     Text="Количество" />
 
                 <lvc:PieChart
@@ -89,6 +90,7 @@
                     Grid.Column="5"
                     Classes="MiddleTextBlock CenterTextBlock"
                     Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
+                    IsVisible="{Binding InventoryGameSumSeries.Count, Mode=OneWay}"
                     Text="Сумма" />
 
                 <lvc:PieChart

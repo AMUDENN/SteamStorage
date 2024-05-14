@@ -68,9 +68,9 @@
 
                     <Grid Grid.Row="0" ColumnDefinitions="Auto, 10, 36, *">
 
-                        <TextBlock
+                        <SelectableTextBlock
                             Grid.Column="0"
-                            Classes="LeftTextBlock BigTextBlock"
+                            Classes="LeftSelectableTextBlock BigSelectableTextBlock"
                             Text="{Binding UserName, Mode=OneWay}" />
 
                         <Button
@@ -88,9 +88,9 @@
 
                     </Grid>
 
-                    <TextBlock
+                    <SelectableTextBlock
                         Grid.Row="2"
-                        Classes="LeftTextBlock LittleTextBlock LightTextBlock"
+                        Classes="LeftSelectableTextBlock LittleSelectableTextBlock LightSelectableTextBlock"
                         Text="{Binding SteamId, Mode=OneWay}" />
 
                 </Grid>

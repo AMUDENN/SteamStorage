@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,11 +20,11 @@ namespace SteamStorage.Models.Inventory;
 public class InventoryModel : BaseListModel
 {
     #region Constants
-    
+
     private const double CHART_WIDTH_DEFAULT = 200;
-    
+
     #endregion Constants
-    
+
     #region Fields
 
     private readonly ApiClient _apiClient;
@@ -35,9 +36,9 @@ public class InventoryModel : BaseListModel
     private int _count;
     private string _currentSumString;
     private IEnumerable<SteamStorageAPI.SDK.ApiEntities.Inventory.InventoryGameCountResponse> _inventoryGameCount;
-    private IEnumerable<ISeries> _inventoryGameCountSeries;
+    private ObservableCollection<ISeries> _inventoryGameCountSeries;
     private IEnumerable<SteamStorageAPI.SDK.ApiEntities.Inventory.InventoryGameSumResponse> _inventoryGameSum;
-    private IEnumerable<ISeries> _inventoryGameSumSeries;
+    private ObservableCollection<ISeries> _inventoryGameSumSeries;
     private double _chartWidth;
 
     private GameModel? _selectedGameModel;
@@ -57,7 +58,7 @@ public class InventoryModel : BaseListModel
 
     private List<InventoryItemViewModel> _inventoryModels;
     private InventoryItemViewModel? _selectedInventoryModel;
-    
+
     private CancellationTokenSource _itemsCancellationTokenSource;
     private CancellationTokenSource _statisticsCancellationTokenSource;
 
@@ -87,7 +88,7 @@ public class InventoryModel : BaseListModel
         }
     }
 
-    public IEnumerable<ISeries> InventoryGameCountSeries
+    public ObservableCollection<ISeries> InventoryGameCountSeries
     {
         get => _inventoryGameCountSeries;
         private set => SetProperty(ref _inventoryGameCountSeries, value);
@@ -103,7 +104,7 @@ public class InventoryModel : BaseListModel
         }
     }
 
-    public IEnumerable<ISeries> InventoryGameSumSeries
+    public ObservableCollection<ISeries> InventoryGameSumSeries
     {
         get => _inventoryGameSumSeries;
         private set => SetProperty(ref _inventoryGameSumSeries, value);
@@ -330,15 +331,15 @@ public class InventoryModel : BaseListModel
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
-        
+
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
         _currentSumString = string.Empty;
 
         _inventoryGameCount = Enumerable.Empty<SteamStorageAPI.SDK.ApiEntities.Inventory.InventoryGameCountResponse>();
-        _inventoryGameCountSeries = Enumerable.Empty<ISeries>();
+        _inventoryGameCountSeries = [];
         _inventoryGameSum = Enumerable.Empty<SteamStorageAPI.SDK.ApiEntities.Inventory.InventoryGameSumResponse>();
-        _inventoryGameSumSeries = Enumerable.Empty<ISeries>();
+        _inventoryGameSumSeries = [];
         _chartWidth = CHART_WIDTH_DEFAULT;
 
         _inventoryModels = [];
@@ -417,41 +418,53 @@ public class InventoryModel : BaseListModel
 
     private void GetInventoryGameCountSeries()
     {
-        if (!InventoryGameCount.Any()) return;
+        if (!InventoryGameCount.Any())
+        {
+            InventoryGameCountSeries = [];
+        }
+        else
+        {
+            int i = 0;
 
-        int i = 0;
-
-        InventoryGameCountSeries = InventoryGameCount.OrderByDescending(x => x.Count)
-            .AsPieSeries((value, builder) =>
-            {
-                builder.MaxRadialColumnWidth = 20;
-                builder.HoverPushout = 0;
-                builder.Mapping = (game, point) => new(point, game.Count);
-                builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
-                builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
-                i++;
-            });
+            InventoryGameCountSeries = new(InventoryGameCount.OrderByDescending(x => x.Count)
+                .AsPieSeries((value, builder) =>
+                {
+                    builder.MaxRadialColumnWidth = 20;
+                    builder.HoverPushout = 0;
+                    builder.Mapping = (game, point) => new(point, game.Count);
+                    builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
+                    builder.Fill =
+                        new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
+                    i++;
+                }));
+        }
 
         ChartWidth = ChartWidth < CHART_WIDTH_DEFAULT ? ChartWidth + 1 : ChartWidth - 1;
     }
 
     private void GetInventoryGameSumSeries()
     {
-        if (!InventoryGameSum.Any()) return;
+        if (!InventoryGameSum.Any())
+        {
+            InventoryGameSumSeries = [];
+        }
+        else
+        {
+            int i = 0;
 
-        int i = 0;
+            InventoryGameSumSeries = new(InventoryGameSum.OrderByDescending(x => x.Sum)
+                .AsPieSeries((value, builder) =>
+                {
+                    builder.MaxRadialColumnWidth = 20;
+                    builder.HoverPushout = 0;
+                    builder.Mapping = (game, point) => new(point, (double)game.Sum);
+                    builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Sum:N2}";
+                    builder.Fill =
+                        new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
+                    i++;
+                }));
+        }
 
-        InventoryGameSumSeries = InventoryGameSum.OrderByDescending(x => x.Sum)
-            .AsPieSeries((value, builder) =>
-            {
-                builder.MaxRadialColumnWidth = 20;
-                builder.HoverPushout = 0;
-                builder.Mapping = (game, point) => new(point, (double)game.Sum);
-                builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Sum:N2}";
-                builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
-                i++;
-            });
-        
         ChartWidth = ChartWidth < CHART_WIDTH_DEFAULT ? ChartWidth + 1 : ChartWidth - 1;
     }
 
@@ -463,10 +476,12 @@ public class InventoryModel : BaseListModel
         CancellationToken token = StatisticsCancellationTokenSource.Token;
 
         SteamStorageAPI.SDK.ApiEntities.Inventory.InventoriesStatisticResponse? inventoriesStatisticResponse =
-            await _apiClient.GetAsync<SteamStorageAPI.SDK.ApiEntities.Inventory.InventoriesStatisticResponse, SteamStorageAPI.SDK.ApiEntities.Inventory.GetInventoriesStatisticRequest>(
-                ApiConstants.ApiMethods.GetInventoriesStatistic,
-                new(SelectedGameModel?.Id, Filter),
-                token);
+            await _apiClient
+                .GetAsync<SteamStorageAPI.SDK.ApiEntities.Inventory.InventoriesStatisticResponse,
+                    SteamStorageAPI.SDK.ApiEntities.Inventory.GetInventoriesStatisticRequest>(
+                    ApiConstants.ApiMethods.GetInventoriesStatistic,
+                    new(SelectedGameModel?.Id, Filter),
+                    token);
 
         if (inventoriesStatisticResponse is null) return;
 
@@ -498,10 +513,12 @@ public class InventoryModel : BaseListModel
         DisplayItemsCountEnd = CurrentPageNumber * PageSize;
 
         SteamStorageAPI.SDK.ApiEntities.Inventory.InventoriesResponse? inventoriesResponse =
-            await _apiClient.GetAsync<SteamStorageAPI.SDK.ApiEntities.Inventory.InventoriesResponse, SteamStorageAPI.SDK.ApiEntities.Inventory.GetInventoryRequest>(
-                ApiConstants.ApiMethods.GetInventory,
-                new(SelectedGameModel?.Id, Filter, InventoryOrderName, IsAscending, CurrentPageNumber, PageSize),
-                token);
+            await _apiClient
+                .GetAsync<SteamStorageAPI.SDK.ApiEntities.Inventory.InventoriesResponse,
+                    SteamStorageAPI.SDK.ApiEntities.Inventory.GetInventoryRequest>(
+                    ApiConstants.ApiMethods.GetInventory,
+                    new(SelectedGameModel?.Id, Filter, InventoryOrderName, IsAscending, CurrentPageNumber, PageSize),
+                    token);
 
         if (inventoriesResponse is null) return;
 

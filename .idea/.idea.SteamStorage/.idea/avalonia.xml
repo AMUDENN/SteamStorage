@@ -125,6 +125,7 @@
         <entry key="SteamStorage/Resources/Styles/RadioButtonStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/RectangleStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/ScrollViewerStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/SelectableTextBlockStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/StackPanelStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/TabControlStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/TextBlockStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
@@ -134,6 +135,7 @@
         <entry key="SteamStorage/Resources/Styles/TransitioningContentControlStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/VectorDrawingImageStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/VectorImageStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Resources/Styles/WindowNotificationManagerStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Styles/WindowStyles.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Themes/ClassicTheme.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Resources/Themes/DarkTheme.axaml" value="SteamStorage/SteamStorage.csproj" />
@@ -143,19 +145,31 @@
         <entry key="SteamStorage/Views/ActiveEditView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ActiveGroupEditView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ActiveSoldView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Actives/ActiveEditView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Actives/ActiveGroupEditView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Actives/ActiveSoldView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Actives/ActivesReviewView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Actives/ActivesView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Actives/ListActivesView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ActivesReviewView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ActivesView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ArchiveEditView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ArchiveGroupEditView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ArchiveView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Archives/ArchiveEditView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Archives/ArchiveGroupEditView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Archives/ArchivesReviewView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ArchivesReviewView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ArchivesView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/BaseDialogView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/BaseMessageBoxView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/CodeInput.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/DefaultView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Dialog/MessageDialogView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/DialogWindow.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Home/StatisticsView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/HomeView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Inventory/InventoryView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/InventoryView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ListActivesView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ListArchivesView.axaml" value="SteamStorage/SteamStorage.csproj" />
@@ -164,6 +178,7 @@
         <entry key="SteamStorage/Views/MainWindow.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/MessageBoxWindow.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/MessageDialogView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Profile/ProfileView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ProfileView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/SettingsView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/StatisticsView.axaml" value="SteamStorage/SteamStorage.csproj" />

@@ -3,7 +3,7 @@ using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 
 namespace SteamStorage.ViewModels.Tools.UtilityViewModels.BaseViewModels;
 
-public class BaseExtendedGroupViewModel : ViewModelBase
+public class BaseExtendedGroupViewModel : BaseGroupViewModel
 {
     #region Fields
 
@@ -12,16 +12,6 @@ public class BaseExtendedGroupViewModel : ViewModelBase
     #endregion Fields
 
     #region Properties
-
-    public string Colour
-    {
-        get => _model.Colour;
-    }
-
-    public string Title
-    {
-        get => _model.Title;
-    }
 
     public int Count
     {
@@ -43,10 +33,9 @@ public class BaseExtendedGroupViewModel : ViewModelBase
     #region Constructor
 
     protected BaseExtendedGroupViewModel(
-        ExtendedBaseGroupModel model)
+        ExtendedBaseGroupModel model) : base(model)
     {
         _model = model;
-        model.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

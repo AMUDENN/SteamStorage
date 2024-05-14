@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -14,6 +15,7 @@ public class ActivesReviewViewModel : ViewModelBase
     #region Fields
 
     private readonly ActivesReviewModel _activesReviewModel;
+    private readonly ActiveGroupsModel _activeGroupsModel;
     private readonly ChartTooltipModel _chartTooltipModel;
 
     #endregion Fields
@@ -35,17 +37,17 @@ public class ActivesReviewViewModel : ViewModelBase
         get => _activesReviewModel.CurrentSumString;
     }
     
-    public IEnumerable<ISeries> ActiveGroupsGameCountSeries
+    public ObservableCollection<ISeries> ActiveGroupsGameCountSeries
     {
         get => _activesReviewModel.ActiveGroupsGameCountSeries;
     }
 
-    public IEnumerable<ISeries> ActiveGroupsGameInvestmentSumSeries
+    public ObservableCollection<ISeries> ActiveGroupsGameInvestmentSumSeries
     {
         get => _activesReviewModel.ActiveGroupsGameInvestmentSumSeries;
     }
     
-    public IEnumerable<ISeries> ActiveGroupsGameCurrentSumSeries
+    public ObservableCollection<ISeries> ActiveGroupsGameCurrentSumSeries
     {
         get => _activesReviewModel.ActiveGroupsGameCurrentSumSeries;
     }
@@ -124,6 +126,11 @@ public class ActivesReviewViewModel : ViewModelBase
     {
         get => _activesReviewModel.AttachedToVisualTreeCommand;
     }
+    
+    public RelayCommand AddActiveGroupCommand
+    {
+        get => _activeGroupsModel.AddActiveGroupCommand;
+    }
 
     #endregion Commands
 
@@ -131,12 +138,15 @@ public class ActivesReviewViewModel : ViewModelBase
 
     public ActivesReviewViewModel(
         ActivesReviewModel activesReviewModel,
+        ActiveGroupsModel activeGroupsModel,
         ChartTooltipModel chartTooltipModel)
     {
         _activesReviewModel = activesReviewModel;
+        _activeGroupsModel = activeGroupsModel;
         _chartTooltipModel = chartTooltipModel;
         
         activesReviewModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
+        activeGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 

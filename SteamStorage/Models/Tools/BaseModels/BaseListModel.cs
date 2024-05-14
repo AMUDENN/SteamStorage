@@ -72,14 +72,9 @@ public abstract class BaseListModel : ModelBase
         {
             SetProperty(ref _pagesCount, value);
             if (value == 0)
-            {
-                System.Diagnostics.Debug.WriteLine("SSS");
                 PageNumber = 1;
-            }
             else if (value < PageNumber)
-            {
                 PageNumber = value;
-            }
         }
     }
 

@@ -19,6 +19,7 @@
                 Grid.Row="0"
                 Classes="BigTextBlock WrapTextBlock CenterTextBlock"
                 Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=790}"
+                MaxLines="2"
                 Text="{Binding Title, Mode=OneWay}" />
 
             <Grid

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using CommunityToolkit.Mvvm.Input;
@@ -35,11 +36,11 @@ public class ArchivesReviewModel : ModelBase
     private string _buySumString;
     private string _soldSumString;
     private IEnumerable<ArchiveGroups.ArchiveGroupsGameCountResponse> _archiveGroupsGameCount;
-    private IEnumerable<ISeries> _archiveGroupsGameCountSeries;
+    private ObservableCollection<ISeries> _archiveGroupsGameCountSeries;
     private IEnumerable<ArchiveGroups.ArchiveGroupsGameBuySumResponse> _archiveGroupsGameBuySum;
-    private IEnumerable<ISeries> _archiveGroupsGameBuySumSeries;
+    private ObservableCollection<ISeries> _archiveGroupsGameBuySumSeries;
     private IEnumerable<ArchiveGroups.ArchiveGroupsGameSoldSumResponse> _archiveGroupsGameSoldSum;
-    private IEnumerable<ISeries> _archiveGroupsGameSoldSumSeries;
+    private ObservableCollection<ISeries> _archiveGroupsGameSoldSumSeries;
     private double _chartMinWidth;
 
     private bool? _isTitleOrdering;
@@ -79,7 +80,7 @@ public class ArchivesReviewModel : ModelBase
         get => _soldSumString;
         private set => SetProperty(ref _soldSumString, value);
     }
-    
+
     private IEnumerable<ArchiveGroups.ArchiveGroupsGameCountResponse> ArchiveGroupsGameCount
     {
         get => _archiveGroupsGameCount;
@@ -90,7 +91,7 @@ public class ArchivesReviewModel : ModelBase
         }
     }
 
-    public IEnumerable<ISeries> ArchiveGroupsGameCountSeries
+    public ObservableCollection<ISeries> ArchiveGroupsGameCountSeries
     {
         get => _archiveGroupsGameCountSeries;
         private set => SetProperty(ref _archiveGroupsGameCountSeries, value);
@@ -106,7 +107,7 @@ public class ArchivesReviewModel : ModelBase
         }
     }
 
-    public IEnumerable<ISeries> ArchiveGroupsGameBuySumSeries
+    public ObservableCollection<ISeries> ArchiveGroupsGameBuySumSeries
     {
         get => _archiveGroupsGameBuySumSeries;
         private set => SetProperty(ref _archiveGroupsGameBuySumSeries, value);
@@ -122,12 +123,12 @@ public class ArchivesReviewModel : ModelBase
         }
     }
 
-    public IEnumerable<ISeries> ArchiveGroupsGameSoldSumSeries
+    public ObservableCollection<ISeries> ArchiveGroupsGameSoldSumSeries
     {
         get => _archiveGroupsGameSoldSumSeries;
         private set => SetProperty(ref _archiveGroupsGameSoldSumSeries, value);
     }
-    
+
     public double ChartMinWidth
     {
         get => _chartMinWidth;
@@ -300,7 +301,7 @@ public class ArchivesReviewModel : ModelBase
         get => _groupsCancellationTokenSource;
         set => SetProperty(ref _groupsCancellationTokenSource, value);
     }
-    
+
     private CancellationTokenSource StatisticsCancellationTokenSource
     {
         get => _statisticsCancellationTokenSource;
@@ -335,13 +336,13 @@ public class ArchivesReviewModel : ModelBase
 
         _buySumString = string.Empty;
         _soldSumString = string.Empty;
-        
+
         _archiveGroupsGameCount = Enumerable.Empty<ArchiveGroups.ArchiveGroupsGameCountResponse>();
-        _archiveGroupsGameCountSeries = Enumerable.Empty<ISeries>();
+        _archiveGroupsGameCountSeries = [];
         _archiveGroupsGameBuySum = Enumerable.Empty<ArchiveGroups.ArchiveGroupsGameBuySumResponse>();
-        _archiveGroupsGameBuySumSeries = Enumerable.Empty<ISeries>();
+        _archiveGroupsGameBuySumSeries = [];
         _archiveGroupsGameSoldSum = Enumerable.Empty<ArchiveGroups.ArchiveGroupsGameSoldSumResponse>();
-        _archiveGroupsGameSoldSumSeries = Enumerable.Empty<ISeries>();
+        _archiveGroupsGameSoldSumSeries = [];
         _chartMinWidth = CHART_MIN_WIDTH;
 
         _archiveGroupModels = [];
@@ -384,7 +385,7 @@ public class ArchivesReviewModel : ModelBase
         GetGroupsAsync();
         _archiveGroupsModel.UpdateGroups();
     }
-    
+
     public void UpdateGroups()
     {
         RefreshStatisticsAsync();
@@ -399,14 +400,14 @@ public class ArchivesReviewModel : ModelBase
         IsSoldSumOrdering = null;
         IsChangeOrdering = null;
     }
-    
+
     private void GetActiveGroupsGameCountSeries()
     {
         if (!ArchiveGroupsGameCount.Any()) return;
 
         int i = 0;
 
-        ArchiveGroupsGameCountSeries = ArchiveGroupsGameCount.OrderByDescending(x => x.Count)
+        ArchiveGroupsGameCountSeries = new(ArchiveGroupsGameCount.OrderByDescending(x => x.Count)
             .AsPieSeries((value, builder) =>
             {
                 builder.MaxRadialColumnWidth = 20;
@@ -415,10 +416,10 @@ public class ArchivesReviewModel : ModelBase
                 builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;
-            });
-        
-        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH 
-            ? ChartMinWidth + 1 
+            }));
+
+        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH
+            ? ChartMinWidth + 1
             : ChartMinWidth - 1;
     }
 
@@ -428,7 +429,7 @@ public class ArchivesReviewModel : ModelBase
 
         int i = 0;
 
-        ArchiveGroupsGameBuySumSeries = ArchiveGroupsGameBuySum.OrderByDescending(x => x.BuySum)
+        ArchiveGroupsGameBuySumSeries = new(ArchiveGroupsGameBuySum.OrderByDescending(x => x.BuySum)
             .AsPieSeries((value, builder) =>
             {
                 builder.MaxRadialColumnWidth = 20;
@@ -437,10 +438,10 @@ public class ArchivesReviewModel : ModelBase
                 builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.BuySum:N2}";
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;
-            });
-        
-        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH 
-            ? ChartMinWidth + 1 
+            }));
+
+        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH
+            ? ChartMinWidth + 1
             : ChartMinWidth - 1;
     }
 
@@ -450,7 +451,7 @@ public class ArchivesReviewModel : ModelBase
 
         int i = 0;
 
-        ArchiveGroupsGameSoldSumSeries = ArchiveGroupsGameSoldSum.OrderByDescending(x => x.SoldSum)
+        ArchiveGroupsGameSoldSumSeries = new(ArchiveGroupsGameSoldSum.OrderByDescending(x => x.SoldSum)
             .AsPieSeries((value, builder) =>
             {
                 builder.MaxRadialColumnWidth = 20;
@@ -459,13 +460,13 @@ public class ArchivesReviewModel : ModelBase
                 builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.SoldSum:N2}";
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;
-            });
-        
-        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH 
-            ? ChartMinWidth + 1 
+            }));
+
+        ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH
+            ? ChartMinWidth + 1
             : ChartMinWidth - 1;
     }
-    
+
     private async void RefreshStatisticsAsync()
     {
         await StatisticsCancellationTokenSource.CancelAsync();
@@ -516,13 +517,13 @@ public class ArchivesReviewModel : ModelBase
 
         ArchiveGroupModels = groupsResponse.ArchiveGroups.Select(x =>
                 new ArchiveGroupViewModel(
-                    new(x.Id, 
-                        x.Title, 
-                        x.Colour, 
-                        x.Count, 
-                        x.BuySum, 
-                        x.SoldSum, 
-                        _userModel.CurrencyMark, 
+                    new(x.Id,
+                        x.Title,
+                        x.Colour,
+                        x.Count,
+                        x.BuySum,
+                        x.SoldSum,
+                        _userModel.CurrencyMark,
                         x.Change,
                         x.DateCreation,
                         x.Description),
