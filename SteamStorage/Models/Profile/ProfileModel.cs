@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Avalonia.Threading;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.Tools.UtilityModels;
@@ -88,7 +89,7 @@ public class ProfileModel : ModelBase
         set
         {
             SetProperty(ref _financialGoal, value);
-            SaveFinancialGoal.NotifyCanExecuteChanged();
+            Dispatcher.UIThread.Invoke(() => SaveFinancialGoal.NotifyCanExecuteChanged()); // TODO: Скорее всего всё ломается из-за Async Void, изменение финансовой цели происходит в другом потоке, а уведомление об изменении нужно посылать в основной
         }
     }
 

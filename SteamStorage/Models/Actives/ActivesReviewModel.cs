@@ -413,20 +413,26 @@ public class ActivesReviewModel : ModelBase
 
     private void GetActiveGroupsGameCountSeries()
     {
-        if (!ActiveGroupsGameCount.Any()) return;
+        if (!ActiveGroupsGameCount.Any())
+        {
+            ActiveGroupsGameCountSeries = [];
+        }
+        else
+        {
+            int i = 0;
 
-        int i = 0;
-
-        ActiveGroupsGameCountSeries = new(ActiveGroupsGameCount.OrderByDescending(x => x.Count)
-            .AsPieSeries((value, builder) =>
-            {
-                builder.MaxRadialColumnWidth = 20;
-                builder.HoverPushout = 0;
-                builder.Mapping = (game, point) => new(point, game.Count);
-                builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
-                builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
-                i++;
-            }));
+            ActiveGroupsGameCountSeries = new(ActiveGroupsGameCount.OrderByDescending(x => x.Count)
+                .AsPieSeries((value, builder) =>
+                {
+                    builder.MaxRadialColumnWidth = 20;
+                    builder.HoverPushout = 0;
+                    builder.Mapping = (game, point) => new(point, game.Count);
+                    builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
+                    builder.Fill =
+                        new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
+                    i++;
+                }));
+        }
 
         ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH
             ? ChartMinWidth + 1
@@ -435,20 +441,27 @@ public class ActivesReviewModel : ModelBase
 
     private void GetActiveGroupsGameInvestmentSumSeries()
     {
-        if (!ActiveGroupsGameInvestmentSum.Any()) return;
+        if (!ActiveGroupsGameInvestmentSum.Any())
+        {
+            ActiveGroupsGameInvestmentSumSeries = [];
+        }
+        else
+        {
+            int i = 0;
 
-        int i = 0;
-
-        ActiveGroupsGameInvestmentSumSeries = new(ActiveGroupsGameInvestmentSum.OrderByDescending(x => x.InvestmentSum)
-            .AsPieSeries((value, builder) =>
-            {
-                builder.MaxRadialColumnWidth = 20;
-                builder.HoverPushout = 0;
-                builder.Mapping = (game, point) => new(point, (double)game.InvestmentSum);
-                builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.InvestmentSum:N2}";
-                builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
-                i++;
-            }));
+            ActiveGroupsGameInvestmentSumSeries = new(ActiveGroupsGameInvestmentSum
+                .OrderByDescending(x => x.InvestmentSum)
+                .AsPieSeries((value, builder) =>
+                {
+                    builder.MaxRadialColumnWidth = 20;
+                    builder.HoverPushout = 0;
+                    builder.Mapping = (game, point) => new(point, (double)game.InvestmentSum);
+                    builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.InvestmentSum:N2}";
+                    builder.Fill =
+                        new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
+                    i++;
+                }));
+        }
 
         ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH
             ? ChartMinWidth + 1
@@ -457,20 +470,26 @@ public class ActivesReviewModel : ModelBase
 
     private void GetActiveGroupsGameCurrentSumSeries()
     {
-        if (!ActiveGroupsGameCurrentSum.Any()) return;
+        if (!ActiveGroupsGameCurrentSum.Any())
+        {
+            ActiveGroupsGameCurrentSumSeries = [];
+        }
+        else
+        {
+            int i = 0;
 
-        int i = 0;
-
-        ActiveGroupsGameCurrentSumSeries = new(ActiveGroupsGameCurrentSum.OrderByDescending(x => x.CurrentSum)
-            .AsPieSeries((value, builder) =>
-            {
-                builder.MaxRadialColumnWidth = 20;
-                builder.HoverPushout = 0;
-                builder.Mapping = (game, point) => new(point, (double)game.CurrentSum);
-                builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.CurrentSum:N2}";
-                builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
-                i++;
-            }));
+            ActiveGroupsGameCurrentSumSeries = new(ActiveGroupsGameCurrentSum.OrderByDescending(x => x.CurrentSum)
+                .AsPieSeries((value, builder) =>
+                {
+                    builder.MaxRadialColumnWidth = 20;
+                    builder.HoverPushout = 0;
+                    builder.Mapping = (game, point) => new(point, (double)game.CurrentSum);
+                    builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.CurrentSum:N2}";
+                    builder.Fill =
+                        new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
+                    i++;
+                }));
+        }
 
         ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH
             ? ChartMinWidth + 1

@@ -1,4 +1,8 @@
-<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:SteamStorage.Resources.Behaviors"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity">
 
     <Style Selector="ListBox">
         <Setter Property="SelectionMode" Value="Single" />
@@ -9,6 +13,13 @@
 
     <Style Selector="ListBoxItem">
         <Setter Property="Padding" Value="0" />
+        <Setter Property="(i:Interaction.Behaviors)">
+            <i:BehaviorCollectionTemplate>
+                <i:BehaviorCollection>
+                    <behaviors:ControlRightButtonPressedIgnoreBehavior />
+                </i:BehaviorCollection>
+            </i:BehaviorCollectionTemplate>
+        </Setter>
     </Style>
 
 </Styles>

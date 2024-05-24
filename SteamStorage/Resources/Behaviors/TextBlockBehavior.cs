@@ -7,7 +7,7 @@ using Avalonia.Xaml.Interactivity;
 using SteamStorage.Services.ClipboardService;
 using SteamStorage.Services.NotificationService;
 
-namespace SteamStorage.Resources.Controls.Behaviors;
+namespace SteamStorage.Resources.Behaviors;
 
 public class TextBlockBehavior : Behavior<TextBlock>
 {
@@ -37,19 +37,15 @@ public class TextBlockBehavior : Behavior<TextBlock>
     protected override void OnAttached()
     {
         base.OnAttached();
-        if (AssociatedObject is null)
-            return;
-        AssociatedObject.PointerPressed += PointerPressedHandler;
-        AssociatedObject.PointerReleased += PointerReleasedHandler;
+        AssociatedObject?.AddHandler(InputElement.PointerPressedEvent, PointerPressedHandler);
+        AssociatedObject?.AddHandler(InputElement.PointerReleasedEvent, PointerReleasedHandler);
     }
 
     protected override void OnDetaching()
     {
         base.OnDetaching();
-        if (AssociatedObject is null)
-            return;
-        AssociatedObject.PointerPressed -= PointerPressedHandler;
-        AssociatedObject.PointerReleased -= PointerReleasedHandler;
+        AssociatedObject?.RemoveHandler(InputElement.PointerPressedEvent, PointerPressedHandler);
+        AssociatedObject?.RemoveHandler(InputElement.PointerReleasedEvent, PointerReleasedHandler);
     }
 
     private async void PointerPressedHandler(object? sender, PointerPressedEventArgs e)

@@ -140,6 +140,7 @@ public class ArchivesModel : ModelBase
     private void DeleteArchiveGroupHandler(object? sender)
     {
         _archivesReviewViewModel.UpdateGroups();
+        _listArchivesModel.UpdateSkins();
     }
 
     private void EditArchiveHandler(object? sender, EditArchiveEventArgs args)

@@ -142,6 +142,7 @@ public class ActivesModel : ModelBase
     private void DeleteActiveGroupHandler(object? sender)
     {
         _activesReviewViewModel.UpdateGroups();
+        _listActivesModel.UpdateSkins();
     }
 
     private void EditActiveHandler(object? sender, EditActiveEventArgs args)
