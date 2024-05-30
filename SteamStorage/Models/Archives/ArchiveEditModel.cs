@@ -7,8 +7,8 @@ using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
-using SteamStorage.Utilities;
 using SteamStorage.Utilities.Dialog;
+using SteamStorage.Utilities.Extensions;
 using SteamStorage.ViewModels.Tools.UtilityViewModels.BaseViewModels;
 using SteamStorageAPI.SDK;
 using SteamStorageAPI.SDK.Utilities;
@@ -215,9 +215,9 @@ public class ArchiveEditModel : BaseItemEditModel
     {
         if (SelectedSkinModel is null || SelectedArchiveGroupModel is null) return;
 
-        if (!((int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
-              && (decimal.TryParse(BuyPrice, out decimal buyPrice) && buyPrice >= (decimal)0.01)
-              && (decimal.TryParse(SoldPrice, out decimal soldPrice) && soldPrice >= (decimal)0.01)
+        if (!((Count.TryParse(out int count) && count > 0)
+              && (BuyPrice.TryParse(out decimal buyPrice) && buyPrice.IsBetweenInclusive((decimal)0.01, 999999999999))
+              && (SoldPrice.TryParse(out decimal soldPrice) && soldPrice.IsBetweenInclusive((decimal)0.01, 999999999999))
               && Description?.Length <= 300))
             return;
 
@@ -285,9 +285,9 @@ public class ArchiveEditModel : BaseItemEditModel
     protected override bool CanExecuteSaveCommand()
     {
         return SelectedArchiveGroupModel is not null
-               && (int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
-               && (decimal.TryParse(BuyPrice, out decimal buyPrice) && buyPrice >= (decimal)0.01)
-               && (decimal.TryParse(SoldPrice, out decimal soldPrice) && soldPrice >= (decimal)0.01)
+               && (Count.TryParse(out int count) && count > 0)
+               && (BuyPrice.TryParse(out decimal buyPrice) && buyPrice.IsBetweenInclusive((decimal)0.01, 999999999999))
+               && (SoldPrice.TryParse(out decimal soldPrice) && soldPrice.IsBetweenInclusive((decimal)0.01, 999999999999))
                && Description?.Length <= 300
                && SelectedSkinModel is not null;
     }

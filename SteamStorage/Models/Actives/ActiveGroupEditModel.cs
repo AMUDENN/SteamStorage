@@ -183,9 +183,9 @@ public class ActiveGroupEditModel : BaseGroupEditModel
 
     protected override async Task DoSaveCommand(CancellationToken cancellationToken)
     {
-        if (!(GroupTitle.Length is >= 3 and <= 100
+        if (!(GroupTitle.Length.IsBetweenInclusive(3, 100)
               && Description?.Length <= 300
-              && ((decimal.TryParse(GoalSum, out decimal sum) && sum >= (decimal)0.01) || string.IsNullOrWhiteSpace(GoalSum))
+              && ((GoalSum.TryParse(out decimal sum) && sum.IsBetweenInclusive((decimal)0.01, 999999999999)) || string.IsNullOrWhiteSpace(GoalSum))
               && Colour != Colors.Transparent))
             return;
         
@@ -244,9 +244,9 @@ public class ActiveGroupEditModel : BaseGroupEditModel
 
     protected override bool CanExecuteSaveCommand()
     {
-        return GroupTitle.Length is >= 3 and <= 100
+        return GroupTitle.Length.IsBetweenInclusive(3, 100)
                && Description?.Length <= 300
-               && (string.IsNullOrWhiteSpace(GoalSum) || (decimal.TryParse(GoalSum, out decimal sum) && sum >= (decimal)0.01))
+               && ((GoalSum.TryParse(out decimal sum) && sum.IsBetweenInclusive((decimal)0.01, 999999999999)) || string.IsNullOrWhiteSpace(GoalSum))
                && Colour != Colors.Transparent;
     }
 

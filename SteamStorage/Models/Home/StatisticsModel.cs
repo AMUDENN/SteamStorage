@@ -399,7 +399,7 @@ public class StatisticsModel : ModelBase
         if (!InventoryGames.Any()) return;
 
         int i = 0;
-        InventoryGamesSeries = InventoryGames.OrderByDescending(x => x.Count)
+        InventoryGamesSeries = InventoryGames.OrderByDescending(x => x.GameTitle)
             .AsPieSeries((value, builder) =>
             {
                 builder.MaxRadialColumnWidth = 20;

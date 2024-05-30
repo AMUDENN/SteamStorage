@@ -98,7 +98,7 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
 
     protected override async Task DoSaveCommand(CancellationToken cancellationToken)
     {
-        if (!(GroupTitle.Length is >= 3 and <= 100
+        if (!(GroupTitle.Length.IsBetweenInclusive(3, 100)
               && Description?.Length <= 300
               && Colour != Colors.Transparent))
             return;
@@ -156,7 +156,7 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
 
     protected override bool CanExecuteSaveCommand()
     {
-        return GroupTitle.Length is >= 3 and <= 100
+        return GroupTitle.Length.IsBetweenInclusive(3, 100)
                && Description?.Length <= 300
                && Colour != Colors.Transparent;
     }

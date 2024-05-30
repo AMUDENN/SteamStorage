@@ -8,9 +8,7 @@ public static class ProgramConstants
 
     public const string VIEW_DATE_FORMAT = "dd.MM.yy";
 
-    public const string NUMBER_GROUP_SEPARATOR = "\u00a0";
-
-    public const int API_CLIENT_TIMEOUT = 20;
+    public const int API_CLIENT_TIMEOUT = 60;
 
     public const string PROGRAM_NAME = "SteamStorage";
 
