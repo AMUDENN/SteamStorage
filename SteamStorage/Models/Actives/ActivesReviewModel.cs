@@ -421,7 +421,7 @@ public class ActivesReviewModel : ModelBase
         {
             int i = 0;
 
-            ActiveGroupsGameCountSeries = new(ActiveGroupsGameCount.OrderByDescending(x => x.Count)
+            ActiveGroupsGameCountSeries = new(ActiveGroupsGameCount.OrderByDescending(x => x.GameTitle)
                 .AsPieSeries((value, builder) =>
                 {
                     builder.MaxRadialColumnWidth = 20;
@@ -450,7 +450,7 @@ public class ActivesReviewModel : ModelBase
             int i = 0;
 
             ActiveGroupsGameInvestmentSumSeries = new(ActiveGroupsGameInvestmentSum
-                .OrderByDescending(x => x.InvestmentSum)
+                .OrderByDescending(x => x.GameTitle)
                 .AsPieSeries((value, builder) =>
                 {
                     builder.MaxRadialColumnWidth = 20;
@@ -478,7 +478,7 @@ public class ActivesReviewModel : ModelBase
         {
             int i = 0;
 
-            ActiveGroupsGameCurrentSumSeries = new(ActiveGroupsGameCurrentSum.OrderByDescending(x => x.CurrentSum)
+            ActiveGroupsGameCurrentSumSeries = new(ActiveGroupsGameCurrentSum.OrderByDescending(x => x.GameTitle)
                 .AsPieSeries((value, builder) =>
                 {
                     builder.MaxRadialColumnWidth = 20;

@@ -411,7 +411,7 @@ public class ArchivesReviewModel : ModelBase
         {
             int i = 0;
 
-            ArchiveGroupsGameCountSeries = new(ArchiveGroupsGameCount.OrderByDescending(x => x.Count)
+            ArchiveGroupsGameCountSeries = new(ArchiveGroupsGameCount.OrderByDescending(x => x.GameTitle)
                 .AsPieSeries((value, builder) =>
                 {
                     builder.MaxRadialColumnWidth = 20;
@@ -439,7 +439,7 @@ public class ArchivesReviewModel : ModelBase
         {
             int i = 0;
 
-            ArchiveGroupsGameBuySumSeries = new(ArchiveGroupsGameBuySum.OrderByDescending(x => x.BuySum)
+            ArchiveGroupsGameBuySumSeries = new(ArchiveGroupsGameBuySum.OrderByDescending(x => x.GameTitle)
                 .AsPieSeries((value, builder) =>
                 {
                     builder.MaxRadialColumnWidth = 20;
@@ -467,7 +467,7 @@ public class ArchivesReviewModel : ModelBase
         {
             int i = 0;
 
-            ArchiveGroupsGameSoldSumSeries = new(ArchiveGroupsGameSoldSum.OrderByDescending(x => x.SoldSum)
+            ArchiveGroupsGameSoldSumSeries = new(ArchiveGroupsGameSoldSum.OrderByDescending(x => x.GameTitle)
                 .AsPieSeries((value, builder) =>
                 {
                     builder.MaxRadialColumnWidth = 20;

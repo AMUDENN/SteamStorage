@@ -8,6 +8,7 @@ using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Dialog;
+using SteamStorage.Utilities.Extensions;
 using SteamStorageAPI.SDK;
 using SteamStorageAPI.SDK.Utilities;
 
@@ -213,10 +214,10 @@ public class ActiveSoldModel : BaseEditModel
     {
         if (_activeModel is null || SelectedArchiveGroupModel is null) return;
 
-        if (!((int.TryParse(SoldCount.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
-              && _activeModel.Count >= count
-              && (decimal.TryParse(SoldPrice, out decimal price) && price >= (decimal)0.01)
-              && Description?.Length <= 300))
+        if (!((SoldCount.TryParse(out int count) && count > 0)
+               && (_activeModel is not null && _activeModel.Count >= count)
+               && (SoldPrice.TryParse(out decimal price) && price.IsBetweenInclusive((decimal)0.01, 999999999999))
+               && Description?.Length <= 300))
             return;
 
         bool result = await DialogService.ShowDialogAsync(
@@ -248,9 +249,9 @@ public class ActiveSoldModel : BaseEditModel
     protected override bool CanExecuteSaveCommand()
     {
         return SelectedArchiveGroupModel is not null
-               && (int.TryParse(SoldCount.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
-               && (_activeModel is null || _activeModel.Count >= count)
-               && (decimal.TryParse(SoldPrice, out decimal price) && price >= (decimal)0.01)
+               && (SoldCount.TryParse(out int count) && count > 0)
+               && (_activeModel is not null && _activeModel.Count >= count)
+               && (SoldPrice.TryParse(out decimal price) && price.IsBetweenInclusive((decimal)0.01, 999999999999))
                && Description?.Length <= 300;
     }
 

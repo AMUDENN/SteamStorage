@@ -7,8 +7,8 @@ using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
-using SteamStorage.Utilities;
 using SteamStorage.Utilities.Dialog;
+using SteamStorage.Utilities.Extensions;
 using SteamStorage.ViewModels.Tools.UtilityViewModels.BaseViewModels;
 using SteamStorageAPI.SDK;
 using SteamStorageAPI.SDK.Utilities;
@@ -197,10 +197,10 @@ public class ActiveEditModel : BaseItemEditModel
     {
         if (SelectedSkinModel is null || SelectedActiveGroupModel is null) return;
 
-        if (!((int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
-              && (decimal.TryParse(BuyPrice, out decimal price) && price >= (decimal)0.01)
-              && ((decimal.TryParse(GoalPrice, out decimal goal) && goal >= (decimal)0.01) || string.IsNullOrWhiteSpace(GoalPrice))
-              && Description?.Length <= 300))
+        if (!((Count.TryParse(out int count) && count > 0)
+            && (BuyPrice.TryParse(out decimal price) && price.IsBetweenInclusive((decimal)0.01, 999999999999))
+            && ((GoalPrice.TryParse(out decimal goal) && goal.IsBetweenInclusive((decimal)0.01, 999999999999)) || string.IsNullOrWhiteSpace(GoalPrice))
+            && Description?.Length <= 300))
             return;
 
 
@@ -266,9 +266,9 @@ public class ActiveEditModel : BaseItemEditModel
     protected override bool CanExecuteSaveCommand()
     {
         return SelectedActiveGroupModel is not null
-               && (int.TryParse(Count.Replace(ProgramConstants.NUMBER_GROUP_SEPARATOR, string.Empty), out int count) && count > 0)
-               && (decimal.TryParse(BuyPrice, out decimal price) && price >= (decimal)0.01)
-               && (string.IsNullOrWhiteSpace(GoalPrice) || (decimal.TryParse(GoalPrice, out decimal goal) && goal >= (decimal)0.01))
+               && (Count.TryParse(out int count) && count > 0)
+               && (BuyPrice.TryParse(out decimal price) && price.IsBetweenInclusive((decimal)0.01, 999999999999))
+               && ((GoalPrice.TryParse(out decimal goal) && goal.IsBetweenInclusive((decimal)0.01, 999999999999)) || string.IsNullOrWhiteSpace(GoalPrice))
                && Description?.Length <= 300
                && SelectedSkinModel is not null;
     }

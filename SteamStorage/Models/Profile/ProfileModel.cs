@@ -9,6 +9,7 @@ using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities;
+using SteamStorage.Utilities.Extensions;
 using SteamStorage.ViewModels.Dialog;
 
 namespace SteamStorage.Models.Profile;
@@ -243,7 +244,7 @@ public class ProfileModel : ModelBase
                 "Вы удалили финансовую цель");
         }
 
-        if (decimal.TryParse(FinancialGoal, out decimal financialGoal))
+        if (FinancialGoal.TryParse(out decimal financialGoal) && financialGoal.IsBetweenInclusive((decimal)0.01, 999999999999))
         {
             await _userModel.SetFinancialGoalAsync(financialGoal);
             await _notificationService.ShowAsync("Финансовая цель", 
@@ -253,7 +254,8 @@ public class ProfileModel : ModelBase
 
     private bool CanExecuteSaveFinancialGoal()
     {
-        return FinancialGoal != DefaultFinancialGoal;
+        return FinancialGoal != DefaultFinancialGoal
+               && (FinancialGoal.TryParse(out decimal financialGoal) && financialGoal.IsBetweenInclusive((decimal)0.01, 999999999999));
     }
 
     private async Task DoDeleteProfileCommand(CancellationToken cancellationToken)

@@ -426,7 +426,7 @@ public class InventoryModel : BaseListModel
         {
             int i = 0;
 
-            InventoryGameCountSeries = new(InventoryGameCount.OrderByDescending(x => x.Count)
+            InventoryGameCountSeries = new(InventoryGameCount.OrderByDescending(x => x.GameTitle)
                 .AsPieSeries((value, builder) =>
                 {
                     builder.MaxRadialColumnWidth = 20;
@@ -452,7 +452,7 @@ public class InventoryModel : BaseListModel
         {
             int i = 0;
 
-            InventoryGameSumSeries = new(InventoryGameSum.OrderByDescending(x => x.Sum)
+            InventoryGameSumSeries = new(InventoryGameSum.OrderByDescending(x => x.GameTitle)
                 .AsPieSeries((value, builder) =>
                 {
                     builder.MaxRadialColumnWidth = 20;
