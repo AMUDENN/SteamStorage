@@ -1,8 +1,8 @@
 ﻿using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.ThemeService;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Tools.UtilityModels;
 
@@ -10,7 +10,7 @@ public class ListItemModel : BaseDynamicsSkinModel
 {
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
 
     private bool _isMarked;
 
@@ -22,9 +22,9 @@ public class ListItemModel : BaseDynamicsSkinModel
 
     public string CurrentPriceString { get; }
 
-    public double Change7D { get; }
+    public decimal Change7D { get; }
 
-    public double Change30D { get; }
+    public decimal Change30D { get; }
 
     public bool IsMarked
     {
@@ -44,7 +44,7 @@ public class ListItemModel : BaseDynamicsSkinModel
     #region Constructor
 
     public ListItemModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         PeriodsModel periodsModel,
         IThemeService themeService,
         int skinId,
@@ -53,8 +53,8 @@ public class ListItemModel : BaseDynamicsSkinModel
         string title,
         decimal currentPrice,
         string currencyMark,
-        double change7D,
-        double change30D,
+        decimal change7D,
+        decimal change30D,
         bool isMarked) : base(apiClient, periodsModel, themeService, skinId, imageUrl, marketUrl, title)
     {
         _apiClient = apiClient;

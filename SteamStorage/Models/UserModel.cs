@@ -5,9 +5,9 @@ using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Services.Settings.SettingsService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Events.Settings;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models;
 
@@ -22,11 +22,11 @@ public class UserModel : ModelBase
     public delegate void CurrencyChangedEventHandler(object? sender);
 
     public event CurrencyChangedEventHandler? CurrencyChanged;
-    
+
     public delegate void StartPageChangedEventHandler(object? sender);
 
     public event StartPageChangedEventHandler? StartPageChanged;
-    
+
     public delegate void FinancialGoalChangedEventHandler(object? sender);
 
     public event FinancialGoalChangedEventHandler? FinancialGoalChanged;
@@ -35,7 +35,7 @@ public class UserModel : ModelBase
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly ISettingsService _settingsService;
 
     private Users.UserResponse? _user;
@@ -74,7 +74,7 @@ public class UserModel : ModelBase
                 OnCurrencyChanged();
         }
     }
-    
+
     public Pages.PageResponse? StartPage
     {
         get => _startPage;
@@ -109,7 +109,7 @@ public class UserModel : ModelBase
     #region Constructor
 
     public UserModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         ISettingsService settingsService)
     {
         _apiClient = apiClient;
@@ -143,13 +143,13 @@ public class UserModel : ModelBase
         Currency = await _apiClient.GetAsync<Currencies.CurrencyResponse>(
             ApiConstants.ApiMethods.GetCurrentCurrency);
     }
-    
+
     private async void GetStartPageAsync()
     {
         StartPage = await _apiClient.GetAsync<Pages.PageResponse>(
             ApiConstants.ApiMethods.GetCurrentStartPage);
     }
-    
+
     private async void GetFinancialGoalAsync()
     {
         Users.GoalSumResponse? response = await _apiClient.GetAsync<Users.GoalSumResponse>(
@@ -177,22 +177,22 @@ public class UserModel : ModelBase
 
         GetCurrencyAsync();
     }
-    
+
     public async Task SetPageAsync(PageModel pageModel)
     {
         await _apiClient.PutAsync(
             ApiConstants.ApiMethods.SetStartPage,
             new Pages.SetPageRequest(pageModel.Id));
-        
+
         GetStartPageAsync();
     }
-    
+
     public async Task SetFinancialGoalAsync(decimal? goalSum)
     {
         await _apiClient.PutAsync(
             ApiConstants.ApiMethods.PutGoalSum,
             new Users.PutGoalSumRequest(goalSum));
-        
+
         GetFinancialGoalAsync();
     }
 
@@ -205,12 +205,12 @@ public class UserModel : ModelBase
     {
         CurrencyChanged?.Invoke(this);
     }
-    
+
     private void OnStartPageChanged()
     {
         StartPageChanged?.Invoke(this);
     }
-    
+
     private void OnFinancialGoalChanged()
     {
         FinancialGoalChanged?.Invoke(this);

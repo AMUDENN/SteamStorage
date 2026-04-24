@@ -14,9 +14,10 @@ using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
 using SteamStorage.Views.Windows;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.Services.ReferenceInformationService;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
+using File=SteamStorageAPI.SDK.ApiEntities.File;
 
 namespace SteamStorage.Models.Settings;
 
@@ -24,7 +25,7 @@ public class SettingsModel : ModelBase
 {
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly MainWindow _mainWindow;
     private readonly IThemeService _themeService;
     private readonly ISettingsService _settingsService;
@@ -62,7 +63,7 @@ public class SettingsModel : ModelBase
     #region Constructor
 
     public SettingsModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         MainWindow mainWindow,
         IThemeService themeService,
         ISettingsService settingsService,
@@ -132,14 +133,14 @@ public class SettingsModel : ModelBase
 
         if (file is null) return;
 
-        Stream? fileResult =
-            await _apiClient.GetFileStreamAsync(ApiConstants.ApiMethods.GetExcelFile, cancellationToken);
+        File.FileResponse? fileResult =
+            await _apiClient.GetFileAsync(ApiConstants.ApiMethods.GetExcelFile, cancellationToken);
 
         if (fileResult is null) return;
 
         await using Stream stream = await file.OpenWriteAsync();
 
-        await fileResult.CopyToAsync(stream, cancellationToken);
+        await fileResult.Stream.CopyToAsync(stream, cancellationToken);
 
         await _notificationService.ShowAsync("Файл сохранён",
             $"Файл {file.Name} успешно сохранён",

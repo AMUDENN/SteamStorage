@@ -10,9 +10,9 @@ using SteamStorage.Models.Tools;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.ViewModels.Tools.UtilityViewModels;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Actives;
 
@@ -27,7 +27,7 @@ public class ActivesReviewModel : ModelBase
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly ActiveGroupsModel _activeGroupsModel;
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
@@ -325,7 +325,7 @@ public class ActivesReviewModel : ModelBase
     #region Constructor
 
     public ActivesReviewModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         ActiveGroupsModel activeGroupsModel,
         ChartTooltipModel chartTooltipModel,
         UserModel userModel,

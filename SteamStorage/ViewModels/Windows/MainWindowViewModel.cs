@@ -28,7 +28,7 @@ public class MainWindowViewModel : ViewModelBase
     {
         get => _model.KeyDownCommand;
     }
-    
+
     public RelayCommand MinimizeCommand
     {
         get => _model.MinimizeCommand;

@@ -12,8 +12,8 @@ using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Events.Actives;
 using SteamStorage.ViewModels.Tools.UtilityViewModels;
-using SteamStorageAPI.SDK;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.ApiClient;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Actives;
 
@@ -33,7 +33,7 @@ public class ListActivesModel : BaseListModel
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
     private readonly PeriodsModel _periodsModel;
@@ -44,7 +44,7 @@ public class ListActivesModel : BaseListModel
     private int _count;
     private string _investedSumString;
     private string _currentSumString;
-    
+
     private BaseGroupModel? _selectedGroupModel;
 
     private GameModel? _selectedGameModel;
@@ -89,7 +89,7 @@ public class ListActivesModel : BaseListModel
         get => _currentSumString;
         private set => SetProperty(ref _currentSumString, value);
     }
-    
+
     public BaseGroupModel? SelectedGroupModel
     {
         get => _selectedGroupModel;
@@ -289,7 +289,7 @@ public class ListActivesModel : BaseListModel
             SelectedActiveModel?.UpdateStats();
         }
     }
-    
+
     public override string? NotFoundText
     {
         get => ActiveModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
@@ -320,7 +320,7 @@ public class ListActivesModel : BaseListModel
         get => _itemsCancellationTokenSource;
         set => SetProperty(ref _itemsCancellationTokenSource, value);
     }
-    
+
     private CancellationTokenSource StatisticsCancellationTokenSource
     {
         get => _statisticsCancellationTokenSource;
@@ -344,7 +344,7 @@ public class ListActivesModel : BaseListModel
     #region Constructor
 
     public ListActivesModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         ChartTooltipModel chartTooltipModel,
         UserModel userModel,
         PeriodsModel periodsModel,
@@ -365,7 +365,7 @@ public class ListActivesModel : BaseListModel
 
         _investedSumString = string.Empty;
         _currentSumString = string.Empty;
-        
+
         _activeModels = [];
         _itemsCancellationTokenSource = new();
         _statisticsCancellationTokenSource = new();
@@ -425,21 +425,21 @@ public class ListActivesModel : BaseListModel
     private async Task DoDeleteCommand(ActiveModel? model, CancellationToken cancellationToken)
     {
         if (model is null) return;
-        
+
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить актив: «{model.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
-        
+
         if (!result) return;
 
         await _apiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteActive,
             new SteamStorageAPI.SDK.ApiEntities.Actives.DeleteActiveRequest(model.ActiveId),
             cancellationToken);
-        
+
         await _notificationService.ShowAsync("Удаление актива",
-            $"Вы отправили запрос на удаление актива: {model.Title}", 
+            $"Вы отправили запрос на удаление актива: {model.Title}",
             cancellationToken: cancellationToken);
 
         GetSkinsAsync();

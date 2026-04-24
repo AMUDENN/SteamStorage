@@ -10,7 +10,6 @@ public class GameModel
 
     public string Title { get; }
 
-
     #endregion Properties
 
     #region Constructor

@@ -2,9 +2,9 @@
 using System.Linq;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.Tools.UtilityModels;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models;
 
@@ -20,7 +20,7 @@ public class CurrenciesModel : ModelBase
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
 
     private List<CurrencyModel> _currencyModels;
 
@@ -39,7 +39,7 @@ public class CurrenciesModel : ModelBase
     #region Constructor
 
     public CurrenciesModel(
-        ApiClient apiClient)
+        IApiClient apiClient)
     {
         _apiClient = apiClient;
 

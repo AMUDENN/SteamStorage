@@ -8,8 +8,8 @@ using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Extensions;
-using SteamStorageAPI.SDK;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.ApiClient;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Actives;
 
@@ -26,7 +26,7 @@ public class ActiveSoldModel : BaseEditModel
     #region Fields
 
     private ActiveModel? _activeModel;
-    
+
     private BaseGroupModel? _defaultArchiveGroupModel;
     private BaseGroupModel? _selectedArchiveGroupModel;
 
@@ -163,7 +163,7 @@ public class ActiveSoldModel : BaseEditModel
     #region Constructor
 
     public ActiveSoldModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         IDialogService dialogService,
         INotificationService notificationService) : base(apiClient, dialogService, notificationService)
     {
@@ -187,25 +187,25 @@ public class ActiveSoldModel : BaseEditModel
     protected override async Task DoDeleteCommand(CancellationToken cancellationToken)
     {
         if (_activeModel is null) return;
-        
+
         bool result = await DialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить актив: «{_activeModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
-        
+
         if (!result) return;
 
         await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteActive,
             new SteamStorageAPI.SDK.ApiEntities.Actives.DeleteActiveRequest(_activeModel.ActiveId),
             cancellationToken);
-        
+
         await NotificationService.ShowAsync("Удаление актива",
-            $"Вы отправили запрос на удаление актива: {_activeModel.Title}", 
+            $"Вы отправили запрос на удаление актива: {_activeModel.Title}",
             cancellationToken: cancellationToken);
-        
+
         OnItemDeleted();
-        
+
         OnGoingBack();
     }
 
@@ -213,10 +213,10 @@ public class ActiveSoldModel : BaseEditModel
     {
         if (_activeModel is null || SelectedArchiveGroupModel is null) return;
 
-        if (!((SoldCount.TryParse(out int count) && count > 0)
-               && (_activeModel is not null && _activeModel.Count >= count)
-               && (SoldPrice.TryParse(out decimal price) && price.IsBetweenInclusive((decimal)0.01, 999999999999))
-               && Description?.Length <= 300))
+        if (!(SoldCount.TryParse(out int count) && count > 0
+                                                && _activeModel is not null && _activeModel.Count >= count
+                                                && SoldPrice.TryParse(out decimal price) && price.IsBetweenInclusive((decimal)0.01, 999999999999)
+                                                && Description?.Length <= 300))
             return;
 
         bool result = await DialogService.ShowDialogAsync(
@@ -235,9 +235,9 @@ public class ActiveSoldModel : BaseEditModel
                 SoldDate.DateTime,
                 Description),
             cancellationToken);
-        
+
         await NotificationService.ShowAsync("Продажа актива",
-            $"Вы отправили запрос на продажу актива: {_activeModel.Title}", 
+            $"Вы отправили запрос на продажу актива: {_activeModel.Title}",
             cancellationToken: cancellationToken);
 
         OnItemChanged();
@@ -248,9 +248,9 @@ public class ActiveSoldModel : BaseEditModel
     protected override bool CanExecuteSaveCommand()
     {
         return SelectedArchiveGroupModel is not null
-               && (SoldCount.TryParse(out int count) && count > 0)
-               && (_activeModel is not null && _activeModel.Count >= count)
-               && (SoldPrice.TryParse(out decimal price) && price.IsBetweenInclusive((decimal)0.01, 999999999999))
+               && SoldCount.TryParse(out int count) && count > 0
+               && _activeModel is not null && _activeModel.Count >= count
+               && SoldPrice.TryParse(out decimal price) && price.IsBetweenInclusive((decimal)0.01, 999999999999)
                && Description?.Length <= 300;
     }
 
@@ -272,7 +272,7 @@ public class ActiveSoldModel : BaseEditModel
     public void SetSoldActive(ActiveModel? model)
     {
         _activeModel = model;
-        
+
         DefaultArchiveGroupModel = null;
 
         DefaultSoldCount = $"{model?.Count ?? 1:N0}";

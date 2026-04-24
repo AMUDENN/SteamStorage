@@ -10,8 +10,8 @@ using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Extensions;
 using SteamStorage.ViewModels.Tools.UtilityViewModels.BaseViewModels;
-using SteamStorageAPI.SDK;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.ApiClient;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Actives;
 
@@ -20,13 +20,13 @@ public class ActiveEditModel : BaseItemEditModel
     #region Constants
 
     private const string CHANGE_TITLE = "Изменение актива";
-    
+
     private const string ADD_TITLE = "Добавление актива";
 
     #endregion Constants
 
     #region Fields
-    
+
     private readonly ActiveGroupsModel _activeGroupsModel;
 
     private ActiveModel? _activeModel;
@@ -150,7 +150,7 @@ public class ActiveEditModel : BaseItemEditModel
     #region Constructor
 
     public ActiveEditModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         ActiveGroupsModel activeGroupsModel,
         IDialogService dialogService,
         INotificationService notificationService) : base(apiClient, dialogService, notificationService)
@@ -185,7 +185,7 @@ public class ActiveEditModel : BaseItemEditModel
             cancellationToken);
 
         await NotificationService.ShowAsync("Удаление актива",
-            $"Вы отправили запрос на удаление актива: {_activeModel.Title}", 
+            $"Вы отправили запрос на удаление актива: {_activeModel.Title}",
             cancellationToken: cancellationToken);
 
         OnItemDeleted();
@@ -197,10 +197,10 @@ public class ActiveEditModel : BaseItemEditModel
     {
         if (SelectedSkinModel is null || SelectedActiveGroupModel is null) return;
 
-        if (!((Count.TryParse(out int count) && count > 0)
-            && (BuyPrice.TryParse(out decimal price) && price.IsBetweenInclusive((decimal)0.01, 999999999999))
-            && ((GoalPrice.TryParse(out decimal goal) && goal.IsBetweenInclusive((decimal)0.01, 999999999999)) || string.IsNullOrWhiteSpace(GoalPrice))
-            && Description?.Length <= 300))
+        if (!(Count.TryParse(out int count) && count > 0
+                                            && BuyPrice.TryParse(out decimal price) && price.IsBetweenInclusive((decimal)0.01, 999999999999)
+                                            && (GoalPrice.TryParse(out decimal goal) && goal.IsBetweenInclusive((decimal)0.01, 999999999999) || string.IsNullOrWhiteSpace(GoalPrice))
+                                            && Description?.Length <= 300))
             return;
 
 
@@ -223,9 +223,9 @@ public class ActiveEditModel : BaseItemEditModel
                     Description,
                     BuyDate.DateTime),
                 cancellationToken);
-            
+
             await NotificationService.ShowAsync("Добавление актива",
-                $"Вы отправили запрос на добавление актива: {SelectedSkinModel.Title}", 
+                $"Вы отправили запрос на добавление актива: {SelectedSkinModel.Title}",
                 cancellationToken: cancellationToken);
         }
         else if (_activeModel is not null)
@@ -248,9 +248,9 @@ public class ActiveEditModel : BaseItemEditModel
                     Description,
                     BuyDate.DateTime),
                 cancellationToken);
-            
+
             await NotificationService.ShowAsync("Изменение актива",
-                $"Вы отправили запрос на изменение актива: {_activeModel.Title}", 
+                $"Вы отправили запрос на изменение актива: {_activeModel.Title}",
                 cancellationToken: cancellationToken);
         }
         else
@@ -266,9 +266,9 @@ public class ActiveEditModel : BaseItemEditModel
     protected override bool CanExecuteSaveCommand()
     {
         return SelectedActiveGroupModel is not null
-               && (Count.TryParse(out int count) && count > 0)
-               && (BuyPrice.TryParse(out decimal price) && price.IsBetweenInclusive((decimal)0.01, 999999999999))
-               && ((GoalPrice.TryParse(out decimal goal) && goal.IsBetweenInclusive((decimal)0.01, 999999999999)) || string.IsNullOrWhiteSpace(GoalPrice))
+               && Count.TryParse(out int count) && count > 0
+               && BuyPrice.TryParse(out decimal price) && price.IsBetweenInclusive((decimal)0.01, 999999999999)
+               && (GoalPrice.TryParse(out decimal goal) && goal.IsBetweenInclusive((decimal)0.01, 999999999999) || string.IsNullOrWhiteSpace(GoalPrice))
                && Description?.Length <= 300
                && SelectedSkinModel is not null;
     }

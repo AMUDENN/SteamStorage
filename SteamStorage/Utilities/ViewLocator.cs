@@ -17,7 +17,7 @@ public class ViewLocator : IDataTemplate
 
         if (type is null)
             return new TextBlock { Text = "Not Found: " + name };
-        
+
         Control control = (Control)Activator.CreateInstance(type)!;
         control.DataContext = data;
         return control;

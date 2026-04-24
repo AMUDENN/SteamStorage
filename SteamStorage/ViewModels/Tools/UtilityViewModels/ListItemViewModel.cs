@@ -27,12 +27,12 @@ public class ListItemViewModel : BaseDynamicsSkinViewModel
         get => _model.CurrentPriceString;
     }
 
-    public double Change7D
+    public decimal Change7D
     {
         get => _model.Change7D;
     }
 
-    public double Change30D
+    public decimal Change30D
     {
         get => _model.Change30D;
     }

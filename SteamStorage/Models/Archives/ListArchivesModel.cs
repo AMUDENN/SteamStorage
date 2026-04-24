@@ -11,8 +11,8 @@ using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Events.Archives;
 using SteamStorage.ViewModels.Tools.UtilityViewModels;
-using SteamStorageAPI.SDK;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.ApiClient;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Archives;
 
@@ -28,7 +28,7 @@ public class ListArchivesModel : BaseListModel
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly UserModel _userModel;
     private readonly IDialogService _dialogService;
     private readonly INotificationService _notificationService;
@@ -36,7 +36,7 @@ public class ListArchivesModel : BaseListModel
     private int _count;
     private string _investedSumString;
     private string _soldSumString;
-    
+
     private BaseGroupModel? _selectedGroupModel;
 
     private GameModel? _selectedGameModel;
@@ -81,7 +81,7 @@ public class ListArchivesModel : BaseListModel
         get => _soldSumString;
         private set => SetProperty(ref _soldSumString, value);
     }
-    
+
     public BaseGroupModel? SelectedGroupModel
     {
         get => _selectedGroupModel;
@@ -308,7 +308,7 @@ public class ListArchivesModel : BaseListModel
         get => _itemsCancellationTokenSource;
         set => SetProperty(ref _itemsCancellationTokenSource, value);
     }
-    
+
     private CancellationTokenSource StatisticsCancellationTokenSource
     {
         get => _statisticsCancellationTokenSource;
@@ -330,7 +330,7 @@ public class ListArchivesModel : BaseListModel
     #region Constructor
 
     public ListArchivesModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         UserModel userModel,
         IDialogService dialogService,
         INotificationService notificationService)
@@ -345,7 +345,7 @@ public class ListArchivesModel : BaseListModel
 
         _investedSumString = string.Empty;
         _soldSumString = string.Empty;
-        
+
         _archiveModels = [];
         _itemsCancellationTokenSource = new();
         _statisticsCancellationTokenSource = new();
@@ -399,21 +399,21 @@ public class ListArchivesModel : BaseListModel
     private async Task DoDeleteCommand(ArchiveModel? model, CancellationToken cancellationToken)
     {
         if (model is null) return;
-        
+
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить элемент архива: «{model.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
-        
+
         if (!result) return;
 
         await _apiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteArchive,
             new SteamStorageAPI.SDK.ApiEntities.Archives.DeleteArchiveRequest(model.ArchiveId),
             cancellationToken);
-        
+
         await _notificationService.ShowAsync("Удаление элемента архива",
-            $"Вы отправили запрос на удаление элемента архива: {model.Title}", 
+            $"Вы отправили запрос на удаление элемента архива: {model.Title}",
             cancellationToken: cancellationToken);
 
         GetSkinsAsync();
@@ -424,7 +424,7 @@ public class ListArchivesModel : BaseListModel
     {
         SelectedGroupModel = groupModels.SingleOrDefault(x => x.GroupId == model?.GroupId);
     }
-    
+
     public void UpdateSkins()
     {
         GetSkinsAsync();
@@ -440,7 +440,7 @@ public class ListArchivesModel : BaseListModel
         IsSoldSumOrdering = null;
         IsChangeOrdering = null;
     }
-    
+
     private async void GetStatisticsAsync()
     {
         await StatisticsCancellationTokenSource.CancelAsync();
@@ -455,7 +455,7 @@ public class ListArchivesModel : BaseListModel
                 token);
 
         if (archivesStatisticResponse is null) return;
-        
+
         Count = archivesStatisticResponse.ArchivesCount;
         InvestedSumString = $"{archivesStatisticResponse.InvestmentSum:N2} {_userModel.CurrencyMark}";
         SoldSumString = $"{archivesStatisticResponse.SoldSum:N2} {_userModel.CurrencyMark}";
@@ -489,7 +489,7 @@ public class ListArchivesModel : BaseListModel
 
         SavedItemsCount = archivesResponse.Count;
         PagesCount = archivesResponse.PagesCount;
-        
+
         if (archivesResponse.Archives is null) return;
 
         ArchiveModels = archivesResponse.Archives.Select(x =>

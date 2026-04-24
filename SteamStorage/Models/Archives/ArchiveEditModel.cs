@@ -10,8 +10,8 @@ using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Extensions;
 using SteamStorage.ViewModels.Tools.UtilityViewModels.BaseViewModels;
-using SteamStorageAPI.SDK;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.ApiClient;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Archives;
 
@@ -20,7 +20,7 @@ public class ArchiveEditModel : BaseItemEditModel
     #region Constants
 
     private const string CHANGE_TITLE = "Изменение элемента архива";
-    
+
     private const string ADD_TITLE = "Добавление элемента архива";
 
     #endregion Constants
@@ -33,7 +33,7 @@ public class ArchiveEditModel : BaseItemEditModel
 
     private BaseGroupModel? _defaultArchiveGroupModel;
     private BaseGroupModel? _selectedArchiveGroupModel;
-    
+
     private string _defaultCount;
     private string _count;
 
@@ -51,7 +51,7 @@ public class ArchiveEditModel : BaseItemEditModel
 
     private DateTimeOffset _defaultSoldDate;
     private DateTimeOffset _soldDate;
-    
+
     #endregion Fields
 
     #region Properties
@@ -71,7 +71,7 @@ public class ArchiveEditModel : BaseItemEditModel
             SaveCommand.NotifyCanExecuteChanged();
         }
     }
-    
+
     public string DefaultCount
     {
         get => _defaultCount;
@@ -165,7 +165,7 @@ public class ArchiveEditModel : BaseItemEditModel
     #region Constructor
 
     public ArchiveEditModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         ArchiveGroupsModel archiveGroupsModel,
         IDialogService dialogService,
         INotificationService notificationService) : base(apiClient, dialogService, notificationService)
@@ -189,25 +189,25 @@ public class ArchiveEditModel : BaseItemEditModel
     protected override async Task DoDeleteCommand(CancellationToken cancellationToken)
     {
         if (_archiveModel is null) return;
-        
+
         bool result = await DialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить удалить элемент архива: «{_archiveModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
-        
+
         if (!result) return;
 
         await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteArchive,
             new SteamStorageAPI.SDK.ApiEntities.Archives.DeleteArchiveRequest(_archiveModel.ArchiveId),
             cancellationToken);
-        
+
         await NotificationService.ShowAsync("Удаление элемента архива",
-            $"Вы отправили запрос на удаление элемента архива: {_archiveModel.Title}", 
+            $"Вы отправили запрос на удаление элемента архива: {_archiveModel.Title}",
             cancellationToken: cancellationToken);
-        
+
         OnItemDeleted();
-        
+
         OnGoingBack();
     }
 
@@ -215,10 +215,10 @@ public class ArchiveEditModel : BaseItemEditModel
     {
         if (SelectedSkinModel is null || SelectedArchiveGroupModel is null) return;
 
-        if (!((Count.TryParse(out int count) && count > 0)
-              && (BuyPrice.TryParse(out decimal buyPrice) && buyPrice.IsBetweenInclusive((decimal)0.01, 999999999999))
-              && (SoldPrice.TryParse(out decimal soldPrice) && soldPrice.IsBetweenInclusive((decimal)0.01, 999999999999))
-              && Description?.Length <= 300))
+        if (!(Count.TryParse(out int count) && count > 0
+                                            && BuyPrice.TryParse(out decimal buyPrice) && buyPrice.IsBetweenInclusive((decimal)0.01, 999999999999)
+                                            && SoldPrice.TryParse(out decimal soldPrice) && soldPrice.IsBetweenInclusive((decimal)0.01, 999999999999)
+                                            && Description?.Length <= 300))
             return;
 
         if (IsNewItem)
@@ -241,9 +241,9 @@ public class ArchiveEditModel : BaseItemEditModel
                     BuyDate.DateTime,
                     SoldDate.DateTime),
                 cancellationToken);
-            
+
             await NotificationService.ShowAsync("Добавление элемента архива",
-                $"Вы отправили запрос на добавление элемента архива: {SelectedSkinModel.Title}", 
+                $"Вы отправили запрос на добавление элемента архива: {SelectedSkinModel.Title}",
                 cancellationToken: cancellationToken);
         }
         else if (_archiveModel is not null)
@@ -267,9 +267,9 @@ public class ArchiveEditModel : BaseItemEditModel
                     BuyDate.DateTime,
                     SoldDate.DateTime),
                 cancellationToken);
-            
+
             await NotificationService.ShowAsync("Изменение элемента архива",
-                $"Вы отправили запрос на изменение элемента архива: {SelectedSkinModel.Title}", 
+                $"Вы отправили запрос на изменение элемента архива: {SelectedSkinModel.Title}",
                 cancellationToken: cancellationToken);
         }
         else
@@ -285,9 +285,9 @@ public class ArchiveEditModel : BaseItemEditModel
     protected override bool CanExecuteSaveCommand()
     {
         return SelectedArchiveGroupModel is not null
-               && (Count.TryParse(out int count) && count > 0)
-               && (BuyPrice.TryParse(out decimal buyPrice) && buyPrice.IsBetweenInclusive((decimal)0.01, 999999999999))
-               && (SoldPrice.TryParse(out decimal soldPrice) && soldPrice.IsBetweenInclusive((decimal)0.01, 999999999999))
+               && Count.TryParse(out int count) && count > 0
+               && BuyPrice.TryParse(out decimal buyPrice) && buyPrice.IsBetweenInclusive((decimal)0.01, 999999999999)
+               && SoldPrice.TryParse(out decimal soldPrice) && soldPrice.IsBetweenInclusive((decimal)0.01, 999999999999)
                && Description?.Length <= 300
                && SelectedSkinModel is not null;
     }
@@ -312,7 +312,7 @@ public class ArchiveEditModel : BaseItemEditModel
     public void SetEditArchive(ArchiveModel? model)
     {
         _archiveModel = model;
-        
+
         DefaultArchiveGroupModel = _archiveGroupsModel.ArchiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = $"{model?.Count ?? 1:N0}";
@@ -329,7 +329,7 @@ public class ArchiveEditModel : BaseItemEditModel
         DefaultBuyDate = DateTime.SpecifyKind(model?.BuyDate ?? DateTime.Now, DateTimeKind.Local);
 
         DefaultSoldDate = DateTime.SpecifyKind(model?.SoldDate ?? DateTime.Now, DateTimeKind.Local);
-        
+
         IsNewItem = model is null;
 
         SetValuesFromDefault();
@@ -338,7 +338,7 @@ public class ArchiveEditModel : BaseItemEditModel
     public void SetAddArchive(ArchiveGroupModel? model)
     {
         _archiveModel = null;
-        
+
         DefaultArchiveGroupModel = _archiveGroupsModel.ArchiveGroupModels.FirstOrDefault(x => x.GroupId == model?.GroupId);
 
         DefaultCount = "1";
@@ -364,7 +364,7 @@ public class ArchiveEditModel : BaseItemEditModel
     public void SetAddArchive(ListItemModel? model)
     {
         _archiveModel = null;
-        
+
         DefaultArchiveGroupModel = null;
 
         DefaultCount = "1";
@@ -381,7 +381,7 @@ public class ArchiveEditModel : BaseItemEditModel
         DefaultBuyDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
 
         DefaultSoldDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
-        
+
         IsNewItem = true;
 
         SetValuesFromDefault();

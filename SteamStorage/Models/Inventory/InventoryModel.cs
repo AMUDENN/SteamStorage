@@ -12,8 +12,8 @@ using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.ViewModels.Tools.UtilityViewModels;
-using SteamStorageAPI.SDK;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.ApiClient;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Inventory;
 
@@ -27,7 +27,7 @@ public class InventoryModel : BaseListModel
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
     private readonly PeriodsModel _periodsModel;
@@ -317,7 +317,7 @@ public class InventoryModel : BaseListModel
     #region Constructor
 
     public InventoryModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         ChartTooltipModel chartTooltipModel,
         UserModel userModel,
         PeriodsModel periodsModel,

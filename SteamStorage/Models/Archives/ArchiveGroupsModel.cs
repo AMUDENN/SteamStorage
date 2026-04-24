@@ -10,9 +10,9 @@ using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Events.Archives;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Archives;
 
@@ -40,7 +40,7 @@ public class ArchiveGroupsModel : ModelBase
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly IDialogService _dialogService;
     private readonly INotificationService _notificationService;
 
@@ -75,7 +75,7 @@ public class ArchiveGroupsModel : ModelBase
     #region Constructor
 
     public ArchiveGroupsModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         UserModel userModel,
         IDialogService dialogService,
         INotificationService notificationService)
@@ -139,9 +139,9 @@ public class ArchiveGroupsModel : ModelBase
             ApiConstants.ApiMethods.DeleteArchiveGroup,
             new ArchiveGroups.DeleteArchiveGroupRequest(group.GroupId),
             cancellationToken);
-        
+
         await _notificationService.ShowAsync("Удаление группы",
-            $"Вы отправили запрос на удаление группы: {group.Title}", 
+            $"Вы отправили запрос на удаление группы: {group.Title}",
             cancellationToken: cancellationToken);
 
         GetGroupsAsync();

@@ -8,11 +8,11 @@ public class ExtendedBaseGroupModel : BaseGroupModel
     #region Properties
 
     public int Count { get; }
-    
+
     public DateTime DateCreation { get; }
 
     public string DateCreationString { get; }
-    
+
     public string? Description { get; }
 
     #endregion Properties

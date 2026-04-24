@@ -54,7 +54,7 @@ public class SettingsFile
 
         return default;
     }
-    
+
     private void CreateFile()
     {
         if (File.Exists(_filePath)) return;

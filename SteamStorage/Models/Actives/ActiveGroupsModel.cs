@@ -10,9 +10,9 @@ using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Events.Actives;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Actives;
 
@@ -31,7 +31,7 @@ public class ActiveGroupsModel : ModelBase
     public delegate void EditActiveGroupEventHandler(object? sender, EditActiveGroupEventArgs args);
 
     public event EditActiveGroupEventHandler? EditActiveGroup;
-    
+
     public delegate void DeleteActiveGroupEventHandler(object? sender);
 
     public event DeleteActiveGroupEventHandler? DeleteActiveGroup;
@@ -40,7 +40,7 @@ public class ActiveGroupsModel : ModelBase
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly IDialogService _dialogService;
     private readonly INotificationService _notificationService;
 
@@ -75,7 +75,7 @@ public class ActiveGroupsModel : ModelBase
     #region Constructor
 
     public ActiveGroupsModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         UserModel userModel,
         IDialogService dialogService,
         INotificationService notificationService)
@@ -127,21 +127,21 @@ public class ActiveGroupsModel : ModelBase
     private async Task DoDeleteActiveGroupCommand(ActiveGroupModel? group, CancellationToken cancellationToken)
     {
         if (group is null) return;
-        
+
         bool result = await _dialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить группу: «{group.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
-        
+
         if (!result) return;
 
         await _apiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteActiveGroup,
             new ActiveGroups.DeleteActiveGroupRequest(group.GroupId),
             cancellationToken);
-        
+
         await _notificationService.ShowAsync("Удаление группы",
-            $"Вы отправили запрос на удаление группы: {group.Title}", 
+            $"Вы отправили запрос на удаление группы: {group.Title}",
             cancellationToken: cancellationToken);
 
         GetGroupsAsync();
@@ -180,7 +180,7 @@ public class ActiveGroupsModel : ModelBase
     {
         EditActiveGroup?.Invoke(this, new(group));
     }
-    
+
     private void OnDeleteActiveGroup()
     {
         DeleteActiveGroup?.Invoke(this);

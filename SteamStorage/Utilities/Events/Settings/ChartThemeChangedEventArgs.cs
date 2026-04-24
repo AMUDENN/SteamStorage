@@ -3,7 +3,6 @@ using SteamStorage.Utilities.ThemeVariants;
 
 namespace SteamStorage.Utilities.Events.Settings;
 
-
 public class ChartThemeChangedEventArgs : EventArgs
 {
     #region Properties

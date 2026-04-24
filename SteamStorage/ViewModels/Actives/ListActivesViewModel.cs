@@ -25,7 +25,7 @@ public class ListActivesViewModel : BaseListViewModel
     {
         get => _activeGroupsModel.ActiveGroupModels;
     }
-    
+
     public int Count
     {
         get => _listActivesModel.Count;

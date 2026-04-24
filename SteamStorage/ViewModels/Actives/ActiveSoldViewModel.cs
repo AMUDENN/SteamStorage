@@ -23,7 +23,7 @@ public class ActiveSoldViewModel : BaseEditViewModel
     {
         get => _archiveGroupsModel.ArchiveGroupModels;
     }
-    
+
     public BaseGroupModel? DefaultArchiveGroupModel
     {
         get => _activeSoldModel.DefaultArchiveGroupModel;

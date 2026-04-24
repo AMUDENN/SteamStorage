@@ -240,14 +240,14 @@ public class ProfileModel : ModelBase
         if (string.IsNullOrWhiteSpace(FinancialGoal))
         {
             await _userModel.SetFinancialGoalAsync(null);
-            await _notificationService.ShowAsync("Финансовая цель", 
+            await _notificationService.ShowAsync("Финансовая цель",
                 "Вы удалили финансовую цель");
         }
 
         if (FinancialGoal.TryParse(out decimal financialGoal) && financialGoal.IsBetweenInclusive((decimal)0.01, 999999999999))
         {
             await _userModel.SetFinancialGoalAsync(financialGoal);
-            await _notificationService.ShowAsync("Финансовая цель", 
+            await _notificationService.ShowAsync("Финансовая цель",
                 $"Вы установили финансовую цель: {financialGoal:N2} {SelectedCurrency?.Mark}");
         }
     }
@@ -255,7 +255,7 @@ public class ProfileModel : ModelBase
     private bool CanExecuteSaveFinancialGoal()
     {
         return FinancialGoal != DefaultFinancialGoal
-               && (FinancialGoal.TryParse(out decimal financialGoal) && financialGoal.IsBetweenInclusive((decimal)0.01, 999999999999));
+               && FinancialGoal.TryParse(out decimal financialGoal) && financialGoal.IsBetweenInclusive((decimal)0.01, 999999999999);
     }
 
     private async Task DoDeleteProfileCommand(CancellationToken cancellationToken)
@@ -287,7 +287,7 @@ public class ProfileModel : ModelBase
     private async void SetCurrency(CurrencyModel currencyModel)
     {
         await _userModel.SetCurrencyAsync(currencyModel);
-        await _notificationService.ShowAsync("Смена валюты", 
+        await _notificationService.ShowAsync("Смена валюты",
             $"Вы сменили валюту на {currencyModel.Title}");
     }
 

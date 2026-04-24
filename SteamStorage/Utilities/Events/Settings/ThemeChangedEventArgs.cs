@@ -3,7 +3,6 @@ using Avalonia.Styling;
 
 namespace SteamStorage.Utilities.Events.Settings;
 
-
 public class ThemeChangedEventArgs : EventArgs
 {
     #region Properties

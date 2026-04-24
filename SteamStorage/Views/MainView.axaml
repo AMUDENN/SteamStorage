@@ -65,7 +65,8 @@
                     VerticalAlignment="Top">
                     <Grid>
                         <Border Classes="BackgroundBorder" Opacity="0.5" />
-                        <controls:VectorImage x:Name="AccountVectorImage" Classes="AccountVectorImage ForegroundVectorImage" />
+                        <controls:VectorImage x:Name="AccountVectorImage"
+                                              Classes="AccountVectorImage ForegroundVectorImage" />
                         <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}" />
                     </Grid>
                 </Border>

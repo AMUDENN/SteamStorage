@@ -29,7 +29,8 @@
 
                             <i:Interaction.Behaviors>
                                 <ia:EventTriggerBehavior EventName="DoubleTapped">
-                                    <ia:InvokeCommandAction Command="{Binding OpenActivesCommand, Mode=OneWay}" CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}" />
+                                    <ia:InvokeCommandAction Command="{Binding OpenActivesCommand, Mode=OneWay}"
+                                                            CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}" />
                                 </ia:EventTriggerBehavior>
                             </i:Interaction.Behaviors>
 
@@ -45,7 +46,8 @@
                                         CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"
                                         Header="Добавить актив" />
                                     <Separator />
-                                    <MenuItem Command="{Binding AddActiveGroupCommand, Mode=OneWay}" Header="Добавить группу" />
+                                    <MenuItem Command="{Binding AddActiveGroupCommand, Mode=OneWay}"
+                                              Header="Добавить группу" />
                                     <Separator />
                                     <MenuItem
                                         Command="{Binding EditActiveGroupCommand, Mode=OneWay}"
@@ -150,7 +152,8 @@
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Финансовая цель: " />
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock" Text="{Binding GoalSumString}" />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock"
+                                                   Text="{Binding GoalSumString}" />
 
                                     </StackPanel>
 
@@ -161,7 +164,8 @@
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата создания: " />
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock" Text="{Binding DateCreationString}" />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock"
+                                                   Text="{Binding DateCreationString}" />
 
                                     </StackPanel>
 
@@ -191,7 +195,8 @@
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Период: " />
 
-                                        <TextBlock Classes="SmallTextBlock CenterTextBlock CopyTextBlock" Text="{Binding DatePeriod, Mode=OneWay}" />
+                                        <TextBlock Classes="SmallTextBlock CenterTextBlock CopyTextBlock"
+                                                   Text="{Binding DatePeriod, Mode=OneWay}" />
 
                                     </StackPanel>
 

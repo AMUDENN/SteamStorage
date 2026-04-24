@@ -1,6 +1,6 @@
 ﻿using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.ThemeService;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 
 namespace SteamStorage.Models.Tools.UtilityModels;
 
@@ -19,7 +19,7 @@ public class InventoryItemModel : BaseDynamicsSkinModel
     #region Constructor
 
     public InventoryItemModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         PeriodsModel periodsModel,
         IThemeService themeService,
         int skinId,

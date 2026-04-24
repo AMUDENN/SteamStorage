@@ -1,0 +1,89 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build & Publish (${{ matrix.rid }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            rid: win-x64
+          - os: ubuntu-latest
+            rid: linux-x64
+          - os: macos-latest
+            rid: osx-arm64
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        run: dotnet restore SteamStorage/SteamStorage.csproj
+
+      - name: Build
+        run: dotnet build SteamStorage/SteamStorage.csproj -c Release --no-restore
+
+      - name: Publish
+        run: >
+          dotnet publish SteamStorage/SteamStorage.csproj
+          -c Release
+          -r ${{ matrix.rid }}
+          --self-contained
+          -o publish/${{ matrix.rid }}
+          --no-restore
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SteamStorage-${{ matrix.rid }}
+          path: publish/${{ matrix.rid }}
+          retention-days: 14
+
+  release:
+    name: Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get version
+        id: version
+        shell: bash
+        run: |
+          VERSION=$(grep -oP '(?<=<AssemblyVersion>)[^<]+' SteamStorage/SteamStorage.csproj)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Zip artifacts
+        run: |
+          cd artifacts
+          for dir in */; do
+            rid="${dir%/}"
+            zip -r "../SteamStorage-${rid}.zip" "$dir"
+          done
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: SteamStorage v${{ steps.version.outputs.version }}
+          draft: true
+          files: SteamStorage-*.zip

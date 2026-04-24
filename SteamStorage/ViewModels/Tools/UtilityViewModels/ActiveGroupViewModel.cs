@@ -42,12 +42,12 @@ public class ActiveGroupViewModel : BaseExtendedGroupViewModel
         get => _model.CurrentSumString;
     }
 
-    public double Change
+    public decimal Change
     {
         get => _model.Change;
     }
 
-    public double? ChangePeriod
+    public decimal? ChangePeriod
     {
         get => _model.ChangePeriod;
     }

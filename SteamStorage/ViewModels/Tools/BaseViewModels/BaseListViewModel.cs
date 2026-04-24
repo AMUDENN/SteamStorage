@@ -9,14 +9,14 @@ public abstract class BaseListViewModel : ViewModelBase
     private readonly BaseListModel _baseListModel;
 
     #endregion Fields
-    
+
     #region Properties
-    
+
     public string? NotFoundText
     {
         get => _baseListModel.NotFoundText;
     }
-    
+
     public bool IsLoading
     {
         get => _baseListModel.IsLoading;
@@ -52,9 +52,9 @@ public abstract class BaseListViewModel : ViewModelBase
     {
         get => _baseListModel.SavedItemsCount;
     }
-    
+
     #endregion Properties
-    
+
     #region Constructor
 
     protected BaseListViewModel(

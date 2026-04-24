@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.Utilities.Events;
 
 namespace SteamStorage.Services.Settings.SettingsService;
@@ -31,7 +31,7 @@ public class SettingsService : ISettingsService, IDisposable
 
     public SettingsService(
         string programName,
-        ApiClient apiClient,
+        IApiClient apiClient,
         IThemeService themeService)
     {
         _file = new(programName);

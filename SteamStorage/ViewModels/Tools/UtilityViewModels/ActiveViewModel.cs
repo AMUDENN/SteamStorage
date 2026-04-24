@@ -47,7 +47,7 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
         get => _model.GoalPriceString;
     }
 
-    public double Change
+    public decimal Change
     {
         get => _model.Change;
     }

@@ -39,7 +39,8 @@
                                                             Thickness="20" />
                                                     </GeometryDrawing.Pen>
                                                     <GeometryDrawing.Geometry>
-                                                        <LineGeometry StartPoint="371.47,140.53" EndPoint="140.53,371.47" />
+                                                        <LineGeometry StartPoint="371.47,140.53"
+                                                                      EndPoint="140.53,371.47" />
                                                     </GeometryDrawing.Geometry>
                                                 </GeometryDrawing>
                                                 <GeometryDrawing>
@@ -51,7 +52,8 @@
                                                             Thickness="20" />
                                                     </GeometryDrawing.Pen>
                                                     <GeometryDrawing.Geometry>
-                                                        <LineGeometry StartPoint="371.47,371.47" EndPoint="140.53,140.53" />
+                                                        <LineGeometry StartPoint="371.47,371.47"
+                                                                      EndPoint="140.53,140.53" />
                                                     </GeometryDrawing.Geometry>
                                                 </GeometryDrawing>
                                             </DrawingGroup>

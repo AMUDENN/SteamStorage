@@ -24,7 +24,7 @@ public class ArchiveModel : BaseSkinModel
 
     public string SoldSumString { get; }
 
-    public double Change { get; }
+    public decimal Change { get; }
 
     public DateTime BuyDate { get; }
 
@@ -33,7 +33,7 @@ public class ArchiveModel : BaseSkinModel
     public DateTime SoldDate { get; }
 
     public string SoldDateString { get; }
-    
+
     public string? Description { get; }
 
     #endregion Properties
@@ -52,7 +52,7 @@ public class ArchiveModel : BaseSkinModel
         decimal soldPrice,
         decimal soldSum,
         string currencyMark,
-        double change,
+        decimal change,
         DateTime buyDate,
         DateTime soldDate,
         string? description) : base(skinId, imageUrl, marketUrl, title)

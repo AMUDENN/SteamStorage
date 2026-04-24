@@ -10,9 +10,9 @@ using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Tools.UtilityModels;
 
@@ -26,11 +26,11 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly PeriodsModel _periodsModel;
     private readonly IThemeService _themeService;
 
-    private double? _changePeriod;
+    private decimal? _changePeriod;
     private string? _datePeriod;
     private IEnumerable<ActiveGroups.ActiveGroupDynamicResponse>? _groupDynamic;
     private IEnumerable<ISeries> _changeSeries;
@@ -44,20 +44,20 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
     #endregion Fields
 
     #region Properties
-    
-    public double? GoalSumCompletion { get; }
+
+    public decimal? GoalSumCompletion { get; }
 
     public string BuySumString { get; }
 
     public string CurrentSumString { get; }
 
     public decimal? GoalSum { get; }
-    
+
     public string GoalSumString { get; }
 
-    public double Change { get; }
+    public decimal Change { get; }
 
-    public double? ChangePeriod
+    public decimal? ChangePeriod
     {
         get => _changePeriod;
         private set => SetProperty(ref _changePeriod, value);
@@ -134,7 +134,7 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
     #region Constructor
 
     public ActiveGroupModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         PeriodsModel periodsModel,
         IThemeService themeService,
         int groupId,
@@ -142,25 +142,25 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         string colour,
         int count,
         decimal? goalSum,
-        double? goalSumCompletion,
+        decimal? goalSumCompletion,
         decimal buySum,
         decimal currentSum,
         string currencyMark,
-        double change,
+        decimal change,
         DateTime dateCreation,
         string? description) : base(groupId, title, colour, count, dateCreation, description)
     {
         _apiClient = apiClient;
         _periodsModel = periodsModel;
         _themeService = themeService;
-        
+
         periodsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
-        
+
         GoalSum = goalSum;
-        
+
         GoalSumCompletion = goalSumCompletion;
-        
+
         BuySumString = $"{buySum:N2} {currencyMark}";
         CurrentSumString = $"{currentSum:N2} {currencyMark}";
         GoalSumString = goalSum is null ? "(не установлена)" : $"{goalSum:N2} {currencyMark} ({goalSumCompletion:N0}%)";
@@ -182,7 +182,7 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
     {
         GetDynamicChart();
     }
-    
+
     public void UpdateStats()
     {
         SelectedPeriodModel = _periodsModel.GetDefault();

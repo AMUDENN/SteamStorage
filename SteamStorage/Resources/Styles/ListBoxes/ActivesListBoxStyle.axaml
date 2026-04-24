@@ -28,7 +28,8 @@
 
                             <Border.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Command="{Binding OpenInSteamCommand, Mode=OneWay}" Header="Открыть в Steam" />
+                                    <MenuItem Command="{Binding OpenInSteamCommand, Mode=OneWay}"
+                                              Header="Открыть в Steam" />
                                     <Separator />
                                     <MenuItem
                                         Command="{Binding EditCommand, Mode=OneWay}"
@@ -152,7 +153,8 @@
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Финансовая цель: " />
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock" Text="{Binding GoalPriceString}" />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock"
+                                                   Text="{Binding GoalPriceString}" />
 
                                     </StackPanel>
 
@@ -163,7 +165,8 @@
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата покупки: " />
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock" Text="{Binding BuyDateString}" />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock"
+                                                   Text="{Binding BuyDateString}" />
 
                                     </StackPanel>
 
@@ -193,7 +196,8 @@
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Период: " />
 
-                                        <TextBlock Classes="SmallTextBlock CenterTextBlock CopyTextBlock" Text="{Binding DatePeriod, Mode=OneWay}" />
+                                        <TextBlock Classes="SmallTextBlock CenterTextBlock CopyTextBlock"
+                                                   Text="{Binding DatePeriod, Mode=OneWay}" />
 
                                     </StackPanel>
 

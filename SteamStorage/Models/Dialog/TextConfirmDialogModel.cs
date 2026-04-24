@@ -32,7 +32,7 @@ public class TextConfirmDialogModel : BaseDialogModel
         get => _inputText;
         set
         {
-            SetProperty(ref _inputText, value); 
+            SetProperty(ref _inputText, value);
             SetDialogResultTrueCommand.NotifyCanExecuteChanged();
         }
     }

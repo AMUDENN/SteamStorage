@@ -17,7 +17,7 @@ public class BaseSkinViewModel : ViewModelBase
     {
         get => _model.SkinId;
     }
-    
+
     public string ImageUrl
     {
         get => _model.ImageUrl;

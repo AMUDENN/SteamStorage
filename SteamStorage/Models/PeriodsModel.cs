@@ -28,7 +28,7 @@ public class PeriodsModel : ModelBase
     public PeriodsModel()
     {
         _periodModels = [];
-        
+
         PeriodModels =
         [
             new("1 день", "1 д", 1),
@@ -39,7 +39,7 @@ public class PeriodsModel : ModelBase
     }
 
     #endregion Constructor
-    
+
     #region Methods
 
     public PeriodModel? GetDefault()
@@ -52,6 +52,6 @@ public class PeriodsModel : ModelBase
             _ => null
         };
     }
-    
+
     #endregion Methods
 }

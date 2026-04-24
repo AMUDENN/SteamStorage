@@ -28,7 +28,7 @@ public class TextConfirmDialogViewModel : BaseDialogViewModel
         get => _textConfirmDialogModel.InputText;
         set => _textConfirmDialogModel.InputText = value;
     }
-    
+
     #endregion Properties
 
     #region Constructor
@@ -47,6 +47,6 @@ public class TextConfirmDialogViewModel : BaseDialogViewModel
     {
         _textConfirmDialogModel.SetConfirmData(message, confirmText);
     }
-    
+
     #endregion Methods
 }

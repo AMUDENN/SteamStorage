@@ -17,7 +17,7 @@ public class BaseExtendedGroupViewModel : BaseGroupViewModel
     {
         get => _model.Count;
     }
-    
+
     public DateTime DateCreation
     {
         get => _model.DateCreation;

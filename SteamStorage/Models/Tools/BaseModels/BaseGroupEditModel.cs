@@ -2,7 +2,7 @@
 using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 
 namespace SteamStorage.Models.Tools.BaseModels;
 
@@ -94,7 +94,7 @@ public abstract class BaseGroupEditModel : BaseEditModel
     #region Constructor
 
     protected BaseGroupEditModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         IDialogService dialogService,
         INotificationService notificationService) : base(apiClient, dialogService, notificationService)
     {

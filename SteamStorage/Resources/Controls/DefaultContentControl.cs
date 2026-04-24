@@ -13,7 +13,7 @@ public class DefaultContentControl : ContentControl
 
     public static readonly StyledProperty<string?> HeaderProperty =
         AvaloniaProperty.Register<DefaultContentControl, string?>(nameof(Header));
-    
+
     public static readonly StyledProperty<object?> DefaultValueProperty =
         AvaloniaProperty.Register<DefaultContentControl, object?>(nameof(DefaultValue));
 
@@ -29,7 +29,7 @@ public class DefaultContentControl : ContentControl
         get => GetValue(HeaderProperty);
         set => SetValue(HeaderProperty, value);
     }
-    
+
     public object? DefaultValue
     {
         get => GetValue(DefaultValueProperty);

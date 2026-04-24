@@ -26,7 +26,7 @@ public static class StringExtension
     {
         return int.TryParse(input, NumberStyles.Any, _numberGroupSeparator, out number);
     }
-    
+
     public static bool TryParse(this string? input, out decimal number)
     {
         return decimal.TryParse(input, NumberStyles.Any, _numberDecimalSeparator, out number);

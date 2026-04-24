@@ -51,7 +51,7 @@ public class ArchivesReviewViewModel : ViewModelBase
     {
         get => _archivesReviewModel.ArchiveGroupsGameSoldSumSeries;
     }
-    
+
     public double ChartMinWidth
     {
         get => _archivesReviewModel.ChartMinWidth;
@@ -126,7 +126,7 @@ public class ArchivesReviewViewModel : ViewModelBase
     {
         get => _archivesReviewModel.AttachedToVisualTreeCommand;
     }
-    
+
     public RelayCommand AddArchiveGroupCommand
     {
         get => _archiveGroupsModel.AddArchiveGroupCommand;
@@ -151,13 +151,13 @@ public class ArchivesReviewViewModel : ViewModelBase
     }
 
     #endregion Constructor
-    
+
     #region Methods
 
     public void UpdateGroups()
     {
         _archivesReviewModel.UpdateGroups();
     }
-    
+
     #endregion Methods
 }

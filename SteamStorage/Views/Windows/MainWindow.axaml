@@ -23,6 +23,7 @@
         </ia:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
-    <TransitioningContentControl Classes="CrossFadeTransitioningContentControl" Content="{Binding MainViewModel, Mode=OneWay}" />
+    <TransitioningContentControl Classes="CrossFadeTransitioningContentControl"
+                                 Content="{Binding MainViewModel, Mode=OneWay}" />
 
 </Window>

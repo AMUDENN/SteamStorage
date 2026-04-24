@@ -27,7 +27,8 @@
 
                             <i:Interaction.Behaviors>
                                 <ia:EventTriggerBehavior EventName="DoubleTapped">
-                                    <ia:InvokeCommandAction Command="{Binding OpenArchivesCommand, Mode=OneWay}" CommandParameter="{Binding ArchiveGroupModel, Mode=OneWay}" />
+                                    <ia:InvokeCommandAction Command="{Binding OpenArchivesCommand, Mode=OneWay}"
+                                                            CommandParameter="{Binding ArchiveGroupModel, Mode=OneWay}" />
                                 </ia:EventTriggerBehavior>
                             </i:Interaction.Behaviors>
 
@@ -43,7 +44,8 @@
                                         CommandParameter="{Binding ArchiveGroupModel, Mode=OneWay}"
                                         Header="Добавить элемент архива" />
                                     <Separator />
-                                    <MenuItem Command="{Binding AddArchiveGroupCommand, Mode=OneWay}" Header="Добавить группу" />
+                                    <MenuItem Command="{Binding AddArchiveGroupCommand, Mode=OneWay}"
+                                              Header="Добавить группу" />
                                     <Separator />
                                     <MenuItem
                                         Command="{Binding EditArchiveGroupCommand, Mode=OneWay}"
@@ -146,7 +148,8 @@
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата создания: " />
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock" Text="{Binding DateCreationString}" />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock"
+                                                   Text="{Binding DateCreationString}" />
 
                                     </StackPanel>
 

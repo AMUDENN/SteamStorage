@@ -8,11 +8,10 @@ using SteamStorage.Models.Tools;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Services.Ping.PingResult;
-using SteamStorageAPI.SDK.Services.Ping.PingService;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Services.PingService;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Home;
 
@@ -28,18 +27,18 @@ public class StatisticsModel : ModelBase
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly IPingService _pingService;
     private readonly UserModel _userModel;
     private readonly IThemeService _themeService;
 
     private string _investedSumString;
-    private double _investedSumGrowth;
+    private decimal _investedSumGrowth;
     private IEnumerable<ISeries> _investedSumGrowthSeries;
     private double _investedSumWidth;
 
     private string _financialGoalString;
-    private double _financialGoalPercentageCompletion;
+    private decimal _financialGoalPercentageCompletion;
     private IEnumerable<ISeries> _financialGoalPercentageCompletionSeries;
     private double _financialGoalWidth;
 
@@ -47,11 +46,11 @@ public class StatisticsModel : ModelBase
 
     private int _activesCount;
     private string _activesCurrentSumString;
-    private double _activesPercentageGrowth;
+    private decimal _activesPercentageGrowth;
 
     private int _archivesCount;
     private string _archivesSoldSumString;
-    private double _archivesPercentageGrowth;
+    private decimal _archivesPercentageGrowth;
 
     private int _inventoryCount;
     private string _inventorySumString;
@@ -72,7 +71,7 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _investedSumString, value);
     }
 
-    public double InvestedSumGrowth
+    public decimal InvestedSumGrowth
     {
         get => _investedSumGrowth;
         private set
@@ -100,7 +99,7 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _financialGoalString, value);
     }
 
-    public double FinancialGoalPercentageCompletion
+    public decimal FinancialGoalPercentageCompletion
     {
         get => _financialGoalPercentageCompletion;
         private set
@@ -140,7 +139,7 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _activesCurrentSumString, value);
     }
 
-    public double ActivesPercentageGrowth
+    public decimal ActivesPercentageGrowth
     {
         get => _activesPercentageGrowth;
         private set => SetProperty(ref _activesPercentageGrowth, value);
@@ -158,7 +157,7 @@ public class StatisticsModel : ModelBase
         private set => SetProperty(ref _archivesSoldSumString, value);
     }
 
-    public double ArchivesPercentageGrowth
+    public decimal ArchivesPercentageGrowth
     {
         get => _archivesPercentageGrowth;
         private set => SetProperty(ref _archivesPercentageGrowth, value);
@@ -272,7 +271,7 @@ public class StatisticsModel : ModelBase
     #region Constructor
 
     public StatisticsModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         IPingService pingService,
         UserModel userModel,
         IThemeService themeService)
@@ -343,11 +342,11 @@ public class StatisticsModel : ModelBase
 
     private void GetInvestedSumGrowthSeries()
     {
-        double growth = InvestedSumGrowth < 0 ? 0 : InvestedSumGrowth > 1 ? 100 : InvestedSumGrowth * 100;
+        decimal growth = InvestedSumGrowth < 0 ? 0 : InvestedSumGrowth > 1 ? 100 : InvestedSumGrowth * 100;
 
         InvestedSumGrowthSeries = GaugeGenerator.BuildSolidGauge(
             new GaugeItem(
-                growth,
+                (double)growth,
                 series =>
                 {
                     series.MaxRadialColumnWidth = 20;
@@ -362,19 +361,19 @@ public class StatisticsModel : ModelBase
                     .GetChartColor(ChartThemeVariants.ChartColors.ThirdAccent).Color);
             }));
 
-        InvestedSumWidth = InvestedSumWidth < INVESTED_SUM_WIDTH_DEFAULT 
-            ? InvestedSumWidth + 1 
+        InvestedSumWidth = InvestedSumWidth < INVESTED_SUM_WIDTH_DEFAULT
+            ? InvestedSumWidth + 1
             : InvestedSumWidth - 1;
     }
 
     private void GetFinancialGoalPercentageCompletion()
     {
-        double growth = FinancialGoalPercentageCompletion < 0 ? 0 :
+        decimal growth = FinancialGoalPercentageCompletion < 0 ? 0 :
             FinancialGoalPercentageCompletion > 1 ? 100 : FinancialGoalPercentageCompletion * 100;
 
         FinancialGoalPercentageCompletionSeries = GaugeGenerator.BuildSolidGauge(
             new GaugeItem(
-                growth,
+                (double)growth,
                 series =>
                 {
                     series.MaxRadialColumnWidth = 20;
@@ -470,7 +469,7 @@ public class StatisticsModel : ModelBase
 
     private async void RefreshPingAsync()
     {
-        PingResult pingResult = await _pingService.GetPing();
+        PingResult pingResult = await _pingService.GetPingAsync();
         Ping = pingResult.Ping;
         Status = pingResult.Status;
     }

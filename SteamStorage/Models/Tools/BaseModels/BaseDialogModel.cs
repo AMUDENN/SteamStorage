@@ -8,9 +8,9 @@ public abstract class BaseDialogModel : ModelBase
     #region Commands
 
     public RelayCommand<object> SetDialogResultCommand { get; }
-    
+
     public RelayCommand SetDialogResultTrueCommand { get; }
-    
+
     public RelayCommand SetDialogResultFalseCommand { get; }
 
     #endregion Commands
@@ -37,7 +37,7 @@ public abstract class BaseDialogModel : ModelBase
     {
         return true;
     }
-    
+
     private void DoSetDialogResultTrueCommand()
     {
         IDialogService.CurrentDialogWindow?.Close(true);
@@ -47,7 +47,7 @@ public abstract class BaseDialogModel : ModelBase
     {
         return true;
     }
-    
+
     private void DoSetDialogResultFalseCommand()
     {
         IDialogService.CurrentDialogWindow?.Close(false);

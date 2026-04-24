@@ -11,7 +11,7 @@ public class ArchiveGroupModel : ExtendedBaseGroupModel
 
     public string SoldSumString { get; }
 
-    public double Change { get; }
+    public decimal Change { get; }
 
     #endregion Properties
 
@@ -25,7 +25,7 @@ public class ArchiveGroupModel : ExtendedBaseGroupModel
         decimal buySum,
         decimal soldSum,
         string currencyMark,
-        double change,
+        decimal change,
         DateTime dateCreation,
         string? description) : base(groupId, title, colour, count, dateCreation, description)
     {

@@ -91,10 +91,10 @@ public class ArchivesModel : ModelBase
 
         archiveEditModel.GoingBack += GoingBackHandler;
         archiveGroupEditModel.GoingBack += GoingBackHandler;
-        
+
         archiveEditModel.ItemDeleted += ArchiveItemDeletedHandler;
         archiveGroupEditModel.ItemDeleted += ArchiveGroupItemDeletedHandler;
-        
+
         archiveEditModel.ItemChanged += ArchiveItemChangedHandler;
         activeSoldModel.ItemChanged += ArchiveItemChangedHandler;
         archiveGroupEditModel.ItemChanged += ArchiveGroupItemChangedHandler;
@@ -170,22 +170,22 @@ public class ArchivesModel : ModelBase
         if (SelectedSecondaryNavigationModel != _lastSecondaryNavigationModel)
             SelectedSecondaryNavigationModel = _lastSecondaryNavigationModel;
     }
-    
+
     private void ArchiveItemDeletedHandler(object? sender)
     {
         _listArchivesModel.UpdateSkins();
     }
-    
+
     private void ArchiveGroupItemDeletedHandler(object? sender)
     {
         _archiveGroupsModel.UpdateGroups();
     }
-    
+
     private void ArchiveItemChangedHandler(object? sender)
     {
         _listArchivesModel.UpdateSkins();
     }
-    
+
     private void ArchiveGroupItemChangedHandler(object? sender)
     {
         _archiveGroupsModel.UpdateGroups();

@@ -56,7 +56,7 @@ public class ActiveGroupEditViewModel : BaseGroupEditViewModel
         get => _activeGroupEditModel.GoalSumCompletion;
     }
 
-    public double ChangePeriod
+    public decimal ChangePeriod
     {
         get => _activeGroupEditModel.ChangePeriod;
     }

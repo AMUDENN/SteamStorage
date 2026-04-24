@@ -24,7 +24,7 @@ public class StatisticsViewModel : ViewModelBase
         get => _statisticsModel.InvestedSumString;
     }
 
-    public double InvestedSumGrowth
+    public decimal InvestedSumGrowth
     {
         get => _statisticsModel.InvestedSumGrowth;
     }
@@ -33,7 +33,7 @@ public class StatisticsViewModel : ViewModelBase
     {
         get => _statisticsModel.InvestedSumGrowthSeries;
     }
-    
+
     public double InvestedSumWidth
     {
         get => _statisticsModel.InvestedSumWidth;
@@ -44,7 +44,7 @@ public class StatisticsViewModel : ViewModelBase
         get => _statisticsModel.FinancialGoalString;
     }
 
-    public double FinancialGoalPercentageCompletion
+    public decimal FinancialGoalPercentageCompletion
     {
         get => _statisticsModel.FinancialGoalPercentageCompletion;
     }
@@ -53,7 +53,7 @@ public class StatisticsViewModel : ViewModelBase
     {
         get => _statisticsModel.FinancialGoalPercentageCompletionSeries;
     }
-    
+
     public double FinancialGoalWidth
     {
         get => _statisticsModel.FinancialGoalWidth;
@@ -74,7 +74,7 @@ public class StatisticsViewModel : ViewModelBase
         get => _statisticsModel.ActivesCurrentSumString;
     }
 
-    public double ActivesPercentageGrowth
+    public decimal ActivesPercentageGrowth
     {
         get => _statisticsModel.ActivesPercentageGrowth;
     }
@@ -89,7 +89,7 @@ public class StatisticsViewModel : ViewModelBase
         get => _statisticsModel.ArchivesSoldSumString;
     }
 
-    public double ArchivesPercentageGrowth
+    public decimal ArchivesPercentageGrowth
     {
         get => _statisticsModel.ArchivesPercentageGrowth;
     }
@@ -108,7 +108,7 @@ public class StatisticsViewModel : ViewModelBase
     {
         get => _statisticsModel.InventoryGamesSeries;
     }
-    
+
     public double InventoryGamesWidth
     {
         get => _statisticsModel.InventoryGamesWidth;

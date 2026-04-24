@@ -129,10 +129,14 @@
 
             <!--  Themes  -->
             <ResourceDictionary.ThemeDictionaries>
-                <ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.Classic}" Source="avares://SteamStorage/Resources/Themes/ClassicTheme.axaml" />
-                <ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.Lime}" Source="avares://SteamStorage/Resources/Themes/LimeTheme.axaml" />
-                <ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.VeryDark}" Source="avares://SteamStorage/Resources/Themes/VeryDarkTheme.axaml" />
-                <ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.VeryLight}" Source="avares://SteamStorage/Resources/Themes/VeryLightTheme.axaml" />
+                <ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.Classic}"
+                                 Source="avares://SteamStorage/Resources/Themes/ClassicTheme.axaml" />
+                <ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.Lime}"
+                                 Source="avares://SteamStorage/Resources/Themes/LimeTheme.axaml" />
+                <ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.VeryDark}"
+                                 Source="avares://SteamStorage/Resources/Themes/VeryDarkTheme.axaml" />
+                <ResourceInclude x:Key="{x:Static themeVariants:ThemeVariants.VeryLight}"
+                                 Source="avares://SteamStorage/Resources/Themes/VeryLightTheme.axaml" />
             </ResourceDictionary.ThemeDictionaries>
 
         </ResourceDictionary>

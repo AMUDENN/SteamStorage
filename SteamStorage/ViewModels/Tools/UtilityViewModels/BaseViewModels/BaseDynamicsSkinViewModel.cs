@@ -19,7 +19,7 @@ public class BaseDynamicsSkinViewModel : BaseSkinViewModel
 
     #region Properties
 
-    public double? ChangePeriod
+    public decimal? ChangePeriod
     {
         get => _model.ChangePeriod;
     }
@@ -58,7 +58,7 @@ public class BaseDynamicsSkinViewModel : BaseSkinViewModel
     {
         get => _chartTooltipModel.TooltipBackgroundPaint;
     }
-    
+
     public IEnumerable<PeriodModel> PeriodModels
     {
         get => _model.PeriodModels;
@@ -69,7 +69,7 @@ public class BaseDynamicsSkinViewModel : BaseSkinViewModel
         get => _model.SelectedPeriodModel;
         set => _model.SelectedPeriodModel = value;
     }
-    
+
     public bool IsLoading
     {
         get => _model.IsLoading;

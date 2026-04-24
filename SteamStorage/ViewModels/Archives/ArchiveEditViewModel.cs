@@ -22,7 +22,7 @@ public class ArchiveEditViewModel : BaseItemEditViewModel
     {
         get => _archiveGroupsModel.ArchiveGroupModels;
     }
-    
+
     public BaseGroupModel? DefaultArchiveGroupModel
     {
         get => _archiveEditModel.DefaultArchiveGroupModel;

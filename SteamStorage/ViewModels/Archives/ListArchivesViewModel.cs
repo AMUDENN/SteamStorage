@@ -25,7 +25,7 @@ public class ListArchivesViewModel : BaseListViewModel
     {
         get => _archiveGroupsModel.ArchiveGroupModels;
     }
-    
+
     public int Count
     {
         get => _listArchivesModel.Count;

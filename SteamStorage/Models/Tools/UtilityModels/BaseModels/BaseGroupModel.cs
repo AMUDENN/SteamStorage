@@ -7,7 +7,7 @@ public class BaseGroupModel : ModelBase
     public int GroupId { get; }
 
     public string Title { get; }
-    
+
     public string Colour { get; }
 
     #endregion Properties

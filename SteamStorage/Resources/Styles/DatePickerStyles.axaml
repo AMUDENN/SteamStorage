@@ -175,7 +175,8 @@
         </Style>
     </Style>
 
-    <Style Selector="DatePickerPresenter RepeatButton#PART_MonthUpButton,                      DatePickerPresenter RepeatButton#PART_DayUpButton,                      DatePickerPresenter RepeatButton#PART_YearUpButton">
+    <Style
+        Selector="DatePickerPresenter RepeatButton#PART_MonthUpButton,                      DatePickerPresenter RepeatButton#PART_DayUpButton,                      DatePickerPresenter RepeatButton#PART_YearUpButton">
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Content">
             <Template>
@@ -193,7 +194,8 @@
         </Setter>
     </Style>
 
-    <Style Selector="DatePickerPresenter RepeatButton#PART_MonthDownButton,                      DatePickerPresenter RepeatButton#PART_DayDownButton,                      DatePickerPresenter RepeatButton#PART_YearDownButton">
+    <Style
+        Selector="DatePickerPresenter RepeatButton#PART_MonthDownButton,                      DatePickerPresenter RepeatButton#PART_DayDownButton,                      DatePickerPresenter RepeatButton#PART_YearDownButton">
         <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="Content">
             <Template>
@@ -229,7 +231,8 @@
         </Style>
     </Style>
 
-    <Style Selector="DatePickerPresenter Button#PART_AcceptButton,                      DatePickerPresenter Button#PART_DismissButton">
+    <Style
+        Selector="DatePickerPresenter Button#PART_AcceptButton,                      DatePickerPresenter Button#PART_DismissButton">
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -262,7 +265,8 @@
                         <Grid x:Name="PART_PickerContainer">
                             <!--  Column Definitions set in code, ignore here  -->
                             <Panel x:Name="PART_MonthHost">
-                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                              VerticalScrollBarVisibility="Hidden">
                                     <DateTimePickerPanel
                                         x:Name="PART_MonthSelector"
                                         ItemHeight="{DynamicResource DatePickerFlyoutPresenterItemHeight}"
@@ -273,7 +277,8 @@
                                 <RepeatButton x:Name="PART_MonthDownButton" />
                             </Panel>
                             <Panel x:Name="PART_DayHost">
-                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                              VerticalScrollBarVisibility="Hidden">
                                     <DateTimePickerPanel
                                         x:Name="PART_DaySelector"
                                         ItemHeight="{DynamicResource DatePickerFlyoutPresenterItemHeight}"
@@ -284,7 +289,8 @@
                                 <RepeatButton x:Name="PART_DayDownButton" />
                             </Panel>
                             <Panel x:Name="PART_YearHost">
-                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                              VerticalScrollBarVisibility="Hidden">
                                     <DateTimePickerPanel
                                         x:Name="PART_YearSelector"
                                         ItemHeight="{DynamicResource DatePickerFlyoutPresenterItemHeight}"

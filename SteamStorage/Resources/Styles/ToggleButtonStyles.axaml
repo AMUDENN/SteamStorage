@@ -24,7 +24,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="4" MinWidth="4" />
@@ -62,7 +63,8 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style Selector="^:indeterminate /template/ controls|VectorImage#UpVectorImage, ^:indeterminate /template/ controls|VectorImage#DownVectorImage">
+        <Style
+            Selector="^:indeterminate /template/ controls|VectorImage#UpVectorImage, ^:indeterminate /template/ controls|VectorImage#DownVectorImage">
             <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
         </Style>
         <Style Selector="^:checked">
@@ -159,7 +161,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
 
                         <controls:VectorImage
                             x:Name="ExcellentConnectionVectorImage"

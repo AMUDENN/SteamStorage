@@ -7,18 +7,18 @@ using Avalonia.Controls;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
 using SteamStorage.ViewModels.Tools.UtilityViewModels.BaseViewModels;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Tools.BaseModels;
 
 public abstract class BaseItemEditModel : BaseEditModel
 {
     #region Fields
-    
+
     private static readonly char[] _separator = [' '];
-    
+
     private bool _isNewItem;
 
     private BaseSkinViewModel? _defaultSkinModel;
@@ -33,7 +33,7 @@ public abstract class BaseItemEditModel : BaseEditModel
     #endregion Fields
 
     #region Properties
-    
+
     public bool IsNewItem
     {
         get => _isNewItem;
@@ -96,7 +96,7 @@ public abstract class BaseItemEditModel : BaseEditModel
     #region Constructor
 
     protected BaseItemEditModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         IDialogService dialogService,
         INotificationService notificationService) : base(apiClient, dialogService, notificationService)
     {

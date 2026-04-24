@@ -7,9 +7,9 @@ using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.ListItems;
 using SteamStorage.ViewModels.Tools.UtilityViewModels;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Home;
 
@@ -29,7 +29,7 @@ public class ListItemsModel : BaseListModel
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly ChartTooltipModel _chartTooltipModel;
     private readonly UserModel _userModel;
     private readonly PeriodsModel _periodsModel;
@@ -52,7 +52,7 @@ public class ListItemsModel : BaseListModel
 
     private List<ListItemViewModel> _listItemModels;
     private ListItemViewModel? _selectedListItemModel;
-    
+
     private CancellationTokenSource _cancellationTokenSource;
 
     #endregion Fields
@@ -215,7 +215,7 @@ public class ListItemsModel : BaseListModel
     {
         get => ListItemModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
     }
-    
+
     private Skins.SkinOrderName? SkinOrderName
     {
         get => _skinOrderName;
@@ -257,7 +257,7 @@ public class ListItemsModel : BaseListModel
     #region Constructor
 
     public ListItemsModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         ChartTooltipModel chartTooltipModel,
         UserModel userModel,
         PeriodsModel periodsModel,
@@ -362,7 +362,7 @@ public class ListItemsModel : BaseListModel
 
         SavedItemsCount = skinsResponse.Count;
         PagesCount = skinsResponse.PagesCount;
-        
+
         if (skinsResponse.Skins is null) return;
 
         ListItemModels = skinsResponse.Skins.Select(x =>

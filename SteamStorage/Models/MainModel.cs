@@ -152,7 +152,7 @@ public class MainModel : ModelBase
 
         _settingsViewModel = settingsViewModel;
         _defaultViewModel = defaultViewModel;
-        
+
         _currentViewModel = defaultViewModel;
         _isSettingsChecked = false;
 
@@ -205,7 +205,7 @@ public class MainModel : ModelBase
     {
         await _notificationService.ShowAsync("Авторизация", "Авторизация прошла успешно");
     }
-    
+
     private async void LogOutCompletedHandler(object? sender)
     {
         await _notificationService.ShowAsync("Выход", "Вы вышли из аккаунта");
@@ -231,8 +231,8 @@ public class MainModel : ModelBase
 
     private void GoingBackHandler(object? sender)
     {
-        if (_lastNavigationModel is not null 
-            && SelectedNavigationModel != _lastNavigationModel 
+        if (_lastNavigationModel is not null
+            && SelectedNavigationModel != _lastNavigationModel
             && _lastNavigationModel?.Page.GetType() == typeof(HomeViewModel))
             SelectedNavigationModel = _lastNavigationModel;
         _lastNavigationModel = null;
@@ -240,12 +240,12 @@ public class MainModel : ModelBase
 
     private void DoLogInCommand()
     {
-        _authorizationService.LogIn();
+        _authorizationService.LogInAsync();
     }
 
     private void DoLogOutCommand()
     {
-        _authorizationService.LogOut();
+        _authorizationService.LogOutAsync();
     }
 
     private NavigationModel? FindViewModel(Type type)

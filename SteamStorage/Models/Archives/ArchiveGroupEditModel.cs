@@ -7,9 +7,9 @@ using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Extensions;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Archives;
 
@@ -27,7 +27,7 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
     #endregion Fields
 
     #region Properties
-    
+
     public string DateCreationString
     {
         get => _dateCreationString;
@@ -57,7 +57,7 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
     #region Constructor
 
     public ArchiveGroupEditModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         IDialogService dialogService,
         INotificationService notificationService) : base(apiClient, dialogService, notificationService)
     {
@@ -74,25 +74,25 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
     protected override async Task DoDeleteCommand(CancellationToken cancellationToken)
     {
         if (_archiveGroupModel is null) return;
-        
+
         bool result = await DialogService.ShowDialogAsync(
             $"Вы уверены, что хотите удалить группу: «{_archiveGroupModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
-        
+
         if (!result) return;
 
         await ApiClient.DeleteAsync(
             ApiConstants.ApiMethods.DeleteArchiveGroup,
             new ArchiveGroups.DeleteArchiveGroupRequest(_archiveGroupModel.GroupId),
             cancellationToken);
-        
+
         await NotificationService.ShowAsync("Удаление группы",
-            $"Вы отправили запрос на удаление группы: {_archiveGroupModel.Title}", 
+            $"Вы отправили запрос на удаление группы: {_archiveGroupModel.Title}",
             cancellationToken: cancellationToken);
-        
+
         OnItemDeleted();
-        
+
         OnGoingBack();
     }
 
@@ -118,9 +118,9 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
                     Description,
                     Colour.ToHexColor()),
                 cancellationToken);
-            
+
             await NotificationService.ShowAsync("Добавление группы",
-                $"Вы отправили запрос на добавление группы: {GroupTitle}", 
+                $"Вы отправили запрос на добавление группы: {GroupTitle}",
                 cancellationToken: cancellationToken);
         }
         else if (_archiveGroupModel is not null)
@@ -139,9 +139,9 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
                     Description,
                     Colour.ToHexColor()),
                 cancellationToken);
-            
+
             await NotificationService.ShowAsync("Изменение группы",
-                $"Вы отправили запрос на изменение группы: {_archiveGroupModel.Title}", 
+                $"Вы отправили запрос на изменение группы: {_archiveGroupModel.Title}",
                 cancellationToken: cancellationToken);
         }
         else
@@ -171,7 +171,7 @@ public class ArchiveGroupEditModel : BaseGroupEditModel
     public void SetEditGroup(ArchiveGroupModel? model)
     {
         _archiveGroupModel = model;
-        
+
         DefaultGroupTitle = model?.Title ?? string.Empty;
 
         DefaultDescription = model?.Description ?? string.Empty;

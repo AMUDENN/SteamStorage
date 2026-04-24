@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 
 namespace SteamStorage.Models.Tools.BaseModels;
 
@@ -14,11 +14,11 @@ public abstract class BaseEditModel : ModelBase
     public delegate void GoingBackEventHandler(object? sender);
 
     public event GoingBackEventHandler? GoingBack;
-    
+
     public delegate void ItemDeletedEventHandler(object? sender);
 
     public event ItemDeletedEventHandler? ItemDeleted;
-    
+
     public delegate void ItemChangedEventHandler(object? sender);
 
     public event ItemChangedEventHandler? ItemChanged;
@@ -26,13 +26,13 @@ public abstract class BaseEditModel : ModelBase
     #endregion Events
 
     #region Fields
-    
-    protected readonly ApiClient ApiClient;
-    
+
+    protected readonly IApiClient ApiClient;
+
     protected readonly IDialogService DialogService;
 
     protected readonly INotificationService NotificationService;
-    
+
     private string _title;
 
     #endregion Fields
@@ -60,16 +60,16 @@ public abstract class BaseEditModel : ModelBase
     #region Constructor
 
     protected BaseEditModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         IDialogService dialogService,
         INotificationService notificationService)
     {
         ApiClient = apiClient;
         DialogService = dialogService;
         NotificationService = notificationService;
-        
+
         _title = string.Empty;
-        
+
         BackCommand = new(DoBackCommand);
         DeleteCommand = new(DoDeleteCommand);
         SaveCommand = new(DoSaveCommand, CanExecuteSaveCommand);
@@ -94,12 +94,12 @@ public abstract class BaseEditModel : ModelBase
     {
         GoingBack?.Invoke(this);
     }
-    
+
     protected void OnItemDeleted()
     {
         ItemDeleted?.Invoke(this);
     }
-    
+
     protected void OnItemChanged()
     {
         ItemChanged?.Invoke(this);

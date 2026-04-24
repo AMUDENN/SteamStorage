@@ -28,7 +28,8 @@
 
                             <Border.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Command="{Binding OpenInSteamCommand, Mode=OneWay}" Header="Открыть в Steam" />
+                                    <MenuItem Command="{Binding OpenInSteamCommand, Mode=OneWay}"
+                                              Header="Открыть в Steam" />
                                 </ContextMenu>
                             </Border.ContextMenu>
 
@@ -121,7 +122,8 @@
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Период: " />
 
-                                        <TextBlock Classes="SmallTextBlock CenterTextBlock CopyTextBlock" Text="{Binding DatePeriod, Mode=OneWay}" />
+                                        <TextBlock Classes="SmallTextBlock CenterTextBlock CopyTextBlock"
+                                                   Text="{Binding DatePeriod, Mode=OneWay}" />
 
                                     </StackPanel>
 

@@ -188,17 +188,17 @@ public class ActivesModel : ModelBase
     {
         _listActivesModel.UpdateSkins();
     }
-    
+
     private void ActiveGroupItemDeletedHandler(object? sender)
     {
         _activeGroupsModel.UpdateGroups();
     }
-    
+
     private void ActiveItemChangedHandler(object? sender)
     {
         _listActivesModel.UpdateSkins();
     }
-    
+
     private void ActiveGroupItemChangedHandler(object? sender)
     {
         _activeGroupsModel.UpdateGroups();

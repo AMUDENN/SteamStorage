@@ -20,14 +20,14 @@ public class DialogWindowViewModel : ViewModelBase
     }
 
     #endregion Properties
-    
+
     #region Commands
 
     public RelayCommand CloseCommand
     {
         get => _dialogWindowModel.CloseCommand;
     }
-    
+
     #endregion Commands
 
     #region Constructor

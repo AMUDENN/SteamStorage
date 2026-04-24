@@ -2,7 +2,7 @@
 using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 
 namespace SteamStorage.Models.Tools.UtilityModels;
 
@@ -20,8 +20,8 @@ public class ActiveModel : BaseDynamicsSkinModel
 
     public string BuyPriceString { get; }
 
-    public decimal CurrentPrice { get; } 
-    
+    public decimal CurrentPrice { get; }
+
     public string CurrentPriceString { get; }
 
     public string CurrentSumString { get; }
@@ -29,10 +29,10 @@ public class ActiveModel : BaseDynamicsSkinModel
     public decimal? GoalPrice { get; }
 
     public string GoalPriceString { get; }
-    
-    public double? GoalPriceCompletion { get; }
 
-    public double Change { get; }
+    public decimal? GoalPriceCompletion { get; }
+
+    public decimal Change { get; }
 
     public DateTime BuyDate { get; }
 
@@ -45,7 +45,7 @@ public class ActiveModel : BaseDynamicsSkinModel
     #region Constructor
 
     public ActiveModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         PeriodsModel periodsModel,
         IThemeService themeService,
         int skinId,
@@ -59,9 +59,9 @@ public class ActiveModel : BaseDynamicsSkinModel
         decimal currentPrice,
         decimal currentSum,
         decimal? goalPrice,
-        double? goalPriceCompletion,
+        decimal? goalPriceCompletion,
         string currencyMark,
-        double change,
+        decimal change,
         DateTime buyDate,
         string? description) : base(apiClient, periodsModel, themeService, skinId, imageUrl, marketUrl, title)
     {

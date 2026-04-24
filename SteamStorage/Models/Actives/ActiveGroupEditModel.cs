@@ -11,16 +11,16 @@ using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
 using SteamStorage.Utilities.Dialog;
 using SteamStorage.Utilities.Extensions;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Actives;
 
 public class ActiveGroupEditModel : BaseGroupEditModel
 {
     #region Fields
-    
+
     private readonly PeriodsModel _periodsModel;
     private ActiveGroupModel? _activeGroupModel;
 
@@ -83,7 +83,7 @@ public class ActiveGroupEditModel : BaseGroupEditModel
         private set => SetProperty(ref _goalSumCompletion, value);
     }
 
-    public double ChangePeriod
+    public decimal ChangePeriod
     {
         get => _activeGroupModel?.ChangePeriod ?? 0;
     }
@@ -112,12 +112,12 @@ public class ActiveGroupEditModel : BaseGroupEditModel
     {
         get => _activeGroupModel?.YAxis ?? Enumerable.Empty<Axis>();
     }
-    
+
     public IEnumerable<PeriodModel> PeriodModels
     {
         get => _periodsModel.PeriodModels;
     }
-    
+
     public PeriodModel? SelectedPeriodModel
     {
         get => _activeGroupModel?.SelectedPeriodModel;
@@ -138,7 +138,7 @@ public class ActiveGroupEditModel : BaseGroupEditModel
     #region Constructor
 
     public ActiveGroupEditModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         PeriodsModel periodsModel,
         IDialogService dialogService,
         INotificationService notificationService) : base(apiClient, dialogService, notificationService)
@@ -171,9 +171,9 @@ public class ActiveGroupEditModel : BaseGroupEditModel
             ApiConstants.ApiMethods.DeleteActiveGroup,
             new ActiveGroups.DeleteActiveGroupRequest(_activeGroupModel.GroupId),
             cancellationToken);
-        
+
         await NotificationService.ShowAsync("Удаление группы",
-            $"Вы отправили запрос на удаление группы: {_activeGroupModel.Title}", 
+            $"Вы отправили запрос на удаление группы: {_activeGroupModel.Title}",
             cancellationToken: cancellationToken);
 
         OnItemDeleted();
@@ -185,10 +185,10 @@ public class ActiveGroupEditModel : BaseGroupEditModel
     {
         if (!(GroupTitle.Length.IsBetweenInclusive(3, 100)
               && Description?.Length <= 300
-              && ((GoalSum.TryParse(out decimal sum) && sum.IsBetweenInclusive((decimal)0.01, 999999999999)) || string.IsNullOrWhiteSpace(GoalSum))
+              && (GoalSum.TryParse(out decimal sum) && sum.IsBetweenInclusive((decimal)0.01, 999999999999) || string.IsNullOrWhiteSpace(GoalSum))
               && Colour != Colors.Transparent))
             return;
-        
+
         if (IsNewGroup)
         {
             bool result = await DialogService.ShowDialogAsync(
@@ -197,7 +197,7 @@ public class ActiveGroupEditModel : BaseGroupEditModel
                 DialogUtility.MessageButtons.SaveCancel);
 
             if (!result) return;
-            
+
             await ApiClient.PostAsync(
                 ApiConstants.ApiMethods.PostActiveGroup,
                 new ActiveGroups.PostActiveGroupRequest(GroupTitle,
@@ -205,9 +205,9 @@ public class ActiveGroupEditModel : BaseGroupEditModel
                     Colour.ToHexColor(),
                     string.IsNullOrWhiteSpace(GoalSum) ? null : sum),
                 cancellationToken);
-            
+
             await NotificationService.ShowAsync("Добавление группы",
-                $"Вы отправили запрос на добавление группы: {GroupTitle}", 
+                $"Вы отправили запрос на добавление группы: {GroupTitle}",
                 cancellationToken: cancellationToken);
         }
         else if (_activeGroupModel is not null)
@@ -227,9 +227,9 @@ public class ActiveGroupEditModel : BaseGroupEditModel
                     Colour.ToHexColor(),
                     string.IsNullOrWhiteSpace(GoalSum) ? null : sum),
                 cancellationToken);
-            
+
             await NotificationService.ShowAsync("Изменение группы",
-                $"Вы отправили запрос на изменение группы: {_activeGroupModel.Title}", 
+                $"Вы отправили запрос на изменение группы: {_activeGroupModel.Title}",
                 cancellationToken: cancellationToken);
         }
         else
@@ -246,7 +246,7 @@ public class ActiveGroupEditModel : BaseGroupEditModel
     {
         return GroupTitle.Length.IsBetweenInclusive(3, 100)
                && Description?.Length <= 300
-               && ((GoalSum.TryParse(out decimal sum) && sum.IsBetweenInclusive((decimal)0.01, 999999999999)) || string.IsNullOrWhiteSpace(GoalSum))
+               && (GoalSum.TryParse(out decimal sum) && sum.IsBetweenInclusive((decimal)0.01, 999999999999) || string.IsNullOrWhiteSpace(GoalSum))
                && Colour != Colors.Transparent;
     }
 

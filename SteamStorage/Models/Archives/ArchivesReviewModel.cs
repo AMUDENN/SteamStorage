@@ -10,9 +10,9 @@ using SteamStorage.Models.Tools;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.ViewModels.Tools.UtilityViewModels;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Archives;
 
@@ -27,7 +27,7 @@ public class ArchivesReviewModel : ModelBase
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly ArchiveGroupsModel _archiveGroupsModel;
     private readonly UserModel _userModel;
     private readonly IThemeService _themeService;
@@ -319,7 +319,7 @@ public class ArchivesReviewModel : ModelBase
     #region Constructor
 
     public ArchivesReviewModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         ArchiveGroupsModel archiveGroupsModel,
         UserModel userModel,
         IThemeService themeService)
@@ -425,8 +425,8 @@ public class ArchivesReviewModel : ModelBase
         }
 
         ChartMinWidth = ChartMinWidth < CHART_MIN_WIDTH
-                ? ChartMinWidth + 1
-                : ChartMinWidth - 1;
+            ? ChartMinWidth + 1
+            : ChartMinWidth - 1;
     }
 
     private void GetActiveGroupsGameInvestmentSumSeries()

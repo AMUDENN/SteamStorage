@@ -26,7 +26,7 @@ public class MessageDialogModel : BaseDialogModel
         get => _selectedMessageType;
         private set
         {
-            SetProperty(ref _selectedMessageType, value); 
+            SetProperty(ref _selectedMessageType, value);
             OnPropertyChanged(nameof(IsInfoVisible));
             OnPropertyChanged(nameof(IsErrorVisible));
             OnPropertyChanged(nameof(IsQuestionVisible));
@@ -49,12 +49,12 @@ public class MessageDialogModel : BaseDialogModel
     {
         get => _selectedMessageType == DialogUtility.MessageType.Info;
     }
-    
+
     public bool IsErrorVisible
     {
         get => _selectedMessageType == DialogUtility.MessageType.Error;
     }
-    
+
     public bool IsQuestionVisible
     {
         get => _selectedMessageType == DialogUtility.MessageType.Question;
@@ -89,7 +89,7 @@ public class MessageDialogModel : BaseDialogModel
 
     #region Methods
 
-    public void SetMessageBox(string message, 
+    public void SetMessageBox(string message,
         DialogUtility.MessageType messageType,
         DialogUtility.MessageButtons messageButtons)
     {

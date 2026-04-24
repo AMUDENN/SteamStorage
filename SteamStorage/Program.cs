@@ -10,13 +10,17 @@ internal sealed class Program
     // yet and stuff might break.
     [STAThread]
     public static void Main(string[] args)
-        => BuildAvaloniaApp()
+    {
+        BuildAvaloniaApp()
             .StartWithClassicDesktopLifetime(args);
+    }
 
     // Avalonia configuration, don't remove; also used by visual designer.
     private static AppBuilder BuildAvaloniaApp()
-        => AppBuilder.Configure<App>()
+    {
+        return AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace();
+    }
 }

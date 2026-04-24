@@ -93,7 +93,7 @@ public static class ChartThemeVariants
             new(ChartColors.Background, new(15, 20, 26)),
             new(ChartColors.Foreground, new(210, 218, 221))
         });
-    
+
     private static ChartThemeVariant VeryDark { get; } = new(
         nameof(ThemeConstants.Themes.VeryDark),
         SKTypeface.FromFamilyName(
@@ -115,7 +115,7 @@ public static class ChartThemeVariants
             new(ChartColors.Background, new(0, 0, 0)),
             new(ChartColors.Foreground, new(231, 239, 242))
         });
-    
+
     private static ChartThemeVariant VeryLight { get; } = new(
         nameof(ThemeConstants.Themes.VeryLight),
         SKTypeface.FromFamilyName(

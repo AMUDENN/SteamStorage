@@ -36,7 +36,7 @@ public class ActivesReviewViewModel : ViewModelBase
     {
         get => _activesReviewModel.CurrentSumString;
     }
-    
+
     public ObservableCollection<ISeries> ActiveGroupsGameCountSeries
     {
         get => _activesReviewModel.ActiveGroupsGameCountSeries;
@@ -46,17 +46,17 @@ public class ActivesReviewViewModel : ViewModelBase
     {
         get => _activesReviewModel.ActiveGroupsGameInvestmentSumSeries;
     }
-    
+
     public ObservableCollection<ISeries> ActiveGroupsGameCurrentSumSeries
     {
         get => _activesReviewModel.ActiveGroupsGameCurrentSumSeries;
     }
-    
+
     public double ChartMinWidth
     {
         get => _activesReviewModel.ChartMinWidth;
     }
-    
+
     public SolidColorPaint TooltipTextPaint
     {
         get => _chartTooltipModel.TooltipTextPaint;
@@ -126,7 +126,7 @@ public class ActivesReviewViewModel : ViewModelBase
     {
         get => _activesReviewModel.AttachedToVisualTreeCommand;
     }
-    
+
     public RelayCommand AddActiveGroupCommand
     {
         get => _activeGroupsModel.AddActiveGroupCommand;
@@ -144,20 +144,20 @@ public class ActivesReviewViewModel : ViewModelBase
         _activesReviewModel = activesReviewModel;
         _activeGroupsModel = activeGroupsModel;
         _chartTooltipModel = chartTooltipModel;
-        
+
         activesReviewModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         activeGroupsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         chartTooltipModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor
-    
+
     #region Methods
 
     public void UpdateGroups()
     {
         _activesReviewModel.UpdateGroups();
     }
-    
+
     #endregion Methods
 }

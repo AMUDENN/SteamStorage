@@ -31,7 +31,7 @@ public class ArchiveGroupViewModel : BaseExtendedGroupViewModel
         get => _model.SoldSumString;
     }
 
-    public double Change
+    public decimal Change
     {
         get => _model.Change;
     }

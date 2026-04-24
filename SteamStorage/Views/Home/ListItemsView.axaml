@@ -172,7 +172,8 @@
                 HorizontalAlignment="Left"
                 Orientation="Horizontal">
                 <TextBlock Classes="SmallTextBlock" Text="Результаты: " />
-                <TextBlock Classes="SmallTextBlock" Text="{Binding DisplayItemsCountStart, StringFormat=N0, Mode=OneWay}" />
+                <TextBlock Classes="SmallTextBlock"
+                           Text="{Binding DisplayItemsCountStart, StringFormat=N0, Mode=OneWay}" />
                 <TextBlock Classes="SmallTextBlock" Text=" - " />
                 <TextBlock Classes="SmallTextBlock" Text="{Binding DisplayItemsCountEnd, StringFormat=N0, Mode=OneWay}" />
                 <TextBlock Classes="SmallTextBlock" Text=" из " />

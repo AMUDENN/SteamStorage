@@ -2,9 +2,9 @@
 using System.Linq;
 using SteamStorage.Models.Tools;
 using SteamStorage.Models.Tools.UtilityModels;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models;
 
@@ -12,7 +12,7 @@ public class GamesModel : ModelBase
 {
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
 
     private List<GameModel> _gameModels;
 
@@ -27,7 +27,7 @@ public class GamesModel : ModelBase
     #region Constructor
 
     public GamesModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         UserModel userModel)
     {
         _apiClient = apiClient;

@@ -78,7 +78,8 @@
 
                             <Grid Margin="0,5,0,0">
 
-                                <Border BorderThickness="20" Classes="TransparentBorder SmallRoundedBorder BoxShadowBorder" />
+                                <Border BorderThickness="20"
+                                        Classes="TransparentBorder SmallRoundedBorder BoxShadowBorder" />
 
                                 <Border
                                     x:Name="PopupBorder"

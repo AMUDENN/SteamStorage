@@ -26,7 +26,8 @@
 
                             <Border.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Command="{Binding OpenInSteamCommand, Mode=OneWay}" Header="Открыть в Steam" />
+                                    <MenuItem Command="{Binding OpenInSteamCommand, Mode=OneWay}"
+                                              Header="Открыть в Steam" />
                                     <Separator />
                                     <MenuItem
                                         Command="{Binding EditCommand, Mode=OneWay}"
@@ -143,7 +144,8 @@
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата покупки: " />
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock" Text="{Binding BuyDateString}" />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock"
+                                                   Text="{Binding BuyDateString}" />
 
                                     </StackPanel>
 
@@ -154,7 +156,8 @@
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата продажи: " />
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock" Text="{Binding SoldDateString}" />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock"
+                                                   Text="{Binding SoldDateString}" />
 
                                     </StackPanel>
 

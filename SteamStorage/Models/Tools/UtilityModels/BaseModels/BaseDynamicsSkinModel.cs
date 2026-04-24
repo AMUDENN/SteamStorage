@@ -9,9 +9,9 @@ using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
-using SteamStorageAPI.SDK;
+using SteamStorageAPI.SDK.ApiClient;
 using SteamStorageAPI.SDK.ApiEntities;
-using SteamStorageAPI.SDK.Utilities;
+using SteamStorageAPI.SDK.Utilities.ApiControllers;
 
 namespace SteamStorage.Models.Tools.UtilityModels.BaseModels;
 
@@ -25,11 +25,11 @@ public class BaseDynamicsSkinModel : BaseSkinModel
 
     #region Fields
 
-    private readonly ApiClient _apiClient;
+    private readonly IApiClient _apiClient;
     private readonly PeriodsModel _periodsModel;
     private readonly IThemeService _themeService;
 
-    private double? _changePeriod;
+    private decimal? _changePeriod;
     private string? _datePeriod;
     private IEnumerable<Skins.SkinDynamicResponse>? _skinDynamic;
     private IEnumerable<ISeries> _changeSeries;
@@ -44,7 +44,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
 
     #region Properties
 
-    public double? ChangePeriod
+    public decimal? ChangePeriod
     {
         get => _changePeriod;
         private set => SetProperty(ref _changePeriod, value);
@@ -94,7 +94,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
     {
         get => _periodsModel.PeriodModels;
     }
-    
+
     public PeriodModel? SelectedPeriodModel
     {
         get => _selectedPeriodModel;
@@ -121,7 +121,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
     #region Constructor
 
     protected BaseDynamicsSkinModel(
-        ApiClient apiClient,
+        IApiClient apiClient,
         PeriodsModel periodsModel,
         IThemeService themeService,
         int skinId,
@@ -132,10 +132,10 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         _apiClient = apiClient;
         _periodsModel = periodsModel;
         _themeService = themeService;
-        
+
         periodsModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
-        
+
         IsLoading = false;
 
         _changeSeries = Enumerable.Empty<ISeries>();
@@ -151,7 +151,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
     {
         GetDynamicChart();
     }
-    
+
     public void UpdateStats()
     {
         SelectedPeriodModel = _periodsModel.GetDefault();

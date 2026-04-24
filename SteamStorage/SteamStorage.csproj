@@ -1,162 +1,166 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <JsonSerializerIsReflectionEnabledByDefault>true</JsonSerializerIsReflectionEnabledByDefault>
-    <UseAppHost>true</UseAppHost>
-    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-    <ApplicationIcon>Resources\Images\Bitmaps\BlackIcon32.ico</ApplicationIcon>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <JsonSerializerIsReflectionEnabledByDefault>true</JsonSerializerIsReflectionEnabledByDefault>
+        <UseAppHost>true</UseAppHost>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <ApplicationIcon>Resources\Images\Bitmaps\BlackIcon32.ico</ApplicationIcon>
+        <AssemblyVersion>1.0.1</AssemblyVersion>
+        <LangVersion>14</LangVersion>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <AvaloniaResource Include="Assets\**" />
-  </ItemGroup>
+    <ItemGroup>
+        <AvaloniaResource Include="Assets\**"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Resources\Images\Bitmaps\BlackIcon256.ico" />
-    <None Remove="Resources\Images\Vectors\Sources\account.svg" />
-    <None Remove="Resources\Images\Vectors\Sources\actives.svg" />
-    <None Remove="Resources\Images\Vectors\Sources\archive.svg" />
-    <None Remove="Resources\Images\Vectors\Sources\close.svg" />
-    <None Remove="Resources\Images\Vectors\Sources\home.svg" />
-    <None Remove="Resources\Images\Vectors\Sources\inventory.svg" />
-    <None Remove="Resources\Images\Vectors\Sources\logo.svg" />
-    <None Remove="Resources\Images\Vectors\Sources\maximize.svg" />
-    <None Remove="Resources\Images\Vectors\Sources\minimize.svg" />
-    <None Remove="Resources\Images\Vectors\Sources\profile.svg" />
-    <None Remove="Resources\Images\Vectors\Sources\restore.svg" />
-  </ItemGroup>
+    <ItemGroup>
+        <None Remove="Resources\Images\Bitmaps\BlackIcon256.ico"/>
+        <None Remove="Resources\Images\Vectors\Sources\account.svg"/>
+        <None Remove="Resources\Images\Vectors\Sources\actives.svg"/>
+        <None Remove="Resources\Images\Vectors\Sources\archive.svg"/>
+        <None Remove="Resources\Images\Vectors\Sources\close.svg"/>
+        <None Remove="Resources\Images\Vectors\Sources\home.svg"/>
+        <None Remove="Resources\Images\Vectors\Sources\inventory.svg"/>
+        <None Remove="Resources\Images\Vectors\Sources\logo.svg"/>
+        <None Remove="Resources\Images\Vectors\Sources\maximize.svg"/>
+        <None Remove="Resources\Images\Vectors\Sources\minimize.svg"/>
+        <None Remove="Resources\Images\Vectors\Sources\profile.svg"/>
+        <None Remove="Resources\Images\Vectors\Sources\restore.svg"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <AvaloniaResource Include="Resources\Images\Bitmaps\BlackIcon24.ico" />
-    <AvaloniaResource Include="Resources\Images\Bitmaps\BlackIcon256.ico" />
-  </ItemGroup>
+    <ItemGroup>
+        <AvaloniaResource Include="Resources\Images\Bitmaps\BlackIcon24.ico"/>
+        <AvaloniaResource Include="Resources\Images\Bitmaps\BlackIcon256.ico"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <AvaloniaResource Include="Resources\Images\Bitmaps\BlackIcon32.ico" />
-    <AvaloniaResource Include="Resources\Images\Vectors\Sources\account.svg" />
-    <AvaloniaResource Include="Resources\Images\Vectors\Sources\actives.svg" />
-    <AvaloniaResource Include="Resources\Images\Vectors\Sources\archive.svg" />
-    <AvaloniaResource Include="Resources\Images\Vectors\Sources\close.svg" />
-    <AvaloniaResource Include="Resources\Images\Vectors\Sources\home.svg" />
-    <AvaloniaResource Include="Resources\Images\Vectors\Sources\inventory.svg" />
-    <AvaloniaResource Include="Resources\Images\Vectors\Sources\logo.svg" />
-    <AvaloniaResource Include="Resources\Images\Vectors\Sources\maximize.svg" />
-    <AvaloniaResource Include="Resources\Images\Vectors\Sources\minimize.svg" />
-    <AvaloniaResource Include="Resources\Images\Vectors\Sources\profile.svg" />
-    <AvaloniaResource Include="Resources\Images\Vectors\Sources\restore.svg" />
-  </ItemGroup>
+    <ItemGroup>
+        <AvaloniaResource Include="Resources\Images\Bitmaps\BlackIcon32.ico"/>
+        <AvaloniaResource Include="Resources\Images\Vectors\Sources\account.svg"/>
+        <AvaloniaResource Include="Resources\Images\Vectors\Sources\actives.svg"/>
+        <AvaloniaResource Include="Resources\Images\Vectors\Sources\archive.svg"/>
+        <AvaloniaResource Include="Resources\Images\Vectors\Sources\close.svg"/>
+        <AvaloniaResource Include="Resources\Images\Vectors\Sources\home.svg"/>
+        <AvaloniaResource Include="Resources\Images\Vectors\Sources\inventory.svg"/>
+        <AvaloniaResource Include="Resources\Images\Vectors\Sources\logo.svg"/>
+        <AvaloniaResource Include="Resources\Images\Vectors\Sources\maximize.svg"/>
+        <AvaloniaResource Include="Resources\Images\Vectors\Sources\minimize.svg"/>
+        <AvaloniaResource Include="Resources\Images\Vectors\Sources\profile.svg"/>
+        <AvaloniaResource Include="Resources\Images\Vectors\Sources\restore.svg"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Resources\Images\Bitmaps\BlackIcon24.ico" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <PackageReference Include="AsyncImageLoader.Avalonia" Version="3.2.1" />
-    <PackageReference Include="Avalonia" Version="11.1.0-beta1" />
-    <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.1.0-beta1" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.1.0-beta1" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.1.0-beta1" />
-    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.1.0-beta1" />
-    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.1.0-beta1" />
-    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.1.0-beta1.4" />
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-    <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="SteamStorageAPI.SDK" Version="1.5.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <Content Include="..\README.md">
+          <Link>README.md</Link>
+        </Content>
+        <Content Include="Resources\Images\Bitmaps\BlackIcon24.ico"/>
+    </ItemGroup>
 
 
-  <ItemGroup>
-    <Compile Update="Views\Actives\ActiveEditView.axaml.cs">
-      <DependentUpon>ActiveEditView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Actives\ActiveGroupEditView.axaml.cs">
-      <DependentUpon>ActiveGroupEditView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Actives\ActiveSoldView.axaml.cs">
-      <DependentUpon>ActiveSoldView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Actives\ActivesReviewView.axaml.cs">
-      <DependentUpon>ActivesReviewView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Actives\ActivesView.axaml.cs">
-      <DependentUpon>ActivesView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Archives\ArchiveEditView.axaml.cs">
-      <DependentUpon>ArchiveEditView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Archives\ArchiveGroupEditView.axaml.cs">
-      <DependentUpon>ArchiveGroupEditView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Archives\ArchivesReviewView.axaml.cs">
-      <DependentUpon>ArchivesReviewView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Archives\ArchivesView.axaml.cs">
-      <DependentUpon>ArchivesView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Home\HomeView.axaml.cs">
-      <DependentUpon>HomeView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Inventory\InventoryView.axaml.cs">
-      <DependentUpon>InventoryView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Actives\ListActivesView.axaml.cs">
-      <DependentUpon>ListActivesView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Archives\ListArchivesView.axaml.cs">
-      <DependentUpon>ListArchivesView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Home\ListItemsView.axaml.cs">
-      <DependentUpon>ListItemsView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Profile\ProfileView.axaml.cs">
-      <DependentUpon>ProfileView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Settings\SettingsView.axaml.cs">
-      <DependentUpon>SettingsView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Home\StatisticsView.axaml.cs">
-      <DependentUpon>StatisticsView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Dialog\MessageDialogView.axaml.cs">
-      <DependentUpon>MessageDialogView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Dialog\TextConfirmDialogView.axaml.cs">
-      <DependentUpon>TextConfirmDialogView.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Windows\DialogWindow.axaml.cs">
-      <DependentUpon>DialogWindow.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Windows\MainWindow.axaml.cs">
-      <DependentUpon>MainWindow.axaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="AsyncImageLoader.Avalonia" Version="3.2.1"/>
+        <PackageReference Include="Avalonia" Version="11.1.0-beta1"/>
+        <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.1.0-beta1"/>
+        <PackageReference Include="Avalonia.Desktop" Version="11.1.0-beta1"/>
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.1.0-beta1"/>
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.1.0-beta1"/>
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.1.0-beta1"/>
+        <PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.1.0-beta1.4"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2"/>
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc2"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.7"/>
+        <PackageReference Include="SteamStorageAPI.SDK" Version="2.0.0"/>
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <Compile Update="Views\Actives\ActiveEditView.axaml.cs">
+            <DependentUpon>ActiveEditView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Actives\ActiveGroupEditView.axaml.cs">
+            <DependentUpon>ActiveGroupEditView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Actives\ActiveSoldView.axaml.cs">
+            <DependentUpon>ActiveSoldView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Actives\ActivesReviewView.axaml.cs">
+            <DependentUpon>ActivesReviewView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Actives\ActivesView.axaml.cs">
+            <DependentUpon>ActivesView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Archives\ArchiveEditView.axaml.cs">
+            <DependentUpon>ArchiveEditView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Archives\ArchiveGroupEditView.axaml.cs">
+            <DependentUpon>ArchiveGroupEditView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Archives\ArchivesReviewView.axaml.cs">
+            <DependentUpon>ArchivesReviewView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Archives\ArchivesView.axaml.cs">
+            <DependentUpon>ArchivesView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Home\HomeView.axaml.cs">
+            <DependentUpon>HomeView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Inventory\InventoryView.axaml.cs">
+            <DependentUpon>InventoryView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Actives\ListActivesView.axaml.cs">
+            <DependentUpon>ListActivesView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Archives\ListArchivesView.axaml.cs">
+            <DependentUpon>ListArchivesView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Home\ListItemsView.axaml.cs">
+            <DependentUpon>ListItemsView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Profile\ProfileView.axaml.cs">
+            <DependentUpon>ProfileView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Settings\SettingsView.axaml.cs">
+            <DependentUpon>SettingsView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Home\StatisticsView.axaml.cs">
+            <DependentUpon>StatisticsView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Dialog\MessageDialogView.axaml.cs">
+            <DependentUpon>MessageDialogView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Dialog\TextConfirmDialogView.axaml.cs">
+            <DependentUpon>TextConfirmDialogView.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Windows\DialogWindow.axaml.cs">
+            <DependentUpon>DialogWindow.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Windows\MainWindow.axaml.cs">
+            <DependentUpon>MainWindow.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+    </ItemGroup>
 </Project>
