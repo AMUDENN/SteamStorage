@@ -68,12 +68,11 @@ public partial class App : Application
     private static ServiceCollection GetServiceCollection()
     {
         ServiceCollection services = [];
-
-
+        
         //SteamStorageApi
         services.AddSteamStorageApi(options => {
             options.ClientName = "MainClient";
-            options.ClientTimeout = 15;
+            options.ClientTimeout = TimeSpan.FromSeconds(15);
             options.ApiAddress = "https://steamstorage.ru/api";
             options.ServerAddress = "https://steamstorage.ru";
             options.HostName = "steamstorage.ru";

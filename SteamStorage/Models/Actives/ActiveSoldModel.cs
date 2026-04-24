@@ -256,8 +256,12 @@ public class ActiveSoldModel : BaseEditModel
 
     private void SetTitle(BaseSkinModel? model)
     {
-        if (model is null) Title = TITLE;
-        Title = $"{TITLE}: «{model?.Title}»";
+        if (model is null)
+        {
+            Title = TITLE;
+            return;
+        }
+        Title = $"{TITLE}: «{model.Title}»";
     }
 
     private void SetValuesFromDefault()

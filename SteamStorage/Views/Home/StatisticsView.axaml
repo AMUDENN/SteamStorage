@@ -109,7 +109,7 @@
                             Margin="3,0,3,3"
                             HorizontalAlignment="Center"
                             Classes="BigTextBlock CenterTextBlock CopyTextBlock"
-                            Text="{Binding InvestedSumGrowth, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=0}" />
+                            Text="{Binding InvestedSumGrowth, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=0}" />
 
                     </Viewbox>
 
@@ -305,7 +305,7 @@
                         Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
                         Classes.NegativeTextBlock="{Binding ActivesPercentageGrowth, Mode=OneWay, Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
                         Classes.PositiveTextBlock="{Binding ActivesPercentageGrowth, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
-                        Text="{Binding ActivesPercentageGrowth, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}" />
+                        Text="{Binding ActivesPercentageGrowth, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}" />
 
                 </Grid>
 
@@ -371,7 +371,7 @@
                         Grid.Column="1"
                         Classes="BigTextBlock CopyTextBlock"
                         Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                        Text="{Binding ArchivesSoldSumString, StringFormat=N2, Mode=OneWay}" />
+                        Text="{Binding ArchivesSoldSumString, Mode=OneWay}" />
 
                 </Grid>
 
@@ -392,7 +392,7 @@
                         Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
                         Classes.NegativeTextBlock="{Binding ArchivesPercentageGrowth, Mode=OneWay, Converter={StaticResource DoubleLessConverter}, ConverterParameter=0}"
                         Classes.PositiveTextBlock="{Binding ArchivesPercentageGrowth, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
-                        Text="{Binding ArchivesPercentageGrowth, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}" />
+                        Text="{Binding ArchivesPercentageGrowth, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}" />
 
                 </Grid>
 
@@ -471,7 +471,7 @@
                             Grid.Column="1"
                             Classes="BigTextBlock CopyTextBlock"
                             Classes.MiddleTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=520}"
-                            Text="{Binding InventorySumString, StringFormat=N2, Mode=OneWay}" />
+                            Text="{Binding InventorySumString, Mode=OneWay}" />
 
                     </Grid>
 

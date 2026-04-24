@@ -52,8 +52,9 @@ public class UserModel : ModelBase
         get => _user;
         private set
         {
-            SetProperty(ref _user, value);
+            if (!SetProperty(ref _user, value)) return;
             OnUserChanged();
+            if (value is null) return;
             GetCurrencyAsync();
             GetStartPageAsync();
             GetFinancialGoalAsync();

@@ -88,7 +88,7 @@
                         <DatePicker
                             Height="50"
                             Classes="DarkDatePicker SmallDatePicker"
-                            SelectedDate="{Binding DefaultSoldDate}" />
+                            SelectedDate="{Binding SoldDate}" />
                     </controls:DefaultContentControl>
 
                 </Grid>

@@ -9,7 +9,7 @@ public class BrushConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is not string brush) return false;
+        if (value is not string brush) return null;
         try
         {
             return SolidColorBrush.Parse(brush);

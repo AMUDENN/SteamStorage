@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
@@ -360,9 +361,7 @@ public class StatisticsModel : ModelBase
                     .GetChartColor(ChartThemeVariants.ChartColors.ThirdAccent).Color);
             }));
 
-        InvestedSumWidth = InvestedSumWidth < INVESTED_SUM_WIDTH_DEFAULT
-            ? InvestedSumWidth + 1
-            : InvestedSumWidth - 1;
+        InvestedSumWidth = Math.Min(InvestedSumWidth + 1, INVESTED_SUM_WIDTH_DEFAULT);
     }
 
     private void GetFinancialGoalPercentageCompletion()
@@ -385,9 +384,7 @@ public class StatisticsModel : ModelBase
                     .GetChartColor(ChartThemeVariants.ChartColors.ThirdAccent).Color);
             }));
 
-        FinancialGoalWidth = FinancialGoalWidth < FINANCIAL_GOAL_WIDTH_DEFAULT
-            ? FinancialGoalWidth + 1
-            : FinancialGoalWidth - 1;
+        FinancialGoalWidth = Math.Min(FinancialGoalWidth + 1, FINANCIAL_GOAL_WIDTH_DEFAULT);
     }
 
     private void GetInventoryGamesSeries()
@@ -405,9 +402,7 @@ public class StatisticsModel : ModelBase
                 i++;
             });
 
-        InventoryGamesWidth = InventoryGamesWidth < INVENTORY_GAMES_WIDTH_DEFAULT
-            ? InventoryGamesWidth + 1
-            : InventoryGamesWidth - 1;
+        InventoryGamesWidth = Math.Min(InventoryGamesWidth + 1, INVENTORY_GAMES_WIDTH_DEFAULT);
     }
 
     private async void RefreshStatisticsAsync()

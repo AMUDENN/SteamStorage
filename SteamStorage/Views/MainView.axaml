@@ -14,19 +14,21 @@
 
     <Grid Margin="30" ColumnDefinitions="Auto, *">
 
+        <Grid.Styles>
+            <Style Selector="Border#MenuBorder">
+                <Setter Property="Width" Value="100" />
+            </Style>
+            <Style Selector="Border#MenuBorder:pointerover">
+                <Setter Property="Width" Value="300" />
+            </Style>
+        </Grid.Styles>
+
         <Border
             x:Name="MenuBorder"
             Grid.Column="0"
             Classes="BackgroundAdditionalBorder BigRoundedBorder">
 
             <Border.Styles>
-                <Style Selector="Border#MenuBorder">
-                    <Setter Property="Width" Value="100" />
-                </Style>
-                <Style Selector="Border#MenuBorder:pointerover">
-                    <Setter Property="Width" Value="300" />
-                </Style>
-
                 <Style Selector="Border#MenuBorder TextBlock#UserName, Border#MenuBorder TextBlock#SteamId">
                     <Setter Property="Opacity" Value="0" />
                 </Style>
