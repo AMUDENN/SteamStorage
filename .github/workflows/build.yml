@@ -30,10 +30,10 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: Restore
-        run: dotnet restore SteamStorage/SteamStorage.csproj
+        run: dotnet restore SteamStorage/SteamStorage.csproj -r ${{ matrix.rid }}
 
       - name: Build
-        run: dotnet build SteamStorage/SteamStorage.csproj -c Release --no-restore
+        run: dotnet build SteamStorage/SteamStorage.csproj -c Release -r ${{ matrix.rid }} --no-restore
 
       - name: Publish
         run: >
@@ -49,6 +49,23 @@ jobs:
         with:
           name: SteamStorage-${{ matrix.rid }}
           path: publish/${{ matrix.rid }}
+          retention-days: 14
+
+      - name: Install Inno Setup
+        if: matrix.rid == 'win-x64'
+        run: choco install innosetup --no-progress -y
+
+      - name: Build installer
+        if: matrix.rid == 'win-x64'
+        shell: cmd
+        run: iscc installer\SteamStorage.Setup.iss
+
+      - name: Upload installer artifact
+        if: matrix.rid == 'win-x64'
+        uses: actions/upload-artifact@v4
+        with:
+          name: SteamStorage-Setup
+          path: SteamStorage.Setup.exe
           retention-days: 14
 
   release:
@@ -77,7 +94,9 @@ jobs:
           cd artifacts
           for dir in */; do
             rid="${dir%/}"
-            zip -r "../SteamStorage-${rid}.zip" "$dir"
+            if [[ "$rid" != "SteamStorage-Setup" ]]; then
+              zip -r "../SteamStorage-${rid}.zip" "$dir"
+            fi
           done
 
       - name: Create release
@@ -86,4 +105,6 @@ jobs:
           tag_name: v${{ steps.version.outputs.version }}
           name: SteamStorage v${{ steps.version.outputs.version }}
           draft: true
-          files: SteamStorage-*.zip
+          files: |
+            SteamStorage-*.zip
+            artifacts/SteamStorage-Setup/SteamStorage.Setup.exe
