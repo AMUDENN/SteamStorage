@@ -31,10 +31,10 @@ public class PeriodsModel : ModelBase
 
         PeriodModels =
         [
-            new("1 день", "1 д", 1),
-            new("1 неделя", "1 н", 7),
-            new("1 месяц", "1 м", 30),
-            new("1 год", "1 г", 365)
+            new PeriodModel("1 день", "1 д", 1),
+            new PeriodModel("1 неделя", "1 н", 7),
+            new PeriodModel("1 месяц", "1 м", 30),
+            new PeriodModel("1 год", "1 г", 365)
         ];
     }
 

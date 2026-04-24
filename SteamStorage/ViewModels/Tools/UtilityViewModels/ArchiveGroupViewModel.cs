@@ -16,54 +16,27 @@ public class ArchiveGroupViewModel : BaseExtendedGroupViewModel
 
     #region Properties
 
-    public ArchiveGroupModel ArchiveGroupModel
-    {
-        get => _model;
-    }
+    public ArchiveGroupModel ArchiveGroupModel => _model;
 
-    public string BuySumString
-    {
-        get => _model.BuySumString;
-    }
+    public string BuySumString => _model.BuySumString;
 
-    public string SoldSumString
-    {
-        get => _model.SoldSumString;
-    }
+    public string SoldSumString => _model.SoldSumString;
 
-    public decimal Change
-    {
-        get => _model.Change;
-    }
+    public decimal Change => _model.Change;
 
     #endregion Properties
 
     #region Commands
 
-    public RelayCommand<ArchiveGroupModel> OpenArchivesCommand
-    {
-        get => _archiveGroupsModel.OpenArchivesCommand;
-    }
+    public RelayCommand<ArchiveGroupModel> OpenArchivesCommand => _archiveGroupsModel.OpenArchivesCommand;
 
-    public RelayCommand<ArchiveGroupModel> AddArchiveCommand
-    {
-        get => _archiveGroupsModel.AddArchiveCommand;
-    }
+    public RelayCommand<ArchiveGroupModel> AddArchiveCommand => _archiveGroupsModel.AddArchiveCommand;
 
-    public RelayCommand AddArchiveGroupCommand
-    {
-        get => _archiveGroupsModel.AddArchiveGroupCommand;
-    }
+    public RelayCommand AddArchiveGroupCommand => _archiveGroupsModel.AddArchiveGroupCommand;
 
-    public RelayCommand<ArchiveGroupModel> EditArchiveGroupCommand
-    {
-        get => _archiveGroupsModel.EditArchiveGroupCommand;
-    }
+    public RelayCommand<ArchiveGroupModel> EditArchiveGroupCommand => _archiveGroupsModel.EditArchiveGroupCommand;
 
-    public AsyncRelayCommand<ArchiveGroupModel> DeleteArchiveGroupCommand
-    {
-        get => _archiveGroupsModel.DeleteArchiveGroupCommand;
-    }
+    public AsyncRelayCommand<ArchiveGroupModel> DeleteArchiveGroupCommand => _archiveGroupsModel.DeleteArchiveGroupCommand;
 
     #endregion Commands
 

@@ -18,15 +18,9 @@ public abstract class BaseItemEditViewModel : BaseEditViewModel
 
     #region Properties
 
-    public bool IsNewItem
-    {
-        get => _baseItemEditModel.IsNewItem;
-    }
+    public bool IsNewItem => _baseItemEditModel.IsNewItem;
 
-    public BaseSkinViewModel? DefaultSkinModel
-    {
-        get => _baseItemEditModel.DefaultSkinModel;
-    }
+    public BaseSkinViewModel? DefaultSkinModel => _baseItemEditModel.DefaultSkinModel;
 
     public BaseSkinViewModel? SelectedSkinModel
     {
@@ -40,20 +34,11 @@ public abstract class BaseItemEditViewModel : BaseEditViewModel
         set => _baseItemEditModel.Filter = value;
     }
 
-    public AutoCompleteFilterPredicate<object?>? ItemFilter
-    {
-        get => _baseItemEditModel.ItemFilter;
-    }
+    public AutoCompleteFilterPredicate<object?>? ItemFilter => _baseItemEditModel.ItemFilter;
 
-    public Func<string?, CancellationToken, Task<IEnumerable<object>>>? AsyncPopulator
-    {
-        get => _baseItemEditModel.AsyncPopulator;
-    }
+    public Func<string?, CancellationToken, Task<IEnumerable<object>>>? AsyncPopulator => _baseItemEditModel.AsyncPopulator;
 
-    public IEnumerable<BaseSkinViewModel> SkinModels
-    {
-        get => _baseItemEditModel.SkinModels;
-    }
+    public IEnumerable<BaseSkinViewModel> SkinModels => _baseItemEditModel.SkinModels;
 
     #endregion Properties
 

@@ -90,7 +90,9 @@ public class ProfileModel : ModelBase
         set
         {
             SetProperty(ref _financialGoal, value);
-            Dispatcher.UIThread.Invoke(() => SaveFinancialGoal.NotifyCanExecuteChanged()); // TODO: Скорее всего всё ломается из-за Async Void, изменение финансовой цели происходит в другом потоке, а уведомление об изменении нужно посылать в основной
+            Dispatcher.UIThread.Invoke(() =>
+                SaveFinancialGoal
+                    .NotifyCanExecuteChanged());// TODO: Скорее всего всё ломается из-за Async Void, изменение финансовой цели происходит в другом потоке, а уведомление об изменении нужно посылать в основной
         }
     }
 
@@ -164,10 +166,10 @@ public class ProfileModel : ModelBase
 
         _profileUrl = string.Empty;
 
-        OpenSteamProfileCommand = new(DoOpenSteamProfileCommand);
-        SaveFinancialGoal = new(DoSaveFinancialGoal, CanExecuteSaveFinancialGoal);
-        DeleteProfileCommand = new(DoDeleteProfileCommand);
-        AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
+        OpenSteamProfileCommand = new RelayCommand(DoOpenSteamProfileCommand);
+        SaveFinancialGoal = new AsyncRelayCommand(DoSaveFinancialGoal, CanExecuteSaveFinancialGoal);
+        DeleteProfileCommand = new AsyncRelayCommand(DoDeleteProfileCommand);
+        AttachedToVisualTreeCommand = new RelayCommand(DoAttachedToVisualTreeCommand);
     }
 
     #endregion Constructor

@@ -17,25 +17,13 @@ public class ListItemViewModel : BaseDynamicsSkinViewModel
 
     #region Properties
 
-    public ListItemModel ListItemModel
-    {
-        get => _model;
-    }
+    public ListItemModel ListItemModel => _model;
 
-    public string CurrentPriceString
-    {
-        get => _model.CurrentPriceString;
-    }
+    public string CurrentPriceString => _model.CurrentPriceString;
 
-    public decimal Change7D
-    {
-        get => _model.Change7D;
-    }
+    public decimal Change7D => _model.Change7D;
 
-    public decimal Change30D
-    {
-        get => _model.Change30D;
-    }
+    public decimal Change30D => _model.Change30D;
 
     public bool IsMarked
     {
@@ -47,15 +35,9 @@ public class ListItemViewModel : BaseDynamicsSkinViewModel
 
     #region Commands
 
-    public RelayCommand<ListItemModel> AddToActivesCommand
-    {
-        get => _listItemsModel.AddToActivesCommand;
-    }
+    public RelayCommand<ListItemModel> AddToActivesCommand => _listItemsModel.AddToActivesCommand;
 
-    public RelayCommand<ListItemModel> AddToArchiveCommand
-    {
-        get => _listItemsModel.AddToArchiveCommand;
-    }
+    public RelayCommand<ListItemModel> AddToArchiveCommand => _listItemsModel.AddToArchiveCommand;
 
     #endregion Commands
 

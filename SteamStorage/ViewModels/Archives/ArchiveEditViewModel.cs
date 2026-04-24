@@ -18,15 +18,9 @@ public class ArchiveEditViewModel : BaseItemEditViewModel
 
     #region Properties
 
-    public IEnumerable<BaseGroupModel> ArchiveGroupModels
-    {
-        get => _archiveGroupsModel.ArchiveGroupModels;
-    }
+    public IEnumerable<BaseGroupModel> ArchiveGroupModels => _archiveGroupsModel.ArchiveGroupModels;
 
-    public BaseGroupModel? DefaultArchiveGroupModel
-    {
-        get => _archiveEditModel.DefaultArchiveGroupModel;
-    }
+    public BaseGroupModel? DefaultArchiveGroupModel => _archiveEditModel.DefaultArchiveGroupModel;
 
     public BaseGroupModel? SelectedArchiveGroupModel
     {
@@ -34,10 +28,7 @@ public class ArchiveEditViewModel : BaseItemEditViewModel
         set => _archiveEditModel.SelectedArchiveGroupModel = value;
     }
 
-    public string DefaultCount
-    {
-        get => _archiveEditModel.DefaultCount;
-    }
+    public string DefaultCount => _archiveEditModel.DefaultCount;
 
     public string Count
     {
@@ -45,10 +36,7 @@ public class ArchiveEditViewModel : BaseItemEditViewModel
         set => _archiveEditModel.Count = value;
     }
 
-    public string DefaultBuyPrice
-    {
-        get => _archiveEditModel.DefaultBuyPrice;
-    }
+    public string DefaultBuyPrice => _archiveEditModel.DefaultBuyPrice;
 
     public string BuyPrice
     {
@@ -56,10 +44,7 @@ public class ArchiveEditViewModel : BaseItemEditViewModel
         set => _archiveEditModel.BuyPrice = value;
     }
 
-    public string DefaultSoldPrice
-    {
-        get => _archiveEditModel.DefaultSoldPrice;
-    }
+    public string DefaultSoldPrice => _archiveEditModel.DefaultSoldPrice;
 
     public string SoldPrice
     {
@@ -67,10 +52,7 @@ public class ArchiveEditViewModel : BaseItemEditViewModel
         set => _archiveEditModel.SoldPrice = value;
     }
 
-    public string? DefaultDescription
-    {
-        get => _archiveEditModel.DefaultDescription;
-    }
+    public string? DefaultDescription => _archiveEditModel.DefaultDescription;
 
     public string? Description
     {
@@ -78,10 +60,7 @@ public class ArchiveEditViewModel : BaseItemEditViewModel
         set => _archiveEditModel.Description = value;
     }
 
-    public DateTimeOffset DefaultBuyDate
-    {
-        get => _archiveEditModel.DefaultBuyDate;
-    }
+    public DateTimeOffset DefaultBuyDate => _archiveEditModel.DefaultBuyDate;
 
     public DateTimeOffset BuyDate
     {
@@ -89,10 +68,7 @@ public class ArchiveEditViewModel : BaseItemEditViewModel
         set => _archiveEditModel.BuyDate = value;
     }
 
-    public DateTimeOffset DefaultSoldDate
-    {
-        get => _archiveEditModel.DefaultSoldDate;
-    }
+    public DateTimeOffset DefaultSoldDate => _archiveEditModel.DefaultSoldDate;
 
     public DateTimeOffset SoldDate
     {

@@ -18,15 +18,9 @@ public class ActiveEditViewModel : BaseItemEditViewModel
 
     #region Properties
 
-    public IEnumerable<BaseGroupModel> ActiveGroupModels
-    {
-        get => _activeGroupsModel.ActiveGroupModels;
-    }
+    public IEnumerable<BaseGroupModel> ActiveGroupModels => _activeGroupsModel.ActiveGroupModels;
 
-    public BaseGroupModel? DefaultActiveGroupModel
-    {
-        get => _activeEditModel.DefaultActiveGroupModel;
-    }
+    public BaseGroupModel? DefaultActiveGroupModel => _activeEditModel.DefaultActiveGroupModel;
 
     public BaseGroupModel? SelectedActiveGroupModel
     {
@@ -34,10 +28,7 @@ public class ActiveEditViewModel : BaseItemEditViewModel
         set => _activeEditModel.SelectedActiveGroupModel = value;
     }
 
-    public string DefaultCount
-    {
-        get => _activeEditModel.DefaultCount;
-    }
+    public string DefaultCount => _activeEditModel.DefaultCount;
 
     public string Count
     {
@@ -45,10 +36,7 @@ public class ActiveEditViewModel : BaseItemEditViewModel
         set => _activeEditModel.Count = value;
     }
 
-    public string DefaultBuyPrice
-    {
-        get => _activeEditModel.DefaultBuyPrice;
-    }
+    public string DefaultBuyPrice => _activeEditModel.DefaultBuyPrice;
 
     public string BuyPrice
     {
@@ -56,10 +44,7 @@ public class ActiveEditViewModel : BaseItemEditViewModel
         set => _activeEditModel.BuyPrice = value;
     }
 
-    public string? DefaultGoalPrice
-    {
-        get => _activeEditModel.DefaultGoalPrice;
-    }
+    public string? DefaultGoalPrice => _activeEditModel.DefaultGoalPrice;
 
     public string? GoalPrice
     {
@@ -67,10 +52,7 @@ public class ActiveEditViewModel : BaseItemEditViewModel
         set => _activeEditModel.GoalPrice = value;
     }
 
-    public string? DefaultDescription
-    {
-        get => _activeEditModel.DefaultDescription;
-    }
+    public string? DefaultDescription => _activeEditModel.DefaultDescription;
 
     public string? Description
     {
@@ -78,10 +60,7 @@ public class ActiveEditViewModel : BaseItemEditViewModel
         set => _activeEditModel.Description = value;
     }
 
-    public DateTimeOffset DefaultBuyDate
-    {
-        get => _activeEditModel.DefaultBuyDate;
-    }
+    public DateTimeOffset DefaultBuyDate => _activeEditModel.DefaultBuyDate;
 
     public DateTimeOffset BuyDate
     {

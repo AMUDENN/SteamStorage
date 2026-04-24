@@ -14,50 +14,23 @@ public class MessageDialogViewModel : BaseDialogViewModel
 
     #region Properties
 
-    public string Message
-    {
-        get => _messageDialogModel.Message;
-    }
+    public string Message => _messageDialogModel.Message;
 
-    public DialogUtility.MessageType SelectedMessageType
-    {
-        get => _messageDialogModel.SelectedMessageType;
-    }
+    public DialogUtility.MessageType SelectedMessageType => _messageDialogModel.SelectedMessageType;
 
-    public DialogUtility.MessageButtons SelectedMessageButtons
-    {
-        get => _messageDialogModel.SelectedMessageButtons;
-    }
+    public DialogUtility.MessageButtons SelectedMessageButtons => _messageDialogModel.SelectedMessageButtons;
 
-    public bool IsInfoVisible
-    {
-        get => _messageDialogModel.IsInfoVisible;
-    }
+    public bool IsInfoVisible => _messageDialogModel.IsInfoVisible;
 
-    public bool IsErrorVisible
-    {
-        get => _messageDialogModel.IsErrorVisible;
-    }
+    public bool IsErrorVisible => _messageDialogModel.IsErrorVisible;
 
-    public bool IsQuestionVisible
-    {
-        get => _messageDialogModel.IsQuestionVisible;
-    }
+    public bool IsQuestionVisible => _messageDialogModel.IsQuestionVisible;
 
-    public bool IsOkVisible
-    {
-        get => _messageDialogModel.IsOkVisible;
-    }
+    public bool IsOkVisible => _messageDialogModel.IsOkVisible;
 
-    public bool IsSaveVisible
-    {
-        get => _messageDialogModel.IsSaveVisible;
-    }
+    public bool IsSaveVisible => _messageDialogModel.IsSaveVisible;
 
-    public bool IsCancelVisible
-    {
-        get => _messageDialogModel.IsCancelVisible;
-    }
+    public bool IsCancelVisible => _messageDialogModel.IsCancelVisible;
 
     #endregion Properties
 

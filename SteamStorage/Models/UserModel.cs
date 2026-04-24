@@ -99,10 +99,7 @@ public class UserModel : ModelBase
         }
     }
 
-    public string CurrencyMark
-    {
-        get => Currency?.Mark ?? ProgramConstants.BASE_CURRENCY_MARK;
-    }
+    public string CurrencyMark => Currency?.Mark ?? ProgramConstants.BASE_CURRENCY_MARK;
 
     #endregion Properties
 

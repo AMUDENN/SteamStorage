@@ -17,64 +17,31 @@ public class ActiveViewModel : BaseDynamicsSkinViewModel
 
     #region Properties
 
-    public ActiveModel ActiveModel
-    {
-        get => _model;
-    }
+    public ActiveModel ActiveModel => _model;
 
-    public int Count
-    {
-        get => _model.Count;
-    }
+    public int Count => _model.Count;
 
-    public string BuyPriceString
-    {
-        get => _model.BuyPriceString;
-    }
+    public string BuyPriceString => _model.BuyPriceString;
 
-    public string CurrentPriceString
-    {
-        get => _model.CurrentPriceString;
-    }
+    public string CurrentPriceString => _model.CurrentPriceString;
 
-    public string CurrentSumString
-    {
-        get => _model.CurrentSumString;
-    }
+    public string CurrentSumString => _model.CurrentSumString;
 
-    public string GoalPriceString
-    {
-        get => _model.GoalPriceString;
-    }
+    public string GoalPriceString => _model.GoalPriceString;
 
-    public decimal Change
-    {
-        get => _model.Change;
-    }
+    public decimal Change => _model.Change;
 
-    public string BuyDateString
-    {
-        get => _model.BuyDateString;
-    }
+    public string BuyDateString => _model.BuyDateString;
 
     #endregion Properties
 
     #region Commands
 
-    public RelayCommand<ActiveModel> EditCommand
-    {
-        get => _listActivesModel.EditCommand;
-    }
+    public RelayCommand<ActiveModel> EditCommand => _listActivesModel.EditCommand;
 
-    public RelayCommand<ActiveModel> SoldCommand
-    {
-        get => _listActivesModel.SoldCommand;
-    }
+    public RelayCommand<ActiveModel> SoldCommand => _listActivesModel.SoldCommand;
 
-    public AsyncRelayCommand<ActiveModel> DeleteCommand
-    {
-        get => _listActivesModel.DeleteCommand;
-    }
+    public AsyncRelayCommand<ActiveModel> DeleteCommand => _listActivesModel.DeleteCommand;
 
     #endregion Commands
 

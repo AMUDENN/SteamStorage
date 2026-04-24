@@ -88,11 +88,11 @@ public class ArchiveGroupsModel : ModelBase
 
         userModel.UserChanged += UserChangedHandler;
 
-        AddArchiveCommand = new(DoAddArchiveCommand);
-        OpenArchivesCommand = new(DoOpenArchivesCommand);
-        AddArchiveGroupCommand = new(DoAddArchiveGroupCommand);
-        EditArchiveGroupCommand = new(DoEditArchiveGroupCommand);
-        DeleteArchiveGroupCommand = new(DoDeleteArchiveGroupCommand);
+        AddArchiveCommand = new RelayCommand<ArchiveGroupModel>(DoAddArchiveCommand);
+        OpenArchivesCommand = new RelayCommand<ArchiveGroupModel>(DoOpenArchivesCommand);
+        AddArchiveGroupCommand = new RelayCommand(DoAddArchiveGroupCommand);
+        EditArchiveGroupCommand = new RelayCommand<ArchiveGroupModel>(DoEditArchiveGroupCommand);
+        DeleteArchiveGroupCommand = new AsyncRelayCommand<ArchiveGroupModel>(DoDeleteArchiveGroupCommand);
     }
 
     #endregion Constructor
@@ -159,7 +159,7 @@ public class ArchiveGroupsModel : ModelBase
         ArchiveGroups.ArchiveGroupsResponse? groupsResponses =
             await _apiClient.GetAsync<ArchiveGroups.ArchiveGroupsResponse, ArchiveGroups.GetArchiveGroupsRequest>(
                 ApiConstants.ApiMethods.GetArchiveGroups,
-                new(null, null));
+                new ArchiveGroups.GetArchiveGroupsRequest(null, null));
         if (groupsResponses?.ArchiveGroups is null) return;
         ArchiveGroupModels = groupsResponses.ArchiveGroups
             .Select(x => new BaseGroupModel(x.Id, x.Title, x.Colour))
@@ -168,17 +168,17 @@ public class ArchiveGroupsModel : ModelBase
 
     private void OnAddArchive(ArchiveGroupModel? group)
     {
-        AddArchive?.Invoke(this, new(group));
+        AddArchive?.Invoke(this, new AddArchiveEventArgs(group));
     }
 
     private void OnOpenArchives(ArchiveGroupModel? group)
     {
-        OpenArchives?.Invoke(this, new(group));
+        OpenArchives?.Invoke(this, new OpenArchivesEventArgs(group));
     }
 
     private void OnEditArchiveGroup(ArchiveGroupModel? group)
     {
-        EditArchiveGroup?.Invoke(this, new(group));
+        EditArchiveGroup?.Invoke(this, new EditArchiveGroupEventArgs(group));
     }
 
     private void OnDeleteArchiveGroup()

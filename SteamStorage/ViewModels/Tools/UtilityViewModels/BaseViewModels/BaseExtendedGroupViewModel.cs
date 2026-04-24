@@ -13,20 +13,11 @@ public class BaseExtendedGroupViewModel : BaseGroupViewModel
 
     #region Properties
 
-    public int Count
-    {
-        get => _model.Count;
-    }
+    public int Count => _model.Count;
 
-    public DateTime DateCreation
-    {
-        get => _model.DateCreation;
-    }
+    public DateTime DateCreation => _model.DateCreation;
 
-    public string DateCreationString
-    {
-        get => _model.DateCreationString;
-    }
+    public string DateCreationString => _model.DateCreationString;
 
     #endregion Properties
 

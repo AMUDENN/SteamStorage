@@ -21,7 +21,7 @@ public class NotificationService : INotificationService
     public NotificationService(
         MainWindow mainWindow)
     {
-        _notificationManager = new(TopLevel.GetTopLevel(mainWindow))
+        _notificationManager = new WindowNotificationManager(TopLevel.GetTopLevel(mainWindow))
         {
             MaxItems = 3
         };

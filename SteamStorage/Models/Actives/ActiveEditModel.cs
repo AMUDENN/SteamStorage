@@ -301,7 +301,7 @@ public class ActiveEditModel : BaseItemEditModel
 
         DefaultGoalPrice = $"{model?.GoalPrice:N2}";
 
-        DefaultSkinModel = model is not null ? new(model) : null;
+        DefaultSkinModel = model is not null ? new BaseSkinViewModel(model) : null;
         Filter = model?.Title;
 
         DefaultDescription = model?.Description ?? string.Empty;
@@ -349,7 +349,7 @@ public class ActiveEditModel : BaseItemEditModel
 
         DefaultGoalPrice = null;
 
-        DefaultSkinModel = model is not null ? new(model) : null;
+        DefaultSkinModel = model is not null ? new BaseSkinViewModel(model) : null;
         Filter = model?.Title;
 
         DefaultDescription = string.Empty;

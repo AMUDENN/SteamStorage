@@ -14,19 +14,13 @@ public class DialogWindowViewModel : ViewModelBase
 
     #region Properties
 
-    public ViewModelBase? Content
-    {
-        get => _dialogWindowModel.Content;
-    }
+    public ViewModelBase? Content => _dialogWindowModel.Content;
 
     #endregion Properties
 
     #region Commands
 
-    public RelayCommand CloseCommand
-    {
-        get => _dialogWindowModel.CloseCommand;
-    }
+    public RelayCommand CloseCommand => _dialogWindowModel.CloseCommand;
 
     #endregion Commands
 

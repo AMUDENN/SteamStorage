@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models.Tools.BaseModels;
@@ -267,10 +268,7 @@ public class InventoryModel : BaseListModel
         }
     }
 
-    public override string? NotFoundText
-    {
-        get => InventoryModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
-    }
+    public override string? NotFoundText => InventoryModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
 
     private SteamStorageAPI.SDK.ApiEntities.Inventory.InventoryOrderName? InventoryOrderName
     {
@@ -343,8 +341,8 @@ public class InventoryModel : BaseListModel
         _chartWidth = CHART_WIDTH_DEFAULT;
 
         _inventoryModels = [];
-        _itemsCancellationTokenSource = new();
-        _statisticsCancellationTokenSource = new();
+        _itemsCancellationTokenSource = new CancellationTokenSource();
+        _statisticsCancellationTokenSource = new CancellationTokenSource();
 
         IsAllGamesChecked = true;
 
@@ -355,8 +353,8 @@ public class InventoryModel : BaseListModel
         PageNumber = 1;
         PageSize = 20;
 
-        ClearFiltersCommand = new(DoClearFiltersCommand);
-        RefreshInventoryCommand = new(DoRefreshInventoryCommand);
+        ClearFiltersCommand = new RelayCommand(DoClearFiltersCommand);
+        RefreshInventoryCommand = new AsyncRelayCommand(DoRefreshInventoryCommand);
     }
 
     #endregion Constructor
@@ -426,12 +424,11 @@ public class InventoryModel : BaseListModel
         {
             int i = 0;
 
-            InventoryGameCountSeries = new(InventoryGameCount.OrderByDescending(x => x.GameTitle)
-                .AsPieSeries((value, builder) =>
-                {
+            InventoryGameCountSeries = new ObservableCollection<ISeries>(InventoryGameCount.OrderByDescending(x => x.GameTitle)
+                .AsPieSeries((value, builder) => {
                     builder.MaxRadialColumnWidth = 20;
                     builder.HoverPushout = 0;
-                    builder.Mapping = (game, point) => new(point, game.Count);
+                    builder.Mapping = (game, point) => new Coordinate(point, game.Count);
                     builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
                     builder.Fill =
                         new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
@@ -452,12 +449,11 @@ public class InventoryModel : BaseListModel
         {
             int i = 0;
 
-            InventoryGameSumSeries = new(InventoryGameSum.OrderByDescending(x => x.GameTitle)
-                .AsPieSeries((value, builder) =>
-                {
+            InventoryGameSumSeries = new ObservableCollection<ISeries>(InventoryGameSum.OrderByDescending(x => x.GameTitle)
+                .AsPieSeries((value, builder) => {
                     builder.MaxRadialColumnWidth = 20;
                     builder.HoverPushout = 0;
-                    builder.Mapping = (game, point) => new(point, (double)game.Sum);
+                    builder.Mapping = (game, point) => new Coordinate(point, (double)game.Sum);
                     builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Sum:N2}";
                     builder.Fill =
                         new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
@@ -472,7 +468,7 @@ public class InventoryModel : BaseListModel
     {
         await StatisticsCancellationTokenSource.CancelAsync();
 
-        StatisticsCancellationTokenSource = new();
+        StatisticsCancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = StatisticsCancellationTokenSource.Token;
 
         SteamStorageAPI.SDK.ApiEntities.Inventory.InventoriesStatisticResponse? inventoriesStatisticResponse =
@@ -480,7 +476,7 @@ public class InventoryModel : BaseListModel
                 .GetAsync<SteamStorageAPI.SDK.ApiEntities.Inventory.InventoriesStatisticResponse,
                     SteamStorageAPI.SDK.ApiEntities.Inventory.GetInventoriesStatisticRequest>(
                     ApiConstants.ApiMethods.GetInventoriesStatistic,
-                    new(SelectedGameModel?.Id, Filter),
+                    new SteamStorageAPI.SDK.ApiEntities.Inventory.GetInventoriesStatisticRequest(SelectedGameModel?.Id, Filter),
                     token);
 
         if (inventoriesStatisticResponse is null) return;
@@ -504,7 +500,7 @@ public class InventoryModel : BaseListModel
 
         await ItemsCancellationTokenSource.CancelAsync();
 
-        ItemsCancellationTokenSource = new();
+        ItemsCancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = ItemsCancellationTokenSource.Token;
 
         CurrentPageNumber = PageNumber ?? 1;
@@ -517,7 +513,7 @@ public class InventoryModel : BaseListModel
                 .GetAsync<SteamStorageAPI.SDK.ApiEntities.Inventory.InventoriesResponse,
                     SteamStorageAPI.SDK.ApiEntities.Inventory.GetInventoryRequest>(
                     ApiConstants.ApiMethods.GetInventory,
-                    new(SelectedGameModel?.Id, Filter, InventoryOrderName, IsAscending, CurrentPageNumber, PageSize),
+                    new SteamStorageAPI.SDK.ApiEntities.Inventory.GetInventoryRequest(SelectedGameModel?.Id, Filter, InventoryOrderName, IsAscending, CurrentPageNumber, PageSize),
                     token);
 
         if (inventoriesResponse is null) return;
@@ -529,7 +525,7 @@ public class InventoryModel : BaseListModel
 
         InventoryModels = inventoriesResponse.Inventories.Select(x =>
                 new InventoryItemViewModel(
-                    new(_apiClient,
+                    new InventoryItemModel(_apiClient,
                         _periodsModel,
                         _themeService,
                         x.Skin.Id,

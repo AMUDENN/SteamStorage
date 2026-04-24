@@ -48,11 +48,11 @@ public class MainWindowModel : ModelBase
         _mainWindow = mainWindow;
         MainViewModel = mainViewModel;
 
-        KeyDownCommand = new(DoKeyDownCommand);
-        MinimizeCommand = new(() => ChangeWindowState(WindowState.Minimized));
-        MaximizeCommand = new(() => ChangeWindowState(WindowState.Maximized));
-        RestoreCommand = new(() => ChangeWindowState(WindowState.Normal));
-        CloseCommand = new(DoCloseCommand);
+        KeyDownCommand = new RelayCommand<KeyEventArgs>(DoKeyDownCommand);
+        MinimizeCommand = new RelayCommand(() => ChangeWindowState(WindowState.Minimized));
+        MaximizeCommand = new RelayCommand(() => ChangeWindowState(WindowState.Maximized));
+        RestoreCommand = new RelayCommand(() => ChangeWindowState(WindowState.Normal));
+        CloseCommand = new RelayCommand(DoCloseCommand);
     }
 
     #endregion Constructor

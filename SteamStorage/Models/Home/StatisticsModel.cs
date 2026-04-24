@@ -2,6 +2,7 @@
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models.Tools;
@@ -302,7 +303,7 @@ public class StatisticsModel : ModelBase
         _inventoryGamesSeries = Enumerable.Empty<ISeries>();
         _inventoryGamesWidth = INVENTORY_GAMES_WIDTH_DEFAULT;
 
-        AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
+        AttachedToVisualTreeCommand = new RelayCommand(DoAttachedToVisualTreeCommand);
 
         RefreshPingAsync();
     }
@@ -347,15 +348,13 @@ public class StatisticsModel : ModelBase
         InvestedSumGrowthSeries = GaugeGenerator.BuildSolidGauge(
             new GaugeItem(
                 (double)growth,
-                series =>
-                {
+                series => {
                     series.MaxRadialColumnWidth = 20;
                     series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
                         .GetChartColor(ChartThemeVariants.ChartColors.SecondAccent).Color);
                     series.DataLabelsSize = 0;
                 }),
-            new GaugeItem(GaugeItem.Background, series =>
-            {
+            new GaugeItem(GaugeItem.Background, series => {
                 series.MaxRadialColumnWidth = 20;
                 series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
                     .GetChartColor(ChartThemeVariants.ChartColors.ThirdAccent).Color);
@@ -374,15 +373,13 @@ public class StatisticsModel : ModelBase
         FinancialGoalPercentageCompletionSeries = GaugeGenerator.BuildSolidGauge(
             new GaugeItem(
                 (double)growth,
-                series =>
-                {
+                series => {
                     series.MaxRadialColumnWidth = 20;
                     series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
                         .GetChartColor(ChartThemeVariants.ChartColors.FirstAccent).Color);
                     series.DataLabelsSize = 0;
                 }),
-            new GaugeItem(GaugeItem.Background, series =>
-            {
+            new GaugeItem(GaugeItem.Background, series => {
                 series.MaxRadialColumnWidth = 20;
                 series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
                     .GetChartColor(ChartThemeVariants.ChartColors.ThirdAccent).Color);
@@ -399,11 +396,10 @@ public class StatisticsModel : ModelBase
 
         int i = 0;
         InventoryGamesSeries = InventoryGames.OrderByDescending(x => x.GameTitle)
-            .AsPieSeries((value, builder) =>
-            {
+            .AsPieSeries((value, builder) => {
                 builder.MaxRadialColumnWidth = 20;
                 builder.HoverPushout = 0;
-                builder.Mapping = (game, point) => new(point, game.Count);
+                builder.Mapping = (game, point) => new Coordinate(point, game.Count);
                 builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;

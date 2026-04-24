@@ -34,9 +34,9 @@ public class SettingsService : ISettingsService, IDisposable
         IApiClient apiClient,
         IThemeService themeService)
     {
-        _file = new(programName);
+        _file = new SettingsFile.SettingsFile(programName);
 
-        UserSettings = _file.Read<UserSettings.UserSettings>() ?? new();
+        UserSettings = _file.Read<UserSettings.UserSettings>() ?? new UserSettings.UserSettings();
 
         UserSettings.PropertyChanged += PropertyChangedHandler;
 
@@ -82,7 +82,7 @@ public class SettingsService : ISettingsService, IDisposable
 
     private void OnSettingsPropertyChanged(string? property)
     {
-        SettingsPropertyChanged?.Invoke(this, new(property));
+        SettingsPropertyChanged?.Invoke(this, new SettingsPropertyChangedEventArgs(property));
     }
 
     #endregion Methods

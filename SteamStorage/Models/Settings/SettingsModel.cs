@@ -79,10 +79,10 @@ public class SettingsModel : ModelBase
 
         ThemeModels =
         [
-            new("Классический", ThemeVariants.Classic),
-            new("Лаймовый", ThemeVariants.Lime),
-            new("Тёмный", ThemeVariants.VeryDark),
-            new("Светлый", ThemeVariants.VeryLight)
+            new ThemeModel("Классический", ThemeVariants.Classic),
+            new ThemeModel("Лаймовый", ThemeVariants.Lime),
+            new ThemeModel("Тёмный", ThemeVariants.VeryDark),
+            new ThemeModel("Светлый", ThemeVariants.VeryLight)
         ];
 
         _selectedThemeModel = ThemeModels.First();
@@ -91,8 +91,8 @@ public class SettingsModel : ModelBase
 
         settingsService.SettingsPropertyChanged += SettingsPropertyChangedHandler;
 
-        ExportToExcelCommand = new(DoExportToExcelCommand);
-        OpenReferenceInformationCommand = new(DoOpenReferenceInformationCommand);
+        ExportToExcelCommand = new AsyncRelayCommand(DoExportToExcelCommand);
+        OpenReferenceInformationCommand = new RelayCommand(DoOpenReferenceInformationCommand);
     }
 
     #endregion Constructor
@@ -108,8 +108,7 @@ public class SettingsModel : ModelBase
     private void SetTheme()
     {
         SelectedThemeModel =
-            ThemeModels.FirstOrDefault(
-                x => x.ThemeVariant.ToString() == _settingsService.UserSettings.Theme?.ToString()) ??
+            ThemeModels.FirstOrDefault(x => x.ThemeVariant.ToString() == _settingsService.UserSettings.Theme?.ToString()) ??
             ThemeModels.First();
     }
 
@@ -119,14 +118,17 @@ public class SettingsModel : ModelBase
 
         if (topLevel is null) return;
 
-        IStorageFile? file = await topLevel.StorageProvider.SaveFilePickerAsync(new()
+        IStorageFile? file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
             Title = "Сохранение файла",
             FileTypeChoices = new List<FilePickerFileType>
             {
                 new("*.xlsx")
                 {
-                    Patterns = new[] { "*.xlsx" }
+                    Patterns = new[]
+                    {
+                        "*.xlsx"
+                    }
                 }
             }
         });

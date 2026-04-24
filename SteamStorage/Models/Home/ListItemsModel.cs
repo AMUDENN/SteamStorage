@@ -211,10 +211,7 @@ public class ListItemsModel : BaseListModel
         }
     }
 
-    public override string? NotFoundText
-    {
-        get => ListItemModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
-    }
+    public override string? NotFoundText => ListItemModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
 
     private Skins.SkinOrderName? SkinOrderName
     {
@@ -273,7 +270,7 @@ public class ListItemsModel : BaseListModel
         userModel.CurrencyChanged += CurrencyChangedHandler;
 
         _listItemModels = [];
-        _cancellationTokenSource = new();
+        _cancellationTokenSource = new CancellationTokenSource();
 
         IsAllGamesChecked = true;
 
@@ -286,9 +283,9 @@ public class ListItemsModel : BaseListModel
         PageNumber = 1;
         PageSize = 20;
 
-        ClearFiltersCommand = new(DoClearFiltersCommand);
-        AddToActivesCommand = new(DoAddToActivesCommand);
-        AddToArchiveCommand = new(DoAddToArchiveCommand);
+        ClearFiltersCommand = new RelayCommand(DoClearFiltersCommand);
+        AddToActivesCommand = new RelayCommand<ListItemModel>(DoAddToActivesCommand);
+        AddToArchiveCommand = new RelayCommand<ListItemModel>(DoAddToArchiveCommand);
     }
 
     #endregion Constructor
@@ -343,7 +340,7 @@ public class ListItemsModel : BaseListModel
 
         await CancellationTokenSource.CancelAsync();
 
-        CancellationTokenSource = new();
+        CancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = CancellationTokenSource.Token;
 
         CurrentPageNumber = PageNumber ?? 1;
@@ -354,7 +351,7 @@ public class ListItemsModel : BaseListModel
         Skins.SkinsResponse? skinsResponse =
             await _apiClient.GetAsync<Skins.SkinsResponse, Skins.GetSkinsRequest>(
                 ApiConstants.ApiMethods.GetSkins,
-                new(SelectedGameModel?.Id, Filter, SkinOrderName, IsAscending, IsMarked ? IsMarked : null,
+                new Skins.GetSkinsRequest(SelectedGameModel?.Id, Filter, SkinOrderName, IsAscending, IsMarked ? IsMarked : null,
                     CurrentPageNumber, PageSize),
                 token);
 
@@ -367,7 +364,7 @@ public class ListItemsModel : BaseListModel
 
         ListItemModels = skinsResponse.Skins.Select(x =>
                 new ListItemViewModel(
-                    new(_apiClient,
+                    new ListItemModel(_apiClient,
                         _periodsModel,
                         _themeService,
                         x.Skin.Id,
@@ -388,12 +385,12 @@ public class ListItemsModel : BaseListModel
 
     private void OnAddToActives(ListItemModel? model)
     {
-        AddToActives?.Invoke(this, new(model));
+        AddToActives?.Invoke(this, new AddToActivesEventArgs(model));
     }
 
     private void OnAddToArchive(ListItemModel? model)
     {
-        AddToArchive?.Invoke(this, new(model));
+        AddToArchive?.Invoke(this, new AddToArchiveEventArgs(model));
     }
 
     #endregion Methods

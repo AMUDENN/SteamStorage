@@ -12,15 +12,9 @@ public class BaseGroupViewModel : ViewModelBase
 
     #region Properties
 
-    public string Colour
-    {
-        get => _model.Colour;
-    }
+    public string Colour => _model.Colour;
 
-    public string Title
-    {
-        get => _model.Title;
-    }
+    public string Title => _model.Title;
 
     #endregion Properties
 

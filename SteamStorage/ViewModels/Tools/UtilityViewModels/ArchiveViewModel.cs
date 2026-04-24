@@ -16,59 +16,29 @@ public class ArchiveViewModel : BaseSkinViewModel
 
     #region Properties
 
-    public ArchiveModel ArchiveModel
-    {
-        get => _model;
-    }
+    public ArchiveModel ArchiveModel => _model;
 
-    public int Count
-    {
-        get => _model.Count;
-    }
+    public int Count => _model.Count;
 
-    public string BuyPriceString
-    {
-        get => _model.BuyPriceString;
-    }
+    public string BuyPriceString => _model.BuyPriceString;
 
-    public string SoldPriceString
-    {
-        get => _model.SoldPriceString;
-    }
+    public string SoldPriceString => _model.SoldPriceString;
 
-    public string SoldSumString
-    {
-        get => _model.SoldSumString;
-    }
+    public string SoldSumString => _model.SoldSumString;
 
-    public decimal Change
-    {
-        get => _model.Change;
-    }
+    public decimal Change => _model.Change;
 
-    public string BuyDateString
-    {
-        get => _model.BuyDateString;
-    }
+    public string BuyDateString => _model.BuyDateString;
 
-    public string SoldDateString
-    {
-        get => _model.SoldDateString;
-    }
+    public string SoldDateString => _model.SoldDateString;
 
     #endregion Properties
 
     #region Commands
 
-    public RelayCommand<ArchiveModel> EditCommand
-    {
-        get => _listArchivesModel.EditCommand;
-    }
+    public RelayCommand<ArchiveModel> EditCommand => _listArchivesModel.EditCommand;
 
-    public AsyncRelayCommand<ArchiveModel> DeleteCommand
-    {
-        get => _listArchivesModel.DeleteCommand;
-    }
+    public AsyncRelayCommand<ArchiveModel> DeleteCommand => _listArchivesModel.DeleteCommand;
 
     #endregion Commands
 

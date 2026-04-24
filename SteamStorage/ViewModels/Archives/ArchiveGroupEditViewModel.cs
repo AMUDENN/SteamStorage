@@ -14,25 +14,13 @@ public class ArchiveGroupEditViewModel : BaseGroupEditViewModel
 
     #region Properties
 
-    public string DateCreationString
-    {
-        get => _archiveGroupEditModel.DateCreationString;
-    }
+    public string DateCreationString => _archiveGroupEditModel.DateCreationString;
 
-    public string BuySumString
-    {
-        get => _archiveGroupEditModel.BuySumString;
-    }
+    public string BuySumString => _archiveGroupEditModel.BuySumString;
 
-    public string SoldSumString
-    {
-        get => _archiveGroupEditModel.SoldSumString;
-    }
+    public string SoldSumString => _archiveGroupEditModel.SoldSumString;
 
-    public string CountString
-    {
-        get => _archiveGroupEditModel.CountString;
-    }
+    public string CountString => _archiveGroupEditModel.CountString;
 
     #endregion Properties
 

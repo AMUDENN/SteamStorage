@@ -44,7 +44,7 @@
                 Grid.Column="4"
                 Classes="FilteringTextBox SmallTextBox"
                 Text="{Binding Filter}"
-                Watermark="Введите название">
+                PlaceholderText="Введите название">
                 <TextBox.InnerLeftContent>
                     <controls:VectorImage
                         Width="32"
@@ -188,7 +188,7 @@
                 Maximum="{Binding PagesCount, Mode=OneWay}"
                 Minimum="1"
                 ParsingNumberStyle="Integer"
-                Watermark="{Binding CurrentPageNumber, Mode=OneWay}"
+                PlaceholderText="{Binding CurrentPageNumber, Mode=OneWay}"
                 Value="{Binding PageNumber}" />
 
         </Grid>

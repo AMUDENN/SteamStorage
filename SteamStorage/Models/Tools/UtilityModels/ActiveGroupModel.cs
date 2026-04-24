@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using LiveChartsCore;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
@@ -80,10 +81,7 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         }
     }
 
-    public string? NotFoundText
-    {
-        get => GroupDynamic?.Count() == 0 && !IsLoading ? EMPTY_DYNAMIC_TEXT : null;
-    }
+    public string? NotFoundText => GroupDynamic?.Count() == 0 && !IsLoading ? EMPTY_DYNAMIC_TEXT : null;
 
     public IEnumerable<ISeries> ChangeSeries
     {
@@ -103,10 +101,7 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         private set => SetProperty(ref _yAxis, value);
     }
 
-    public IEnumerable<PeriodModel> PeriodModels
-    {
-        get => _periodsModel.PeriodModels;
-    }
+    public IEnumerable<PeriodModel> PeriodModels => _periodsModel.PeriodModels;
 
     public PeriodModel? SelectedPeriodModel
     {
@@ -198,11 +193,14 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
         {
             new LineSeries<ActiveGroups.ActiveGroupDynamicResponse>
             {
-                Values = GroupDynamic,
-                Mapping = (dynamic, point) => new(point, Convert.ToDouble(dynamic.Sum)),
+                Values = GroupDynamic?.ToList(),
+                Mapping = (dynamic, point) => new Coordinate(point, Convert.ToDouble(dynamic.Sum)),
                 YToolTipLabelFormatter = index =>
                     $"{index.Model?.DateUpdate.ToString(ProgramConstants.VIEW_DATE_FORMAT)}: {index.Model?.Sum:N2}",
-                Stroke = new SolidColorPaint(chartColor) { StrokeThickness = 2 },
+                Stroke = new SolidColorPaint(chartColor)
+                {
+                    StrokeThickness = 2
+                },
                 Fill = null,
                 LineSmoothness = 0,
                 GeometryFill = new SolidColorPaint(chartColor),
@@ -248,7 +246,7 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
             await _apiClient
                 .GetAsync<ActiveGroups.ActiveGroupDynamicStatsResponse, ActiveGroups.GetActiveGroupDynamicRequest>(
                     ApiConstants.ApiMethods.GetActiveGroupDynamics,
-                    new(GroupId, dateStart, dateEnd));
+                    new ActiveGroups.GetActiveGroupDynamicRequest(GroupId, dateStart, dateEnd));
 
         ChangePeriod = activeGroupDynamicResponse?.ChangePeriod;
 

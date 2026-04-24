@@ -13,29 +13,17 @@ public abstract class BaseEditViewModel : ViewModelBase
 
     #region Properties
 
-    public string Title
-    {
-        get => _baseEditModel.Title;
-    }
+    public string Title => _baseEditModel.Title;
 
     #endregion Properties
 
     #region Commands
 
-    public RelayCommand BackCommand
-    {
-        get => _baseEditModel.BackCommand;
-    }
+    public RelayCommand BackCommand => _baseEditModel.BackCommand;
 
-    public AsyncRelayCommand DeleteCommand
-    {
-        get => _baseEditModel.DeleteCommand;
-    }
+    public AsyncRelayCommand DeleteCommand => _baseEditModel.DeleteCommand;
 
-    public AsyncRelayCommand SaveCommand
-    {
-        get => _baseEditModel.SaveCommand;
-    }
+    public AsyncRelayCommand SaveCommand => _baseEditModel.SaveCommand;
 
     #endregion Commands
 

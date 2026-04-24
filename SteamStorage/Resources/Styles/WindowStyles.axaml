@@ -5,11 +5,9 @@
     xmlns:windows="clr-namespace:SteamStorage.ViewModels.Windows">
 
     <Style Selector="Window">
-        <Setter Property="ExtendClientAreaChromeHints" Value="NoChrome" />
         <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="36" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
         <Setter Property="TransparencyBackgroundFallback" Value="Transparent" />
-        <Setter Property="SystemDecorations" Value="BorderOnly" />
     </Style>
 
     <Style Selector="Window.MainWindow">

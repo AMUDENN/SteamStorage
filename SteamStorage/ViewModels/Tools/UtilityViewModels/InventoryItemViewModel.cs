@@ -14,20 +14,11 @@ public class InventoryItemViewModel : BaseDynamicsSkinViewModel
 
     #region Properties
 
-    public int Count
-    {
-        get => _model.Count;
-    }
+    public int Count => _model.Count;
 
-    public string CurrentPriceString
-    {
-        get => _model.CurrentPriceString;
-    }
+    public string CurrentPriceString => _model.CurrentPriceString;
 
-    public string CurrentSumString
-    {
-        get => _model.CurrentSumString;
-    }
+    public string CurrentSumString => _model.CurrentSumString;
 
     #endregion Properties
 

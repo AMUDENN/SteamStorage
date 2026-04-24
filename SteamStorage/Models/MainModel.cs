@@ -143,11 +143,11 @@ public class MainModel : ModelBase
 
         NavigationOptions =
         [
-            new("HomeVectorImage", "Главная", homeViewModel),
-            new("ActivesVectorImage", "Активы", activesViewModel),
-            new("ArchiveVectorImage", "Архив", archivesViewModel),
-            new("InventoryVectorImage", "Инвентарь", inventoryViewModel),
-            new("ProfileVectorImage", "Профиль", profileViewModel)
+            new NavigationModel("HomeVectorImage", "Главная", homeViewModel),
+            new NavigationModel("ActivesVectorImage", "Активы", activesViewModel),
+            new NavigationModel("ArchiveVectorImage", "Архив", archivesViewModel),
+            new NavigationModel("InventoryVectorImage", "Инвентарь", inventoryViewModel),
+            new NavigationModel("ProfileVectorImage", "Профиль", profileViewModel)
         ];
 
         _settingsViewModel = settingsViewModel;
@@ -160,8 +160,8 @@ public class MainModel : ModelBase
         _steamId = STEAM_ID;
         _isUserLogin = false;
 
-        LogInCommand = new(DoLogInCommand);
-        LogOutCommand = new(DoLogOutCommand);
+        LogInCommand = new RelayCommand(DoLogInCommand);
+        LogOutCommand = new RelayCommand(DoLogOutCommand);
 
         userModel.UserChanged += UserChangedHandler;
 

@@ -15,39 +15,21 @@ public class MainWindowViewModel : ViewModelBase
 
     #region Properties
 
-    public MainViewModel MainViewModel
-    {
-        get => _model.MainViewModel;
-    }
+    public MainViewModel MainViewModel => _model.MainViewModel;
 
     #endregion Properties
 
     #region Commands
 
-    public RelayCommand<KeyEventArgs> KeyDownCommand
-    {
-        get => _model.KeyDownCommand;
-    }
+    public RelayCommand<KeyEventArgs> KeyDownCommand => _model.KeyDownCommand;
 
-    public RelayCommand MinimizeCommand
-    {
-        get => _model.MinimizeCommand;
-    }
+    public RelayCommand MinimizeCommand => _model.MinimizeCommand;
 
-    public RelayCommand MaximizeCommand
-    {
-        get => _model.MaximizeCommand;
-    }
+    public RelayCommand MaximizeCommand => _model.MaximizeCommand;
 
-    public RelayCommand RestoreCommand
-    {
-        get => _model.RestoreCommand;
-    }
+    public RelayCommand RestoreCommand => _model.RestoreCommand;
 
-    public RelayCommand CloseCommand
-    {
-        get => _model.CloseCommand;
-    }
+    public RelayCommand CloseCommand => _model.CloseCommand;
 
     #endregion Commands
 

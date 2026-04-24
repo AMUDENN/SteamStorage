@@ -19,9 +19,9 @@ public abstract class BaseDialogModel : ModelBase
 
     protected BaseDialogModel()
     {
-        SetDialogResultCommand = new(DoSetDialogResultCommand, CanExecuteSetDialogResultCommand);
-        SetDialogResultTrueCommand = new(DoSetDialogResultTrueCommand, CanExecuteSetDialogResultTrueCommand);
-        SetDialogResultFalseCommand = new(DoSetDialogResultFalseCommand, CanExecuteSetDialogResultFalseCommand);
+        SetDialogResultCommand = new RelayCommand<object>(DoSetDialogResultCommand, CanExecuteSetDialogResultCommand);
+        SetDialogResultTrueCommand = new RelayCommand(DoSetDialogResultTrueCommand, CanExecuteSetDialogResultTrueCommand);
+        SetDialogResultFalseCommand = new RelayCommand(DoSetDialogResultFalseCommand, CanExecuteSetDialogResultFalseCommand);
     }
 
     #endregion Constructor

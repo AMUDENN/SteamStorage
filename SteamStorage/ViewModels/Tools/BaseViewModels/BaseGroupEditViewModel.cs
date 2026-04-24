@@ -13,10 +13,7 @@ public class BaseGroupEditViewModel : BaseEditViewModel
 
     #region Properties
 
-    public string DefaultGroupTitle
-    {
-        get => _baseGroupEditModel.DefaultGroupTitle;
-    }
+    public string DefaultGroupTitle => _baseGroupEditModel.DefaultGroupTitle;
 
     public string GroupTitle
     {
@@ -24,10 +21,7 @@ public class BaseGroupEditViewModel : BaseEditViewModel
         set => _baseGroupEditModel.GroupTitle = value;
     }
 
-    public string? DefaultDescription
-    {
-        get => _baseGroupEditModel.DefaultDescription;
-    }
+    public string? DefaultDescription => _baseGroupEditModel.DefaultDescription;
 
     public string? Description
     {
@@ -35,10 +29,7 @@ public class BaseGroupEditViewModel : BaseEditViewModel
         set => _baseGroupEditModel.Description = value;
     }
 
-    public Color DefaultColour
-    {
-        get => _baseGroupEditModel.DefaultColour;
-    }
+    public Color DefaultColour => _baseGroupEditModel.DefaultColour;
 
     public Color Colour
     {
@@ -46,10 +37,7 @@ public class BaseGroupEditViewModel : BaseEditViewModel
         set => _baseGroupEditModel.Colour = value;
     }
 
-    public bool IsNewGroup
-    {
-        get => _baseGroupEditModel.IsNewGroup;
-    }
+    public bool IsNewGroup => _baseGroupEditModel.IsNewGroup;
 
     #endregion Properties
 

@@ -23,7 +23,7 @@
             Classes="DarkTextBox SmallTextBox CenterTextBox"
             ContextFlyout="{x:Null}"
             Text="{Binding InputText}"
-            Watermark="Подтверждающее слово" />
+            PlaceholderText="Подтверждающее слово" />
 
         <StackPanel
             Grid.Row="3"

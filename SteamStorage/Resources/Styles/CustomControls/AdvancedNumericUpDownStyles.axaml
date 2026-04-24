@@ -52,7 +52,7 @@
                                 Classes="NumericUpDownTextBox SmallTextBox"
                                 Text="{TemplateBinding Text}"
                                 TextWrapping="NoWrap"
-                                Watermark="{TemplateBinding Watermark}" />
+                                PlaceholderText="{TemplateBinding PlaceholderText}" />
                         </ButtonSpinner>
 
                         <Button

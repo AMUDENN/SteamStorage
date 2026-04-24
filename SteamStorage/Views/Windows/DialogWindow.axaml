@@ -8,6 +8,7 @@
     Title="SteamStorage"
     Width="480"
     Height="270"
+    WindowDecorations="BorderOnly"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:DataType="windows:DialogWindowViewModel"

@@ -108,7 +108,7 @@
                             ItemsSource="{Binding SkinModels, Mode=OneWay}"
                             SelectedItem="{Binding SelectedSkinModel}"
                             Text="{Binding Filter}"
-                            Watermark="Выберите предмет из выпадающего списка" />
+                            PlaceholderText="Выберите предмет из выпадающего списка" />
                     </controls:DefaultContentControl>
 
                     <controls:DefaultContentControl

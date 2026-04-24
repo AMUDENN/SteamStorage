@@ -42,8 +42,8 @@ public class ChartTooltipModel : ModelBase
         _themeService = themeService;
         themeService.ChartThemeChanged += ChartThemeChangedHandler;
 
-        _tooltipTextPaint = new();
-        _tooltipBackgroundPaint = new();
+        _tooltipTextPaint = new SolidColorPaint();
+        _tooltipBackgroundPaint = new SolidColorPaint();
 
         SetChartTooltip();
     }
@@ -59,7 +59,7 @@ public class ChartTooltipModel : ModelBase
 
     private void SetChartTooltip()
     {
-        TooltipTextPaint = new()
+        TooltipTextPaint = new SolidColorPaint
         {
             Color = _themeService.CurrentChartThemeVariant.GetChartColor(ChartThemeVariants.ChartColors.Foreground)
                 .Color,
@@ -69,9 +69,9 @@ public class ChartTooltipModel : ModelBase
         SKColor background = _themeService.CurrentChartThemeVariant
             .GetChartColor(ChartThemeVariants.ChartColors.Background).Color;
 
-        TooltipBackgroundPaint = new()
+        TooltipBackgroundPaint = new SolidColorPaint
         {
-            Color = new(background.Red, background.Green, background.Blue, 200)
+            Color = new SKColor(background.Red, background.Green, background.Blue, 200)
         };
     }
 

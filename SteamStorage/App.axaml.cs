@@ -1,6 +1,5 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 using SteamStorage.ViewModels;
@@ -72,20 +71,22 @@ public partial class App : Application
 
 
         //SteamStorageApi
-        services.AddSteamStorageApi(options =>
-        {
-
+        services.AddSteamStorageApi(options => {
+            options.ClientName = "MainClient";
+            options.ClientTimeout = 15;
+            options.ApiAddress = "https://steamstorage.ru/api";
+            options.ServerAddress = "https://steamstorage.ru";
+            options.HostName = "steamstorage.ru";
+            options.TokenHubEndpoint = "https://steamstorage.ru/token/token-hub";
         });
 
 
         //SteamStorageApi Services
-        services.AddSteamStorageAuthorizationService(options =>
-        {
-
+        services.AddSteamStorageAuthorizationService(options => {
+            options.TokenHubTimeout = TimeSpan.FromSeconds(300);
         });
-        services.AddSteamStoragePingService(options =>
-        {
-
+        services.AddSteamStoragePingService(options => {
+            options.PingTimeout = TimeSpan.FromSeconds(10);
         });
         services.AddSteamStorageReferenceInformationService();
 
@@ -96,7 +97,7 @@ public partial class App : Application
         services.AddScoped<IDialogService, DialogService>();
         services.AddSingleton<INotificationService, NotificationService>();
         services.AddSingleton<ISettingsService, SettingsService>(x =>
-            new(ProgramConstants.PROGRAM_NAME,
+            new SettingsService(ProgramConstants.PROGRAM_NAME,
                 x.GetRequiredService<IApiClient>(),
                 x.GetRequiredService<IThemeService>()));
 
@@ -200,12 +201,10 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            BindingPlugins.DataValidators.RemoveAt(0);
-
             desktop.MainWindow = Container.GetService<MainWindow>();
 
             if (desktop.MainWindow is null)
-                throw new("something went wrong during initializing DI container. MainWindow is missing");
+                throw new Exception("something went wrong during initializing DI container. MainWindow is missing");
 
             desktop.MainWindow.DataContext = Container.GetService<MainWindowViewModel>();
         }

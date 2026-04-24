@@ -22,50 +22,23 @@ public class ArchivesReviewViewModel : ViewModelBase
 
     #region Properties
 
-    public int Count
-    {
-        get => _archivesReviewModel.Count;
-    }
+    public int Count => _archivesReviewModel.Count;
 
-    public string BuySumString
-    {
-        get => _archivesReviewModel.BuySumString;
-    }
+    public string BuySumString => _archivesReviewModel.BuySumString;
 
-    public string SoldSumString
-    {
-        get => _archivesReviewModel.SoldSumString;
-    }
+    public string SoldSumString => _archivesReviewModel.SoldSumString;
 
-    public ObservableCollection<ISeries> ArchiveGroupsGameCountSeries
-    {
-        get => _archivesReviewModel.ArchiveGroupsGameCountSeries;
-    }
+    public ObservableCollection<ISeries> ArchiveGroupsGameCountSeries => _archivesReviewModel.ArchiveGroupsGameCountSeries;
 
-    public ObservableCollection<ISeries> ArchiveGroupsGameBuySumSeries
-    {
-        get => _archivesReviewModel.ArchiveGroupsGameBuySumSeries;
-    }
+    public ObservableCollection<ISeries> ArchiveGroupsGameBuySumSeries => _archivesReviewModel.ArchiveGroupsGameBuySumSeries;
 
-    public ObservableCollection<ISeries> ArchiveGroupsGameSoldSumSeries
-    {
-        get => _archivesReviewModel.ArchiveGroupsGameSoldSumSeries;
-    }
+    public ObservableCollection<ISeries> ArchiveGroupsGameSoldSumSeries => _archivesReviewModel.ArchiveGroupsGameSoldSumSeries;
 
-    public double ChartMinWidth
-    {
-        get => _archivesReviewModel.ChartMinWidth;
-    }
+    public double ChartMinWidth => _archivesReviewModel.ChartMinWidth;
 
-    public SolidColorPaint TooltipTextPaint
-    {
-        get => _chartTooltipModel.TooltipTextPaint;
-    }
+    public SolidColorPaint TooltipTextPaint => _chartTooltipModel.TooltipTextPaint;
 
-    public SolidColorPaint TooltipBackgroundPaint
-    {
-        get => _chartTooltipModel.TooltipBackgroundPaint;
-    }
+    public SolidColorPaint TooltipBackgroundPaint => _chartTooltipModel.TooltipBackgroundPaint;
 
     public bool? IsTitleOrdering
     {
@@ -97,10 +70,7 @@ public class ArchivesReviewViewModel : ViewModelBase
         set => _archivesReviewModel.IsChangeOrdering = value;
     }
 
-    public IEnumerable<ArchiveGroupViewModel> ArchiveGroupModels
-    {
-        get => _archivesReviewModel.ArchiveGroupModels;
-    }
+    public IEnumerable<ArchiveGroupViewModel> ArchiveGroupModels => _archivesReviewModel.ArchiveGroupModels;
 
     public ArchiveGroupViewModel? SelectedArchiveGroupModel
     {
@@ -108,29 +78,17 @@ public class ArchivesReviewViewModel : ViewModelBase
         set => _archivesReviewModel.SelectedArchiveGroupModel = value;
     }
 
-    public string? NotFoundText
-    {
-        get => _archivesReviewModel.NotFoundText;
-    }
+    public string? NotFoundText => _archivesReviewModel.NotFoundText;
 
-    public bool IsLoading
-    {
-        get => _archivesReviewModel.IsLoading;
-    }
+    public bool IsLoading => _archivesReviewModel.IsLoading;
 
     #endregion Properties
 
     #region Commands
 
-    public RelayCommand AttachedToVisualTreeCommand
-    {
-        get => _archivesReviewModel.AttachedToVisualTreeCommand;
-    }
+    public RelayCommand AttachedToVisualTreeCommand => _archivesReviewModel.AttachedToVisualTreeCommand;
 
-    public RelayCommand AddArchiveGroupCommand
-    {
-        get => _archiveGroupsModel.AddArchiveGroupCommand;
-    }
+    public RelayCommand AddArchiveGroupCommand => _archiveGroupsModel.AddArchiveGroupCommand;
 
     #endregion Commands
 

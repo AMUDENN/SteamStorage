@@ -21,25 +21,13 @@ public class ListActivesViewModel : BaseListViewModel
 
     #region Properties
 
-    public IEnumerable<BaseGroupModel> ActiveGroupModels
-    {
-        get => _activeGroupsModel.ActiveGroupModels;
-    }
+    public IEnumerable<BaseGroupModel> ActiveGroupModels => _activeGroupsModel.ActiveGroupModels;
 
-    public int Count
-    {
-        get => _listActivesModel.Count;
-    }
+    public int Count => _listActivesModel.Count;
 
-    public string InvestedSumString
-    {
-        get => _listActivesModel.InvestedSumString;
-    }
+    public string InvestedSumString => _listActivesModel.InvestedSumString;
 
-    public string CurrentSumString
-    {
-        get => _listActivesModel.CurrentSumString;
-    }
+    public string CurrentSumString => _listActivesModel.CurrentSumString;
 
     public BaseGroupModel? SelectedGroupModel
     {
@@ -47,10 +35,7 @@ public class ListActivesViewModel : BaseListViewModel
         set => _listActivesModel.SelectedGroupModel = value;
     }
 
-    public IEnumerable<GameModel> GameModels
-    {
-        get => _gamesModel.GameModels;
-    }
+    public IEnumerable<GameModel> GameModels => _gamesModel.GameModels;
 
     public GameModel? SelectedGameModel
     {
@@ -106,10 +91,7 @@ public class ListActivesViewModel : BaseListViewModel
         set => _listActivesModel.IsChangeOrdering = value;
     }
 
-    public IEnumerable<ActiveViewModel> ActiveModels
-    {
-        get => _listActivesModel.ActiveModels;
-    }
+    public IEnumerable<ActiveViewModel> ActiveModels => _listActivesModel.ActiveModels;
 
     public ActiveViewModel? SelectedActiveModel
     {
@@ -121,20 +103,11 @@ public class ListActivesViewModel : BaseListViewModel
 
     #region Commands
 
-    public RelayCommand AddActiveGroupCommand
-    {
-        get => _activeGroupsModel.AddActiveGroupCommand;
-    }
+    public RelayCommand AddActiveGroupCommand => _activeGroupsModel.AddActiveGroupCommand;
 
-    public RelayCommand<ActiveGroupModel> AddActiveCommand
-    {
-        get => _activeGroupsModel.AddActiveCommand;
-    }
+    public RelayCommand<ActiveGroupModel> AddActiveCommand => _activeGroupsModel.AddActiveCommand;
 
-    public RelayCommand ClearFiltersCommand
-    {
-        get => _listActivesModel.ClearFiltersCommand;
-    }
+    public RelayCommand ClearFiltersCommand => _listActivesModel.ClearFiltersCommand;
 
     #endregion Commands
 

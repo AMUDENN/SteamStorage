@@ -83,40 +83,19 @@ public class ActiveGroupEditModel : BaseGroupEditModel
         private set => SetProperty(ref _goalSumCompletion, value);
     }
 
-    public decimal ChangePeriod
-    {
-        get => _activeGroupModel?.ChangePeriod ?? 0;
-    }
+    public decimal ChangePeriod => _activeGroupModel?.ChangePeriod ?? 0;
 
-    public string DatePeriod
-    {
-        get => _activeGroupModel?.DatePeriod ?? NO_DATA;
-    }
+    public string DatePeriod => _activeGroupModel?.DatePeriod ?? NO_DATA;
 
-    public string? NotFoundText
-    {
-        get => _activeGroupModel?.NotFoundText;
-    }
+    public string? NotFoundText => _activeGroupModel?.NotFoundText;
 
-    public IEnumerable<ISeries> ChangeSeries
-    {
-        get => _activeGroupModel?.ChangeSeries ?? Enumerable.Empty<ISeries>();
-    }
+    public IEnumerable<ISeries> ChangeSeries => _activeGroupModel?.ChangeSeries ?? Enumerable.Empty<ISeries>();
 
-    public IEnumerable<Axis> XAxis
-    {
-        get => _activeGroupModel?.XAxis ?? Enumerable.Empty<Axis>();
-    }
+    public IEnumerable<Axis> XAxis => _activeGroupModel?.XAxis ?? Enumerable.Empty<Axis>();
 
-    public IEnumerable<Axis> YAxis
-    {
-        get => _activeGroupModel?.YAxis ?? Enumerable.Empty<Axis>();
-    }
+    public IEnumerable<Axis> YAxis => _activeGroupModel?.YAxis ?? Enumerable.Empty<Axis>();
 
-    public IEnumerable<PeriodModel> PeriodModels
-    {
-        get => _periodsModel.PeriodModels;
-    }
+    public IEnumerable<PeriodModel> PeriodModels => _periodsModel.PeriodModels;
 
     public PeriodModel? SelectedPeriodModel
     {
@@ -128,10 +107,7 @@ public class ActiveGroupEditModel : BaseGroupEditModel
         }
     }
 
-    public bool? IsLoading
-    {
-        get => _activeGroupModel?.IsLoading;
-    }
+    public bool? IsLoading => _activeGroupModel?.IsLoading;
 
     #endregion Properties
 

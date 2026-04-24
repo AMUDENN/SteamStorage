@@ -184,6 +184,7 @@
         <entry key="SteamStorage/Views/StatisticsView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/TextConfirmDialogView.axaml" value="SteamStorage/SteamStorage.csproj" />
         <entry key="SteamStorage/Views/ThemeView.axaml" value="SteamStorage/SteamStorage.csproj" />
+        <entry key="SteamStorage/Views/Windows/MainWindow.axaml" value="SteamStorage/SteamStorage.csproj" />
       </map>
     </option>
   </component>

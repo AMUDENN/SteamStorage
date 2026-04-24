@@ -278,10 +278,7 @@ public class ListArchivesModel : BaseListModel
         set => SetProperty(ref _selectedArchiveModel, value);
     }
 
-    public override string? NotFoundText
-    {
-        get => ArchiveModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
-    }
+    public override string? NotFoundText => ArchiveModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
 
     private SteamStorageAPI.SDK.ApiEntities.Archives.ArchiveOrderName? ArchiveOrderName
     {
@@ -347,8 +344,8 @@ public class ListArchivesModel : BaseListModel
         _soldSumString = string.Empty;
 
         _archiveModels = [];
-        _itemsCancellationTokenSource = new();
-        _statisticsCancellationTokenSource = new();
+        _itemsCancellationTokenSource = new CancellationTokenSource();
+        _statisticsCancellationTokenSource = new CancellationTokenSource();
 
         IsAllGamesChecked = true;
 
@@ -359,9 +356,9 @@ public class ListArchivesModel : BaseListModel
         PageNumber = 1;
         PageSize = 20;
 
-        ClearFiltersCommand = new(DoClearFiltersCommand);
-        EditCommand = new(DoEditCommand);
-        DeleteCommand = new(DoDeleteCommand);
+        ClearFiltersCommand = new RelayCommand(DoClearFiltersCommand);
+        EditCommand = new RelayCommand<ArchiveModel>(DoEditCommand);
+        DeleteCommand = new AsyncRelayCommand<ArchiveModel>(DoDeleteCommand);
     }
 
     #endregion Constructor
@@ -445,13 +442,13 @@ public class ListArchivesModel : BaseListModel
     {
         await StatisticsCancellationTokenSource.CancelAsync();
 
-        StatisticsCancellationTokenSource = new();
+        StatisticsCancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = StatisticsCancellationTokenSource.Token;
 
         SteamStorageAPI.SDK.ApiEntities.Archives.ArchivesStatisticResponse? archivesStatisticResponse =
             await _apiClient.GetAsync<SteamStorageAPI.SDK.ApiEntities.Archives.ArchivesStatisticResponse, SteamStorageAPI.SDK.ApiEntities.Archives.GetArchivesStatisticRequest>(
                 ApiConstants.ApiMethods.GetArchivesStatistic,
-                new(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter),
+                new SteamStorageAPI.SDK.ApiEntities.Archives.GetArchivesStatisticRequest(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter),
                 token);
 
         if (archivesStatisticResponse is null) return;
@@ -470,7 +467,7 @@ public class ListArchivesModel : BaseListModel
 
         await ItemsCancellationTokenSource.CancelAsync();
 
-        ItemsCancellationTokenSource = new();
+        ItemsCancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = ItemsCancellationTokenSource.Token;
 
         CurrentPageNumber = PageNumber ?? 1;
@@ -481,7 +478,7 @@ public class ListArchivesModel : BaseListModel
         SteamStorageAPI.SDK.ApiEntities.Archives.ArchivesResponse? archivesResponse =
             await _apiClient.GetAsync<SteamStorageAPI.SDK.ApiEntities.Archives.ArchivesResponse, SteamStorageAPI.SDK.ApiEntities.Archives.GetArchivesRequest>(
                 ApiConstants.ApiMethods.GetArchives,
-                new(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter, ArchiveOrderName, IsAscending,
+                new SteamStorageAPI.SDK.ApiEntities.Archives.GetArchivesRequest(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter, ArchiveOrderName, IsAscending,
                     CurrentPageNumber, PageSize),
                 token);
 
@@ -494,7 +491,7 @@ public class ListArchivesModel : BaseListModel
 
         ArchiveModels = archivesResponse.Archives.Select(x =>
                 new ArchiveViewModel(
-                    new(x.Skin.Id,
+                    new ArchiveModel(x.Skin.Id,
                         x.Skin.SkinIconUrl,
                         x.Skin.MarketUrl,
                         x.Skin.Title,
@@ -517,7 +514,7 @@ public class ListArchivesModel : BaseListModel
 
     private void OnEditArchive(ArchiveModel? model)
     {
-        EditArchive?.Invoke(this, new(model));
+        EditArchive?.Invoke(this, new EditArchiveEventArgs(model));
     }
 
     #endregion Methods

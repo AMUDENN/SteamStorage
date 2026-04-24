@@ -20,10 +20,7 @@ public class ActiveGroupEditViewModel : BaseGroupEditViewModel
 
     #region Properties
 
-    public string? DefaultGoalSum
-    {
-        get => _activeGroupEditModel.DefaultGoalSum;
-    }
+    public string? DefaultGoalSum => _activeGroupEditModel.DefaultGoalSum;
 
     public string? GoalSum
     {
@@ -31,65 +28,29 @@ public class ActiveGroupEditViewModel : BaseGroupEditViewModel
         set => _activeGroupEditModel.GoalSum = value;
     }
 
-    public string DateCreationString
-    {
-        get => _activeGroupEditModel.DateCreationString;
-    }
+    public string DateCreationString => _activeGroupEditModel.DateCreationString;
 
-    public string BuySumString
-    {
-        get => _activeGroupEditModel.BuySumString;
-    }
+    public string BuySumString => _activeGroupEditModel.BuySumString;
 
-    public string CountString
-    {
-        get => _activeGroupEditModel.CountString;
-    }
+    public string CountString => _activeGroupEditModel.CountString;
 
-    public string CurrentSumString
-    {
-        get => _activeGroupEditModel.CurrentSumString;
-    }
+    public string CurrentSumString => _activeGroupEditModel.CurrentSumString;
 
-    public string GoalSumCompletion
-    {
-        get => _activeGroupEditModel.GoalSumCompletion;
-    }
+    public string GoalSumCompletion => _activeGroupEditModel.GoalSumCompletion;
 
-    public decimal ChangePeriod
-    {
-        get => _activeGroupEditModel.ChangePeriod;
-    }
+    public decimal ChangePeriod => _activeGroupEditModel.ChangePeriod;
 
-    public string DatePeriod
-    {
-        get => _activeGroupEditModel.DatePeriod;
-    }
+    public string DatePeriod => _activeGroupEditModel.DatePeriod;
 
-    public string? NotFoundText
-    {
-        get => _activeGroupEditModel.NotFoundText;
-    }
+    public string? NotFoundText => _activeGroupEditModel.NotFoundText;
 
-    public IEnumerable<ISeries> ChangeSeries
-    {
-        get => _activeGroupEditModel.ChangeSeries;
-    }
+    public IEnumerable<ISeries> ChangeSeries => _activeGroupEditModel.ChangeSeries;
 
-    public IEnumerable<Axis> XAxis
-    {
-        get => _activeGroupEditModel.XAxis;
-    }
+    public IEnumerable<Axis> XAxis => _activeGroupEditModel.XAxis;
 
-    public IEnumerable<Axis> YAxis
-    {
-        get => _activeGroupEditModel.YAxis;
-    }
+    public IEnumerable<Axis> YAxis => _activeGroupEditModel.YAxis;
 
-    public IEnumerable<PeriodModel> PeriodModels
-    {
-        get => _activeGroupEditModel.PeriodModels;
-    }
+    public IEnumerable<PeriodModel> PeriodModels => _activeGroupEditModel.PeriodModels;
 
     public PeriodModel? SelectedPeriodModel
     {
@@ -97,20 +58,11 @@ public class ActiveGroupEditViewModel : BaseGroupEditViewModel
         set => _activeGroupEditModel.SelectedPeriodModel = value;
     }
 
-    public bool? IsLoading
-    {
-        get => _activeGroupEditModel.IsLoading;
-    }
+    public bool? IsLoading => _activeGroupEditModel.IsLoading;
 
-    public SolidColorPaint TooltipTextPaint
-    {
-        get => _chartTooltipModel.TooltipTextPaint;
-    }
+    public SolidColorPaint TooltipTextPaint => _chartTooltipModel.TooltipTextPaint;
 
-    public SolidColorPaint TooltipBackgroundPaint
-    {
-        get => _chartTooltipModel.TooltipBackgroundPaint;
-    }
+    public SolidColorPaint TooltipBackgroundPaint => _chartTooltipModel.TooltipBackgroundPaint;
 
     #endregion Properties
 

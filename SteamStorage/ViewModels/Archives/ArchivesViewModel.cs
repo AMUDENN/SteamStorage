@@ -15,15 +15,9 @@ public class ArchivesViewModel : ViewModelBase
 
     #region Properties
 
-    public ViewModelBase CurrentViewModel
-    {
-        get => _archivesModel.CurrentViewModel;
-    }
+    public ViewModelBase CurrentViewModel => _archivesModel.CurrentViewModel;
 
-    public IEnumerable<SecondaryNavigationModel> SecondaryNavigationOptions
-    {
-        get => _archivesModel.SecondaryNavigationOptions;
-    }
+    public IEnumerable<SecondaryNavigationModel> SecondaryNavigationOptions => _archivesModel.SecondaryNavigationOptions;
 
     public SecondaryNavigationModel? SelectedSecondaryNavigationModel
     {
