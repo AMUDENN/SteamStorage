@@ -137,7 +137,7 @@ public class ActiveGroupEditModel : BaseGroupEditModel
         if (_activeGroupModel is null) return;
 
         bool result = await DialogService.ShowDialogAsync(
-            $"Вы уверены, что хотите удалить группу: «{_activeGroupModel.Title}»?",
+            $"Are you sure you want to delete the group: «{_activeGroupModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
 
@@ -148,8 +148,8 @@ public class ActiveGroupEditModel : BaseGroupEditModel
             new ActiveGroups.DeleteActiveGroupRequest(_activeGroupModel.GroupId),
             cancellationToken);
 
-        await NotificationService.ShowAsync("Удаление группы",
-            $"Вы отправили запрос на удаление группы: {_activeGroupModel.Title}",
+        await NotificationService.ShowAsync("Delete group",
+            $"You sent a request to delete the group: {_activeGroupModel.Title}",
             cancellationToken: cancellationToken);
 
         OnItemDeleted();
@@ -168,7 +168,7 @@ public class ActiveGroupEditModel : BaseGroupEditModel
         if (IsNewGroup)
         {
             bool result = await DialogService.ShowDialogAsync(
-                $"Вы уверены, что хотите добавить группу: «{GroupTitle}»?",
+                $"Are you sure you want to add the group: «{GroupTitle}»?",
                 DialogUtility.MessageType.Question,
                 DialogUtility.MessageButtons.SaveCancel);
 
@@ -182,14 +182,14 @@ public class ActiveGroupEditModel : BaseGroupEditModel
                     string.IsNullOrWhiteSpace(GoalSum) ? null : sum),
                 cancellationToken);
 
-            await NotificationService.ShowAsync("Добавление группы",
-                $"Вы отправили запрос на добавление группы: {GroupTitle}",
+            await NotificationService.ShowAsync("Add group",
+                $"You sent a request to add the group: {GroupTitle}",
                 cancellationToken: cancellationToken);
         }
         else if (_activeGroupModel is not null)
         {
             bool result = await DialogService.ShowDialogAsync(
-                $"Вы уверены, что хотите изменить группу: «{_activeGroupModel.Title}»?",
+                $"Are you sure you want to edit the group: «{_activeGroupModel.Title}»?",
                 DialogUtility.MessageType.Question,
                 DialogUtility.MessageButtons.SaveCancel);
 
@@ -204,8 +204,8 @@ public class ActiveGroupEditModel : BaseGroupEditModel
                     string.IsNullOrWhiteSpace(GoalSum) ? null : sum),
                 cancellationToken);
 
-            await NotificationService.ShowAsync("Изменение группы",
-                $"Вы отправили запрос на изменение группы: {_activeGroupModel.Title}",
+            await NotificationService.ShowAsync("Edit group",
+                $"You sent a request to edit the group: {_activeGroupModel.Title}",
                 cancellationToken: cancellationToken);
         }
         else

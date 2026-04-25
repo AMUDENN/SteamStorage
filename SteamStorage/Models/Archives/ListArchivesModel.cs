@@ -398,7 +398,7 @@ public class ListArchivesModel : BaseListModel
         if (model is null) return;
 
         bool result = await _dialogService.ShowDialogAsync(
-            $"Вы уверены, что хотите удалить элемент архива: «{model.Title}»?",
+            $"Are you sure you want to delete the archive item: «{model.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
 
@@ -409,8 +409,8 @@ public class ListArchivesModel : BaseListModel
             new SteamStorageAPI.SDK.ApiEntities.Archives.DeleteArchiveRequest(model.ArchiveId),
             cancellationToken);
 
-        await _notificationService.ShowAsync("Удаление элемента архива",
-            $"Вы отправили запрос на удаление элемента архива: {model.Title}",
+        await _notificationService.ShowAsync("Delete archive item",
+            $"You sent a request to delete the archive item: {model.Title}",
             cancellationToken: cancellationToken);
 
         GetSkinsAsync();

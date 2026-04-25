@@ -25,7 +25,7 @@
                     Grid.Column="1"
                     Classes="MiddleTextBlock CenterTextBlock"
                     Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                    Text="Количество" />
+                    Text="Count" />
 
                 <TextBlock
                     Grid.Row="1"
@@ -39,7 +39,7 @@
                     Grid.Column="3"
                     Classes="MiddleTextBlock CenterTextBlock"
                     Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                    Text="Сумма вложений" />
+                    Text="Investment amount" />
 
                 <TextBlock
                     Grid.Row="1"
@@ -53,7 +53,7 @@
                     Grid.Column="5"
                     Classes="MiddleTextBlock CenterTextBlock"
                     Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                    Text="Текущая сумма" />
+                    Text="Current amount" />
 
                 <TextBlock
                     Grid.Row="1"
@@ -86,7 +86,7 @@
                 Grid.Column="0"
                 Classes="BaseComboBox GroupComboBox"
                 ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
-                PlaceholderText="Выберите группу"
+                PlaceholderText="Select group"
                 SelectedItem="{Binding SelectedGroupModel}" />
 
             <Button
@@ -94,7 +94,7 @@
                 Padding="9"
                 Classes="ImageButton SmallRoundedButton BackgroundAdditionalButton StretchButton"
                 Command="{Binding AddActiveGroupCommand, Mode=OneWay}"
-                ToolTip.Tip="Добавить группу">
+                ToolTip.Tip="Add group">
                 <controls:VectorImage Classes="AddCircleImage ForegroundVectorImage" />
             </Button>
 
@@ -102,7 +102,7 @@
                 Grid.Column="4"
                 Classes="TextButton SmallRoundedButton BackgroundAdditionalButton StretchButton"
                 Command="{Binding AddActiveCommand}"
-                Content="Добавить предмет" />
+                Content="Add item" />
 
         </Grid>
 
@@ -124,7 +124,7 @@
             <RadioButton
                 Grid.Column="0"
                 Classes="GameRadioButton FirstAccentLinearGameRadioButton"
-                Content="Все"
+                Content="All"
                 IsChecked="{Binding IsAllGamesChecked}" />
 
             <ListBox
@@ -137,7 +137,7 @@
                 Grid.Column="4"
                 Classes="FilteringTextBox SmallTextBox"
                 Text="{Binding Filter}"
-                PlaceholderText="Введите название">
+                PlaceholderText="Enter name">
                 <TextBox.InnerLeftContent>
                     <controls:VectorImage
                         Width="32"
@@ -152,7 +152,7 @@
                 Height="60"
                 Classes="ImageButton BackgroundButton"
                 Command="{Binding ClearFiltersCommand, Mode=OneWay}"
-                ToolTip.Tip="Очистить фильтры">
+                ToolTip.Tip="Clear filters">
                 <controls:VectorImage
                     Width="40"
                     Height="40"
@@ -185,49 +185,49 @@
             <TextBlock
                 Grid.Column="0"
                 Classes="SmallTextBlock CenterTextBlock"
-                Text="Изображение " />
+                Text="Image " />
 
             <ToggleButton
                 Grid.Column="2"
                 Classes="OrderingToggleButton FirstAccentToggleButton"
-                Content="Название"
+                Content="Title"
                 IsChecked="{Binding IsTitleOrdering}"
-                ToolTip.Tip="Название" />
+                ToolTip.Tip="Title" />
 
             <ToggleButton
                 Grid.Column="4"
                 Classes="OrderingToggleButton FirstAccentToggleButton"
-                Content="Количество"
+                Content="Count"
                 IsChecked="{Binding IsCountOrdering}"
-                ToolTip.Tip="Количество" />
+                ToolTip.Tip="Count" />
 
             <ToggleButton
                 Grid.Column="6"
                 Classes="OrderingToggleButton FirstAccentToggleButton"
-                Content="Цена покупки"
+                Content="Purchase price"
                 IsChecked="{Binding IsBuyPriceOrdering}"
-                ToolTip.Tip="Цена покупки" />
+                ToolTip.Tip="Purchase price" />
 
             <ToggleButton
                 Grid.Column="8"
                 Classes="OrderingToggleButton FirstAccentToggleButton"
-                Content="Текущая цена"
+                Content="Current price"
                 IsChecked="{Binding IsCurrentPriceOrdering}"
-                ToolTip.Tip="Текущая цена" />
+                ToolTip.Tip="Current price" />
 
             <ToggleButton
                 Grid.Column="10"
                 Classes="OrderingToggleButton FirstAccentToggleButton"
-                Content="Сумма"
+                Content="Amount"
                 IsChecked="{Binding IsCurrentSumOrdering}"
-                ToolTip.Tip="Сумма" />
+                ToolTip.Tip="Amount" />
 
             <ToggleButton
                 Grid.Column="12"
                 Classes="OrderingToggleButton FirstAccentToggleButton"
-                Content="Изменение"
+                Content="Change"
                 IsChecked="{Binding IsChangeOrdering}"
-                ToolTip.Tip="Изменение" />
+                ToolTip.Tip="Change" />
 
         </Grid>
 
@@ -268,12 +268,12 @@
                 Grid.Column="0"
                 HorizontalAlignment="Left"
                 Orientation="Horizontal">
-                <TextBlock Classes="SmallTextBlock" Text="Результаты: " />
+                <TextBlock Classes="SmallTextBlock" Text="Results: " />
                 <TextBlock Classes="SmallTextBlock"
                            Text="{Binding DisplayItemsCountStart, StringFormat=N0, Mode=OneWay}" />
                 <TextBlock Classes="SmallTextBlock" Text=" - " />
                 <TextBlock Classes="SmallTextBlock" Text="{Binding DisplayItemsCountEnd, StringFormat=N0, Mode=OneWay}" />
-                <TextBlock Classes="SmallTextBlock" Text=" из " />
+                <TextBlock Classes="SmallTextBlock" Text=" of " />
                 <TextBlock Classes="SmallTextBlock" Text="{Binding SavedItemsCount, StringFormat=N0, Mode=OneWay}" />
             </StackPanel>
 

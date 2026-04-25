@@ -89,10 +89,11 @@ public class ProfileModel : ModelBase
         get => _financialGoal;
         set
         {
-            SetProperty(ref _financialGoal, value);
             Dispatcher.UIThread.Invoke(() =>
-                SaveFinancialGoal
-                    .NotifyCanExecuteChanged());// TODO: Скорее всего всё ломается из-за Async Void, изменение финансовой цели происходит в другом потоке, а уведомление об изменении нужно посылать в основной
+            {
+                SetProperty(ref _financialGoal, value);
+                SaveFinancialGoal.NotifyCanExecuteChanged();
+            });
         }
     }
 
@@ -198,10 +199,10 @@ public class ProfileModel : ModelBase
         SteamId = $"SteamID: {_userModel.User.SteamId}";
         ImageUrl = _userModel.User.ImageUrlFull;
 
-        Role = $"Роль: {_userModel.User.Role}";
+        Role = $"Role: {_userModel.User.Role}";
 
         DateRegistration =
-            $"Дата регистрации: {_userModel.User.DateRegistration.ToString(ProgramConstants.VIEW_DATE_FORMAT)}";
+            $"Registration date: {_userModel.User.DateRegistration.ToString(ProgramConstants.VIEW_DATE_FORMAT)}";
     }
 
     private void CurrencyChangedHandler(object? sender)
@@ -242,29 +243,31 @@ public class ProfileModel : ModelBase
         if (string.IsNullOrWhiteSpace(FinancialGoal))
         {
             await _userModel.SetFinancialGoalAsync(null);
-            await _notificationService.ShowAsync("Финансовая цель",
-                "Вы удалили финансовую цель");
+            await _notificationService.ShowAsync("Financial goal",
+                "You deleted the financial goal");
+            return;
         }
 
         if (FinancialGoal.TryParse(out decimal financialGoal) && financialGoal.IsBetweenInclusive((decimal)0.01, 999999999999))
         {
             await _userModel.SetFinancialGoalAsync(financialGoal);
-            await _notificationService.ShowAsync("Финансовая цель",
-                $"Вы установили финансовую цель: {financialGoal:N2} {SelectedCurrency?.Mark}");
+            await _notificationService.ShowAsync("Financial goal",
+                $"You set the financial goal: {financialGoal:N2} {SelectedCurrency?.Mark}");
         }
     }
 
     private bool CanExecuteSaveFinancialGoal()
     {
         return FinancialGoal != DefaultFinancialGoal
-               && FinancialGoal.TryParse(out decimal financialGoal) && financialGoal.IsBetweenInclusive((decimal)0.01, 999999999999);
+               && (string.IsNullOrWhiteSpace(FinancialGoal)
+                   || FinancialGoal.TryParse(out decimal financialGoal) && financialGoal.IsBetweenInclusive((decimal)0.01, 999999999999));
     }
 
     private async Task DoDeleteProfileCommand(CancellationToken cancellationToken)
     {
         _textConfirmDialogViewModel.SetConfirmData(
-            "Для подтверждения удаления аккаунта введите слово ПОДТВЕРДИТЬ",
-            "ПОДТВЕРДИТЬ");
+            "To confirm account deletion, type CONFIRM",
+            "CONFIRM");
 
         bool result = await _dialogService.ShowDialogAsync(_textConfirmDialogViewModel);
 
@@ -289,15 +292,15 @@ public class ProfileModel : ModelBase
     private async void SetCurrency(CurrencyModel currencyModel)
     {
         await _userModel.SetCurrencyAsync(currencyModel);
-        await _notificationService.ShowAsync("Смена валюты",
-            $"Вы сменили валюту на {currencyModel.Title}");
+        await _notificationService.ShowAsync("Currency change",
+            $"You changed the currency to {currencyModel.Title}");
     }
 
     private async void SetPage(PageModel pageModel)
     {
         await _userModel.SetPageAsync(pageModel);
-        await _notificationService.ShowAsync("Смена стартовой страницы",
-            $"Вы сменили стартовую страницу на {pageModel.Title}");
+        await _notificationService.ShowAsync("Start page change",
+            $"You changed the start page to {pageModel.Title}");
     }
 
     #endregion Methods

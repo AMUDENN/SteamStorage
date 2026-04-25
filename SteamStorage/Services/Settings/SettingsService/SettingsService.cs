@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorageAPI.SDK.ApiClient;
@@ -68,7 +67,6 @@ public class SettingsService : ISettingsService, IDisposable
 
     private void TokenChangedHandler(object? sender, TokenChangedEventArgs args)
     {
-        Debug.WriteLine(args.Token);
         UserSettings.Token = args.Token;
     }
 

@@ -29,9 +29,8 @@ public class SettingsFile
     {
         try
         {
-            DeleteFile();
             CreateFile();
-            using FileStream fs = new(_filePath, FileMode.OpenOrCreate, FileAccess.Write);
+            using FileStream fs = new(_filePath, FileMode.Create, FileAccess.Write);
             JsonSerializer.Serialize(fs, value);
         }
         catch (Exception ex)
@@ -63,12 +62,6 @@ public class SettingsFile
         Directory.CreateDirectory(directoryName);
         File.Create(_filePath).Close();
         Debug.WriteLine($"Created file: {_filePath}");
-    }
-
-    private void DeleteFile()
-    {
-        if (!File.Exists(_filePath)) return;
-        File.Delete(_filePath);
     }
 
     #endregion Methods

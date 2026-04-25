@@ -79,7 +79,7 @@
                             Height="36"
                             Classes="ImageButton TransparentButton"
                             Command="{Binding OpenSteamProfileCommand, Mode=OneWay}"
-                            ToolTip.Tip="Открыть профиль Steam">
+                            ToolTip.Tip="Open Steam profile">
                             <controls:VectorImage
                                 Width="30"
                                 Height="30"
@@ -135,7 +135,7 @@
                     Grid.Column="0"
                     Margin="0,0,10,0"
                     Classes="MiddleTextBlock RightTextBlock"
-                    Text="Финансовая цель: " />
+                    Text="Financial goal: " />
 
                 <controls:AdvancedTextBox
                     Grid.Column="1"
@@ -153,7 +153,7 @@
                     Background="Transparent"
                     Classes="TextButton UnderlineButton"
                     Command="{Binding SaveFinancialGoal}"
-                    Content="Сохранить" />
+                    Content="Save" />
 
             </Grid>
 
@@ -174,13 +174,13 @@
                     Grid.Column="0"
                     Margin="0,0,10,0"
                     Classes="MiddleTextBlock"
-                    Text="Валюта: " />
+                    Text="Currency: " />
 
                 <ComboBox
                     Grid.Column="1"
                     Classes="CurrencyComboBox BaseComboBox DarkComboBox"
                     ItemsSource="{Binding CurrencyModels, Mode=OneWay}"
-                    PlaceholderText="Выберите валюту"
+                    PlaceholderText="Select currency"
                     SelectedItem="{Binding SelectedCurrency}" />
 
             </Grid>
@@ -214,13 +214,13 @@
                     Grid.Column="0"
                     Margin="0,0,10,0"
                     Classes="MiddleTextBlock"
-                    Text="Начальная страница: " />
+                    Text="Start page: " />
 
                 <ComboBox
                     Grid.Column="1"
                     Classes="PageComboBox BaseComboBox DarkComboBox"
                     ItemsSource="{Binding PageModels, Mode=OneWay}"
-                    PlaceholderText="Выберите страницу"
+                    PlaceholderText="Select page"
                     SelectedItem="{Binding SelectedPage}" />
 
             </Grid>
@@ -235,7 +235,7 @@
             Classes="ImageTextButton UnderlineImageTextButton"
             Command="{Binding DeleteProfileCommand, Mode=OneWay}"
             Foreground="{DynamicResource NegativeBrush}"
-            Tag="Удалить аккаунт">
+            Tag="Delete account">
             <controls:VectorImage
                 Width="32"
                 Height="32"

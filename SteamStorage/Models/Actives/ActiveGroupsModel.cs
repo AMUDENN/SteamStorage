@@ -129,7 +129,7 @@ public class ActiveGroupsModel : ModelBase
         if (group is null) return;
 
         bool result = await _dialogService.ShowDialogAsync(
-            $"Вы уверены, что хотите удалить группу: «{group.Title}»?",
+            $"Are you sure you want to delete the group: «{group.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
 
@@ -140,8 +140,8 @@ public class ActiveGroupsModel : ModelBase
             new ActiveGroups.DeleteActiveGroupRequest(group.GroupId),
             cancellationToken);
 
-        await _notificationService.ShowAsync("Удаление группы",
-            $"Вы отправили запрос на удаление группы: {group.Title}",
+        await _notificationService.ShowAsync("Delete group",
+            $"You sent a request to delete the group: {group.Title}",
             cancellationToken: cancellationToken);
 
         GetGroupsAsync();

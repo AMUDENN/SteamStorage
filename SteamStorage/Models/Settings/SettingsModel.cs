@@ -79,10 +79,10 @@ public class SettingsModel : ModelBase
 
         ThemeModels =
         [
-            new ThemeModel("Классический", ThemeVariants.Classic),
-            new ThemeModel("Лаймовый", ThemeVariants.Lime),
-            new ThemeModel("Тёмный", ThemeVariants.VeryDark),
-            new ThemeModel("Светлый", ThemeVariants.VeryLight)
+            new ThemeModel("Classic", ThemeVariants.Classic),
+            new ThemeModel("Lime", ThemeVariants.Lime),
+            new ThemeModel("Dark", ThemeVariants.VeryDark),
+            new ThemeModel("Light", ThemeVariants.VeryLight)
         ];
 
         _selectedThemeModel = ThemeModels.First();
@@ -120,7 +120,7 @@ public class SettingsModel : ModelBase
 
         IStorageFile? file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
-            Title = "Сохранение файла",
+            Title = "Save file",
             FileTypeChoices = new List<FilePickerFileType>
             {
                 new("*.xlsx")
@@ -144,8 +144,8 @@ public class SettingsModel : ModelBase
 
         await fileResult.Stream.CopyToAsync(stream, cancellationToken);
 
-        await _notificationService.ShowAsync("Файл сохранён",
-            $"Файл {file.Name} успешно сохранён",
+        await _notificationService.ShowAsync("File saved",
+            $"File {file.Name} saved successfully",
             cancellationToken: cancellationToken);
     }
 

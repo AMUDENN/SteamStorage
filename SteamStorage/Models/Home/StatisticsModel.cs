@@ -223,11 +223,11 @@ public class StatisticsModel : ModelBase
         {
             return Status switch
             {
-                PingResult.ServerStatus.Excellent => "Отличное",
-                PingResult.ServerStatus.Good => "Хорошее",
-                PingResult.ServerStatus.Bad => "Плохое",
-                PingResult.ServerStatus.NoConnection => "Нет соединения",
-                _ => "Нет информации"
+                PingResult.ServerStatus.Excellent => "Excellent",
+                PingResult.ServerStatus.Good => "Good",
+                PingResult.ServerStatus.Bad => "Poor",
+                PingResult.ServerStatus.NoConnection => "No connection",
+                _ => "No data"
             };
         }
     }

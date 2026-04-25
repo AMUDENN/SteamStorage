@@ -424,7 +424,7 @@ public class ListActivesModel : BaseListModel
         if (model is null) return;
 
         bool result = await _dialogService.ShowDialogAsync(
-            $"Вы уверены, что хотите удалить актив: «{model.Title}»?",
+            $"Are you sure you want to delete the asset: «{model.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
 
@@ -435,8 +435,8 @@ public class ListActivesModel : BaseListModel
             new SteamStorageAPI.SDK.ApiEntities.Actives.DeleteActiveRequest(model.ActiveId),
             cancellationToken);
 
-        await _notificationService.ShowAsync("Удаление актива",
-            $"Вы отправили запрос на удаление актива: {model.Title}",
+        await _notificationService.ShowAsync("Delete asset",
+            $"You sent a request to delete the asset: {model.Title}",
             cancellationToken: cancellationToken);
 
         GetSkinsAsync();

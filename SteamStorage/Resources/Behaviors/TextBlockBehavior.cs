@@ -61,7 +61,7 @@ public class TextBlockBehavior : Behavior<TextBlock>
         INotificationService? notificationService = App.GetService<INotificationService>();
         if (notificationService is null)
             return;
-        await notificationService.ShowAsync("Текст скопирован!", AssociatedObject.Text);
+        await notificationService.ShowAsync("Text copied!", AssociatedObject.Text);
     }
 
     private void PointerReleasedHandler(object? sender, PointerReleasedEventArgs e)

@@ -115,7 +115,7 @@
                         Classes="NavigationRadioButton"
                         Classes.Min="{Binding $self.Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=200}"
                         IsChecked="{Binding IsSettingsChecked}"
-                        Tag="Настройки">
+                        Tag="Settings">
                         <controls:VectorImage Classes="SettingsVectorImage ForegroundVectorImage" />
                     </RadioButton>
 
@@ -126,7 +126,7 @@
                         Command="{Binding LogInCommand, Mode=OneWay}"
                         Foreground="{DynamicResource PositiveBrush}"
                         IsVisible="{Binding !IsUserLogin, Mode=OneWay}"
-                        Tag="Войти">
+                        Tag="Sign in">
                         <controls:VectorImage Classes="LogInVectorImage PositiveVectorImage" />
                     </Button>
 
@@ -137,7 +137,7 @@
                         Command="{Binding LogOutCommand, Mode=OneWay}"
                         Foreground="{DynamicResource NegativeBrush}"
                         IsVisible="{Binding IsUserLogin, Mode=OneWay}"
-                        Tag="Выйти">
+                        Tag="Sign out">
                         <controls:VectorImage Classes="LogOutVectorImage NegativeVectorImage" />
                     </Button>
 
@@ -177,7 +177,7 @@
                 <TextBlock
                     Grid.Row="2"
                     Classes="CenterTextBlock MiddleTextBlock WrapTextBlock"
-                    Text="Войдите в аккаунт, чтобы просматривать содержимое" />
+                    Text="Sign in to view content" />
 
             </Grid>
 

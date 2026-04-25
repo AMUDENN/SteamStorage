@@ -21,7 +21,7 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
 {
     #region Constants
 
-    private const string EMPTY_DYNAMIC_TEXT = "Динамика цены за данный период не найдена";
+    private const string EMPTY_DYNAMIC_TEXT = "No price dynamics found for the selected period";
 
     #endregion Constants
 
@@ -158,7 +158,7 @@ public class ActiveGroupModel : ExtendedBaseGroupModel
 
         BuySumString = $"{buySum:N2} {currencyMark}";
         CurrentSumString = $"{currentSum:N2} {currencyMark}";
-        GoalSumString = goalSum is null ? "(не установлена)" : $"{goalSum:N2} {currencyMark} ({goalSumCompletion:N0}%)";
+        GoalSumString = goalSum is null ? "(not set)" : $"{goalSum:N2} {currencyMark} ({goalSumCompletion:N0}%)";
 
         Change = change;
 

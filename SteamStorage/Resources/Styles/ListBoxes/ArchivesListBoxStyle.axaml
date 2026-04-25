@@ -27,17 +27,17 @@
                             <Border.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Command="{Binding OpenInSteamCommand, Mode=OneWay}"
-                                              Header="Открыть в Steam" />
+                                              Header="Open in Steam" />
                                     <Separator />
                                     <MenuItem
                                         Command="{Binding EditCommand, Mode=OneWay}"
                                         CommandParameter="{Binding ArchiveModel, Mode=OneWay}"
-                                        Header="Изменить элемент архива" />
+                                        Header="Edit archive item" />
                                     <Separator />
                                     <MenuItem
                                         Command="{Binding DeleteCommand, Mode=OneWay}"
                                         CommandParameter="{Binding ArchiveModel, Mode=OneWay}"
-                                        Header="Удалить элемент архива" />
+                                        Header="Delete archive item" />
                                 </ContextMenu>
                             </Border.ContextMenu>
 
@@ -72,7 +72,7 @@
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Classes="SmallRoundedBorder BackgroundAdditionalBorder"
-                                    ToolTip.Tip="Изображение">
+                                    ToolTip.Tip="Image">
 
                                     <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}" />
 
@@ -84,7 +84,7 @@
                                     Classes="MiddleTextBlock LeftTextBlock WrapTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding Title, Mode=OneWay}"
-                                    ToolTip.Tip="Название" />
+                                    ToolTip.Tip="Title" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -92,7 +92,7 @@
                                     Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding Count, StringFormat=N0, Mode=OneWay}"
-                                    ToolTip.Tip="Количество" />
+                                    ToolTip.Tip="Count" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -100,7 +100,7 @@
                                     Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding BuyPriceString, Mode=OneWay}"
-                                    ToolTip.Tip="Цена покупки" />
+                                    ToolTip.Tip="Purchase price" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -108,7 +108,7 @@
                                     Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding SoldPriceString, Mode=OneWay}"
-                                    ToolTip.Tip="Цена продажи" />
+                                    ToolTip.Tip="Sale price" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -116,7 +116,7 @@
                                     Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding SoldSumString, Mode=OneWay}"
-                                    ToolTip.Tip="Сумма продажи" />
+                                    ToolTip.Tip="Sold amount" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -126,7 +126,7 @@
                                     Classes.PositiveTextBlock="{Binding Change, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding Change, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
-                                    ToolTip.Tip="Изменение" />
+                                    ToolTip.Tip="Change" />
 
                                 <DockPanel
                                     x:Name="TopDockPanel"
@@ -142,7 +142,7 @@
                                         DockPanel.Dock="Left"
                                         Orientation="Horizontal">
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата покупки: " />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Purchase date: " />
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock"
                                                    Text="{Binding BuyDateString}" />
@@ -154,7 +154,7 @@
                                         DockPanel.Dock="Right"
                                         Orientation="Horizontal">
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата продажи: " />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Sale date: " />
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock"
                                                    Text="{Binding SoldDateString}" />

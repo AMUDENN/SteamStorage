@@ -67,10 +67,10 @@ public class ArchivesModel : ModelBase
     {
         SecondaryNavigationOptions =
         [
-            new SecondaryNavigationModel("Обзор", archivesReviewViewModel, true),
-            new SecondaryNavigationModel("Список позиций", listArchivesViewModel, true),
-            new SecondaryNavigationModel("Управление группами", archiveGroupEditViewModel, false),
-            new SecondaryNavigationModel("Управление позициями", archiveEditViewModel, false)
+            new SecondaryNavigationModel("Overview", archivesReviewViewModel, true),
+            new SecondaryNavigationModel("Item list", listArchivesViewModel, true),
+            new SecondaryNavigationModel("Manage groups", archiveGroupEditViewModel, false),
+            new SecondaryNavigationModel("Manage items", archiveEditViewModel, false)
         ];
 
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();

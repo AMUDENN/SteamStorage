@@ -22,7 +22,7 @@ public class ActivesReviewModel : ModelBase
 {
     #region Constants
 
-    private const string EMPTY_LIST_TEXT = "Элементы не найдены";
+    private const string EMPTY_LIST_TEXT = "No items found";
     private const double CHART_MIN_WIDTH = 1;
 
     #endregion Constants

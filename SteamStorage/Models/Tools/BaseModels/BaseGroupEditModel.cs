@@ -10,11 +10,11 @@ public abstract class BaseGroupEditModel : BaseEditModel
 {
     #region Constants
 
-    private const string CHANGE_TITLE = "Изменение группы";
+    private const string CHANGE_TITLE = "Edit group";
 
-    private const string ADD_TITLE = "Добавление группы";
+    private const string ADD_TITLE = "Add group";
 
-    protected const string NO_DATA = "(нет данных)";
+    protected const string NO_DATA = "(no data)";
 
     #endregion Constants
 

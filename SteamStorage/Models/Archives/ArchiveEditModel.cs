@@ -19,9 +19,9 @@ public class ArchiveEditModel : BaseItemEditModel
 {
     #region Constants
 
-    private const string CHANGE_TITLE = "Изменение элемента архива";
+    private const string CHANGE_TITLE = "Edit archive item";
 
-    private const string ADD_TITLE = "Добавление элемента архива";
+    private const string ADD_TITLE = "Add archive item";
 
     #endregion Constants
 
@@ -191,7 +191,7 @@ public class ArchiveEditModel : BaseItemEditModel
         if (_archiveModel is null) return;
 
         bool result = await DialogService.ShowDialogAsync(
-            $"Вы уверены, что хотите удалить удалить элемент архива: «{_archiveModel.Title}»?",
+            $"Are you sure you want to delete the archive item: «{_archiveModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
 
@@ -202,8 +202,8 @@ public class ArchiveEditModel : BaseItemEditModel
             new SteamStorageAPI.SDK.ApiEntities.Archives.DeleteArchiveRequest(_archiveModel.ArchiveId),
             cancellationToken);
 
-        await NotificationService.ShowAsync("Удаление элемента архива",
-            $"Вы отправили запрос на удаление элемента архива: {_archiveModel.Title}",
+        await NotificationService.ShowAsync("Delete archive item",
+            $"You sent a request to delete the archive item: {_archiveModel.Title}",
             cancellationToken: cancellationToken);
 
         OnItemDeleted();
@@ -224,7 +224,7 @@ public class ArchiveEditModel : BaseItemEditModel
         if (IsNewItem)
         {
             bool result = await DialogService.ShowDialogAsync(
-                $"Вы уверены, что хотите добавить элемент архива: «{SelectedSkinModel.Title}»?",
+                $"Are you sure you want to add the archive item: «{SelectedSkinModel.Title}»?",
                 DialogUtility.MessageType.Question,
                 DialogUtility.MessageButtons.SaveCancel);
 
@@ -242,14 +242,14 @@ public class ArchiveEditModel : BaseItemEditModel
                     SoldDate.DateTime),
                 cancellationToken);
 
-            await NotificationService.ShowAsync("Добавление элемента архива",
-                $"Вы отправили запрос на добавление элемента архива: {SelectedSkinModel.Title}",
+            await NotificationService.ShowAsync("Add archive item",
+                $"You sent a request to add the archive item: {SelectedSkinModel.Title}",
                 cancellationToken: cancellationToken);
         }
         else if (_archiveModel is not null)
         {
             bool result = await DialogService.ShowDialogAsync(
-                $"Вы уверены, что хотите изменить элемент архива: «{_archiveModel.Title}»?",
+                $"Are you sure you want to edit the archive item: «{_archiveModel.Title}»?",
                 DialogUtility.MessageType.Question,
                 DialogUtility.MessageButtons.SaveCancel);
 
@@ -268,8 +268,8 @@ public class ArchiveEditModel : BaseItemEditModel
                     SoldDate.DateTime),
                 cancellationToken);
 
-            await NotificationService.ShowAsync("Изменение элемента архива",
-                $"Вы отправили запрос на изменение элемента архива: {SelectedSkinModel.Title}",
+            await NotificationService.ShowAsync("Edit archive item",
+                $"You sent a request to edit the archive item: {SelectedSkinModel.Title}",
                 cancellationToken: cancellationToken);
         }
         else

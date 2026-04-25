@@ -20,7 +20,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
 {
     #region Constants
 
-    private const string EMPTY_DYNAMIC_TEXT = "Динамика цены за данный период не найдена";
+    private const string EMPTY_DYNAMIC_TEXT = "No price dynamics found for the selected period";
 
     #endregion Constants
 

@@ -45,21 +45,21 @@
                 Width="120"
                 Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
                 Command="{Binding SetDialogResultTrueCommand, Mode=OneWay}"
-                Content="Ок"
+                Content="OK"
                 IsVisible="{Binding IsOkVisible, Mode=OneWay}" />
 
             <Button
                 Width="120"
                 Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
                 Command="{Binding SetDialogResultTrueCommand, Mode=OneWay}"
-                Content="Сохранить"
+                Content="Save"
                 IsVisible="{Binding IsSaveVisible, Mode=OneWay}" />
 
             <Button
                 Width="120"
                 Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
                 Command="{Binding SetDialogResultFalseCommand, Mode=OneWay}"
-                Content="Отмена"
+                Content="Cancel"
                 IsVisible="{Binding IsCancelVisible, Mode=OneWay}" />
 
         </StackPanel>

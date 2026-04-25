@@ -32,7 +32,7 @@
                                 Background="Transparent"
                                 Classes="TextButton UnderlineButton"
                                 Command="{TemplateBinding ResetCommand}"
-                                Content="Сбросить" />
+                                Content="Reset" />
                         </Grid>
                         <ContentPresenter
                             x:Name="PART_ContentPresenter"

@@ -143,11 +143,11 @@ public class MainModel : ModelBase
 
         NavigationOptions =
         [
-            new NavigationModel("HomeVectorImage", "Главная", homeViewModel),
-            new NavigationModel("ActivesVectorImage", "Активы", activesViewModel),
-            new NavigationModel("ArchiveVectorImage", "Архив", archivesViewModel),
-            new NavigationModel("InventoryVectorImage", "Инвентарь", inventoryViewModel),
-            new NavigationModel("ProfileVectorImage", "Профиль", profileViewModel)
+            new NavigationModel("HomeVectorImage", "Home", homeViewModel),
+            new NavigationModel("ActivesVectorImage", "Actives", activesViewModel),
+            new NavigationModel("ArchiveVectorImage", "Archive", archivesViewModel),
+            new NavigationModel("InventoryVectorImage", "Inventory", inventoryViewModel),
+            new NavigationModel("ProfileVectorImage", "Profile", profileViewModel)
         ];
 
         _settingsViewModel = settingsViewModel;
@@ -203,12 +203,12 @@ public class MainModel : ModelBase
 
     private async void AuthorizationCompletedHandler(object? sender)
     {
-        await _notificationService.ShowAsync("Авторизация", "Авторизация прошла успешно");
+        await _notificationService.ShowAsync("Authorization", "Authorization successful");
     }
 
     private async void LogOutCompletedHandler(object? sender)
     {
-        await _notificationService.ShowAsync("Выход", "Вы вышли из аккаунта");
+        await _notificationService.ShowAsync("Sign out", "You signed out");
     }
 
     private void AddToActivesHandler(object? sender, AddToActivesEventArgs args)

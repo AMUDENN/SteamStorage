@@ -61,7 +61,7 @@ public partial class App : Application
     {
         System.Diagnostics.Debug.WriteLine(e.Exception);
         Container.GetService<INotificationService>()?
-            .ShowAsync("Ошибка во время выполнения", e.Exception.Message);
+            .ShowAsync("Runtime error", e.Exception.Message);
         e.Handled = true;
     }
 

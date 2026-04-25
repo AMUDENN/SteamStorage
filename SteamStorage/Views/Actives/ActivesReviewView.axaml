@@ -47,7 +47,7 @@
                             Grid.Column="0"
                             Classes="MiddleTextBlock LeftTextBlock"
                             Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                            Text="Количество: " />
+                            Text="Count: " />
 
                         <TextBlock
                             Grid.Column="1"
@@ -63,7 +63,7 @@
                             Grid.Column="0"
                             Classes="MiddleTextBlock LeftTextBlock"
                             Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                            Text="Сумма вложений: " />
+                            Text="Investment amount: " />
 
                         <TextBlock
                             Grid.Column="1"
@@ -79,7 +79,7 @@
                             Grid.Column="0"
                             Classes="MiddleTextBlock LeftTextBlock"
                             Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                            Text="Текущая сумма: " />
+                            Text="Current amount: " />
 
                         <TextBlock
                             Grid.Column="1"
@@ -105,7 +105,7 @@
                         Classes="MiddleTextBlock CenterTextBlock"
                         Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                         IsVisible="{Binding ActiveGroupsGameCountSeries.Count, Mode=OneWay}"
-                        Text="Количество" />
+                        Text="Count" />
 
                     <lvc:PieChart
                         Grid.Row="1"
@@ -124,7 +124,7 @@
                         Classes="MiddleTextBlock CenterTextBlock"
                         Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                         IsVisible="{Binding ActiveGroupsGameInvestmentSumSeries.Count, Mode=OneWay}"
-                        Text="Сумма инвестиций" />
+                        Text="Investment amount" />
 
                     <lvc:PieChart
                         Grid.Row="1"
@@ -143,7 +143,7 @@
                         Classes="MiddleTextBlock CenterTextBlock"
                         Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                         IsVisible="{Binding ActiveGroupsGameCurrentSumSeries.Count, Mode=OneWay}"
-                        Text="Текущая сумма" />
+                        Text="Current amount" />
 
                     <lvc:PieChart
                         Grid.Row="1"
@@ -180,42 +180,42 @@
             <TextBlock
                 Grid.Column="0"
                 Classes="SmallTextBlock CenterTextBlock"
-                Text="Цвет" />
+                Text="Color" />
 
             <ToggleButton
                 Grid.Column="2"
                 Classes="OrderingToggleButton FirstAccentToggleButton"
-                Content="Название"
+                Content="Title"
                 IsChecked="{Binding IsTitleOrdering}"
-                ToolTip.Tip="Название" />
+                ToolTip.Tip="Title" />
 
             <ToggleButton
                 Grid.Column="4"
                 Classes="OrderingToggleButton FirstAccentToggleButton"
-                Content="Количество"
+                Content="Count"
                 IsChecked="{Binding IsCountOrdering}"
-                ToolTip.Tip="Количество" />
+                ToolTip.Tip="Count" />
 
             <ToggleButton
                 Grid.Column="6"
                 Classes="OrderingToggleButton FirstAccentToggleButton"
-                Content="Сумма покупки"
+                Content="Buy amount"
                 IsChecked="{Binding IsBuySumOrdering}"
-                ToolTip.Tip="Сумма покупки" />
+                ToolTip.Tip="Buy amount" />
 
             <ToggleButton
                 Grid.Column="8"
                 Classes="OrderingToggleButton FirstAccentToggleButton"
-                Content="Текущая сумма"
+                Content="Current amount"
                 IsChecked="{Binding IsCurrentSumOrdering}"
-                ToolTip.Tip="Текущая сумма" />
+                ToolTip.Tip="Current amount" />
 
             <ToggleButton
                 Grid.Column="10"
                 Classes="OrderingToggleButton FirstAccentToggleButton"
-                Content="Изменение"
+                Content="Change"
                 IsChecked="{Binding IsChangeOrdering}"
-                ToolTip.Tip="Изменение" />
+                ToolTip.Tip="Change" />
 
         </Grid>
 
@@ -260,7 +260,7 @@
                 VerticalAlignment="Top"
                 Classes="BackgroundAdditionalButton StretchButton SmallRoundedButton TextButton"
                 Command="{Binding AddActiveGroupCommand}"
-                Content="Добавить группу"
+                Content="Add group"
                 IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}" />
 
         </Grid>
