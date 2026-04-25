@@ -86,8 +86,7 @@ public class ProfileModel : ModelBase
         get => _financialGoal;
         set
         {
-            Dispatcher.UIThread.Invoke(() =>
-            {
+            Dispatcher.UIThread.Invoke(() => {
                 SetProperty(ref _financialGoal, value);
                 SaveFinancialGoal.NotifyCanExecuteChanged();
             });

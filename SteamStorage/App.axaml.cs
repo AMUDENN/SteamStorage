@@ -68,7 +68,7 @@ public partial class App : Application
     private static ServiceCollection GetServiceCollection()
     {
         ServiceCollection services = [];
-        
+
         //SteamStorageApi
         services.AddSteamStorageApi(options => {
             options.ClientName = "MainClient";

@@ -185,7 +185,7 @@ public class MainModel : ModelBase
         UserName = _userModel.User?.Nickname ?? USERNAME;
         SteamId = _userModel.User is null ? STEAM_ID : $"{STEAM_ID}: {_userModel.User.SteamId}";
         ImageUrl = _userModel.User?.ImageUrlFull;
-        
+
         SelectedNavigationModel = NavigationOptions.FirstOrDefault();
         IsSettingsChecked = false;
     }
