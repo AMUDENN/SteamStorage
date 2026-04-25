@@ -29,7 +29,7 @@
                             <Border.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Command="{Binding OpenInSteamCommand, Mode=OneWay}"
-                                              Header="Открыть в Steam" />
+                                              Header="Open in Steam" />
                                 </ContextMenu>
                             </Border.ContextMenu>
 
@@ -60,7 +60,7 @@
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Classes="SmallRoundedBorder BackgroundAdditionalBorder"
-                                    ToolTip.Tip="Изображение">
+                                    ToolTip.Tip="Image">
 
                                     <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl, Mode=OneWay}" />
 
@@ -72,7 +72,7 @@
                                     Classes="MiddleTextBlock LeftTextBlock WrapTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding Title, Mode=OneWay}"
-                                    ToolTip.Tip="Название" />
+                                    ToolTip.Tip="Title" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -80,7 +80,7 @@
                                     Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding Count, Mode=OneWay}"
-                                    ToolTip.Tip="Количество" />
+                                    ToolTip.Tip="Count" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -88,7 +88,7 @@
                                     Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding CurrentPriceString, Mode=OneWay}"
-                                    ToolTip.Tip="Текущая цена" />
+                                    ToolTip.Tip="Current price" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -96,7 +96,7 @@
                                     Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding CurrentSumString, Mode=OneWay}"
-                                    ToolTip.Tip="Сумма" />
+                                    ToolTip.Tip="Amount" />
 
                                 <StackPanel
                                     x:Name="ChangeStackPanel"
@@ -108,7 +108,7 @@
 
                                     <StackPanel Orientation="Horizontal">
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Изменение за период: " />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Period change: " />
 
                                         <TextBlock
                                             Classes="SmallTextBlock CenterTextBlock CopyTextBlock"
@@ -120,7 +120,7 @@
 
                                     <StackPanel Orientation="Horizontal">
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Период: " />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Period: " />
 
                                         <TextBlock Classes="SmallTextBlock CenterTextBlock CopyTextBlock"
                                                    Text="{Binding DatePeriod, Mode=OneWay}" />

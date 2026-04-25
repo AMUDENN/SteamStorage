@@ -13,36 +13,20 @@ public class ProfileViewModel : ViewModelBase
 
     private readonly ProfileModel _profileModel;
     private readonly CurrenciesModel _currenciesModel;
-    private readonly PagesModel _pagesModel;
 
     #endregion Fields
 
     #region Properties
 
-    public string? ImageUrl
-    {
-        get => _profileModel.ImageUrl;
-    }
+    public string? ImageUrl => _profileModel.ImageUrl;
 
-    public string? UserName
-    {
-        get => _profileModel.UserName;
-    }
+    public string? UserName => _profileModel.UserName;
 
-    public string? SteamId
-    {
-        get => _profileModel.SteamId;
-    }
+    public string? SteamId => _profileModel.SteamId;
 
-    public string? Role
-    {
-        get => _profileModel.Role;
-    }
+    public string? Role => _profileModel.Role;
 
-    public string? DateRegistration
-    {
-        get => _profileModel.DateRegistration;
-    }
+    public string? DateRegistration => _profileModel.DateRegistration;
 
     public string? FinancialGoal
     {
@@ -50,10 +34,7 @@ public class ProfileViewModel : ViewModelBase
         set => _profileModel.FinancialGoal = value;
     }
 
-    public IEnumerable<CurrencyModel> CurrencyModels
-    {
-        get => _currenciesModel.CurrencyModels;
-    }
+    public IEnumerable<CurrencyModel> CurrencyModels => _currenciesModel.CurrencyModels;
 
     public CurrencyModel? SelectedCurrency
     {
@@ -61,45 +42,19 @@ public class ProfileViewModel : ViewModelBase
         set => _profileModel.SelectedCurrency = value;
     }
 
-    public string? ExchangeRate
-    {
-        get => _profileModel.ExchangeRate;
-    }
-
-    public IEnumerable<PageModel> PageModels
-    {
-        get => _pagesModel.PageModels;
-    }
-
-    public PageModel? SelectedPage
-    {
-        get => _profileModel.SelectedPage;
-        set => _profileModel.SelectedPage = value;
-    }
+    public string? ExchangeRate => _profileModel.ExchangeRate;
 
     #endregion Properties
 
     #region Commands
 
-    public RelayCommand OpenSteamProfileCommand
-    {
-        get => _profileModel.OpenSteamProfileCommand;
-    }
+    public RelayCommand OpenSteamProfileCommand => _profileModel.OpenSteamProfileCommand;
 
-    public AsyncRelayCommand SaveFinancialGoal
-    {
-        get => _profileModel.SaveFinancialGoal;
-    }
+    public AsyncRelayCommand SaveFinancialGoal => _profileModel.SaveFinancialGoal;
 
-    public AsyncRelayCommand DeleteProfileCommand
-    {
-        get => _profileModel.DeleteProfileCommand;
-    }
+    public AsyncRelayCommand DeleteProfileCommand => _profileModel.DeleteProfileCommand;
 
-    public RelayCommand AttachedToVisualTreeCommand
-    {
-        get => _profileModel.AttachedToVisualTreeCommand;
-    }
+    public RelayCommand AttachedToVisualTreeCommand => _profileModel.AttachedToVisualTreeCommand;
 
     #endregion Commands
 
@@ -107,16 +62,13 @@ public class ProfileViewModel : ViewModelBase
 
     public ProfileViewModel(
         ProfileModel profileModel,
-        CurrenciesModel currenciesModel,
-        PagesModel pagesModel)
+        CurrenciesModel currenciesModel)
     {
         _profileModel = profileModel;
         _currenciesModel = currenciesModel;
-        _pagesModel = pagesModel;
 
         profileModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         currenciesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
-        pagesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

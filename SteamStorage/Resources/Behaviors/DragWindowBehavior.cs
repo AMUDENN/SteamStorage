@@ -5,14 +5,14 @@ using Avalonia.Xaml.Interactivity;
 
 namespace SteamStorage.Resources.Behaviors;
 
-public class ControlRightButtonPressedIgnoreBehavior : Behavior<Control>
+public class DragWindowBehavior : Behavior<Control>
 {
     #region Methods
 
     protected override void OnAttached()
     {
         base.OnAttached();
-        AssociatedObject?.AddHandler(InputElement.PointerPressedEvent, PointerPressedHandler, RoutingStrategies.Tunnel);
+        AssociatedObject?.AddHandler(InputElement.PointerPressedEvent, PointerPressedHandler, RoutingStrategies.Bubble);
     }
 
     protected override void OnDetaching()
@@ -23,9 +23,8 @@ public class ControlRightButtonPressedIgnoreBehavior : Behavior<Control>
 
     private void PointerPressedHandler(object? sender, PointerPressedEventArgs e)
     {
-        PointerPoint point = e.GetCurrentPoint(sender as Control);
-        if (point.Properties.IsRightButtonPressed)
-            e.Handled = true;
+        if (TopLevel.GetTopLevel(AssociatedObject) is Window window)
+            window.BeginMoveDrag(e);
     }
 
     #endregion Methods

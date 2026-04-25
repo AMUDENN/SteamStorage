@@ -19,15 +19,9 @@ public class ActiveSoldViewModel : BaseEditViewModel
 
     #region Properties
 
-    public IEnumerable<BaseGroupModel> ArchiveGroupModels
-    {
-        get => _archiveGroupsModel.ArchiveGroupModels;
-    }
+    public IEnumerable<BaseGroupModel> ArchiveGroupModels => _archiveGroupsModel.ArchiveGroupModels;
 
-    public BaseGroupModel? DefaultArchiveGroupModel
-    {
-        get => _activeSoldModel.DefaultArchiveGroupModel;
-    }
+    public BaseGroupModel? DefaultArchiveGroupModel => _activeSoldModel.DefaultArchiveGroupModel;
 
     public BaseGroupModel? SelectedArchiveGroupModel
     {
@@ -35,10 +29,7 @@ public class ActiveSoldViewModel : BaseEditViewModel
         set => _activeSoldModel.SelectedArchiveGroupModel = value;
     }
 
-    public string DefaultSoldCount
-    {
-        get => _activeSoldModel.DefaultSoldCount;
-    }
+    public string DefaultSoldCount => _activeSoldModel.DefaultSoldCount;
 
     public string SoldCount
     {
@@ -46,10 +37,7 @@ public class ActiveSoldViewModel : BaseEditViewModel
         set => _activeSoldModel.SoldCount = value;
     }
 
-    public string DefaultSoldPrice
-    {
-        get => _activeSoldModel.DefaultSoldPrice;
-    }
+    public string DefaultSoldPrice => _activeSoldModel.DefaultSoldPrice;
 
     public string SoldPrice
     {
@@ -57,10 +45,7 @@ public class ActiveSoldViewModel : BaseEditViewModel
         set => _activeSoldModel.SoldPrice = value;
     }
 
-    public DateTimeOffset DefaultSoldDate
-    {
-        get => _activeSoldModel.DefaultSoldDate;
-    }
+    public DateTimeOffset DefaultSoldDate => _activeSoldModel.DefaultSoldDate;
 
     public DateTimeOffset SoldDate
     {
@@ -68,10 +53,7 @@ public class ActiveSoldViewModel : BaseEditViewModel
         set => _activeSoldModel.SoldDate = value;
     }
 
-    public string? DefaultDescription
-    {
-        get => _activeSoldModel.DefaultDescription;
-    }
+    public string? DefaultDescription => _activeSoldModel.DefaultDescription;
 
     public string? Description
     {
@@ -79,30 +61,15 @@ public class ActiveSoldViewModel : BaseEditViewModel
         set => _activeSoldModel.Description = value;
     }
 
-    public string BuyPriceString
-    {
-        get => _activeSoldModel.BuyPriceString;
-    }
+    public string BuyPriceString => _activeSoldModel.BuyPriceString;
 
-    public string CountString
-    {
-        get => _activeSoldModel.CountString;
-    }
+    public string CountString => _activeSoldModel.CountString;
 
-    public string CurrentPriceString
-    {
-        get => _activeSoldModel.CurrentPriceString;
-    }
+    public string CurrentPriceString => _activeSoldModel.CurrentPriceString;
 
-    public string BuyDateString
-    {
-        get => _activeSoldModel.BuyDateString;
-    }
+    public string BuyDateString => _activeSoldModel.BuyDateString;
 
-    public string GoalPriceCompletion
-    {
-        get => _activeSoldModel.GoalPriceCompletion;
-    }
+    public string GoalPriceCompletion => _activeSoldModel.GoalPriceCompletion;
 
     #endregion Properties
 

@@ -19,9 +19,9 @@ public class ActiveEditModel : BaseItemEditModel
 {
     #region Constants
 
-    private const string CHANGE_TITLE = "Изменение актива";
+    private const string CHANGE_TITLE = "Edit asset";
 
-    private const string ADD_TITLE = "Добавление актива";
+    private const string ADD_TITLE = "Add asset";
 
     #endregion Constants
 
@@ -173,7 +173,7 @@ public class ActiveEditModel : BaseItemEditModel
         if (_activeModel is null) return;
 
         bool result = await DialogService.ShowDialogAsync(
-            $"Вы уверены, что хотите удалить актив: «{_activeModel.Title}»?",
+            $"Are you sure you want to delete the asset: «{_activeModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
 
@@ -184,8 +184,8 @@ public class ActiveEditModel : BaseItemEditModel
             new SteamStorageAPI.SDK.ApiEntities.Actives.DeleteActiveRequest(_activeModel.ActiveId),
             cancellationToken);
 
-        await NotificationService.ShowAsync("Удаление актива",
-            $"Вы отправили запрос на удаление актива: {_activeModel.Title}",
+        await NotificationService.ShowAsync("Delete asset",
+            $"You sent a request to delete the asset: {_activeModel.Title}",
             cancellationToken: cancellationToken);
 
         OnItemDeleted();
@@ -207,7 +207,7 @@ public class ActiveEditModel : BaseItemEditModel
         if (IsNewItem)
         {
             bool result = await DialogService.ShowDialogAsync(
-                $"Вы уверены, что хотите добавить актив: «{SelectedSkinModel.Title}»?",
+                $"Are you sure you want to add the asset: «{SelectedSkinModel.Title}»?",
                 DialogUtility.MessageType.Question,
                 DialogUtility.MessageButtons.SaveCancel);
 
@@ -224,14 +224,14 @@ public class ActiveEditModel : BaseItemEditModel
                     BuyDate.DateTime),
                 cancellationToken);
 
-            await NotificationService.ShowAsync("Добавление актива",
-                $"Вы отправили запрос на добавление актива: {SelectedSkinModel.Title}",
+            await NotificationService.ShowAsync("Add asset",
+                $"You sent a request to add the asset: {SelectedSkinModel.Title}",
                 cancellationToken: cancellationToken);
         }
         else if (_activeModel is not null)
         {
             bool result = await DialogService.ShowDialogAsync(
-                $"Вы уверены, что хотите изменить актив: «{_activeModel.Title}»?",
+                $"Are you sure you want to edit the asset: «{_activeModel.Title}»?",
                 DialogUtility.MessageType.Question,
                 DialogUtility.MessageButtons.SaveCancel);
 
@@ -249,8 +249,8 @@ public class ActiveEditModel : BaseItemEditModel
                     BuyDate.DateTime),
                 cancellationToken);
 
-            await NotificationService.ShowAsync("Изменение актива",
-                $"Вы отправили запрос на изменение актива: {_activeModel.Title}",
+            await NotificationService.ShowAsync("Edit asset",
+                $"You sent a request to edit the asset: {_activeModel.Title}",
                 cancellationToken: cancellationToken);
         }
         else
@@ -301,7 +301,7 @@ public class ActiveEditModel : BaseItemEditModel
 
         DefaultGoalPrice = $"{model?.GoalPrice:N2}";
 
-        DefaultSkinModel = model is not null ? new(model) : null;
+        DefaultSkinModel = model is not null ? new BaseSkinViewModel(model) : null;
         Filter = model?.Title;
 
         DefaultDescription = model?.Description ?? string.Empty;
@@ -349,7 +349,7 @@ public class ActiveEditModel : BaseItemEditModel
 
         DefaultGoalPrice = null;
 
-        DefaultSkinModel = model is not null ? new(model) : null;
+        DefaultSkinModel = model is not null ? new BaseSkinViewModel(model) : null;
         Filter = model?.Title;
 
         DefaultDescription = string.Empty;

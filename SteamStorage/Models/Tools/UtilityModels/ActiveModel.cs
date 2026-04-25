@@ -79,7 +79,7 @@ public class ActiveModel : BaseDynamicsSkinModel
         CurrentPriceString = $"{currentPrice:N2} {currencyMark}";
         CurrentSumString = $"{currentSum:N2} {currencyMark}";
         GoalPriceString = goalPrice is null
-            ? "(не установлена)"
+            ? "(not set)"
             : $"{goalPrice:N2} {currencyMark} ({goalPriceCompletion:N0}%)";
 
         Change = change;

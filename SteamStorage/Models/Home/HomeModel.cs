@@ -48,8 +48,8 @@ public class HomeModel : ModelBase
     {
         SecondaryNavigationOptions =
         [
-            new("Статистика", statisticsViewModel, true),
-            new("Список предметов", listItemsViewModel, true)
+            new SecondaryNavigationModel("Statistics", statisticsViewModel, true),
+            new SecondaryNavigationModel("Item list", listItemsViewModel, true)
         ];
 
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();

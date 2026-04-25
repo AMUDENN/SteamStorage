@@ -45,36 +45,18 @@ public class MessageDialogModel : BaseDialogModel
         }
     }
 
-    public bool IsInfoVisible
-    {
-        get => _selectedMessageType == DialogUtility.MessageType.Info;
-    }
+    public bool IsInfoVisible => _selectedMessageType == DialogUtility.MessageType.Info;
 
-    public bool IsErrorVisible
-    {
-        get => _selectedMessageType == DialogUtility.MessageType.Error;
-    }
+    public bool IsErrorVisible => _selectedMessageType == DialogUtility.MessageType.Error;
 
-    public bool IsQuestionVisible
-    {
-        get => _selectedMessageType == DialogUtility.MessageType.Question;
-    }
+    public bool IsQuestionVisible => _selectedMessageType == DialogUtility.MessageType.Question;
 
-    public bool IsOkVisible
-    {
-        get => _selectedMessageButtons is DialogUtility.MessageButtons.OkCancel or DialogUtility.MessageButtons.Ok;
-    }
+    public bool IsOkVisible => _selectedMessageButtons is DialogUtility.MessageButtons.OkCancel or DialogUtility.MessageButtons.Ok;
 
-    public bool IsSaveVisible
-    {
-        get => _selectedMessageButtons is DialogUtility.MessageButtons.SaveCancel or DialogUtility.MessageButtons.Save;
-    }
+    public bool IsSaveVisible => _selectedMessageButtons is DialogUtility.MessageButtons.SaveCancel or DialogUtility.MessageButtons.Save;
 
-    public bool IsCancelVisible
-    {
-        get => _selectedMessageButtons is DialogUtility.MessageButtons.OkCancel
-            or DialogUtility.MessageButtons.SaveCancel;
-    }
+    public bool IsCancelVisible => _selectedMessageButtons is DialogUtility.MessageButtons.OkCancel
+        or DialogUtility.MessageButtons.SaveCancel;
 
     #endregion Properties
 

@@ -34,7 +34,7 @@
                 <TextBlock
                     Grid.Row="0"
                     Classes="MiddleTextBlock"
-                    Text="Внешний вид приложения" />
+                    Text="Application appearance" />
 
                 <ListBox
                     Grid.Row="2"
@@ -59,7 +59,7 @@
                     Margin="20,0"
                     Classes="UnderlineButton StretchButton"
                     Command="{Binding ExportToExcelCommand, Mode=OneWay}"
-                    Content="Экспорт в Excel" />
+                    Content="Export to Excel" />
             </Border>
 
             <Border Grid.Column="2" Classes="BigRoundedBorder BackgroundAdditionalBorder">
@@ -67,7 +67,7 @@
                     Margin="20,0"
                     Classes="UnderlineButton StretchButton"
                     Command="{Binding OpenReferenceInformationCommand, Mode=OneWay}"
-                    Content="Справочная информация" />
+                    Content="Reference information" />
             </Border>
 
         </Grid>

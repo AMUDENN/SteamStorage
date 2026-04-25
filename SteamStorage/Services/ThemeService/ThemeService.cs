@@ -2,6 +2,7 @@
 using System.Linq;
 using Avalonia;
 using Avalonia.Styling;
+using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.Utilities.ThemeVariants;
 
 namespace SteamStorage.Services.ThemeService;
@@ -69,12 +70,12 @@ public class ThemeService : IThemeService
 
     private void OnThemeChanged(ThemeVariant? oldTheme, ThemeVariant? newTheme)
     {
-        ThemeChanged?.Invoke(this, new(oldTheme, newTheme));
+        ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(oldTheme, newTheme));
     }
 
     private void OnChartThemeChanged(ChartThemeVariant? oldTheme, ChartThemeVariant? newTheme)
     {
-        ChartThemeChanged?.Invoke(this, new(oldTheme, newTheme));
+        ChartThemeChanged?.Invoke(this, new ChartThemeChangedEventArgs(oldTheme, newTheme));
     }
 
     #endregion Methods

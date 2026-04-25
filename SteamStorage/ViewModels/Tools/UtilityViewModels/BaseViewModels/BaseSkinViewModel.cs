@@ -13,29 +13,17 @@ public class BaseSkinViewModel : ViewModelBase
 
     #region Properties
 
-    public int SkinId
-    {
-        get => _model.SkinId;
-    }
+    public int SkinId => _model.SkinId;
 
-    public string ImageUrl
-    {
-        get => _model.ImageUrl;
-    }
+    public string ImageUrl => _model.ImageUrl;
 
-    public string Title
-    {
-        get => _model.Title;
-    }
+    public string Title => _model.Title;
 
     #endregion Properties
 
     #region Commands
 
-    public RelayCommand OpenInSteamCommand
-    {
-        get => _model.OpenInSteamCommand;
-    }
+    public RelayCommand OpenInSteamCommand => _model.OpenInSteamCommand;
 
     #endregion Commands
 
@@ -45,12 +33,9 @@ public class BaseSkinViewModel : ViewModelBase
         BaseSkinModel model)
     {
         _model = model;
-        model.PropertyChanged += (_, e) =>
-        {
+        model.PropertyChanged += (_, e) => {
             if (e.PropertyName?.Contains("Checked") == true)
-            {
                 System.Diagnostics.Debug.WriteLine($"Prop: {e.PropertyName}");
-            }
             OnPropertyChanged(e.PropertyName);
         };
     }

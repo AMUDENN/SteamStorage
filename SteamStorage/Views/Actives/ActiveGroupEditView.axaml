@@ -46,7 +46,7 @@
                         Grid.Row="0"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultGroupTitle, Mode=OneWay}"
-                        Header="Название: ">
+                        Header="Title: ">
                         <TextBox
                             Height="50"
                             Classes="DarkTextBox SmallTextBox"
@@ -58,7 +58,7 @@
                         Grid.Row="2"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultDescription, Mode=OneWay}"
-                        Header="Описание: ">
+                        Header="Description: ">
                         <TextBox
                             Height="100"
                             Classes="DarkTextBox BigWrappingTextBox SmallTextBox"
@@ -70,7 +70,7 @@
                         Grid.Row="4"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultGoalSum, Mode=OneWay}"
-                        Header="Финансовая цель: ">
+                        Header="Financial goal: ">
                         <controls:AdvancedTextBox
                             Height="50"
                             Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
@@ -83,7 +83,7 @@
                         Grid.Row="6"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultColour, Mode=OneWay}"
-                        Header="Цвет: ">
+                        Header="Color: ">
                         <ColorPicker
                             Width="{Binding $parent.Bounds.Width, Converter={StaticResource DoubleMultiplicationConverter}, ConverterParameter=0.75, Mode=OneWay}"
                             Height="50"
@@ -106,7 +106,7 @@
                         <TextBlock
                             Grid.Column="0"
                             Classes="SmallTextBlock RightTextBlock"
-                            Text="Дата создания: " />
+                            Text="Created: " />
 
                         <TextBlock
                             Grid.Column="1"
@@ -117,7 +117,7 @@
 
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
 
-                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Изменение за период: " />
+                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Period change: " />
 
                         <TextBlock
                             Classes="SmallTextBlock CenterTextBlock"
@@ -129,7 +129,7 @@
 
                     <StackPanel Grid.Row="4" Orientation="Horizontal">
 
-                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Период: " />
+                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Period: " />
 
                         <TextBlock Classes="SmallTextBlock CenterTextBlock" Text="{Binding DatePeriod, Mode=OneWay}" />
 
@@ -139,7 +139,7 @@
                         Grid.Row="6"
                         Classes="SmallTextBlock CenterTextBlock"
                         IsVisible="{Binding IsNewGroup, Mode=OneWay}"
-                        Text="График недоступен" />
+                        Text="Chart unavailable" />
 
                     <Grid Grid.Row="6" IsVisible="{Binding !IsNewGroup, Mode=OneWay}">
 
@@ -195,7 +195,7 @@
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Classes="MiddleTextBlock CenterTextBlock"
-                                Text="Сумма вложений" />
+                                Text="Investment amount" />
 
                             <TextBlock
                                 Grid.Row="2"
@@ -207,7 +207,7 @@
                                 Grid.Row="1"
                                 Grid.Column="2"
                                 Classes="MiddleTextBlock CenterTextBlock"
-                                Text="Количество" />
+                                Text="Count" />
 
                             <TextBlock
                                 Grid.Row="2"
@@ -219,7 +219,7 @@
                                 Grid.Row="4"
                                 Grid.Column="0"
                                 Classes="MiddleTextBlock CenterTextBlock"
-                                Text="Текущая сумма" />
+                                Text="Current amount" />
 
                             <TextBlock
                                 Grid.Row="5"
@@ -231,7 +231,7 @@
                                 Grid.Row="4"
                                 Grid.Column="2"
                                 Classes="MiddleTextBlock CenterTextBlock"
-                                Text="Финансовая цель" />
+                                Text="Financial goal" />
 
                             <TextBlock
                                 Grid.Row="5"
@@ -256,7 +256,7 @@
                     Grid.Column="0"
                     Classes="UnderlineButton StretchButton"
                     Command="{Binding BackCommand, Mode=OneWay}"
-                    Content="Назад" />
+                    Content="Back" />
 
                 <Button
                     Grid.Column="2"
@@ -265,7 +265,7 @@
                     Command="{Binding DeleteCommand, Mode=OneWay}"
                     Foreground="{DynamicResource NegativeBrush}"
                     IsVisible="{Binding !IsNewGroup, Mode=OneWay}"
-                    Tag="Удалить">
+                    Tag="Delete">
                     <controls:VectorImage
                         Width="32"
                         Height="32"
@@ -276,7 +276,7 @@
                     Grid.Column="4"
                     Classes="UnderlineButton StretchButton"
                     Command="{Binding SaveCommand, Mode=OneWay}"
-                    Content="Сохранить" />
+                    Content="Save" />
 
             </Grid>
 

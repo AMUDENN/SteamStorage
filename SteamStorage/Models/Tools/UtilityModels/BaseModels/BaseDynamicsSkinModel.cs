@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using LiveChartsCore;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
@@ -19,7 +20,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
 {
     #region Constants
 
-    private const string EMPTY_DYNAMIC_TEXT = "Динамика цены за данный период не найдена";
+    private const string EMPTY_DYNAMIC_TEXT = "No price dynamics found for the selected period";
 
     #endregion Constants
 
@@ -67,10 +68,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         }
     }
 
-    public string? NotFoundText
-    {
-        get => SkinDynamic?.Count() == 0 && !IsLoading ? EMPTY_DYNAMIC_TEXT : null;
-    }
+    public string? NotFoundText => SkinDynamic?.Count() == 0 && !IsLoading ? EMPTY_DYNAMIC_TEXT : null;
 
     public IEnumerable<ISeries> ChangeSeries
     {
@@ -90,10 +88,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         private set => SetProperty(ref _yAxis, value);
     }
 
-    public IEnumerable<PeriodModel> PeriodModels
-    {
-        get => _periodsModel.PeriodModels;
-    }
+    public IEnumerable<PeriodModel> PeriodModels => _periodsModel.PeriodModels;
 
     public PeriodModel? SelectedPeriodModel
     {
@@ -167,11 +162,14 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         {
             new LineSeries<Skins.SkinDynamicResponse>
             {
-                Values = SkinDynamic,
-                Mapping = (dynamic, point) => new(point, Convert.ToDouble(dynamic.Price)),
+                Values = SkinDynamic?.ToList(),
+                Mapping = (dynamic, point) => new Coordinate(point, Convert.ToDouble(dynamic.Price)),
                 YToolTipLabelFormatter = index =>
                     $"{index.Model?.DateUpdate.ToString(ProgramConstants.VIEW_DATE_FORMAT)}: {index.Model?.Price:N2}",
-                Stroke = new SolidColorPaint(chartColor) { StrokeThickness = 2 },
+                Stroke = new SolidColorPaint(chartColor)
+                {
+                    StrokeThickness = 2
+                },
                 Fill = null,
                 LineSmoothness = 0,
                 GeometryFill = new SolidColorPaint(chartColor),
@@ -216,7 +214,7 @@ public class BaseDynamicsSkinModel : BaseSkinModel
         Skins.SkinDynamicStatsResponse? skinDynamicsResponse =
             await _apiClient.GetAsync<Skins.SkinDynamicStatsResponse, Skins.GetSkinDynamicsRequest>(
                 ApiConstants.ApiMethods.GetSkinDynamics,
-                new(SkinId, dateStart, dateEnd));
+                new Skins.GetSkinDynamicsRequest(SkinId, dateStart, dateEnd));
 
         ChangePeriod = skinDynamicsResponse?.ChangePeriod;
 

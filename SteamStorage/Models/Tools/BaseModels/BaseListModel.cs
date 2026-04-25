@@ -4,7 +4,7 @@ public abstract class BaseListModel : ModelBase
 {
     #region Constants
 
-    protected const string EMPTY_LIST_TEXT = "Элементы не найдены";
+    protected const string EMPTY_LIST_TEXT = "No items found";
 
     #endregion Constants
 

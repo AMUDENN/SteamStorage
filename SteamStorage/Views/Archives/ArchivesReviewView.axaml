@@ -5,8 +5,8 @@
     xmlns:archives="clr-namespace:SteamStorage.ViewModels.Archives"
     xmlns:controls="using:SteamStorage.Resources.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Xaml.Behaviors.Interactivity"
+    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Xaml.Behaviors.Interactions"
     xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
@@ -46,7 +46,7 @@
                             Grid.Column="0"
                             Classes="MiddleTextBlock LeftTextBlock"
                             Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                            Text="Количество: " />
+                            Text="Count: " />
 
                         <TextBlock
                             Grid.Column="1"
@@ -62,7 +62,7 @@
                             Grid.Column="0"
                             Classes="MiddleTextBlock LeftTextBlock"
                             Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                            Text="Сумма покупки: " />
+                            Text="Buy amount: " />
 
                         <TextBlock
                             Grid.Column="1"
@@ -78,7 +78,7 @@
                             Grid.Column="0"
                             Classes="MiddleTextBlock LeftTextBlock"
                             Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
-                            Text="Сумма продажи: " />
+                            Text="Sold amount: " />
 
                         <TextBlock
                             Grid.Column="1"
@@ -103,7 +103,7 @@
                         Classes="MiddleTextBlock CenterTextBlock"
                         Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                         IsVisible="{Binding ArchiveGroupsGameCountSeries.Count, Mode=OneWay}"
-                        Text="Количество" />
+                        Text="Count" />
 
                     <lvc:PieChart
                         Grid.Row="1"
@@ -121,7 +121,7 @@
                         Classes="MiddleTextBlock CenterTextBlock"
                         Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                         IsVisible="{Binding ArchiveGroupsGameBuySumSeries.Count, Mode=OneWay}"
-                        Text="Сумма покупки" />
+                        Text="Buy amount" />
 
                     <lvc:PieChart
                         Grid.Row="1"
@@ -140,7 +140,7 @@
                         Classes="MiddleTextBlock CenterTextBlock"
                         Classes.SmallTextBlock="{Binding $parent[Border].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                         IsVisible="{Binding ArchiveGroupsGameSoldSumSeries.Count, Mode=OneWay}"
-                        Text="Сумма продажи" />
+                        Text="Sold amount" />
 
                     <lvc:PieChart
                         Grid.Row="1"
@@ -177,42 +177,42 @@
             <TextBlock
                 Grid.Column="0"
                 Classes="SmallTextBlock CenterTextBlock"
-                Text="Цвет" />
+                Text="Color" />
 
             <ToggleButton
                 Grid.Column="2"
                 Classes="OrderingToggleButton SecondAccentToggleButton"
-                Content="Название"
+                Content="Title"
                 IsChecked="{Binding IsTitleOrdering}"
-                ToolTip.Tip="Название" />
+                ToolTip.Tip="Title" />
 
             <ToggleButton
                 Grid.Column="4"
                 Classes="OrderingToggleButton SecondAccentToggleButton"
-                Content="Количество"
+                Content="Count"
                 IsChecked="{Binding IsCountOrdering}"
-                ToolTip.Tip="Количество" />
+                ToolTip.Tip="Count" />
 
             <ToggleButton
                 Grid.Column="6"
                 Classes="OrderingToggleButton SecondAccentToggleButton"
-                Content="Сумма покупки"
+                Content="Buy amount"
                 IsChecked="{Binding IsBuySumOrdering}"
-                ToolTip.Tip="Сумма покупки" />
+                ToolTip.Tip="Buy amount" />
 
             <ToggleButton
                 Grid.Column="8"
                 Classes="OrderingToggleButton SecondAccentToggleButton"
-                Content="Сумма продажи"
+                Content="Sold amount"
                 IsChecked="{Binding IsSoldSumOrdering}"
-                ToolTip.Tip="Сумма продажи" />
+                ToolTip.Tip="Sold amount" />
 
             <ToggleButton
                 Grid.Column="10"
                 Classes="OrderingToggleButton SecondAccentToggleButton"
-                Content="Изменение"
+                Content="Change"
                 IsChecked="{Binding IsChangeOrdering}"
-                ToolTip.Tip="Изменение" />
+                ToolTip.Tip="Change" />
 
         </Grid>
 
@@ -257,7 +257,7 @@
                 VerticalAlignment="Top"
                 Classes="BackgroundAdditionalButton StretchButton SmallRoundedButton TextButton"
                 Command="{Binding AddArchiveGroupCommand}"
-                Content="Добавить группу"
+                Content="Add group"
                 IsVisible="{Binding NotFoundText, Converter={x:Static StringConverters.IsNotNullOrEmpty}, Mode=OneWay}" />
 
         </Grid>

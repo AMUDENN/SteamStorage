@@ -33,7 +33,7 @@ public class DialogWindowModel : ModelBase
 
     public DialogWindowModel()
     {
-        CloseCommand = new(DoCloseCommand);
+        CloseCommand = new RelayCommand(DoCloseCommand);
     }
 
     #endregion Constructor

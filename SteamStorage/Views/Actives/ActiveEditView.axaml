@@ -43,12 +43,12 @@
                         Grid.Column="0"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultActiveGroupModel, Mode=OneWay}"
-                        Header="Группа: ">
+                        Header="Group: ">
                         <ComboBox
                             Height="50"
                             Classes="GroupComboBox BaseComboBox DarkComboBox"
                             ItemsSource="{Binding ActiveGroupModels, Mode=OneWay}"
-                            PlaceholderText="Выберите группу"
+                            PlaceholderText="Select group"
                             SelectedItem="{Binding SelectedActiveGroupModel}" />
                     </controls:DefaultContentControl>
 
@@ -57,7 +57,7 @@
                         Grid.Column="0"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultCount, Mode=OneWay}"
-                        Header="Количество: ">
+                        Header="Count: ">
                         <controls:AdvancedTextBox
                             Height="50"
                             Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
@@ -71,7 +71,7 @@
                         Grid.Column="0"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultBuyPrice, Mode=OneWay}"
-                        Header="Цена покупки: ">
+                        Header="Purchase price: ">
                         <controls:AdvancedTextBox
                             Height="50"
                             Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
@@ -85,7 +85,7 @@
                         Grid.Column="0"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultGoalPrice, Mode=OneWay}"
-                        Header="Финансовая цель: ">
+                        Header="Financial goal: ">
                         <controls:AdvancedTextBox
                             Height="50"
                             Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
@@ -99,7 +99,7 @@
                         Grid.Column="2"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultSkinModel, Mode=OneWay}"
-                        Header="Предмет: ">
+                        Header="Item: ">
                         <AutoCompleteBox
                             Height="50"
                             AsyncPopulator="{Binding AsyncPopulator, Mode=OneWay}"
@@ -108,7 +108,7 @@
                             ItemsSource="{Binding SkinModels, Mode=OneWay}"
                             SelectedItem="{Binding SelectedSkinModel}"
                             Text="{Binding Filter}"
-                            Watermark="Выберите предмет из выпадающего списка" />
+                            PlaceholderText="Select item from dropdown" />
                     </controls:DefaultContentControl>
 
                     <controls:DefaultContentControl
@@ -117,7 +117,7 @@
                         Grid.Column="2"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultDescription, Mode=OneWay}"
-                        Header="Описание: ">
+                        Header="Description: ">
                         <TextBox
                             Height="190"
                             Classes="DarkTextBox BigWrappingTextBox SmallTextBox"
@@ -130,7 +130,7 @@
                         Grid.Column="2"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultBuyDate, Mode=OneWay}"
-                        Header="Дата покупки: ">
+                        Header="Purchase date: ">
                         <DatePicker
                             Height="50"
                             Classes="DarkDatePicker SmallDatePicker"
@@ -150,7 +150,7 @@
                     Grid.Column="0"
                     Classes="UnderlineButton StretchButton"
                     Command="{Binding BackCommand, Mode=OneWay}"
-                    Content="Назад" />
+                    Content="Back" />
 
                 <Button
                     Grid.Column="2"
@@ -159,7 +159,7 @@
                     Command="{Binding DeleteCommand, Mode=OneWay}"
                     Foreground="{DynamicResource NegativeBrush}"
                     IsVisible="{Binding !IsNewItem, Mode=OneWay}"
-                    Tag="Удалить">
+                    Tag="Delete">
                     <controls:VectorImage
                         Width="32"
                         Height="32"
@@ -170,7 +170,7 @@
                     Grid.Column="4"
                     Classes="UnderlineButton StretchButton"
                     Command="{Binding SaveCommand, Mode=OneWay}"
-                    Content="Сохранить" />
+                    Content="Save" />
 
             </Grid>
 

@@ -26,7 +26,7 @@
                         Classes="DarkTextBox SmallTextBox"
                         DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
                         FontSize="{TemplateBinding FontSize}"
-                        Watermark="{TemplateBinding Watermark}" />
+                        PlaceholderText="{TemplateBinding PlaceholderText}" />
                     <Popup
                         x:Name="PART_Popup"
                         MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"

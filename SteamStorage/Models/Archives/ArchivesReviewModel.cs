@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models.Tools;
+using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.ViewModels.Tools.UtilityViewModels;
@@ -20,7 +22,7 @@ public class ArchivesReviewModel : ModelBase
 {
     #region Constants
 
-    private const string EMPTY_LIST_TEXT = "Элементы не найдены";
+    private const string EMPTY_LIST_TEXT = "No items found";
     private const double CHART_MIN_WIDTH = 1;
 
     #endregion Constants
@@ -261,10 +263,7 @@ public class ArchivesReviewModel : ModelBase
         set => SetProperty(ref _selectedArchiveGroupModel, value);
     }
 
-    public string? NotFoundText
-    {
-        get => ArchiveGroupModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
-    }
+    public string? NotFoundText => ArchiveGroupModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
 
     public bool IsLoading
     {
@@ -346,14 +345,14 @@ public class ArchivesReviewModel : ModelBase
         _chartMinWidth = CHART_MIN_WIDTH;
 
         _archiveGroupModels = [];
-        _groupsCancellationTokenSource = new();
-        _statisticsCancellationTokenSource = new();
+        _groupsCancellationTokenSource = new CancellationTokenSource();
+        _statisticsCancellationTokenSource = new CancellationTokenSource();
 
         SetOrderingsNull();
 
         IsLoading = false;
 
-        AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
+        AttachedToVisualTreeCommand = new RelayCommand(DoAttachedToVisualTreeCommand);
     }
 
     #endregion Constructor
@@ -411,12 +410,11 @@ public class ArchivesReviewModel : ModelBase
         {
             int i = 0;
 
-            ArchiveGroupsGameCountSeries = new(ArchiveGroupsGameCount.OrderByDescending(x => x.GameTitle)
-                .AsPieSeries((value, builder) =>
-                {
+            ArchiveGroupsGameCountSeries = new ObservableCollection<ISeries>(ArchiveGroupsGameCount.OrderByDescending(x => x.GameTitle)
+                .AsPieSeries((value, builder) => {
                     builder.MaxRadialColumnWidth = 20;
                     builder.HoverPushout = 0;
-                    builder.Mapping = (game, point) => new(point, game.Count);
+                    builder.Mapping = (game, point) => new Coordinate(point, game.Count);
                     builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
                     builder.Fill =
                         new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
@@ -439,12 +437,11 @@ public class ArchivesReviewModel : ModelBase
         {
             int i = 0;
 
-            ArchiveGroupsGameBuySumSeries = new(ArchiveGroupsGameBuySum.OrderByDescending(x => x.GameTitle)
-                .AsPieSeries((value, builder) =>
-                {
+            ArchiveGroupsGameBuySumSeries = new ObservableCollection<ISeries>(ArchiveGroupsGameBuySum.OrderByDescending(x => x.GameTitle)
+                .AsPieSeries((value, builder) => {
                     builder.MaxRadialColumnWidth = 20;
                     builder.HoverPushout = 0;
-                    builder.Mapping = (game, point) => new(point, (double)game.BuySum);
+                    builder.Mapping = (game, point) => new Coordinate(point, (double)game.BuySum);
                     builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.BuySum:N2}";
                     builder.Fill =
                         new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
@@ -467,12 +464,11 @@ public class ArchivesReviewModel : ModelBase
         {
             int i = 0;
 
-            ArchiveGroupsGameSoldSumSeries = new(ArchiveGroupsGameSoldSum.OrderByDescending(x => x.GameTitle)
-                .AsPieSeries((value, builder) =>
-                {
+            ArchiveGroupsGameSoldSumSeries = new ObservableCollection<ISeries>(ArchiveGroupsGameSoldSum.OrderByDescending(x => x.GameTitle)
+                .AsPieSeries((value, builder) => {
                     builder.MaxRadialColumnWidth = 20;
                     builder.HoverPushout = 0;
-                    builder.Mapping = (game, point) => new(point, (double)game.SoldSum);
+                    builder.Mapping = (game, point) => new Coordinate(point, (double)game.SoldSum);
                     builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.SoldSum:N2}";
                     builder.Fill =
                         new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
@@ -489,7 +485,7 @@ public class ArchivesReviewModel : ModelBase
     {
         await StatisticsCancellationTokenSource.CancelAsync();
 
-        StatisticsCancellationTokenSource = new();
+        StatisticsCancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = StatisticsCancellationTokenSource.Token;
 
         ArchiveGroups.ArchiveGroupsStatisticResponse? archiveGroupsStatisticResponse =
@@ -522,20 +518,20 @@ public class ArchivesReviewModel : ModelBase
 
         await GroupsCancellationTokenSource.CancelAsync();
 
-        GroupsCancellationTokenSource = new();
+        GroupsCancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = GroupsCancellationTokenSource.Token;
 
         ArchiveGroups.ArchiveGroupsResponse? groupsResponse =
             await _apiClient.GetAsync<ArchiveGroups.ArchiveGroupsResponse, ArchiveGroups.GetArchiveGroupsRequest>(
                 ApiConstants.ApiMethods.GetArchiveGroups,
-                new(ArchiveGroupOrderName, IsAscending),
+                new ArchiveGroups.GetArchiveGroupsRequest(ArchiveGroupOrderName, IsAscending),
                 token);
 
         if (groupsResponse?.ArchiveGroups is null) return;
 
         ArchiveGroupModels = groupsResponse.ArchiveGroups.Select(x =>
                 new ArchiveGroupViewModel(
-                    new(x.Id,
+                    new ArchiveGroupModel(x.Id,
                         x.Title,
                         x.Colour,
                         x.Count,

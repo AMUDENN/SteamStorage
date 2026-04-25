@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models.Tools;
@@ -221,11 +223,11 @@ public class StatisticsModel : ModelBase
         {
             return Status switch
             {
-                PingResult.ServerStatus.Excellent => "Отличное",
-                PingResult.ServerStatus.Good => "Хорошее",
-                PingResult.ServerStatus.Bad => "Плохое",
-                PingResult.ServerStatus.NoConnection => "Нет соединения",
-                _ => "Нет информации"
+                PingResult.ServerStatus.Excellent => "Excellent",
+                PingResult.ServerStatus.Good => "Good",
+                PingResult.ServerStatus.Bad => "Poor",
+                PingResult.ServerStatus.NoConnection => "No connection",
+                _ => "No data"
             };
         }
     }
@@ -302,7 +304,7 @@ public class StatisticsModel : ModelBase
         _inventoryGamesSeries = Enumerable.Empty<ISeries>();
         _inventoryGamesWidth = INVENTORY_GAMES_WIDTH_DEFAULT;
 
-        AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
+        AttachedToVisualTreeCommand = new RelayCommand(DoAttachedToVisualTreeCommand);
 
         RefreshPingAsync();
     }
@@ -347,23 +349,19 @@ public class StatisticsModel : ModelBase
         InvestedSumGrowthSeries = GaugeGenerator.BuildSolidGauge(
             new GaugeItem(
                 (double)growth,
-                series =>
-                {
+                series => {
                     series.MaxRadialColumnWidth = 20;
                     series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
                         .GetChartColor(ChartThemeVariants.ChartColors.SecondAccent).Color);
                     series.DataLabelsSize = 0;
                 }),
-            new GaugeItem(GaugeItem.Background, series =>
-            {
+            new GaugeItem(GaugeItem.Background, series => {
                 series.MaxRadialColumnWidth = 20;
                 series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
                     .GetChartColor(ChartThemeVariants.ChartColors.ThirdAccent).Color);
             }));
 
-        InvestedSumWidth = InvestedSumWidth < INVESTED_SUM_WIDTH_DEFAULT
-            ? InvestedSumWidth + 1
-            : InvestedSumWidth - 1;
+        InvestedSumWidth = Math.Min(InvestedSumWidth + 1, INVESTED_SUM_WIDTH_DEFAULT);
     }
 
     private void GetFinancialGoalPercentageCompletion()
@@ -374,23 +372,19 @@ public class StatisticsModel : ModelBase
         FinancialGoalPercentageCompletionSeries = GaugeGenerator.BuildSolidGauge(
             new GaugeItem(
                 (double)growth,
-                series =>
-                {
+                series => {
                     series.MaxRadialColumnWidth = 20;
                     series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
                         .GetChartColor(ChartThemeVariants.ChartColors.FirstAccent).Color);
                     series.DataLabelsSize = 0;
                 }),
-            new GaugeItem(GaugeItem.Background, series =>
-            {
+            new GaugeItem(GaugeItem.Background, series => {
                 series.MaxRadialColumnWidth = 20;
                 series.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant
                     .GetChartColor(ChartThemeVariants.ChartColors.ThirdAccent).Color);
             }));
 
-        FinancialGoalWidth = FinancialGoalWidth < FINANCIAL_GOAL_WIDTH_DEFAULT
-            ? FinancialGoalWidth + 1
-            : FinancialGoalWidth - 1;
+        FinancialGoalWidth = Math.Min(FinancialGoalWidth + 1, FINANCIAL_GOAL_WIDTH_DEFAULT);
     }
 
     private void GetInventoryGamesSeries()
@@ -399,19 +393,16 @@ public class StatisticsModel : ModelBase
 
         int i = 0;
         InventoryGamesSeries = InventoryGames.OrderByDescending(x => x.GameTitle)
-            .AsPieSeries((value, builder) =>
-            {
+            .AsPieSeries((value, builder) => {
                 builder.MaxRadialColumnWidth = 20;
                 builder.HoverPushout = 0;
-                builder.Mapping = (game, point) => new(point, game.Count);
+                builder.Mapping = (game, point) => new Coordinate(point, game.Count);
                 builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
                 builder.Fill = new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
                 i++;
             });
 
-        InventoryGamesWidth = InventoryGamesWidth < INVENTORY_GAMES_WIDTH_DEFAULT
-            ? InventoryGamesWidth + 1
-            : InventoryGamesWidth - 1;
+        InventoryGamesWidth = Math.Min(InventoryGamesWidth + 1, INVENTORY_GAMES_WIDTH_DEFAULT);
     }
 
     private async void RefreshStatisticsAsync()

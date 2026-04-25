@@ -23,7 +23,7 @@
             Classes="DarkTextBox SmallTextBox CenterTextBox"
             ContextFlyout="{x:Null}"
             Text="{Binding InputText}"
-            Watermark="Подтверждающее слово" />
+            PlaceholderText="Confirmation word" />
 
         <StackPanel
             Grid.Row="3"
@@ -37,13 +37,13 @@
                 Width="120"
                 Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
                 Command="{Binding SetDialogResultTrueCommand, Mode=OneWay}"
-                Content="Ок" />
+                Content="OK" />
 
             <Button
                 Width="120"
                 Classes="TextButton SmallRoundedBorder TopLevelBackgroundButton StretchButton"
                 Command="{Binding SetDialogResultFalseCommand, Mode=OneWay}"
-                Content="Отмена" />
+                Content="Cancel" />
 
         </StackPanel>
 

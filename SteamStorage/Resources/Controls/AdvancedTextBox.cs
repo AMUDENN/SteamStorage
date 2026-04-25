@@ -26,7 +26,7 @@ public class AdvancedTextBox : TextBox
         set
         {
             SetValue(PreviewCharRegexProperty, value);
-            if (value is not null) PreviewCharRegexExpression = new(value);
+            if (value is not null) PreviewCharRegexExpression = new Regex(value);
         }
     }
 

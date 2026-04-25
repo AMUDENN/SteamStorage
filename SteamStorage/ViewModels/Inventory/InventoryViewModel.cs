@@ -23,45 +23,21 @@ public class InventoryViewModel : ViewModelBase
 
     #region Properties
 
-    public IEnumerable<GameModel> GameModels
-    {
-        get => _gamesModel.GameModels;
-    }
+    public IEnumerable<GameModel> GameModels => _gamesModel.GameModels;
 
-    public int Count
-    {
-        get => _inventoryModel.Count;
-    }
+    public int Count => _inventoryModel.Count;
 
-    public string CurrentSumString
-    {
-        get => _inventoryModel.CurrentSumString;
-    }
+    public string CurrentSumString => _inventoryModel.CurrentSumString;
 
-    public ObservableCollection<ISeries> InventoryGameCountSeries
-    {
-        get => _inventoryModel.InventoryGameCountSeries;
-    }
+    public ObservableCollection<ISeries> InventoryGameCountSeries => _inventoryModel.InventoryGameCountSeries;
 
-    public ObservableCollection<ISeries> InventoryGameSumSeries
-    {
-        get => _inventoryModel.InventoryGameSumSeries;
-    }
+    public ObservableCollection<ISeries> InventoryGameSumSeries => _inventoryModel.InventoryGameSumSeries;
 
-    public double ChartWidth
-    {
-        get => _inventoryModel.ChartWidth;
-    }
+    public double ChartWidth => _inventoryModel.ChartWidth;
 
-    public SolidColorPaint TooltipTextPaint
-    {
-        get => _chartTooltipModel.TooltipTextPaint;
-    }
+    public SolidColorPaint TooltipTextPaint => _chartTooltipModel.TooltipTextPaint;
 
-    public SolidColorPaint TooltipBackgroundPaint
-    {
-        get => _chartTooltipModel.TooltipBackgroundPaint;
-    }
+    public SolidColorPaint TooltipBackgroundPaint => _chartTooltipModel.TooltipBackgroundPaint;
 
     public GameModel? SelectedGameModel
     {
@@ -105,15 +81,9 @@ public class InventoryViewModel : ViewModelBase
         set => _inventoryModel.IsSumOrdering = value;
     }
 
-    public bool IsRefreshing
-    {
-        get => _inventoryModel.IsRefreshing;
-    }
+    public bool IsRefreshing => _inventoryModel.IsRefreshing;
 
-    public IEnumerable<InventoryItemViewModel> InventoryModels
-    {
-        get => _inventoryModel.InventoryModels;
-    }
+    public IEnumerable<InventoryItemViewModel> InventoryModels => _inventoryModel.InventoryModels;
 
     public InventoryItemViewModel? SelectedInventoryModel
     {
@@ -121,15 +91,9 @@ public class InventoryViewModel : ViewModelBase
         set => _inventoryModel.SelectedInventoryModel = value;
     }
 
-    public string? NotFoundText
-    {
-        get => _inventoryModel.NotFoundText;
-    }
+    public string? NotFoundText => _inventoryModel.NotFoundText;
 
-    public bool IsLoading
-    {
-        get => _inventoryModel.IsLoading;
-    }
+    public bool IsLoading => _inventoryModel.IsLoading;
 
     public int? PageNumber
     {
@@ -137,44 +101,23 @@ public class InventoryViewModel : ViewModelBase
         set => _inventoryModel.PageNumber = value;
     }
 
-    public int CurrentPageNumber
-    {
-        get => _inventoryModel.CurrentPageNumber;
-    }
+    public int CurrentPageNumber => _inventoryModel.CurrentPageNumber;
 
-    public int PagesCount
-    {
-        get => _inventoryModel.PagesCount;
-    }
+    public int PagesCount => _inventoryModel.PagesCount;
 
-    public int DisplayItemsCountStart
-    {
-        get => _inventoryModel.DisplayItemsCountStart;
-    }
+    public int DisplayItemsCountStart => _inventoryModel.DisplayItemsCountStart;
 
-    public int DisplayItemsCountEnd
-    {
-        get => _inventoryModel.DisplayItemsCountEnd;
-    }
+    public int DisplayItemsCountEnd => _inventoryModel.DisplayItemsCountEnd;
 
-    public int SavedItemsCount
-    {
-        get => _inventoryModel.SavedItemsCount;
-    }
+    public int SavedItemsCount => _inventoryModel.SavedItemsCount;
 
     #endregion Properties
 
     #region Commands
 
-    public RelayCommand ClearFiltersCommand
-    {
-        get => _inventoryModel.ClearFiltersCommand;
-    }
+    public RelayCommand ClearFiltersCommand => _inventoryModel.ClearFiltersCommand;
 
-    public AsyncRelayCommand RefreshInventoryCommand
-    {
-        get => _inventoryModel.RefreshInventoryCommand;
-    }
+    public AsyncRelayCommand RefreshInventoryCommand => _inventoryModel.RefreshInventoryCommand;
 
     #endregion Commands
 

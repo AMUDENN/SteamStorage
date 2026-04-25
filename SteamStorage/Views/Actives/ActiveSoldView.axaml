@@ -45,12 +45,12 @@
                         Grid.Row="0"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultArchiveGroupModel, Mode=OneWay}"
-                        Header="Архивная группа: ">
+                        Header="Archive group: ">
                         <ComboBox
                             Height="50"
                             Classes="GroupComboBox BaseComboBox DarkComboBox"
                             ItemsSource="{Binding ArchiveGroupModels, Mode=OneWay}"
-                            PlaceholderText="Выберите группу"
+                            PlaceholderText="Select group"
                             SelectedItem="{Binding SelectedArchiveGroupModel}" />
                     </controls:DefaultContentControl>
 
@@ -58,7 +58,7 @@
                         Grid.Row="2"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultSoldCount, Mode=OneWay}"
-                        Header="Количество: ">
+                        Header="Count: ">
                         <controls:AdvancedTextBox
                             Height="50"
                             Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
@@ -71,7 +71,7 @@
                         Grid.Row="4"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultSoldPrice, Mode=OneWay}"
-                        Header="Цена продажи: ">
+                        Header="Sale price: ">
                         <controls:AdvancedTextBox
                             Height="50"
                             Classes="DarkAdvancedTextBox SmallAdvancedTextBox CenterAdvancedTextBox"
@@ -84,11 +84,11 @@
                         Grid.Row="6"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultSoldDate, Mode=OneWay}"
-                        Header="Дата продажи: ">
+                        Header="Sale date: ">
                         <DatePicker
                             Height="50"
                             Classes="DarkDatePicker SmallDatePicker"
-                            SelectedDate="{Binding DefaultSoldDate}" />
+                            SelectedDate="{Binding SoldDate}" />
                     </controls:DefaultContentControl>
 
                 </Grid>
@@ -102,7 +102,7 @@
                         Grid.Row="0"
                         Classes="MiddleDefaultContentControl"
                         DefaultValue="{Binding DefaultDescription, Mode=OneWay}"
-                        Header="Описание: ">
+                        Header="Description: ">
                         <TextBox
                             Height="80"
                             Classes="DarkTextBox BigWrappingTextBox SmallTextBox"
@@ -121,7 +121,7 @@
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Classes="MiddleTextBlock CenterTextBlock"
-                                Text="Цена покупки" />
+                                Text="Purchase price" />
 
                             <TextBlock
                                 Grid.Row="1"
@@ -133,7 +133,7 @@
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Classes="MiddleTextBlock CenterTextBlock"
-                                Text="Количество" />
+                                Text="Count" />
 
                             <TextBlock
                                 Grid.Row="1"
@@ -145,7 +145,7 @@
                                 Grid.Row="3"
                                 Grid.Column="0"
                                 Classes="MiddleTextBlock CenterTextBlock"
-                                Text="Текущая цена" />
+                                Text="Current price" />
 
                             <TextBlock
                                 Grid.Row="4"
@@ -157,7 +157,7 @@
                                 Grid.Row="3"
                                 Grid.Column="2"
                                 Classes="MiddleTextBlock CenterTextBlock"
-                                Text="Дата покупки" />
+                                Text="Purchase date" />
 
                             <TextBlock
                                 Grid.Row="4"
@@ -170,7 +170,7 @@
                                 Grid.Column="0"
                                 Grid.ColumnSpan="3"
                                 Classes="MiddleTextBlock CenterTextBlock"
-                                Text="Финансовая цель" />
+                                Text="Financial goal" />
 
                             <TextBlock
                                 Grid.Row="7"
@@ -196,7 +196,7 @@
                     Grid.Column="0"
                     Classes="UnderlineButton StretchButton"
                     Command="{Binding BackCommand, Mode=OneWay}"
-                    Content="Назад" />
+                    Content="Back" />
 
                 <Button
                     Grid.Column="2"
@@ -204,7 +204,7 @@
                     Classes="ImageTextButton UnderlineImageTextButton TransparentImageTextButton StretchButton"
                     Command="{Binding DeleteCommand, Mode=OneWay}"
                     Foreground="{DynamicResource NegativeBrush}"
-                    Tag="Удалить">
+                    Tag="Delete">
                     <controls:VectorImage
                         Width="32"
                         Height="32"
@@ -215,7 +215,7 @@
                     Grid.Column="4"
                     Classes="UnderlineButton StretchButton"
                     Command="{Binding SaveCommand, Mode=OneWay}"
-                    Content="Сохранить" />
+                    Content="Save" />
 
             </Grid>
 

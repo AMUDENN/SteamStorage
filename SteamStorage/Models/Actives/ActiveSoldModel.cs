@@ -17,9 +17,9 @@ public class ActiveSoldModel : BaseEditModel
 {
     #region Constants
 
-    private const string TITLE = "Продажа актива";
+    private const string TITLE = "Asset sale";
 
-    private const string NO_DATA = "(нет данных)";
+    private const string NO_DATA = "(no data)";
 
     #endregion Constants
 
@@ -189,7 +189,7 @@ public class ActiveSoldModel : BaseEditModel
         if (_activeModel is null) return;
 
         bool result = await DialogService.ShowDialogAsync(
-            $"Вы уверены, что хотите удалить актив: «{_activeModel.Title}»?",
+            $"Are you sure you want to delete the asset: «{_activeModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
 
@@ -200,8 +200,8 @@ public class ActiveSoldModel : BaseEditModel
             new SteamStorageAPI.SDK.ApiEntities.Actives.DeleteActiveRequest(_activeModel.ActiveId),
             cancellationToken);
 
-        await NotificationService.ShowAsync("Удаление актива",
-            $"Вы отправили запрос на удаление актива: {_activeModel.Title}",
+        await NotificationService.ShowAsync("Delete asset",
+            $"You sent a request to delete the asset: {_activeModel.Title}",
             cancellationToken: cancellationToken);
 
         OnItemDeleted();
@@ -220,7 +220,7 @@ public class ActiveSoldModel : BaseEditModel
             return;
 
         bool result = await DialogService.ShowDialogAsync(
-            $"Вы уверены, что хотите продать актив: «{_activeModel.Title}»?",
+            $"Are you sure you want to sell the asset: «{_activeModel.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.SaveCancel);
 
@@ -236,8 +236,8 @@ public class ActiveSoldModel : BaseEditModel
                 Description),
             cancellationToken);
 
-        await NotificationService.ShowAsync("Продажа актива",
-            $"Вы отправили запрос на продажу актива: {_activeModel.Title}",
+        await NotificationService.ShowAsync("Asset sale",
+            $"You sent a request to sell the asset: {_activeModel.Title}",
             cancellationToken: cancellationToken);
 
         OnItemChanged();
@@ -256,8 +256,12 @@ public class ActiveSoldModel : BaseEditModel
 
     private void SetTitle(BaseSkinModel? model)
     {
-        if (model is null) Title = TITLE;
-        Title = $"{TITLE}: «{model?.Title}»";
+        if (model is null)
+        {
+            Title = TITLE;
+            return;
+        }
+        Title = $"{TITLE}: «{model.Title}»";
     }
 
     private void SetValuesFromDefault()

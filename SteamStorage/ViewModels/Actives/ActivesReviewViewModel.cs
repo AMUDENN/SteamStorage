@@ -22,50 +22,23 @@ public class ActivesReviewViewModel : ViewModelBase
 
     #region Properties
 
-    public int Count
-    {
-        get => _activesReviewModel.Count;
-    }
+    public int Count => _activesReviewModel.Count;
 
-    public string InvestedSumString
-    {
-        get => _activesReviewModel.InvestedSumString;
-    }
+    public string InvestedSumString => _activesReviewModel.InvestedSumString;
 
-    public string CurrentSumString
-    {
-        get => _activesReviewModel.CurrentSumString;
-    }
+    public string CurrentSumString => _activesReviewModel.CurrentSumString;
 
-    public ObservableCollection<ISeries> ActiveGroupsGameCountSeries
-    {
-        get => _activesReviewModel.ActiveGroupsGameCountSeries;
-    }
+    public ObservableCollection<ISeries> ActiveGroupsGameCountSeries => _activesReviewModel.ActiveGroupsGameCountSeries;
 
-    public ObservableCollection<ISeries> ActiveGroupsGameInvestmentSumSeries
-    {
-        get => _activesReviewModel.ActiveGroupsGameInvestmentSumSeries;
-    }
+    public ObservableCollection<ISeries> ActiveGroupsGameInvestmentSumSeries => _activesReviewModel.ActiveGroupsGameInvestmentSumSeries;
 
-    public ObservableCollection<ISeries> ActiveGroupsGameCurrentSumSeries
-    {
-        get => _activesReviewModel.ActiveGroupsGameCurrentSumSeries;
-    }
+    public ObservableCollection<ISeries> ActiveGroupsGameCurrentSumSeries => _activesReviewModel.ActiveGroupsGameCurrentSumSeries;
 
-    public double ChartMinWidth
-    {
-        get => _activesReviewModel.ChartMinWidth;
-    }
+    public double ChartMinWidth => _activesReviewModel.ChartMinWidth;
 
-    public SolidColorPaint TooltipTextPaint
-    {
-        get => _chartTooltipModel.TooltipTextPaint;
-    }
+    public SolidColorPaint TooltipTextPaint => _chartTooltipModel.TooltipTextPaint;
 
-    public SolidColorPaint TooltipBackgroundPaint
-    {
-        get => _chartTooltipModel.TooltipBackgroundPaint;
-    }
+    public SolidColorPaint TooltipBackgroundPaint => _chartTooltipModel.TooltipBackgroundPaint;
 
     public bool? IsTitleOrdering
     {
@@ -97,10 +70,7 @@ public class ActivesReviewViewModel : ViewModelBase
         set => _activesReviewModel.IsChangeOrdering = value;
     }
 
-    public IEnumerable<ActiveGroupViewModel> ActiveGroupModels
-    {
-        get => _activesReviewModel.ActiveGroupModels;
-    }
+    public IEnumerable<ActiveGroupViewModel> ActiveGroupModels => _activesReviewModel.ActiveGroupModels;
 
     public ActiveGroupViewModel? SelectedActiveGroupModel
     {
@@ -108,29 +78,17 @@ public class ActivesReviewViewModel : ViewModelBase
         set => _activesReviewModel.SelectedActiveGroupModel = value;
     }
 
-    public string? NotFoundText
-    {
-        get => _activesReviewModel.NotFoundText;
-    }
+    public string? NotFoundText => _activesReviewModel.NotFoundText;
 
-    public bool IsLoading
-    {
-        get => _activesReviewModel.IsLoading;
-    }
+    public bool IsLoading => _activesReviewModel.IsLoading;
 
     #endregion Properties
 
     #region Commands
 
-    public RelayCommand AttachedToVisualTreeCommand
-    {
-        get => _activesReviewModel.AttachedToVisualTreeCommand;
-    }
+    public RelayCommand AttachedToVisualTreeCommand => _activesReviewModel.AttachedToVisualTreeCommand;
 
-    public RelayCommand AddActiveGroupCommand
-    {
-        get => _activeGroupsModel.AddActiveGroupCommand;
-    }
+    public RelayCommand AddActiveGroupCommand => _activeGroupsModel.AddActiveGroupCommand;
 
     #endregion Commands
 

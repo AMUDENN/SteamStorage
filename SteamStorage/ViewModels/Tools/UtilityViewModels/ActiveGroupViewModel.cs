@@ -22,75 +22,33 @@ public class ActiveGroupViewModel : BaseExtendedGroupViewModel
 
     #region Properties
 
-    public ActiveGroupModel ActiveGroupModel
-    {
-        get => _model;
-    }
+    public ActiveGroupModel ActiveGroupModel => _model;
 
-    public string GoalSumString
-    {
-        get => _model.GoalSumString;
-    }
+    public string GoalSumString => _model.GoalSumString;
 
-    public string BuySumString
-    {
-        get => _model.BuySumString;
-    }
+    public string BuySumString => _model.BuySumString;
 
-    public string CurrentSumString
-    {
-        get => _model.CurrentSumString;
-    }
+    public string CurrentSumString => _model.CurrentSumString;
 
-    public decimal Change
-    {
-        get => _model.Change;
-    }
+    public decimal Change => _model.Change;
 
-    public decimal? ChangePeriod
-    {
-        get => _model.ChangePeriod;
-    }
+    public decimal? ChangePeriod => _model.ChangePeriod;
 
-    public string? DatePeriod
-    {
-        get => _model.DatePeriod;
-    }
+    public string? DatePeriod => _model.DatePeriod;
 
-    public string? NotFoundText
-    {
-        get => _model.NotFoundText;
-    }
+    public string? NotFoundText => _model.NotFoundText;
 
-    public IEnumerable<ISeries> ChangeSeries
-    {
-        get => _model.ChangeSeries;
-    }
+    public IEnumerable<ISeries> ChangeSeries => _model.ChangeSeries;
 
-    public IEnumerable<Axis> XAxis
-    {
-        get => _model.XAxis;
-    }
+    public IEnumerable<Axis> XAxis => _model.XAxis;
 
-    public IEnumerable<Axis> YAxis
-    {
-        get => _model.YAxis;
-    }
+    public IEnumerable<Axis> YAxis => _model.YAxis;
 
-    public SolidColorPaint TooltipTextPaint
-    {
-        get => _chartTooltipModel.TooltipTextPaint;
-    }
+    public SolidColorPaint TooltipTextPaint => _chartTooltipModel.TooltipTextPaint;
 
-    public SolidColorPaint TooltipBackgroundPaint
-    {
-        get => _chartTooltipModel.TooltipBackgroundPaint;
-    }
+    public SolidColorPaint TooltipBackgroundPaint => _chartTooltipModel.TooltipBackgroundPaint;
 
-    public IEnumerable<PeriodModel> PeriodModels
-    {
-        get => _model.PeriodModels;
-    }
+    public IEnumerable<PeriodModel> PeriodModels => _model.PeriodModels;
 
     public PeriodModel? SelectedPeriodModel
     {
@@ -98,39 +56,21 @@ public class ActiveGroupViewModel : BaseExtendedGroupViewModel
         set => _model.SelectedPeriodModel = value;
     }
 
-    public bool IsLoading
-    {
-        get => _model.IsLoading;
-    }
+    public bool IsLoading => _model.IsLoading;
 
     #endregion Properties
 
     #region Commands
 
-    public RelayCommand<ActiveGroupModel> OpenActivesCommand
-    {
-        get => _activeGroupsModel.OpenActivesCommand;
-    }
+    public RelayCommand<ActiveGroupModel> OpenActivesCommand => _activeGroupsModel.OpenActivesCommand;
 
-    public RelayCommand<ActiveGroupModel> AddActiveCommand
-    {
-        get => _activeGroupsModel.AddActiveCommand;
-    }
+    public RelayCommand<ActiveGroupModel> AddActiveCommand => _activeGroupsModel.AddActiveCommand;
 
-    public RelayCommand AddActiveGroupCommand
-    {
-        get => _activeGroupsModel.AddActiveGroupCommand;
-    }
+    public RelayCommand AddActiveGroupCommand => _activeGroupsModel.AddActiveGroupCommand;
 
-    public RelayCommand<ActiveGroupModel> EditActiveGroupCommand
-    {
-        get => _activeGroupsModel.EditActiveGroupCommand;
-    }
+    public RelayCommand<ActiveGroupModel> EditActiveGroupCommand => _activeGroupsModel.EditActiveGroupCommand;
 
-    public AsyncRelayCommand<ActiveGroupModel> DeleteActiveGroupCommand
-    {
-        get => _activeGroupsModel.DeleteActiveGroupCommand;
-    }
+    public AsyncRelayCommand<ActiveGroupModel> DeleteActiveGroupCommand => _activeGroupsModel.DeleteActiveGroupCommand;
 
     #endregion Commands
 

@@ -2,8 +2,8 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:SteamStorage.Resources.Controls"
-    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Xaml.Behaviors.Interactivity"
+    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Xaml.Behaviors.Interactions"
     xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
     xmlns:utilityViewModels="clr-namespace:SteamStorage.ViewModels.Tools.UtilityViewModels">
 
@@ -39,25 +39,25 @@
                                     <MenuItem
                                         Command="{Binding OpenActivesCommand, Mode=OneWay}"
                                         CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"
-                                        Header="Открыть список активов" />
+                                        Header="Open asset list" />
                                     <Separator />
                                     <MenuItem
                                         Command="{Binding AddActiveCommand, Mode=OneWay}"
                                         CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"
-                                        Header="Добавить актив" />
+                                        Header="Add asset" />
                                     <Separator />
                                     <MenuItem Command="{Binding AddActiveGroupCommand, Mode=OneWay}"
-                                              Header="Добавить группу" />
+                                              Header="Add group" />
                                     <Separator />
                                     <MenuItem
                                         Command="{Binding EditActiveGroupCommand, Mode=OneWay}"
                                         CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"
-                                        Header="Изменить группу" />
+                                        Header="Edit group" />
                                     <Separator />
                                     <MenuItem
                                         Command="{Binding DeleteActiveGroupCommand, Mode=OneWay}"
                                         CommandParameter="{Binding ActiveGroupModel, Mode=OneWay}"
-                                        Header="Удалить группу" />
+                                        Header="Delete group" />
                                 </ContextMenu>
                             </Border.ContextMenu>
 
@@ -91,7 +91,7 @@
                                     Height="32"
                                     Background="{Binding Colour, Converter={StaticResource BrushConverter}}"
                                     Classes="SmallRoundedBorder"
-                                    ToolTip.Tip="Цвет группы" />
+                                    ToolTip.Tip="Group color" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -99,7 +99,7 @@
                                     Classes="MiddleTextBlock LeftTextBlock WrapTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding Title, Mode=OneWay}"
-                                    ToolTip.Tip="Название" />
+                                    ToolTip.Tip="Title" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -107,7 +107,7 @@
                                     Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding Count, StringFormat=N0, Mode=OneWay}"
-                                    ToolTip.Tip="Количество" />
+                                    ToolTip.Tip="Count" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -115,7 +115,7 @@
                                     Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding BuySumString, Mode=OneWay}"
-                                    ToolTip.Tip="Сумма покупки" />
+                                    ToolTip.Tip="Buy amount" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -123,7 +123,7 @@
                                     Classes="MiddleTextBlock CenterTextBlock CopyTextBlock"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding CurrentSumString, Mode=OneWay}"
-                                    ToolTip.Tip="Текущая сумма" />
+                                    ToolTip.Tip="Current amount" />
 
                                 <TextBlock
                                     Grid.Row="0"
@@ -133,7 +133,7 @@
                                     Classes.PositiveTextBlock="{Binding Change, Mode=OneWay, Converter={StaticResource DoubleGreaterConverter}, ConverterParameter=0}"
                                     Classes.SmallTextBlock="{Binding $parent[ListBoxItem].Bounds.Width, Converter={StaticResource DoubleLessConverter}, ConverterParameter=880}"
                                     Text="{Binding Change, StringFormat=N0, Mode=OneWay, Converter={StaticResource MarkedPercentConverter}, ConverterParameter=2}"
-                                    ToolTip.Tip="Изменение" />
+                                    ToolTip.Tip="Change" />
 
                                 <DockPanel
                                     x:Name="TopDockPanel"
@@ -150,7 +150,7 @@
                                         DockPanel.Dock="Left"
                                         Orientation="Horizontal">
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Финансовая цель: " />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Financial goal: " />
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock"
                                                    Text="{Binding GoalSumString}" />
@@ -162,7 +162,7 @@
                                         DockPanel.Dock="Right"
                                         Orientation="Horizontal">
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Дата создания: " />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Created: " />
 
                                         <TextBlock Classes="SmallTextBlock LeftTextBlock CopyTextBlock"
                                                    Text="{Binding DateCreationString}" />
@@ -181,7 +181,7 @@
 
                                     <StackPanel Orientation="Horizontal">
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Изменение за период: " />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Period change: " />
 
                                         <TextBlock
                                             Classes="SmallTextBlock CenterTextBlock CopyTextBlock"
@@ -193,7 +193,7 @@
 
                                     <StackPanel Orientation="Horizontal">
 
-                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Период: " />
+                                        <TextBlock Classes="SmallTextBlock LeftTextBlock" Text="Period: " />
 
                                         <TextBlock Classes="SmallTextBlock CenterTextBlock CopyTextBlock"
                                                    Text="{Binding DatePeriod, Mode=OneWay}" />

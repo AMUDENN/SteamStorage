@@ -67,11 +67,11 @@ public class ActivesModel : ModelBase
     {
         SecondaryNavigationOptions =
         [
-            new("Обзор", activesReviewViewModel, true),
-            new("Список активов", listActivesViewModel, true),
-            new("Управление группами", activeGroupEditViewModel, false),
-            new("Управление активами", activeEditViewModel, false),
-            new("Продажа актива", activeSoldViewModel, false)
+            new SecondaryNavigationModel("Overview", activesReviewViewModel, true),
+            new SecondaryNavigationModel("Asset list", listActivesViewModel, true),
+            new SecondaryNavigationModel("Manage groups", activeGroupEditViewModel, false),
+            new SecondaryNavigationModel("Manage actives", activeEditViewModel, false),
+            new SecondaryNavigationModel("Asset sale", activeSoldViewModel, false)
         ];
 
         _selectedSecondaryNavigationModel = SecondaryNavigationOptions.First();

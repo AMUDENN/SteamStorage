@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using SteamStorage.Models.Tools.UtilityModels.BaseModels;
 using SteamStorage.Services.DialogService;
 using SteamStorage.Services.NotificationService;
 using SteamStorage.ViewModels.Tools.UtilityViewModels.BaseViewModels;
@@ -101,7 +102,7 @@ public abstract class BaseItemEditModel : BaseEditModel
         INotificationService notificationService) : base(apiClient, dialogService, notificationService)
     {
         _skinModels = [];
-        _cancellationTokenSource = new();
+        _cancellationTokenSource = new CancellationTokenSource();
 
         ItemFilter = ItemFilterPredicate;
         AsyncPopulator = PopulateAsync;
@@ -138,19 +139,19 @@ public abstract class BaseItemEditModel : BaseEditModel
     {
         await CancellationTokenSource.CancelAsync();
 
-        CancellationTokenSource = new();
+        CancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = CancellationTokenSource.Token;
 
         Skins.BaseSkinsResponse? skinsResponse =
             await ApiClient.GetAsync<Skins.BaseSkinsResponse, Skins.GetBaseSkinsRequest>(
                 ApiConstants.ApiMethods.GetBaseSkins,
-                new(Filter),
+                new Skins.GetBaseSkinsRequest(Filter),
                 token);
 
         if (skinsResponse?.Skins is null) return;
 
         SkinModels = skinsResponse.Skins.Select(x =>
-                new BaseSkinViewModel(new(x.Id,
+                new BaseSkinViewModel(new BaseSkinModel(x.Id,
                     x.SkinIconUrl,
                     x.MarketUrl,
                     x.Title)))

@@ -290,10 +290,7 @@ public class ListActivesModel : BaseListModel
         }
     }
 
-    public override string? NotFoundText
-    {
-        get => ActiveModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
-    }
+    public override string? NotFoundText => ActiveModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
 
     private SteamStorageAPI.SDK.ApiEntities.Actives.ActiveOrderName? ActiveOrderName
     {
@@ -367,8 +364,8 @@ public class ListActivesModel : BaseListModel
         _currentSumString = string.Empty;
 
         _activeModels = [];
-        _itemsCancellationTokenSource = new();
-        _statisticsCancellationTokenSource = new();
+        _itemsCancellationTokenSource = new CancellationTokenSource();
+        _statisticsCancellationTokenSource = new CancellationTokenSource();
 
         IsAllGamesChecked = true;
 
@@ -379,10 +376,10 @@ public class ListActivesModel : BaseListModel
         PageNumber = 1;
         PageSize = 20;
 
-        EditCommand = new(DoEditCommand);
-        SoldCommand = new(DoSoldCommand);
-        DeleteCommand = new(DoDeleteCommand);
-        ClearFiltersCommand = new(DoClearFiltersCommand);
+        EditCommand = new RelayCommand<ActiveModel>(DoEditCommand);
+        SoldCommand = new RelayCommand<ActiveModel>(DoSoldCommand);
+        DeleteCommand = new AsyncRelayCommand<ActiveModel>(DoDeleteCommand);
+        ClearFiltersCommand = new RelayCommand(DoClearFiltersCommand);
     }
 
     #endregion Constructor
@@ -427,7 +424,7 @@ public class ListActivesModel : BaseListModel
         if (model is null) return;
 
         bool result = await _dialogService.ShowDialogAsync(
-            $"Вы уверены, что хотите удалить актив: «{model.Title}»?",
+            $"Are you sure you want to delete the asset: «{model.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
 
@@ -438,8 +435,8 @@ public class ListActivesModel : BaseListModel
             new SteamStorageAPI.SDK.ApiEntities.Actives.DeleteActiveRequest(model.ActiveId),
             cancellationToken);
 
-        await _notificationService.ShowAsync("Удаление актива",
-            $"Вы отправили запрос на удаление актива: {model.Title}",
+        await _notificationService.ShowAsync("Delete asset",
+            $"You sent a request to delete the asset: {model.Title}",
             cancellationToken: cancellationToken);
 
         GetSkinsAsync();
@@ -471,13 +468,13 @@ public class ListActivesModel : BaseListModel
     {
         await StatisticsCancellationTokenSource.CancelAsync();
 
-        StatisticsCancellationTokenSource = new();
+        StatisticsCancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = StatisticsCancellationTokenSource.Token;
 
         SteamStorageAPI.SDK.ApiEntities.Actives.ActivesStatisticResponse? activesStatisticResponse =
             await _apiClient.GetAsync<SteamStorageAPI.SDK.ApiEntities.Actives.ActivesStatisticResponse, SteamStorageAPI.SDK.ApiEntities.Actives.GetActivesStatisticRequest>(
                 ApiConstants.ApiMethods.GetActivesStatistic,
-                new(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter),
+                new SteamStorageAPI.SDK.ApiEntities.Actives.GetActivesStatisticRequest(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter),
                 token);
 
         if (activesStatisticResponse is null) return;
@@ -496,7 +493,7 @@ public class ListActivesModel : BaseListModel
 
         await ItemsCancellationTokenSource.CancelAsync();
 
-        ItemsCancellationTokenSource = new();
+        ItemsCancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = ItemsCancellationTokenSource.Token;
 
         CurrentPageNumber = PageNumber ?? 1;
@@ -507,7 +504,7 @@ public class ListActivesModel : BaseListModel
         SteamStorageAPI.SDK.ApiEntities.Actives.ActivesResponse? activesResponse =
             await _apiClient.GetAsync<SteamStorageAPI.SDK.ApiEntities.Actives.ActivesResponse, SteamStorageAPI.SDK.ApiEntities.Actives.GetActivesRequest>(
                 ApiConstants.ApiMethods.GetActives,
-                new(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter, ActiveOrderName, IsAscending,
+                new SteamStorageAPI.SDK.ApiEntities.Actives.GetActivesRequest(SelectedGroupModel?.GroupId, SelectedGameModel?.Id, Filter, ActiveOrderName, IsAscending,
                     CurrentPageNumber, PageSize),
                 token);
 
@@ -520,7 +517,7 @@ public class ListActivesModel : BaseListModel
 
         ActiveModels = activesResponse.Actives.Select(x =>
                 new ActiveViewModel(
-                    new(_apiClient,
+                    new ActiveModel(_apiClient,
                         _periodsModel,
                         _themeService,
                         x.Skin.Id,
@@ -548,12 +545,12 @@ public class ListActivesModel : BaseListModel
 
     private void OnEditActive(ActiveModel? model)
     {
-        EditActive?.Invoke(this, new(model));
+        EditActive?.Invoke(this, new EditActiveEventArgs(model));
     }
 
     private void OnSoldActive(ActiveModel? model)
     {
-        SoldActive?.Invoke(this, new(model));
+        SoldActive?.Invoke(this, new SoldActiveEventArgs(model));
     }
 
     #endregion Methods

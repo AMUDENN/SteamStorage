@@ -16,35 +16,17 @@ public class MainViewModel : ViewModelBase
 
     #region Properties
 
-    public string? ImageUrl
-    {
-        get => _mainModel.ImageUrl;
-    }
+    public string? ImageUrl => _mainModel.ImageUrl;
 
-    public string UserName
-    {
-        get => _mainModel.UserName;
-    }
+    public string UserName => _mainModel.UserName;
 
-    public string SteamId
-    {
-        get => _mainModel.SteamId;
-    }
+    public string SteamId => _mainModel.SteamId;
 
-    public bool IsUserLogin
-    {
-        get => _mainModel.IsUserLogin;
-    }
+    public bool IsUserLogin => _mainModel.IsUserLogin;
 
-    public ViewModelBase CurrentViewModel
-    {
-        get => _mainModel.CurrentViewModel;
-    }
+    public ViewModelBase CurrentViewModel => _mainModel.CurrentViewModel;
 
-    public IEnumerable<NavigationModel> NavigationOptions
-    {
-        get => _mainModel.NavigationOptions;
-    }
+    public IEnumerable<NavigationModel> NavigationOptions => _mainModel.NavigationOptions;
 
     public NavigationModel? SelectedNavigationModel
     {
@@ -62,15 +44,9 @@ public class MainViewModel : ViewModelBase
 
     #region Commands
 
-    public RelayCommand LogInCommand
-    {
-        get => _mainModel.LogInCommand;
-    }
+    public RelayCommand LogInCommand => _mainModel.LogInCommand;
 
-    public RelayCommand LogOutCommand
-    {
-        get => _mainModel.LogOutCommand;
-    }
+    public RelayCommand LogOutCommand => _mainModel.LogOutCommand;
 
     #endregion Commands
 

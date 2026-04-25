@@ -21,25 +21,13 @@ public class ListArchivesViewModel : BaseListViewModel
 
     #region Properties
 
-    public IEnumerable<BaseGroupModel> ArchiveGroupModels
-    {
-        get => _archiveGroupsModel.ArchiveGroupModels;
-    }
+    public IEnumerable<BaseGroupModel> ArchiveGroupModels => _archiveGroupsModel.ArchiveGroupModels;
 
-    public int Count
-    {
-        get => _listArchivesModel.Count;
-    }
+    public int Count => _listArchivesModel.Count;
 
-    public string InvestedSumString
-    {
-        get => _listArchivesModel.InvestedSumString;
-    }
+    public string InvestedSumString => _listArchivesModel.InvestedSumString;
 
-    public string SoldSumString
-    {
-        get => _listArchivesModel.SoldSumString;
-    }
+    public string SoldSumString => _listArchivesModel.SoldSumString;
 
     public BaseGroupModel? SelectedGroupModel
     {
@@ -47,10 +35,7 @@ public class ListArchivesViewModel : BaseListViewModel
         set => _listArchivesModel.SelectedGroupModel = value;
     }
 
-    public IEnumerable<GameModel> GameModels
-    {
-        get => _gamesModel.GameModels;
-    }
+    public IEnumerable<GameModel> GameModels => _gamesModel.GameModels;
 
     public GameModel? SelectedGameModel
     {
@@ -106,10 +91,7 @@ public class ListArchivesViewModel : BaseListViewModel
         set => _listArchivesModel.IsChangeOrdering = value;
     }
 
-    public IEnumerable<ArchiveViewModel> ArchiveModels
-    {
-        get => _listArchivesModel.ArchiveModels;
-    }
+    public IEnumerable<ArchiveViewModel> ArchiveModels => _listArchivesModel.ArchiveModels;
 
     public ArchiveViewModel? SelectedArchiveModel
     {
@@ -121,20 +103,11 @@ public class ListArchivesViewModel : BaseListViewModel
 
     #region Commands
 
-    public RelayCommand AddArchiveGroupCommand
-    {
-        get => _archiveGroupsModel.AddArchiveGroupCommand;
-    }
+    public RelayCommand AddArchiveGroupCommand => _archiveGroupsModel.AddArchiveGroupCommand;
 
-    public RelayCommand<ArchiveGroupModel> AddArchiveCommand
-    {
-        get => _archiveGroupsModel.AddArchiveCommand;
-    }
+    public RelayCommand<ArchiveGroupModel> AddArchiveCommand => _archiveGroupsModel.AddArchiveCommand;
 
-    public RelayCommand ClearFiltersCommand
-    {
-        get => _listArchivesModel.ClearFiltersCommand;
-    }
+    public RelayCommand ClearFiltersCommand => _listArchivesModel.ClearFiltersCommand;
 
     #endregion Commands
 

@@ -88,11 +88,11 @@ public class ActiveGroupsModel : ModelBase
 
         userModel.UserChanged += UserChangedHandler;
 
-        AddActiveCommand = new(DoAddActiveCommand);
-        OpenActivesCommand = new(DoOpenActivesCommand);
-        AddActiveGroupCommand = new(DoAddActiveGroupCommand);
-        EditActiveGroupCommand = new(DoEditActiveGroupCommand);
-        DeleteActiveGroupCommand = new(DoDeleteActiveGroupCommand);
+        AddActiveCommand = new RelayCommand<ActiveGroupModel>(DoAddActiveCommand);
+        OpenActivesCommand = new RelayCommand<ActiveGroupModel>(DoOpenActivesCommand);
+        AddActiveGroupCommand = new RelayCommand(DoAddActiveGroupCommand);
+        EditActiveGroupCommand = new RelayCommand<ActiveGroupModel>(DoEditActiveGroupCommand);
+        DeleteActiveGroupCommand = new AsyncRelayCommand<ActiveGroupModel>(DoDeleteActiveGroupCommand);
     }
 
     #endregion Constructor
@@ -129,7 +129,7 @@ public class ActiveGroupsModel : ModelBase
         if (group is null) return;
 
         bool result = await _dialogService.ShowDialogAsync(
-            $"Вы уверены, что хотите удалить группу: «{group.Title}»?",
+            $"Are you sure you want to delete the group: «{group.Title}»?",
             DialogUtility.MessageType.Question,
             DialogUtility.MessageButtons.OkCancel);
 
@@ -140,8 +140,8 @@ public class ActiveGroupsModel : ModelBase
             new ActiveGroups.DeleteActiveGroupRequest(group.GroupId),
             cancellationToken);
 
-        await _notificationService.ShowAsync("Удаление группы",
-            $"Вы отправили запрос на удаление группы: {group.Title}",
+        await _notificationService.ShowAsync("Delete group",
+            $"You sent a request to delete the group: {group.Title}",
             cancellationToken: cancellationToken);
 
         GetGroupsAsync();
@@ -159,7 +159,7 @@ public class ActiveGroupsModel : ModelBase
         ActiveGroups.ActiveGroupsResponse? groupsResponses =
             await _apiClient.GetAsync<ActiveGroups.ActiveGroupsResponse, ActiveGroups.GetActiveGroupsRequest>(
                 ApiConstants.ApiMethods.GetActiveGroups,
-                new(null, null));
+                new ActiveGroups.GetActiveGroupsRequest(null, null));
         if (groupsResponses?.ActiveGroups is null) return;
         ActiveGroupModels = groupsResponses.ActiveGroups
             .Select(x => new BaseGroupModel(x.Id, x.Title, x.Colour))
@@ -168,17 +168,17 @@ public class ActiveGroupsModel : ModelBase
 
     private void OnAddActive(ActiveGroupModel? group)
     {
-        AddActive?.Invoke(this, new(group));
+        AddActive?.Invoke(this, new AddActiveEventArgs(group));
     }
 
     private void OnOpenActives(ActiveGroupModel? group)
     {
-        OpenActives?.Invoke(this, new(group));
+        OpenActives?.Invoke(this, new OpenActivesEventArgs(group));
     }
 
     private void OnEditActiveGroup(ActiveGroupModel? group)
     {
-        EditActiveGroup?.Invoke(this, new(group));
+        EditActiveGroup?.Invoke(this, new EditActiveGroupEventArgs(group));
     }
 
     private void OnDeleteActiveGroup()

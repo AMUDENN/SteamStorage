@@ -19,10 +19,7 @@ public class ListItemsViewModel : BaseListViewModel
 
     #region Properties
 
-    public IEnumerable<GameModel> GameModels
-    {
-        get => _gamesModel.GameModels;
-    }
+    public IEnumerable<GameModel> GameModels => _gamesModel.GameModels;
 
     public GameModel? SelectedGameModel
     {
@@ -72,10 +69,7 @@ public class ListItemsViewModel : BaseListViewModel
         set => _listItemsModel.IsMarked = value;
     }
 
-    public IEnumerable<ListItemViewModel> ListItemModels
-    {
-        get => _listItemsModel.ListItemModels;
-    }
+    public IEnumerable<ListItemViewModel> ListItemModels => _listItemsModel.ListItemModels;
 
     public ListItemViewModel? SelectedListItemModel
     {
@@ -87,10 +81,7 @@ public class ListItemsViewModel : BaseListViewModel
 
     #region Commands
 
-    public RelayCommand ClearFiltersCommand
-    {
-        get => _listItemsModel.ClearFiltersCommand;
-    }
+    public RelayCommand ClearFiltersCommand => _listItemsModel.ClearFiltersCommand;
 
     #endregion Commands
 

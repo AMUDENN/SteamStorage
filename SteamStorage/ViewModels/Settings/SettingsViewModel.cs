@@ -16,10 +16,7 @@ public class SettingsViewModel : ViewModelBase
 
     #region Properties
 
-    public IEnumerable<ThemeModel> ThemeModels
-    {
-        get => _model.ThemeModels;
-    }
+    public IEnumerable<ThemeModel> ThemeModels => _model.ThemeModels;
 
     public ThemeModel SelectedThemeModel
     {
@@ -31,15 +28,9 @@ public class SettingsViewModel : ViewModelBase
 
     #region Commands
 
-    public AsyncRelayCommand ExportToExcelCommand
-    {
-        get => _model.ExportToExcelCommand;
-    }
+    public AsyncRelayCommand ExportToExcelCommand => _model.ExportToExcelCommand;
 
-    public RelayCommand OpenReferenceInformationCommand
-    {
-        get => _model.OpenReferenceInformationCommand;
-    }
+    public RelayCommand OpenReferenceInformationCommand => _model.OpenReferenceInformationCommand;
 
     #endregion Commands
 

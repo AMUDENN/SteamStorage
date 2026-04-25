@@ -13,15 +13,9 @@ public class TextConfirmDialogViewModel : BaseDialogViewModel
 
     #region Properties
 
-    public string Message
-    {
-        get => _textConfirmDialogModel.Message;
-    }
+    public string Message => _textConfirmDialogModel.Message;
 
-    public string ConfirmText
-    {
-        get => _textConfirmDialogModel.ConfirmText;
-    }
+    public string ConfirmText => _textConfirmDialogModel.ConfirmText;
 
     public string InputText
     {

@@ -8,7 +8,7 @@ public class DoubleLessConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is null || parameter is null) return false;
+        if (value is null || parameter is null) return null;
         try
         {
             return System.Convert.ToDouble(value) < System.Convert.ToDouble(parameter);

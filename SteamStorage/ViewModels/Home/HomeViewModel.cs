@@ -15,15 +15,9 @@ public class HomeViewModel : ViewModelBase
 
     #region Properties
 
-    public ViewModelBase CurrentViewModel
-    {
-        get => _homeModel.CurrentViewModel;
-    }
+    public ViewModelBase CurrentViewModel => _homeModel.CurrentViewModel;
 
-    public IEnumerable<SecondaryNavigationModel> SecondaryNavigationOptions
-    {
-        get => _homeModel.SecondaryNavigationOptions;
-    }
+    public IEnumerable<SecondaryNavigationModel> SecondaryNavigationOptions => _homeModel.SecondaryNavigationOptions;
 
     public SecondaryNavigationModel? SelectedSecondaryNavigationModel
     {

@@ -12,15 +12,9 @@ public abstract class BaseListViewModel : ViewModelBase
 
     #region Properties
 
-    public string? NotFoundText
-    {
-        get => _baseListModel.NotFoundText;
-    }
+    public string? NotFoundText => _baseListModel.NotFoundText;
 
-    public bool IsLoading
-    {
-        get => _baseListModel.IsLoading;
-    }
+    public bool IsLoading => _baseListModel.IsLoading;
 
     public int? PageNumber
     {
@@ -28,30 +22,15 @@ public abstract class BaseListViewModel : ViewModelBase
         set => _baseListModel.PageNumber = value;
     }
 
-    public int CurrentPageNumber
-    {
-        get => _baseListModel.CurrentPageNumber;
-    }
+    public int CurrentPageNumber => _baseListModel.CurrentPageNumber;
 
-    public int PagesCount
-    {
-        get => _baseListModel.PagesCount;
-    }
+    public int PagesCount => _baseListModel.PagesCount;
 
-    public int DisplayItemsCountStart
-    {
-        get => _baseListModel.DisplayItemsCountStart;
-    }
+    public int DisplayItemsCountStart => _baseListModel.DisplayItemsCountStart;
 
-    public int DisplayItemsCountEnd
-    {
-        get => _baseListModel.DisplayItemsCountEnd;
-    }
+    public int DisplayItemsCountEnd => _baseListModel.DisplayItemsCountEnd;
 
-    public int SavedItemsCount
-    {
-        get => _baseListModel.SavedItemsCount;
-    }
+    public int SavedItemsCount => _baseListModel.SavedItemsCount;
 
     #endregion Properties
 

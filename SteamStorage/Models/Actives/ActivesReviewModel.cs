@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SteamStorage.Models.Tools;
+using SteamStorage.Models.Tools.UtilityModels;
 using SteamStorage.Services.ThemeService;
 using SteamStorage.Utilities.Events.Settings;
 using SteamStorage.ViewModels.Tools.UtilityViewModels;
@@ -20,7 +22,7 @@ public class ActivesReviewModel : ModelBase
 {
     #region Constants
 
-    private const string EMPTY_LIST_TEXT = "Элементы не найдены";
+    private const string EMPTY_LIST_TEXT = "No items found";
     private const double CHART_MIN_WIDTH = 1;
 
     #endregion Constants
@@ -267,10 +269,7 @@ public class ActivesReviewModel : ModelBase
         }
     }
 
-    public string? NotFoundText
-    {
-        get => ActiveGroupModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
-    }
+    public string? NotFoundText => ActiveGroupModels.Count == 0 && !IsLoading ? EMPTY_LIST_TEXT : null;
 
     public bool IsLoading
     {
@@ -356,14 +355,14 @@ public class ActivesReviewModel : ModelBase
         _chartMinWidth = CHART_MIN_WIDTH;
 
         _activeGroupModels = [];
-        _groupsCancellationTokenSource = new();
-        _statisticsCancellationTokenSource = new();
+        _groupsCancellationTokenSource = new CancellationTokenSource();
+        _statisticsCancellationTokenSource = new CancellationTokenSource();
 
         SetOrderingsNull();
 
         IsLoading = false;
 
-        AttachedToVisualTreeCommand = new(DoAttachedToVisualTreeCommand);
+        AttachedToVisualTreeCommand = new RelayCommand(DoAttachedToVisualTreeCommand);
     }
 
     #endregion Constructor
@@ -421,12 +420,11 @@ public class ActivesReviewModel : ModelBase
         {
             int i = 0;
 
-            ActiveGroupsGameCountSeries = new(ActiveGroupsGameCount.OrderByDescending(x => x.GameTitle)
-                .AsPieSeries((value, builder) =>
-                {
+            ActiveGroupsGameCountSeries = new ObservableCollection<ISeries>(ActiveGroupsGameCount.OrderByDescending(x => x.GameTitle)
+                .AsPieSeries((value, builder) => {
                     builder.MaxRadialColumnWidth = 20;
                     builder.HoverPushout = 0;
-                    builder.Mapping = (game, point) => new(point, game.Count);
+                    builder.Mapping = (game, point) => new Coordinate(point, game.Count);
                     builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.Count:N0}";
                     builder.Fill =
                         new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
@@ -449,13 +447,12 @@ public class ActivesReviewModel : ModelBase
         {
             int i = 0;
 
-            ActiveGroupsGameInvestmentSumSeries = new(ActiveGroupsGameInvestmentSum
+            ActiveGroupsGameInvestmentSumSeries = new ObservableCollection<ISeries>(ActiveGroupsGameInvestmentSum
                 .OrderByDescending(x => x.GameTitle)
-                .AsPieSeries((value, builder) =>
-                {
+                .AsPieSeries((value, builder) => {
                     builder.MaxRadialColumnWidth = 20;
                     builder.HoverPushout = 0;
-                    builder.Mapping = (game, point) => new(point, (double)game.InvestmentSum);
+                    builder.Mapping = (game, point) => new Coordinate(point, (double)game.InvestmentSum);
                     builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.InvestmentSum:N2}";
                     builder.Fill =
                         new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
@@ -478,12 +475,11 @@ public class ActivesReviewModel : ModelBase
         {
             int i = 0;
 
-            ActiveGroupsGameCurrentSumSeries = new(ActiveGroupsGameCurrentSum.OrderByDescending(x => x.GameTitle)
-                .AsPieSeries((value, builder) =>
-                {
+            ActiveGroupsGameCurrentSumSeries = new ObservableCollection<ISeries>(ActiveGroupsGameCurrentSum.OrderByDescending(x => x.GameTitle)
+                .AsPieSeries((value, builder) => {
                     builder.MaxRadialColumnWidth = 20;
                     builder.HoverPushout = 0;
-                    builder.Mapping = (game, point) => new(point, (double)game.CurrentSum);
+                    builder.Mapping = (game, point) => new Coordinate(point, (double)game.CurrentSum);
                     builder.ToolTipLabelFormatter = _ => $"{value.GameTitle}: {value.CurrentSum:N2}";
                     builder.Fill =
                         new SolidColorPaint(_themeService.CurrentChartThemeVariant.Colors.ElementAt(i).Color);
@@ -500,7 +496,7 @@ public class ActivesReviewModel : ModelBase
     {
         await StatisticsCancellationTokenSource.CancelAsync();
 
-        StatisticsCancellationTokenSource = new();
+        StatisticsCancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = StatisticsCancellationTokenSource.Token;
 
         ActiveGroups.ActiveGroupsStatisticResponse? activeGroupsStatisticResponse =
@@ -533,20 +529,20 @@ public class ActivesReviewModel : ModelBase
 
         await GroupsCancellationTokenSource.CancelAsync();
 
-        GroupsCancellationTokenSource = new();
+        GroupsCancellationTokenSource = new CancellationTokenSource();
         CancellationToken token = GroupsCancellationTokenSource.Token;
 
         ActiveGroups.ActiveGroupsResponse? groupsResponse =
             await _apiClient.GetAsync<ActiveGroups.ActiveGroupsResponse, ActiveGroups.GetActiveGroupsRequest>(
                 ApiConstants.ApiMethods.GetActiveGroups,
-                new(ActiveGroupOrderName, IsAscending),
+                new ActiveGroups.GetActiveGroupsRequest(ActiveGroupOrderName, IsAscending),
                 token);
 
         if (groupsResponse?.ActiveGroups is null) return;
 
         ActiveGroupModels = groupsResponse.ActiveGroups.Select(x =>
                 new ActiveGroupViewModel(
-                    new(_apiClient,
+                    new ActiveGroupModel(_apiClient,
                         _periodsModel,
                         _themeService,
                         x.Id,

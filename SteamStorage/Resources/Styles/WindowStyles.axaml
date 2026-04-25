@@ -1,15 +1,15 @@
 <Styles
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Xaml.Behaviors.Interactivity"
+    xmlns:behaviors="using:SteamStorage.Resources.Behaviors"
     xmlns:controls="using:SteamStorage.Resources.Controls"
     xmlns:windows="clr-namespace:SteamStorage.ViewModels.Windows">
 
     <Style Selector="Window">
-        <Setter Property="ExtendClientAreaChromeHints" Value="NoChrome" />
         <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="36" />
         <Setter Property="ExtendClientAreaToDecorationsHint" Value="True" />
         <Setter Property="TransparencyBackgroundFallback" Value="Transparent" />
-        <Setter Property="SystemDecorations" Value="BorderOnly" />
     </Style>
 
     <Style Selector="Window.MainWindow">
@@ -42,6 +42,11 @@
                                     Grid.Column="0"
                                     Margin="4"
                                     Classes="LogoVectorImage ForegroundVectorImage" />
+                                <Panel Grid.Column="1" Background="Transparent">
+                                    <i:Interaction.Behaviors>
+                                        <behaviors:DragWindowBehavior />
+                                    </i:Interaction.Behaviors>
+                                </Panel>
                                 <StackPanel
                                     Grid.Column="2"
                                     HorizontalAlignment="Right"
@@ -140,6 +145,11 @@
                                     Grid.Column="0"
                                     Margin="4"
                                     Classes="LogoVectorImage ForegroundVectorImage" />
+                                <Panel Grid.Column="1" Background="Transparent">
+                                    <i:Interaction.Behaviors>
+                                        <behaviors:DragWindowBehavior />
+                                    </i:Interaction.Behaviors>
+                                </Panel>
                                 <StackPanel
                                     Grid.Column="2"
                                     HorizontalAlignment="Right"

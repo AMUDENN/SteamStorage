@@ -143,11 +143,11 @@ public class MainModel : ModelBase
 
         NavigationOptions =
         [
-            new("HomeVectorImage", "Главная", homeViewModel),
-            new("ActivesVectorImage", "Активы", activesViewModel),
-            new("ArchiveVectorImage", "Архив", archivesViewModel),
-            new("InventoryVectorImage", "Инвентарь", inventoryViewModel),
-            new("ProfileVectorImage", "Профиль", profileViewModel)
+            new NavigationModel("HomeVectorImage", "Home", homeViewModel),
+            new NavigationModel("ActivesVectorImage", "Actives", activesViewModel),
+            new NavigationModel("ArchiveVectorImage", "Archive", archivesViewModel),
+            new NavigationModel("InventoryVectorImage", "Inventory", inventoryViewModel),
+            new NavigationModel("ProfileVectorImage", "Profile", profileViewModel)
         ];
 
         _settingsViewModel = settingsViewModel;
@@ -160,8 +160,8 @@ public class MainModel : ModelBase
         _steamId = STEAM_ID;
         _isUserLogin = false;
 
-        LogInCommand = new(DoLogInCommand);
-        LogOutCommand = new(DoLogOutCommand);
+        LogInCommand = new RelayCommand(DoLogInCommand);
+        LogOutCommand = new RelayCommand(DoLogOutCommand);
 
         userModel.UserChanged += UserChangedHandler;
 
@@ -186,29 +186,18 @@ public class MainModel : ModelBase
         SteamId = _userModel.User is null ? STEAM_ID : $"{STEAM_ID}: {_userModel.User.SteamId}";
         ImageUrl = _userModel.User?.ImageUrlFull;
 
-        SelectedNavigationModel = null;
+        SelectedNavigationModel = NavigationOptions.FirstOrDefault();
         IsSettingsChecked = false;
-
-        if (_userModel.User is not null)
-        {
-            SelectedNavigationModel = NavigationOptions.FirstOrDefault(x => x.Title == _userModel.User.StartPage);
-        }
-        else
-        {
-            SelectedNavigationModel = null;
-            IsSettingsChecked = false;
-            CurrentViewModel = _defaultViewModel;
-        }
     }
 
     private async void AuthorizationCompletedHandler(object? sender)
     {
-        await _notificationService.ShowAsync("Авторизация", "Авторизация прошла успешно");
+        await _notificationService.ShowAsync("Authorization", "Authorization successful");
     }
 
     private async void LogOutCompletedHandler(object? sender)
     {
-        await _notificationService.ShowAsync("Выход", "Вы вышли из аккаунта");
+        await _notificationService.ShowAsync("Sign out", "You signed out");
     }
 
     private void AddToActivesHandler(object? sender, AddToActivesEventArgs args)

@@ -70,9 +70,9 @@ public abstract class BaseEditModel : ModelBase
 
         _title = string.Empty;
 
-        BackCommand = new(DoBackCommand);
-        DeleteCommand = new(DoDeleteCommand);
-        SaveCommand = new(DoSaveCommand, CanExecuteSaveCommand);
+        BackCommand = new RelayCommand(DoBackCommand);
+        DeleteCommand = new AsyncRelayCommand(DoDeleteCommand);
+        SaveCommand = new AsyncRelayCommand(DoSaveCommand, CanExecuteSaveCommand);
     }
 
     #endregion Constructor

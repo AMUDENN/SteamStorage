@@ -36,7 +36,7 @@ public class BaseSkinModel : ModelBase
         MarketUrl = marketUrl;
         Title = title;
 
-        OpenInSteamCommand = new(DoOpenInSteamCommand);
+        OpenInSteamCommand = new RelayCommand(DoOpenInSteamCommand);
     }
 
     #endregion Constructor
