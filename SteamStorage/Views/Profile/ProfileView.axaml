@@ -199,34 +199,6 @@
 
         </Border>
 
-        <Border
-            Grid.Row="8"
-            Grid.Column="0"
-            Classes="BackgroundAdditionalBorder BigRoundedBorder">
-
-            <Grid
-                Height="50"
-                Margin="20"
-                HorizontalAlignment="Center"
-                ColumnDefinitions="*, 150">
-
-                <TextBlock
-                    Grid.Column="0"
-                    Margin="0,0,10,0"
-                    Classes="MiddleTextBlock"
-                    Text="Start page: " />
-
-                <ComboBox
-                    Grid.Column="1"
-                    Classes="PageComboBox BaseComboBox DarkComboBox"
-                    ItemsSource="{Binding PageModels, Mode=OneWay}"
-                    PlaceholderText="Select page"
-                    SelectedItem="{Binding SelectedPage}" />
-
-            </Grid>
-
-        </Border>
-
         <Button
             Grid.Row="10"
             Grid.Column="0"

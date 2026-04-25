@@ -20,7 +20,6 @@ public class ProfileModel : ModelBase
 
     private readonly UserModel _userModel;
     private readonly CurrenciesModel _currenciesModel;
-    private readonly PagesModel _pagesModel;
     private readonly TextConfirmDialogViewModel _textConfirmDialogViewModel;
     private readonly IDialogService _dialogService;
     private readonly INotificationService _notificationService;
@@ -41,8 +40,6 @@ public class ProfileModel : ModelBase
     private CurrencyModel? _selectedCurrency;
 
     private string? _exchangeRate;
-
-    private PageModel? _selectedPage;
 
     #endregion Fields
 
@@ -114,17 +111,6 @@ public class ProfileModel : ModelBase
         private set => SetProperty(ref _exchangeRate, value);
     }
 
-    public PageModel? SelectedPage
-    {
-        get => _selectedPage;
-        set
-        {
-            if (value is not null && value.Id != _userModel.StartPage?.Id)
-                SetPage(value);
-            SetProperty(ref _selectedPage, value);
-        }
-    }
-
     #endregion Properties
 
     #region Commands
@@ -144,26 +130,22 @@ public class ProfileModel : ModelBase
     public ProfileModel(
         UserModel userModel,
         CurrenciesModel currenciesModel,
-        PagesModel pagesModel,
         TextConfirmDialogViewModel textConfirmDialogViewModel,
         IDialogService dialogService,
         INotificationService notificationService)
     {
         _userModel = userModel;
         _currenciesModel = currenciesModel;
-        _pagesModel = pagesModel;
         _textConfirmDialogViewModel = textConfirmDialogViewModel;
         _dialogService = dialogService;
         _notificationService = notificationService;
 
         userModel.UserChanged += UserChangedHandler;
         userModel.CurrencyChanged += CurrencyChangedHandler;
-        userModel.StartPageChanged += StartPageChangedHandler;
         userModel.FinancialGoalChanged += FinancialGoalChangedHandler;
 
         currenciesModel.CurrenciesLoaded += CurrenciesLoadedHandler;
 
-        pagesModel.PagesLoaded += PagesLoadedHandler;
 
         _profileUrl = string.Empty;
 
@@ -188,7 +170,6 @@ public class ProfileModel : ModelBase
             DateRegistration = null;
             SelectedCurrency = null;
             ExchangeRate = null;
-            SelectedPage = null;
             _profileUrl = string.Empty;
             return;
         }
@@ -213,11 +194,6 @@ public class ProfileModel : ModelBase
             $"1$ = {_userModel.Currency?.Price ?? 0:N2} {_userModel.CurrencyMark} ({(_userModel.Currency?.DateUpdate ?? DateTime.Now).ToString(ProgramConstants.VIEW_DATE_FORMAT)})";
     }
 
-    private void StartPageChangedHandler(object? sender)
-    {
-        SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.StartPage?.Id);
-    }
-
     private void FinancialGoalChangedHandler(object? sender)
     {
         SetFinancialGoal();
@@ -226,11 +202,6 @@ public class ProfileModel : ModelBase
     private void CurrenciesLoadedHandler(object? sender)
     {
         SelectedCurrency = _currenciesModel.CurrencyModels.FirstOrDefault(x => x.Id == _userModel.Currency?.Id);
-    }
-
-    private void PagesLoadedHandler(object? sender)
-    {
-        SelectedPage = _pagesModel.PageModels.FirstOrDefault(x => x.Id == _userModel.StartPage?.Id);
     }
 
     private void DoOpenSteamProfileCommand()
@@ -279,7 +250,6 @@ public class ProfileModel : ModelBase
     private void DoAttachedToVisualTreeCommand()
     {
         _userModel.UpdateCurrencyInfo();
-        _pagesModel.GetPagesAsync();
         _currenciesModel.GetCurrenciesAsync();
     }
 
@@ -294,13 +264,6 @@ public class ProfileModel : ModelBase
         await _userModel.SetCurrencyAsync(currencyModel);
         await _notificationService.ShowAsync("Currency change",
             $"You changed the currency to {currencyModel.Title}");
-    }
-
-    private async void SetPage(PageModel pageModel)
-    {
-        await _userModel.SetPageAsync(pageModel);
-        await _notificationService.ShowAsync("Start page change",
-            $"You changed the start page to {pageModel.Title}");
     }
 
     #endregion Methods

@@ -146,7 +146,6 @@ public partial class App : Application
         services.AddSingleton<ChartTooltipModel>();
         services.AddSingleton<CurrenciesModel>();
         services.AddSingleton<GamesModel>();
-        services.AddSingleton<PagesModel>();
         services.AddSingleton<PeriodsModel>();
         services.AddSingleton<UserModel>();
 

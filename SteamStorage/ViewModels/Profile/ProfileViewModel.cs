@@ -13,7 +13,6 @@ public class ProfileViewModel : ViewModelBase
 
     private readonly ProfileModel _profileModel;
     private readonly CurrenciesModel _currenciesModel;
-    private readonly PagesModel _pagesModel;
 
     #endregion Fields
 
@@ -45,14 +44,6 @@ public class ProfileViewModel : ViewModelBase
 
     public string? ExchangeRate => _profileModel.ExchangeRate;
 
-    public IEnumerable<PageModel> PageModels => _pagesModel.PageModels;
-
-    public PageModel? SelectedPage
-    {
-        get => _profileModel.SelectedPage;
-        set => _profileModel.SelectedPage = value;
-    }
-
     #endregion Properties
 
     #region Commands
@@ -71,16 +62,13 @@ public class ProfileViewModel : ViewModelBase
 
     public ProfileViewModel(
         ProfileModel profileModel,
-        CurrenciesModel currenciesModel,
-        PagesModel pagesModel)
+        CurrenciesModel currenciesModel)
     {
         _profileModel = profileModel;
         _currenciesModel = currenciesModel;
-        _pagesModel = pagesModel;
 
         profileModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
         currenciesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
-        pagesModel.PropertyChanged += (_, e) => OnPropertyChanged(e.PropertyName);
     }
 
     #endregion Constructor

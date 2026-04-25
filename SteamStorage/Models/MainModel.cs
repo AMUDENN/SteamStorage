@@ -185,20 +185,9 @@ public class MainModel : ModelBase
         UserName = _userModel.User?.Nickname ?? USERNAME;
         SteamId = _userModel.User is null ? STEAM_ID : $"{STEAM_ID}: {_userModel.User.SteamId}";
         ImageUrl = _userModel.User?.ImageUrlFull;
-
-        SelectedNavigationModel = null;
+        
+        SelectedNavigationModel = NavigationOptions.FirstOrDefault();
         IsSettingsChecked = false;
-
-        if (_userModel.User is not null)
-        {
-            SelectedNavigationModel = NavigationOptions.FirstOrDefault(x => x.Title == _userModel.User.StartPage);
-        }
-        else
-        {
-            SelectedNavigationModel = null;
-            IsSettingsChecked = false;
-            CurrentViewModel = _defaultViewModel;
-        }
     }
 
     private async void AuthorizationCompletedHandler(object? sender)
